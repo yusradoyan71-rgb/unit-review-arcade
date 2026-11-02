@@ -1,0 +1,273 @@
+import type { ArcadeData, GradeId, Unit, Activity } from '../types/schema';
+
+const STORAGE_KEY = 'unit_review_arcade_data_v1';
+
+export const EMPTY_INITIAL_DATA: ArcadeData = {
+  version: '1.0.0',
+  units: {
+    'grade-7': [],
+    'grade-8': [],
+  },
+  lastModified: new Date().toISOString(),
+};
+
+export class StorageService {
+  /**
+   * Load arcade data from LocalStorage.
+   * If non-existent or invalid, returns a strictly empty collection with 0 units.
+   */
+  public static loadData(): ArcadeData {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) {
+        this.saveData(EMPTY_INITIAL_DATA);
+        return EMPTY_INITIAL_DATA;
+      }
+      const parsed = JSON.parse(raw) as ArcadeData;
+      // Sanitize structure
+      if (!parsed.units || !Array.isArray(parsed.units['grade-7']) || !Array.isArray(parsed.units['grade-8'])) {
+        this.saveData(EMPTY_INITIAL_DATA);
+        return EMPTY_INITIAL_DATA;
+      }
+      return parsed;
+    } catch (err) {
+      console.warn('Failed to parse arcade data from localStorage, resetting to empty state:', err);
+      this.saveData(EMPTY_INITIAL_DATA);
+      return EMPTY_INITIAL_DATA;
+    }
+  }
+
+  /**
+   * Persist arcade data to LocalStorage
+   */
+  public static saveData(data: ArcadeData): void {
+    try {
+      const updatedData: ArcadeData = {
+        ...data,
+        lastModified: new Date().toISOString(),
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedData));
+    } catch (err) {
+      console.error('Failed to save arcade data to localStorage:', err);
+    }
+  }
+
+  /**
+   * Reset platform to completely empty state
+   */
+  public static clearAllData(): ArcadeData {
+    this.saveData(EMPTY_INITIAL_DATA);
+    return EMPTY_INITIAL_DATA;
+  }
+
+  /**
+   * Create a new unit for a specific grade
+   */
+  public static createUnit(
+    gradeId: GradeId,
+    unitData: Omit<Unit, 'id' | 'gradeId' | 'activities' | 'order' | 'createdAt' | 'updatedAt'>
+  ): Unit {
+    const current = this.loadData();
+    const gradeUnits = current.units[gradeId] || [];
+
+    const newUnit: Unit = {
+      id: `unit_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
+      gradeId,
+      unitNumber: unitData.unitNumber || gradeUnits.length + 1,
+      title: unitData.title.trim(),
+      description: unitData.description?.trim(),
+      icon: unitData.icon || 'BookOpen',
+      colorTheme: unitData.colorTheme || 'indigo',
+      activities: [],
+      order: gradeUnits.length,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+
+    current.units[gradeId] = [...gradeUnits, newUnit];
+    this.saveData(current);
+    return newUnit;
+  }
+
+  /**
+   * Update an existing unit
+   */
+  public static updateUnit(unitId: string, updates: Partial<Omit<Unit, 'id' | 'gradeId' | 'activities'>>): Unit | null {
+    const current = this.loadData();
+    let updatedUnit: Unit | null = null;
+
+    for (const gradeKey of ['grade-7', 'grade-8'] as GradeId[]) {
+      const index = current.units[gradeKey].findIndex((u) => u.id === unitId);
+      if (index !== -1) {
+        current.units[gradeKey][index] = {
+          ...current.units[gradeKey][index],
+          ...updates,
+          updatedAt: new Date().toISOString(),
+        };
+        updatedUnit = current.units[gradeKey][index];
+        break;
+      }
+    }
+
+    if (updatedUnit) {
+      this.saveData(current);
+    }
+    return updatedUnit;
+  }
+
+  /**
+   * Delete a unit by ID
+   */
+  public static deleteUnit(unitId: string): boolean {
+    const current = this.loadData();
+    let deleted = false;
+
+    for (const gradeKey of ['grade-7', 'grade-8'] as GradeId[]) {
+      const initialLength = current.units[gradeKey].length;
+      current.units[gradeKey] = current.units[gradeKey].filter((u) => u.id !== unitId);
+      if (current.units[gradeKey].length !== initialLength) {
+        // Re-index orders
+        current.units[gradeKey].forEach((u, i) => {
+          u.order = i;
+        });
+        deleted = true;
+        break;
+      }
+    }
+
+    if (deleted) {
+      this.saveData(current);
+    }
+    return deleted;
+  }
+
+  /**
+   * Reorder units within a grade
+   */
+  public static reorderUnits(gradeId: GradeId, reorderedUnitIds: string[]): Unit[] {
+    const current = this.loadData();
+    const existing = current.units[gradeId] || [];
+
+    const unitMap = new Map(existing.map((u) => [u.id, u]));
+    const reordered: Unit[] = [];
+
+    reorderedUnitIds.forEach((id, index) => {
+      const unit = unitMap.get(id);
+      if (unit) {
+        unit.order = index;
+        reordered.push(unit);
+      }
+    });
+
+    current.units[gradeId] = reordered;
+    this.saveData(current);
+    return reordered;
+  }
+
+  /**
+   * Create an activity inside a unit
+   */
+  public static createActivity(
+    unitId: string,
+    activityData: Omit<Activity, 'id' | 'unitId' | 'order' | 'createdAt' | 'updatedAt'>
+  ): Activity | null {
+    const current = this.loadData();
+    let createdActivity: Activity | null = null;
+
+    for (const gradeKey of ['grade-7', 'grade-8'] as GradeId[]) {
+      const unit = current.units[gradeKey].find((u) => u.id === unitId);
+      if (unit) {
+        const newAct: Activity = {
+          ...activityData,
+          id: `act_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
+          unitId,
+          order: unit.activities.length,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+        };
+        unit.activities.push(newAct);
+        unit.updatedAt = new Date().toISOString();
+        createdActivity = newAct;
+        break;
+      }
+    }
+
+    if (createdActivity) {
+      this.saveData(current);
+    }
+    return createdActivity;
+  }
+
+  /**
+   * Delete an activity by ID
+   */
+  public static deleteActivity(unitId: string, activityId: string): boolean {
+    const current = this.loadData();
+    let deleted = false;
+
+    for (const gradeKey of ['grade-7', 'grade-8'] as GradeId[]) {
+      const unit = current.units[gradeKey].find((u) => u.id === unitId);
+      if (unit) {
+        const initialCount = unit.activities.length;
+        unit.activities = unit.activities.filter((a) => a.id !== activityId);
+        if (unit.activities.length !== initialCount) {
+          unit.activities.forEach((a, idx) => {
+            a.order = idx;
+          });
+          unit.updatedAt = new Date().toISOString();
+          deleted = true;
+          break;
+        }
+      }
+    }
+
+    if (deleted) {
+      this.saveData(current);
+    }
+    return deleted;
+  }
+
+  /**
+   * Export all platform content as formatted JSON
+   */
+  public static exportJSON(): string {
+    const data = this.loadData();
+    return JSON.stringify(data, null, 2);
+  }
+
+  /**
+   * Import data from JSON string with schema validation
+   */
+  public static importJSON(jsonStr: string): { success: boolean; message: string; data?: ArcadeData } {
+    try {
+      const parsed = JSON.parse(jsonStr) as ArcadeData;
+
+      if (!parsed || typeof parsed !== 'object') {
+        return { success: false, message: 'Invalid JSON: root must be an object.' };
+      }
+
+      if (!parsed.units || typeof parsed.units !== 'object') {
+        return { success: false, message: 'Invalid schema: missing "units" collection.' };
+      }
+
+      if (!Array.isArray(parsed.units['grade-7']) || !Array.isArray(parsed.units['grade-8'])) {
+        return { success: false, message: 'Invalid schema: units must contain grade-7 and grade-8 arrays.' };
+      }
+
+      const validData: ArcadeData = {
+        version: parsed.version || '1.0.0',
+        units: {
+          'grade-7': parsed.units['grade-7'],
+          'grade-8': parsed.units['grade-8'],
+        },
+        lastModified: new Date().toISOString(),
+      };
+
+      this.saveData(validData);
+      return { success: true, message: 'Content successfully restored from backup!', data: validData };
+    } catch (err: unknown) {
+      const errorMsg = err instanceof Error ? err.message : 'Unknown parsing error';
+      return { success: false, message: `Failed to import JSON: ${errorMsg}` };
+    }
+  }
+}
