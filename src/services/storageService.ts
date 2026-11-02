@@ -71,11 +71,15 @@ export class StorageService {
         parsed.units['grade-8'] = [...parsed.units['grade-8'], GRADE_8_UNIT_3];
         hasChanges = true;
       } else {
-        // Ensure Unit 3 has all 8 activities
+        // Ensure Unit 3 has all 8 activities and upgraded train_station game
         const g8u3Idx = parsed.units['grade-8'].findIndex((u) => u.id === 'g8-u3');
-        if (g8u3Idx !== -1 && parsed.units['grade-8'][g8u3Idx].activities.length < 8) {
-          parsed.units['grade-8'][g8u3Idx] = GRADE_8_UNIT_3;
-          hasChanges = true;
+        if (g8u3Idx !== -1) {
+          const u3 = parsed.units['grade-8'][g8u3Idx];
+          const hasTrainStation = u3.activities.some((a) => a.id === 'g8-u3-act4' && a.gameType === 'train_station');
+          if (u3.activities.length < 8 || !hasTrainStation) {
+            parsed.units['grade-8'][g8u3Idx] = GRADE_8_UNIT_3;
+            hasChanges = true;
+          }
         }
       }
 

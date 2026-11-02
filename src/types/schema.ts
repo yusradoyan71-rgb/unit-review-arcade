@@ -12,7 +12,8 @@ export type GameType =
   | 'match_it' 
   | 'sentence_builder' 
   | 'true_false'
-  | 'reading_detective';
+  | 'reading_detective'
+  | 'train_station';
 
 export interface GameTypeMetadata {
   id: GameType;
@@ -27,7 +28,7 @@ export const GAME_TYPE_METADATA: Record<GameType, GameTypeMetadata> = {
   quiz_battle: {
     id: 'quiz_battle',
     title: 'Quiz Battle',
-    shortDesc: 'Fast-paced multiple choice challenge with timer and instant answer reveal.',
+    shortDesc: 'Fast-paced multiple choice challenge with instant answer reveal.',
     iconName: 'HelpCircle',
     accentColor: '#38bdf8', // sky-400
     badgeColor: 'bg-sky-500/20 text-sky-300 border-sky-500/40',
@@ -63,6 +64,14 @@ export const GAME_TYPE_METADATA: Record<GameType, GameTypeMetadata> = {
     iconName: 'BookMarked',
     accentColor: '#06b6d4', // cyan-500
     badgeColor: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40',
+  },
+  train_station: {
+    id: 'train_station',
+    title: 'At the Train Station',
+    shortDesc: 'Interactive British railway departure board with schedule, ticket, and problem-solving rounds.',
+    iconName: 'Train',
+    accentColor: '#eab308', // yellow-500
+    badgeColor: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/40',
   },
 };
 
@@ -124,12 +133,42 @@ export interface ReadingPassageQuestion extends BaseQuestion {
   correctOptionIndex: number;
 }
 
+export type TrainStatus = 'ON TIME' | 'BOARDING' | 'DELAYED' | 'CANCELLED' | 'PLATFORM CHANGED';
+
+export interface TrainScheduleItem {
+  id: string;
+  time: string;           // "10:55"
+  destination: string;    // "Oxford"
+  platform: string;       // "4"
+  status: TrainStatus;
+  statusDetail?: string;  // e.g. "Exp 11:40"
+  singleFare: string;     // "£14.50"
+  returnFare: string;     // "£22.00"
+  callingAt?: string[];   // ["Reading", "Didcot Parkway", "Oxford"]
+  operator?: string;      // "Great Western Railway"
+}
+
+export interface TrainStationDialogueLine {
+  speaker: string;
+  text: string;
+}
+
+export interface TrainStationQuestion extends BaseQuestion {
+  round: number;          // 1, 2, 3, 4, 5
+  roundTitle: string;     // "Round 1 – Find Your Train", etc.
+  options: string[];
+  correctOptionIndex: number;
+  highlightTrainId?: string;
+  dialogue?: TrainStationDialogueLine[];
+}
+
 export type AnyQuestion = 
   | MultipleChoiceQuestion 
   | MatchItQuestion 
   | SentenceBuilderQuestion 
   | TrueFalseQuestion 
   | ReadingPassageQuestion
+  | TrainStationQuestion
   | BaseQuestion;
 
 export interface Activity {

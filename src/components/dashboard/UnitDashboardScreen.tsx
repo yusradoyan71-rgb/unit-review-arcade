@@ -17,7 +17,8 @@ import {
   AlignLeft, 
   CheckCircle2, 
   BookMarked,
-  SlidersHorizontal 
+  SlidersHorizontal,
+  Train 
 } from 'lucide-react';
 
 interface UnitDashboardScreenProps {
@@ -32,6 +33,7 @@ const GAME_ICONS: Record<GameType, React.FC<{ className?: string }>> = {
   sentence_builder: (props) => <AlignLeft {...props} />,
   true_false: (props) => <CheckCircle2 {...props} />,
   reading_detective: (props) => <BookMarked {...props} />,
+  train_station: (props) => <Train {...props} />,
 };
 
 export const UnitDashboardScreen: React.FC<UnitDashboardScreenProps> = ({ gradeId, unitId }) => {

@@ -74,9 +74,9 @@ export const GAME_4_ACTIVITY: Activity = {
   id: 'g8-u3-act4',
   unitId: 'g8-u3',
   title: 'At the Train Station',
-  gameType: 'quiz_battle',
+  gameType: 'train_station',
   difficulty: 'mixed',
-  instructions: 'Master train station dialogues, ticket types, platform announcements, fares, and reading simple timetables.',
+  instructions: 'Interactive British railway departure board challenge: find trains, understand spoken times, buy tickets, complete staff dialogues, and solve travel problems across 5 rounds.',
   settings: {
     showTimer: false,
     allowRevealAnswer: true,

@@ -5,6 +5,7 @@ import { MatchItGame } from './MatchItGame';
 import { SentenceBuilderGame } from './SentenceBuilderGame';
 import { TrueFalseGame } from './TrueFalseGame';
 import { ReadingDetectiveGame } from './ReadingDetectiveGame';
+import { TrainStationGame } from './TrainStationGame';
 import { Gamepad2 } from 'lucide-react';
 
 export const GameContainer: React.FC = () => {
@@ -45,6 +46,8 @@ export const GameContainer: React.FC = () => {
       return <TrueFalseGame activity={activeActivity} onExit={handleExit} />;
     case 'reading_detective':
       return <ReadingDetectiveGame activity={activeActivity} onExit={handleExit} />;
+    case 'train_station':
+      return <TrainStationGame activity={activeActivity} onExit={handleExit} />;
     default:
       return <QuizBattleGame activity={activeActivity} onExit={handleExit} />;
   }
