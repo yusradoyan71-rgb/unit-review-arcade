@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import type { Activity, TrueFalseQuestion } from '../../types/schema';
 import { motion } from 'framer-motion';
 import { sounds } from '../../services/soundEffects';
@@ -9,10 +9,7 @@ import {
   Check, 
   X, 
   ChevronRight, 
-  Clock, 
-  Sparkles,
-  Pause,
-  Play
+  Sparkles
 } from 'lucide-react';
 
 interface TrueFalseGameProps {
@@ -28,29 +25,8 @@ export const TrueFalseGame: React.FC<TrueFalseGameProps> = ({ activity, onExit }
   const [score, setScore] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
 
-  // Timer state
-  const timeLimit = activity.settings.timeLimitSeconds || 20;
-  const [timeLeft, setTimeLeft] = useState(timeLimit);
-  const [isTimerPaused, setIsTimerPaused] = useState(false);
-
   const currentStatement = statements[currentIndex];
   const isAnswered = selectedAnswer !== null;
-
-  useEffect(() => {
-    if (!activity.settings.showTimer || isAnswered || isTimerPaused || isGameOver) return;
-
-    if (timeLeft <= 0) {
-      setSelectedAnswer(!currentStatement.isTrue); // Auto timeout as incorrect
-      sounds.playBack();
-      return;
-    }
-
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => prev - 1);
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [timeLeft, isAnswered, isTimerPaused, isGameOver, activity.settings.showTimer, currentStatement]);
 
   const handleSelectAnswer = (choice: boolean) => {
     if (isAnswered) return;
@@ -71,7 +47,6 @@ export const TrueFalseGame: React.FC<TrueFalseGameProps> = ({ activity, onExit }
     if (currentIndex + 1 < statements.length) {
       setCurrentIndex((prev) => prev + 1);
       setSelectedAnswer(null);
-      setTimeLeft(timeLimit);
     } else {
       setIsGameOver(true);
     }
@@ -82,7 +57,6 @@ export const TrueFalseGame: React.FC<TrueFalseGameProps> = ({ activity, onExit }
     setCurrentIndex(0);
     setSelectedAnswer(null);
     setScore(0);
-    setTimeLeft(timeLimit);
     setIsGameOver(false);
   };
 
@@ -121,28 +95,6 @@ export const TrueFalseGame: React.FC<TrueFalseGameProps> = ({ activity, onExit }
             {currentIndex + 1} / {statements.length}
           </span>
         </div>
-
-        {/* Timer Control */}
-        {activity.settings.showTimer && (
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setIsTimerPaused(!isTimerPaused)}
-              className="p-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white"
-            >
-              {isTimerPaused ? <Play className="w-3.5 h-3.5 text-emerald-400" /> : <Pause className="w-3.5 h-3.5" />}
-            </button>
-            <div
-              className={`flex items-center gap-1.5 px-3 py-1 rounded-xl border text-sm font-mono font-bold ${
-                timeLeft <= 5
-                  ? 'bg-rose-500/20 text-rose-300 border-rose-500/40 animate-pulse'
-                  : 'bg-slate-900 text-cyan-300 border-slate-800'
-              }`}
-            >
-              <Clock className="w-4 h-4" />
-              <span>{timeLeft}s</span>
-            </div>
-          </div>
-        )}
       </div>
 
       {/* Statement Card */}

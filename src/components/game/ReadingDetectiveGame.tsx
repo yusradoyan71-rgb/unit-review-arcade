@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import type { Activity, ReadingPassageQuestion } from '../../types/schema';
 import { motion } from 'framer-motion';
 import { sounds } from '../../services/soundEffects';
@@ -8,13 +8,10 @@ import {
   ArrowLeft, 
   Eye, 
   ChevronRight, 
-  Clock, 
   BookOpen, 
   CheckCircle2, 
   XCircle, 
-  FileText,
-  Pause,
-  Play
+  FileText
 } from 'lucide-react';
 
 interface ReadingDetectiveGameProps {
@@ -31,11 +28,6 @@ export const ReadingDetectiveGame: React.FC<ReadingDetectiveGameProps> = ({ acti
   const [score, setScore] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
 
-  // Timer state
-  const timeLimit = activity.settings.timeLimitSeconds || 60;
-  const [timeLeft, setTimeLeft] = useState(timeLimit);
-  const [isTimerPaused, setIsTimerPaused] = useState(false);
-
   const currentQ = questions[currentIndex];
   const isAnswered = selectedOption !== null || isAnswerRevealed;
 
@@ -43,22 +35,6 @@ export const ReadingDetectiveGame: React.FC<ReadingDetectiveGameProps> = ({ acti
   const questionsPerPassage = 5;
   const passageNumber = Math.floor(currentIndex / questionsPerPassage) + 1;
   const questionNumberInPassage = (currentIndex % questionsPerPassage) + 1;
-
-  useEffect(() => {
-    if (!activity.settings.showTimer || isAnswered || isTimerPaused || isGameOver) return;
-
-    if (timeLeft <= 0) {
-      setIsAnswerRevealed(true);
-      sounds.playBack();
-      return;
-    }
-
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => prev - 1);
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [timeLeft, isAnswered, isTimerPaused, isGameOver, activity.settings.showTimer]);
 
   const handleSelectOption = (idx: number) => {
     if (isAnswered) return;
@@ -85,7 +61,6 @@ export const ReadingDetectiveGame: React.FC<ReadingDetectiveGameProps> = ({ acti
       setCurrentIndex((prev) => prev + 1);
       setSelectedOption(null);
       setIsAnswerRevealed(false);
-      setTimeLeft(timeLimit);
     } else {
       setIsGameOver(true);
     }
@@ -97,7 +72,6 @@ export const ReadingDetectiveGame: React.FC<ReadingDetectiveGameProps> = ({ acti
     setSelectedOption(null);
     setIsAnswerRevealed(false);
     setScore(0);
-    setTimeLeft(timeLimit);
     setIsGameOver(false);
   };
 
@@ -139,28 +113,6 @@ export const ReadingDetectiveGame: React.FC<ReadingDetectiveGameProps> = ({ acti
             Question {questionNumberInPassage} of {questionsPerPassage} ({currentIndex + 1}/25)
           </span>
         </div>
-
-        {/* Timer Control */}
-        {activity.settings.showTimer && (
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setIsTimerPaused(!isTimerPaused)}
-              className="p-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white"
-            >
-              {isTimerPaused ? <Play className="w-3.5 h-3.5 text-emerald-400" /> : <Pause className="w-3.5 h-3.5" />}
-            </button>
-            <div
-              className={`flex items-center gap-1 px-2.5 py-0.5 rounded-lg border text-xs font-mono font-bold ${
-                timeLeft <= 10
-                  ? 'bg-rose-500/20 text-rose-300 border-rose-500/40 animate-pulse'
-                  : 'bg-slate-900 text-cyan-300 border-slate-800'
-              }`}
-            >
-              <Clock className="w-3.5 h-3.5" />
-              <span>{timeLeft}s</span>
-            </div>
-          </div>
-        )}
       </div>
 
       {/* Side-by-Side Smartboard 16:9 Optimized Layout */}

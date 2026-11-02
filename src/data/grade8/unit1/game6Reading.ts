@@ -35,9 +35,9 @@ export const READING_PASSAGES: ReadingPassageData[] = [
   // Passage 4: Passion of a Young Musician
   {
     id: 'pass-4',
-    title: 'The Voice of the Cello',
+    title: 'The Voice of the Violin',
     wordCount: 126,
-    text: `Fourteen-year-old Maya began playing the cello when she was only seven years old. While most of her classmates chose the electric guitar or drums, Maya was immediately captivated by the deep, warm resonance of the cello. "The cello is the closest instrument to the human speaking voice," Maya explains with a smile. Mastering the instrument requires intense discipline and patience. Maya practices two hours every afternoon, gently pressing the steel strings against the ebony fingerboard and drawing the horsehair bow across with delicate precision. Last month, Maya won first prize at the National Youth Soloist Competition. Sitting under the warm auditorium lights, she poured her entire soul into Elgar’s Cello Concerto, earning a standing ovation from the spellbound audience.`,
+    text: `Fourteen-year-old Maya began playing the violin when she was only seven years old. While most of her classmates chose the electric guitar or drums, Maya was immediately captivated by the sweet, expressive sound of the violin. "The violin can sing just like a human voice," Maya explains with a smile. Mastering the instrument requires discipline and patience. Maya practices two hours every afternoon, gently pressing the strings and drawing the wooden bow across with delicate precision. Last month, Maya won first prize at the National Youth Soloist Competition. Sitting under the warm auditorium lights, she poured her entire soul into her violin performance, earning a standing ovation from the spellbound audience.`,
   },
 
   // Passage 5: The Live Concert Experience
@@ -300,23 +300,23 @@ export const GAME_6_READING_QUESTIONS: ReadingPassageQuestion[] = [
   {
     id: 'g8u1-g6-q16',
     passageId: 'pass-4',
-    passageTitle: 'The Voice of the Cello',
+    passageTitle: 'The Voice of the Violin',
     passageText: READING_PASSAGES[3].text,
-    prompt: 'Why was Maya especially drawn to the cello instead of other instruments?',
+    prompt: 'Why was Maya especially drawn to the violin instead of other instruments?',
     options: [
       'It was the cheapest instrument in the music store.',
-      'She was captivated by its warm, human-like voice and resonance.',
+      'She was captivated by its sweet, expressive sound and voice.',
       'Her friends forced her to play it against her will.',
       'She wanted an instrument that did not require any practice.'
     ],
     correctOptionIndex: 1,
-    explanation: 'Maya was captivated by the deep resonance and felt it was the closest to the human speaking voice.',
+    explanation: 'Maya was captivated by the sweet, expressive sound and felt it could sing like a human voice.',
     difficulty: 'easy',
   },
   {
     id: 'g8u1-g6-q17',
     passageId: 'pass-4',
-    passageTitle: 'The Voice of the Cello',
+    passageTitle: 'The Voice of the Violin',
     passageText: READING_PASSAGES[3].text,
     prompt: 'How often and for how long does Maya practice each day?',
     options: [
@@ -326,13 +326,13 @@ export const GAME_6_READING_QUESTIONS: ReadingPassageQuestion[] = [
       'Six hours every morning before dawn'
     ],
     correctOptionIndex: 0,
-    explanation: 'The text states: "Maya practices two hours every afternoon, gently pressing the steel strings..."',
+    explanation: 'The text states: "Maya practices two hours every afternoon, gently pressing the strings..."',
     difficulty: 'easy',
   },
   {
     id: 'g8u1-g6-q18',
     passageId: 'pass-4',
-    passageTitle: 'The Voice of the Cello',
+    passageTitle: 'The Voice of the Violin',
     passageText: READING_PASSAGES[3].text,
     prompt: 'What happened at the National Youth Soloist Competition last month?',
     options: [
@@ -342,17 +342,17 @@ export const GAME_6_READING_QUESTIONS: ReadingPassageQuestion[] = [
       'Maya arrived too late to participate.'
     ],
     correctOptionIndex: 1,
-    explanation: 'Maya won first prize after pouring her soul into Elgar\'s Cello Concerto to a standing ovation.',
+    explanation: 'Maya won first prize after pouring her soul into her violin performance to a standing ovation.',
     difficulty: 'medium',
   },
   {
     id: 'g8u1-g6-q19',
     passageId: 'pass-4',
-    passageTitle: 'The Voice of the Cello',
+    passageTitle: 'The Voice of the Violin',
     passageText: READING_PASSAGES[3].text,
     prompt: 'In the passage, the word "spellbound" describes an audience that is...',
     options: [
-      'Completely fascinated and fascinated by the performance',
+      'Completely captivated and fascinated by the performance',
       'Extremely angry and demanding a refund',
       'Sleeping soundly in their seats',
       'Confused because they could not hear anything'
@@ -364,7 +364,7 @@ export const GAME_6_READING_QUESTIONS: ReadingPassageQuestion[] = [
   {
     id: 'g8u1-g6-q20',
     passageId: 'pass-4',
-    passageTitle: 'The Voice of the Cello',
+    passageTitle: 'The Voice of the Violin',
     passageText: READING_PASSAGES[3].text,
     prompt: 'What personal qualities helped Maya achieve success as a musician?',
     options: [

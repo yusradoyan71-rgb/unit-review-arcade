@@ -91,11 +91,11 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u1-g1-q12',
-    prompt: 'Which large string instrument is played while seated with the instrument resting on the floor between the knees?',
-    options: ['Violin', 'Flute', 'Cello', 'Trumpet'],
+    prompt: 'Which popular musical instrument do you play by hitting it with wooden sticks to create a beat?',
+    options: ['Violin', 'Flute', 'Drums', 'Trumpet'],
     correctOptionIndex: 2,
-    explanation: 'The cello (violoncello) is a large bass member of the violin family played sitting down with an endpin on the floor.',
-    difficulty: 'medium',
+    explanation: 'Drums are percussion instruments played by striking them with sticks or hands to produce rhythms.',
+    difficulty: 'easy',
   },
   {
     id: 'g8u1-g1-q13',
@@ -123,10 +123,10 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u1-g1-q16',
-    prompt: 'Which brass instrument has three piston valves and produces bright, high-pitched triumphant sounds?',
-    options: ['Clarinet', 'Trumpet', 'Cello', 'Keyboard'],
+    prompt: 'Which shiny brass instrument is played by blowing into it and produces bright, loud, triumphant sounds?',
+    options: ['Clarinet', 'Trumpet', 'Violin', 'Keyboard'],
     correctOptionIndex: 1,
-    explanation: 'The trumpet is the highest register brass instrument, played by blowing through cup-shaped mouthpieces.',
+    explanation: 'The trumpet is a popular brass instrument that makes bright, loud sounds in parades, concerts, and jazz.',
     difficulty: 'medium',
   },
   {
@@ -163,11 +163,11 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u1-g1-q21',
-    prompt: 'Which instrument has black and white keys that cause felt-tipped hammers to strike metal strings inside?',
-    options: ['Flute', 'Accordion', 'Piano', 'Bass guitar'],
+    prompt: 'Which popular musical instrument has black and white keys that you press with your fingers to play notes?',
+    options: ['Flute', 'Drums', 'Piano', 'Guitar'],
     correctOptionIndex: 2,
-    explanation: 'The acoustic piano produces sound when keys trigger internal hammers that hit steel strings.',
-    difficulty: 'medium',
+    explanation: 'The piano is a keyboard instrument played by pressing black and white keys.',
+    difficulty: 'easy',
   },
   {
     id: 'g8u1-g1-q22',
@@ -187,10 +187,10 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u1-g1-q24',
-    prompt: 'Which woodwind instrument is played horizontally by blowing air across an open embouchure hole?',
-    options: ['Flute', 'Drums', 'Clarinet', 'Trumpet'],
+    prompt: 'Which slender silver woodwind instrument is held sideways and played by blowing air across a small hole?',
+    options: ['Flute', 'Drums', 'Piano', 'Trumpet'],
     correctOptionIndex: 0,
-    explanation: 'The concert flute is an aerophone held horizontally to the right while blowing across the mouth hole.',
+    explanation: 'The flute is a long, silver woodwind instrument held sideways to play sweet, high notes.',
     difficulty: 'medium',
   },
   {
@@ -211,11 +211,11 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u1-g1-q27',
-    prompt: 'Which single-reed woodwind instrument has a cylindrical bore, bell flare, and is widely played in both classical and jazz music?',
-    options: ['Clarinet', 'Trombone', 'Triangle', 'Violin'],
+    prompt: 'Which popular string instrument usually has six strings and can be acoustic or electric?',
+    options: ['Guitar', 'Trumpet', 'Drums', 'Flute'],
     correctOptionIndex: 0,
-    explanation: 'The clarinet is a single-reed woodwind instrument renowned for its warm, versatile timbre.',
-    difficulty: 'challenging',
+    explanation: 'The guitar is one of the most widely played instruments in rock, pop, and folk music.',
+    difficulty: 'easy',
   },
   {
     id: 'g8u1-g1-q28',

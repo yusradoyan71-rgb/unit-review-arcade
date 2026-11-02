@@ -85,13 +85,28 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ activi
     setIsCorrect(false);
   };
 
+  // Normalization helper: strips punctuation, extra spaces, and handles case
+  const normalizeSentence = (str: string): string => {
+    return str
+      .toLowerCase()
+      .replace(/['’]/g, "'")
+      .replace(/[.,!?;:]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  };
+
   // Check Answer
   const handleCheckAnswer = () => {
-    const constructed = selectedTiles.map((t) => t.word).join(' ').trim();
-    const target = currentSentence.correctSentence.trim();
-    const alternatives = (currentSentence.alternativeValidSentences || []).map((s) => s.trim());
+    const constructed = selectedTiles.map((t) => t.word).join(' ');
+    const constructedNorm = normalizeSentence(constructed);
 
-    const isMatch = constructed === target || alternatives.includes(constructed);
+    const candidates = [
+      currentSentence.correctSentence,
+      ...(currentSentence.acceptedAnswers || []),
+      ...(currentSentence.alternativeValidSentences || []),
+    ];
+
+    const isMatch = candidates.some((cand) => normalizeSentence(cand) === constructedNorm);
 
     setIsAnswerChecked(true);
     setIsCorrect(isMatch);

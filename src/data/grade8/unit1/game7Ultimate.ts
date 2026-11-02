@@ -16,10 +16,10 @@ export const GAME_7_ULTIMATE_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u1-g7-q02',
-    prompt: 'Which instrument belongs to the brass family and has three finger valves?',
+    prompt: 'Which shiny brass instrument is played by blowing into it to produce bright, loud fanfare sounds?',
     options: ['Clarinet', 'Trumpet', 'Violin', 'Flute'],
     correctOptionIndex: 1,
-    explanation: 'The trumpet is a quintessential brass instrument with three valves.',
+    explanation: 'The trumpet is a popular brass instrument known for its loud, bright sound.',
     difficulty: 'easy',
   },
   {
@@ -106,11 +106,11 @@ export const GAME_7_ULTIMATE_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u1-g7-q12',
-    prompt: 'Which instrument has black and white keys that cause internal hammers to strike tuned steel strings?',
-    options: ['Electric bass', 'Piano', 'Cello', 'Clarinet'],
+    prompt: 'Which large musical instrument has black and white keys that you press with your fingers?',
+    options: ['Electric bass', 'Piano', 'Violin', 'Trumpet'],
     correctOptionIndex: 1,
-    explanation: 'The acoustic piano produces sound via felt hammers striking internal strings.',
-    difficulty: 'medium',
+    explanation: 'The piano is played by pressing its black and white keys.',
+    difficulty: 'easy',
   },
   {
     id: 'g8u1-g7-q13',
@@ -156,11 +156,11 @@ export const GAME_7_ULTIMATE_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u1-g7-q17',
-    prompt: 'The cello is larger than the violin and produces notes that are...',
-    options: ['much higher and squeaky', 'deeper and lower-pitched', 'completely silent', 'too fast to hear'],
+    prompt: 'Which popular string instrument has six strings and is played in almost every rock and pop band?',
+    options: ['Flute', 'Guitar', 'Trumpet', 'Drums'],
     correctOptionIndex: 1,
-    explanation: 'The cello has a larger resonant cavity and thicker strings, giving it rich, low-pitched notes.',
-    difficulty: 'medium',
+    explanation: 'The guitar is one of the most widely played string instruments in modern music.',
+    difficulty: 'easy',
   },
   {
     id: 'g8u1-g7-q18',
@@ -232,15 +232,15 @@ export const GAME_7_ULTIMATE_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u1-g7-q24',
-    prompt: 'How has digital audio workstation (DAW) software affected young musicians?',
+    prompt: 'How has modern computer software and digital tools helped young musicians?',
     options: [
       'It made it illegal to play instruments at home.',
-      'It enabled artists to record, produce, and share music from their bedrooms.',
+      'It enabled artists to record, produce, and share music easily from home.',
       'It made guitars and pianos completely obsolete.',
       'It caused all record companies to disappear overnight.'
     ],
     correctOptionIndex: 1,
-    explanation: 'DAWs empower independent artists to produce professional quality tracks with modest equipment.',
+    explanation: 'Digital recording tools allow independent artists to create and share music from home.',
     difficulty: 'medium',
   },
   {
@@ -279,11 +279,11 @@ export const GAME_7_ULTIMATE_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u1-g7-q28',
-    prompt: 'Which single-reed woodwind instrument has a cylindrical bore and is prominent in both classical concerts and Benny Goodman jazz?',
-    options: ['Clarinet', 'Trumpet', 'Cello', 'Triangle'],
+    prompt: 'Which slender silver instrument is held sideways and played by blowing air across a small hole?',
+    options: ['Flute', 'Trumpet', 'Piano', 'Drums'],
     correctOptionIndex: 0,
-    explanation: 'The clarinet is a single-reed woodwind instrument with a cylindrical bore and wide dynamic range.',
-    difficulty: 'challenging',
+    explanation: 'The flute is a woodwind instrument played by holding it sideways and blowing across the hole.',
+    difficulty: 'easy',
   },
   {
     id: 'g8u1-g7-q29',

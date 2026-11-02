@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import type { Activity, MultipleChoiceQuestion } from '../../types/schema';
 import { motion } from 'framer-motion';
 import { sounds } from '../../services/soundEffects';
@@ -8,13 +8,10 @@ import {
   ArrowLeft, 
   Eye, 
   ChevronRight, 
-  Clock, 
   HelpCircle, 
   CheckCircle2, 
   XCircle, 
-  Sparkles,
-  Pause,
-  Play
+  Sparkles
 } from 'lucide-react';
 
 interface QuizBattleGameProps {
@@ -31,30 +28,8 @@ export const QuizBattleGame: React.FC<QuizBattleGameProps> = ({ activity, onExit
   const [score, setScore] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
 
-  // Timer state
-  const timeLimit = activity.settings.timeLimitSeconds || 30;
-  const [timeLeft, setTimeLeft] = useState(timeLimit);
-  const [isTimerPaused, setIsTimerPaused] = useState(false);
-
   const currentQ = questions[currentIndex];
   const isAnswered = selectedOption !== null || isAnswerRevealed;
-
-  // Countdown timer effect
-  useEffect(() => {
-    if (!activity.settings.showTimer || isAnswered || isTimerPaused || isGameOver) return;
-
-    if (timeLeft <= 0) {
-      setIsAnswerRevealed(true);
-      sounds.playBack();
-      return;
-    }
-
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => prev - 1);
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [timeLeft, isAnswered, isTimerPaused, isGameOver, activity.settings.showTimer]);
 
   const handleSelectOption = (idx: number) => {
     if (isAnswered) return;
@@ -81,7 +56,6 @@ export const QuizBattleGame: React.FC<QuizBattleGameProps> = ({ activity, onExit
       setCurrentIndex((prev) => prev + 1);
       setSelectedOption(null);
       setIsAnswerRevealed(false);
-      setTimeLeft(timeLimit);
     } else {
       setIsGameOver(true);
     }
@@ -93,7 +67,6 @@ export const QuizBattleGame: React.FC<QuizBattleGameProps> = ({ activity, onExit
     setSelectedOption(null);
     setIsAnswerRevealed(false);
     setScore(0);
-    setTimeLeft(timeLimit);
     setIsGameOver(false);
   };
 
@@ -120,7 +93,7 @@ export const QuizBattleGame: React.FC<QuizBattleGameProps> = ({ activity, onExit
       {/* Team Scoreboard Component */}
       <ClassroomScoreboard />
 
-      {/* Top Bar: Progress, Timer, Return */}
+      {/* Top Bar: Navigation, Progress & Score (Unlimited Time) */}
       <div className="flex items-center justify-between gap-4 mb-4 pb-3 border-b border-slate-800">
         <button
           onClick={onExit}
@@ -140,28 +113,10 @@ export const QuizBattleGame: React.FC<QuizBattleGameProps> = ({ activity, onExit
           </span>
         </div>
 
-        {/* Timer Control */}
-        {activity.settings.showTimer && (
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setIsTimerPaused(!isTimerPaused)}
-              title={isTimerPaused ? 'Resume Timer' : 'Pause Timer'}
-              className="p-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white"
-            >
-              {isTimerPaused ? <Play className="w-3.5 h-3.5 text-emerald-400" /> : <Pause className="w-3.5 h-3.5" />}
-            </button>
-            <div
-              className={`flex items-center gap-1.5 px-3 py-1 rounded-xl border text-sm font-mono font-bold ${
-                timeLeft <= 5
-                  ? 'bg-rose-500/20 text-rose-300 border-rose-500/40 animate-pulse'
-                  : 'bg-slate-900 text-cyan-300 border-slate-800'
-              }`}
-            >
-              <Clock className="w-4 h-4" />
-              <span>{timeLeft}s</span>
-            </div>
-          </div>
-        )}
+        {/* Score Counter */}
+        <div className="text-xs font-mono font-bold text-slate-400">
+          Score: <span className="text-emerald-400 font-extrabold">{score}</span> / {questions.length}
+        </div>
       </div>
 
       {/* Question Card */}

@@ -108,6 +108,7 @@ export interface MatchItQuestion extends BaseQuestion {
 export interface SentenceBuilderQuestion extends BaseQuestion {
   correctSentence: string;
   scrambledWords: string[];
+  acceptedAnswers?: string[];
   alternativeValidSentences?: string[];
 }
 

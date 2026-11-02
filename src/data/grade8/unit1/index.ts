@@ -15,8 +15,7 @@ export const GAME_1_ACTIVITY: Activity = {
   difficulty: 'mixed',
   instructions: 'Identify musical genres, instruments, performers, and descriptive adjectives in realistic contexts.',
   settings: {
-    timeLimitSeconds: 25,
-    showTimer: true,
+    showTimer: false,
     allowRevealAnswer: true,
     pointsPerQuestion: 10,
     shuffleQuestions: false,
@@ -35,8 +34,7 @@ export const GAME_2_ACTIVITY: Activity = {
   difficulty: 'mixed',
   instructions: 'Tap or drag cards to pair genres, instruments, adjectives, expressions, and collocations across 6 rounds.',
   settings: {
-    timeLimitSeconds: 45,
-    showTimer: true,
+    showTimer: false,
     allowRevealAnswer: true,
     pointsPerQuestion: 5,
   },
@@ -60,8 +58,7 @@ export const GAME_3_ACTIVITY: Activity = {
   difficulty: 'mixed',
   instructions: 'Arrange the scrambled word tiles to construct grammatically accurate preference, opinion, and comparative statements.',
   settings: {
-    timeLimitSeconds: 40,
-    showTimer: true,
+    showTimer: false,
     allowRevealAnswer: true,
     pointsPerQuestion: 10,
   },
@@ -79,8 +76,7 @@ export const GAME_4_ACTIVITY: Activity = {
   difficulty: 'mixed',
   instructions: 'Read statements about instruments, genres, musical theatre, and grammar rules. Decide if they are True or False.',
   settings: {
-    timeLimitSeconds: 20,
-    showTimer: true,
+    showTimer: false,
     allowRevealAnswer: true,
     pointsPerQuestion: 10,
   },
@@ -98,8 +94,7 @@ export const GAME_5_ACTIVITY: Activity = {
   difficulty: 'mixed',
   instructions: 'Select the most natural and grammatically accurate expression to complete everyday dialogues about music and opinions.',
   settings: {
-    timeLimitSeconds: 30,
-    showTimer: true,
+    showTimer: false,
     allowRevealAnswer: true,
     pointsPerQuestion: 10,
   },
@@ -117,8 +112,7 @@ export const GAME_6_ACTIVITY: Activity = {
   difficulty: 'mixed',
   instructions: 'Read the original musical passages and answer the comprehension, vocabulary, and inference questions on the smartboard.',
   settings: {
-    timeLimitSeconds: 60,
-    showTimer: true,
+    showTimer: false,
     allowRevealAnswer: true,
     pointsPerQuestion: 15,
   },
@@ -136,8 +130,7 @@ export const GAME_7_ACTIVITY: Activity = {
   difficulty: 'mixed',
   instructions: 'The ultimate classroom team competition! Test vocabulary, grammar, reading comprehension, and musical knowledge.',
   settings: {
-    timeLimitSeconds: 30,
-    showTimer: true,
+    showTimer: false,
     allowRevealAnswer: true,
     pointsPerQuestion: 10,
   },
