@@ -16,12 +16,14 @@ export const ClassroomHeader: React.FC = () => {
     navigation, 
     goToHome, 
     goToGrade, 
+    goToUnit,
     openTeacherPanel, 
     isFullscreen, 
     toggleFullscreen, 
     isMuted, 
     toggleMute,
     activeUnit,
+    activeActivity,
     data
   } = useArcade();
 
@@ -57,7 +59,7 @@ export const ClassroomHeader: React.FC = () => {
               <ChevronRight className="w-4 h-4 text-slate-500 shrink-0" />
 
               {/* Grade Breadcrumb */}
-              {(navigation.view === 'unit-library' || navigation.view === 'unit-dashboard') && (
+              {(navigation.view === 'unit-library' || navigation.view === 'unit-dashboard' || navigation.view === 'game-play') && (
                 <>
                   <button
                     onClick={() => goToGrade(navigation.gradeId)}
@@ -78,6 +80,23 @@ export const ClassroomHeader: React.FC = () => {
                   <ChevronRight className="w-4 h-4 text-slate-500 shrink-0" />
                   <span className="px-2.5 py-1 rounded-lg bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 font-semibold truncate max-w-[180px] sm:max-w-xs">
                     Unit {activeUnit.unitNumber}: {activeUnit.title}
+                  </span>
+                </>
+              )}
+
+              {/* Game Play Breadcrumbs */}
+              {navigation.view === 'game-play' && activeUnit && (
+                <>
+                  <ChevronRight className="w-4 h-4 text-slate-500 shrink-0" />
+                  <button
+                    onClick={() => goToUnit(navigation.gradeId, navigation.unitId)}
+                    className="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors font-medium truncate max-w-[120px] sm:max-w-xs"
+                  >
+                    Unit {activeUnit.unitNumber}
+                  </button>
+                  <ChevronRight className="w-4 h-4 text-slate-500 shrink-0" />
+                  <span className="px-2.5 py-1 rounded-lg bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 font-bold truncate max-w-[160px] sm:max-w-xs">
+                    {activeActivity?.title || 'Game'}
                   </span>
                 </>
               )}

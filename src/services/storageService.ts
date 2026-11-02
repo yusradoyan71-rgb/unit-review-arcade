@@ -1,9 +1,19 @@
 import type { ArcadeData, GradeId, Unit, Activity } from '../types/schema';
+import { GRADE_8_UNIT_1 } from '../data/grade8/unit1';
 
 const STORAGE_KEY = 'unit_review_arcade_data_v1';
 
-export const EMPTY_INITIAL_DATA: ArcadeData = {
-  version: '1.0.0',
+export const DEFAULT_INITIAL_DATA: ArcadeData = {
+  version: '1.1.0',
+  units: {
+    'grade-7': [],
+    'grade-8': [GRADE_8_UNIT_1],
+  },
+  lastModified: new Date().toISOString(),
+};
+
+export const EMPTY_DATA: ArcadeData = {
+  version: '1.1.0',
   units: {
     'grade-7': [],
     'grade-8': [],
@@ -20,20 +30,29 @@ export class StorageService {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (!raw) {
-        this.saveData(EMPTY_INITIAL_DATA);
-        return EMPTY_INITIAL_DATA;
+        this.saveData(DEFAULT_INITIAL_DATA);
+        return DEFAULT_INITIAL_DATA;
       }
       const parsed = JSON.parse(raw) as ArcadeData;
       // Sanitize structure
       if (!parsed.units || !Array.isArray(parsed.units['grade-7']) || !Array.isArray(parsed.units['grade-8'])) {
-        this.saveData(EMPTY_INITIAL_DATA);
-        return EMPTY_INITIAL_DATA;
+        this.saveData(DEFAULT_INITIAL_DATA);
+        return DEFAULT_INITIAL_DATA;
       }
+
+      // Check if Grade 8 has Unit 1 seeded
+      const hasG8U1 = parsed.units['grade-8'].some((u) => u.id === 'g8-u1');
+      if (!hasG8U1) {
+        parsed.units['grade-8'] = [GRADE_8_UNIT_1, ...parsed.units['grade-8']];
+        parsed.version = '1.1.0';
+        this.saveData(parsed);
+      }
+
       return parsed;
     } catch (err) {
-      console.warn('Failed to parse arcade data from localStorage, resetting to empty state:', err);
-      this.saveData(EMPTY_INITIAL_DATA);
-      return EMPTY_INITIAL_DATA;
+      console.warn('Failed to parse arcade data from localStorage, resetting to default state:', err);
+      this.saveData(DEFAULT_INITIAL_DATA);
+      return DEFAULT_INITIAL_DATA;
     }
   }
 
@@ -56,8 +75,8 @@ export class StorageService {
    * Reset platform to completely empty state
    */
   public static clearAllData(): ArcadeData {
-    this.saveData(EMPTY_INITIAL_DATA);
-    return EMPTY_INITIAL_DATA;
+    this.saveData(DEFAULT_INITIAL_DATA);
+    return DEFAULT_INITIAL_DATA;
   }
 
   /**

@@ -16,6 +16,7 @@ import {
   HelpCircle, 
   AlignLeft, 
   CheckCircle2, 
+  BookMarked,
   SlidersHorizontal 
 } from 'lucide-react';
 
@@ -30,16 +31,17 @@ const GAME_ICONS: Record<GameType, React.FC<{ className?: string }>> = {
   match_it: (props) => <Layers {...props} />,
   sentence_builder: (props) => <AlignLeft {...props} />,
   true_false: (props) => <CheckCircle2 {...props} />,
+  reading_detective: (props) => <BookMarked {...props} />,
 };
 
 export const UnitDashboardScreen: React.FC<UnitDashboardScreenProps> = ({ gradeId, unitId }) => {
   const { 
     data, 
     goToGrade, 
+    goToGame,
     openTeacherPanel, 
     createActivity, 
     deleteActivity,
-    addToast 
   } = useArcade();
 
   const [isQuickCreateOpen, setIsQuickCreateOpen] = useState(false);
@@ -86,15 +88,6 @@ export const UnitDashboardScreen: React.FC<UnitDashboardScreenProps> = ({ gradeI
     setActTitle('');
     setActInstructions('');
     setIsQuickCreateOpen(false);
-  };
-
-  const handleLaunchGamePreview = (activityTitle: string, gameType: GameType) => {
-    sounds.playTap();
-    const meta = GAME_TYPE_METADATA[gameType];
-    addToast(
-      `"${activityTitle}" is configured for ${meta.title}. Game engines will launch in Phase 2!`,
-      'info'
-    );
   };
 
   return (
@@ -337,8 +330,8 @@ export const UnitDashboardScreen: React.FC<UnitDashboardScreenProps> = ({ gradeI
                   </span>
 
                   <button
-                    onClick={() => handleLaunchGamePreview(act.title, act.gameType)}
-                    className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition-all flex items-center gap-1.5 group-hover:shadow-md group-hover:shadow-indigo-600/30"
+                    onClick={() => goToGame(gradeId, unit.id, act.id)}
+                    className="px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-semibold text-sm transition-all flex items-center gap-1.5 shadow-md shadow-indigo-600/30 hover:scale-105 active:scale-95"
                   >
                     <Play className="w-4 h-4 fill-white" />
                     <span>Launch</span>

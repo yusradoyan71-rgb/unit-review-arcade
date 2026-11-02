@@ -6,6 +6,7 @@ import { HomeScreen } from './components/home/HomeScreen';
 import { UnitLibraryScreen } from './components/library/UnitLibraryScreen';
 import { UnitDashboardScreen } from './components/dashboard/UnitDashboardScreen';
 import { TeacherPanelModal } from './components/teacher/TeacherPanelModal';
+import { GameContainer } from './components/game/GameContainer';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const MainView: React.FC = () => {
@@ -57,6 +58,19 @@ const MainView: React.FC = () => {
               className="flex-1 flex flex-col"
             >
               <UnitDashboardScreen gradeId={navigation.gradeId} unitId={navigation.unitId} />
+            </motion.div>
+          )}
+
+          {navigation.view === 'game-play' && (
+            <motion.div
+              key={`game-${navigation.gradeId}-${navigation.unitId}-${navigation.activityId}`}
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.25 }}
+              className="flex-1 flex flex-col"
+            >
+              <GameContainer />
             </motion.div>
           )}
 

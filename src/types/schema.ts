@@ -1,9 +1,8 @@
 /**
  * UNIT REVIEW ARCADE - CONTENT & GAME DATA SCHEMAS
- * Version: 1.0.0
+ * Version: 1.1.0
  * 
  * Hierarchy: Grade -> Unit -> Activity -> Questions
- * Pure architectural schema with zero hardcoded educational content.
  */
 
 export type GradeId = 'grade-7' | 'grade-8';
@@ -12,7 +11,8 @@ export type GameType =
   | 'quiz_battle' 
   | 'match_it' 
   | 'sentence_builder' 
-  | 'true_false';
+  | 'true_false'
+  | 'reading_detective';
 
 export interface GameTypeMetadata {
   id: GameType;
@@ -56,6 +56,14 @@ export const GAME_TYPE_METADATA: Record<GameType, GameTypeMetadata> = {
     accentColor: '#10b981', // emerald-500
     badgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
   },
+  reading_detective: {
+    id: 'reading_detective',
+    title: 'Reading Detective',
+    shortDesc: 'Passage comprehension challenge with side-by-side text analysis.',
+    iconName: 'BookMarked',
+    accentColor: '#06b6d4', // cyan-500
+    badgeColor: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40',
+  },
 };
 
 export interface ActivitySettings {
@@ -71,36 +79,56 @@ export interface BaseQuestion {
   prompt: string;
   explanation?: string;
   points?: number;
+  difficulty?: 'easy' | 'medium' | 'challenging';
 }
 
-// Extensible questions for Phase 2 game engines
+// Extensible questions for game engines
 export interface MultipleChoiceQuestion extends BaseQuestion {
   options: string[];
   correctOptionIndex: number;
 }
 
-export interface MatchPairQuestion extends BaseQuestion {
-  pairs: Array<{
-    id: string;
-    left: string;
-    right: string;
-  }>;
+export interface MatchPair {
+  id: string;
+  left: string;
+  right: string;
+}
+
+export interface MatchRound {
+  roundNumber: number;
+  title: string;
+  pairs: MatchPair[];
+}
+
+export interface MatchItQuestion extends BaseQuestion {
+  rounds?: MatchRound[];
+  pairs?: MatchPair[];
 }
 
 export interface SentenceBuilderQuestion extends BaseQuestion {
   correctSentence: string;
   scrambledWords: string[];
+  alternativeValidSentences?: string[];
 }
 
 export interface TrueFalseQuestion extends BaseQuestion {
   isTrue: boolean;
 }
 
+export interface ReadingPassageQuestion extends BaseQuestion {
+  passageId: string;
+  passageTitle: string;
+  passageText: string;
+  options: string[];
+  correctOptionIndex: number;
+}
+
 export type AnyQuestion = 
   | MultipleChoiceQuestion 
-  | MatchPairQuestion 
+  | MatchItQuestion 
   | SentenceBuilderQuestion 
   | TrueFalseQuestion 
+  | ReadingPassageQuestion
   | BaseQuestion;
 
 export interface Activity {
@@ -109,6 +137,7 @@ export interface Activity {
   title: string;
   gameType: GameType;
   instructions?: string;
+  difficulty?: 'easy' | 'medium' | 'challenging' | 'mixed';
   settings: ActivitySettings;
   questions: AnyQuestion[];
   order: number;
@@ -131,7 +160,7 @@ export interface Unit {
 }
 
 export interface ArcadeData {
-  version: string; // e.g. "1.0.0"
+  version: string;
   units: {
     'grade-7': Unit[];
     'grade-8': Unit[];
@@ -143,4 +172,5 @@ export type NavigationTarget =
   | { view: 'home' }
   | { view: 'unit-library'; gradeId: GradeId }
   | { view: 'unit-dashboard'; gradeId: GradeId; unitId: string }
+  | { view: 'game-play'; gradeId: GradeId; unitId: string; activityId: string }
   | { view: 'teacher-panel'; initialTab?: 'units' | 'activities' | 'backup'; targetGradeId?: GradeId };

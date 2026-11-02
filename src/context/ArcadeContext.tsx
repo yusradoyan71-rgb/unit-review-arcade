@@ -16,12 +16,14 @@ interface ArcadeContextType {
   goToHome: () => void;
   goToGrade: (gradeId: GradeId) => void;
   goToUnit: (gradeId: GradeId, unitId: string) => void;
+  goToGame: (gradeId: GradeId, unitId: string, activityId: string) => void;
   openTeacherPanel: (initialTab?: 'units' | 'activities' | 'backup', targetGradeId?: GradeId) => void;
 
   // Data
   data: ArcadeData;
   activeGradeId: GradeId | null;
   activeUnit: Unit | null;
+  activeActivity: Activity | null;
 
   // Unit Operations
   createUnit: (gradeId: GradeId, unitData: Omit<Unit, 'id' | 'gradeId' | 'activities' | 'order' | 'createdAt' | 'updatedAt'>) => Unit;
@@ -128,6 +130,12 @@ export const ArcadeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
+  const goToGame = useCallback((gradeId: GradeId, unitId: string, activityId: string) => {
+    sounds.playNavigate();
+    setNavigation({ view: 'game-play', gradeId, unitId, activityId });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   const openTeacherPanel = useCallback((initialTab?: 'units' | 'activities' | 'backup', targetGradeId?: GradeId) => {
     sounds.playTap();
     setNavigation({ view: 'teacher-panel', initialTab, targetGradeId });
@@ -136,18 +144,25 @@ export const ArcadeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   // Active Grade / Active Unit derived
   const activeGradeId = useMemo<GradeId | null>(() => {
     if (navigation.view === 'unit-library') return navigation.gradeId;
-    if (navigation.view === 'unit-dashboard') return navigation.gradeId;
+    if (navigation.view === 'unit-dashboard' || navigation.view === 'game-play') return navigation.gradeId;
     if (navigation.view === 'teacher-panel') return navigation.targetGradeId || 'grade-7';
     return null;
   }, [navigation]);
 
   const activeUnit = useMemo<Unit | null>(() => {
-    if (navigation.view === 'unit-dashboard') {
+    if (navigation.view === 'unit-dashboard' || navigation.view === 'game-play') {
       const units = data.units[navigation.gradeId] || [];
       return units.find((u) => u.id === navigation.unitId) || null;
     }
     return null;
   }, [navigation, data]);
+
+  const activeActivity = useMemo<Activity | null>(() => {
+    if (navigation.view === 'game-play' && activeUnit) {
+      return activeUnit.activities.find((a) => a.id === navigation.activityId) || null;
+    }
+    return null;
+  }, [navigation, activeUnit]);
 
   // Data operations
   const createUnit = useCallback(
@@ -252,10 +267,12 @@ export const ArcadeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         goToHome,
         goToGrade,
         goToUnit,
+        goToGame,
         openTeacherPanel,
         data,
         activeGradeId,
         activeUnit,
+        activeActivity,
         createUnit,
         updateUnit,
         deleteUnit,
