@@ -1,20 +1,21 @@
 import type { ArcadeData, GradeId, Unit, Activity } from '../types/schema';
 import { GRADE_8_UNIT_1 } from '../data/grade8/unit1';
 import { GRADE_8_UNIT_2 } from '../data/grade8/unit2';
+import { GRADE_8_UNIT_3 } from '../data/grade8/unit3';
 
 const STORAGE_KEY = 'unit_review_arcade_data_v1';
 
 export const DEFAULT_INITIAL_DATA: ArcadeData = {
-  version: '1.2.0',
+  version: '1.3.0',
   units: {
     'grade-7': [],
-    'grade-8': [GRADE_8_UNIT_1, GRADE_8_UNIT_2],
+    'grade-8': [GRADE_8_UNIT_1, GRADE_8_UNIT_2, GRADE_8_UNIT_3],
   },
   lastModified: new Date().toISOString(),
 };
 
 export const EMPTY_DATA: ArcadeData = {
-  version: '1.2.0',
+  version: '1.3.0',
   units: {
     'grade-7': [],
     'grade-8': [],
@@ -64,8 +65,22 @@ export class StorageService {
         }
       }
 
+      // Check if Grade 8 has Unit 3 seeded
+      const hasG8U3 = parsed.units['grade-8'].some((u) => u.id === 'g8-u3');
+      if (!hasG8U3) {
+        parsed.units['grade-8'] = [...parsed.units['grade-8'], GRADE_8_UNIT_3];
+        hasChanges = true;
+      } else {
+        // Ensure Unit 3 has all 8 activities
+        const g8u3Idx = parsed.units['grade-8'].findIndex((u) => u.id === 'g8-u3');
+        if (g8u3Idx !== -1 && parsed.units['grade-8'][g8u3Idx].activities.length < 8) {
+          parsed.units['grade-8'][g8u3Idx] = GRADE_8_UNIT_3;
+          hasChanges = true;
+        }
+      }
+
       if (hasChanges) {
-        parsed.version = '1.2.0';
+        parsed.version = '1.3.0';
         this.saveData(parsed);
       }
 

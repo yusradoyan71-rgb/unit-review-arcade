@@ -20,7 +20,8 @@ import {
   Sparkles, 
   Brain, 
   Flame, 
-  Rocket 
+  Rocket,
+  Landmark 
 } from 'lucide-react';
 
 interface UnitLibraryScreenProps {
@@ -36,6 +37,7 @@ const ICON_MAP: Record<string, React.FC<{ className?: string }>> = {
   Brain: (props) => <Brain {...props} />,
   Flame: (props) => <Flame {...props} />,
   Rocket: (props) => <Rocket {...props} />,
+  Landmark: (props) => <Landmark {...props} />,
 };
 
 export const UnitLibraryScreen: React.FC<UnitLibraryScreenProps> = ({ gradeId }) => {
