@@ -1,5 +1,6 @@
 import type { ArcadeData, GradeId, Unit, Activity } from '../types/schema';
 import { GRADE_7_UNIT_1 } from '../data/grade7/unit1';
+import { GRADE_7_UNIT_2 } from '../data/grade7/unit2';
 import { GRADE_8_UNIT_1 } from '../data/grade8/unit1';
 import { GRADE_8_UNIT_2 } from '../data/grade8/unit2';
 import { GRADE_8_UNIT_3 } from '../data/grade8/unit3';
@@ -8,16 +9,16 @@ import { GRADE_8_UNIT_4 } from '../data/grade8/unit4';
 const STORAGE_KEY = 'unit_review_arcade_data_v1';
 
 export const DEFAULT_INITIAL_DATA: ArcadeData = {
-  version: '1.5.0',
+  version: '1.6.0',
   units: {
-    'grade-7': [GRADE_7_UNIT_1],
+    'grade-7': [GRADE_7_UNIT_1, GRADE_7_UNIT_2],
     'grade-8': [GRADE_8_UNIT_1, GRADE_8_UNIT_2, GRADE_8_UNIT_3, GRADE_8_UNIT_4],
   },
   lastModified: new Date().toISOString(),
 };
 
 export const EMPTY_DATA: ArcadeData = {
-  version: '1.5.0',
+  version: '1.6.0',
   units: {
     'grade-7': [],
     'grade-8': [],
@@ -56,6 +57,20 @@ export class StorageService {
         const g7u1Idx = parsed.units['grade-7'].findIndex((u) => u.id === 'g7-u1');
         if (g7u1Idx !== -1 && parsed.units['grade-7'][g7u1Idx].activities.length < 8) {
           parsed.units['grade-7'][g7u1Idx] = GRADE_7_UNIT_1;
+          hasChanges = true;
+        }
+      }
+
+      // Check if Grade 7 has Unit 2 seeded
+      const hasG7U2 = parsed.units['grade-7'].some((u) => u.id === 'g7-u2');
+      if (!hasG7U2) {
+        parsed.units['grade-7'] = [...parsed.units['grade-7'], GRADE_7_UNIT_2];
+        hasChanges = true;
+      } else {
+        // Ensure Grade 7 Unit 2 has all 10 activities
+        const g7u2Idx = parsed.units['grade-7'].findIndex((u) => u.id === 'g7-u2');
+        if (g7u2Idx !== -1 && parsed.units['grade-7'][g7u2Idx].activities.length < 10) {
+          parsed.units['grade-7'][g7u2Idx] = GRADE_7_UNIT_2;
           hasChanges = true;
         }
       }
@@ -114,7 +129,7 @@ export class StorageService {
       }
 
       if (hasChanges) {
-        parsed.version = '1.5.0';
+        parsed.version = '1.6.0';
         this.saveData(parsed);
       }
 
