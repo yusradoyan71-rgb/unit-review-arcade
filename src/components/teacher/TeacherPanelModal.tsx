@@ -18,11 +18,17 @@ import {
   Check, 
   Copy, 
   FolderPlus, 
-  AlertTriangle
+  AlertTriangle,
+  Database,
+  Globe,
+  RefreshCw,
+  KeyRound,
+  ShieldCheck
 } from 'lucide-react';
+import { ApiService } from '../../services/apiService';
 
 interface TeacherPanelModalProps {
-  initialTab?: 'units' | 'activities' | 'backup';
+  initialTab?: 'units' | 'activities' | 'backup' | 'tracking';
   targetGradeId?: GradeId;
   onClose: () => void;
 }
@@ -48,9 +54,14 @@ export const TeacherPanelModal: React.FC<TeacherPanelModalProps> = ({
     addToast 
   } = useArcade();
 
-  const [activeTab, setActiveTab] = useState<'units' | 'activities' | 'backup'>(initialTab);
+  const [activeTab, setActiveTab] = useState<'units' | 'activities' | 'backup' | 'tracking'>(initialTab);
   const [selectedGrade, setSelectedGrade] = useState<GradeId>(targetGradeId);
   const [selectedUnitId, setSelectedUnitId] = useState<string>('');
+
+  // Google Sheets Tracking State
+  const [apiUrlInput, setApiUrlInput] = useState(() => ApiService.getApiUrl() || '');
+  const [isTestingApi, setIsTestingApi] = useState(false);
+  const [apiStatusMessage, setApiStatusMessage] = useState<string | null>(null);
 
   // Unit Form State
   const [unitTitle, setUnitTitle] = useState('');
@@ -190,6 +201,54 @@ export const TeacherPanelModal: React.FC<TeacherPanelModalProps> = ({
     }
   };
 
+  const handleSaveApiUrl = (e: React.FormEvent) => {
+    e.preventDefault();
+    sounds.playTap();
+    const clean = apiUrlInput.trim();
+    if (clean) {
+      ApiService.setApiUrl(clean);
+      addToast('Google Apps Script URL saved!', 'success');
+      handleTestApiConnection();
+    } else {
+      ApiService.setApiUrl(null);
+      addToast('Cleared custom API URL. Reverted to Local Demo Mode.', 'info');
+      setApiStatusMessage(null);
+    }
+  };
+
+  const handleTestApiConnection = async () => {
+    const url = apiUrlInput.trim() || ApiService.getApiUrl();
+    if (!url) {
+      setApiStatusMessage('No URL provided. Running in Local Demo Mode.');
+      return;
+    }
+
+    setIsTestingApi(true);
+    setApiStatusMessage('Pinging Google Apps Script endpoint...');
+
+    try {
+      const response = await fetch(url, { method: 'GET' });
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+      const data = await response.json();
+      if (data && data.status === 'ok') {
+        sounds.playSuccess();
+        setApiStatusMessage(`✅ Connected successfully! ${data.message || 'Ready for student logins.'}`);
+        addToast('Connected to Google Apps Script backend!', 'success');
+      } else {
+        throw new Error('Endpoint did not return standard Arcade healthcheck status.');
+      }
+    } catch (err) {
+      sounds.playBack();
+      const msg = err instanceof Error ? err.message : 'Network error';
+      setApiStatusMessage(`❌ Connection failed: ${msg}. Check that the Web App is deployed with "Anyone" access.`);
+      addToast(`Connection test failed (${msg})`, 'error');
+    } finally {
+      setIsTestingApi(false);
+    }
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/80 backdrop-blur-md overflow-y-auto">
       <motion.div
@@ -270,6 +329,21 @@ export const TeacherPanelModal: React.FC<TeacherPanelModalProps> = ({
           >
             <Download className="w-4 h-4" />
             <span>Backup & Restore (JSON)</span>
+          </button>
+
+          <button
+            onClick={() => {
+              sounds.playTap();
+              setActiveTab('tracking');
+            }}
+            className={`py-3.5 px-4 font-semibold text-sm border-b-2 flex items-center gap-2 transition-all ${
+              activeTab === 'tracking'
+                ? 'border-indigo-500 text-indigo-300 bg-indigo-500/10'
+                : 'border-transparent text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <Database className="w-4 h-4 text-emerald-400" />
+            <span>Tracking & Google Sheets</span>
           </button>
         </div>
 
@@ -746,6 +820,161 @@ export const TeacherPanelModal: React.FC<TeacherPanelModalProps> = ({
                   <RotateCcw className="w-4 h-4" />
                   <span>Reset All Data to Empty</span>
                 </button>
+              </div>
+            </div>
+          )}
+
+          {/* TAB 4: GOOGLE SHEETS & STUDENT TRACKING SETUP */}
+          {activeTab === 'tracking' && (
+            <div className="space-y-6">
+              {/* Endpoint Connection Card */}
+              <div className="p-5 rounded-2xl bg-slate-950/60 border border-slate-800">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2.5">
+                    <Database className="w-5 h-5 text-emerald-400" />
+                    <div>
+                      <h3 className="font-arcade text-lg font-bold text-white">
+                        Google Apps Script Web App Deployment
+                      </h3>
+                      <p className="text-slate-400 text-xs">
+                        Connect this web app to your Google Spreadsheet backend to enable server-side student authentication.
+                      </p>
+                    </div>
+                  </div>
+
+                  <span className={`px-2.5 py-1 rounded-full text-xs font-semibold flex items-center gap-1.5 border ${
+                    ApiService.hasLiveEndpoint()
+                      ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-300'
+                      : 'bg-amber-500/15 border-amber-500/30 text-amber-300'
+                  }`}>
+                    <span className={`w-2 h-2 rounded-full ${ApiService.hasLiveEndpoint() ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'}`} />
+                    <span>{ApiService.hasLiveEndpoint() ? 'Live Server Connected' : 'Local Demo Mode Active'}</span>
+                  </span>
+                </div>
+
+                <form onSubmit={handleSaveApiUrl} className="space-y-3">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">
+                      Web App URL (from Apps Script Deployment):
+                    </label>
+                    <div className="flex gap-2">
+                      <div className="relative flex-1">
+                        <Globe className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+                        <input
+                          type="url"
+                          placeholder="https://script.google.com/macros/s/AKfycb.../exec"
+                          value={apiUrlInput}
+                          onChange={(e) => setApiUrlInput(e.target.value)}
+                          className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 font-mono text-xs focus:outline-none focus:border-indigo-500"
+                        />
+                      </div>
+
+                      <button
+                        type="submit"
+                        className="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition-all shadow"
+                      >
+                        Save URL
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={handleTestApiConnection}
+                        disabled={isTestingApi || !apiUrlInput.trim()}
+                        className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-40 text-slate-200 font-semibold text-xs border border-slate-700 transition-all flex items-center gap-1.5"
+                      >
+                        <RefreshCw className={`w-3.5 h-3.5 ${isTestingApi ? 'animate-spin' : ''}`} />
+                        <span>Test</span>
+                      </button>
+
+                      {apiUrlInput && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setApiUrlInput('');
+                            ApiService.setApiUrl(null);
+                            setApiStatusMessage(null);
+                            addToast('Reverted to Local Demo Mode.', 'info');
+                          }}
+                          className="px-3 py-2.5 rounded-xl bg-slate-900 hover:bg-rose-950 text-slate-400 hover:text-rose-300 border border-slate-800 text-xs transition-all"
+                        >
+                          Clear
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </form>
+
+                {/* Status Box */}
+                {apiStatusMessage && (
+                  <div className="mt-3 p-3 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-300 flex items-center gap-2">
+                    <span className="leading-snug">{apiStatusMessage}</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Security & Database Status Card */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="p-4 rounded-2xl bg-slate-950/60 border border-slate-800">
+                  <div className="flex items-center gap-2 mb-2 text-indigo-400">
+                    <ShieldCheck className="w-4 h-4" />
+                    <h4 className="font-arcade text-sm font-bold uppercase tracking-wider">
+                      Security Measures Active
+                    </h4>
+                  </div>
+                  <ul className="text-xs text-slate-400 space-y-1.5 list-disc list-inside">
+                    <li>Plaintext PINs are <strong className="text-slate-200">never stored</strong> in Google Sheets.</li>
+                    <li>Salted SHA-256 key derivation with <strong className="text-slate-200">1,000 iterative rounds</strong>.</li>
+                    <li><strong className="text-slate-200">5-attempt lockout</strong> defense against PIN guessing.</li>
+                    <li>Cryptographic, unguessable session tokens (12h expiration).</li>
+                    <li>Minimal student profile served: only first name and class.</li>
+                  </ul>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-slate-950/60 border border-slate-800">
+                  <div className="flex items-center gap-2 mb-2 text-cyan-400">
+                    <Database className="w-4 h-4" />
+                    <h4 className="font-arcade text-sm font-bold uppercase tracking-wider">
+                      Prepared Database Sheets
+                    </h4>
+                  </div>
+                  <ul className="text-xs text-slate-400 space-y-1.5">
+                    <li><strong className="text-slate-200">Students</strong>: Enrolled student records & credentials</li>
+                    <li><strong className="text-slate-200">Sessions</strong>: Login records, ping durations & active tokens</li>
+                    <li><strong className="text-slate-200">Attempts</strong>: Activity score summaries (Phase 2)</li>
+                    <li><strong className="text-slate-200">Answers</strong>: Diagnostic question telemetry (Phase 2)</li>
+                    <li><strong className="text-slate-200">Dashboard</strong>: Class statistics for 7A, 7B, 8A, 8B</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Demo Accounts Reference */}
+              <div className="p-4 rounded-2xl bg-indigo-950/20 border border-indigo-500/20">
+                <div className="flex items-center gap-2 text-indigo-300 font-bold text-xs uppercase tracking-wider mb-2">
+                  <KeyRound className="w-4 h-4" />
+                  <span>Demo Test Accounts Available Out of the Box:</span>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+                  <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-center">
+                    <span className="block font-bold text-cyan-400">Class 7A</span>
+                    <span className="text-slate-300 text-[11px]">No: 701 (PIN: 1234)</span>
+                    <span className="text-slate-300 text-[11px] block">No: 702 (PIN: 4321)</span>
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-center">
+                    <span className="block font-bold text-cyan-400">Class 7B</span>
+                    <span className="text-slate-300 text-[11px]">No: 703 (PIN: 1111)</span>
+                    <span className="text-slate-300 text-[11px] block">No: 704 (PIN: 2222)</span>
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-center">
+                    <span className="block font-bold text-purple-400">Class 8A</span>
+                    <span className="text-slate-300 text-[11px]">No: 801 (PIN: 1234)</span>
+                    <span className="text-slate-300 text-[11px] block">No: 802 (PIN: 4321)</span>
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-center">
+                    <span className="block font-bold text-purple-400">Class 8B</span>
+                    <span className="text-slate-300 text-[11px]">No: 803 (PIN: 1111)</span>
+                    <span className="text-slate-300 text-[11px] block">No: 804 (PIN: 2222)</span>
+                  </div>
+                </div>
               </div>
             </div>
           )}

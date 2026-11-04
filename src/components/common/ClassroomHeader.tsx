@@ -1,5 +1,6 @@
 import React from 'react';
 import { useArcade } from '../../context/ArcadeContext';
+import { StudentProfileBadge } from '../auth/StudentProfileBadge';
 import { 
   Gamepad2, 
   ChevronRight, 
@@ -112,8 +113,11 @@ export const ClassroomHeader: React.FC = () => {
           )}
         </div>
 
-        {/* Right: Smartboard Quick Classroom Controls */}
+        {/* Right: Smartboard Quick Classroom Controls & Student Profile */}
         <div className="flex items-center gap-2 sm:gap-3">
+          {/* Student Profile / Mode Status Badge */}
+          <StudentProfileBadge />
+
           {/* Audio Effects Toggle */}
           <button
             onClick={toggleMute}

@@ -17,7 +17,7 @@ interface ArcadeContextType {
   goToGrade: (gradeId: GradeId) => void;
   goToUnit: (gradeId: GradeId, unitId: string) => void;
   goToGame: (gradeId: GradeId, unitId: string, activityId: string) => void;
-  openTeacherPanel: (initialTab?: 'units' | 'activities' | 'backup', targetGradeId?: GradeId) => void;
+  openTeacherPanel: (initialTab?: 'units' | 'activities' | 'backup' | 'tracking', targetGradeId?: GradeId) => void;
 
   // Data
   data: ArcadeData;
@@ -136,7 +136,7 @@ export const ArcadeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  const openTeacherPanel = useCallback((initialTab?: 'units' | 'activities' | 'backup', targetGradeId?: GradeId) => {
+  const openTeacherPanel = useCallback((initialTab?: 'units' | 'activities' | 'backup' | 'tracking', targetGradeId?: GradeId) => {
     sounds.playTap();
     setNavigation({ view: 'teacher-panel', initialTab, targetGradeId });
   }, []);

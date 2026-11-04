@@ -1,7 +1,9 @@
 import React from 'react';
 import { ArcadeProvider, useArcade } from './context/ArcadeContext';
+import { AuthProvider } from './context/AuthContext';
 import { ClassroomHeader } from './components/common/ClassroomHeader';
 import { ToastContainer } from './components/common/ToastContainer';
+import { StudentLoginModal } from './components/auth/StudentLoginModal';
 import { HomeScreen } from './components/home/HomeScreen';
 import { UnitLibraryScreen } from './components/library/UnitLibraryScreen';
 import { UnitDashboardScreen } from './components/dashboard/UnitDashboardScreen';
@@ -94,6 +96,9 @@ const MainView: React.FC = () => {
         )}
       </AnimatePresence>
 
+      {/* Student Authentication Modal */}
+      <StudentLoginModal />
+
       {/* Feedback Toast System */}
       <ToastContainer />
     </div>
@@ -102,10 +107,13 @@ const MainView: React.FC = () => {
 
 export function App() {
   return (
-    <ArcadeProvider>
-      <MainView />
-    </ArcadeProvider>
+    <AuthProvider>
+      <ArcadeProvider>
+        <MainView />
+      </ArcadeProvider>
+    </AuthProvider>
   );
 }
 
 export default App;
+
