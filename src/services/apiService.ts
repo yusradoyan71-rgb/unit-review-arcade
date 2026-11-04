@@ -1,39 +1,29 @@
 /**
  * UNIT REVIEW ARCADE — API SERVICE
- * Version: 1.0.0
+ * Version: 1.1.0
  * 
  * Secure communication layer for Google Apps Script Web App backend.
  * Uses text/plain payloads with redirect: 'follow' to guarantee robust CORS
  * compatibility across GitHub Pages and classroom devices.
+ * 
+ * NO SILENT MOCK FALLBACK: All requests are strictly processed against the
+ * configured Google Apps Script Web App.
  */
 
-import type { AuthApiResponse, LoginCredentials, StudentProfile } from '../types/auth';
+import type { AuthApiResponse, LoginCredentials } from '../types/auth';
 
 const STORAGE_API_KEY = 'unit_review_arcade_api_url';
 
-// Built-in Demo Accounts (Matches the Apps Script createDemoStudentAccounts routine)
-// Used when no Apps Script URL is configured or when offline
-const DEMO_STUDENTS: Array<{
-  num: string;
-  pin: string;
-  profile: StudentProfile;
-}> = [
-  { num: '701', pin: '1234', profile: { studentNumber: '701', displayName: 'Kerem Y.', firstName: 'Kerem', class: '7A', grade: 'grade-7' } },
-  { num: '702', pin: '4321', profile: { studentNumber: '702', displayName: 'Zeynep K.', firstName: 'Zeynep', class: '7A', grade: 'grade-7' } },
-  { num: '703', pin: '1111', profile: { studentNumber: '703', displayName: 'Can D.', firstName: 'Can', class: '7B', grade: 'grade-7' } },
-  { num: '704', pin: '2222', profile: { studentNumber: '704', displayName: 'Elif Ş.', firstName: 'Elif', class: '7B', grade: 'grade-7' } },
-  { num: '801', pin: '1234', profile: { studentNumber: '801', displayName: 'Barış A.', firstName: 'Barış', class: '8A', grade: 'grade-8' } },
-  { num: '802', pin: '4321', profile: { studentNumber: '802', displayName: 'Ayşe Ç.', firstName: 'Ayşe', class: '8A', grade: 'grade-8' } },
-  { num: '803', pin: '1111', profile: { studentNumber: '803', displayName: 'Murat Y.', firstName: 'Murat', class: '8B', grade: 'grade-8' } },
-  { num: '804', pin: '2222', profile: { studentNumber: '804', displayName: 'Selin A.', firstName: 'Selin', class: '8B', grade: 'grade-8' } },
-];
+// Deployed Google Apps Script Web App URL
+export const DEFAULT_APPS_SCRIPT_URL =
+  'https://script.google.com/macros/s/AKfycbwzMiiyoKbcb83Plv_TYay4VnXXOWh9ZmlPDes6_Z-Pahk3phpTB8sqYZN6dUiAy-etjw/exec';
 
 export class ApiService {
   /**
    * Retrieves the current Google Apps Script deployment URL.
-   * Priority: localStorage override -> Vite environment variable -> null
+   * Priority: localStorage override -> Vite environment variable -> DEFAULT_APPS_SCRIPT_URL
    */
-  public static getApiUrl(): string | null {
+  public static getApiUrl(): string {
     try {
       const stored = localStorage.getItem(STORAGE_API_KEY);
       if (stored && stored.trim().startsWith('http')) {
@@ -48,11 +38,11 @@ export class ApiService {
       return envUrl.trim();
     }
 
-    return null;
+    return DEFAULT_APPS_SCRIPT_URL;
   }
 
   /**
-   * Saves or clears the API URL in localStorage.
+   * Saves or resets the API URL in localStorage.
    */
   public static setApiUrl(url: string | null): void {
     try {
@@ -70,25 +60,29 @@ export class ApiService {
    * Checks whether a live Google Apps Script endpoint is configured.
    */
   public static hasLiveEndpoint(): boolean {
-    return this.getApiUrl() !== null;
+    const url = this.getApiUrl();
+    return typeof url === 'string' && url.startsWith('http');
   }
 
   /**
-   * Authenticates a student using student number and PIN.
+   * Authenticates a student using student number and PIN against the Google Apps Script backend.
+   * Does NOT silently fall back to local mock authentication.
    */
   public static async login(credentials: LoginCredentials): Promise<AuthApiResponse> {
     const apiUrl = this.getApiUrl();
 
-    // If no live URL is configured, run against local demo accounts
     if (!apiUrl) {
-      return this.mockLogin(credentials);
+      return {
+        success: false,
+        error: 'School tracking server is not configured. Please contact your teacher.',
+      };
     }
 
     try {
       const response = await this.postRequest<AuthApiResponse>(apiUrl, {
         action: 'student_login',
-        studentNumber: credentials.studentNumber,
-        pin: credentials.pin,
+        studentNumber: credentials.studentNumber.trim(),
+        pin: credentials.pin.trim(),
         userAgent: navigator.userAgent || 'Web Browser',
       });
 
@@ -98,27 +92,19 @@ export class ApiService {
       const message = err instanceof Error ? err.message : 'Network communication error';
       return {
         success: false,
-        error: `Unable to reach school server (${message}). Check internet connection or contact teacher.`,
+        error: `Unable to connect to school server (${message}). Please check your connection or contact your teacher.`,
       };
     }
   }
 
   /**
-   * Validates an existing session token.
+   * Validates an existing session token against the Google Apps Script backend.
    */
   public static async checkSession(sessionToken: string): Promise<AuthApiResponse> {
     const apiUrl = this.getApiUrl();
 
     if (!apiUrl) {
-      // Check if session token belongs to demo student
-      const match = DEMO_STUDENTS.find((s) => `mock_token_${s.num}` === sessionToken);
-      if (match) {
-        return {
-          success: true,
-          student: match.profile,
-        };
-      }
-      return { success: false, error: 'Session expired or not found in demo mode.' };
+      return { success: false, error: 'Server URL not configured.' };
     }
 
     try {
@@ -130,7 +116,7 @@ export class ApiService {
       return response;
     } catch (err) {
       console.warn('Session check network error:', err);
-      return { success: false, error: 'Session check failed' };
+      return { success: false, error: 'Session check failed: server unreachable.' };
     }
   }
 
@@ -141,7 +127,7 @@ export class ApiService {
     const apiUrl = this.getApiUrl();
 
     if (!apiUrl) {
-      return { success: true, message: 'Logged out from demo mode.' };
+      return { success: true };
     }
 
     try {
@@ -151,15 +137,15 @@ export class ApiService {
       });
     } catch (err) {
       console.warn('Logout API notification failed:', err);
-      return { success: true }; // Logout should proceed client-side regardless
+      return { success: true }; // Client-side logout should proceed regardless
     }
   }
 
   /**
    * Internal HTTP POST wrapper designed specifically for Google Apps Script Web Apps.
-   * Sends JSON wrapped in text/plain to avoid browser CORS preflight restrictions.
+   * Sends JSON wrapped in text/plain;charset=utf-8 to bypass browser CORS preflight.
    */
-  private static async postRequest<T>(url: string, payload: unknown, timeoutMs = 12000): Promise<T> {
+  private static async postRequest<T>(url: string, payload: unknown, timeoutMs = 15000): Promise<T> {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeoutMs);
 
@@ -167,7 +153,6 @@ export class ApiService {
       const response = await fetch(url, {
         method: 'POST',
         headers: {
-          // text/plain;charset=utf-8 bypasses OPTIONS preflight in Google Apps Script
           'Content-Type': 'text/plain;charset=utf-8',
         },
         body: JSON.stringify(payload),
@@ -194,42 +179,5 @@ export class ApiService {
       }
       throw err;
     }
-  }
-
-  /**
-   * Fallback mock login for offline testing and demo classroom scenarios.
-   */
-  private static mockLogin(credentials: LoginCredentials): Promise<AuthApiResponse> {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const studentNumber = credentials.studentNumber.trim();
-        const pin = credentials.pin.trim();
-
-        const match = DEMO_STUDENTS.find((s) => s.num === studentNumber);
-
-        if (!match) {
-          resolve({
-            success: false,
-            error: 'Student number not found. Check your number or contact your teacher.',
-          });
-          return;
-        }
-
-        if (match.pin !== pin) {
-          resolve({
-            success: false,
-            error: 'Incorrect PIN. Please try again.',
-          });
-          return;
-        }
-
-        resolve({
-          success: true,
-          sessionToken: `mock_token_${match.num}`,
-          student: match.profile,
-          expiresAt: new Date(Date.now() + 12 * 60 * 60 * 1000).toISOString(),
-        });
-      }, 400);
-    });
   }
 }
