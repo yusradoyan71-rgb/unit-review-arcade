@@ -1,95 +1,101 @@
-# Google Sheets Backend & Google Apps Script Setup Guide
+# Standalone Google Apps Script Backend & Google Sheets Setup Guide
 
-Follow these steps to initialize your Google Sheets database and deploy the backend Web App.
-
----
-
-## Step 1: Create a Google Spreadsheet
-
-1. Open your browser and go to [Google Sheets](https://sheets.new).
-2. Name your spreadsheet: **`Unit Review Arcade - Student Tracking Database`**.
+This guide is specifically tailored for a **standalone Google Apps Script project** created at [script.google.com](https://script.google.com).
 
 ---
 
-## Step 2: Open the Apps Script Editor
+## 1. How to Find Your Google Spreadsheet ID
 
-1. In the Google Sheets menu, click **Extensions** > **Apps Script**.
-2. Rename the project in the top-left from "Untitled project" to **`Unit Review Arcade Backend`**.
-3. In the script editor, delete any code inside `Code.gs`.
-4. Copy and paste the entire contents of [`google-apps-script/Code.gs`](./Code.gs) into the editor.
-5. Click the **Save** disk icon (or press `Ctrl + S`).
+1. Create or open your tracking spreadsheet at [sheets.new](https://sheets.new).
+2. Look at the browser address bar:
+   ```
+   https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ```
+3. Copy the string of characters between `/d/` and `/edit`. That is your **`SPREADSHEET_ID`**.
 
 ---
 
-## Step 3: Run the Database Setup Routine
+## 2. Connect Your Standalone Apps Script Project to the Spreadsheet
 
-1. In the Apps Script toolbar, find the function selector dropdown (next to "Run" and "Debug").
-2. Select **`setupArcadeDatabase`** and click **Run**.
-3. **Authorization**: Google will ask you to authorize permissions (reading/writing to the attached spreadsheet):
+In your standalone Apps Script project at [script.google.com](https://script.google.com):
+
+1. Paste the updated code from [`google-apps-script/Code.gs`](./Code.gs) into your script editor.
+2. Click **Save** (disk icon).
+
+You have two simple ways to link your Spreadsheet ID:
+
+### Method A (Recommended — Easiest):
+1. In the Apps Script toolbar function dropdown, select **`setSpreadsheetId`**.
+2. Temporarily edit line 78 in `Code.gs` or run this command in a quick helper:
+   ```javascript
+   function runMySetup() {
+     setSpreadsheetId("PASTE_YOUR_SPREADSHEET_ID_HERE");
+   }
+   ```
+3. Select `runMySetup` and click **Run**.
+4. Check the Execution Log:
+   `✅ Successfully connected to Spreadsheet: 'Unit Review Arcade - Student Tracking' (ID: ...)`
+
+### Method B (Via Project Settings):
+1. In the left navigation panel of Apps Script, click the **Project Settings** (gear icon ⚙️).
+2. Scroll down to **Script Properties**.
+3. Click **Add script property**:
+   - **Property**: `SPREADSHEET_ID`
+   - **Value**: *(Paste your Spreadsheet ID)*
+4. Click **Save script properties**.
+
+---
+
+## 3. Run the Database Setup Routine
+
+1. Switch back to the **Editor** (`< >` icon) in Apps Script.
+2. In the function dropdown, select **`setupArcadeDatabase`** and click **Run**.
+3. If Google requests authorization:
    - Click **Review permissions**.
-   - Choose your Google account.
-   - Click **Advanced** > **Go to Unit Review Arcade Backend (unsafe)** *(standard for personal scripts)*.
+   - Select your Google account.
+   - Click **Advanced** > **Go to Unit Review Arcade Backend (unsafe)**.
    - Click **Allow**.
-4. Check your Google Spreadsheet tabs at the bottom. You will see:
-   - 📁 **`Students`** (with headers: `student_id`, `student_number`, `full_name`, `grade`, `class`, `pin_salt`, `pin_hash`, `is_active`, `failed_attempts`, `locked_until`, `created_at`, `last_login_at`)
-   - 📁 **`Sessions`** (with session and ping headers)
-   - 📁 **`Attempts`** (prepared for Phase 2 game tracking)
-   - 📁 **`Answers`** (prepared for Phase 2 question tracking)
-   - 📁 **`Dashboard`** (styled overview with live formulas for 7A, 7B, 8A, 8B)
+4. Open your Google Spreadsheet. You will see 5 formatted, styled tabs:
+   - 📁 **`Students`**
+   - 📁 **`Sessions`**
+   - 📁 **`Attempts`** *(Ready for Phase 2 telemetry)*
+   - 📁 **`Answers`** *(Ready for Phase 2 diagnostics)*
+   - 📁 **`Dashboard`** *(Live formula summary for classes 7A, 7B, 8A, 8B)*
 
 ---
 
-## Step 4: Add Student Accounts (Zero Plaintext PIN Exposure)
+## 4. Deploy the Web App
 
-You can seed demo accounts or real students directly within Apps Script. PINs are salted and hashed immediately; plaintext PINs are **never saved** to the sheet.
-
-### Option A: Create Demo Students
-1. In the function dropdown, select **`createDemoStudentAccounts`** and click **Run**.
-2. This creates 8 test accounts across all classes:
-   - **7A**: Student Number `701` (PIN `1234`), `702` (PIN `4321`)
-   - **7B**: Student Number `703` (PIN `1111`), `704` (PIN `2222`)
-   - **8A**: Student Number `801` (PIN `1234`), `802` (PIN `4321`)
-   - **8B**: Student Number `803` (PIN `1111`), `804` (PIN `2222`)
-
-### Option B: Add a Custom Student
-At the bottom of `Code.gs`, you can run:
-```javascript
-createStudentAccount("142", "Mehmet Demir", "7", "7A", "5892");
-```
-
----
-
-## Step 5: Deploy the Web App
-
-1. In the top-right corner of the Apps Script editor, click **Deploy** > **New deployment**.
+1. In the top-right corner, click **Deploy** > **New deployment**.
 2. Click the gear icon next to "Select type" and choose **Web app**.
-3. Configure the settings:
-   - **Description**: `Unit Review Arcade API v1`
-   - **Execute as**: **`Me`** (`your_email@gmail.com`)
+3. Settings:
+   - **Description**: `Unit Review Arcade Standalone API v1`
+   - **Execute as**: **`Me`**
    - **Who has access**: **`Anyone`** *(Required so students can authenticate without Google logins)*
 4. Click **Deploy**.
-5. Copy the **Web App URL** provided (it looks like `https://script.google.com/macros/s/AKfycbx.../exec`).
+5. Copy the **Web App URL** (`https://script.google.com/macros/s/.../exec`).
 
 ---
 
-## Step 6: Connect Web App URL to Frontend
+## 5. Security & Production Checklist
 
-You can configure the URL in two ways:
+### A. PIN Hashing & Server-Side Secret Pepper
+- **Why it matters**: 4-digit PINs have low entropy (10,000 combinations). If an attacker gets read access to a sheet, ordinary salted SHA-256 can be brute-forced offline in under a second.
+- **The Pepper Defense**: `Code.gs` uses a two-tier key derivation:
+  `pin + ":" + salt + ":" + pepper`
+- The `PEPPER_SECRET` is generated automatically and stored in **Script Properties**, which is **completely inaccessible** from the Google Sheet.
+- Even if someone exports or views the entire spreadsheet, they cannot crack the PINs because the pepper key is absent from the sheet.
 
-### Method 1: Environment Variable (`.env.local`)
-Create a file named `.env.local` in the project root:
-```env
-VITE_APPS_SCRIPT_URL=https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec
-```
+### B. Demo Accounts vs. Production Roster
+- To test initially, run **`createDemoStudentAccounts`** in Apps Script. This creates 8 test accounts for `7A`, `7B`, `8A`, `8B`.
+- **Before going to production with real students**:
+  1. Run **`removeDemoAccounts`** in the Apps Script function runner to wipe demo credentials.
+  2. Use **`importStudentsRoster(studentsArray)`** with real student rosters.
+  3. Recommend 4 to 6 digit PINs for real students.
 
-### Method 2: Direct in App
-When running in development or smartboard, you can test without an active Apps Script deployment by enabling **Demo / Offline Mode** in the settings, or entering the Web App URL dynamically.
-
----
-
-## Security Architecture Summary
-
-- **Salted SHA-256 (1,000 rounds)** prevents precomputed rainbow table attacks.
-- **5-attempt Brute Force Lockout** (15-minute freeze) defends against 4-digit PIN brute forcing.
-- **12-Hour Session Expiration** validated server-side.
-- **Sanitized JSON Responses** return only the student's first name, display name, and class (no PINs, hashes, or sensitive records are ever transmitted).
+### C. Session Token & Brute-Force Defense
+- **Tokens**: 64-character cryptographic tokens (`uat_...`) generated server-side.
+- **Expiration**: Enforced server-side after 12 hours.
+- **Rate Limiting**: 5 consecutive failed PIN attempts automatically locks the student account for 15 minutes (`locked_until`).
+- **Sanitized Outputs**: The client only receives first name and class (no salts, hashes, or full names).

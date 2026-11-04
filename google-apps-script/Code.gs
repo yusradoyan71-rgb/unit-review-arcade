@@ -4,23 +4,34 @@
  * ============================================================================
  * 
  * Secure backend API for student authentication and tracking data storage.
- * Designed for 7th & 8th grade English curriculum (Classes: 7A, 7B, 8A, 8B).
+ * Designed for standalone Google Apps Script projects (script.google.com)
+ * as well as container-bound scripts.
  * 
- * SECURITY PRINCIPLES:
- * 1. Plaintext PINs are NEVER saved in Google Sheets.
- * 2. Multi-iteration salted SHA-256 key derivation is enforced server-side.
- * 3. Brute-force protection: 5 failed attempts locks an account for 15 minutes.
- * 4. Unguessable session tokens with 12-hour server-enforced expiration.
- * 5. Sanitized client responses: only returns minimal display info (first name, class, grade).
- * 6. Handles CORS & redirects cleanly for browser clients.
+ * Supports 7th & 8th grade English curriculum (Classes: 7A, 7B, 8A, 8B).
  * 
- * Version: 1.0.0 (Phase 1)
+ * KEY ARCHITECTURAL FEATURES:
+ * 1. STANDALONE SPREADSHEET SUPPORT:
+ *    Connects securely via SpreadsheetApp.openById() using a SPREADSHEET_ID
+ *    stored in Script Properties (fallback to getActiveSpreadsheet()).
+ * 2. SERVER-SIDE SECRET PEPPER:
+ *    Combines a unique per-student salt with a secret pepper stored in Script
+ *    Properties. Even with read access to the Sheet, PINs cannot be cracked offline.
+ * 3. MULTI-ROUND KEY DERIVATION:
+ *    1,000 iterative SHA-256 rounds resist dictionary attacks.
+ * 4. BRUTE-FORCE DEFENSE:
+ *    5 failed attempts locks an account for 15 minutes.
+ * 5. UNGUESSABLE SESSION TOKENS:
+ *    64-character tokens with server-side 12-hour expiration enforcement.
+ * 6. ZERO PLAINTEXT PIN STORAGE:
+ *    Plaintext PINs are never stored in sheets or returned in responses.
+ * 
+ * Version: 1.1.0 (Phase 1 - Standalone & Pepper Hardened)
  */
 
 // Configuration
 var CONFIG = {
   APP_NAME: "Unit Review Arcade API",
-  VERSION: "1.0.0",
+  VERSION: "1.1.0",
   SESSION_DURATION_HOURS: 12,
   MAX_FAILED_ATTEMPTS: 5,
   LOCKOUT_MINUTES: 15,
@@ -33,6 +44,78 @@ var CONFIG = {
     DASHBOARD: "Dashboard"
   }
 };
+
+// ============================================================================
+// STANDALONE SPREADSHEET CONNECTION LAYER
+// ============================================================================
+
+/**
+ * Retrieves the Google Spreadsheet instance.
+ * For standalone projects, reads 'SPREADSHEET_ID' from Script Properties.
+ * Fallback to SpreadsheetApp.getActiveSpreadsheet() if container-bound.
+ */
+function getArcadeSpreadsheet() {
+  var props = PropertiesService.getScriptProperties();
+  var sheetId = props.getProperty("SPREADSHEET_ID");
+
+  if (sheetId && sheetId.trim().length > 0) {
+    try {
+      return SpreadsheetApp.openById(sheetId.trim());
+    } catch (err) {
+      throw new Error(
+        "Failed to open Google Spreadsheet with ID '" + sheetId.trim() + "': " + err.message +
+        ". Verify the ID is correct and your Google account has Edit permissions."
+      );
+    }
+  }
+
+  // Fallback if bound to a spreadsheet
+  var active = SpreadsheetApp.getActiveSpreadsheet();
+  if (active) {
+    return active;
+  }
+
+  throw new Error(
+    "No Google Spreadsheet connected! Since this is a standalone Apps Script project, configure your SPREADSHEET_ID:\n" +
+    "👉 Run setSpreadsheetId('YOUR_SPREADSHEET_ID') in this editor, or add SPREADSHEET_ID under Project Settings > Script Properties."
+  );
+}
+
+/**
+ * Convenience helper to set the Google Spreadsheet ID in Script Properties.
+ * Run this function in the Apps Script editor with your spreadsheet ID:
+ * 
+ *   setSpreadsheetId("1A2B3C4D5E6F7G8H9I0J...");
+ */
+function setSpreadsheetId(sheetId) {
+  if (!sheetId || typeof sheetId !== "string" || sheetId.trim().length === 0) {
+    throw new Error("Please provide a valid Google Spreadsheet ID string to setSpreadsheetId(sheetId).");
+  }
+
+  var cleanId = sheetId.trim();
+  // Validate that the script can open the spreadsheet
+  var ss = SpreadsheetApp.openById(cleanId);
+  PropertiesService.getScriptProperties().setProperty("SPREADSHEET_ID", cleanId);
+  Logger.log("✅ Successfully connected to Spreadsheet: '" + ss.getName() + "' (ID: " + cleanId + ")");
+  return ss.getName();
+}
+
+/**
+ * Returns the currently configured Spreadsheet ID and connection status.
+ */
+function getSpreadsheetId() {
+  var id = PropertiesService.getScriptProperties().getProperty("SPREADSHEET_ID");
+  if (!id) {
+    Logger.log("⚠️ SPREADSHEET_ID is not set in Script Properties.");
+    return null;
+  }
+  Logger.log("Configured SPREADSHEET_ID: " + id);
+  return id;
+}
+
+// ============================================================================
+// WEB APP HTTP HANDLERS (POST & GET)
+// ============================================================================
 
 /**
  * Main Web App Entry Point: POST Handler
@@ -57,9 +140,11 @@ function doPost(e) {
       return createJsonResponse({ success: false, error: "Missing 'action' parameter" }, 400);
     }
 
-    var ss = SpreadsheetApp.getActiveSpreadsheet();
-    if (!ss) {
-      return createJsonResponse({ success: false, error: "No active Google Spreadsheet bound to script" }, 500);
+    var ss;
+    try {
+      ss = getArcadeSpreadsheet();
+    } catch (ssErr) {
+      return createJsonResponse({ success: false, error: "Database configuration error: " + ssErr.message }, 500);
     }
 
     // Route Actions
@@ -89,21 +174,32 @@ function doPost(e) {
  * Provides a health check and verification endpoint.
  */
 function doGet(e) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
   var isConfigured = false;
-  if (ss) {
-    var studentSheet = ss.getSheetByName(CONFIG.SHEET_NAMES.STUDENTS);
-    if (studentSheet) isConfigured = true;
+  var ssName = "";
+  var errorDetail = null;
+
+  try {
+    var ss = getArcadeSpreadsheet();
+    if (ss) {
+      ssName = ss.getName();
+      var studentSheet = ss.getSheetByName(CONFIG.SHEET_NAMES.STUDENTS);
+      if (studentSheet) isConfigured = true;
+    }
+  } catch (err) {
+    errorDetail = err.message;
   }
 
   return createJsonResponse({
-    status: "ok",
+    status: isConfigured ? "ok" : "needs_setup",
     app: CONFIG.APP_NAME,
     version: CONFIG.VERSION,
     configured: isConfigured,
+    spreadsheetName: ssName || null,
     message: isConfigured
-      ? "Backend is operational. Database initialized."
-      : "Spreadsheet detected but not initialized. Run setupArcadeDatabase() in Apps Script editor."
+      ? "Backend is operational. Database connected to '" + ssName + "'."
+      : errorDetail
+      ? "Database setup required: " + errorDetail
+      : "Spreadsheet connected, but sheets are not initialized. Run setupArcadeDatabase() in Apps Script editor."
   });
 }
 
@@ -142,7 +238,7 @@ function handleStudentLogin(ss, payload) {
     return createJsonResponse({ success: false, error: "No student records found in database." });
   }
 
-  // Header mapping (Columns: 0-indexed)
+  // Header mapping (0-indexed columns):
   // 0: student_id, 1: student_number, 2: full_name, 3: grade, 4: class,
   // 5: pin_salt, 6: pin_hash, 7: is_active, 8: failed_attempts, 9: locked_until,
   // 10: created_at, 11: last_login_at
@@ -189,8 +285,8 @@ function handleStudentLogin(ss, payload) {
     }
   }
 
-  // 3. Verify PIN against salted hash
-  var computedHash = hashPinWithSalt(pin, salt);
+  // 3. Verify PIN against salted + peppered hash
+  var computedHash = hashPinWithSaltAndPepper(pin, salt);
   if (computedHash !== storedHash) {
     failedAttempts++;
     var lockDate = null;
@@ -237,7 +333,7 @@ function handleStudentLogin(ss, payload) {
     ]);
   }
 
-  // 6. Return minimal, sanitized student profile (no full names if preferred, first name + class)
+  // 6. Return minimal, sanitized student profile (first name + class)
   var nameParts = String(fullName).trim().split(" ");
   var firstName = nameParts[0] || fullName;
   var displayInitials = nameParts.length > 1 ? nameParts[0] + " " + nameParts[nameParts.length - 1].charAt(0) + "." : firstName;
@@ -360,20 +456,47 @@ function handleStudentLogout(ss, payload) {
 }
 
 // ============================================================================
-// CRYPTOGRAPHY & TOKEN UTILITIES
+// CRYPTOGRAPHY, PEPPER & TOKEN UTILITIES
 // ============================================================================
 
 /**
- * Multi-iteration salted SHA-256 key derivation.
- * Iteratively feeds the previous digest combined with the salt to resist dictionary attacks.
+ * Retrieves or auto-initializes the server-side secret Pepper.
+ * The pepper is stored in Script Properties and NEVER exists inside the Google Sheet.
+ * This guarantees that even if someone gains read access to the Sheet, they cannot
+ * brute-force PIN hashes offline.
  */
-function hashPinWithSalt(pin, salt) {
-  var input = pin + ":" + salt;
+function getOrCreateSecretPepper() {
+  var props = PropertiesService.getScriptProperties();
+  var pepper = props.getProperty("PEPPER_SECRET");
+  if (!pepper) {
+    // Generate a secure 64-character random pepper once
+    var seed = Utilities.getUuid() + "-" + Utilities.getUuid() + "-" + new Date().getTime() + "-" + Math.random();
+    var digest = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, seed);
+    var hex = "";
+    for (var i = 0; i < digest.length; i++) {
+      var b = (digest[i] + 256) % 256;
+      var byteHex = b.toString(16);
+      if (byteHex.length === 1) byteHex = "0" + byteHex;
+      hex += byteHex;
+    }
+    pepper = hex;
+    props.setProperty("PEPPER_SECRET", pepper);
+  }
+  return pepper;
+}
+
+/**
+ * Multi-iteration salted + peppered SHA-256 key derivation.
+ * Iteratively feeds the previous digest combined with the salt and secret pepper.
+ */
+function hashPinWithSaltAndPepper(pin, salt) {
+  var pepper = getOrCreateSecretPepper();
+  var input = pin + ":" + salt + ":" + pepper;
   var digest = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, input);
 
   // Iterative rounds
   for (var round = 0; round < CONFIG.SALT_ROUNDS; round++) {
-    var combined = digest.concat(Utilities.newBlob(salt + ":" + round).getBytes());
+    var combined = digest.concat(Utilities.newBlob(salt + ":" + pepper + ":" + round).getBytes());
     digest = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, combined);
   }
 
@@ -389,7 +512,7 @@ function hashPinWithSalt(pin, salt) {
 }
 
 /**
- * Generates a random cryptographic salt.
+ * Generates a random 32-character cryptographic salt.
  */
 function generateSalt() {
   var raw = Utilities.getUuid() + "-" + new Date().getTime() + "-" + Math.random().toString(36).substring(2);
@@ -408,7 +531,7 @@ function generateSalt() {
  * Generates an unpredictable 64-character session token.
  */
 function generateSecureToken() {
-  var raw = Utilities.getUuid() + "-" + Utilities.getUuid() + "-" + Math.random().toString(36).substring(2);
+  var raw = Utilities.getUuid() + "-" + Utilities.getUuid() + "-" + new Date().getTime() + "-" + Math.random().toString(36).substring(2);
   var digest = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, raw);
   var hex = "";
   for (var i = 0; i < digest.length; i++) {
@@ -425,13 +548,11 @@ function generateSecureToken() {
 // ============================================================================
 
 /**
- * RUN THIS ONCE in the Apps Script editor to create and style all required sheets.
+ * RUN THIS ONCE in the Apps Script editor to create and style all required sheets
+ * in your connected Google Spreadsheet.
  */
 function setupArcadeDatabase() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
-  if (!ss) {
-    throw new Error("No active Google Spreadsheet found. Please create one and bind this script via Extensions > Apps Script.");
-  }
+  var ss = getArcadeSpreadsheet();
 
   // 1. STUDENTS SHEET
   var studentsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.STUDENTS);
@@ -516,7 +637,7 @@ function setupArcadeDatabase() {
   var dashboardSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.DASHBOARD);
   setupDashboardSheet(dashboardSheet);
 
-  Logger.log("✅ Unit Review Arcade Database setup complete!");
+  Logger.log("✅ Unit Review Arcade Database setup complete on '" + ss.getName() + "'!");
 }
 
 /**
@@ -581,18 +702,19 @@ function setupDashboardSheet(sheet) {
 }
 
 // ============================================================================
-// STUDENT ENROLLMENT HELPERS (FOR TEACHER USE)
+// STUDENT ENROLLMENT & MANAGEMENT (FOR TEACHER USE)
 // ============================================================================
 
 /**
  * Teacher Helper: Securely creates or updates a single student.
- * Plaintext PIN is hashed immediately with a unique salt; PIN is NEVER stored.
+ * Plaintext PIN is hashed immediately with salt and server-side secret pepper.
+ * Plaintext PIN is NEVER saved in the spreadsheet.
  * 
- * Example usage in Apps Script editor:
- *   createStudentAccount("101", "Ali Yılmaz", "7", "7A", "1234");
+ * Example:
+ *   createStudentAccount("142", "Mehmet Demir", "7", "7A", "5892");
  */
 function createStudentAccount(studentNumber, fullName, grade, className, pin) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = getArcadeSpreadsheet();
   var sheet = ss.getSheetByName(CONFIG.SHEET_NAMES.STUDENTS);
   if (!sheet) {
     throw new Error("Please run setupArcadeDatabase() first.");
@@ -609,7 +731,7 @@ function createStudentAccount(studentNumber, fullName, grade, className, pin) {
   }
 
   var salt = generateSalt();
-  var hash = hashPinWithSalt(pin, salt);
+  var hash = hashPinWithSaltAndPepper(pin, salt);
   var now = new Date().toISOString();
 
   // Check if student number exists
@@ -652,31 +774,92 @@ function createStudentAccount(studentNumber, fullName, grade, className, pin) {
 }
 
 /**
- * Teacher Helper: Batch creates sample demo accounts for testing Phase 1.
- * Run this function in Apps Script editor to create 8 demo student accounts.
+ * Teacher Helper: Batch import student roster.
+ * Pass an array of objects: [{ num, name, grade, class, pin }, ...]
+ */
+function importStudentsRoster(studentsArray) {
+  if (!Array.isArray(studentsArray) || studentsArray.length === 0) {
+    throw new Error("Please pass a non-empty array of student objects.");
+  }
+
+  studentsArray.forEach(function(s) {
+    createStudentAccount(s.num, s.name, s.grade, s.class, s.pin);
+  });
+
+  Logger.log("🎉 Successfully imported " + studentsArray.length + " students!");
+}
+
+/**
+ * Teacher Helper: Populates 8 sample demo accounts across 7A, 7B, 8A, 8B for testing.
  */
 function createDemoStudentAccounts() {
   var demoStudents = [
     // Class 7A (Grade 7)
-    { num: "701", name: "Kerem Yılmaz", grade: "7", cls: "7A", pin: "1234" },
-    { num: "702", name: "Zeynep Kaya", grade: "7", cls: "7A", pin: "4321" },
+    { num: "701", name: "Kerem Yılmaz", grade: "7", class: "7A", pin: "1234" },
+    { num: "702", name: "Zeynep Kaya", grade: "7", class: "7A", pin: "4321" },
 
     // Class 7B (Grade 7)
-    { num: "703", name: "Can Demir", grade: "7", cls: "7B", pin: "1111" },
-    { num: "704", name: "Elif Şahin", grade: "7", cls: "7B", pin: "2222" },
+    { num: "703", name: "Can Demir", grade: "7", class: "7B", pin: "1111" },
+    { num: "704", name: "Elif Şahin", grade: "7", class: "7B", pin: "2222" },
 
     // Class 8A (Grade 8)
-    { num: "801", name: "Barış Arslan", grade: "8", cls: "8A", pin: "1234" },
-    { num: "802", name: "Ayşe Çelik", grade: "8", cls: "8A", pin: "4321" },
+    { num: "801", name: "Barış Arslan", grade: "8", class: "8A", pin: "1234" },
+    { num: "802", name: "Ayşe Çelik", grade: "8", class: "8A", pin: "4321" },
 
     // Class 8B (Grade 8)
-    { num: "803", name: "Murat Yıldız", grade: "8", cls: "8B", pin: "1111" },
-    { num: "804", name: "Selin Aydın", grade: "8", cls: "8B", pin: "2222" }
+    { num: "803", name: "Murat Yıldız", grade: "8", class: "8B", pin: "1111" },
+    { num: "804", name: "Selin Aydın", grade: "8", class: "8B", pin: "2222" }
   ];
 
-  demoStudents.forEach(function(s) {
-    createStudentAccount(s.num, s.name, s.grade, s.cls, s.pin);
-  });
-
+  importStudentsRoster(demoStudents);
   Logger.log("🎉 8 Demo students successfully created across 7A, 7B, 8A, 8B.");
+}
+
+/**
+ * Production Preparation: Disables or removes demo test accounts.
+ * Run this before starting live school production.
+ */
+function removeDemoAccounts() {
+  var demoNumbers = ["701", "702", "703", "704", "801", "802", "803", "804"];
+  var ss = getArcadeSpreadsheet();
+  var sheet = ss.getSheetByName(CONFIG.SHEET_NAMES.STUDENTS);
+  if (!sheet) return;
+
+  var data = sheet.getDataRange().getValues();
+  var removed = 0;
+
+  for (var i = data.length - 1; i >= 1; i--) {
+    var num = String(data[i][1]).trim();
+    if (demoNumbers.indexOf(num) !== -1) {
+      sheet.deleteRow(i + 1);
+      removed++;
+    }
+  }
+
+  Logger.log("🧹 Removed " + removed + " demo student accounts from database.");
+}
+
+/**
+ * Maintenance Helper: Marks expired sessions as 'expired' to keep database tidy.
+ */
+function cleanupExpiredSessions() {
+  var ss = getArcadeSpreadsheet();
+  var sessionsSheet = ss.getSheetByName(CONFIG.SHEET_NAMES.SESSIONS);
+  if (!sessionsSheet) return;
+
+  var data = sessionsSheet.getDataRange().getValues();
+  var now = new Date();
+  var count = 0;
+
+  for (var i = 1; i < data.length; i++) {
+    if (data[i][9] === "active") {
+      var expiresAt = new Date(data[i][7]);
+      if (now > expiresAt) {
+        sessionsSheet.getRange(i + 1, 10).setValue("expired");
+        count++;
+      }
+    }
+  }
+
+  Logger.log("🧹 Marked " + count + " expired sessions.");
 }
