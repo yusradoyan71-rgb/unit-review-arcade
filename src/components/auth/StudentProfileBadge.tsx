@@ -18,7 +18,7 @@ export const StudentProfileBadge: React.FC = () => {
           <span>Student Login</span>
         </button>
 
-        <span className="hidden xl:inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-[11px] font-medium text-slate-400">
+        <span className="hidden md:inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-[11px] font-medium text-slate-400">
           <span className="w-1.5 h-1.5 rounded-full bg-slate-500" />
           Classroom Mode
         </span>
