@@ -30,6 +30,8 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
   const [matchedPairIds, setMatchedPairIds] = useState<string[]>([]);
   const [mismatchedIds, setMismatchedIds] = useState<string[]>([]);
   const [totalMatchesMade, setTotalMatchesMade] = useState(0);
+  const [mismatchCount, setMismatchCount] = useState(0);
+  const [interactionCount, setInteractionCount] = useState(0);
   const [isRoundComplete, setIsRoundComplete] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
 
@@ -76,10 +78,12 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
   useEffect(() => {
     if (selectedLeft && selectedRight) {
       const isMatch = selectedLeft.id === selectedRight.id;
+      const order = interactionCount + 1;
+      setInteractionCount(order);
 
       recordAnswer({
         questionId: selectedLeft.id,
-        questionOrder: totalMatchesMade + 1,
+        questionOrder: order,
         questionPrompt: `Round ${currentRoundIndex + 1}: ${currentRound?.title || 'Matching'}`,
         studentResponse: `${selectedLeft.text} ➔ ${selectedRight.text}`,
         correctAnswer: `${selectedLeft.text} ➔ (paired)`,
@@ -103,6 +107,7 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
       } else {
         // MISMATCH!
         sounds.playBack();
+        setMismatchCount((m) => m + 1);
         const cardIds = [selectedLeft.cardId, selectedRight.cardId];
         setMismatchedIds(cardIds);
         const timer = setTimeout(() => {
@@ -113,7 +118,7 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
         return () => clearTimeout(timer);
       }
     }
-  }, [selectedLeft, selectedRight, currentRound, currentRoundIndex, totalMatchesMade, recordAnswer]);
+  }, [selectedLeft, selectedRight, currentRound, currentRoundIndex, interactionCount, recordAnswer]);
 
   const handleCardClick = (card: ShuffledCard) => {
     if (matchedPairIds.includes(card.id) || mismatchedIds.length > 0) return;
@@ -135,6 +140,11 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
       completeGame({
         score: totalMatchesMade,
         totalQuestions: totalPairsAcrossGame,
+        answeredQuestions: totalPairsAcrossGame,
+        correctAnswers: totalMatchesMade,
+        incorrectAnswers: mismatchCount,
+        skippedQuestions: 0,
+        percentage: (totalMatchesMade + mismatchCount) > 0 ? Math.round((totalMatchesMade / (totalMatchesMade + mismatchCount)) * 100) : 100,
       });
     }
   };
@@ -143,6 +153,8 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
     sounds.playTap();
     setCurrentRoundIndex(0);
     setTotalMatchesMade(0);
+    setMismatchCount(0);
+    setInteractionCount(0);
     setIsGameOver(false);
   };
 

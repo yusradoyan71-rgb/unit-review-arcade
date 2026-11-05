@@ -9,6 +9,7 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import type { AuthMode, StudentProfile, LoginCredentials, ActiveSession } from '../types/auth';
 import { ApiService } from '../services/apiService';
+import { TrackingService } from '../services/trackingService';
 import { sounds } from '../services/soundEffects';
 
 interface AuthContextType {
@@ -148,6 +149,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     // Immediately clean up client state
     sessionStorage.removeItem(SESSION_STORAGE_KEY);
+    TrackingService.clearStoredAttempt();
+    TrackingService.clearPendingAnswers();
+    TrackingService.clearActiveAnswers();
     setStudent(null);
     setSessionToken(null);
     setAuthMode('classroom');

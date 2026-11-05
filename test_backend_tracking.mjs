@@ -448,9 +448,180 @@ async function runTests() {
   if (fakeSessionRes.success) {
     throw new Error('Invalid session was erroneously accepted!');
   }
-  console.log('  ✅ TEST 9 PASSED: Unauthorized access rejected with 401 error.\n');
+  console.log('=== TEST 10: MULTI-TRY INTERACTIONS (Match It! / Sentence Builder) ===');
+  const attemptIdMulti = 'att_test_matchit_multitry';
+  callApi({
+    action: 'game_start_attempt',
+    sessionToken,
+    attemptId: attemptIdMulti,
+    gradeId: 'grade-8',
+    unitId: 'g8-u1',
+    activityId: 'g8-u1-matchit',
+    gameType: 'match_it',
+    totalQuestions: 4,
+  });
 
-  console.log('🎉 ALL BACKEND TESTS PASSED (9/9)! Google Apps Script tracking handlers are 100% verified.');
+  const multiTryBatch = [
+    {
+      answerId: 'ans_multi_001',
+      questionId: 'pair_fever',
+      questionOrder: 1,
+      questionPrompt: 'Round 1: Health',
+      studentResponse: 'fever ➔ plaster',
+      correctAnswer: 'fever ➔ high temperature',
+      isCorrect: false,
+      timestamp: new Date().toISOString(),
+    },
+    {
+      answerId: 'ans_multi_002',
+      questionId: 'pair_fever',
+      questionOrder: 2,
+      questionPrompt: 'Round 1: Health',
+      studentResponse: 'fever ➔ bandage',
+      correctAnswer: 'fever ➔ high temperature',
+      isCorrect: false,
+      timestamp: new Date().toISOString(),
+    },
+    {
+      answerId: 'ans_multi_003',
+      questionId: 'pair_fever',
+      questionOrder: 3,
+      questionPrompt: 'Round 1: Health',
+      studentResponse: 'fever ➔ high temperature',
+      correctAnswer: 'fever ➔ high temperature',
+      isCorrect: true,
+      timestamp: new Date().toISOString(),
+    },
+  ];
+
+  const multiRecordRes = callApi({
+    action: 'game_record_answers',
+    sessionToken,
+    attemptId: attemptIdMulti,
+    answers: multiTryBatch,
+  });
+  console.log('  Multi-try record result:', multiRecordRes);
+  if (!multiRecordRes.success || multiRecordRes.recordedCount !== 3) {
+    throw new Error('Multi-try answers were improperly discarded! Result: ' + JSON.stringify(multiRecordRes));
+  }
+
+  // Verify all 3 attempts exist in Answers sheet
+  const answersData = answersSheet.rows;
+  const multiRows = answersData.filter((r) => r.includes(attemptIdMulti));
+  console.log(`  Found ${multiRows.length} recorded rows for multi-try attempt (expected 3).`);
+  if (multiRows.length !== 3) {
+    throw new Error(`Expected 3 rows in Answers sheet for multi-try interaction, found ${multiRows.length}`);
+  }
+
+  // Verify duplicate submission of exact same multi-try batch is safely ignored
+  const multiDupRes = callApi({
+    action: 'game_record_answers',
+    sessionToken,
+    attemptId: attemptIdMulti,
+    answers: multiTryBatch,
+  });
+  console.log('  Resubmission of multi-try batch result:', multiDupRes);
+  if (!multiDupRes.success || multiDupRes.recordedCount !== 0) {
+    throw new Error('Deduplication failed to ignore retried multi-try batch');
+  }
+  console.log('  ✅ TEST 10 PASSED: All repeated interaction attempts recorded without being discarded.\n');
+
+  console.log('=== TEST 11: CROSS-STUDENT ATTEMPT ACCESS DEFENSE ===');
+  // Register and login student 702
+  context.createStudentAccount('702', 'Ayşe Yılmaz', '7', '7A', '1234');
+
+  const login702Res = callApi({
+    action: 'student_login',
+    studentNumber: '702',
+    pin: '1234',
+  });
+  const token702 = login702Res.sessionToken;
+
+  // Student 702 tries to record answers to Student 801's attempt
+  const hijackAnswerRes = callApi({
+    action: 'game_record_answers',
+    sessionToken: token702,
+    attemptId: attemptIdMulti, // owned by student 801
+    answers: [{ questionId: 'hacked_q', studentResponse: 'Hacked' }],
+  });
+  console.log('  Cross-student answer attempt:', hijackAnswerRes);
+  if (hijackAnswerRes.success) {
+    throw new Error('Student 702 was able to record answers for student 801 attempt!');
+  }
+
+  // Student 702 tries to complete Student 801's attempt
+  const hijackCompleteRes = callApi({
+    action: 'game_complete_attempt',
+    sessionToken: token702,
+    attemptId: attemptIdMulti,
+    score: 100,
+  });
+  console.log('  Cross-student complete attempt:', hijackCompleteRes);
+  if (hijackCompleteRes.success) {
+    throw new Error('Student 702 was able to complete student 801 attempt!');
+  }
+
+  // Student 702 tries to reconcile Student 801's attempt
+  const hijackReconcileRes = callApi({
+    action: 'game_reconcile_attempt',
+    sessionToken: token702,
+    attemptId: attemptIdMulti,
+    status: 'interrupted',
+  });
+  console.log('  Cross-student reconcile attempt:', hijackReconcileRes);
+  if (hijackReconcileRes.success) {
+    throw new Error('Student 702 was able to reconcile student 801 attempt!');
+  }
+  console.log('  ✅ TEST 11 PASSED: Strict student ownership enforced across all tracking operations.\n');
+
+  console.log('=== TEST 12: PHASE 1 AUTHENTICATION BACKWARD COMPATIBILITY ===');
+  // Check session with token702
+  const checkSessionRes = callApi({
+    action: 'check_session',
+    sessionToken: token702,
+  });
+  console.log('  Check session result:', checkSessionRes);
+  if (!checkSessionRes.success || checkSessionRes.student.studentNumber !== '702') {
+    throw new Error('check_session failed to return valid student profile');
+  }
+
+  // Logout student 702
+  const logoutRes = callApi({
+    action: 'logout',
+    sessionToken: token702,
+  });
+  console.log('  Logout result:', logoutRes);
+  if (!logoutRes.success) {
+    throw new Error('Logout endpoint failed');
+  }
+
+  // Check session after logout should fail
+  const checkAfterLogout = callApi({
+    action: 'check_session',
+    sessionToken: token702,
+  });
+  console.log('  Check session after logout:', checkAfterLogout);
+  if (checkAfterLogout.success) {
+    throw new Error('Logged out session was erroneously accepted!');
+  }
+
+  // Attempting to start game with logged-out session should fail
+  const startAfterLogout = callApi({
+    action: 'game_start_attempt',
+    sessionToken: token702,
+    attemptId: 'att_should_fail',
+    gradeId: 'grade-7',
+    unitId: 'g7-u1',
+    activityId: 'g7-u1-act1',
+    gameType: 'quiz_battle',
+  });
+  console.log('  Start attempt after logout:', startAfterLogout);
+  if (startAfterLogout.success) {
+    throw new Error('Game start with logged-out session was accepted!');
+  }
+  console.log('  ✅ TEST 12 PASSED: Phase 1 login, check_session, and logout endpoints fully preserved.\n');
+
+  console.log('🎉 ALL BACKEND TESTS PASSED (12/12)! Google Apps Script tracking handlers and security boundaries verified.');
 }
 
 runTests().catch((err) => {

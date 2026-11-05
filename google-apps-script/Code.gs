@@ -191,12 +191,15 @@ function doPost(e) {
 
     // Route Actions
     switch (action) {
+      case "login":
       case "student_login":
         return handleStudentLogin(ss, payload);
 
+      case "check_session":
       case "student_session_check":
         return handleSessionCheck(ss, payload);
 
+      case "logout":
       case "student_logout":
         return handleStudentLogout(ss, payload);
 
@@ -780,17 +783,23 @@ function handleRecordAnswers(ss, payload) {
   var answerColMap = getSheetColumnMap(answersSheet, CONFIG.ANSWER_HEADERS);
   var existingAnswersData = answersSheet.getDataRange().getValues();
 
-  // Build index of already recorded answerIds and questionIds for this attempt
+  // Build index of already recorded answerIds and composite signatures for this attempt.
+  // Note: We do NOT index by questionId alone because games like Match It! and Sentence Builder
+  // allow legitimate repeated attempts (e.g. multiple pairing attempts, reset and re-check).
+  // Deduplicating by answerId (or composite questionId+order+studentResponse) ensures that
+  // network retries are safely ignored while distinct student interactions are faithfully preserved.
   var recordedAnswerIds = {};
-  var recordedQuestionIds = {};
+  var recordedSignatures = {};
 
   for (var j = 1; j < existingAnswersData.length; j++) {
     var rowAttempt = String(existingAnswersData[j][answerColMap["attempt_id"] - 1]).trim();
     if (rowAttempt === attemptId) {
       var rowAnsId = String(existingAnswersData[j][answerColMap["answer_id"] - 1]).trim();
       var rowQId = String(existingAnswersData[j][answerColMap["question_id"] - 1]).trim();
+      var rowOrder = String(existingAnswersData[j][answerColMap["question_order"] - 1]).trim();
+      var rowResp = String(existingAnswersData[j][answerColMap["student_response"] - 1]).trim();
       if (rowAnsId) recordedAnswerIds[rowAnsId] = true;
-      if (rowQId) recordedQuestionIds[rowQId] = true;
+      if (rowQId) recordedSignatures[rowQId + "::" + rowOrder + "::" + rowResp] = true;
     }
   }
 
@@ -803,12 +812,21 @@ function handleRecordAnswers(ss, payload) {
 
   for (var k = 0; k < answers.length; k++) {
     var ans = answers[k];
-    var ansId = String(ans.answerId || Utilities.getUuid().substring(0, 8)).trim();
+    var ansId = String(ans.answerId || "").trim();
     var qId = String(ans.questionId || "").trim();
+    var qOrder = Number(ans.questionOrder) || (k + 1);
+    var studentResp = String(ans.studentResponse || "");
+    var signature = qId + "::" + qOrder + "::" + studentResp;
 
-    // Prevent duplicate entries
-    if (recordedAnswerIds[ansId] || (qId && recordedQuestionIds[qId])) {
+    // Prevent duplicate entries from retried requests:
+    // 1. By unique answerId if present
+    // 2. By composite questionId + questionOrder + studentResponse if answerId was omitted
+    if ((ansId && recordedAnswerIds[ansId]) || (!ansId && recordedSignatures[signature])) {
       continue;
+    }
+
+    if (!ansId) {
+      ansId = "ans_" + Utilities.getUuid().substring(0, 8);
     }
 
     var row = new Array(lastCol);
@@ -832,7 +850,7 @@ function handleRecordAnswers(ss, payload) {
 
     rowsToAppend.push(row);
     recordedAnswerIds[ansId] = true;
-    if (qId) recordedQuestionIds[qId] = true;
+    recordedSignatures[signature] = true;
   }
 
   // Batch insert new answers
@@ -1033,6 +1051,10 @@ function handleReconcileAttempt(ss, payload) {
 
   for (var i = 1; i < attemptsData.length; i++) {
     if (String(attemptsData[i][colMap["attempt_id"] - 1]).trim() === attemptId) {
+      // Validate ownership
+      if (String(attemptsData[i][colMap["student_number"] - 1]).trim() !== auth.studentNumber) {
+        return createJsonResponse({ success: false, error: "Unauthorized attempt access." }, 403);
+      }
       var currentStatus = String(attemptsData[i][colMap["status"] - 1]).trim();
       if (currentStatus === "in_progress") {
         attemptsSheet.getRange(i + 1, colMap["status"]).setValue(payload.status || "interrupted");
