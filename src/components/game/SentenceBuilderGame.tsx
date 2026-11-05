@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import type { Activity, SentenceBuilderQuestion } from '../../types/schema';
 import { motion } from 'framer-motion';
 import { sounds } from '../../services/soundEffects';
+import { useGameTracking } from '../../context/GameTrackingContext';
 import { GameResultsModal } from './GameResultsModal';
 import { ClassroomScoreboard } from './ClassroomScoreboard';
 import { 
@@ -26,6 +27,7 @@ interface Tile {
 }
 
 export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ activity, onExit }) => {
+  const { recordAnswer, completeGame } = useGameTracking();
   const sentences = (activity.questions || []) as SentenceBuilderQuestion[];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -111,6 +113,15 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ activi
     setIsAnswerChecked(true);
     setIsCorrect(isMatch);
 
+    recordAnswer({
+      questionId: currentSentence.id,
+      questionOrder: currentIndex + 1,
+      questionPrompt: currentSentence.prompt,
+      studentResponse: constructed,
+      correctAnswer: currentSentence.correctSentence,
+      isCorrect: isMatch,
+    });
+
     if (isMatch) {
       sounds.playSuccess();
       setScore((s) => s + 1);
@@ -120,9 +131,19 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ activi
   };
 
   const handleReveal = () => {
+    if (isAnswerChecked) return;
     sounds.playTap();
     setIsRevealed(true);
     setIsAnswerChecked(true);
+
+    recordAnswer({
+      questionId: currentSentence.id,
+      questionOrder: currentIndex + 1,
+      questionPrompt: currentSentence.prompt,
+      studentResponse: '[Revealed without answering]',
+      correctAnswer: currentSentence.correctSentence,
+      isCorrect: false,
+    });
   };
 
   const handleNext = () => {
@@ -131,6 +152,10 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ activi
       setCurrentIndex((prev) => prev + 1);
     } else {
       setIsGameOver(true);
+      completeGame({
+        score,
+        totalQuestions: sentences.length,
+      });
     }
   };
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import type { Activity, MatchItQuestion, MatchRound } from '../../types/schema';
 import { motion } from 'framer-motion';
 import { sounds } from '../../services/soundEffects';
+import { useGameTracking } from '../../context/GameTrackingContext';
 import { GameResultsModal } from './GameResultsModal';
 import { ClassroomScoreboard } from './ClassroomScoreboard';
 import { ArrowLeft, CheckCircle2, ChevronRight, Layers, Sparkles } from 'lucide-react';
@@ -19,6 +20,7 @@ interface ShuffledCard {
 }
 
 export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) => {
+  const { recordAnswer, completeGame } = useGameTracking();
   const matchQuestion = (activity.questions[0] || {}) as MatchItQuestion;
   const rounds: MatchRound[] = matchQuestion.rounds || [];
 
@@ -73,7 +75,18 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
   // Check match whenever both sides are selected
   useEffect(() => {
     if (selectedLeft && selectedRight) {
-      if (selectedLeft.id === selectedRight.id) {
+      const isMatch = selectedLeft.id === selectedRight.id;
+
+      recordAnswer({
+        questionId: selectedLeft.id,
+        questionOrder: totalMatchesMade + 1,
+        questionPrompt: `Round ${currentRoundIndex + 1}: ${currentRound?.title || 'Matching'}`,
+        studentResponse: `${selectedLeft.text} ➔ ${selectedRight.text}`,
+        correctAnswer: `${selectedLeft.text} ➔ (paired)`,
+        isCorrect: isMatch,
+      });
+
+      if (isMatch) {
         // MATCH!
         sounds.playSuccess();
         const pairId = selectedLeft.id;
@@ -100,7 +113,7 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
         return () => clearTimeout(timer);
       }
     }
-  }, [selectedLeft, selectedRight, currentRound]);
+  }, [selectedLeft, selectedRight, currentRound, currentRoundIndex, totalMatchesMade, recordAnswer]);
 
   const handleCardClick = (card: ShuffledCard) => {
     if (matchedPairIds.includes(card.id) || mismatchedIds.length > 0) return;
@@ -119,6 +132,10 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
       setCurrentRoundIndex((prev) => prev + 1);
     } else {
       setIsGameOver(true);
+      completeGame({
+        score: totalMatchesMade,
+        totalQuestions: totalPairsAcrossGame,
+      });
     }
   };
 

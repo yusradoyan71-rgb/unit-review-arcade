@@ -3,6 +3,7 @@ import type { Activity, TrainStationQuestion, TrainScheduleItem } from '../../ty
 import { TRAIN_SCHEDULES } from '../../data/grade8/unit3/game4Station';
 import { motion, AnimatePresence } from 'framer-motion';
 import { sounds } from '../../services/soundEffects';
+import { useGameTracking } from '../../context/GameTrackingContext';
 import { GameResultsModal } from './GameResultsModal';
 import { ClassroomScoreboard } from './ClassroomScoreboard';
 import {
@@ -26,6 +27,7 @@ interface TrainStationGameProps {
 }
 
 export const TrainStationGame: React.FC<TrainStationGameProps> = ({ activity, onExit }) => {
+  const { recordAnswer, completeGame } = useGameTracking();
   const questions = (activity.questions || []) as TrainStationQuestion[];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -53,6 +55,15 @@ export const TrainStationGame: React.FC<TrainStationGameProps> = ({ activity, on
     setSelectedOption(idx);
     const isCorrect = idx === currentQ.correctOptionIndex;
 
+    recordAnswer({
+      questionId: currentQ.id,
+      questionOrder: currentIndex + 1,
+      questionPrompt: `${currentRoundTitle}: ${currentQ.prompt}`,
+      studentResponse: currentQ.options[idx] || `Option ${idx}`,
+      correctAnswer: currentQ.options[currentQ.correctOptionIndex] || `Option ${currentQ.correctOptionIndex}`,
+      isCorrect,
+    });
+
     if (isCorrect) {
       sounds.playSuccess();
       setScore((s) => s + 1);
@@ -62,8 +73,18 @@ export const TrainStationGame: React.FC<TrainStationGameProps> = ({ activity, on
   };
 
   const handleRevealAnswer = () => {
+    if (isAnswered) return;
     sounds.playTap();
     setIsAnswerRevealed(true);
+
+    recordAnswer({
+      questionId: currentQ.id,
+      questionOrder: currentIndex + 1,
+      questionPrompt: `${currentRoundTitle}: ${currentQ.prompt}`,
+      studentResponse: '[Revealed without answering]',
+      correctAnswer: currentQ.options[currentQ.correctOptionIndex] || `Option ${currentQ.correctOptionIndex}`,
+      isCorrect: false,
+    });
   };
 
   const handleNextQuestion = () => {
@@ -75,6 +96,10 @@ export const TrainStationGame: React.FC<TrainStationGameProps> = ({ activity, on
       setManualHighlightedTrain(null);
     } else {
       setIsGameOver(true);
+      completeGame({
+        score,
+        totalQuestions: questions.length,
+      });
     }
   };
 

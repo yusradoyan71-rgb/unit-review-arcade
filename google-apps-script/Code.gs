@@ -31,7 +31,7 @@
 // Configuration
 var CONFIG = {
   APP_NAME: "Unit Review Arcade API",
-  VERSION: "1.1.0",
+  VERSION: "2.0.0",
   SESSION_DURATION_HOURS: 12,
   MAX_FAILED_ATTEMPTS: 5,
   LOCKOUT_MINUTES: 15,
@@ -42,7 +42,49 @@ var CONFIG = {
     ATTEMPTS: "Attempts",
     ANSWERS: "Answers",
     DASHBOARD: "Dashboard"
-  }
+  },
+  ATTEMPT_HEADERS: [
+    "attempt_id",
+    "session_id",
+    "student_id",
+    "student_number",
+    "class",
+    "grade_id",
+    "unit_id",
+    "unit_title",
+    "activity_id",
+    "activity_title",
+    "game_type",
+    "attempt_number",
+    "score",
+    "total_questions",
+    "answered_questions",
+    "correct_answers",
+    "incorrect_answers",
+    "skipped_questions",
+    "percentage",
+    "started_at",
+    "completed_at",
+    "duration_seconds",
+    "status"
+  ],
+  ANSWER_HEADERS: [
+    "answer_id",
+    "attempt_id",
+    "student_id",
+    "student_number",
+    "class",
+    "unit_id",
+    "activity_id",
+    "question_id",
+    "question_order",
+    "question_prompt",
+    "student_response",
+    "correct_answer",
+    "is_correct",
+    "time_spent_seconds",
+    "timestamp"
+  ]
 };
 
 // ============================================================================
@@ -157,6 +199,21 @@ function doPost(e) {
 
       case "student_logout":
         return handleStudentLogout(ss, payload);
+
+      case "game_start_attempt":
+        return handleStartAttempt(ss, payload);
+
+      case "game_record_answers":
+        return handleRecordAnswers(ss, payload);
+
+      case "game_complete_attempt":
+        return handleCompleteAttempt(ss, payload);
+
+      case "game_abandon_attempt":
+        return handleAbandonAttempt(ss, payload);
+
+      case "game_reconcile_attempt":
+        return handleReconcileAttempt(ss, payload);
 
       case "ping":
         return createJsonResponse({ success: true, timestamp: new Date().toISOString(), version: CONFIG.VERSION });
@@ -456,6 +513,539 @@ function handleStudentLogout(ss, payload) {
 }
 
 // ============================================================================
+// GAME ACTIVITY TELEMETRY & TRACKING (PHASE 2)
+// ============================================================================
+
+/**
+ * Validates a student session token and retrieves trusted student identity.
+ * Rejects untrusted client claims.
+ * Throws or returns an error object if invalid or expired.
+ */
+function validateSessionAndGetStudent(ss, sessionToken) {
+  if (!sessionToken || typeof sessionToken !== "string" || sessionToken.trim().length === 0) {
+    return { error: "Missing session token." };
+  }
+
+  var cleanToken = sessionToken.trim();
+  var sessionsSheet = ss.getSheetByName(CONFIG.SHEET_NAMES.SESSIONS);
+  if (!sessionsSheet) {
+    return { error: "Database not initialized. Please run setupArcadeDatabase()." };
+  }
+
+  var sessionData = sessionsSheet.getDataRange().getValues();
+  var matchedSession = null;
+  var sessionRowIndex = -1;
+
+  for (var i = 1; i < sessionData.length; i++) {
+    if (String(sessionData[i][1]).trim() === cleanToken) {
+      matchedSession = sessionData[i];
+      sessionRowIndex = i + 1;
+      break;
+    }
+  }
+
+  if (!matchedSession) {
+    return { error: "Invalid session. Please log in again." };
+  }
+
+  var expiresAt = new Date(matchedSession[7]);
+  var status = matchedSession[9];
+  var now = new Date();
+
+  if (status !== "active" || now > expiresAt) {
+    if (status === "active") {
+      sessionsSheet.getRange(sessionRowIndex, 10).setValue("expired");
+    }
+    return { error: "Session has expired. Please log in again." };
+  }
+
+  // Refresh ping
+  sessionsSheet.getRange(sessionRowIndex, 7).setValue(now.toISOString());
+
+  var studentNumber = String(matchedSession[3]).trim();
+  var studentClass = String(matchedSession[4]).trim();
+  var studentId = String(matchedSession[2]).trim();
+
+  // Cross-reference with Students sheet to verify account is still active
+  var studentsSheet = ss.getSheetByName(CONFIG.SHEET_NAMES.STUDENTS);
+  if (!studentsSheet) {
+    return { error: "Students sheet missing." };
+  }
+
+  var studentData = studentsSheet.getDataRange().getValues();
+  var studentRow = null;
+  for (var j = 1; j < studentData.length; j++) {
+    if (String(studentData[j][1]).trim() === studentNumber) {
+      studentRow = studentData[j];
+      break;
+    }
+  }
+
+  if (!studentRow) {
+    return { error: "Student account not found." };
+  }
+
+  if (!studentRow[7]) { // is_active
+    return { error: "Student account is deactivated. Please contact your teacher." };
+  }
+
+  return {
+    success: true,
+    sessionId: matchedSession[0],
+    studentId: studentId || studentRow[0],
+    studentNumber: studentNumber,
+    fullName: studentRow[2],
+    grade: studentRow[3],
+    className: studentClass || studentRow[4]
+  };
+}
+
+/**
+ * Builds a column index lookup map (1-indexed for Sheets API) by header name.
+ * Automatically appends any missing required headers to Row 1 so migrations are 100% zero-risk.
+ */
+function getSheetColumnMap(sheet, requiredHeaders) {
+  var lastCol = Math.max(sheet.getLastColumn(), 1);
+  var headers = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
+  var map = {};
+
+  for (var i = 0; i < headers.length; i++) {
+    var h = String(headers[i]).trim();
+    if (h) {
+      map[h] = i + 1;
+    }
+  }
+
+  if (requiredHeaders && Array.isArray(requiredHeaders)) {
+    var missing = [];
+    for (var j = 0; j < requiredHeaders.length; j++) {
+      if (!map[requiredHeaders[j]]) {
+        missing.push(requiredHeaders[j]);
+      }
+    }
+
+    if (missing.length > 0) {
+      var startCol = lastCol + 1;
+      sheet.getRange(1, startCol, 1, missing.length).setValues([missing]);
+      var newHeaderRange = sheet.getRange(1, startCol, 1, missing.length);
+      newHeaderRange.setFontWeight("bold").setBackground("#1e293b").setFontColor("#38bdf8");
+      for (var k = 0; k < missing.length; k++) {
+        map[missing[k]] = startCol + k;
+      }
+    }
+  }
+
+  return map;
+}
+
+/**
+ * ACTION: game_start_attempt
+ * Initializes an attempt record in the Attempts sheet.
+ * Idempotent: If attemptId already exists, returns existing attempt info.
+ */
+function handleStartAttempt(ss, payload) {
+  var auth = validateSessionAndGetStudent(ss, payload.sessionToken);
+  if (!auth.success) {
+    return createJsonResponse({ success: false, error: auth.error }, 401);
+  }
+
+  var attemptId = String(payload.attemptId || "").trim();
+  if (!attemptId) {
+    return createJsonResponse({ success: false, error: "Missing attemptId." }, 400);
+  }
+
+  var attemptsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ATTEMPTS);
+  var colMap = getSheetColumnMap(attemptsSheet, CONFIG.ATTEMPT_HEADERS);
+
+  var data = attemptsSheet.getDataRange().getValues();
+
+  // Check if this attemptId already exists (idempotency)
+  for (var i = 1; i < data.length; i++) {
+    if (String(data[i][colMap["attempt_id"] - 1]).trim() === attemptId) {
+      var existingNum = data[i][colMap["attempt_number"] - 1] || 1;
+      return createJsonResponse({
+        success: true,
+        attemptId: attemptId,
+        attemptNumber: Number(existingNum),
+        message: "Attempt already initialized."
+      });
+    }
+  }
+
+  var now = new Date().toISOString();
+  var studentNumber = auth.studentNumber;
+  var activityId = String(payload.activityId || "").trim();
+
+  // 1. Reconcile any previous "in_progress" attempt by this student (mark as interrupted)
+  var previousAttemptCount = 0;
+  for (var j = 1; j < data.length; j++) {
+    var rowStudentNum = String(data[j][colMap["student_number"] - 1]).trim();
+    var rowActId = String(data[j][colMap["activity_id"] - 1]).trim();
+    var rowStatus = String(data[j][colMap["status"] - 1]).trim();
+
+    if (rowStudentNum === studentNumber && rowActId === activityId) {
+      previousAttemptCount++;
+    }
+
+    if (rowStudentNum === studentNumber && rowStatus === "in_progress") {
+      attemptsSheet.getRange(j + 1, colMap["status"]).setValue("interrupted");
+      attemptsSheet.getRange(j + 1, colMap["completed_at"]).setValue(now);
+    }
+  }
+
+  var attemptNumber = previousAttemptCount + 1;
+
+  // 2. Prepare new attempt row according to colMap
+  var lastCol = attemptsSheet.getLastColumn();
+  var newRow = new Array(lastCol);
+  for (var c = 0; c < lastCol; c++) newRow[c] = "";
+
+  newRow[colMap["attempt_id"] - 1] = attemptId;
+  newRow[colMap["session_id"] - 1] = auth.sessionId;
+  newRow[colMap["student_id"] - 1] = auth.studentId;
+  newRow[colMap["student_number"] - 1] = auth.studentNumber;
+  newRow[colMap["class"] - 1] = auth.className;
+  newRow[colMap["grade_id"] - 1] = String(payload.gradeId || auth.grade || "");
+  newRow[colMap["unit_id"] - 1] = String(payload.unitId || "");
+  newRow[colMap["unit_title"] - 1] = String(payload.unitTitle || "");
+  newRow[colMap["activity_id"] - 1] = activityId;
+  newRow[colMap["activity_title"] - 1] = String(payload.activityTitle || "");
+  newRow[colMap["game_type"] - 1] = String(payload.gameType || "");
+  newRow[colMap["attempt_number"] - 1] = attemptNumber;
+  newRow[colMap["score"] - 1] = 0;
+  newRow[colMap["total_questions"] - 1] = Number(payload.totalQuestions) || 1;
+  newRow[colMap["answered_questions"] - 1] = 0;
+  newRow[colMap["correct_answers"] - 1] = 0;
+  newRow[colMap["incorrect_answers"] - 1] = 0;
+  newRow[colMap["skipped_questions"] - 1] = 0;
+  newRow[colMap["percentage"] - 1] = 0;
+  newRow[colMap["started_at"] - 1] = payload.startedAt || now;
+  newRow[colMap["completed_at"] - 1] = "";
+  newRow[colMap["duration_seconds"] - 1] = 0;
+  newRow[colMap["status"] - 1] = "in_progress";
+
+  attemptsSheet.appendRow(newRow);
+
+  return createJsonResponse({
+    success: true,
+    attemptId: attemptId,
+    attemptNumber: attemptNumber
+  });
+}
+
+/**
+ * ACTION: game_record_answers
+ * Appends a batch of question answers to the Answers sheet.
+ * Verifies student session and attempt ownership.
+ * Avoids duplicate answers if identical answerId or attemptId+questionId already recorded.
+ */
+function handleRecordAnswers(ss, payload) {
+  var auth = validateSessionAndGetStudent(ss, payload.sessionToken);
+  if (!auth.success) {
+    return createJsonResponse({ success: false, error: auth.error }, 401);
+  }
+
+  var attemptId = String(payload.attemptId || "").trim();
+  var answers = payload.answers || [];
+
+  if (!attemptId || !Array.isArray(answers) || answers.length === 0) {
+    return createJsonResponse({ success: true, recordedCount: 0, message: "No answers to record." });
+  }
+
+  var attemptsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ATTEMPTS);
+  var attemptColMap = getSheetColumnMap(attemptsSheet, CONFIG.ATTEMPT_HEADERS);
+  var attemptsData = attemptsSheet.getDataRange().getValues();
+
+  var attemptRowIndex = -1;
+  var attemptRow = null;
+
+  for (var i = 1; i < attemptsData.length; i++) {
+    if (String(attemptsData[i][attemptColMap["attempt_id"] - 1]).trim() === attemptId) {
+      attemptRow = attemptsData[i];
+      attemptRowIndex = i + 1;
+      break;
+    }
+  }
+
+  if (!attemptRow) {
+    return createJsonResponse({ success: false, error: "Attempt not found: " + attemptId }, 404);
+  }
+
+  // Validate ownership
+  if (String(attemptRow[attemptColMap["student_number"] - 1]).trim() !== auth.studentNumber) {
+    return createJsonResponse({ success: false, error: "Unauthorized attempt access." }, 403);
+  }
+
+  var answersSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ANSWERS);
+  var answerColMap = getSheetColumnMap(answersSheet, CONFIG.ANSWER_HEADERS);
+  var existingAnswersData = answersSheet.getDataRange().getValues();
+
+  // Build index of already recorded answerIds and questionIds for this attempt
+  var recordedAnswerIds = {};
+  var recordedQuestionIds = {};
+
+  for (var j = 1; j < existingAnswersData.length; j++) {
+    var rowAttempt = String(existingAnswersData[j][answerColMap["attempt_id"] - 1]).trim();
+    if (rowAttempt === attemptId) {
+      var rowAnsId = String(existingAnswersData[j][answerColMap["answer_id"] - 1]).trim();
+      var rowQId = String(existingAnswersData[j][answerColMap["question_id"] - 1]).trim();
+      if (rowAnsId) recordedAnswerIds[rowAnsId] = true;
+      if (rowQId) recordedQuestionIds[rowQId] = true;
+    }
+  }
+
+  var unitId = String(attemptRow[attemptColMap["unit_id"] - 1] || "");
+  var activityId = String(attemptRow[attemptColMap["activity_id"] - 1] || "");
+  var now = new Date().toISOString();
+
+  var rowsToAppend = [];
+  var lastCol = answersSheet.getLastColumn();
+
+  for (var k = 0; k < answers.length; k++) {
+    var ans = answers[k];
+    var ansId = String(ans.answerId || Utilities.getUuid().substring(0, 8)).trim();
+    var qId = String(ans.questionId || "").trim();
+
+    // Prevent duplicate entries
+    if (recordedAnswerIds[ansId] || (qId && recordedQuestionIds[qId])) {
+      continue;
+    }
+
+    var row = new Array(lastCol);
+    for (var c = 0; c < lastCol; c++) row[c] = "";
+
+    row[answerColMap["answer_id"] - 1] = ansId;
+    row[answerColMap["attempt_id"] - 1] = attemptId;
+    row[answerColMap["student_id"] - 1] = auth.studentId;
+    row[answerColMap["student_number"] - 1] = auth.studentNumber;
+    row[answerColMap["class"] - 1] = auth.className;
+    row[answerColMap["unit_id"] - 1] = unitId;
+    row[answerColMap["activity_id"] - 1] = activityId;
+    row[answerColMap["question_id"] - 1] = qId;
+    row[answerColMap["question_order"] - 1] = Number(ans.questionOrder) || (k + 1);
+    row[answerColMap["question_prompt"] - 1] = String(ans.questionPrompt || "");
+    row[answerColMap["student_response"] - 1] = String(ans.studentResponse || "");
+    row[answerColMap["correct_answer"] - 1] = String(ans.correctAnswer || "");
+    row[answerColMap["is_correct"] - 1] = Boolean(ans.isCorrect);
+    row[answerColMap["time_spent_seconds"] - 1] = Number(ans.timeSpentSeconds) || 0;
+    row[answerColMap["timestamp"] - 1] = ans.timestamp || now;
+
+    rowsToAppend.push(row);
+    recordedAnswerIds[ansId] = true;
+    if (qId) recordedQuestionIds[qId] = true;
+  }
+
+  // Batch insert new answers
+  if (rowsToAppend.length > 0) {
+    var startRow = answersSheet.getLastRow() + 1;
+    answersSheet.getRange(startRow, 1, rowsToAppend.length, lastCol).setValues(rowsToAppend);
+  }
+
+  return createJsonResponse({
+    success: true,
+    attemptId: attemptId,
+    recordedCount: rowsToAppend.length
+  });
+}
+
+/**
+ * ACTION: game_complete_attempt
+ * Marks an attempt as completed, writes final score & stats,
+ * and records any final answers in a single atomic transaction.
+ */
+function handleCompleteAttempt(ss, payload) {
+  var auth = validateSessionAndGetStudent(ss, payload.sessionToken);
+  if (!auth.success) {
+    return createJsonResponse({ success: false, error: auth.error }, 401);
+  }
+
+  var attemptId = String(payload.attemptId || "").trim();
+  if (!attemptId) {
+    return createJsonResponse({ success: false, error: "Missing attemptId." }, 400);
+  }
+
+  var attemptsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ATTEMPTS);
+  var colMap = getSheetColumnMap(attemptsSheet, CONFIG.ATTEMPT_HEADERS);
+  var attemptsData = attemptsSheet.getDataRange().getValues();
+
+  var rowIndex = -1;
+  var attemptRow = null;
+
+  for (var i = 1; i < attemptsData.length; i++) {
+    if (String(attemptsData[i][colMap["attempt_id"] - 1]).trim() === attemptId) {
+      attemptRow = attemptsData[i];
+      rowIndex = i + 1;
+      break;
+    }
+  }
+
+  if (!attemptRow) {
+    return createJsonResponse({ success: false, error: "Attempt not found: " + attemptId }, 404);
+  }
+
+  // Ownership validation
+  if (String(attemptRow[colMap["student_number"] - 1]).trim() !== auth.studentNumber) {
+    return createJsonResponse({ success: false, error: "Unauthorized attempt access." }, 403);
+  }
+
+  // Idempotency: if already completed, return success
+  if (String(attemptRow[colMap["status"] - 1]).trim() === "completed") {
+    return createJsonResponse({
+      success: true,
+      attemptId: attemptId,
+      status: "completed",
+      message: "Attempt was already marked completed."
+    });
+  }
+
+  // Record any final unrecorded answers if passed
+  if (Array.isArray(payload.finalAnswers) && payload.finalAnswers.length > 0) {
+    handleRecordAnswers(ss, {
+      sessionToken: payload.sessionToken,
+      attemptId: attemptId,
+      answers: payload.finalAnswers
+    });
+  }
+
+  var now = new Date().toISOString();
+  var score = Number(payload.score) || 0;
+  var totalQuestions = Number(payload.totalQuestions) || Number(attemptRow[colMap["total_questions"] - 1]) || 1;
+  var answeredQuestions = Number(payload.answeredQuestions) || totalQuestions;
+  var correctAnswers = Number(payload.correctAnswers) || score;
+  var incorrectAnswers = Number(payload.incorrectAnswers) || Math.max(0, answeredQuestions - correctAnswers);
+  var skippedQuestions = Number(payload.skippedQuestions) || Math.max(0, totalQuestions - answeredQuestions);
+  var percentage = typeof payload.percentage === "number"
+    ? payload.percentage
+    : totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0;
+  var durationSeconds = Number(payload.durationSeconds) || 0;
+  var completedAt = payload.completedAt || now;
+
+  // Update Attempt record in sheet
+  attemptsSheet.getRange(rowIndex, colMap["score"]).setValue(score);
+  attemptsSheet.getRange(rowIndex, colMap["total_questions"]).setValue(totalQuestions);
+  attemptsSheet.getRange(rowIndex, colMap["answered_questions"]).setValue(answeredQuestions);
+  attemptsSheet.getRange(rowIndex, colMap["correct_answers"]).setValue(correctAnswers);
+  attemptsSheet.getRange(rowIndex, colMap["incorrect_answers"]).setValue(incorrectAnswers);
+  attemptsSheet.getRange(rowIndex, colMap["skipped_questions"]).setValue(skippedQuestions);
+  attemptsSheet.getRange(rowIndex, colMap["percentage"]).setValue(percentage);
+  attemptsSheet.getRange(rowIndex, colMap["completed_at"]).setValue(completedAt);
+  attemptsSheet.getRange(rowIndex, colMap["duration_seconds"]).setValue(durationSeconds);
+  attemptsSheet.getRange(rowIndex, colMap["status"]).setValue("completed");
+
+  return createJsonResponse({
+    success: true,
+    attemptId: attemptId,
+    status: "completed",
+    score: score,
+    percentage: percentage
+  });
+}
+
+/**
+ * ACTION: game_abandon_attempt
+ * Marks an attempt as abandoned (e.g. student clicked Exit to Unit).
+ */
+function handleAbandonAttempt(ss, payload) {
+  var auth = validateSessionAndGetStudent(ss, payload.sessionToken);
+  if (!auth.success) {
+    return createJsonResponse({ success: false, error: auth.error }, 401);
+  }
+
+  var attemptId = String(payload.attemptId || "").trim();
+  if (!attemptId) {
+    return createJsonResponse({ success: false, error: "Missing attemptId." }, 400);
+  }
+
+  var attemptsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ATTEMPTS);
+  var colMap = getSheetColumnMap(attemptsSheet, CONFIG.ATTEMPT_HEADERS);
+  var attemptsData = attemptsSheet.getDataRange().getValues();
+
+  var rowIndex = -1;
+  var attemptRow = null;
+
+  for (var i = 1; i < attemptsData.length; i++) {
+    if (String(attemptsData[i][colMap["attempt_id"] - 1]).trim() === attemptId) {
+      attemptRow = attemptsData[i];
+      rowIndex = i + 1;
+      break;
+    }
+  }
+
+  if (!attemptRow) {
+    return createJsonResponse({ success: true, message: "Attempt not found; no action needed." });
+  }
+
+  // Ownership validation
+  if (String(attemptRow[colMap["student_number"] - 1]).trim() !== auth.studentNumber) {
+    return createJsonResponse({ success: false, error: "Unauthorized attempt access." }, 403);
+  }
+
+  var currentStatus = String(attemptRow[colMap["status"] - 1]).trim();
+  if (currentStatus === "completed" || currentStatus === "abandoned") {
+    return createJsonResponse({ success: true, attemptId: attemptId, status: currentStatus });
+  }
+
+  // Record any answers collected up to abandonment
+  if (Array.isArray(payload.finalAnswers) && payload.finalAnswers.length > 0) {
+    handleRecordAnswers(ss, {
+      sessionToken: payload.sessionToken,
+      attemptId: attemptId,
+      answers: payload.finalAnswers
+    });
+  }
+
+  var now = new Date().toISOString();
+  var durationSeconds = Number(payload.durationSeconds) || 0;
+  var answeredQuestions = Number(payload.answeredQuestions) || 0;
+  var correctAnswers = Number(payload.correctAnswers) || 0;
+
+  attemptsSheet.getRange(rowIndex, colMap["answered_questions"]).setValue(answeredQuestions);
+  attemptsSheet.getRange(rowIndex, colMap["correct_answers"]).setValue(correctAnswers);
+  attemptsSheet.getRange(rowIndex, colMap["completed_at"]).setValue(now);
+  attemptsSheet.getRange(rowIndex, colMap["duration_seconds"]).setValue(durationSeconds);
+  attemptsSheet.getRange(rowIndex, colMap["status"]).setValue("abandoned");
+
+  return createJsonResponse({
+    success: true,
+    attemptId: attemptId,
+    status: "abandoned"
+  });
+}
+
+/**
+ * ACTION: game_reconcile_attempt
+ * Reconciles an interrupted or stale attempt (e.g. from browser reload or closing).
+ */
+function handleReconcileAttempt(ss, payload) {
+  var auth = validateSessionAndGetStudent(ss, payload.sessionToken);
+  if (!auth.success) {
+    return createJsonResponse({ success: false, error: auth.error }, 401);
+  }
+
+  var attemptId = String(payload.attemptId || "").trim();
+  if (!attemptId) {
+    return createJsonResponse({ success: true });
+  }
+
+  var attemptsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ATTEMPTS);
+  var colMap = getSheetColumnMap(attemptsSheet, CONFIG.ATTEMPT_HEADERS);
+  var attemptsData = attemptsSheet.getDataRange().getValues();
+
+  for (var i = 1; i < attemptsData.length; i++) {
+    if (String(attemptsData[i][colMap["attempt_id"] - 1]).trim() === attemptId) {
+      var currentStatus = String(attemptsData[i][colMap["status"] - 1]).trim();
+      if (currentStatus === "in_progress") {
+        attemptsSheet.getRange(i + 1, colMap["status"]).setValue(payload.status || "interrupted");
+        attemptsSheet.getRange(i + 1, colMap["completed_at"]).setValue(new Date().toISOString());
+      }
+      break;
+    }
+  }
+
+  return createJsonResponse({ success: true, attemptId: attemptId });
+}
+
+// ============================================================================
 // CRYPTOGRAPHY, PEPPER & TOKEN UTILITIES
 // ============================================================================
 
@@ -589,49 +1179,13 @@ function setupArcadeDatabase() {
   ];
   setupSheetHeaders(sessionsSheet, sessionHeaders, "#1e293b", "#a855f7");
 
-  // 3. ATTEMPTS SHEET (Prepared for Phase 2 telemetry)
+  // 3. ATTEMPTS SHEET (Phase 2 Activity Telemetry)
   var attemptsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ATTEMPTS);
-  var attemptHeaders = [
-    "attempt_id",
-    "session_id",
-    "student_id",
-    "student_number",
-    "class",
-    "grade_id",
-    "unit_id",
-    "unit_title",
-    "activity_id",
-    "activity_title",
-    "game_type",
-    "score",
-    "total_questions",
-    "percentage",
-    "started_at",
-    "completed_at",
-    "duration_seconds",
-    "status"
-  ];
-  setupSheetHeaders(attemptsSheet, attemptHeaders, "#1e293b", "#10b981");
+  setupSheetHeaders(attemptsSheet, CONFIG.ATTEMPT_HEADERS, "#1e293b", "#10b981");
 
-  // 4. ANSWERS SHEET (Prepared for Phase 2 telemetry)
+  // 4. ANSWERS SHEET (Phase 2 Per-Question Telemetry)
   var answersSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ANSWERS);
-  var answerHeaders = [
-    "answer_id",
-    "attempt_id",
-    "student_id",
-    "student_number",
-    "class",
-    "unit_id",
-    "activity_id",
-    "question_id",
-    "question_prompt",
-    "student_response",
-    "correct_answer",
-    "is_correct",
-    "time_spent_seconds",
-    "timestamp"
-  ];
-  setupSheetHeaders(answersSheet, answerHeaders, "#1e293b", "#f59e0b");
+  setupSheetHeaders(answersSheet, CONFIG.ANSWER_HEADERS, "#1e293b", "#f59e0b");
 
   // 5. DASHBOARD SHEET (Summary cards and guide)
   var dashboardSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.DASHBOARD);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useArcade } from '../../context/ArcadeContext';
+import { GameTrackingProvider } from '../../context/GameTrackingContext';
 import { QuizBattleGame } from './QuizBattleGame';
 import { MatchItGame } from './MatchItGame';
 import { SentenceBuilderGame } from './SentenceBuilderGame';
@@ -35,20 +36,33 @@ export const GameContainer: React.FC = () => {
     goToUnit(activeGradeId, activeUnit.id);
   };
 
-  switch (activeActivity.gameType) {
-    case 'quiz_battle':
-      return <QuizBattleGame activity={activeActivity} onExit={handleExit} />;
-    case 'match_it':
-      return <MatchItGame activity={activeActivity} onExit={handleExit} />;
-    case 'sentence_builder':
-      return <SentenceBuilderGame activity={activeActivity} onExit={handleExit} />;
-    case 'true_false':
-      return <TrueFalseGame activity={activeActivity} onExit={handleExit} />;
-    case 'reading_detective':
-      return <ReadingDetectiveGame activity={activeActivity} onExit={handleExit} />;
-    case 'train_station':
-      return <TrainStationGame activity={activeActivity} onExit={handleExit} />;
-    default:
-      return <QuizBattleGame activity={activeActivity} onExit={handleExit} />;
-  }
+  const renderGame = () => {
+    switch (activeActivity.gameType) {
+      case 'quiz_battle':
+        return <QuizBattleGame activity={activeActivity} onExit={handleExit} />;
+      case 'match_it':
+        return <MatchItGame activity={activeActivity} onExit={handleExit} />;
+      case 'sentence_builder':
+        return <SentenceBuilderGame activity={activeActivity} onExit={handleExit} />;
+      case 'true_false':
+        return <TrueFalseGame activity={activeActivity} onExit={handleExit} />;
+      case 'reading_detective':
+        return <ReadingDetectiveGame activity={activeActivity} onExit={handleExit} />;
+      case 'train_station':
+        return <TrainStationGame activity={activeActivity} onExit={handleExit} />;
+      default:
+        return <QuizBattleGame activity={activeActivity} onExit={handleExit} />;
+    }
+  };
+
+  return (
+    <GameTrackingProvider
+      key={`tracking-${activeGradeId}-${activeUnit.id}-${activeActivity.id}`}
+      activity={activeActivity}
+      unit={activeUnit}
+      gradeId={activeGradeId}
+    >
+      {renderGame()}
+    </GameTrackingProvider>
+  );
 };

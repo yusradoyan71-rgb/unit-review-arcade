@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import type { Activity, MultipleChoiceQuestion } from '../../types/schema';
 import { motion } from 'framer-motion';
 import { sounds } from '../../services/soundEffects';
+import { useGameTracking } from '../../context/GameTrackingContext';
 import { GameResultsModal } from './GameResultsModal';
 import { ClassroomScoreboard } from './ClassroomScoreboard';
 import { 
@@ -21,6 +22,7 @@ interface QuizBattleGameProps {
 
 export const QuizBattleGame: React.FC<QuizBattleGameProps> = ({ activity, onExit }) => {
   const questions = (activity.questions || []) as MultipleChoiceQuestion[];
+  const { recordAnswer, completeGame } = useGameTracking();
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
@@ -37,6 +39,15 @@ export const QuizBattleGame: React.FC<QuizBattleGameProps> = ({ activity, onExit
     setSelectedOption(idx);
     const isCorrect = idx === currentQ.correctOptionIndex;
 
+    recordAnswer({
+      questionId: currentQ.id,
+      questionOrder: currentIndex + 1,
+      questionPrompt: currentQ.prompt,
+      studentResponse: currentQ.options[idx] || `Option ${idx}`,
+      correctAnswer: currentQ.options[currentQ.correctOptionIndex] || `Option ${currentQ.correctOptionIndex}`,
+      isCorrect,
+    });
+
     if (isCorrect) {
       sounds.playSuccess();
       setScore((s) => s + 1);
@@ -46,8 +57,18 @@ export const QuizBattleGame: React.FC<QuizBattleGameProps> = ({ activity, onExit
   };
 
   const handleRevealAnswer = () => {
+    if (isAnswered) return;
     sounds.playTap();
     setIsAnswerRevealed(true);
+
+    recordAnswer({
+      questionId: currentQ.id,
+      questionOrder: currentIndex + 1,
+      questionPrompt: currentQ.prompt,
+      studentResponse: '[Revealed without answering]',
+      correctAnswer: currentQ.options[currentQ.correctOptionIndex] || `Option ${currentQ.correctOptionIndex}`,
+      isCorrect: false,
+    });
   };
 
   const handleNextQuestion = () => {
@@ -58,6 +79,10 @@ export const QuizBattleGame: React.FC<QuizBattleGameProps> = ({ activity, onExit
       setIsAnswerRevealed(false);
     } else {
       setIsGameOver(true);
+      completeGame({
+        score,
+        totalQuestions: questions.length,
+      });
     }
   };
 

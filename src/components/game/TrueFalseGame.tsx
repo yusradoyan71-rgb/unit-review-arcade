@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import type { Activity, TrueFalseQuestion } from '../../types/schema';
 import { motion } from 'framer-motion';
 import { sounds } from '../../services/soundEffects';
+import { useGameTracking } from '../../context/GameTrackingContext';
 import { GameResultsModal } from './GameResultsModal';
 import { ClassroomScoreboard } from './ClassroomScoreboard';
 import { 
@@ -18,6 +19,7 @@ interface TrueFalseGameProps {
 }
 
 export const TrueFalseGame: React.FC<TrueFalseGameProps> = ({ activity, onExit }) => {
+  const { recordAnswer, completeGame } = useGameTracking();
   const statements = (activity.questions || []) as TrueFalseQuestion[];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -34,6 +36,15 @@ export const TrueFalseGame: React.FC<TrueFalseGameProps> = ({ activity, onExit }
     setSelectedAnswer(choice);
     const isCorrect = choice === currentStatement.isTrue;
 
+    recordAnswer({
+      questionId: currentStatement.id,
+      questionOrder: currentIndex + 1,
+      questionPrompt: currentStatement.prompt,
+      studentResponse: choice ? 'True' : 'False',
+      correctAnswer: currentStatement.isTrue ? 'True' : 'False',
+      isCorrect,
+    });
+
     if (isCorrect) {
       sounds.playSuccess();
       setScore((s) => s + 1);
@@ -49,6 +60,10 @@ export const TrueFalseGame: React.FC<TrueFalseGameProps> = ({ activity, onExit }
       setSelectedAnswer(null);
     } else {
       setIsGameOver(true);
+      completeGame({
+        score,
+        totalQuestions: statements.length,
+      });
     }
   };
 

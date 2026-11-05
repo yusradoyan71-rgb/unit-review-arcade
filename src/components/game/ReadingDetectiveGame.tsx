@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import type { Activity, ReadingPassageQuestion } from '../../types/schema';
 import { motion } from 'framer-motion';
 import { sounds } from '../../services/soundEffects';
+import { useGameTracking } from '../../context/GameTrackingContext';
 import { GameResultsModal } from './GameResultsModal';
 import { ClassroomScoreboard } from './ClassroomScoreboard';
 import { 
@@ -20,6 +21,7 @@ interface ReadingDetectiveGameProps {
 }
 
 export const ReadingDetectiveGame: React.FC<ReadingDetectiveGameProps> = ({ activity, onExit }) => {
+  const { recordAnswer, completeGame } = useGameTracking();
   const questions = (activity.questions || []) as ReadingPassageQuestion[];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -42,6 +44,15 @@ export const ReadingDetectiveGame: React.FC<ReadingDetectiveGameProps> = ({ acti
     setSelectedOption(idx);
     const isCorrect = idx === currentQ.correctOptionIndex;
 
+    recordAnswer({
+      questionId: currentQ.id,
+      questionOrder: currentIndex + 1,
+      questionPrompt: `Passage ${passageNumber} - Q${questionNumberInPassage}: ${currentQ.prompt}`,
+      studentResponse: currentQ.options[idx] || `Option ${idx}`,
+      correctAnswer: currentQ.options[currentQ.correctOptionIndex] || `Option ${currentQ.correctOptionIndex}`,
+      isCorrect,
+    });
+
     if (isCorrect) {
       sounds.playSuccess();
       setScore((s) => s + 1);
@@ -51,8 +62,18 @@ export const ReadingDetectiveGame: React.FC<ReadingDetectiveGameProps> = ({ acti
   };
 
   const handleRevealAnswer = () => {
+    if (isAnswered) return;
     sounds.playTap();
     setIsAnswerRevealed(true);
+
+    recordAnswer({
+      questionId: currentQ.id,
+      questionOrder: currentIndex + 1,
+      questionPrompt: `Passage ${passageNumber} - Q${questionNumberInPassage}: ${currentQ.prompt}`,
+      studentResponse: '[Revealed without answering]',
+      correctAnswer: currentQ.options[currentQ.correctOptionIndex] || `Option ${currentQ.correctOptionIndex}`,
+      isCorrect: false,
+    });
   };
 
   const handleNextQuestion = () => {
@@ -63,6 +84,10 @@ export const ReadingDetectiveGame: React.FC<ReadingDetectiveGameProps> = ({ acti
       setIsAnswerRevealed(false);
     } else {
       setIsGameOver(true);
+      completeGame({
+        score,
+        totalQuestions: questions.length,
+      });
     }
   };
 

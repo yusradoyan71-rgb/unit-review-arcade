@@ -142,10 +142,10 @@ export class ApiService {
   }
 
   /**
-   * Internal HTTP POST wrapper designed specifically for Google Apps Script Web Apps.
+   * HTTP POST wrapper designed specifically for Google Apps Script Web Apps.
    * Sends JSON wrapped in text/plain;charset=utf-8 to bypass browser CORS preflight.
    */
-  private static async postRequest<T>(url: string, payload: unknown, timeoutMs = 15000): Promise<T> {
+  public static async postRequest<T>(url: string, payload: unknown, timeoutMs = 15000): Promise<T> {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeoutMs);
 
