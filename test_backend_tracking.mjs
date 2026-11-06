@@ -129,6 +129,16 @@ class MockSpreadsheet {
     return this.sheets[name] || null;
   }
 
+  getSheets() {
+    return Object.values(this.sheets);
+  }
+
+  deleteSheet(sheet) {
+    if (sheet && sheet.name) {
+      delete this.sheets[sheet.name];
+    }
+  }
+
   insertSheet(name) {
     const s = new MockSheet(name);
     this.sheets[name] = s;
@@ -169,6 +179,7 @@ const context = {
   SpreadsheetApp: {
     openById: (id) => mockSpreadsheet,
     getActiveSpreadsheet: () => mockSpreadsheet,
+    flush: () => {},
   },
   ContentService: {
     createTextOutput: (text) => ({

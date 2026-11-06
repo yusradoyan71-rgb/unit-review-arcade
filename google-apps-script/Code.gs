@@ -43,6 +43,33 @@ var CONFIG = {
     ANSWERS: "Answers",
     DASHBOARD: "Dashboard"
   },
+  STUDENT_HEADERS: [
+    "student_id",
+    "student_number",
+    "full_name",
+    "grade",
+    "class",
+    "pin_salt",
+    "pin_hash",
+    "is_active",
+    "failed_attempts",
+    "locked_until",
+    "created_at",
+    "last_login_at"
+  ],
+  SESSION_HEADERS: [
+    "session_id",
+    "session_token",
+    "student_id",
+    "student_number",
+    "class",
+    "login_time",
+    "last_ping_time",
+    "expires_at",
+    "logout_time",
+    "status",
+    "user_agent"
+  ],
   ATTEMPT_HEADERS: [
     "attempt_id",
     "session_id",
@@ -242,7 +269,7 @@ function doGet(e) {
     var ss = getArcadeSpreadsheet();
     if (ss) {
       ssName = ss.getName();
-      var studentSheet = ss.getSheetByName(CONFIG.SHEET_NAMES.STUDENTS);
+      var studentSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.STUDENTS);
       if (studentSheet) isConfigured = true;
     }
   } catch (err) {
@@ -288,7 +315,7 @@ function handleStudentLogin(ss, payload) {
     return createJsonResponse({ success: false, error: "Student number and PIN are required." });
   }
 
-  var studentsSheet = ss.getSheetByName(CONFIG.SHEET_NAMES.STUDENTS);
+  var studentsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.STUDENTS);
   if (!studentsSheet) {
     return createJsonResponse({ success: false, error: "Database not initialized. Please run setupArcadeDatabase()." });
   }
@@ -376,7 +403,7 @@ function handleStudentLogin(ss, payload) {
   var sessionId = "sess_" + Utilities.getUuid().substring(0, 8);
   var expiresAt = new Date(now.getTime() + CONFIG.SESSION_DURATION_HOURS * 60 * 60 * 1000);
 
-  var sessionsSheet = ss.getSheetByName(CONFIG.SHEET_NAMES.SESSIONS);
+  var sessionsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.SESSIONS);
   if (sessionsSheet) {
     sessionsSheet.appendRow([
       sessionId,
@@ -421,7 +448,7 @@ function handleSessionCheck(ss, payload) {
     return createJsonResponse({ success: false, error: "Missing session token." });
   }
 
-  var sessionsSheet = ss.getSheetByName(CONFIG.SHEET_NAMES.SESSIONS);
+  var sessionsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.SESSIONS);
   if (!sessionsSheet) {
     return createJsonResponse({ success: false, error: "Database not initialized." });
   }
@@ -461,7 +488,7 @@ function handleSessionCheck(ss, payload) {
   var studentNumber = sessionRow[3];
   var studentClass = sessionRow[4];
 
-  var studentsSheet = ss.getSheetByName(CONFIG.SHEET_NAMES.STUDENTS);
+  var studentsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.STUDENTS);
   var studentData = studentsSheet.getDataRange().getValues();
   var firstName = "Student";
   var displayInitials = "Student";
@@ -500,7 +527,7 @@ function handleStudentLogout(ss, payload) {
     return createJsonResponse({ success: true, message: "No session provided." });
   }
 
-  var sessionsSheet = ss.getSheetByName(CONFIG.SHEET_NAMES.SESSIONS);
+  var sessionsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.SESSIONS);
   if (sessionsSheet) {
     var data = sessionsSheet.getDataRange().getValues();
     for (var i = 1; i < data.length; i++) {
@@ -530,7 +557,7 @@ function validateSessionAndGetStudent(ss, sessionToken) {
   }
 
   var cleanToken = sessionToken.trim();
-  var sessionsSheet = ss.getSheetByName(CONFIG.SHEET_NAMES.SESSIONS);
+  var sessionsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.SESSIONS);
   if (!sessionsSheet) {
     return { error: "Database not initialized. Please run setupArcadeDatabase()." };
   }
@@ -570,7 +597,7 @@ function validateSessionAndGetStudent(ss, sessionToken) {
   var studentId = String(matchedSession[2]).trim();
 
   // Cross-reference with Students sheet to verify account is still active
-  var studentsSheet = ss.getSheetByName(CONFIG.SHEET_NAMES.STUDENTS);
+  var studentsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.STUDENTS);
   if (!studentsSheet) {
     return { error: "Students sheet missing." };
   }
@@ -1168,38 +1195,11 @@ function setupArcadeDatabase() {
 
   // 1. STUDENTS SHEET
   var studentsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.STUDENTS);
-  var studentHeaders = [
-    "student_id",
-    "student_number",
-    "full_name",
-    "grade",
-    "class",
-    "pin_salt",
-    "pin_hash",
-    "is_active",
-    "failed_attempts",
-    "locked_until",
-    "created_at",
-    "last_login_at"
-  ];
-  setupSheetHeaders(studentsSheet, studentHeaders, "#1e293b", "#38bdf8");
+  setupSheetHeaders(studentsSheet, CONFIG.STUDENT_HEADERS, "#1e293b", "#38bdf8");
 
   // 2. SESSIONS SHEET
   var sessionsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.SESSIONS);
-  var sessionHeaders = [
-    "session_id",
-    "session_token",
-    "student_id",
-    "student_number",
-    "class",
-    "login_time",
-    "last_ping_time",
-    "expires_at",
-    "logout_time",
-    "status",
-    "user_agent"
-  ];
-  setupSheetHeaders(sessionsSheet, sessionHeaders, "#1e293b", "#a855f7");
+  setupSheetHeaders(sessionsSheet, CONFIG.SESSION_HEADERS, "#1e293b", "#a855f7");
 
   // 3. ATTEMPTS SHEET (Phase 2 Activity Telemetry)
   var attemptsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ATTEMPTS);
@@ -1213,28 +1213,71 @@ function setupArcadeDatabase() {
   var dashboardSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.DASHBOARD);
   setupDashboardSheet(dashboardSheet);
 
+  // 6. POPULATE DEMO STUDENTS AUTOMATICALLY IF NO STUDENTS EXIST
+  var studentsData = studentsSheet.getDataRange().getValues();
+  if (studentsData.length <= 1) {
+    Logger.log("🌱 Automatically seeding 8 demo student accounts...");
+    createDemoStudentAccounts();
+  }
+
+  // 7. CLEAN UP EMPTY UNUSED DEFAULT SHEET IF SAFE
+  var defaultSheet = getSheetRobust(ss, "Sheet1") || getSheetRobust(ss, "Sayfa1");
+  if (defaultSheet && defaultSheet.getLastRow() === 0 && defaultSheet.getLastColumn() === 0 && ss.getSheets().length > 5) {
+    try {
+      ss.deleteSheet(defaultSheet);
+    } catch (e) {
+      // Ignore if cannot delete
+    }
+  }
+
+  SpreadsheetApp.flush();
   Logger.log("✅ Unit Review Arcade Database setup complete on '" + ss.getName() + "'!");
 }
 
 /**
- * Creates or retrieves a sheet by name.
+ * Case-insensitive, whitespace-tolerant sheet finder.
+ * Finds 'Students', 'students', 'Students ', etc.
+ */
+function getSheetRobust(ss, name) {
+  if (!ss || !name) return null;
+  var sheet = ss.getSheetByName(name);
+  if (sheet) return sheet;
+
+  var cleanTarget = String(name).trim().toLowerCase();
+  var sheets = ss.getSheets();
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].getName().trim().toLowerCase() === cleanTarget) {
+      return sheets[i];
+    }
+  }
+  return null;
+}
+
+/**
+ * Creates or retrieves a sheet by name (case-insensitive & whitespace-tolerant).
  */
 function getOrCreateSheet(ss, name) {
-  var sheet = ss.getSheetByName(name);
+  var sheet = getSheetRobust(ss, name);
   if (!sheet) {
-    sheet = ss.insertSheet(name);
+    sheet = ss.insertSheet(name.trim());
   }
   return sheet;
 }
 
 /**
  * Sets up styled headers on a sheet.
+ * If sheet has no headers or headers do not match, writes them cleanly.
  */
 function setupSheetHeaders(sheet, headers, bgHex, textHex) {
-  var currentHeaders = sheet.getRange(1, 1, 1, Math.max(sheet.getLastColumn(), 1)).getValues()[0];
+  var lastCol = sheet.getLastColumn();
+  var currentHeaders = [];
+  if (lastCol > 0) {
+    currentHeaders = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
+  }
+
   var matches = false;
   if (currentHeaders.length >= headers.length) {
-    matches = headers.every(function(h, idx) { return currentHeaders[idx] === h; });
+    matches = headers.every(function(h, idx) { return String(currentHeaders[idx]).trim() === h; });
   }
 
   if (!matches) {
@@ -1285,16 +1328,15 @@ function setupDashboardSheet(sheet) {
  * Teacher Helper: Securely creates or updates a single student.
  * Plaintext PIN is hashed immediately with salt and server-side secret pepper.
  * Plaintext PIN is NEVER saved in the spreadsheet.
+ * Self-healing: automatically creates Students sheet and headers if missing.
  * 
  * Example:
  *   createStudentAccount("142", "Mehmet Demir", "7", "7A", "5892");
  */
 function createStudentAccount(studentNumber, fullName, grade, className, pin) {
   var ss = getArcadeSpreadsheet();
-  var sheet = ss.getSheetByName(CONFIG.SHEET_NAMES.STUDENTS);
-  if (!sheet) {
-    throw new Error("Please run setupArcadeDatabase() first.");
-  }
+  var sheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.STUDENTS);
+  setupSheetHeaders(sheet, CONFIG.STUDENT_HEADERS, "#1e293b", "#38bdf8");
 
   studentNumber = String(studentNumber).trim();
   fullName = String(fullName).trim();
@@ -1362,6 +1404,7 @@ function importStudentsRoster(studentsArray) {
     createStudentAccount(s.num, s.name, s.grade, s.class, s.pin);
   });
 
+  SpreadsheetApp.flush();
   Logger.log("🎉 Successfully imported " + studentsArray.length + " students!");
 }
 
@@ -1388,6 +1431,7 @@ function createDemoStudentAccounts() {
   ];
 
   importStudentsRoster(demoStudents);
+  SpreadsheetApp.flush();
   Logger.log("🎉 8 Demo students successfully created across 7A, 7B, 8A, 8B.");
 }
 
@@ -1398,7 +1442,7 @@ function createDemoStudentAccounts() {
 function removeDemoAccounts() {
   var demoNumbers = ["701", "702", "703", "704", "801", "802", "803", "804"];
   var ss = getArcadeSpreadsheet();
-  var sheet = ss.getSheetByName(CONFIG.SHEET_NAMES.STUDENTS);
+  var sheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.STUDENTS);
   if (!sheet) return;
 
   var data = sheet.getDataRange().getValues();
@@ -1412,6 +1456,7 @@ function removeDemoAccounts() {
     }
   }
 
+  SpreadsheetApp.flush();
   Logger.log("🧹 Removed " + removed + " demo student accounts from database.");
 }
 
@@ -1420,7 +1465,7 @@ function removeDemoAccounts() {
  */
 function cleanupExpiredSessions() {
   var ss = getArcadeSpreadsheet();
-  var sessionsSheet = ss.getSheetByName(CONFIG.SHEET_NAMES.SESSIONS);
+  var sessionsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.SESSIONS);
   if (!sessionsSheet) return;
 
   var data = sessionsSheet.getDataRange().getValues();
