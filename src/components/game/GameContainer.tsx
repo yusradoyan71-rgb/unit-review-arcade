@@ -39,19 +39,19 @@ export const GameContainer: React.FC = () => {
   const renderGame = () => {
     switch (activeActivity.gameType) {
       case 'quiz_battle':
-        return <QuizBattleGame activity={activeActivity} onExit={handleExit} />;
+        return <QuizBattleGame key={activeActivity.id} activity={activeActivity} onExit={handleExit} />;
       case 'match_it':
-        return <MatchItGame activity={activeActivity} onExit={handleExit} />;
+        return <MatchItGame key={activeActivity.id} activity={activeActivity} onExit={handleExit} />;
       case 'sentence_builder':
-        return <SentenceBuilderGame activity={activeActivity} onExit={handleExit} />;
+        return <SentenceBuilderGame key={activeActivity.id} activity={activeActivity} onExit={handleExit} />;
       case 'true_false':
-        return <TrueFalseGame activity={activeActivity} onExit={handleExit} />;
+        return <TrueFalseGame key={activeActivity.id} activity={activeActivity} onExit={handleExit} />;
       case 'reading_detective':
-        return <ReadingDetectiveGame activity={activeActivity} onExit={handleExit} />;
+        return <ReadingDetectiveGame key={activeActivity.id} activity={activeActivity} onExit={handleExit} />;
       case 'train_station':
-        return <TrainStationGame activity={activeActivity} onExit={handleExit} />;
+        return <TrainStationGame key={activeActivity.id} activity={activeActivity} onExit={handleExit} />;
       default:
-        return <QuizBattleGame activity={activeActivity} onExit={handleExit} />;
+        return <QuizBattleGame key={activeActivity.id} activity={activeActivity} onExit={handleExit} />;
     }
   };
 

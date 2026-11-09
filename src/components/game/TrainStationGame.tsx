@@ -4,6 +4,7 @@ import { TRAIN_SCHEDULES } from '../../data/grade8/unit3/game4Station';
 import { motion, AnimatePresence } from 'framer-motion';
 import { sounds } from '../../services/soundEffects';
 import { useGameTracking } from '../../context/GameTrackingContext';
+import { shuffleQuestionsOptions } from '../../utils/shuffle';
 import { GameResultsModal } from './GameResultsModal';
 import { ClassroomScoreboard } from './ClassroomScoreboard';
 import {
@@ -28,7 +29,9 @@ interface TrainStationGameProps {
 
 export const TrainStationGame: React.FC<TrainStationGameProps> = ({ activity, onExit }) => {
   const { recordAnswer, completeGame } = useGameTracking();
-  const questions = (activity.questions || []) as TrainStationQuestion[];
+  const [questions, setQuestions] = useState<TrainStationQuestion[]>(() =>
+    shuffleQuestionsOptions((activity.questions || []) as TrainStationQuestion[])
+  );
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
@@ -105,6 +108,7 @@ export const TrainStationGame: React.FC<TrainStationGameProps> = ({ activity, on
 
   const handleRestart = () => {
     sounds.playTap();
+    setQuestions(shuffleQuestionsOptions((activity.questions || []) as TrainStationQuestion[]));
     setCurrentIndex(0);
     setSelectedOption(null);
     setIsAnswerRevealed(false);

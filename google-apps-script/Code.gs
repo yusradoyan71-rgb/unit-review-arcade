@@ -485,8 +485,8 @@ function handleSessionCheck(ss, payload) {
   sessionsSheet.getRange(rowIndex, 7).setValue(now.toISOString());
 
   // Fetch student info
-  var studentNumber = sessionRow[3];
-  var studentClass = sessionRow[4];
+  var studentNumber = String(sessionRow[3] || "").trim();
+  var studentClass = String(sessionRow[4] || "").trim();
 
   var studentsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.STUDENTS);
   var studentData = studentsSheet.getDataRange().getValues();
@@ -509,10 +509,10 @@ function handleSessionCheck(ss, payload) {
   return createJsonResponse({
     success: true,
     student: {
-      studentNumber: studentNumber,
+      studentNumber: String(studentNumber),
       displayName: displayInitials,
       firstName: firstName,
-      class: studentClass,
+      class: String(studentClass),
       grade: grade
     }
   });
@@ -635,8 +635,11 @@ function validateSessionAndGetStudent(ss, sessionToken) {
  * Automatically appends any missing required headers to Row 1 so migrations are 100% zero-risk.
  */
 function getSheetColumnMap(sheet, requiredHeaders) {
-  var lastCol = Math.max(sheet.getLastColumn(), 1);
-  var headers = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
+  var lastCol = sheet.getLastColumn();
+  var headers = [];
+  if (lastCol > 0) {
+    headers = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
+  }
   var map = {};
 
   for (var i = 0; i < headers.length; i++) {
@@ -655,7 +658,7 @@ function getSheetColumnMap(sheet, requiredHeaders) {
     }
 
     if (missing.length > 0) {
-      var startCol = lastCol + 1;
+      var startCol = (lastCol === 0) ? 1 : (lastCol + 1);
       sheet.getRange(1, startCol, 1, missing.length).setValues([missing]);
       var newHeaderRange = sheet.getRange(1, startCol, 1, missing.length);
       newHeaderRange.setFontWeight("bold").setBackground("#1e293b").setFontColor("#38bdf8");
@@ -882,6 +885,14 @@ function handleRecordAnswers(ss, payload) {
 
   // Batch insert new answers
   if (rowsToAppend.length > 0) {
+    for (var rIdx = 0; rIdx < rowsToAppend.length; rIdx++) {
+      while (rowsToAppend[rIdx].length < lastCol) {
+        rowsToAppend[rIdx].push("");
+      }
+      if (rowsToAppend[rIdx].length > lastCol) {
+        rowsToAppend[rIdx] = rowsToAppend[rIdx].slice(0, lastCol);
+      }
+    }
     var startRow = answersSheet.getLastRow() + 1;
     answersSheet.getRange(startRow, 1, rowsToAppend.length, lastCol).setValues(rowsToAppend);
   }
@@ -1299,8 +1310,13 @@ function setupDashboardSheet(sheet) {
   sheet.clear();
   sheet.setTabColor("#6366f1");
 
-  var header = [["UNIT REVIEW ARCADE — TEACHER TRACKING DASHBOARD"]];
-  sheet.getRange("A1:G1").merge().setValues(header)
+  var headerRange = sheet.getRange("A1:G1");
+  var numCols = headerRange.getNumColumns();
+  var headerRow = new Array(numCols);
+  for (var c = 0; c < numCols; c++) {
+    headerRow[c] = (c === 0) ? "UNIT REVIEW ARCADE — TEACHER TRACKING DASHBOARD" : "";
+  }
+  headerRange.merge().setValues([headerRow])
     .setFontWeight("bold")
     .setFontSize(14)
     .setBackground("#4338ca")

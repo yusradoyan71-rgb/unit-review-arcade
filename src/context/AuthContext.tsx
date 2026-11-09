@@ -7,7 +7,7 @@
  */
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
-import type { AuthMode, StudentProfile, LoginCredentials, ActiveSession } from '../types/auth';
+import type { AuthMode, StudentProfile, StudentClass, LoginCredentials, ActiveSession } from '../types/auth';
 import { ApiService } from '../services/apiService';
 import { TrackingService } from '../services/trackingService';
 import { sounds } from '../services/soundEffects';
@@ -33,6 +33,12 @@ interface AuthContextType {
 
 const SESSION_STORAGE_KEY = 'unit_review_arcade_active_session_v1';
 
+const normalizeStudent = (raw: StudentProfile): StudentProfile => ({
+  ...raw,
+  studentNumber: String(raw.studentNumber || '').trim(),
+  class: String(raw.class || '').trim() as StudentClass,
+});
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -56,13 +62,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           if (parsed && parsed.sessionToken && parsed.student) {
             // Optimistically restore session
             setSessionToken(parsed.sessionToken);
-            setStudent(parsed.student);
+            setStudent(normalizeStudent(parsed.student));
             setAuthMode('student');
 
             // Verify with backend
             const check = await ApiService.checkSession(parsed.sessionToken);
             if (check.success && check.student) {
-              setStudent(check.student);
+              setStudent(normalizeStudent(check.student));
             } else {
               // Session expired or invalidated server-side
               sessionStorage.removeItem(SESSION_STORAGE_KEY);
@@ -110,7 +116,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
         if (res.success && res.student && res.sessionToken) {
           sounds.playSuccess();
-          setStudent(res.student);
+          const normalizedStudent = normalizeStudent(res.student);
+          setStudent(normalizedStudent);
           setSessionToken(res.sessionToken);
           setAuthMode('student');
           setIsLoginModalOpen(false);
@@ -118,7 +125,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           // Persist to sessionStorage
           const sessionPayload: ActiveSession = {
             sessionToken: res.sessionToken,
-            student: res.student,
+            student: normalizedStudent,
             expiresAt: res.expiresAt || new Date(Date.now() + 12 * 60 * 60 * 1000).toISOString(),
             loginTime: new Date().toISOString(),
           };

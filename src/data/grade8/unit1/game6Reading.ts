@@ -59,11 +59,11 @@ export const GAME_6_READING_QUESTIONS: ReadingPassageQuestion[] = [
     prompt: 'What is the primary message of this passage?',
     options: [
       'Music is an expensive hobby for European travelers.',
-      'Music serves as a powerful universal bridge for peace and unity.',
       'Orchestras should only perform modern pop music.',
+      'Music serves as a powerful universal bridge for peace and unity.',
       'Singing alone is much healthier than singing in a choir.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'The passage highlights that music transcends cultural and political barriers to build empathy and peace.',
     difficulty: 'easy',
   },
@@ -75,11 +75,11 @@ export const GAME_6_READING_QUESTIONS: ReadingPassageQuestion[] = [
     prompt: 'According to scientific findings mentioned in the text, what happens when people make music together?',
     options: [
       'They immediately forget how to speak.',
-      'Their heartbeats synchronize, creating a sense of unity.',
+      'They compete aggressively for the loudest volume.',
       'Their hearing becomes permanently damaged.',
-      'They compete aggressively for the loudest volume.'
+      'Their heartbeats synchronize, creating a sense of unity.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 3,
     explanation: 'The text states: "Science confirms that when people sing or play instruments together, their heartbeats synchronize."',
     difficulty: 'easy',
   },
@@ -90,12 +90,12 @@ export const GAME_6_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[0].text,
     prompt: 'In the passage, the word "transcends" most nearly means...',
     options: [
-      'Destroys and eliminates',
       'Rises above and goes beyond',
+      'Destroys and eliminates',
       'Ignores and forgets',
       'Stops and pauses'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: '"Transcends" means to rise above or go beyond ordinary physical and cultural limits.',
     difficulty: 'medium',
   },
@@ -106,12 +106,12 @@ export const GAME_6_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[0].text,
     prompt: 'Why does the author mention Israeli and Palestinian musicians performing Beethoven?',
     options: [
-      'To demonstrate how music can create harmony despite political conflicts.',
       'To prove that Beethoven was born in the Middle East.',
+      'To demonstrate how music can create harmony despite political conflicts.',
       'To explain why violins are louder than cellos.',
       'To show that classical music is unpopular today.'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 1,
     explanation: 'It serves as a powerful real-world example of music fostering peace between nations in conflict.',
     difficulty: 'medium',
   },
@@ -123,11 +123,11 @@ export const GAME_6_READING_QUESTIONS: ReadingPassageQuestion[] = [
     prompt: 'Which would be the most suitable alternative headline for this passage?',
     options: [
       'The Science of Noise Pollution',
-      'Building Bridges Through Symphony and Song',
       'How to Buy an Orchestra Ticket',
+      'Building Bridges Through Symphony and Song',
       'The History of Classical Instruments'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: '"Building Bridges Through Symphony and Song" captures the core thematic essence of the text.',
     difficulty: 'challenging',
   },
@@ -141,11 +141,11 @@ export const GAME_6_READING_QUESTIONS: ReadingPassageQuestion[] = [
     prompt: 'How do musicals differ from standard theatrical plays according to the passage?',
     options: [
       'Musicals never have costumes or stage lighting.',
-      'Musicals express characters’ deepest feelings through song and dance.',
+      'Musicals are always performed without any musical instruments.',
       'Actors in musicals are not allowed to speak any dialogue.',
-      'Musicals are always performed without any musical instruments.'
+      'Musicals express characters’ deepest feelings through song and dance.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 3,
     explanation: 'The passage explains: "Unlike ordinary plays where actors only speak, a musical reveals characters\' innermost emotions through powerful songs."',
     difficulty: 'easy',
   },
@@ -156,12 +156,12 @@ export const GAME_6_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[1].text,
     prompt: 'Where are the musicians situated during a musical theatre performance?',
     options: [
-      'On the outdoor roof of the theatre',
       'In the orchestra pit below the stage',
+      'On the outdoor roof of the theatre',
       'Sitting among the general audience in the back row',
       'Behind the ticket counters in the lobby'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'The text specifies: "In the orchestra pit below the stage, musicians follow the conductor\'s baton."',
     difficulty: 'easy',
   },
@@ -188,12 +188,12 @@ export const GAME_6_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[1].text,
     prompt: 'What does the word "lingering" mean in the final sentence?',
     options: [
-      'Remaining or staying in the mind for a long time',
-      'Disappearing instantly and completely',
       'Causing sharp physical pain',
+      'Disappearing instantly and completely',
+      'Remaining or staying in the mind for a long time',
       'Making a very loud explosion'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 2,
     explanation: '"Lingering" refers to memories or melodies remaining present after the performance ends.',
     difficulty: 'medium',
   },
@@ -205,11 +205,11 @@ export const GAME_6_READING_QUESTIONS: ReadingPassageQuestion[] = [
     prompt: 'What can be inferred about the work of the stage crew?',
     options: [
       'They only work after the audience has gone home.',
-      'Their quick, coordinated efforts in the dark are vital to the show\'s success.',
+      'They prefer not to work with musical theatre actors.',
       'They perform the singing solos on stage.',
-      'They prefer not to work with musical theatre actors.'
+      'Their quick, coordinated efforts in the dark are vital to the show\'s success.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 3,
     explanation: 'The crew swiftly maneuvers heavy backdrops in darkness, illustrating crucial backstage teamwork.',
     difficulty: 'challenging',
   },
@@ -222,12 +222,12 @@ export const GAME_6_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[2].text,
     prompt: 'What major change has occurred in music production over the past fifty years?',
     options: [
-      'People no longer listen to music at all.',
       'Musicians can now produce professional music from home with a laptop.',
+      'People no longer listen to music at all.',
       'Electric guitars have been banned worldwide.',
       'All music is now recorded exclusively on magnetic tape.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'Digital tools allow creators to make high-quality tracks in home bedroom studios.',
     difficulty: 'easy',
   },
@@ -255,11 +255,11 @@ export const GAME_6_READING_QUESTIONS: ReadingPassageQuestion[] = [
     prompt: 'What criticism do some traditionalists offer regarding digital music production?',
     options: [
       'It takes too many years to produce a single track.',
-      'It lacks the raw emotional warmth of real live acoustic performances.',
       'Digital music cannot be played on speakers or headphones.',
+      'It lacks the raw emotional warmth of real live acoustic performances.',
       'Laptops are too heavy to carry into a concert hall.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'The text notes: "traditionalists argue that software-produced music lacks the raw emotional warmth of live acoustic performances."',
     difficulty: 'medium',
   },
@@ -270,12 +270,12 @@ export const GAME_6_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[2].text,
     prompt: 'In this context, the phrase "democratized musical creativity" means...',
     options: [
-      'Made creating music accessible to ordinary people everywhere.',
+      'Decreased the number of songs created annually.',
       'Passed laws forcing everyone to vote on music awards.',
       'Removed all pianos from public schools.',
-      'Decreased the number of songs created annually.'
+      'Made creating music accessible to ordinary people everywhere.'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 3,
     explanation: '"Democratized" means making tools and opportunities available to everyone, not just wealthy elites.',
     difficulty: 'medium',
   },
@@ -286,12 +286,12 @@ export const GAME_6_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[2].text,
     prompt: 'What is the author\'s overall attitude toward modern digital music technology?',
     options: [
-      'Completely hostile and dismissive',
       'Balanced and appreciative of the creative empowerment it provides',
+      'Completely hostile and dismissive',
       'Uninterested and bored',
       'Secretive and suspicious'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'The author recognizes traditional criticisms while praising the immense creative empowerment technology offers.',
     difficulty: 'challenging',
   },
@@ -320,12 +320,12 @@ export const GAME_6_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[3].text,
     prompt: 'How often and for how long does Maya practice each day?',
     options: [
-      'Two hours every afternoon',
-      'Ten minutes once a week',
       'Only before major competitions',
+      'Ten minutes once a week',
+      'Two hours every afternoon',
       'Six hours every morning before dawn'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 2,
     explanation: 'The text states: "Maya practices two hours every afternoon, gently pressing the strings..."',
     difficulty: 'easy',
   },
@@ -337,11 +337,11 @@ export const GAME_6_READING_QUESTIONS: ReadingPassageQuestion[] = [
     prompt: 'What happened at the National Youth Soloist Competition last month?',
     options: [
       'Maya broke her bow and had to withdraw.',
-      'Maya won first prize and received a standing ovation.',
+      'Maya arrived too late to participate.',
       'The judges disqualified Maya for playing too loudly.',
-      'Maya arrived too late to participate.'
+      'Maya won first prize and received a standing ovation.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 3,
     explanation: 'Maya won first prize after pouring her soul into her violin performance to a standing ovation.',
     difficulty: 'medium',
   },
@@ -387,11 +387,11 @@ export const GAME_6_READING_QUESTIONS: ReadingPassageQuestion[] = [
     prompt: 'What is the immediate atmosphere like just before the concert begins?',
     options: [
       'Quiet and completely empty',
-      'Electrifying and buzzing with anticipation',
       'Tense and hostile',
+      'Electrifying and buzzing with anticipation',
       'Silent and mournful'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'The passage begins: "There is an electrifying energy in a stadium before a live concert begins."',
     difficulty: 'easy',
   },
@@ -403,11 +403,11 @@ export const GAME_6_READING_QUESTIONS: ReadingPassageQuestion[] = [
     prompt: 'What happens when the arena lights plunge into darkness?',
     options: [
       'The audience quietly leaves the arena.',
-      'A roaring cheer erupts from thirty thousand fans.',
+      'Security guards turn on the emergency lights.',
       'The concert is postponed until the next morning.',
-      'Security guards turn on the emergency lights.'
+      'A roaring cheer erupts from thirty thousand fans.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 3,
     explanation: 'The text states: "A roaring cheer erupts from thirty thousand voices."',
     difficulty: 'easy',
   },
@@ -418,12 +418,12 @@ export const GAME_6_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[4].text,
     prompt: 'According to the author, how does live stadium sound differ from headphone listening?',
     options: [
-      'Headphones have much more physical vibration than a stadium.',
       'Live sound has a visceral, physical power vibrating through your body.',
+      'Headphones have much more physical vibration than a stadium.',
       'Recorded music on headphones is always louder than stadium speakers.',
       'Live stadium concerts never use microphones or amplifiers.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'The passage highlights the physical, visceral power of live sound vibrating through the concrete floor and chest.',
     difficulty: 'medium',
   },
@@ -434,12 +434,12 @@ export const GAME_6_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[4].text,
     prompt: 'In the passage, the word "unison" in "sings the chorus in unison" means...',
     options: [
-      'Singing the exact same words and melody together at the same time',
       'Singing in complete silence without opening their mouths',
+      'Singing the exact same words and melody together at the same time',
       'Singing in twenty different languages simultaneously',
       'Arguing over who should sing the next verse'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 1,
     explanation: '"In unison" means together at the same time, producing harmonious collective agreement.',
     difficulty: 'medium',
   },
@@ -451,11 +451,11 @@ export const GAME_6_READING_QUESTIONS: ReadingPassageQuestion[] = [
     prompt: 'Why does the author state that "strangers become a unified family"?',
     options: [
       'Because they are all related by blood.',
-      'Because sharing a powerful musical experience creates an intense emotional bond.',
       'Because they have to share the same hotel room after the concert.',
+      'Because sharing a powerful musical experience creates an intense emotional bond.',
       'Because the singer gives them legal adoption certificates.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'The shared communal singing and emotional resonance forge an unforgettable collective bond.',
     difficulty: 'challenging',
   },

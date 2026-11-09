@@ -5,12 +5,12 @@ export const GAME_5_QUESTIONS: MultipleChoiceQuestion[] = [
     id: 'g8u2-g5-t01',
     prompt: 'You arrive at the airport departure gate, but the doors are closed and the plane has already pushed back. What happened?',
     options: [
-      'You missed your flight.',
-      'Your flight took off early.',
       'You lost your passport.',
+      'Your flight took off early.',
+      'You missed your flight.',
       'The airline upgraded your seat.'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 2,
     explanation: 'Arriving after the departure gate has closed means you missed your scheduled flight.',
     difficulty: 'easy',
   },
@@ -19,11 +19,11 @@ export const GAME_5_QUESTIONS: MultipleChoiceQuestion[] = [
     prompt: 'You are driving along a quiet country road when you hear a loud pop and the car pulls strongly to one side. What happened?',
     options: [
       'You ran out of petrol.',
-      'You got a flat tyre.',
+      'You missed the motorway exit.',
       'The car was stolen.',
-      'You missed the motorway exit.'
+      'You got a flat tyre.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 3,
     explanation: 'A sudden loud pop and steering pull indicates a punctured or flat tyre.',
     difficulty: 'easy',
   },
@@ -44,12 +44,12 @@ export const GAME_5_QUESTIONS: MultipleChoiceQuestion[] = [
     id: 'g8u2-g5-t04',
     prompt: 'You want to buy lunch at a small village market, but they only accept cash and your wallet has no banknotes left. What happened?',
     options: [
-      'You ran out of money.',
       'The food market was closed.',
+      'You ran out of money.',
       'You missed your train.',
       'Your passport expired.'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 1,
     explanation: '"Run out of money" means having spent all your cash so that none remains.',
     difficulty: 'easy',
   },
@@ -58,11 +58,11 @@ export const GAME_5_QUESTIONS: MultipleChoiceQuestion[] = [
     prompt: 'The highway is completely blocked with hundreds of motionless vehicles as far as the eye can see. What happened?',
     options: [
       'You arrived at your destination.',
-      'You got stuck in a traffic jam.',
       'You found a shortcut.',
+      'You got stuck in a traffic jam.',
       'The road was turned into a pedestrian path.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'A gridlock of stopped cars on a road is called a traffic jam or traffic congestion.',
     difficulty: 'easy',
   },
@@ -70,12 +70,12 @@ export const GAME_5_QUESTIONS: MultipleChoiceQuestion[] = [
     id: 'g8u2-g5-t06',
     prompt: 'You walk down winding streets in an ancient old town, but none of the street signs match your map. What happened?',
     options: [
-      'You got lost.',
+      'You avoided the crowd.',
       'You booked a hotel room.',
       'You caught the express bus.',
-      'You avoided the crowd.'
+      'You got lost.'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 3,
     explanation: 'Not knowing where you are or how to return to your hotel means you got lost.',
     difficulty: 'easy',
   },
@@ -83,12 +83,12 @@ export const GAME_5_QUESTIONS: MultipleChoiceQuestion[] = [
     id: 'g8u2-g5-t07',
     prompt: 'The airport departure screen shows your 14:00 flight with a bright notice reading "Estimated Departure: 18:30". What happened?',
     options: [
-      'Your flight was cancelled.',
       'Your flight was delayed.',
+      'Your flight was cancelled.',
       'Your flight arrived early.',
       'Your luggage was checked in.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'A later departure time indicates that your flight has suffered a schedule delay.',
     difficulty: 'easy',
   },
@@ -96,12 +96,12 @@ export const GAME_5_QUESTIONS: MultipleChoiceQuestion[] = [
     id: 'g8u2-g5-t08',
     prompt: 'White smoke begins pouring from under the bonnet of the rental car and the engine suddenly stops running. What happened?',
     options: [
-      'The car broke down.',
       'The car ran out of air.',
+      'The car broke down.',
       'The car was parked safely.',
       'The car took off.'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 1,
     explanation: 'When a mechanical failure stops a vehicle from moving, it has broken down.',
     difficulty: 'easy',
   },
@@ -110,11 +110,11 @@ export const GAME_5_QUESTIONS: MultipleChoiceQuestion[] = [
     prompt: 'You arrive at the platform at 08:35, but the morning train departed at 08:30. What should you do next?',
     options: [
       'Jump onto the railway tracks.',
-      'Go to the customer desk and check the time of the next train.',
       'Walk along the railway line to catch the train.',
+      'Go to the customer desk and check the time of the next train.',
       'Forget about your journey and go back to sleep.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'The sensible response is to speak to railway staff and find out when the next service leaves.',
     difficulty: 'medium',
   },
@@ -122,12 +122,12 @@ export const GAME_5_QUESTIONS: MultipleChoiceQuestion[] = [
     id: 'g8u2-g5-t10',
     prompt: 'After arriving at the airport for an international flight, you realize your passport is still in the hotel safe. What is the primary problem?',
     options: [
-      'You cannot pass through international passport control without it.',
+      'Your luggage will become too light.',
       'Your hotel will charge you extra money.',
       'The flight pilot cannot take off.',
-      'Your luggage will become too light.'
+      'You cannot pass through international passport control without it.'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 3,
     explanation: 'International travel strictly requires valid travel identification at border control checkpoints.',
     difficulty: 'medium',
   },
@@ -162,11 +162,11 @@ export const GAME_5_QUESTIONS: MultipleChoiceQuestion[] = [
     prompt: 'You reach the summit of a steep hiking trail at sunset with no torch and 1% mobile battery. What was the mistake?',
     options: [
       'You planned your hike with proper safety equipment.',
-      'You failed to plan your timing and pack essential safety gear.',
       'You bought a map from the visitor centre.',
+      'You failed to plan your timing and pack essential safety gear.',
       'You wore hiking boots.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'Poor planning and lack of essential safety equipment leads to dangerous wilderness situations.',
     difficulty: 'medium',
   },
@@ -174,12 +174,12 @@ export const GAME_5_QUESTIONS: MultipleChoiceQuestion[] = [
     id: 'g8u2-g5-t14',
     prompt: 'You eat uncovered street food left out in the hot sun and spend the next day in bed with stomach cramps. What happened?',
     options: [
-      'You caught food poisoning.',
+      'You got stuck in traffic.',
       'You got seasickness.',
       'You had an exciting cultural adventure.',
-      'You got stuck in traffic.'
+      'You caught food poisoning.'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 3,
     explanation: 'Eating contaminated or spoiled food causes food poisoning and illness.',
     difficulty: 'medium',
   },
@@ -187,12 +187,12 @@ export const GAME_5_QUESTIONS: MultipleChoiceQuestion[] = [
     id: 'g8u2-g5-t15',
     prompt: 'You are travelling abroad and need to buy a bus ticket, but nobody speaks your native language. What is the most effective approach?',
     options: [
-      'Shout loudly in your language until someone obeys.',
       'Use a translation app, polite body language, or simple English.',
+      'Shout loudly in your language until someone obeys.',
       'Leave the station and walk 50 miles.',
       'Start crying and refuse to move.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'Digital translation tools and polite, clear communication help bridge language barriers effectively.',
     difficulty: 'medium',
   },
@@ -213,12 +213,12 @@ export const GAME_5_QUESTIONS: MultipleChoiceQuestion[] = [
     id: 'g8u2-g5-t17',
     prompt: 'You rush onto a train without checking the destination board, and notice it is heading north instead of south. What happened?',
     options: [
-      'You boarded the wrong train.',
-      'The train changed direction mid-journey.',
       'Your train arrived early.',
+      'The train changed direction mid-journey.',
+      'You boarded the wrong train.',
       'You booked an express ticket.'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 2,
     explanation: 'Getting on a train that goes to an unintended destination means you boarded the wrong train.',
     difficulty: 'medium',
   },
@@ -226,12 +226,12 @@ export const GAME_5_QUESTIONS: MultipleChoiceQuestion[] = [
     id: 'g8u2-g5-t18',
     prompt: 'While walking through a crowded tourist market, someone stealthily steals your purse from your open backpack. What happened?',
     options: [
-      'You were pickpocketed.',
+      'You got a flat tyre.',
       'You booked a guided tour.',
       'You bought a souvenir.',
-      'You got a flat tyre.'
+      'You were pickpocketed.'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 3,
     explanation: 'A "pickpocket" steals money and valuables from pockets or bags in busy public places without being noticed.',
     difficulty: 'medium',
   },
@@ -239,12 +239,12 @@ export const GAME_5_QUESTIONS: MultipleChoiceQuestion[] = [
     id: 'g8u2-g5-t19',
     prompt: 'A coastal weather alert warns of a dangerous sea storm with gale-force winds. What is the responsible decision for your boat trip?',
     options: [
-      'Set sail immediately to test the storm.',
       'Cancel or postpone the boat trip and remain safely ashore.',
+      'Set sail immediately to test the storm.',
       'Turn off the boat radio and sail faster.',
       'Ignore the maritime authorities.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'Safety always comes first in extreme maritime weather conditions.',
     difficulty: 'medium',
   },
@@ -266,11 +266,11 @@ export const GAME_5_QUESTIONS: MultipleChoiceQuestion[] = [
     prompt: 'The chain on your rented bicycle snaps while riding up a steep hill far from town. What should you do?',
     options: [
       'Throw the bicycle into the nearest river.',
-      'Contact the bike rental company and walk safely to the nearest repair station.',
       'Sit on the grass and wait for nightfall.',
+      'Contact the bike rental company and walk safely to the nearest repair station.',
       'Ride the bicycle without a chain.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'Contacting the rental provider or finding a repair shop is the practical and responsible solution.',
     difficulty: 'challenging',
   },
@@ -279,11 +279,11 @@ export const GAME_5_QUESTIONS: MultipleChoiceQuestion[] = [
     prompt: 'You arrive at a historic art gallery on Monday, but the entrance is locked with a sign: "Closed on Mondays". What went wrong?',
     options: [
       'The gallery was permanently demolished.',
-      'You forgot to verify the gallery opening days and hours in advance.',
+      'You missed your flight.',
       'You were banned from the city.',
-      'You missed your flight.'
+      'You forgot to verify the gallery opening days and hours in advance.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 3,
     explanation: 'Checking opening schedules beforehand prevents disappointment when visiting tourist attractions.',
     difficulty: 'challenging',
   },
@@ -304,12 +304,12 @@ export const GAME_5_QUESTIONS: MultipleChoiceQuestion[] = [
     id: 'g8u2-g5-t24',
     prompt: 'During a rough six-hour ferry crossing over turbulent sea waves, you feel intensely nauseous and dizzy. What are you experiencing?',
     options: [
-      'Seasickness',
       'Sunburn',
+      'Seasickness',
       'Food poisoning',
       'Jet lag'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 1,
     explanation: 'Motion sickness caused by the rocking movement of a boat or ship on water is called seasickness.',
     difficulty: 'challenging',
   },
@@ -317,12 +317,12 @@ export const GAME_5_QUESTIONS: MultipleChoiceQuestion[] = [
     id: 'g8u2-g5-t25',
     prompt: 'A security guard stops you at the entrance of a sacred historic temple because you are wearing swimwear. Why?',
     options: [
-      'Tourists must respect cultural and religious dress codes in sacred places.',
-      'Only local citizens are allowed to enter temples.',
       'The temple is actually a swimming pool.',
+      'Only local citizens are allowed to enter temples.',
+      'Tourists must respect cultural and religious dress codes in sacred places.',
       'You need a passport to enter every room.'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 2,
     explanation: 'Responsible tourists respect local traditions, customs, and modest dress requirements at cultural and religious sites.',
     difficulty: 'challenging',
   },

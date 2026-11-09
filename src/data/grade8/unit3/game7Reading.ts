@@ -90,12 +90,12 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[0].text,
     prompt: 'In the passage, the word "bustling" describes bakeries that are...',
     options: [
-      'Lively, busy, and full of activity',
-      'Completely empty and closed',
       'Extremely expensive and unfriendly',
+      'Completely empty and closed',
+      'Lively, busy, and full of activity',
       'Quiet and dark'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 2,
     explanation: '"Bustling" means full of energetic, lively activity and people.',
     difficulty: 'medium',
   },
@@ -107,11 +107,11 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     prompt: 'Where do Jack and his friends like to watch street performers in the afternoon?',
     options: [
       'At King\'s Cross Station',
-      'In Covent Garden',
+      'On Oxford Street',
       'Inside the underground Tube',
-      'On Oxford Street'
+      'In Covent Garden'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 3,
     explanation: 'Jack mentions enjoying street performances in Covent Garden.',
     difficulty: 'medium',
   },
@@ -122,12 +122,12 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[0].text,
     prompt: 'What is Jack\'s overall opinion about living in London?',
     options: [
-      'He hates the city and wants to move immediately.',
       'He finds it noisy at times, but loves that it is exciting and never boring.',
+      'He hates the city and wants to move immediately.',
       'He thinks London has no green parks or culture.',
       'He only leaves his house on school days.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'Jack concludes: "London can be noisy and crowded, but it is never boring."',
     difficulty: 'challenging',
   },
@@ -140,12 +140,12 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[1].text,
     prompt: 'Where did Emma and Liam decide to start their Saturday morning sightseeing?',
     options: [
-      'At the British Museum at ten o\'clock',
       'At a cinema in Leicester Square',
+      'At the British Museum at ten o\'clock',
       'At a shopping centre on Oxford Street',
       'On a boat along the River Thames'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 1,
     explanation: 'Liam suggested starting at the British Museum at ten o\'clock, and Emma agreed.',
     difficulty: 'easy',
   },
@@ -157,11 +157,11 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     prompt: 'Why did Emma disagree with Liam\'s suggestion to go shopping on Oxford Street?',
     options: [
       'Oxford Street was closed for repairs.',
-      'It is always too crowded on Saturdays.',
       'She forgot her wallet at home.',
+      'It is always too crowded on Saturdays.',
       'There are no shops on Oxford Street.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'Emma explained: "Oxford Street is always too crowded on Saturdays."',
     difficulty: 'easy',
   },
@@ -172,12 +172,12 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[1].text,
     prompt: 'What alternative afternoon activity did Emma propose instead of shopping?',
     options: [
-      'Having a relaxing picnic in Regent\'s Park',
+      'Watching TV inside all day',
       'Sleeping at the hotel',
       'Taking a taxi to Gatwick Airport',
-      'Watching TV inside all day'
+      'Having a relaxing picnic in Regent\'s Park'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 3,
     explanation: 'Emma suggested having a relaxing picnic in Regent\'s Park instead of crowded shopping.',
     difficulty: 'medium',
   },
@@ -204,12 +204,12 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[1].text,
     prompt: 'In the passage, the word "itinerary" or "schedule" refers to...',
     options: [
-      'A planned list of activities, places, and times for a journey',
       'A type of British railway ticket',
+      'A planned list of activities, places, and times for a journey',
       'A musical instrument played in theatres',
       'A ticket machine at the Tube'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 1,
     explanation: 'An itinerary or schedule is a timetable of planned events and routes for a trip.',
     difficulty: 'challenging',
   },
@@ -222,12 +222,12 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[2].text,
     prompt: 'What body of water runs right beside Camden Market?',
     options: [
-      'Regent\'s Canal',
-      'The Pacific Ocean',
       'The English Channel',
+      'The Pacific Ocean',
+      'Regent\'s Canal',
       'Loch Ness'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 2,
     explanation: 'The passage mentions Maya visited Camden Market beside historic Regent\'s Canal.',
     difficulty: 'easy',
   },
@@ -238,12 +238,12 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[2].text,
     prompt: 'What unique item did Maya purchase from an independent artisan at the market?',
     options: [
-      'A pair of vintage sunglasses',
+      'A train ticket to York',
       'A brand new laptop',
       'A bicycle helmet',
-      'A train ticket to York'
+      'A pair of vintage sunglasses'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 3,
     explanation: 'The text states: "Maya bought a pair of vintage sunglasses from a local artisan."',
     difficulty: 'easy',
   },
@@ -270,12 +270,12 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[2].text,
     prompt: 'In the passage, the word "whirlwind" indicates that the market was...',
     options: [
-      'Full of fast-moving, energetic, and exciting sensory impressions',
       'Destroyed by a dangerous tornado',
+      'Full of fast-moving, energetic, and exciting sensory impressions',
       'Completely empty and silent',
       'Cold and covered in heavy snow'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 1,
     explanation: 'Metaphorically, "a whirlwind of sights and sounds" means dynamic, vibrant, and energetic.',
     difficulty: 'medium',
   },
@@ -287,11 +287,11 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     prompt: 'What kind of atmosphere did Camden Market offer according to the author?',
     options: [
       'Boring, corporate, and gloomy',
-      'Creatively vibrant, lively, and filled with youthful artistic energy',
       'Hostile and dangerous',
+      'Creatively vibrant, lively, and filled with youthful artistic energy',
       'Strictly academic and quiet'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'The passage concludes that Camden felt "wonderfully creative, lively, and filled with youthful artistic energy."',
     difficulty: 'challenging',
   },
@@ -304,12 +304,12 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[3].text,
     prompt: 'Which railway station did Lucas go to for his journey to York?',
     options: [
-      'King\'s Cross Station',
+      'Waterloo Station',
       'Victoria Station',
       'Paddington Station',
-      'Waterloo Station'
+      'King\'s Cross Station'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 3,
     explanation: 'The text states that Lucas arrived at London King\'s Cross station.',
     difficulty: 'easy',
   },
@@ -335,8 +335,8 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageTitle: 'Navigating King’s Cross Railway Station',
     passageText: READING_PASSAGES[3].text,
     prompt: 'Which platform was announced for Lucas\'s train to York?',
-    options: ['Platform 8', 'Platform 2', 'Platform 15', 'Platform 4'],
-    correctOptionIndex: 0,
+    options: ['Platform 2', 'Platform 8', 'Platform 15', 'Platform 4'],
+    correctOptionIndex: 1,
     explanation: 'The overhead screen announced that his train was boarding at platform eight.',
     difficulty: 'medium',
   },
@@ -347,12 +347,12 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[3].text,
     prompt: 'In the passage, the word "concourse" refers to...',
     options: [
-      'The large open central area inside a railway station',
-      'The wheels beneath an engine',
       'The ticket printed on cardboard',
+      'The wheels beneath an engine',
+      'The large open central area inside a railway station',
       'The driver\'s seat in the train'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 2,
     explanation: 'A railway concourse is the spacious main hall where passengers gather, read screens, and access platforms.',
     difficulty: 'medium',
   },
@@ -363,12 +363,12 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[3].text,
     prompt: 'What was the sequence of Lucas\'s actions inside the station?',
     options: [
-      'Checked screens -> asked clerk at counter -> bought ticket -> boarded at platform 8.',
+      'Rode the Tube -> slept on platform -> missed train.',
       'Boarded train -> bought ticket -> arrived at station -> looked at screens.',
       'Lost his backpack -> found platform 8 -> bought lunch -> took a taxi.',
-      'Rode the Tube -> slept on platform -> missed train.'
+      'Checked screens -> asked clerk at counter -> bought ticket -> boarded at platform 8.'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 3,
     explanation: 'Lucas entered the concourse, bought his ticket at the counter, saw the platform screen, and boarded.',
     difficulty: 'challenging',
   },
@@ -397,12 +397,12 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[4].text,
     prompt: 'Where did the siblings stop to buy fresh bread and organic fruit for lunch?',
     options: [
-      'Borough Market',
       'An airport duty-free store',
+      'Borough Market',
       'A fast-food drive-through',
       'A souvenir shop on Oxford Street'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 1,
     explanation: 'They stopped at Borough Market to buy organic fruit and fresh bakery bread.',
     difficulty: 'easy',
   },
@@ -413,12 +413,12 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[4].text,
     prompt: 'How did they prevent single-use plastic waste during their day out?',
     options: [
-      'They brought reusable stainless steel flasks and used public drinking fountains.',
-      'They bought twenty plastic bottles and threw them in the river.',
       'They drank no water all day.',
+      'They bought twenty plastic bottles and threw them in the river.',
+      'They brought reusable stainless steel flasks and used public drinking fountains.',
       'They carried disposable plastic cups.'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 2,
     explanation: 'They carried reusable flasks and refilled them at free public water fountains.',
     difficulty: 'medium',
   },
@@ -429,12 +429,12 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[4].text,
     prompt: 'In the text, the phrase "sustainable tourism" means...',
     options: [
-      'Exploring places in a way that respects communities and avoids damaging the environment',
+      'Travelling without telling your family',
       'Spending as much money as possible in luxury hotels',
       'Driving huge gas-guzzling vehicles through pedestrian streets',
-      'Travelling without telling your family'
+      'Exploring places in a way that respects communities and avoids damaging the environment'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 3,
     explanation: 'Sustainable tourism focuses on low ecological impact and cultural respect.',
     difficulty: 'medium',
   },
@@ -445,12 +445,12 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[4].text,
     prompt: 'What is the primary message the author wants readers to learn from Sophie and Liam\'s day?',
     options: [
-      'You cannot visit London without spending a fortune on taxis.',
       'City tourism can be exciting, convenient, and environmentally friendly at the same time.',
+      'You cannot visit London without spending a fortune on taxis.',
       'Bicycles are dangerous and should be banned from cities.',
       'Organic food is impossible to find in urban areas.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'The passage demonstrates that green, low-carbon urban exploration is both easy, rewarding, and fun.',
     difficulty: 'challenging',
   },

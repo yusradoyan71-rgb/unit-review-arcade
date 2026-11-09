@@ -5,12 +5,12 @@ export const GAME_5_DIALOGUES: MultipleChoiceQuestion[] = [
     id: 'g8u1-g5-d01',
     prompt: `Liam: "Would you like to come to the rock festival with us this Friday?"\nEmma: "I wish I could, but ________. The loud electric guitars give me an awful headache."`,
     options: [
-      "I can't stand loud rock concerts",
       "I am really into heavy metal",
+      "I can't stand loud rock concerts",
       "my favourite genre is rock",
       "I love loud electric guitars"
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 1,
     explanation: 'Emma gives a polite refusal explained by her strong dislike of loud rock ("I can\'t stand...").',
     difficulty: 'easy',
   },
@@ -19,11 +19,11 @@ export const GAME_5_DIALOGUES: MultipleChoiceQuestion[] = [
     prompt: `Lucas: "What do you think of Beethoven's Ninth Symphony?"\nSophie: "________, it is one of the most powerful and emotional pieces ever composed."`,
     options: [
       "I don't think so",
-      "From my point of view",
       "I'm not sure about that",
+      "From my point of view",
       "I can't stand it"
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: '"From my point of view" introduces Sophie\'s opinion on Beethoven\'s masterpiece.',
     difficulty: 'easy',
   },
@@ -33,10 +33,10 @@ export const GAME_5_DIALOGUES: MultipleChoiceQuestion[] = [
     options: [
       "I completely agree",
       "That is true",
-      "I disagree",
-      "You are right"
+      "You are right",
+      "I disagree"
     ],
-    correctOptionIndex: 2,
+    correctOptionIndex: 3,
     explanation: 'Maya disputes Noah\'s statement by explaining how classical piano helps her study.',
     difficulty: 'easy',
   },
@@ -71,11 +71,11 @@ export const GAME_5_DIALOGUES: MultipleChoiceQuestion[] = [
     prompt: `Chloe: "The new pop single is at the top of the charts everywhere!"\nJack: "________. Everyone in my class is humming that catchy chorus today."`,
     options: [
       "I disagree with you",
-      "You're definitely right",
       "I don't think so",
+      "You're definitely right",
       "I'm afraid you are wrong"
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'Jack affirms Chloe\'s observation with evidence ("Everyone is humming it").',
     difficulty: 'easy',
   },
@@ -83,12 +83,12 @@ export const GAME_5_DIALOGUES: MultipleChoiceQuestion[] = [
     id: 'g8u1-g5-d07',
     prompt: `Leo: "________ to the outdoor concert tonight?"\nGrace: "I would love to, but I have to finish my science project first."`,
     options: [
-      "How about going",
+      "Would you rather going",
       "Why you don't go",
       "Do you liking to go",
-      "Would you rather going"
+      "How about going"
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 3,
     explanation: '"How about going...?" is a natural suggestion pattern followed by a gerund.',
     difficulty: 'easy',
   },
@@ -122,12 +122,12 @@ export const GAME_5_DIALOGUES: MultipleChoiceQuestion[] = [
     id: 'g8u1-g5-d10',
     prompt: `Interviewer: "How do you feel when you step onto the stage in front of thousands of fans?"\nRock Singer: "________ exciting! My heart races and the energy of the crowd is incredible."`,
     options: [
-      "It is exceptionally",
-      "I am bored and",
       "It makes me feeling",
+      "I am bored and",
+      "It is exceptionally",
       "It repetitive and"
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 2,
     explanation: '"It is exceptionally exciting" naturally conveys the thrill of stage performance.',
     difficulty: 'medium',
   },
@@ -135,12 +135,12 @@ export const GAME_5_DIALOGUES: MultipleChoiceQuestion[] = [
     id: 'g8u1-g5-d11',
     prompt: `Sam: "I didn't quite catch what the music teacher said about tomorrow's rehearsal. ________?"\nAlex: "Sure! She said woodwinds practice at two and brass at three."`,
     options: [
-      "Could you please repeat that",
+      "What is your favourite genre",
       "Why are you listening",
       "Do you agree with her",
-      "What is your favourite genre"
+      "Could you please repeat that"
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 3,
     explanation: '"Could you please repeat that?" is the correct functional phrase for asking for clarification.',
     difficulty: 'medium',
   },
@@ -161,12 +161,12 @@ export const GAME_5_DIALOGUES: MultipleChoiceQuestion[] = [
     id: 'g8u1-g5-d13',
     prompt: `Ruby: "Musical theatre is just people randomly singing during a play."\nOscar: "________, however the songs actually express the deepest thoughts and motives of the characters."`,
     options: [
-      "That's a good point",
       "I completely disagree with that point",
+      "That's a good point",
       "You are so wrong",
       "I hate musicals"
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 1,
     explanation: '"That\'s a good point, however..." partially acknowledges the remark before adding a deeper insight.',
     difficulty: 'medium',
   },
@@ -174,12 +174,12 @@ export const GAME_5_DIALOGUES: MultipleChoiceQuestion[] = [
     id: 'g8u1-g5-d14',
     prompt: `Lucy: "I love listening to jazz when I am cooking dinner."\nMax: "Me too! ________. The saxophone melodies are so smooth and relaxing."`,
     options: [
-      "I'm a big fan of jazz as well",
-      "I can't stand jazz music",
       "Jazz is too repetitive for me",
+      "I can't stand jazz music",
+      "I'm a big fan of jazz as well",
       "I would rather listen to heavy metal"
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 2,
     explanation: 'Max agrees enthusiastically ("Me too! I\'m a big fan of jazz as well").',
     difficulty: 'medium',
   },
@@ -188,11 +188,11 @@ export const GAME_5_DIALOGUES: MultipleChoiceQuestion[] = [
     prompt: `David: "Why do so many people listen to upbeat electronic music at the gym?"\nSarah: "Because it makes them ________."`,
     options: [
       "feel tired and sleepy",
-      "feel energetic and motivated",
+      "forget their musical preferences",
       "hate exercising",
-      "forget their musical preferences"
+      "feel energetic and motivated"
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 3,
     explanation: 'Upbeat music stimulates adrenaline, making people feel energetic and motivated.',
     difficulty: 'medium',
   },
@@ -200,12 +200,12 @@ export const GAME_5_DIALOGUES: MultipleChoiceQuestion[] = [
     id: 'g8u1-g5-d16',
     prompt: `Jacob: "The ticket prices for the stadium tour are over a hundred dollars!"\nIsabella: "________! That's far too expensive for middle school students."`,
     options: [
-      "I don't think so",
       "That's unbelievable",
+      "I don't think so",
       "I am keen on it",
       "Tickets are so cheap"
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: '"That\'s unbelievable!" expresses surprise and shared disbelief at exorbitant prices.',
     difficulty: 'medium',
   },
@@ -213,12 +213,12 @@ export const GAME_5_DIALOGUES: MultipleChoiceQuestion[] = [
     id: 'g8u1-g5-d17',
     prompt: `Tyler: "What is your main reason for joining the school choir?"\nLily: "Well, ________ singing in harmony with others gives me tremendous joy."`,
     options: [
-      "as far as I'm concerned,",
       "because I hate music,",
+      "as far as I'm concerned,",
       "although I dislike singing,",
       "I would rather not sing,"
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 1,
     explanation: '"As far as I\'m concerned" introduces Lily\'s personal, heartfelt reason.',
     difficulty: 'medium',
   },
@@ -226,12 +226,12 @@ export const GAME_5_DIALOGUES: MultipleChoiceQuestion[] = [
     id: 'g8u1-g5-d18',
     prompt: `Reporter: "How has music streaming technology changed the way you discover new artists?"\nStudent: "________, streaming algorithms introduce me to international musicians I would never hear on the radio."`,
     options: [
-      "To be completely honest",
-      "I disagree with you",
       "I cannot stand technology",
+      "I disagree with you",
+      "To be completely honest",
       "Radio is much better"
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 2,
     explanation: '"To be completely honest" is a natural conversational discourse marker.',
     difficulty: 'medium',
   },
@@ -239,12 +239,12 @@ export const GAME_5_DIALOGUES: MultipleChoiceQuestion[] = [
     id: 'g8u1-g5-d19',
     prompt: `Arthur: "Do you think learning an instrument makes you smarter in math and science?"\nFreya: "________. Many scientific studies show that learning to read music improves spatial reasoning."`,
     options: [
-      "I strongly believe so",
+      "I would rather disagree",
       "I don't think that is true",
       "That makes no sense",
-      "I would rather disagree"
+      "I strongly believe so"
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 3,
     explanation: 'Freya supports her agreement ("I strongly believe so") with scientific research.',
     difficulty: 'medium',
   },
@@ -252,12 +252,12 @@ export const GAME_5_DIALOGUES: MultipleChoiceQuestion[] = [
     id: 'g8u1-g5-d20',
     prompt: `Reporter: "What is the secret behind your band's tight live performance?"\nDrummer: "We practice our rhythm every single day, ________ timing is the foundation of our music."`,
     options: [
-      "although",
       "because",
+      "although",
       "but",
       "instead of"
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: '"Because" links the daily practice habit with its fundamental reason.',
     difficulty: 'medium',
   },
@@ -265,12 +265,12 @@ export const GAME_5_DIALOGUES: MultipleChoiceQuestion[] = [
     id: 'g8u1-g5-d21',
     prompt: `Henry: "I didn't enjoy the movie at all. The plot was weak."\nCharlotte: "True, but ________ the film was its breathtaking orchestral soundtrack."`,
     options: [
-      "the best thing about",
       "the worst part of",
+      "the best thing about",
       "I couldn't stand",
       "there was no music in"
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 1,
     explanation: '"The best thing about [X] was..." highlights the standout redeeming feature.',
     difficulty: 'challenging',
   },
@@ -278,12 +278,12 @@ export const GAME_5_DIALOGUES: MultipleChoiceQuestion[] = [
     id: 'g8u1-g5-d22',
     prompt: `George: "Should we book front-row tickets for the opera?"\nAmelia: "________, front-row seats are too close to hear the acoustic balance properly. The middle tier is much better."`,
     options: [
-      "If you ask me",
-      "I am keen on front row",
       "I agree completely",
+      "I am keen on front row",
+      "If you ask me",
       "You're definitely right"
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 2,
     explanation: '"If you ask me" offers thoughtful personal advice before explaining acoustic acoustics.',
     difficulty: 'challenging',
   },
@@ -291,12 +291,12 @@ export const GAME_5_DIALOGUES: MultipleChoiceQuestion[] = [
     id: 'g8u1-g5-d23',
     prompt: `Reporter: "How did the benefit concert help the charity foundation?"\nOrganizer: "Not only did it raise funds, ________ it also united people from all over the world in a message of peace."`,
     options: [
-      "but",
+      "however",
       "although",
       "because",
-      "however"
+      "but"
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 3,
     explanation: 'Correlative conjunction structure: "Not only ... but (also) ...".',
     difficulty: 'challenging',
   },
@@ -317,12 +317,12 @@ export const GAME_5_DIALOGUES: MultipleChoiceQuestion[] = [
     id: 'g8u1-g5-d25',
     prompt: `Interviewer: "What advice would you give young students learning the electric guitar?"\nGuitarist: "________ you make mistakes, never give up. Passion and patience make all the difference."`,
     options: [
-      "Even if",
       "Because of",
+      "Even if",
       "Instead of",
       "Despite of"
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 1,
     explanation: '"Even if" introduces a condition that will not prevent the outcome ("never give up").',
     difficulty: 'challenging',
   },

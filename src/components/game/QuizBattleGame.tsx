@@ -3,6 +3,7 @@ import type { Activity, MultipleChoiceQuestion } from '../../types/schema';
 import { motion } from 'framer-motion';
 import { sounds } from '../../services/soundEffects';
 import { useGameTracking } from '../../context/GameTrackingContext';
+import { shuffleQuestionsOptions } from '../../utils/shuffle';
 import { GameResultsModal } from './GameResultsModal';
 import { ClassroomScoreboard } from './ClassroomScoreboard';
 import { 
@@ -21,7 +22,9 @@ interface QuizBattleGameProps {
 }
 
 export const QuizBattleGame: React.FC<QuizBattleGameProps> = ({ activity, onExit }) => {
-  const questions = (activity.questions || []) as MultipleChoiceQuestion[];
+  const [questions, setQuestions] = useState<MultipleChoiceQuestion[]>(() =>
+    shuffleQuestionsOptions((activity.questions || []) as MultipleChoiceQuestion[])
+  );
   const { recordAnswer, completeGame } = useGameTracking();
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -88,6 +91,7 @@ export const QuizBattleGame: React.FC<QuizBattleGameProps> = ({ activity, onExit
 
   const handleRestart = () => {
     sounds.playTap();
+    setQuestions(shuffleQuestionsOptions((activity.questions || []) as MultipleChoiceQuestion[]));
     setCurrentIndex(0);
     setSelectedOption(null);
     setIsAnswerRevealed(false);

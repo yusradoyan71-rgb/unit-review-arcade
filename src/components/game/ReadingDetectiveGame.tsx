@@ -3,6 +3,7 @@ import type { Activity, ReadingPassageQuestion } from '../../types/schema';
 import { motion } from 'framer-motion';
 import { sounds } from '../../services/soundEffects';
 import { useGameTracking } from '../../context/GameTrackingContext';
+import { shuffleQuestionsOptions } from '../../utils/shuffle';
 import { GameResultsModal } from './GameResultsModal';
 import { ClassroomScoreboard } from './ClassroomScoreboard';
 import { 
@@ -22,7 +23,9 @@ interface ReadingDetectiveGameProps {
 
 export const ReadingDetectiveGame: React.FC<ReadingDetectiveGameProps> = ({ activity, onExit }) => {
   const { recordAnswer, completeGame } = useGameTracking();
-  const questions = (activity.questions || []) as ReadingPassageQuestion[];
+  const [questions, setQuestions] = useState<ReadingPassageQuestion[]>(() =>
+    shuffleQuestionsOptions((activity.questions || []) as ReadingPassageQuestion[])
+  );
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
@@ -93,6 +96,7 @@ export const ReadingDetectiveGame: React.FC<ReadingDetectiveGameProps> = ({ acti
 
   const handleRestart = () => {
     sounds.playTap();
+    setQuestions(shuffleQuestionsOptions((activity.questions || []) as ReadingPassageQuestion[]));
     setCurrentIndex(0);
     setSelectedOption(null);
     setIsAnswerRevealed(false);

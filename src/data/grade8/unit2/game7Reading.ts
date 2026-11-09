@@ -59,11 +59,11 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     prompt: 'What unexpected problem interrupted the family\'s road trip?',
     options: [
       'They ran out of petrol in a busy city.',
-      'Their car broke down due to a broken water pipe.',
+      'A snowstorm blocked the road completely.',
       'They lost all their luggage at an airport.',
-      'A snowstorm blocked the road completely.'
+      'Their car broke down due to a broken water pipe.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 3,
     explanation: 'The text explains that smoke poured from the bonnet and a local mechanic fixed the broken water pipe.',
     difficulty: 'easy',
   },
@@ -74,12 +74,12 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[0].text,
     prompt: 'How did the family reach the village workshop after the breakdown?',
     options: [
-      'They walked twenty miles on foot.',
       'A kind farmer towed their car with his pickup truck.',
+      'They walked twenty miles on foot.',
       'They took an express mountain train.',
       'They called a taxi using their smartphone.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'A passing farmer tied a sturdy yellow rope to their bumper and towed them to his village.',
     difficulty: 'easy',
   },
@@ -106,12 +106,12 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[0].text,
     prompt: 'What was the sequence of events after the car broke down?',
     options: [
-      'A farmer towed them -> the mechanic fixed the car -> they ate soup at a guesthouse.',
-      'They ate soup -> the car broke down -> a farmer arrived.',
       'The mechanic arrived first -> then a farmer drove past -> they walked home.',
+      'They ate soup -> the car broke down -> a farmer arrived.',
+      'A farmer towed them -> the mechanic fixed the car -> they ate soup at a guesthouse.',
       'They bought a new car -> then drove to the beach.'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 2,
     explanation: 'The text describes the farmer towing them, the mechanic repairing the pipe, and the family enjoying soup in the evening.',
     difficulty: 'medium',
   },
@@ -123,11 +123,11 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     prompt: 'What can be inferred about the local community in the mountain village?',
     options: [
       'They dislike tourists and refuse to help them.',
-      'They were generous, welcoming, and helpful to travellers in trouble.',
+      'They charged the family millions of dollars.',
       'They had no tools or mechanical knowledge.',
-      'They charged the family millions of dollars.'
+      'They were generous, welcoming, and helpful to travellers in trouble.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 3,
     explanation: 'Both the passing farmer and the mechanic immediately assisted the stranded family.',
     difficulty: 'challenging',
   },
@@ -173,11 +173,11 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     prompt: 'In the text, the word "soothing" means...',
     options: [
       'Loud and terrifying',
-      'Calming, relaxing, and gentle',
       'Extremely painful',
+      'Calming, relaxing, and gentle',
       'Freezing cold'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: '"Soothing" describes something that provides comforting calmness and helps you relax.',
     difficulty: 'medium',
   },
@@ -189,11 +189,11 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     prompt: 'What animals did Mia observe grazing beside the railway tracks?',
     options: [
       'Camels',
-      'Red deer',
+      'Penguins',
       'Wolves',
-      'Penguins'
+      'Red deer'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 3,
     explanation: 'The text states: "Mia drank hot chocolate... while watching red deer graze peacefully by the tracks."',
     difficulty: 'medium',
   },
@@ -204,12 +204,12 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[1].text,
     prompt: 'What was Mia\'s overall feeling about the sleeper train experience?',
     options: [
-      'She felt it was boring and uncomfortable.',
       'She thought it was the most unforgettable journey of her life.',
+      'She felt it was boring and uncomfortable.',
       'She regretted not booking an airplane ticket.',
       'She disliked the view outside the window.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'The passage concludes: "It was the most unforgettable journey of her life."',
     difficulty: 'challenging',
   },
@@ -239,11 +239,11 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     prompt: 'What warm food and drink did the nomadic family offer their guests?',
     options: [
       'Pizza and cold soda',
-      'Warm salted milk tea and dried curd snacks',
       'Spicy noodles and iced juice',
+      'Warm salted milk tea and dried curd snacks',
       'Chocolate cake and lemonade'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'The text mentions the family offered warm salted milk tea and homemade dried curd snacks.',
     difficulty: 'easy',
   },
@@ -255,11 +255,11 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     prompt: 'What activity did Lucas try on the open plains the next morning?',
     options: [
       'Driving a petrol car',
-      'Riding a gentle Mongolian horse',
+      'Surfing on a lake',
       'Piloting a helicopter',
-      'Surfing on a lake'
+      'Riding a gentle Mongolian horse'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 3,
     explanation: 'Lucas learned how to ride a gentle Mongolian horse across the wide open plains.',
     difficulty: 'medium',
   },
@@ -270,12 +270,12 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[2].text,
     prompt: 'In the passage, the word "steppe" refers to...',
     options: [
-      'A massive underground cave',
       'A vast, flat grassland without trees',
+      'A massive underground cave',
       'A tropical rainforest',
       'A crowded skyscraper city'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'The steppe is a large area of open, unforested grassland in temperate regions.',
     difficulty: 'medium',
   },
@@ -305,11 +305,11 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     prompt: 'What animal did Sofia and her group ride across the sand dunes?',
     options: [
       'Horses',
-      'Dromedary camels',
       'Donkeys',
+      'Dromedary camels',
       'Elephants'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'The text states: "Sofia and her travel group mounted tall dromedary camels."',
     difficulty: 'easy',
   },
@@ -320,12 +320,12 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[3].text,
     prompt: 'How did the desert sand dunes change in appearance as the sun set?',
     options: [
-      'They turned from bright gold to glowing crimson.',
+      'They disappeared completely.',
       'They turned into dark green grass.',
       'They became covered in ice.',
-      'They disappeared completely.'
+      'They turned from bright gold to glowing crimson.'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 3,
     explanation: 'The text notes: "The dunes turned from bright gold to glowing crimson as darkness fell."',
     difficulty: 'easy',
   },
@@ -336,12 +336,12 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[3].text,
     prompt: 'What meal did the Berber guides prepare over the glowing coals at camp?',
     options: [
-      'Fast food burgers and fries',
       'A steaming vegetable tagine',
+      'Fast food burgers and fries',
       'Grilled river fish and salad',
       'Cold sandwiches'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'The text states: "Berber guides prepared a steaming vegetable tagine over glowing coals."',
     difficulty: 'medium',
   },
@@ -352,12 +352,12 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[3].text,
     prompt: 'In the passage, the word "spectacular" means...',
     options: [
-      'Remarkably beautiful, impressive, and dramatic',
       'Very ugly and dirty',
+      'Remarkably beautiful, impressive, and dramatic',
       'Quiet and boring',
       'Extremely expensive'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 1,
     explanation: '"Spectacular" describes something sensational, dramatic, and striking to look at.',
     difficulty: 'medium',
   },
@@ -368,12 +368,12 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[3].text,
     prompt: 'Why were the stars so remarkably clear and brilliant in the desert night sky?',
     options: [
-      'The desert atmosphere was clean, dark, and silent with no city lights.',
-      'The guides shone spotlights into the sky.',
       'Sofia wore special night-vision glasses.',
+      'The guides shone spotlights into the sky.',
+      'The desert atmosphere was clean, dark, and silent with no city lights.',
       'The camp was located inside a planetarium.'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 2,
     explanation: 'The absence of urban light pollution and clean dry air creates stunning night sky clarity in deserts.',
     difficulty: 'challenging',
   },
@@ -387,11 +387,11 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     prompt: 'What is the central theme of this passage?',
     options: [
       'Travelling cheaply without paying for tickets.',
-      'Exploring the world responsibly while protecting nature and local communities.',
+      'The history of hotel chains.',
       'How to become an airline pilot.',
-      'The history of hotel chains.'
+      'Exploring the world responsibly while protecting nature and local communities.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 3,
     explanation: 'The passage focuses on sustainable tourism practices that protect nature and support locals.',
     difficulty: 'easy',
   },
@@ -435,11 +435,11 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     prompt: 'Why is it beneficial to eat at family-run cafes and buy from local artisan markets?',
     options: [
       'Because all international corporations are illegal.',
-      'Because your spending directly supports the local community economy.',
       'Because local cafes are always open twenty-four hours a day.',
+      'Because your spending directly supports the local community economy.',
       'Because local food never contains any spices.'
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'Spending money at local independent businesses ensures economic benefits stay in the community.',
     difficulty: 'medium',
   },
@@ -450,12 +450,12 @@ export const GAME_7_READING_QUESTIONS: ReadingPassageQuestion[] = [
     passageText: READING_PASSAGES[4].text,
     prompt: 'In the passage, the word "fragile" in "fragile natural habitats" means...',
     options: [
-      'Easily harmed or damaged and needing careful protection',
+      'Expensive to purchase',
       'Strong, unbreakable, and everlasting',
       'Extremely noisy and crowded',
-      'Expensive to purchase'
+      'Easily harmed or damaged and needing careful protection'
     ],
-    correctOptionIndex: 0,
+    correctOptionIndex: 3,
     explanation: '"Fragile" describes ecosystems that are delicate and easily damaged by human disruption.',
     difficulty: 'challenging',
   },

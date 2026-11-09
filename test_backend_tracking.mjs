@@ -5,7 +5,6 @@
  */
 
 import fs from 'fs';
-import path from 'path';
 import vm from 'vm';
 
 console.log('🧪 Starting Phase 2 Backend Code.gs Unit & Integration Tests...\n');
@@ -13,6 +12,134 @@ console.log('🧪 Starting Phase 2 Backend Code.gs Unit & Integration Tests...\n
 // 1. Read Code.gs
 const codeGsPath = 'c:\\Users\\FATİH\\.gemini\\antigravity-ide\\scratch\\english-taboo-game\\unit-review-arcade\\google-apps-script\\Code.gs';
 const codeGsContent = fs.readFileSync(codeGsPath, 'utf8');
+
+function parseA1Notation(a1) {
+  const clean = a1.includes('!') ? a1.split('!')[1] : a1;
+  const parts = clean.split(':');
+
+  function cellToRowCol(cellStr) {
+    const match = cellStr.match(/^([A-Za-z]+)(\d+)$/);
+    if (!match) throw new Error("Invalid cell notation: " + cellStr);
+    const colStr = match[1].toUpperCase();
+    let col = 0;
+    for (let i = 0; i < colStr.length; i++) {
+      col = col * 26 + (colStr.charCodeAt(i) - 64);
+    }
+    const row = parseInt(match[2], 10);
+    return { row, col };
+  }
+
+  const start = cellToRowCol(parts[0]);
+  if (parts.length === 1) {
+    return { row: start.row, col: start.col, numRows: 1, numCols: 1 };
+  }
+  const end = cellToRowCol(parts[1]);
+  return {
+    row: Math.min(start.row, end.row),
+    col: Math.min(start.col, end.col),
+    numRows: Math.abs(end.row - start.row) + 1,
+    numCols: Math.abs(end.col - start.col) + 1,
+  };
+}
+
+class MockRange {
+  constructor(sheet, row, col, numRows = 1, numCols = 1) {
+    this.sheet = sheet;
+    this.row = row;
+    this.col = col;
+    this.numRows = numRows;
+    this.numCols = numCols;
+    this.isMerged = false;
+  }
+
+  getNumRows() {
+    return this.numRows;
+  }
+
+  getNumColumns() {
+    return this.numCols;
+  }
+
+  merge() {
+    this.isMerged = true;
+    return this;
+  }
+
+  getValues() {
+    const result = [];
+    for (let r = 0; r < this.numRows; r++) {
+      const rowData = this.sheet.rows[this.row - 1 + r] || [];
+      const colData = [];
+      for (let c = 0; c < this.numCols; c++) {
+        colData.push(rowData[this.col - 1 + c] !== undefined ? rowData[this.col - 1 + c] : '');
+      }
+      result.push(colData);
+    }
+    return result;
+  }
+
+  setValues(values) {
+    if (!Array.isArray(values)) {
+      throw new Error("Exception: The parameter (values) must be an array.");
+    }
+    if (values.length !== this.numRows) {
+      throw new Error(
+        "Exception: The number of rows in the data does not match the number of rows in the range. The data has " +
+        values.length +
+        " rows, but the range has " +
+        this.numRows +
+        " rows."
+      );
+    }
+    for (let r = 0; r < values.length; r++) {
+      const rowArr = values[r];
+      if (!Array.isArray(rowArr) || rowArr.length !== this.numCols) {
+        throw new Error(
+          "Exception: The number of columns in the data does not match the number of columns in the range. The data has " +
+          (rowArr ? rowArr.length : 0) +
+          " column, but the range has " +
+          this.numCols +
+          " columns."
+        );
+      }
+    }
+
+    for (let r = 0; r < values.length; r++) {
+      const targetRowIdx = this.row - 1 + r;
+      while (this.sheet.rows.length <= targetRowIdx) {
+        this.sheet.rows.push([]);
+      }
+      for (let c = 0; c < values[r].length; c++) {
+        const targetColIdx = this.col - 1 + c;
+        while (this.sheet.rows[targetRowIdx].length <= targetColIdx) {
+          this.sheet.rows[targetRowIdx].push('');
+        }
+        this.sheet.rows[targetRowIdx][targetColIdx] = values[r][c];
+      }
+    }
+    return this;
+  }
+
+  setValue(val) {
+    const targetRowIdx = this.row - 1;
+    while (this.sheet.rows.length <= targetRowIdx) {
+      this.sheet.rows.push([]);
+    }
+    const targetColIdx = this.col - 1;
+    while (this.sheet.rows[targetRowIdx].length <= targetColIdx) {
+      this.sheet.rows[targetRowIdx].push('');
+    }
+    this.sheet.rows[targetRowIdx][targetColIdx] = val;
+    return this;
+  }
+
+  setFontWeight() { return this; }
+  setFontSize() { return this; }
+  setBackground() { return this; }
+  setFontColor() { return this; }
+  setHorizontalAlignment() { return this; }
+  setFontStyle() { return this; }
+}
 
 // 2. Setup mock Google Apps Script environment
 class MockSheet {
@@ -51,55 +178,20 @@ class MockSheet {
   }
 
   getRange(row, col, numRows = 1, numCols = 1) {
-    const sheet = this;
-    return {
-      getValues: () => {
-        const result = [];
-        for (let r = 0; r < numRows; r++) {
-          const rowData = sheet.rows[row - 1 + r] || [];
-          const colData = [];
-          for (let c = 0; c < numCols; c++) {
-            colData.push(rowData[col - 1 + c] !== undefined ? rowData[col - 1 + c] : '');
-          }
-          result.push(colData);
-        }
-        return result;
-      },
-      setValues: (values) => {
-        for (let r = 0; r < values.length; r++) {
-          const targetRowIdx = row - 1 + r;
-          while (sheet.rows.length <= targetRowIdx) {
-            sheet.rows.push([]);
-          }
-          for (let c = 0; c < values[r].length; c++) {
-            const targetColIdx = col - 1 + c;
-            while (sheet.rows[targetRowIdx].length <= targetColIdx) {
-              sheet.rows[targetRowIdx].push('');
-            }
-            sheet.rows[targetRowIdx][targetColIdx] = values[r][c];
-          }
-        }
-        return this;
-      },
-      setValue: (val) => {
-        const targetRowIdx = row - 1;
-        while (sheet.rows.length <= targetRowIdx) {
-          sheet.rows.push([]);
-        }
-        const targetColIdx = col - 1;
-        while (sheet.rows[targetRowIdx].length <= targetColIdx) {
-          sheet.rows[targetRowIdx].push('');
-        }
-        sheet.rows[targetRowIdx][targetColIdx] = val;
-        return this;
-      },
-      setFontWeight: () => ({ setBackground: () => ({ setFontColor: () => ({ setHorizontalAlignment: () => ({}) }) }) }),
-      setBackground: () => ({ setFontColor: () => ({ setHorizontalAlignment: () => ({}) }) }),
-      setFontColor: () => ({ setHorizontalAlignment: () => ({}) }),
-      setHorizontalAlignment: () => ({}),
-      setFontSize: () => ({ setBackground: () => ({ setFontColor: () => ({ setHorizontalAlignment: () => ({}) }) }) }),
-      merge: () => ({ setValues: () => ({ setFontWeight: () => ({ setFontSize: () => ({ setBackground: () => ({ setFontColor: () => ({ setHorizontalAlignment: () => ({}) }) }) }) }) }) }),
-    };
+    let r = row;
+    let c = col;
+    let nRows = numRows;
+    let nCols = numCols;
+
+    if (typeof row === 'string') {
+      const parsed = parseA1Notation(row);
+      r = parsed.row;
+      c = parsed.col;
+      nRows = parsed.numRows;
+      nCols = parsed.numCols;
+    }
+
+    return new MockRange(this, r, c, nRows, nCols);
   }
 
   setFrozenRows(n) {
@@ -222,21 +314,75 @@ function callApi(payload) {
 // -------------------------------------------------------------
 
 async function runTests() {
-  console.log('=== TEST 1: SETUP DATABASE & VERIFY SCHEMA ===');
+  console.log('=== TEST 1: SETUP DATABASE, VERIFY SCHEMA & IDEMPOTENCY ===');
   context.setupArcadeDatabase();
   const ss = mockSpreadsheet;
+  const studentsSheet = ss.getSheetByName('Students');
+  const sessionsSheet = ss.getSheetByName('Sessions');
   const attemptsSheet = ss.getSheetByName('Attempts');
   const answersSheet = ss.getSheetByName('Answers');
+  const dashboardSheet = ss.getSheetByName('Dashboard');
 
+  console.log('  Students sheet created:', Boolean(studentsSheet));
+  console.log('  Sessions sheet created:', Boolean(sessionsSheet));
   console.log('  Attempts sheet created:', Boolean(attemptsSheet));
   console.log('  Answers sheet created:', Boolean(answersSheet));
-  console.log('  Attempts headers:', attemptsSheet.rows[0]);
-  console.log('  Answers headers:', answersSheet.rows[0]);
+  console.log('  Dashboard sheet created:', Boolean(dashboardSheet));
+
+  if (!studentsSheet || !sessionsSheet || !attemptsSheet || !answersSheet || !dashboardSheet) {
+    throw new Error('Database schema initialization failed: missing required sheet(s)');
+  }
 
   if (!attemptsSheet.rows[0].includes('attempt_id') || !answersSheet.rows[0].includes('answer_id')) {
-    throw new Error('Database schema initialization failed');
+    throw new Error('Database schema initialization failed: header mismatch');
   }
-  console.log('  ✅ TEST 1 PASSED: Schemas initialized.\n');
+
+  // Verify Dashboard Range & Contents
+  const dashboardTitle = dashboardSheet.rows[0]?.[0];
+  console.log('  Dashboard Title Row:', dashboardSheet.rows[0]);
+  if (!dashboardTitle || !dashboardTitle.includes('UNIT REVIEW ARCADE')) {
+    throw new Error('Dashboard sheet title not set properly');
+  }
+  // Dashboard instructions table should have rows with 6 columns
+  if (dashboardSheet.rows.length < 7 || dashboardSheet.rows[2].length !== 6) {
+    throw new Error('Dashboard instructions table dimensions mismatch');
+  }
+
+  // Verify Eight Demo Students are seeded correctly
+  console.log('  Verifying 8 Demo Students seeded automatically:');
+  const studentRows = studentsSheet.rows.slice(1);
+  const expectedDemoNumbers = ['701', '702', '703', '704', '801', '802', '803', '804'];
+  const seededNumbers = studentRows.map((r) => String(r[1]).trim());
+  console.log('  Seeded student numbers:', seededNumbers);
+
+  if (studentRows.length !== 8) {
+    throw new Error(`Expected exactly 8 demo students, found ${studentRows.length}`);
+  }
+
+  for (const expNum of expectedDemoNumbers) {
+    const sRow = studentRows.find((r) => String(r[1]).trim() === expNum);
+    if (!sRow) {
+      throw new Error(`Missing expected demo student: ${expNum}`);
+    }
+    // Verify required fields: student_id, student_number, full_name, grade, class, pin_salt, pin_hash
+    if (!sRow[0].startsWith('std_') || !sRow[2] || !sRow[3] || !sRow[4] || !sRow[5] || !sRow[6]) {
+      throw new Error(`Demo student ${expNum} has invalid or incomplete fields`);
+    }
+    // Ensure plaintext PIN is NOT stored
+    if (sRow.includes('1234') || sRow.includes('4321') || sRow.includes('1111') || sRow.includes('2222')) {
+      throw new Error(`SECURITY ALERT: Plaintext PIN detected in sheet row for student ${expNum}!`);
+    }
+  }
+  console.log('  ✅ All 8 demo students verified with secure salts and hashes.');
+
+  // Verify Idempotency & Repeated Execution Safety:
+  console.log('  Testing repeated setupArcadeDatabase() run on existing database...');
+  context.setupArcadeDatabase();
+  if (studentsSheet.rows.slice(1).length !== 8) {
+    throw new Error('setupArcadeDatabase() re-run duplicated students!');
+  }
+  console.log('  ✅ Repeated setupArcadeDatabase() call is safe and idempotent (no duplicates or overwrites).');
+  console.log('  ✅ TEST 1 PASSED: Schemas, demo students, and repeat safety verified.\n');
 
   console.log('=== TEST 2: CREATE DEMO STUDENT & LOGIN ===');
   context.createStudentAccount('801', 'Barış Arslan', '8', '8A', '1234');

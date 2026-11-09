@@ -9,7 +9,7 @@ import { GRADE_8_UNIT_4 } from '../data/grade8/unit4';
 const STORAGE_KEY = 'unit_review_arcade_data_v1';
 
 export const DEFAULT_INITIAL_DATA: ArcadeData = {
-  version: '1.6.0',
+  version: '1.7.0',
   units: {
     'grade-7': [GRADE_7_UNIT_1, GRADE_7_UNIT_2],
     'grade-8': [GRADE_8_UNIT_1, GRADE_8_UNIT_2, GRADE_8_UNIT_3, GRADE_8_UNIT_4],
@@ -18,7 +18,7 @@ export const DEFAULT_INITIAL_DATA: ArcadeData = {
 };
 
 export const EMPTY_DATA: ArcadeData = {
-  version: '1.6.0',
+  version: '1.7.0',
   units: {
     'grade-7': [],
     'grade-8': [],
@@ -46,6 +46,25 @@ export class StorageService {
       }
 
       let hasChanges = false;
+
+      // Check for version upgrade to 1.7.0 to refresh standard units with balanced option distributions
+      if (parsed.version !== '1.7.0') {
+        const standardUnitMap: Record<string, Unit> = {
+          'g7-u1': GRADE_7_UNIT_1,
+          'g7-u2': GRADE_7_UNIT_2,
+          'g8-u1': GRADE_8_UNIT_1,
+          'g8-u2': GRADE_8_UNIT_2,
+          'g8-u3': GRADE_8_UNIT_3,
+          'g8-u4': GRADE_8_UNIT_4,
+        };
+        for (const grade of ['grade-7', 'grade-8'] as const) {
+          if (Array.isArray(parsed.units[grade])) {
+            parsed.units[grade] = parsed.units[grade].map((u) => standardUnitMap[u.id] || u);
+          }
+        }
+        parsed.version = '1.7.0';
+        hasChanges = true;
+      }
 
       // Check if Grade 7 has Unit 1 seeded
       const hasG7U1 = parsed.units['grade-7'].some((u) => u.id === 'g7-u1');
@@ -129,7 +148,7 @@ export class StorageService {
       }
 
       if (hasChanges) {
-        parsed.version = '1.6.0';
+        parsed.version = '1.7.0';
         this.saveData(parsed);
       }
 
