@@ -1,19 +1,18 @@
 /**
- * UNIT REVIEW ARCADE — GAME TRACKING CONTEXT (PHASE 2)
- * Version: 2.0.0
+ * UNIT REVIEW ARCADE — GAME TRACKING CONTEXT (PHASE 4)
+ * Version: 4.0.0
  * 
- * Reusable context and hook providing automatic game attempt lifecycle
- * and telemetry tracking across all six game engines.
- * 
- * Automatically bypasses tracking in Guest Classroom Mode (zero network calls).
- * Automatically reconciles and recovers attempts across page reloads.
+ * Reusable context and hook providing automatic game attempt lifecycle,
+ * persistent checkpointing, mid-game resume across all six engines,
+ * in-place session recovery, and resilient offline telemetry queuing.
  */
 
 import React, { createContext, useContext, useEffect, useRef, useState, useCallback } from 'react';
 import { useAuth } from './AuthContext';
 import { TrackingService } from '../services/trackingService';
 import type { Activity, Unit, GradeId } from '../types/schema';
-import type { QuestionAnswerRecord, CompleteAttemptSummary } from '../types/tracking';
+import type { QuestionAnswerRecord, CompleteAttemptSummary, GameResumeCheckpoint } from '../types/tracking';
+import { SessionRecoveryModal } from '../components/auth/SessionRecoveryModal';
 
 export interface RecordAnswerParams {
   questionId: string;
@@ -31,6 +30,12 @@ interface GameTrackingContextType {
   attemptNumber: number | null;
   syncStatus: 'idle' | 'syncing' | 'synced' | 'error';
   syncError: string | null;
+  isOnline: boolean;
+
+  // Checkpointing & Resume (Phase 4)
+  resumeCheckpoint: GameResumeCheckpoint | null;
+  saveCheckpoint: (updates: Partial<GameResumeCheckpoint>) => void;
+  clearCheckpoint: () => void;
 
   // Tracking handlers
   recordAnswer: (params: RecordAnswerParams) => void;
@@ -45,6 +50,7 @@ interface GameTrackingContextType {
   }) => Promise<void>;
   abandonGame: () => Promise<void>;
   retrySync: () => Promise<void>;
+  restartGame: () => void;
 }
 
 const GameTrackingContext = createContext<GameTrackingContextType | undefined>(undefined);
@@ -54,6 +60,7 @@ interface GameTrackingProviderProps {
   unit: Unit;
   gradeId: GradeId;
   children: React.ReactNode;
+  onRestartAttempt?: () => void;
 }
 
 export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
@@ -61,14 +68,17 @@ export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
   unit,
   gradeId,
   children,
+  onRestartAttempt,
 }) => {
-  const { authMode, sessionToken } = useAuth();
+  const { authMode, sessionToken, student, updateSessionToken } = useAuth();
   const isTrackingActive = authMode === 'student' && Boolean(sessionToken);
 
   const [attemptId, setAttemptId] = useState<string | null>(null);
   const [attemptNumber, setAttemptNumber] = useState<number | null>(null);
   const [syncStatus, setSyncStatus] = useState<'idle' | 'syncing' | 'synced' | 'error'>('idle');
   const [syncError, setSyncError] = useState<string | null>(null);
+  const [isOnline, setIsOnline] = useState<boolean>(typeof navigator !== 'undefined' ? navigator.onLine : true);
+  const [isSessionRecoveryOpen, setIsSessionRecoveryOpen] = useState<boolean>(false);
 
   // In-memory telemetry cache
   const answersRef = useRef<QuestionAnswerRecord[]>([]);
@@ -76,8 +86,43 @@ export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
   const questionStartTimeRef = useRef<number>(Date.now());
   const isCompletedRef = useRef<boolean>(false);
   const attemptIdRef = useRef<string | null>(null);
+  const sessionTokenRef = useRef<string | null>(sessionToken);
 
-  // 1. Initialize or recover attempt on mount
+  // Keep sessionTokenRef synchronized
+  useEffect(() => {
+    sessionTokenRef.current = sessionToken;
+  }, [sessionToken]);
+
+  // Load any existing checkpoint for this student and activity
+  const [resumeCheckpoint, setResumeCheckpoint] = useState<GameResumeCheckpoint | null>(() => {
+    return TrackingService.getCheckpoint(student?.studentNumber, activity.id);
+  });
+
+  // 1. Online / Offline network monitor & auto-flush
+  useEffect(() => {
+    const handleOnline = () => {
+      setIsOnline(true);
+      const token = sessionTokenRef.current;
+      if (token && attemptIdRef.current) {
+        TrackingService.flushPendingAnswers(token, attemptIdRef.current);
+        TrackingService.flushPendingCompletions(token);
+      }
+    };
+
+    const handleOffline = () => {
+      setIsOnline(false);
+    };
+
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
+
+  // 2. Initialize or recover attempt on mount
   useEffect(() => {
     if (!isTrackingActive || !sessionToken) {
       return;
@@ -89,8 +134,10 @@ export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
     questionStartTimeRef.current = now;
     isCompletedRef.current = false;
 
-    // Check for an existing attempt in sessionStorage for this activity
+    // Check for an existing attempt in sessionStorage or checkpoint
     const stored = TrackingService.getStoredAttempt();
+    const checkpoint = TrackingService.getCheckpoint(student?.studentNumber, activity.id);
+
     if (stored && stored.activityId === activity.id && stored.status === 'in_progress') {
       // Re-hydrate existing attempt
       attemptIdRef.current = stored.attemptId;
@@ -99,20 +146,23 @@ export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
         setAttemptNumber(stored.attemptNumber);
       }
       answersRef.current = TrackingService.getPendingAnswers(stored.attemptId);
+      if (checkpoint) {
+        setResumeCheckpoint(checkpoint);
+      }
     } else {
       // If there was an unfinished attempt from another activity, reconcile it
       if (stored && stored.status === 'in_progress' && stored.activityId !== activity.id) {
         TrackingService.reconcileInterruptedAttempt(sessionToken, stored.attemptId);
       }
 
-      // Start new attempt
-      const newAttemptId = TrackingService.generateAttemptId();
-      attemptIdRef.current = newAttemptId;
-      setAttemptId(newAttemptId);
+      // Check if checkpoint exists with a previous attemptId for this activity
+      const targetAttemptId = checkpoint?.attemptId || TrackingService.generateAttemptId();
+      attemptIdRef.current = targetAttemptId;
+      setAttemptId(targetAttemptId);
       answersRef.current = [];
 
       TrackingService.startAttempt(sessionToken, {
-        attemptId: newAttemptId,
+        attemptId: targetAttemptId,
         gradeId,
         unitId: unit.id,
         unitTitle: unit.title,
@@ -127,34 +177,66 @@ export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
           setAttemptNumber(res.attemptNumber);
         }
       });
+
+      if (checkpoint) {
+        setResumeCheckpoint(checkpoint);
+      }
     }
 
-    // On unmount: If game was not marked completed, mark as abandoned
+    // On unmount: preserve checkpoint, do not delete active attempt
     return () => {
       isMounted = false;
-      const currentAttemptId = attemptIdRef.current;
-      if (!isCompletedRef.current && currentAttemptId && sessionToken) {
-        const durationSeconds = Math.max(1, Math.round((Date.now() - startTimeRef.current) / 1000));
-        TrackingService.abandonAttempt(
-          sessionToken,
-          currentAttemptId,
-          durationSeconds,
-          answersRef.current
-        );
-      }
     };
-  }, [activity.id, activity.title, activity.gameType, activity.questions, unit.id, unit.title, gradeId, isTrackingActive, sessionToken]);
+  }, [activity.id, activity.title, activity.gameType, activity.questions, unit.id, unit.title, gradeId, isTrackingActive, sessionToken, student?.studentNumber]);
 
-  // 2. Record individual question answer
+  // 3. Save mid-game checkpoint
+  const saveCheckpoint = useCallback(
+    (updates: Partial<GameResumeCheckpoint>) => {
+      const curAttemptId = attemptIdRef.current;
+      if (!curAttemptId) return;
+
+      const durationSeconds = Math.max(1, Math.round((Date.now() - startTimeRef.current) / 1000));
+      const checkpoint: GameResumeCheckpoint = {
+        attemptId: curAttemptId,
+        activityId: activity.id,
+        gradeId,
+        unitId: unit.id,
+        gameType: activity.gameType,
+        currentIndex: updates.currentIndex ?? 0,
+        score: updates.score ?? 0,
+        totalQuestions: updates.totalQuestions ?? (activity.questions?.length || 1),
+        answeredQuestionIds: updates.answeredQuestionIds ?? answersRef.current.map((a) => a.questionId),
+        shuffledQuestionIds: updates.shuffledQuestionIds,
+        currentRoundIndex: updates.currentRoundIndex,
+        matchedPairIds: updates.matchedPairIds,
+        completedSentenceIndices: updates.completedSentenceIndices,
+        timestamp: Date.now(),
+        durationSeconds,
+      };
+
+      setResumeCheckpoint(checkpoint);
+      TrackingService.saveCheckpoint(student?.studentNumber, checkpoint);
+    },
+    [activity.id, activity.gameType, activity.questions, gradeId, unit.id, student?.studentNumber]
+  );
+
+  // 4. Clear checkpoint
+  const clearCheckpoint = useCallback(() => {
+    setResumeCheckpoint(null);
+    TrackingService.clearCheckpoint(student?.studentNumber, activity.id);
+  }, [student?.studentNumber, activity.id]);
+
+  // 5. Record individual question answer
   const recordAnswer = useCallback(
     (params: RecordAnswerParams) => {
-      if (!isTrackingActive || !sessionToken || !attemptIdRef.current) {
+      const currentToken = sessionTokenRef.current;
+      if (!isTrackingActive || !currentToken || !attemptIdRef.current) {
         return;
       }
 
       const now = Date.now();
       const measuredTime = params.timeSpentSeconds ?? Math.max(1, Math.round((now - questionStartTimeRef.current) / 1000));
-      questionStartTimeRef.current = now; // Reset timer for next question
+      questionStartTimeRef.current = now;
 
       const answerRecord: QuestionAnswerRecord = {
         answerId: TrackingService.generateAnswerId(),
@@ -173,21 +255,24 @@ export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
 
       // Background batch sync
       setSyncStatus('syncing');
-      TrackingService.recordAnswer(sessionToken, attemptIdRef.current, answerRecord)
+      TrackingService.recordAnswer(currentToken, attemptIdRef.current, answerRecord)
         .then(() => {
           setSyncStatus('synced');
           setSyncError(null);
         })
-        .catch((err) => {
-          console.warn('Answer sync deferred (stored in queue):', err);
+        .catch((err: unknown) => {
+          const errMsg = err instanceof Error ? err.message : String(err);
+          if (errMsg.includes('UNAUTHORIZED') || errMsg.includes('Session has expired')) {
+            setIsSessionRecoveryOpen(true);
+          }
           setSyncStatus('error');
           setSyncError('Saved locally');
         });
     },
-    [isTrackingActive, sessionToken]
+    [isTrackingActive]
   );
 
-  // 3. Complete game
+  // 6. Complete game
   const completeGame = useCallback(
     async (summary: {
       score: number;
@@ -199,7 +284,10 @@ export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
       percentage?: number;
     }) => {
       isCompletedRef.current = true;
-      if (!isTrackingActive || !sessionToken || !attemptIdRef.current) {
+      clearCheckpoint();
+
+      const currentToken = sessionTokenRef.current;
+      if (!isTrackingActive || !currentToken || !attemptIdRef.current) {
         return;
       }
 
@@ -218,53 +306,89 @@ export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
 
       setSyncStatus('syncing');
       const res = await TrackingService.completeAttempt(
-        sessionToken,
+        currentToken,
         attemptIdRef.current,
         completeSummary,
-        answersRef.current
+        answersRef.current,
+        student?.studentNumber,
+        activity.id
       );
 
       if (res.success) {
         setSyncStatus('synced');
         setSyncError(null);
       } else {
+        if (res.code === 'UNAUTHORIZED' || res.error?.includes('Session has expired')) {
+          setIsSessionRecoveryOpen(true);
+        }
         setSyncStatus('error');
-        setSyncError(res.error || 'Sync issue during game completion');
+        setSyncError(res.error || 'Saved locally; will synchronize when connection restores.');
       }
     },
-    [isTrackingActive, sessionToken]
+    [isTrackingActive, clearCheckpoint, student?.studentNumber, activity.id]
   );
 
-  // 4. Explicit abandonment
+  // 7. Explicit abandonment (student clicks Return to Unit)
   const abandonGame = useCallback(async () => {
     isCompletedRef.current = true;
-    if (!isTrackingActive || !sessionToken || !attemptIdRef.current) {
+    clearCheckpoint();
+
+    const currentToken = sessionTokenRef.current;
+    if (!isTrackingActive || !currentToken || !attemptIdRef.current) {
       return;
     }
 
     const durationSeconds = Math.max(1, Math.round((Date.now() - startTimeRef.current) / 1000));
     await TrackingService.abandonAttempt(
-      sessionToken,
+      currentToken,
       attemptIdRef.current,
       durationSeconds,
       answersRef.current
     );
-  }, [isTrackingActive, sessionToken]);
+  }, [isTrackingActive, clearCheckpoint]);
 
-  // 5. Retry manual sync if an error occurred
+  // 8. Restart game (Play Again)
+  const restartGame = useCallback(() => {
+    clearCheckpoint();
+    if (onRestartAttempt) {
+      onRestartAttempt();
+    }
+  }, [clearCheckpoint, onRestartAttempt]);
+
+  // 9. Retry manual sync if an error occurred
   const retrySync = useCallback(async () => {
-    if (!isTrackingActive || !sessionToken || !attemptIdRef.current) {
+    const currentToken = sessionTokenRef.current;
+    if (!isTrackingActive || !currentToken || !attemptIdRef.current) {
       return;
     }
     setSyncStatus('syncing');
-    const ok = await TrackingService.flushPendingAnswers(sessionToken, attemptIdRef.current);
+    const ok = await TrackingService.flushPendingAnswers(currentToken, attemptIdRef.current);
+    await TrackingService.flushPendingCompletions(currentToken);
     if (ok) {
       setSyncStatus('synced');
       setSyncError(null);
     } else {
       setSyncStatus('error');
     }
-  }, [isTrackingActive, sessionToken]);
+  }, [isTrackingActive]);
+
+  // 10. Handle in-place session recovery
+  const handleSessionRecovered = useCallback(
+    async (newToken: string) => {
+      updateSessionToken(newToken);
+      sessionTokenRef.current = newToken;
+      setIsSessionRecoveryOpen(false);
+
+      if (attemptIdRef.current) {
+        setSyncStatus('syncing');
+        await TrackingService.flushPendingAnswers(newToken, attemptIdRef.current);
+        await TrackingService.flushPendingCompletions(newToken);
+        setSyncStatus('synced');
+        setSyncError(null);
+      }
+    },
+    [updateSessionToken]
+  );
 
   return (
     <GameTrackingContext.Provider
@@ -274,13 +398,32 @@ export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
         attemptNumber,
         syncStatus,
         syncError,
+        isOnline,
+        resumeCheckpoint,
+        saveCheckpoint,
+        clearCheckpoint,
         recordAnswer,
         completeGame,
         abandonGame,
         retrySync,
+        restartGame,
       }}
     >
       {children}
+
+      {/* In-Place Session Recovery Dialog */}
+      {isSessionRecoveryOpen && student && (
+        <SessionRecoveryModal
+          isOpen={isSessionRecoveryOpen}
+          studentNumber={student.studentNumber}
+          studentName={student.displayName}
+          onSuccess={handleSessionRecovered}
+          onCancel={() => {
+            setIsSessionRecoveryOpen(false);
+            abandonGame();
+          }}
+        />
+      )}
     </GameTrackingContext.Provider>
   );
 };
@@ -298,10 +441,15 @@ export const useGameTracking = () => {
       attemptNumber: null,
       syncStatus: 'idle' as const,
       syncError: null,
+      isOnline: true,
+      resumeCheckpoint: null,
+      saveCheckpoint: () => {},
+      clearCheckpoint: () => {},
       recordAnswer: () => {},
       completeGame: async () => {},
       abandonGame: async () => {},
       retrySync: async () => {},
+      restartGame: () => {},
     };
   }
   return context;

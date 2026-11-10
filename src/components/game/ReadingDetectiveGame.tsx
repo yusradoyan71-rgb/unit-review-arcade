@@ -22,15 +22,33 @@ interface ReadingDetectiveGameProps {
 }
 
 export const ReadingDetectiveGame: React.FC<ReadingDetectiveGameProps> = ({ activity, onExit }) => {
-  const { recordAnswer, completeGame } = useGameTracking();
-  const [questions, setQuestions] = useState<ReadingPassageQuestion[]>(() =>
-    shuffleQuestionsOptions((activity.questions || []) as ReadingPassageQuestion[])
-  );
+  const { recordAnswer, completeGame, restartGame, resumeCheckpoint, saveCheckpoint, clearCheckpoint } = useGameTracking();
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [questions] = useState<ReadingPassageQuestion[]>(() => {
+    const rawQuestions = (activity.questions || []) as ReadingPassageQuestion[];
+    if (resumeCheckpoint?.shuffledQuestionIds && resumeCheckpoint.shuffledQuestionIds.length > 0) {
+      const qMap = new Map(rawQuestions.map((q) => [q.id, q]));
+      const restored = resumeCheckpoint.shuffledQuestionIds
+        .map((id) => qMap.get(id))
+        .filter((q): q is ReadingPassageQuestion => Boolean(q));
+      if (restored.length === rawQuestions.length) {
+        return restored;
+      }
+    }
+    return shuffleQuestionsOptions(rawQuestions);
+  });
+
+  const initialIndex = (resumeCheckpoint && resumeCheckpoint.currentIndex > 0 && resumeCheckpoint.currentIndex < questions.length)
+    ? resumeCheckpoint.currentIndex
+    : 0;
+  const initialScore = (resumeCheckpoint && resumeCheckpoint.currentIndex > 0)
+    ? resumeCheckpoint.score
+    : 0;
+
+  const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [isAnswerRevealed, setIsAnswerRevealed] = useState(false);
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(initialScore);
   const [isGameOver, setIsGameOver] = useState(false);
 
   const currentQ = questions[currentIndex];
@@ -82,9 +100,15 @@ export const ReadingDetectiveGame: React.FC<ReadingDetectiveGameProps> = ({ acti
   const handleNextQuestion = () => {
     sounds.playTap();
     if (currentIndex + 1 < questions.length) {
-      setCurrentIndex((prev) => prev + 1);
+      const nextIdx = currentIndex + 1;
+      setCurrentIndex(nextIdx);
       setSelectedOption(null);
       setIsAnswerRevealed(false);
+      saveCheckpoint({
+        currentIndex: nextIdx,
+        score,
+        shuffledQuestionIds: questions.map((q) => q.id),
+      });
     } else {
       setIsGameOver(true);
       completeGame({
@@ -96,12 +120,8 @@ export const ReadingDetectiveGame: React.FC<ReadingDetectiveGameProps> = ({ acti
 
   const handleRestart = () => {
     sounds.playTap();
-    setQuestions(shuffleQuestionsOptions((activity.questions || []) as ReadingPassageQuestion[]));
-    setCurrentIndex(0);
-    setSelectedOption(null);
-    setIsAnswerRevealed(false);
-    setScore(0);
-    setIsGameOver(false);
+    clearCheckpoint();
+    restartGame();
   };
 
   if (!currentQ || questions.length === 0) {

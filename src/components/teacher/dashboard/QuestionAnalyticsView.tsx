@@ -96,7 +96,12 @@ export const QuestionAnalyticsView: React.FC<QuestionAnalyticsViewProps> = ({
                     </div>
 
                     <div className="flex items-center gap-4 text-[11px] text-slate-400">
-                      <span>Answered <strong className="text-slate-200">{item.timesAnswered}</strong> times</span>
+                      <span>
+                        Answered <strong className="text-slate-200">{item.timesAnswered}</strong> time{item.timesAnswered === 1 ? '' : 's'}
+                        {item.distinctStudentsCount !== undefined && (
+                          <span className="text-slate-500"> ({item.distinctStudentsCount} student{item.distinctStudentsCount === 1 ? '' : 's'})</span>
+                        )}
+                      </span>
                       <span className="text-emerald-400">✓ {item.correctCount} correct</span>
                       <span className="text-rose-400">✗ {item.incorrectCount} incorrect</span>
                     </div>
@@ -148,7 +153,7 @@ export const QuestionAnalyticsView: React.FC<QuestionAnalyticsViewProps> = ({
 
                     {item.commonIncorrectResponses.length === 0 ? (
                       <p className="text-slate-500 text-[11px]">
-                        No incorrect responses logged for this question. All students answered correctly!
+                        No incorrect responses logged for this question. All attempts were correct!
                       </p>
                     ) : (
                       <div className="space-y-1.5">
@@ -161,7 +166,12 @@ export const QuestionAnalyticsView: React.FC<QuestionAnalyticsViewProps> = ({
                               "{resp.response}"
                             </span>
                             <div className="flex items-center gap-2 font-mono text-slate-400 shrink-0">
-                              <span>{resp.count} students</span>
+                              <span>
+                                {resp.count} {resp.count === 1 ? 'mistake' : 'mistakes'}
+                                {resp.distinctStudentsCount !== undefined && (
+                                  <span className="text-slate-500 font-sans"> ({resp.distinctStudentsCount} {resp.distinctStudentsCount === 1 ? 'student' : 'students'})</span>
+                                )}
+                              </span>
                               <span className="px-1.5 py-0.5 rounded bg-rose-500/10 text-rose-400 font-bold">
                                 {resp.percentage}% of mistakes
                               </span>

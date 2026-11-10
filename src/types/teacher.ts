@@ -228,6 +228,7 @@ export interface CommonIncorrectResponse {
   response: string;
   count: number;
   percentage: number;
+  distinctStudentsCount?: number;
 }
 
 export interface QuestionDiagnosticItem {
@@ -239,6 +240,7 @@ export interface QuestionDiagnosticItem {
   unitId: string;
   activityId: string;
   timesAnswered: number;
+  distinctStudentsCount?: number;
   correctCount: number;
   incorrectCount: number;
   accuracyRate: number; // 0-100%

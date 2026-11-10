@@ -22,11 +22,15 @@ import type {
   AbandonAttemptPayload,
   ReconcileAttemptPayload,
   GameAttemptStatus,
+  GameResumeCheckpoint,
+  PendingAttemptCompletion,
 } from '../types/tracking';
 
 const STORAGE_KEY_ACTIVE_ATTEMPT = 'unit_review_arcade_active_attempt_v2';
 const STORAGE_KEY_PENDING_ANSWERS = 'unit_review_arcade_pending_answers_v2';
 const STORAGE_KEY_ATTEMPT_ANSWERS = 'unit_review_arcade_active_answers_v2';
+const STORAGE_KEY_PENDING_COMPLETIONS = 'unit_review_arcade_pending_completions_v2';
+const CHECKPOINT_PREFIX = 'unit_review_arcade_checkpoint_v2';
 
 export interface StoredActiveAttempt {
   attemptId: string;
@@ -193,6 +197,119 @@ export class TrackingService {
     }
   }
 
+  // -------------------------------------------------------------------------
+  // CHECKPOINT & RESUME STORAGE (LOCALSTORAGE FOR PERSISTENCE)
+  // -------------------------------------------------------------------------
+
+  private static getCheckpointKey(studentNumber?: string, activityId?: string): string {
+    return `${CHECKPOINT_PREFIX}_${studentNumber || 'anon'}_${activityId || 'default'}`;
+  }
+
+  public static saveCheckpoint(
+    studentNumber: string | undefined,
+    checkpoint: GameResumeCheckpoint
+  ): void {
+    try {
+      const key = this.getCheckpointKey(studentNumber, checkpoint.activityId);
+      localStorage.setItem(key, JSON.stringify(checkpoint));
+    } catch (err) {
+      console.warn('Failed to persist checkpoint to localStorage:', err);
+    }
+  }
+
+  public static getCheckpoint(
+    studentNumber: string | undefined,
+    activityId: string
+  ): GameResumeCheckpoint | null {
+    try {
+      const key = this.getCheckpointKey(studentNumber, activityId);
+      const data = localStorage.getItem(key);
+      if (!data) return null;
+      return JSON.parse(data) as GameResumeCheckpoint;
+    } catch {
+      return null;
+    }
+  }
+
+  public static clearCheckpoint(
+    studentNumber: string | undefined,
+    activityId: string
+  ): void {
+    try {
+      const key = this.getCheckpointKey(studentNumber, activityId);
+      localStorage.removeItem(key);
+    } catch {
+      // ignore
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // OFFLINE PENDING COMPLETIONS QUEUE
+  // -------------------------------------------------------------------------
+
+  public static getPendingCompletions(): PendingAttemptCompletion[] {
+    try {
+      const data = localStorage.getItem(STORAGE_KEY_PENDING_COMPLETIONS);
+      return data ? (JSON.parse(data) as PendingAttemptCompletion[]) : [];
+    } catch {
+      return [];
+    }
+  }
+
+  public static savePendingCompletion(item: PendingAttemptCompletion): void {
+    try {
+      const existing = this.getPendingCompletions();
+      const filtered = existing.filter((c) => c.attemptId !== item.attemptId);
+      filtered.push(item);
+      localStorage.setItem(STORAGE_KEY_PENDING_COMPLETIONS, JSON.stringify(filtered));
+    } catch (err) {
+      console.warn('Failed to queue pending completion in localStorage:', err);
+    }
+  }
+
+  public static clearPendingCompletion(attemptId: string): void {
+    try {
+      const existing = this.getPendingCompletions();
+      const remaining = existing.filter((c) => c.attemptId !== attemptId);
+      if (remaining.length === 0) {
+        localStorage.removeItem(STORAGE_KEY_PENDING_COMPLETIONS);
+      } else {
+        localStorage.setItem(STORAGE_KEY_PENDING_COMPLETIONS, JSON.stringify(remaining));
+      }
+    } catch {
+      // ignore
+    }
+  }
+
+  /**
+   * Flushes any queued attempt completions when connection is restored.
+   */
+  public static async flushPendingCompletions(sessionToken: string): Promise<number> {
+    const apiUrl = ApiService.getApiUrl();
+    if (!apiUrl || !sessionToken) return 0;
+
+    const pending = this.getPendingCompletions();
+    if (pending.length === 0) return 0;
+
+    let flushed = 0;
+    for (const item of pending) {
+      try {
+        const res = await ApiService.postRequest<TrackingApiResponse>(apiUrl, {
+          ...item.payload,
+          sessionToken,
+        });
+        if (res.success) {
+          this.clearPendingCompletion(item.attemptId);
+          flushed++;
+        }
+      } catch {
+        // Stop on first failure to preserve order
+        break;
+      }
+    }
+    return flushed;
+  }
+
   /**
    * Starts a new game attempt.
    * If a previous attempt was left in progress, it reconciles it before starting.
@@ -324,7 +441,9 @@ export class TrackingService {
     sessionToken: string,
     attemptId: string,
     summary: CompleteAttemptSummary,
-    allAnswers?: QuestionAnswerRecord[]
+    allAnswers?: QuestionAnswerRecord[],
+    studentNumber?: string,
+    activityId?: string
   ): Promise<TrackingApiResponse> {
     const apiUrl = ApiService.getApiUrl();
     if (!apiUrl || !sessionToken) {
@@ -339,9 +458,6 @@ export class TrackingService {
     const incorrectCount = summary.incorrectAnswers ?? (answeredCount - correctCount);
     const skippedCount = summary.skippedQuestions ?? Math.max(0, summary.totalQuestions - answeredCount);
     const percentage = summary.percentage ?? (summary.totalQuestions > 0 ? Math.round((summary.score / summary.totalQuestions) * 100) : 0);
-
-    // Clear local stored attempt immediately so subsequent navigation doesn't see old attempt
-    this.clearStoredAttempt();
 
     const payload: CompleteAttemptPayload = {
       action: 'game_complete_attempt',
@@ -361,14 +477,33 @@ export class TrackingService {
 
     try {
       const res = await ApiService.postRequest<TrackingApiResponse>(apiUrl, payload);
-      this.clearPendingAnswers(attemptId);
-      this.clearActiveAnswers(attemptId);
+      // Clean up attempt from memory & storage only after server confirmation
+      if (res && res.success) {
+        this.clearStoredAttempt();
+        this.clearPendingAnswers(attemptId);
+        this.clearActiveAnswers(attemptId);
+        if (activityId) {
+          this.clearCheckpoint(studentNumber, activityId);
+        }
+      }
       return res;
     } catch (err) {
-      console.warn('Network error completing attempt on server:', err);
+      console.warn('Network error completing attempt on server (queued for retry):', err);
+      // Queue completion so background sync flushes it when connection restores
+      this.savePendingCompletion({
+        attemptId,
+        studentNumber: studentNumber || 'anon',
+        payload,
+        timestamp: Date.now(),
+        retryCount: 0,
+      });
+      // Clear checkpoint because user has finished the game locally
+      if (activityId) {
+        this.clearCheckpoint(studentNumber, activityId);
+      }
       return {
         success: false,
-        error: err instanceof Error ? err.message : 'Network error during completion sync.',
+        error: err instanceof Error ? err.message : 'Network error during completion sync. Saved locally.',
       };
     }
   }

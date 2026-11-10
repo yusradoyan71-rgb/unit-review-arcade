@@ -19,12 +19,19 @@ interface TrueFalseGameProps {
 }
 
 export const TrueFalseGame: React.FC<TrueFalseGameProps> = ({ activity, onExit }) => {
-  const { recordAnswer, completeGame } = useGameTracking();
+  const { recordAnswer, completeGame, restartGame, resumeCheckpoint, saveCheckpoint, clearCheckpoint } = useGameTracking();
   const statements = (activity.questions || []) as TrueFalseQuestion[];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const initialIndex = (resumeCheckpoint && resumeCheckpoint.currentIndex > 0 && resumeCheckpoint.currentIndex < statements.length)
+    ? resumeCheckpoint.currentIndex
+    : 0;
+  const initialScore = (resumeCheckpoint && resumeCheckpoint.currentIndex > 0)
+    ? resumeCheckpoint.score
+    : 0;
+
+  const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [selectedAnswer, setSelectedAnswer] = useState<boolean | null>(null);
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(initialScore);
   const [isGameOver, setIsGameOver] = useState(false);
 
   const currentStatement = statements[currentIndex];
@@ -56,8 +63,13 @@ export const TrueFalseGame: React.FC<TrueFalseGameProps> = ({ activity, onExit }
   const handleNext = () => {
     sounds.playTap();
     if (currentIndex + 1 < statements.length) {
-      setCurrentIndex((prev) => prev + 1);
+      const nextIdx = currentIndex + 1;
+      setCurrentIndex(nextIdx);
       setSelectedAnswer(null);
+      saveCheckpoint({
+        currentIndex: nextIdx,
+        score,
+      });
     } else {
       setIsGameOver(true);
       completeGame({
@@ -69,10 +81,8 @@ export const TrueFalseGame: React.FC<TrueFalseGameProps> = ({ activity, onExit }
 
   const handleRestart = () => {
     sounds.playTap();
-    setCurrentIndex(0);
-    setSelectedAnswer(null);
-    setScore(0);
-    setIsGameOver(false);
+    clearCheckpoint();
+    restartGame();
   };
 
   if (!currentStatement || statements.length === 0) {

@@ -27,16 +27,23 @@ interface Tile {
 }
 
 export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ activity, onExit }) => {
-  const { recordAnswer, completeGame } = useGameTracking();
+  const { recordAnswer, completeGame, restartGame, resumeCheckpoint, saveCheckpoint, clearCheckpoint } = useGameTracking();
   const sentences = (activity.questions || []) as SentenceBuilderQuestion[];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const initialIndex = (resumeCheckpoint && resumeCheckpoint.currentIndex > 0 && resumeCheckpoint.currentIndex < sentences.length)
+    ? resumeCheckpoint.currentIndex
+    : 0;
+  const initialScore = (resumeCheckpoint && resumeCheckpoint.currentIndex > 0)
+    ? resumeCheckpoint.score
+    : 0;
+
+  const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [bankTiles, setBankTiles] = useState<Tile[]>([]);
   const [selectedTiles, setSelectedTiles] = useState<Tile[]>([]);
   const [isAnswerChecked, setIsAnswerChecked] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [isRevealed, setIsRevealed] = useState(false);
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(initialScore);
   const [isGameOver, setIsGameOver] = useState(false);
 
   const currentSentence = sentences[currentIndex];
@@ -149,7 +156,12 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ activi
   const handleNext = () => {
     sounds.playTap();
     if (currentIndex + 1 < sentences.length) {
-      setCurrentIndex((prev) => prev + 1);
+      const nextIdx = currentIndex + 1;
+      setCurrentIndex(nextIdx);
+      saveCheckpoint({
+        currentIndex: nextIdx,
+        score,
+      });
     } else {
       setIsGameOver(true);
       completeGame({
@@ -161,9 +173,8 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ activi
 
   const handleRestart = () => {
     sounds.playTap();
-    setCurrentIndex(0);
-    setScore(0);
-    setIsGameOver(false);
+    clearCheckpoint();
+    restartGame();
   };
 
   if (!currentSentence || sentences.length === 0) {

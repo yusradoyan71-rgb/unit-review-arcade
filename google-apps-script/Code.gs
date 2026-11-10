@@ -1732,14 +1732,19 @@ function handleTeacherGetQuestionAnalytics(ss, payload) {
         unitId: unitId,
         activityId: actId,
         timesAnswered: 0,
+        distinctStudentsMap: {},
         correctCount: 0,
         incorrectCount: 0,
-        incorrectResponsesMap: {}
+        incorrectResponsesMap: {},
+        incorrectResponsesStudentMap: {}
       };
     }
 
     var item = analyticsMap[compositeKey];
     item.timesAnswered++;
+    if (sNum) {
+      item.distinctStudentsMap[sNum] = true;
+    }
 
     var isCorrect = Boolean(row[answerColMap["is_correct"] - 1]);
     if (isCorrect) {
@@ -1749,6 +1754,12 @@ function handleTeacherGetQuestionAnalytics(ss, payload) {
       var resp = String(row[answerColMap["student_response"] - 1] || "").trim();
       if (resp) {
         item.incorrectResponsesMap[resp] = (item.incorrectResponsesMap[resp] || 0) + 1;
+        if (!item.incorrectResponsesStudentMap[resp]) {
+          item.incorrectResponsesStudentMap[resp] = {};
+        }
+        if (sNum) {
+          item.incorrectResponsesStudentMap[resp][sNum] = true;
+        }
       }
     }
   }
@@ -1757,13 +1768,18 @@ function handleTeacherGetQuestionAnalytics(ss, payload) {
   var questionAnalytics = Object.keys(analyticsMap).map(function(key) {
     var q = analyticsMap[key];
     var accRate = q.timesAnswered > 0 ? Math.round((q.correctCount / q.timesAnswered) * 100) : 0;
+    var distinctQStudents = Object.keys(q.distinctStudentsMap).length;
 
     var commonIncorrectResponses = Object.keys(q.incorrectResponsesMap).map(function(rText) {
       var count = q.incorrectResponsesMap[rText];
+      var distinctRStudents = q.incorrectResponsesStudentMap[rText]
+        ? Object.keys(q.incorrectResponsesStudentMap[rText]).length
+        : 0;
       return {
         response: rText,
         count: count,
-        percentage: q.incorrectCount > 0 ? Math.round((count / q.incorrectCount) * 100) : 0
+        percentage: q.incorrectCount > 0 ? Math.round((count / q.incorrectCount) * 100) : 0,
+        distinctStudentsCount: distinctRStudents
       };
     });
     // Sort incorrect responses by count descending
@@ -1778,6 +1794,7 @@ function handleTeacherGetQuestionAnalytics(ss, payload) {
       unitId: q.unitId,
       activityId: q.activityId,
       timesAnswered: q.timesAnswered,
+      distinctStudentsCount: distinctQStudents,
       correctCount: q.correctCount,
       incorrectCount: q.incorrectCount,
       accuracyRate: accRate,
@@ -2420,6 +2437,21 @@ function handleCompleteAttempt(ss, payload) {
     return createJsonResponse({ success: false, error: "Unauthorized attempt access.", code: "FORBIDDEN" });
   }
 
+  // Idempotency check: if attempt is already completed, return existing score safely
+  var currentStatus = String(attemptRow[colMap["status"] - 1] || "").trim();
+  if (currentStatus === "completed") {
+    var existingScore = Number(attemptRow[colMap["score"] - 1] || 0);
+    var existingPercentage = Number(attemptRow[colMap["percentage"] - 1] || 0);
+    return createJsonResponse({
+      success: true,
+      attemptId: attemptId,
+      status: "completed",
+      score: existingScore,
+      percentage: existingPercentage,
+      message: "Attempt already completed."
+    });
+  }
+
   var now = new Date().toISOString();
   var score = Number(payload.score !== undefined ? payload.score : attemptRow[colMap["score"] - 1]);
   var totalQuestions = Number(payload.totalQuestions !== undefined ? payload.totalQuestions : attemptRow[colMap["total_questions"] - 1]);
@@ -2495,6 +2527,17 @@ function handleAbandonAttempt(ss, payload) {
 
   if (String(attemptRow[colMap["student_number"] - 1]).trim() !== auth.studentNumber) {
     return createJsonResponse({ success: false, error: "Unauthorized attempt access.", code: "FORBIDDEN" });
+  }
+
+  // Safety guard: never overwrite an already completed attempt to abandoned
+  var currentStatus = String(attemptRow[colMap["status"] - 1] || "").trim();
+  if (currentStatus === "completed") {
+    return createJsonResponse({
+      success: true,
+      attemptId: attemptId,
+      status: "completed",
+      message: "Attempt was already completed; abandonment ignored."
+    });
   }
 
   var now = new Date().toISOString();

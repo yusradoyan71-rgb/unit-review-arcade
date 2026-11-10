@@ -94,6 +94,7 @@ export interface TrackingApiResponse<T = unknown> {
   success: boolean;
   message?: string;
   error?: string;
+  code?: string;
   attemptId?: string;
   attemptNumber?: number;
   data?: T;
@@ -151,4 +152,42 @@ export interface ReconcileAttemptPayload {
   sessionToken: string;
   attemptId: string;
   status: 'interrupted' | 'abandoned';
+}
+
+// ---------------------------------------------------------------------------
+// PHASE 4: RESUME, CHECKPOINTING & OFFLINE QUEUE SCHEMAS
+// ---------------------------------------------------------------------------
+
+/**
+ * Checkpoint saved during gameplay so students can seamlessly resume
+ * an interrupted activity across page refreshes, tab closes, or drops.
+ */
+export interface GameResumeCheckpoint {
+  attemptId: string;
+  activityId: string;
+  gradeId: string;
+  unitId: string;
+  gameType: GameType;
+  currentIndex: number;
+  score: number;
+  totalQuestions: number;
+  answeredQuestionIds: string[];
+  shuffledQuestionIds?: string[];
+  currentRoundIndex?: number;
+  matchedPairIds?: string[];
+  completedSentenceIndices?: number[];
+  timestamp: number;
+  durationSeconds: number;
+}
+
+/**
+ * Queue record for completed attempts awaiting server confirmation
+ * when network is temporarily disconnected.
+ */
+export interface PendingAttemptCompletion {
+  attemptId: string;
+  studentNumber: string;
+  payload: CompleteAttemptPayload;
+  timestamp: number;
+  retryCount: number;
 }

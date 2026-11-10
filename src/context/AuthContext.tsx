@@ -29,6 +29,7 @@ interface AuthContextType {
   logout: () => Promise<void>;
   enterClassroomMode: () => void;
   clearError: () => void;
+  updateSessionToken: (newToken: string, newExpiresAt?: string) => void;
 }
 
 const SESSION_STORAGE_KEY = 'unit_review_arcade_active_session_v1';
@@ -180,6 +181,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsLoginModalOpen(false);
   }, []);
 
+  // 5. Update session token in-place (e.g. for mid-game session recovery without navigation reset)
+  const updateSessionToken = useCallback((newToken: string, newExpiresAt?: string) => {
+    setSessionToken(newToken);
+    if (student) {
+      const sessionPayload: ActiveSession = {
+        sessionToken: newToken,
+        student,
+        expiresAt: newExpiresAt || new Date(Date.now() + 12 * 60 * 60 * 1000).toISOString(),
+        loginTime: new Date().toISOString(),
+      };
+      sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(sessionPayload));
+    }
+  }, [student]);
+
   return (
     <AuthContext.Provider
       value={{
@@ -197,6 +212,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         logout,
         enterClassroomMode,
         clearError,
+        updateSessionToken,
       }}
     >
       {children}

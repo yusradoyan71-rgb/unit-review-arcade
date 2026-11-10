@@ -20,16 +20,22 @@ interface ShuffledCard {
 }
 
 export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) => {
-  const { recordAnswer, completeGame } = useGameTracking();
+  const { recordAnswer, completeGame, restartGame, resumeCheckpoint, saveCheckpoint, clearCheckpoint } = useGameTracking();
   const matchQuestion = (activity.questions[0] || {}) as MatchItQuestion;
   const rounds: MatchRound[] = matchQuestion.rounds || [];
 
-  const [currentRoundIndex, setCurrentRoundIndex] = useState(0);
+  const initialRoundIndex = (resumeCheckpoint && resumeCheckpoint.currentRoundIndex !== undefined && resumeCheckpoint.currentRoundIndex < rounds.length)
+    ? resumeCheckpoint.currentRoundIndex
+    : 0;
+  const initialMatches = resumeCheckpoint?.score || 0;
+  const initialMatchedPairIds = resumeCheckpoint?.matchedPairIds || [];
+
+  const [currentRoundIndex, setCurrentRoundIndex] = useState(initialRoundIndex);
   const [selectedLeft, setSelectedLeft] = useState<ShuffledCard | null>(null);
   const [selectedRight, setSelectedRight] = useState<ShuffledCard | null>(null);
-  const [matchedPairIds, setMatchedPairIds] = useState<string[]>([]);
+  const [matchedPairIds, setMatchedPairIds] = useState<string[]>(initialMatchedPairIds);
   const [mismatchedIds, setMismatchedIds] = useState<string[]>([]);
-  const [totalMatchesMade, setTotalMatchesMade] = useState(0);
+  const [totalMatchesMade, setTotalMatchesMade] = useState(initialMatches);
   const [mismatchCount, setMismatchCount] = useState(0);
   const [interactionCount, setInteractionCount] = useState(0);
   const [isRoundComplete, setIsRoundComplete] = useState(false);
@@ -134,7 +140,14 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
   const handleNextRound = () => {
     sounds.playTap();
     if (currentRoundIndex + 1 < totalRounds) {
-      setCurrentRoundIndex((prev) => prev + 1);
+      const nextRound = currentRoundIndex + 1;
+      setCurrentRoundIndex(nextRound);
+      setMatchedPairIds([]);
+      saveCheckpoint({
+        currentRoundIndex: nextRound,
+        score: totalMatchesMade,
+        matchedPairIds: [],
+      });
     } else {
       setIsGameOver(true);
       completeGame({
@@ -151,11 +164,8 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
 
   const handleRestart = () => {
     sounds.playTap();
-    setCurrentRoundIndex(0);
-    setTotalMatchesMade(0);
-    setMismatchCount(0);
-    setInteractionCount(0);
-    setIsGameOver(false);
+    clearCheckpoint();
+    restartGame();
   };
 
   if (!currentRound || totalRounds === 0) {

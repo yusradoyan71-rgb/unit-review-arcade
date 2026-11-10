@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import { useArcade } from '../../context/ArcadeContext';
 import { GameTrackingProvider } from '../../context/GameTrackingContext';
 import { QuizBattleGame } from './QuizBattleGame';
@@ -11,6 +11,11 @@ import { Gamepad2 } from 'lucide-react';
 
 export const GameContainer: React.FC = () => {
   const { activeGradeId, activeUnit, activeActivity, goToUnit } = useArcade();
+  const [attemptIteration, setAttemptIteration] = useState(0);
+
+  const handleRestartAttempt = useCallback(() => {
+    setAttemptIteration((prev) => prev + 1);
+  }, []);
 
   if (!activeActivity || !activeUnit || !activeGradeId) {
     return (
@@ -37,30 +42,32 @@ export const GameContainer: React.FC = () => {
   };
 
   const renderGame = () => {
+    const gameKey = `${activeActivity.id}-iter-${attemptIteration}`;
     switch (activeActivity.gameType) {
       case 'quiz_battle':
-        return <QuizBattleGame key={activeActivity.id} activity={activeActivity} onExit={handleExit} />;
+        return <QuizBattleGame key={gameKey} activity={activeActivity} onExit={handleExit} />;
       case 'match_it':
-        return <MatchItGame key={activeActivity.id} activity={activeActivity} onExit={handleExit} />;
+        return <MatchItGame key={gameKey} activity={activeActivity} onExit={handleExit} />;
       case 'sentence_builder':
-        return <SentenceBuilderGame key={activeActivity.id} activity={activeActivity} onExit={handleExit} />;
+        return <SentenceBuilderGame key={gameKey} activity={activeActivity} onExit={handleExit} />;
       case 'true_false':
-        return <TrueFalseGame key={activeActivity.id} activity={activeActivity} onExit={handleExit} />;
+        return <TrueFalseGame key={gameKey} activity={activeActivity} onExit={handleExit} />;
       case 'reading_detective':
-        return <ReadingDetectiveGame key={activeActivity.id} activity={activeActivity} onExit={handleExit} />;
+        return <ReadingDetectiveGame key={gameKey} activity={activeActivity} onExit={handleExit} />;
       case 'train_station':
-        return <TrainStationGame key={activeActivity.id} activity={activeActivity} onExit={handleExit} />;
+        return <TrainStationGame key={gameKey} activity={activeActivity} onExit={handleExit} />;
       default:
-        return <QuizBattleGame key={activeActivity.id} activity={activeActivity} onExit={handleExit} />;
+        return <QuizBattleGame key={gameKey} activity={activeActivity} onExit={handleExit} />;
     }
   };
 
   return (
     <GameTrackingProvider
-      key={`tracking-${activeGradeId}-${activeUnit.id}-${activeActivity.id}`}
+      key={`tracking-${activeGradeId}-${activeUnit.id}-${activeActivity.id}-iter-${attemptIteration}`}
       activity={activeActivity}
       unit={activeUnit}
       gradeId={activeGradeId}
+      onRestartAttempt={handleRestartAttempt}
     >
       {renderGame()}
     </GameTrackingProvider>
