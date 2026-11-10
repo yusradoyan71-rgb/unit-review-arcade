@@ -1,5 +1,6 @@
 import React from 'react';
 import { useArcade } from '../../context/ArcadeContext';
+import { useTeacherAuth } from '../../context/TeacherAuthContext';
 import { StudentProfileBadge } from '../auth/StudentProfileBadge';
 import { 
   Gamepad2, 
@@ -9,7 +10,9 @@ import {
   Volume2, 
   VolumeX, 
   Settings, 
-  GraduationCap
+  GraduationCap,
+  ShieldCheck,
+  Layers
 } from 'lucide-react';
 
 export const ClassroomHeader: React.FC = () => {
@@ -27,6 +30,8 @@ export const ClassroomHeader: React.FC = () => {
     activeActivity,
     data
   } = useArcade();
+
+  const { openDashboard, isAuthenticated: isTeacherAuthenticated } = useTeacherAuth();
 
   const isHome = navigation.view === 'home';
 
@@ -146,18 +151,28 @@ export const ClassroomHeader: React.FC = () => {
             {isFullscreen ? <Minimize className="w-5 h-5" /> : <Maximize className="w-5 h-5" />}
           </button>
 
-          {/* Discreet Teacher Panel Quick Button */}
+          {/* Distinct Entry Point 1: Teacher Monitoring Dashboard */}
+          <button
+            onClick={openDashboard}
+            title={isTeacherAuthenticated ? 'Open Teacher Monitoring Dashboard' : 'Teacher Dashboard Login'}
+            className="px-3 py-2 rounded-xl text-xs sm:text-sm font-medium border flex items-center gap-2 bg-indigo-600/15 hover:bg-indigo-600/25 border-indigo-500/30 text-indigo-300 transition-all hover:scale-105 active:scale-95"
+          >
+            <ShieldCheck className="w-4 h-4 text-indigo-400" />
+            <span className="hidden md:inline">Teacher Dashboard</span>
+          </button>
+
+          {/* Distinct Entry Point 2: Preserved Local Content Editor */}
           <button
             onClick={() => openTeacherPanel('units')}
-            title="Teacher Management Panel"
+            title="Local Content & Curriculum Editor"
             className={`px-3 py-2 rounded-xl text-xs sm:text-sm font-medium border flex items-center gap-2 transition-all ${
               navigation.view === 'teacher-panel'
                 ? 'bg-amber-500/20 text-amber-300 border-amber-500/50 shadow-md shadow-amber-500/10'
                 : 'bg-slate-900/90 text-slate-400 border-slate-800 hover:text-amber-300 hover:border-amber-500/30 hover:bg-slate-800'
             }`}
           >
-            <Settings className="w-4 h-4" />
-            <span className="hidden md:inline">Teacher Panel</span>
+            <Layers className="w-4 h-4" />
+            <span className="hidden lg:inline">Content Editor</span>
           </button>
         </div>
 

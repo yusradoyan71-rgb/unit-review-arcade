@@ -14,31 +14,155 @@ import type { AuthApiResponse, LoginCredentials } from '../types/auth';
 
 const STORAGE_API_KEY = 'unit_review_arcade_api_url';
 
-// Deployed Google Apps Script Web App URL
+// Deployed Google Apps Script Web App URL (Production)
 export const DEFAULT_APPS_SCRIPT_URL =
   'https://script.google.com/macros/s/AKfycbwzMiiyoKbcb83Plv_TYay4VnXXOWh9ZmlPDes6_Z-Pahk3phpTB8sqYZN6dUiAy-etjw/exec';
 
+// Secondary known production URL signature
+export const KNOWN_PROD_URL_FRAGMENTS = [
+  'AKfycbwzMiiyoKbcb83Plv_TYay4VnXXOWh9ZmlPDes6_Z-Pahk3phpTB8sqYZN6dUiAy-etjw',
+  'AKfycbwPvdc7oI-1N738r_n_P_v-2T9N829bH9s27K2_JdE8R7Nf8N5yA0h0O7F_8s0V-f4'
+];
+
+export interface EndpointSecurityInfo {
+  url: string;
+  isDev: boolean;
+  isProductionEndpoint: boolean;
+  source: 'localStorage' | 'env' | 'default';
+}
+
 export class ApiService {
   /**
-   * Retrieves the current Google Apps Script deployment URL.
-   * Priority: localStorage override -> Vite environment variable -> DEFAULT_APPS_SCRIPT_URL
+   * Determines if a URL matches any known production endpoint.
+   */
+  public static isProductionUrl(url: string): boolean {
+    if (!url) return false;
+    const clean = url.trim();
+    if (clean === DEFAULT_APPS_SCRIPT_URL) return true;
+    return KNOWN_PROD_URL_FRAGMENTS.some((frag) => clean.includes(frag));
+  }
+
+  /**
+   * Retrieves the current Google Apps Script deployment URL with strict endpoint isolation.
+   * 
+   * Security & Isolation Rules:
+   * 1. In development mode (import.meta.env.DEV), VITE_APPS_SCRIPT_URL (TEST backend)
+   *    takes absolute priority. A legacy localStorage override is NEVER permitted to
+   *    silently route development/test traffic to a production URL.
+   * 2. If localStorage holds a production URL while in development mode, it is purged.
+   * 3. In production mode, DEFAULT_APPS_SCRIPT_URL is used unless an explicit override is set.
    */
   public static getApiUrl(): string {
+    const isDev = Boolean((import.meta as unknown as { env?: { DEV?: boolean } }).env?.DEV);
+    const envUrl = (import.meta as unknown as { env?: { VITE_APPS_SCRIPT_URL?: string } }).env?.VITE_APPS_SCRIPT_URL;
+    const cleanEnvUrl = envUrl && envUrl.trim().startsWith('http') ? envUrl.trim() : null;
+
+    let storedUrl: string | null = null;
     try {
       const stored = localStorage.getItem(STORAGE_API_KEY);
       if (stored && stored.trim().startsWith('http')) {
-        return stored.trim();
+        storedUrl = stored.trim();
       }
     } catch {
       // Ignore localStorage access errors
     }
 
-    const envUrl = (import.meta as unknown as { env?: { VITE_APPS_SCRIPT_URL?: string } }).env?.VITE_APPS_SCRIPT_URL;
-    if (envUrl && envUrl.trim().startsWith('http')) {
-      return envUrl.trim();
+    // In development mode: enforce TEST endpoint priority and block accidental PROD routing
+    if (isDev) {
+      if (storedUrl && this.isProductionUrl(storedUrl)) {
+        console.warn(
+          '⚠️ [Security] Purged legacy localStorage API URL pointing to PRODUCTION while running in development mode.'
+        );
+        try {
+          localStorage.removeItem(STORAGE_API_KEY);
+        } catch {
+          // ignore
+        }
+        storedUrl = null;
+      }
+
+      // In dev mode, prefer the verified test endpoint in .env.development.local
+      if (cleanEnvUrl) {
+        return cleanEnvUrl;
+      }
+
+      if (storedUrl && !this.isProductionUrl(storedUrl)) {
+        return storedUrl;
+      }
+
+      return DEFAULT_APPS_SCRIPT_URL;
+    }
+
+    // Production mode: localStorage override (e.g. for self-hosted instances) -> envUrl -> DEFAULT_APPS_SCRIPT_URL
+    if (storedUrl) {
+      return storedUrl;
+    }
+
+    if (cleanEnvUrl) {
+      return cleanEnvUrl;
     }
 
     return DEFAULT_APPS_SCRIPT_URL;
+  }
+
+  /**
+   * Retrieves the API URL specifically for teacher operations, with fail-closed security.
+   * In development/test mode, rejects any configuration that would route teacher operations to PROD.
+   */
+  public static getTeacherApiUrl(): string {
+    const isDev = Boolean((import.meta as unknown as { env?: { DEV?: boolean } }).env?.DEV);
+    const url = this.getApiUrl();
+
+    if (!url || !url.startsWith('http')) {
+      throw new Error('Teacher backend endpoint is not configured. Please set VITE_APPS_SCRIPT_URL.');
+    }
+
+    if (isDev && this.isProductionUrl(url)) {
+      throw new Error(
+        'SECURITY VIOLATION: Cannot execute teacher test operations against the PRODUCTION backend URL. ' +
+        'Please verify that VITE_APPS_SCRIPT_URL in .env.development.local points to the TEST deployment.'
+      );
+    }
+
+    return url;
+  }
+
+  /**
+   * Returns diagnostic security details about the active endpoint.
+   */
+  public static getEndpointSecurityInfo(): EndpointSecurityInfo {
+    const isDev = Boolean((import.meta as unknown as { env?: { DEV?: boolean } }).env?.DEV);
+    const envUrl = (import.meta as unknown as { env?: { VITE_APPS_SCRIPT_URL?: string } }).env?.VITE_APPS_SCRIPT_URL?.trim();
+    let storedUrl: string | null = null;
+    try {
+      storedUrl = localStorage.getItem(STORAGE_API_KEY)?.trim() || null;
+    } catch {
+      // ignore
+    }
+
+    const resolved = this.getApiUrl();
+    let source: 'localStorage' | 'env' | 'default' = 'default';
+
+    if (isDev) {
+      if (envUrl && resolved === envUrl) {
+        source = 'env';
+      } else if (storedUrl && resolved === storedUrl) {
+        source = 'localStorage';
+      }
+    } else {
+      if (storedUrl && resolved === storedUrl) {
+        source = 'localStorage';
+      } else if (envUrl && resolved === envUrl) {
+        source = 'env';
+      }
+    }
+
+    return {
+      url: resolved,
+      isDev,
+      isProductionEndpoint: this.isProductionUrl(resolved),
+      source,
+    };
   }
 
   /**

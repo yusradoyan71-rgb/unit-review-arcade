@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArcadeProvider, useArcade } from './context/ArcadeContext';
 import { AuthProvider } from './context/AuthContext';
+import { TeacherAuthProvider, useTeacherAuth } from './context/TeacherAuthContext';
 import { ClassroomHeader } from './components/common/ClassroomHeader';
 import { ToastContainer } from './components/common/ToastContainer';
 import { StudentLoginModal } from './components/auth/StudentLoginModal';
@@ -8,13 +9,28 @@ import { HomeScreen } from './components/home/HomeScreen';
 import { UnitLibraryScreen } from './components/library/UnitLibraryScreen';
 import { UnitDashboardScreen } from './components/dashboard/UnitDashboardScreen';
 import { TeacherPanelModal } from './components/teacher/TeacherPanelModal';
+import { TeacherLoginModal } from './components/teacher/TeacherLoginModal';
+import { TeacherDashboardScreen } from './components/teacher/dashboard/TeacherDashboardScreen';
 import { GameContainer } from './components/game/GameContainer';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const MainView: React.FC = () => {
   const { navigation, navigateTo } = useArcade();
+  const { isDashboardOpen } = useTeacherAuth();
 
   const isTeacherPanelOpen = navigation.view === 'teacher-panel';
+
+  // Dedicated, standalone Teacher Monitoring Cockpit view
+  // Isolates dashboard rendering completely; unmounts the arcade home screen and classroom header
+  if (isDashboardOpen) {
+    return (
+      <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
+        <TeacherDashboardScreen />
+        <TeacherLoginModal />
+        <ToastContainer />
+      </div>
+    );
+  }
 
   return (
     <div className="relative min-h-screen bg-[#080c18] bg-arcade-grid bg-radial-vignette text-slate-100 flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
@@ -85,7 +101,7 @@ const MainView: React.FC = () => {
         </AnimatePresence>
       </main>
 
-      {/* Teacher Panel Modal Overlay */}
+      {/* Teacher Panel Modal Overlay (Local Content Editor) */}
       <AnimatePresence>
         {isTeacherPanelOpen && (
           <TeacherPanelModal
@@ -95,6 +111,9 @@ const MainView: React.FC = () => {
           />
         )}
       </AnimatePresence>
+
+      {/* Teacher Master Passphrase Authentication Modal */}
+      <TeacherLoginModal />
 
       {/* Student Authentication Modal */}
       <StudentLoginModal />
@@ -108,9 +127,11 @@ const MainView: React.FC = () => {
 export function App() {
   return (
     <AuthProvider>
-      <ArcadeProvider>
-        <MainView />
-      </ArcadeProvider>
+      <TeacherAuthProvider>
+        <ArcadeProvider>
+          <MainView />
+        </ArcadeProvider>
+      </TeacherAuthProvider>
     </AuthProvider>
   );
 }

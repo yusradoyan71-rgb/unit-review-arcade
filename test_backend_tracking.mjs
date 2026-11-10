@@ -143,11 +143,20 @@ class MockRange {
 
 // 2. Setup mock Google Apps Script environment
 class MockSheet {
-  constructor(name) {
+  constructor(name, spreadsheet = null) {
     this.name = name;
+    this.spreadsheet = spreadsheet;
     this.rows = [];
     this.tabColor = '';
     this.frozenRows = 0;
+  }
+
+  getParent() {
+    return this.spreadsheet;
+  }
+
+  setColumnWidth(col, width) {
+    return this;
   }
 
   getName() {
@@ -208,13 +217,22 @@ class MockSheet {
 }
 
 class MockSpreadsheet {
-  constructor(name) {
+  constructor(name, locale = 'en_US') {
     this.name = name;
     this.sheets = {};
+    this.locale = locale;
   }
 
   getName() {
     return this.name;
+  }
+
+  getSpreadsheetLocale() {
+    return this.locale;
+  }
+
+  setSpreadsheetLocale(loc) {
+    this.locale = loc;
   }
 
   getSheetByName(name) {
@@ -232,7 +250,7 @@ class MockSpreadsheet {
   }
 
   insertSheet(name) {
-    const s = new MockSheet(name);
+    const s = new MockSheet(name, this);
     this.sheets[name] = s;
     return s;
   }
@@ -249,9 +267,25 @@ const mockProps = {
   setProperty(key, val) {
     this.properties[key] = String(val);
   },
+  deleteProperty(key) {
+    delete this.properties[key];
+  },
+  deleteAllProperties() {
+    this.properties = {};
+  },
+  getProperties() {
+    return { ...this.properties };
+  },
 };
 
 const mockSpreadsheet = new MockSpreadsheet('Unit Review Arcade Database [Test]');
+
+const mockLock = {
+  hasLock: false,
+  waitLock(timeout) { this.hasLock = true; return true; },
+  tryLock(timeout) { this.hasLock = true; return true; },
+  releaseLock() { this.hasLock = false; },
+};
 
 const context = {
   console,
@@ -267,6 +301,11 @@ const context = {
   },
   PropertiesService: {
     getScriptProperties: () => mockProps,
+  },
+  LockService: {
+    getScriptLock: () => mockLock,
+    getUserLock: () => mockLock,
+    getDocumentLock: () => mockLock,
   },
   SpreadsheetApp: {
     openById: (id) => mockSpreadsheet,
