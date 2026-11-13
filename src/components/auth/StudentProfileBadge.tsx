@@ -1,9 +1,12 @@
 import React from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { User, LogOut, Sparkles, GraduationCap } from 'lucide-react';
+import { useGamification } from '../../context/GamificationContext';
+import { sounds } from '../../services/soundEffects';
+import { User, LogOut, GraduationCap, Award } from 'lucide-react';
 
 export const StudentProfileBadge: React.FC = () => {
   const { authMode, student, logout, openLoginModal } = useAuth();
+  const { profile, openProfileModal } = useGamification();
 
   // Classroom Mode: Show Student Login Trigger
   if (authMode === 'classroom' || !student) {
@@ -26,29 +29,46 @@ export const StudentProfileBadge: React.FC = () => {
     );
   }
 
-  // Student Mode: Show Student Identity
+  // Student Mode: Show Student Identity & Interactive Gamification Pill
   return (
     <div className="flex items-center gap-2">
-      {/* Student Profile Card */}
-      <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-cyan-500/40 shadow-md shadow-cyan-500/10">
+      {/* Student Profile Card (Clickable to open Profile & Badges) */}
+      <button
+        onClick={() => {
+          sounds.playTap();
+          openProfileModal();
+        }}
+        title="View Student Profile & Badges"
+        className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-slate-800/90 border border-cyan-500/40 hover:border-cyan-400 shadow-md shadow-cyan-500/10 transition-all hover:scale-105 active:scale-95 text-left group"
+      >
         {/* Class Badge */}
         <span className="px-2 py-0.5 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 text-xs font-mono font-extrabold uppercase tracking-wide">
           {student.class}
         </span>
 
-        {/* First Name & Icon */}
+        {/* Level Badge (if loaded) */}
+        {profile?.level ? (
+          <span className="px-1.5 py-0.5 rounded bg-amber-500/20 border border-amber-500/40 text-amber-300 text-[10px] font-mono font-extrabold flex items-center gap-0.5">
+            <Award className="w-2.5 h-2.5 text-amber-400" />
+            Lv.{profile.level}
+          </span>
+        ) : null}
+
+        {/* First Name */}
         <div className="flex items-center gap-1.5">
-          <GraduationCap className="w-4 h-4 text-cyan-400" />
-          <span className="font-bold text-xs sm:text-sm text-slate-100 truncate max-w-[120px] sm:max-w-[160px]">
+          <GraduationCap className="w-4 h-4 text-cyan-400 group-hover:text-cyan-300 transition-colors" />
+          <span className="font-bold text-xs sm:text-sm text-slate-100 truncate max-w-[100px] sm:max-w-[140px]">
             {student.firstName}
           </span>
         </div>
 
-        <span className="hidden sm:inline-flex text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-semibold items-center gap-1">
-          <Sparkles className="w-2.5 h-2.5" />
-          Active
-        </span>
-      </div>
+        {/* XP Tag */}
+        {profile?.totalXp !== undefined && (
+          <span className="hidden md:inline-flex text-[11px] font-mono font-extrabold text-amber-400">
+            {profile.totalXp} XP
+          </span>
+        )}
+      </button>
 
       {/* Logout Button */}
       <button

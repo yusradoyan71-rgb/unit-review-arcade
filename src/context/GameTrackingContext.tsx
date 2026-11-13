@@ -12,6 +12,7 @@ import { useAuth } from './AuthContext';
 import { TrackingService } from '../services/trackingService';
 import type { Activity, Unit, GradeId } from '../types/schema';
 import type { QuestionAnswerRecord, CompleteAttemptSummary, GameResumeCheckpoint } from '../types/tracking';
+import type { AttemptGamificationResult } from '../types/gamification';
 import { SessionRecoveryModal } from '../components/auth/SessionRecoveryModal';
 
 export interface RecordAnswerParams {
@@ -36,6 +37,9 @@ interface GameTrackingContextType {
   resumeCheckpoint: GameResumeCheckpoint | null;
   saveCheckpoint: (updates: Partial<GameResumeCheckpoint>) => void;
   clearCheckpoint: () => void;
+
+  // Gamification (Phase 5)
+  lastGamification: AttemptGamificationResult | null;
 
   // Tracking handlers
   recordAnswer: (params: RecordAnswerParams) => void;
@@ -79,6 +83,7 @@ export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
   const [syncError, setSyncError] = useState<string | null>(null);
   const [isOnline, setIsOnline] = useState<boolean>(typeof navigator !== 'undefined' ? navigator.onLine : true);
   const [isSessionRecoveryOpen, setIsSessionRecoveryOpen] = useState<boolean>(false);
+  const [lastGamification, setLastGamification] = useState<AttemptGamificationResult | null>(null);
 
   // In-memory telemetry cache
   const answersRef = useRef<QuestionAnswerRecord[]>([]);
@@ -314,6 +319,10 @@ export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
         activity.id
       );
 
+      if (res.gamification) {
+        setLastGamification(res.gamification);
+      }
+
       if (res.success) {
         setSyncStatus('synced');
         setSyncError(null);
@@ -402,6 +411,7 @@ export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
         resumeCheckpoint,
         saveCheckpoint,
         clearCheckpoint,
+        lastGamification,
         recordAnswer,
         completeGame,
         abandonGame,
@@ -445,6 +455,7 @@ export const useGameTracking = () => {
       resumeCheckpoint: null,
       saveCheckpoint: () => {},
       clearCheckpoint: () => {},
+      lastGamification: null,
       recordAnswer: () => {},
       completeGame: async () => {},
       abandonGame: async () => {},

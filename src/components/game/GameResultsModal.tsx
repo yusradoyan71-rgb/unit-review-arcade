@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { Trophy, RotateCcw, ArrowLeft } from 'lucide-react';
+import { Trophy, RotateCcw, ArrowLeft, Sparkles, Award, Zap } from 'lucide-react';
 import { sounds } from '../../services/soundEffects';
+import { useGameTracking } from '../../context/GameTrackingContext';
 
 interface GameResultsModalProps {
   score: number;
@@ -19,20 +20,21 @@ export const GameResultsModal: React.FC<GameResultsModalProps> = ({
   onRestart,
   onExit,
 }) => {
+  const { lastGamification } = useGameTracking();
   const percentage = totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0;
 
   useEffect(() => {
     sounds.playSuccess();
     try {
       confetti({
-        particleCount: 80,
+        particleCount: lastGamification?.isLevelUp ? 140 : 80,
         spread: 70,
         origin: { y: 0.6 },
       });
     } catch {
       // Ignore if canvas-confetti unavailable
     }
-  }, []);
+  }, [lastGamification?.isLevelUp]);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md">
@@ -59,7 +61,7 @@ export const GameResultsModal: React.FC<GameResultsModalProps> = ({
         </p>
 
         {/* Score Card */}
-        <div className="grid grid-cols-2 gap-4 mb-8">
+        <div className="grid grid-cols-2 gap-4 mb-4">
           <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col items-center">
             <span className="text-xs font-semibold text-slate-400 uppercase">Correct Answers</span>
             <span className="font-mono text-3xl font-extrabold text-cyan-400 mt-1">
@@ -74,6 +76,64 @@ export const GameResultsModal: React.FC<GameResultsModalProps> = ({
             </span>
           </div>
         </div>
+
+        {/* Gamification Rewards Banner (XP, Level Up, Badges) */}
+        {lastGamification && (
+          <div className="mb-6 space-y-3">
+            {/* XP Earned Card */}
+            <div className="p-3.5 rounded-2xl bg-slate-950 border border-amber-500/30 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
+                  <Sparkles className="w-4 h-4" />
+                </div>
+                <div className="text-left">
+                  <span className="text-[11px] font-semibold text-slate-400 block">XP REWARD</span>
+                  <span className="text-xs text-slate-300 font-medium">
+                    {lastGamification.replayNotice || 'Curriculum Performance Award'}
+                  </span>
+                </div>
+              </div>
+              <div className="text-right">
+                <span className="font-mono text-xl font-black text-amber-400">
+                  +{lastGamification.xpEarned} <span className="text-xs font-bold">XP</span>
+                </span>
+              </div>
+            </div>
+
+            {/* Level Up Celebratory Announcement */}
+            {lastGamification.isLevelUp && (
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                className="p-3.5 rounded-2xl bg-gradient-to-r from-amber-500/20 via-yellow-500/20 to-indigo-500/20 border border-amber-400/50 flex items-center justify-center gap-2 text-amber-300 font-arcade text-sm font-bold shadow-lg shadow-amber-500/20"
+              >
+                <Award className="w-5 h-5 text-amber-400 animate-bounce" />
+                <span>LEVEL UP! YOU ARE NOW LEVEL {lastGamification.newLevel} ({lastGamification.levelTitle})!</span>
+              </motion.div>
+            )}
+
+            {/* Unlocked Badges */}
+            {lastGamification.unlockedAchievements && lastGamification.unlockedAchievements.length > 0 && (
+              <div className="p-3 rounded-2xl bg-slate-950/80 border border-emerald-500/40 text-left">
+                <span className="text-[10px] font-mono font-bold text-emerald-400 uppercase tracking-wider block mb-1.5 flex items-center gap-1">
+                  <Zap className="w-3 h-3" />
+                  New Badges Unlocked!
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  {lastGamification.unlockedAchievements.map((b) => (
+                    <span
+                      key={b.id}
+                      className="px-2.5 py-1 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-bold flex items-center gap-1"
+                    >
+                      <Trophy className="w-3 h-3 text-emerald-400" />
+                      {b.title}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">

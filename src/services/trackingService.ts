@@ -11,6 +11,7 @@
  */
 
 import { ApiService } from './apiService';
+import { calculateAttemptXp } from '../utils/gamification';
 import type {
   StartAttemptMetadata,
   QuestionAnswerRecord,
@@ -520,9 +521,28 @@ export class TrackingService {
       if (activityId) {
         this.clearCheckpoint(studentNumber, activityId);
       }
+      const fallbackXp = calculateAttemptXp({
+        percentage,
+        isFirstCompletion: true,
+        attemptNumber: 1,
+      });
       return {
         success: false,
         error: err instanceof Error ? err.message : 'Network error during completion sync. Saved locally.',
+        gamification: {
+          xpEarned: fallbackXp.xpEarned,
+          baseCompletionXp: fallbackXp.baseCompletionXp,
+          accuracyXp: fallbackXp.accuracyXp,
+          perfectBonusXp: fallbackXp.perfectBonusXp,
+          practiceBonusXp: fallbackXp.practiceBonusXp,
+          totalXp: fallbackXp.xpEarned,
+          oldLevel: 1,
+          newLevel: 1,
+          isLevelUp: false,
+          levelTitle: 'Novice Explorer',
+          unlockedAchievements: [],
+          replayNotice: 'Offline Mode: XP saved locally; will sync when reconnected.',
+        },
       };
     }
   }

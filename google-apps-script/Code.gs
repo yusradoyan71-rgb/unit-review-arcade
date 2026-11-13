@@ -62,7 +62,8 @@ var CONFIG = {
     ANSWERS: "Answers",
     DASHBOARD: "Dashboard",
     TEACHER_SESSIONS: "TeacherSessions",
-    CURRICULUM: "Curriculum"
+    CURRICULUM: "Curriculum",
+    ACHIEVEMENTS: "Achievements"
   },
   STUDENT_HEADERS: [
     "student_id",
@@ -115,7 +116,18 @@ var CONFIG = {
     "completed_at",
     "duration_seconds",
     "status",
-    "content_version"
+    "content_version",
+    "xp_earned"
+  ],
+  ACHIEVEMENT_HEADERS: [
+    "unlock_id",
+    "student_id",
+    "student_number",
+    "class",
+    "achievement_id",
+    "title",
+    "unlocked_at",
+    "trigger_attempt_id"
   ],
   ANSWER_HEADERS: [
     "answer_id",
@@ -288,6 +300,13 @@ function doPost(e) {
 
       case "game_reconcile_attempt":
         return handleReconcileAttempt(ss, payload);
+
+      // Student Gamification & Leaderboard (Phase 5)
+      case "student_get_profile":
+        return handleStudentGetProfile(ss, payload);
+
+      case "student_get_leaderboard":
+        return handleStudentGetLeaderboard(ss, payload);
 
       // Teacher Authentication (Phase 3A)
       case "teacher_login":
@@ -2442,13 +2461,29 @@ function handleCompleteAttempt(ss, payload) {
   if (currentStatus === "completed") {
     var existingScore = Number(attemptRow[colMap["score"] - 1] || 0);
     var existingPercentage = Number(attemptRow[colMap["percentage"] - 1] || 0);
+    var existingXp = colMap["xp_earned"] ? Number(attemptRow[colMap["xp_earned"] - 1] || 0) : 0;
+    var currentSummary = getStudentGamificationSummary(ss, auth.studentNumber);
     return createJsonResponse({
       success: true,
       attemptId: attemptId,
       status: "completed",
       score: existingScore,
       percentage: existingPercentage,
-      message: "Attempt already completed."
+      message: "Attempt already completed.",
+      gamification: {
+        xpEarned: existingXp,
+        baseCompletionXp: 0,
+        accuracyXp: 0,
+        perfectBonusXp: 0,
+        practiceBonusXp: 0,
+        totalXp: currentSummary.totalXp,
+        oldLevel: currentSummary.level,
+        newLevel: currentSummary.level,
+        isLevelUp: false,
+        levelTitle: currentSummary.levelTitle,
+        unlockedAchievements: [],
+        replayNotice: "Attempt already recorded."
+      }
     });
   }
 
@@ -2471,6 +2506,76 @@ function handleCompleteAttempt(ss, payload) {
 
   var duration = Number(payload.durationSeconds !== undefined ? payload.durationSeconds : attemptRow[colMap["duration_seconds"] - 1]);
 
+  // Read student's previous completed attempts to evaluate XP and replay policy
+  var studentNumber = auth.studentNumber;
+  var activityId = String(attemptRow[colMap["activity_id"] - 1] || "").trim();
+  var gameType = String(attemptRow[colMap["game_type"] - 1] || "").trim();
+  var attemptNum = Number(attemptRow[colMap["attempt_number"] - 1] || 1);
+
+  var previousAttempts = [];
+  var allStudentCompleted = [];
+  var existingTotalXp = 0;
+
+  for (var j = 1; j < attemptsData.length; j++) {
+    if (j === attemptRowIndex - 1) continue;
+    var rStudent = String(attemptsData[j][colMap["student_number"] - 1] || "").trim();
+    if (rStudent !== studentNumber) continue;
+
+    var rStatus = String(attemptsData[j][colMap["status"] - 1] || "").trim();
+    if (rStatus === "completed") {
+      var rActId = String(attemptsData[j][colMap["activity_id"] - 1] || "").trim();
+      var rPct = Number(attemptsData[j][colMap["percentage"] - 1] || 0);
+      var rType = String(attemptsData[j][colMap["game_type"] - 1] || "").trim();
+      var rAttId = String(attemptsData[j][colMap["attempt_id"] - 1] || "").trim();
+      var rCompletedAt = String(attemptsData[j][colMap["completed_at"] - 1] || "");
+      var rXp = colMap["xp_earned"] ? Number(attemptsData[j][colMap["xp_earned"] - 1] || 0) : 0;
+
+      existingTotalXp += rXp;
+      allStudentCompleted.push({
+        attemptId: rAttId,
+        activityId: rActId,
+        gameType: rType,
+        percentage: rPct,
+        completedAt: rCompletedAt
+      });
+
+      if (rActId === activityId) {
+        previousAttempts.push({
+          percentage: rPct,
+          attemptNumber: Number(attemptsData[j][colMap["attempt_number"] - 1] || 1)
+        });
+      }
+    }
+  }
+
+  var isFirstCompletion = previousAttempts.length === 0;
+  var previousBestPercentage = 0;
+  for (var p = 0; p < previousAttempts.length; p++) {
+    if (previousAttempts[p].percentage > previousBestPercentage) {
+      previousBestPercentage = previousAttempts[p].percentage;
+    }
+  }
+
+  var xpResult = calculateAttemptXpServer(percentage, isFirstCompletion, previousBestPercentage, attemptNum);
+  var xpEarned = xpResult.xpEarned;
+  var newTotalXp = existingTotalXp + xpEarned;
+
+  var oldLevel = getLevelFromXp(existingTotalXp).level;
+  var levelObj = getLevelFromXp(newTotalXp);
+  var newLevel = levelObj.level;
+  var isLevelUp = newLevel > oldLevel;
+
+  allStudentCompleted.push({
+    attemptId: attemptId,
+    activityId: activityId,
+    gameType: gameType,
+    percentage: percentage,
+    completedAt: payload.completedAt || now
+  });
+
+  // Evaluate achievements and persist any newly unlocked
+  var unlockedBadges = checkAndUnlockAchievements(ss, auth, allStudentCompleted, attemptId);
+
   attemptsSheet.getRange(attemptRowIndex, colMap["score"]).setValue(score);
   attemptsSheet.getRange(attemptRowIndex, colMap["total_questions"]).setValue(totalQuestions);
   attemptsSheet.getRange(attemptRowIndex, colMap["answered_questions"]).setValue(answeredQuestions);
@@ -2481,13 +2586,30 @@ function handleCompleteAttempt(ss, payload) {
   attemptsSheet.getRange(attemptRowIndex, colMap["completed_at"]).setValue(payload.completedAt || now);
   attemptsSheet.getRange(attemptRowIndex, colMap["duration_seconds"]).setValue(duration);
   attemptsSheet.getRange(attemptRowIndex, colMap["status"]).setValue("completed");
+  if (colMap["xp_earned"]) {
+    attemptsSheet.getRange(attemptRowIndex, colMap["xp_earned"]).setValue(xpEarned);
+  }
 
   return createJsonResponse({
     success: true,
     attemptId: attemptId,
     status: "completed",
     score: score,
-    percentage: percentage
+    percentage: percentage,
+    gamification: {
+      xpEarned: xpEarned,
+      baseCompletionXp: xpResult.baseCompletionXp,
+      accuracyXp: xpResult.accuracyXp,
+      perfectBonusXp: xpResult.perfectBonusXp,
+      practiceBonusXp: xpResult.practiceBonusXp,
+      totalXp: newTotalXp,
+      oldLevel: oldLevel,
+      newLevel: newLevel,
+      isLevelUp: isLevelUp,
+      levelTitle: levelObj.title,
+      unlockedAchievements: unlockedBadges,
+      replayNotice: xpResult.replayNotice
+    }
   });
 }
 
@@ -2752,6 +2874,10 @@ function setupArcadeDatabase() {
 
   // 7. CURRICULUM SHEET (Independent & Non-destructive)
   setupCurriculumSheet(ss);
+
+  // 8. ACHIEVEMENTS SHEET (Phase 5 Student Gamification - Non-destructive)
+  var achievementsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ACHIEVEMENTS);
+  setupSheetHeaders(achievementsSheet, CONFIG.ACHIEVEMENT_HEADERS, "#1e293b", "#eab308");
 
   // Populate 8 demo students ONLY IF database is brand new (0 students exist)
   var studentsData = studentsSheet.getDataRange().getValues();
@@ -3107,4 +3233,672 @@ function cleanupExpiredSessions() {
   }
 
   Logger.log("🧹 Cleaned up " + cleaned + " expired sessions.");
+}
+
+// ============================================================================
+// PHASE 5: STUDENT GAMIFICATION SYSTEM (XP, LEVELS, ACHIEVEMENTS, LEADERBOARDS)
+// ============================================================================
+
+var LEVEL_DEFINITIONS = [
+  { level: 1,  title: "Novice Explorer",      minXp: 0,    maxXp: 100 },
+  { level: 2,  title: "Curious Learner",      minXp: 100,  maxXp: 250 },
+  { level: 3,  title: "Word Scout",           minXp: 250,  maxXp: 450 },
+  { level: 4,  title: "Grammar Cadet",        minXp: 450,  maxXp: 700 },
+  { level: 5,  title: "Sentence Crafter",     minXp: 700,  maxXp: 1000 },
+  { level: 6,  title: "Arcade Challenger",    minXp: 1000, maxXp: 1400 },
+  { level: 7,  title: "Reading Detective",    minXp: 1400, maxXp: 1850 },
+  { level: 8,  title: "Vocabulary Champion",  minXp: 1850, maxXp: 2350 },
+  { level: 9,  title: "Grammar Master",       minXp: 2350, maxXp: 2900 },
+  { level: 10, title: "Unit Conqueror",       minXp: 2900, maxXp: 3500 },
+  { level: 11, title: "Linguistic Ace",       minXp: 3500, maxXp: 4150 },
+  { level: 12, title: "Language Virtuoso",    minXp: 4150, maxXp: 4850 },
+  { level: 13, title: "Grand Scholar",        minXp: 4850, maxXp: 5600 },
+  { level: 14, title: "Arcade Legend",        minXp: 5600, maxXp: 6400 },
+  { level: 15, title: "Mythic Champion",      minXp: 6400, maxXp: 10000 }
+];
+
+var ACHIEVEMENTS_CATALOG = [
+  { id: "first_game", title: "First Steps", description: "Complete your first review activity in the arcade.", icon: "Sparkles", category: "starter", target: 1 },
+  { id: "perfect_score", title: "Flawless Victory", description: "Score 100% on any activity.", icon: "Trophy", category: "starter", target: 1 },
+  { id: "perfect_streak_3", title: "Hat Trick", description: "Achieve 3 perfect 100% scores across any activities.", icon: "Zap", category: "mastery", target: 3 },
+  { id: "mastery_improver", title: "Growth Mindset", description: "Improve your score by replaying an activity.", icon: "Flame", category: "mastery", target: 1 },
+  { id: "quiz_ace", title: "Battle Master", description: "Complete 3 Quiz Battle activities.", icon: "Swords", category: "mastery", target: 3 },
+  { id: "match_master", title: "Pair Perfection", description: "Complete 3 Match It! activities.", icon: "Layers", category: "mastery", target: 3 },
+  { id: "sentence_architect", title: "Sentence Architect", description: "Complete 3 Sentence Builder activities.", icon: "AlignLeft", category: "mastery", target: 3 },
+  { id: "detective_pro", title: "Chief Inspector", description: "Complete 3 Reading Detective activities.", icon: "BookOpen", category: "mastery", target: 3 },
+  { id: "station_conductor", title: "Express Conductor", description: "Complete 2 Train Station activities.", icon: "Train", category: "mastery", target: 2 },
+  { id: "true_false_guru", title: "Truth Seeker", description: "Complete 3 True/False activities.", icon: "CheckCircle2", category: "mastery", target: 3 },
+  { id: "explorer_all_types", title: "Arcade Explorer", description: "Complete at least one activity in each of the 6 game types.", icon: "Compass", category: "explorer", target: 6 },
+  { id: "milestone_5", title: "On a Roll", description: "Complete 5 distinct curriculum activities.", icon: "Medal", category: "milestone", target: 5 },
+  { id: "milestone_10", title: "Knowledge Seeker", description: "Complete 10 distinct curriculum activities.", icon: "Award", category: "milestone", target: 10 },
+  { id: "milestone_25", title: "Halfway Hero", description: "Complete 25 distinct curriculum activities.", icon: "Crown", category: "milestone", target: 25 }
+];
+
+/**
+ * Calculates student level, title, and progress from total XP.
+ */
+function getLevelFromXp(totalXp) {
+  var safeXp = Math.max(0, Math.floor(totalXp || 0));
+  var currentTier = LEVEL_DEFINITIONS[0];
+
+  for (var i = 0; i < LEVEL_DEFINITIONS.length; i++) {
+    var tier = LEVEL_DEFINITIONS[i];
+    if (safeXp >= tier.minXp) {
+      currentTier = tier;
+    } else {
+      break;
+    }
+  }
+
+  var isMaxLevel = currentTier.level >= LEVEL_DEFINITIONS.length;
+  var currentLevelXp = safeXp - currentTier.minXp;
+  var levelSpan = currentTier.maxXp - currentTier.minXp;
+  var nextLevelXp = isMaxLevel ? 0 : Math.max(0, currentTier.maxXp - safeXp);
+  var progressPercent = isMaxLevel
+    ? 100
+    : Math.min(100, Math.max(0, Math.round((currentLevelXp / levelSpan) * 100)));
+
+  return {
+    level: currentTier.level,
+    title: currentTier.title,
+    minXp: currentTier.minXp,
+    maxXp: currentTier.maxXp,
+    currentLevelXp: currentLevelXp,
+    nextLevelXp: nextLevelXp,
+    progressPercent: progressPercent
+  };
+}
+
+/**
+ * Server authority for calculating XP earned on an attempt, applying anti-farming replay decay.
+ * Supports both positional parameters and options object.
+ */
+function calculateAttemptXpServer(percentage, isFirstCompletion, previousBestPercentage, attemptNumber) {
+  if (typeof percentage === "object" && percentage !== null) {
+    var opts = percentage;
+    percentage = opts.percentage;
+    isFirstCompletion = opts.isFirstCompletion;
+    previousBestPercentage = opts.previousBestPercentage;
+    attemptNumber = opts.attemptNumber !== undefined ? opts.attemptNumber : (opts.priorAttemptsCount !== undefined ? opts.priorAttemptsCount + 1 : 1);
+  }
+
+  var safePct = Math.max(0, Math.min(100, Math.round(percentage || 0)));
+  var attNum = Math.max(1, attemptNumber || 1);
+
+  if (isFirstCompletion) {
+    var baseCompletionXp = 20;
+    var accuracyXp = Math.round((safePct / 100) * 80);
+    var perfectBonusXp = (safePct === 100) ? 25 : 0;
+    var xpEarned = baseCompletionXp + accuracyXp + perfectBonusXp;
+    return {
+      xpEarned: xpEarned,
+      baseCompletionXp: baseCompletionXp,
+      accuracyXp: accuracyXp,
+      perfectBonusXp: perfectBonusXp,
+      practiceBonusXp: 0,
+      breakdown: {
+        baseCompletion: baseCompletionXp,
+        accuracy: accuracyXp,
+        flawlessBonus: perfectBonusXp,
+        practiceBonus: 0,
+        accuracyImprovement: 0
+      },
+      replayNotice: null
+    };
+  }
+
+  var prevBest = Math.max(0, Math.min(100, Math.round(previousBestPercentage || 0)));
+  var practiceBonusXp = (attNum === 2) ? 15 : (attNum === 3) ? 10 : 5;
+
+  if (safePct > prevBest) {
+    var improvementXp = Math.round(((safePct - prevBest) / 100) * 80);
+    var perfectBonus = (safePct === 100 && prevBest < 100) ? 25 : 0;
+    var replayEarned = improvementXp + perfectBonus + practiceBonusXp;
+    return {
+      xpEarned: replayEarned,
+      baseCompletionXp: 0,
+      accuracyXp: improvementXp,
+      perfectBonusXp: perfectBonus,
+      practiceBonusXp: practiceBonusXp,
+      breakdown: {
+        baseCompletion: 0,
+        accuracy: 0,
+        flawlessBonus: perfectBonus,
+        practiceBonus: practiceBonusXp,
+        accuracyImprovement: improvementXp
+      },
+      replayNotice: "Score improvement (+" + (safePct - prevBest) + "%)! Mastery bonus awarded."
+    };
+  }
+
+  return {
+    xpEarned: practiceBonusXp,
+    baseCompletionXp: 0,
+    accuracyXp: 0,
+    perfectBonusXp: 0,
+    practiceBonusXp: practiceBonusXp,
+    breakdown: {
+      baseCompletion: 0,
+      accuracy: 0,
+      flawlessBonus: 0,
+      practiceBonus: practiceBonusXp,
+      accuracyImprovement: 0
+    },
+    replayNotice: "Great practice! Replay practice bonus awarded."
+  };
+}
+
+/**
+ * Evaluates achievement criteria for a student and persists newly unlocked badges to Achievements sheet.
+ */
+function checkAndUnlockAchievements(ss, studentAuth, completedAttempts, triggerAttemptId) {
+  var achievementsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ACHIEVEMENTS);
+  setupSheetHeaders(achievementsSheet, CONFIG.ACHIEVEMENT_HEADERS, "#1e293b", "#eab308");
+  var colMap = getSheetColumnMap(achievementsSheet, CONFIG.ACHIEVEMENT_HEADERS);
+
+  var existingData = achievementsSheet.getDataRange().getValues();
+  var alreadyUnlockedMap = {};
+
+  for (var i = 1; i < existingData.length; i++) {
+    var rowStudent = String(existingData[i][colMap["student_number"] - 1] || "").trim();
+    if (rowStudent === studentAuth.studentNumber) {
+      var badgeId = String(existingData[i][colMap["achievement_id"] - 1] || "").trim();
+      alreadyUnlockedMap[badgeId] = String(existingData[i][colMap["unlocked_at"] - 1] || "");
+    }
+  }
+
+  var distinctActivities = {};
+  var distinctGameTypes = {};
+  var perfectCount = 0;
+  var gameTypeCounts = {};
+  var attemptsByActivity = {};
+
+  for (var j = 0; j < completedAttempts.length; j++) {
+    var att = completedAttempts[j];
+    distinctActivities[att.activityId] = true;
+    if (att.gameType) {
+      distinctGameTypes[att.gameType] = true;
+      gameTypeCounts[att.gameType] = (gameTypeCounts[att.gameType] || 0) + 1;
+    }
+    if (att.percentage === 100) {
+      perfectCount++;
+    }
+    if (!attemptsByActivity[att.activityId]) {
+      attemptsByActivity[att.activityId] = [];
+    }
+    attemptsByActivity[att.activityId].push(att.percentage);
+  }
+
+  var hasImprovement = false;
+  for (var actKey in attemptsByActivity) {
+    var scores = attemptsByActivity[actKey];
+    if (scores.length >= 2) {
+      for (var s = 1; s < scores.length; s++) {
+        if (scores[s] > scores[0]) {
+          hasImprovement = true;
+          break;
+        }
+      }
+    }
+  }
+
+  var distinctActivitiesCount = Object.keys(distinctActivities).length;
+  var distinctGameTypesCount = Object.keys(distinctGameTypes).length;
+  var newlyUnlocked = [];
+  var now = new Date().toISOString();
+
+  for (var c = 0; c < ACHIEVEMENTS_CATALOG.length; c++) {
+    var def = ACHIEVEMENTS_CATALOG[c];
+    if (alreadyUnlockedMap[def.id]) continue; // Already unlocked
+
+    var currentProgress = 0;
+    switch (def.id) {
+      case "first_game":
+        currentProgress = completedAttempts.length >= 1 ? 1 : 0;
+        break;
+      case "perfect_score":
+        currentProgress = perfectCount >= 1 ? 1 : 0;
+        break;
+      case "perfect_streak_3":
+        currentProgress = perfectCount;
+        break;
+      case "mastery_improver":
+        currentProgress = hasImprovement ? 1 : 0;
+        break;
+      case "quiz_ace":
+        currentProgress = gameTypeCounts["quiz_battle"] || 0;
+        break;
+      case "match_master":
+        currentProgress = gameTypeCounts["match_it"] || 0;
+        break;
+      case "sentence_architect":
+        currentProgress = gameTypeCounts["sentence_builder"] || 0;
+        break;
+      case "detective_pro":
+        currentProgress = gameTypeCounts["reading_detective"] || 0;
+        break;
+      case "station_conductor":
+        currentProgress = gameTypeCounts["train_station"] || 0;
+        break;
+      case "true_false_guru":
+        currentProgress = gameTypeCounts["true_false"] || 0;
+        break;
+      case "explorer_all_types":
+        currentProgress = distinctGameTypesCount;
+        break;
+      case "milestone_5":
+      case "milestone_10":
+      case "milestone_25":
+        currentProgress = distinctActivitiesCount;
+        break;
+      default:
+        currentProgress = 0;
+    }
+
+    if (currentProgress >= def.target) {
+      var unlockId = "ach_" + Utilities.getUuid();
+      var unlockRow = [
+        unlockId,
+        studentAuth.studentId || "",
+        studentAuth.studentNumber,
+        studentAuth.class || "",
+        def.id,
+        def.title,
+        now,
+        triggerAttemptId || ""
+      ];
+      achievementsSheet.appendRow(unlockRow);
+      alreadyUnlockedMap[def.id] = now;
+
+      newlyUnlocked.push({
+        id: def.id,
+        title: def.title,
+        description: def.description,
+        icon: def.icon,
+        category: def.category,
+        target: def.target,
+        progress: def.target,
+        unlockedAt: now
+      });
+    }
+  }
+
+  return newlyUnlocked;
+}
+
+/**
+ * Gathers a full gamification summary for a student from Attempts and Achievements sheets.
+ */
+function getStudentGamificationSummary(ss, studentNumber) {
+  var attemptsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ATTEMPTS);
+  var attColMap = getSheetColumnMap(attemptsSheet, CONFIG.ATTEMPT_HEADERS);
+  var attemptsData = attemptsSheet.getDataRange().getValues();
+
+  var totalXp = 0;
+  var completedAttempts = [];
+  var distinctActivities = {};
+  var perfectCount = 0;
+  var totalPercentage = 0;
+
+  for (var i = 1; i < attemptsData.length; i++) {
+    var sNum = String(attemptsData[i][attColMap["student_number"] - 1] || "").trim();
+    if (sNum !== studentNumber) continue;
+
+    var status = String(attemptsData[i][attColMap["status"] - 1] || "").trim();
+    if (status === "completed") {
+      var actId = String(attemptsData[i][attColMap["activity_id"] - 1] || "").trim();
+      var actTitle = String(attemptsData[i][attColMap["activity_title"] - 1] || "").trim();
+      var gType = String(attemptsData[i][attColMap["game_type"] - 1] || "").trim();
+      var score = Number(attemptsData[i][attColMap["score"] - 1] || 0);
+      var pct = Number(attemptsData[i][attColMap["percentage"] - 1] || 0);
+      var dur = Number(attemptsData[i][attColMap["duration_seconds"] - 1] || 0);
+      var compAt = String(attemptsData[i][attColMap["completed_at"] - 1] || "");
+      var attId = String(attemptsData[i][attColMap["attempt_id"] - 1] || "").trim();
+      var xp = attColMap["xp_earned"] ? Number(attemptsData[i][attColMap["xp_earned"] - 1] || 0) : 0;
+
+      // If historical attempt lacked stored xp, compute dynamically
+      if (xp <= 0) {
+        var base = 20;
+        var acc = Math.round((pct / 100) * 80);
+        var perf = (pct === 100) ? 25 : 0;
+        xp = base + acc + perf;
+      }
+
+      totalXp += xp;
+      distinctActivities[actId] = true;
+      if (pct === 100) perfectCount++;
+      totalPercentage += pct;
+
+      completedAttempts.push({
+        attemptId: attId,
+        activityId: actId,
+        activityTitle: actTitle,
+        gameType: gType,
+        score: score,
+        percentage: pct,
+        durationSeconds: dur,
+        xpEarned: xp,
+        completedAt: compAt
+      });
+    }
+  }
+
+  var levelObj = getLevelFromXp(totalXp);
+  var distinctCount = Object.keys(distinctActivities).length;
+  var avgScore = completedAttempts.length > 0 ? Math.round(totalPercentage / completedAttempts.length) : 0;
+
+  // Read achievements
+  var achievementsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.ACHIEVEMENTS);
+  var unlockedBadgesMap = {};
+  if (achievementsSheet) {
+    var achColMap = getSheetColumnMap(achievementsSheet, CONFIG.ACHIEVEMENT_HEADERS);
+    var achData = achievementsSheet.getDataRange().getValues();
+    for (var k = 1; k < achData.length; k++) {
+      var aStudent = String(achData[k][achColMap["student_number"] - 1] || "").trim();
+      if (aStudent === studentNumber) {
+        var bId = String(achData[k][achColMap["achievement_id"] - 1] || "").trim();
+        unlockedBadgesMap[bId] = String(achData[k][achColMap["unlocked_at"] - 1] || "");
+      }
+    }
+  }
+
+  // Build full achievement status list
+  var fullAchievementsList = [];
+  for (var b = 0; b < ACHIEVEMENTS_CATALOG.length; b++) {
+    var item = ACHIEVEMENTS_CATALOG[b];
+    var unlockedTime = unlockedBadgesMap[item.id] || null;
+    fullAchievementsList.push({
+      id: item.id,
+      title: item.title,
+      description: item.description,
+      icon: item.icon,
+      category: item.category,
+      target: item.target,
+      unlockedAt: unlockedTime
+    });
+  }
+
+  // Sort recent activity descending by completedAt
+  completedAttempts.sort(function(a, b) {
+    return new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime();
+  });
+
+  return {
+    level: levelObj.level,
+    levelTitle: levelObj.title,
+    minXp: levelObj.minXp,
+    maxXp: levelObj.maxXp,
+    currentLevelXp: levelObj.currentLevelXp,
+    nextLevelXp: levelObj.nextLevelXp,
+    progressPercent: levelObj.progressPercent,
+    totalXp: totalXp,
+    stats: {
+      activitiesCompleted: distinctCount,
+      totalAttempts: completedAttempts.length,
+      averageScore: avgScore,
+      perfectScores: perfectCount
+    },
+    achievements: fullAchievementsList,
+    recentActivity: completedAttempts.slice(0, 10)
+  };
+}
+
+/**
+ * ACTION: student_get_profile
+ * Returns the authenticated student's full gamification profile.
+ */
+function handleStudentGetProfile(ss, payload) {
+  var auth = validateSessionAndGetStudent(ss, payload.sessionToken);
+  if (!auth.success) {
+    return createJsonResponse({ success: false, error: auth.error, code: "UNAUTHORIZED" });
+  }
+
+  var summary = getStudentGamificationSummary(ss, auth.studentNumber);
+
+  var profile = {
+    studentNumber: auth.studentNumber,
+    displayName: auth.displayName,
+    firstName: auth.firstName,
+    class: auth.class,
+    grade: auth.grade,
+    level: summary.level,
+    levelTitle: summary.levelTitle,
+    minXp: summary.minXp,
+    maxXp: summary.maxXp,
+    totalXp: summary.totalXp,
+    currentLevelXp: summary.currentLevelXp,
+    nextLevelXp: summary.nextLevelXp,
+    progressPercent: summary.progressPercent,
+    stats: summary.stats,
+    achievements: summary.achievements,
+    recentActivity: summary.recentActivity
+  };
+
+  return createJsonResponse({
+    success: true,
+    profile: profile
+  });
+}
+
+/**
+ * ACTION: student_get_leaderboard
+ * Returns class leaderboard with deterministic tie-breaking and strict student privacy protection.
+ */
+function handleStudentGetLeaderboard(ss, payload) {
+  var auth = validateSessionAndGetStudent(ss, payload.sessionToken);
+  if (!auth.success) {
+    return createJsonResponse({ success: false, error: auth.error, code: "UNAUTHORIZED" });
+  }
+
+  var targetClass = String(payload.classId || auth.class || "").trim().toUpperCase();
+  var validClasses = ["7A", "7B", "8A", "8B"];
+  if (validClasses.indexOf(targetClass) === -1) {
+    targetClass = auth.class || "8A";
+  }
+
+  var studentsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.STUDENTS);
+  var stdColMap = getSheetColumnMap(studentsSheet, CONFIG.STUDENT_HEADERS);
+  var studentsData = studentsSheet.getDataRange().getValues();
+
+  var classStudents = [];
+  for (var i = 1; i < studentsData.length; i++) {
+    var sClass = String(studentsData[i][stdColMap["class"] - 1] || "").trim().toUpperCase();
+    var sActive = studentsData[i][stdColMap["is_active"] - 1];
+    if (sClass === targetClass && sActive !== false && sActive !== "false") {
+      var sNum = String(studentsData[i][stdColMap["student_number"] - 1] || "").trim();
+      var fullName = String(studentsData[i][stdColMap["full_name"] - 1] || "").trim();
+      classStudents.push({
+        studentNumber: sNum,
+        fullName: fullName
+      });
+    }
+  }
+
+  var attemptsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ATTEMPTS);
+  var attColMap = getSheetColumnMap(attemptsSheet, CONFIG.ATTEMPT_HEADERS);
+  var attemptsData = attemptsSheet.getDataRange().getValues();
+
+  var studentMetrics = {};
+  for (var s = 0; s < classStudents.length; s++) {
+    var num = classStudents[s].studentNumber;
+    studentMetrics[num] = {
+      studentNumber: num,
+      fullName: classStudents[s].fullName,
+      totalXp: 0,
+      distinctActivities: {},
+      earliestCompletedAt: null
+    };
+  }
+
+  for (var a = 1; a < attemptsData.length; a++) {
+    var aClass = String(attemptsData[a][attColMap["class"] - 1] || "").trim().toUpperCase();
+    if (aClass !== targetClass) continue;
+
+    var aStatus = String(attemptsData[a][attColMap["status"] - 1] || "").trim();
+    if (aStatus === "completed") {
+      var aNum = String(attemptsData[a][attColMap["student_number"] - 1] || "").trim();
+      var metric = studentMetrics[aNum];
+      if (metric) {
+        var actId = String(attemptsData[a][attColMap["activity_id"] - 1] || "").trim();
+        var pct = Number(attemptsData[a][attColMap["percentage"] - 1] || 0);
+        var xp = attColMap["xp_earned"] ? Number(attemptsData[a][attColMap["xp_earned"] - 1] || 0) : 0;
+        if (xp <= 0) {
+          xp = 20 + Math.round((pct / 100) * 80) + (pct === 100 ? 25 : 0);
+        }
+
+        metric.totalXp += xp;
+        metric.distinctActivities[actId] = true;
+
+        var compAtStr = String(attemptsData[a][attColMap["completed_at"] - 1] || "");
+        if (compAtStr) {
+          var compTime = new Date(compAtStr).getTime();
+          if (!metric.earliestCompletedAt || compTime < metric.earliestCompletedAt) {
+            metric.earliestCompletedAt = compTime;
+          }
+        }
+      }
+    }
+  }
+
+  var leaderboardList = [];
+  for (var mKey in studentMetrics) {
+    var m = studentMetrics[mKey];
+    var actCount = Object.keys(m.distinctActivities).length;
+    var lvlInfo = getLevelFromXp(m.totalXp);
+
+    // Format privacy-preserving display name (e.g. "Barış A.")
+    var parts = m.fullName.split(" ");
+    var displayName = parts[0];
+    if (parts.length > 1) {
+      displayName += " " + parts[parts.length - 1].charAt(0).toUpperCase() + ".";
+    }
+
+    leaderboardList.push({
+      studentNumber: m.studentNumber,
+      displayName: displayName,
+      class: targetClass,
+      level: lvlInfo.level,
+      levelTitle: lvlInfo.title,
+      totalXp: m.totalXp,
+      activitiesCompleted: actCount,
+      earliestCompletedAt: m.earliestCompletedAt || Infinity,
+      isCurrentStudent: (m.studentNumber === auth.studentNumber)
+    });
+  }
+
+  // Deterministic tie-breaking sort:
+  // 1. totalXp (descending)
+  // 2. activitiesCompleted (descending)
+  // 3. earliestCompletedAt (ascending - who achieved it first)
+  leaderboardList.sort(function(a, b) {
+    if (b.totalXp !== a.totalXp) {
+      return b.totalXp - a.totalXp;
+    }
+    if (b.activitiesCompleted !== a.activitiesCompleted) {
+      return b.activitiesCompleted - a.activitiesCompleted;
+    }
+    return a.earliestCompletedAt - b.earliestCompletedAt;
+  });
+
+  var sanitizedEntries = [];
+  var currentRank = null;
+
+  for (var r = 0; r < leaderboardList.length; r++) {
+    var item = leaderboardList[r];
+    var rankNum = r + 1;
+    if (item.isCurrentStudent) {
+      currentRank = rankNum;
+    }
+
+    sanitizedEntries.push({
+      rank: rankNum,
+      displayName: item.displayName,
+      class: item.class,
+      level: item.level,
+      levelTitle: item.levelTitle,
+      totalXp: item.totalXp,
+      activitiesCompleted: item.activitiesCompleted,
+      isCurrentStudent: item.isCurrentStudent
+    });
+  }
+
+  return createJsonResponse({
+    success: true,
+    leaderboard: {
+      classId: targetClass,
+      entries: sanitizedEntries,
+      currentStudentRank: currentRank
+    }
+  });
+}
+
+/**
+ * Safe, idempotent, read-only simulation tool for inspecting historical XP and level distribution.
+ * Does NOT write to Google Sheets unless shouldApply is explicitly passed as true.
+ */
+function dryRunBackfillStudentXP(ss, shouldApply) {
+  var attemptsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ATTEMPTS);
+  var attColMap = getSheetColumnMap(attemptsSheet, CONFIG.ATTEMPT_HEADERS);
+  var attemptsData = attemptsSheet.getDataRange().getValues();
+
+  var studentSims = {};
+  var totalAttemptsAudited = 0;
+
+  for (var i = 1; i < attemptsData.length; i++) {
+    var status = String(attemptsData[i][attColMap["status"] - 1] || "").trim();
+    if (status !== "completed") continue;
+
+    totalAttemptsAudited++;
+    var sNum = String(attemptsData[i][attColMap["student_number"] - 1] || "").trim();
+    if (!studentSims[sNum]) {
+      studentSims[sNum] = {
+        studentNumber: sNum,
+        totalXp: 0,
+        attemptsCount: 0,
+        distinctActivities: {},
+        perfectCount: 0,
+        activitiesSeen: {}
+      };
+    }
+
+    var actId = String(attemptsData[i][attColMap["activity_id"] - 1] || "").trim();
+    var pct = Number(attemptsData[i][attColMap["percentage"] - 1] || 0);
+    var seenCount = studentSims[sNum].activitiesSeen[actId] || 0;
+    var isFirst = (seenCount === 0);
+    studentSims[sNum].activitiesSeen[actId] = seenCount + 1;
+
+    var xpCalc = calculateAttemptXpServer(pct, isFirst, 0, seenCount + 1);
+    studentSims[sNum].totalXp += xpCalc.xpEarned;
+    studentSims[sNum].attemptsCount++;
+    studentSims[sNum].distinctActivities[actId] = true;
+    if (pct === 100) studentSims[sNum].perfectCount++;
+
+    if (shouldApply === true && attColMap["xp_earned"]) {
+      attemptsSheet.getRange(i + 1, attColMap["xp_earned"]).setValue(xpCalc.xpEarned);
+    }
+  }
+
+  var report = [];
+  for (var num in studentSims) {
+    var s = studentSims[num];
+    var lvl = getLevelFromXp(s.totalXp);
+    report.push({
+      studentNumber: num,
+      completedAttempts: s.attemptsCount,
+      distinctActivities: Object.keys(s.distinctActivities).length,
+      perfectScores: s.perfectCount,
+      totalXp: s.totalXp,
+      level: lvl.level,
+      levelTitle: lvl.title
+    });
+  }
+
+  Logger.log("📊 Gamification Backfill " + (shouldApply ? "APPLIED" : "DRY-RUN") + " across " + totalAttemptsAudited + " attempts.");
+  return {
+    mode: shouldApply ? "applied" : "dry_run",
+    dryRun: shouldApply !== true,
+    totalAttemptsAudited: totalAttemptsAudited,
+    totalStudentsAudited: report.length,
+    students: report
+  };
 }

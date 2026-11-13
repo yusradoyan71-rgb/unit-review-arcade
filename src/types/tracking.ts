@@ -8,6 +8,7 @@
 
 import type { GameType } from './schema';
 import type { StudentClass } from './auth';
+import type { AttemptGamificationResult } from './gamification';
 
 export type GameAttemptStatus = 'in_progress' | 'completed' | 'abandoned' | 'interrupted';
 
@@ -97,6 +98,7 @@ export interface TrackingApiResponse<T = unknown> {
   code?: string;
   attemptId?: string;
   attemptNumber?: number;
+  gamification?: AttemptGamificationResult;
   data?: T;
 }
 

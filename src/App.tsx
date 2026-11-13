@@ -2,9 +2,12 @@ import React from 'react';
 import { ArcadeProvider, useArcade } from './context/ArcadeContext';
 import { AuthProvider } from './context/AuthContext';
 import { TeacherAuthProvider, useTeacherAuth } from './context/TeacherAuthContext';
+import { GamificationProvider } from './context/GamificationContext';
 import { ClassroomHeader } from './components/common/ClassroomHeader';
 import { ToastContainer } from './components/common/ToastContainer';
 import { StudentLoginModal } from './components/auth/StudentLoginModal';
+import { StudentProfileModal } from './components/gamification/StudentProfileModal';
+import { ClassLeaderboardModal } from './components/gamification/ClassLeaderboardModal';
 import { HomeScreen } from './components/home/HomeScreen';
 import { UnitLibraryScreen } from './components/library/UnitLibraryScreen';
 import { UnitDashboardScreen } from './components/dashboard/UnitDashboardScreen';
@@ -118,6 +121,12 @@ const MainView: React.FC = () => {
       {/* Student Authentication Modal */}
       <StudentLoginModal />
 
+      {/* Student Gamification Profile Modal */}
+      <StudentProfileModal />
+
+      {/* Class Leaderboard Modal */}
+      <ClassLeaderboardModal />
+
       {/* Feedback Toast System */}
       <ToastContainer />
     </div>
@@ -129,7 +138,9 @@ export function App() {
     <AuthProvider>
       <TeacherAuthProvider>
         <ArcadeProvider>
-          <MainView />
+          <GamificationProvider>
+            <MainView />
+          </GamificationProvider>
         </ArcadeProvider>
       </TeacherAuthProvider>
     </AuthProvider>

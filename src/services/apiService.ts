@@ -10,7 +10,8 @@
  * configured Google Apps Script Web App.
  */
 
-import type { AuthApiResponse, LoginCredentials } from '../types/auth';
+import type { AuthApiResponse, LoginCredentials, StudentClass } from '../types/auth';
+import type { GamificationApiResponse } from '../types/gamification';
 
 const STORAGE_API_KEY = 'unit_review_arcade_api_url';
 
@@ -262,6 +263,54 @@ export class ApiService {
     } catch (err) {
       console.warn('Logout API notification failed:', err);
       return { success: true }; // Client-side logout should proceed regardless
+    }
+  }
+
+  /**
+   * Fetches the authenticated student's full gamification profile (XP, level, badges).
+   */
+  public static async getStudentProfile(sessionToken: string): Promise<GamificationApiResponse> {
+    const apiUrl = this.getApiUrl();
+    if (!apiUrl || !sessionToken) {
+      return { success: false, error: 'Session token or server URL missing.', code: 'UNAUTHORIZED' };
+    }
+
+    try {
+      return await this.postRequest<GamificationApiResponse>(apiUrl, {
+        action: 'student_get_profile',
+        sessionToken,
+      });
+    } catch (err) {
+      return {
+        success: false,
+        error: err instanceof Error ? err.message : 'Failed to fetch student profile.',
+      };
+    }
+  }
+
+  /**
+   * Fetches privacy-sanitized class leaderboard for Grade 7 or Grade 8 classes.
+   */
+  public static async getClassLeaderboard(
+    sessionToken: string,
+    classId?: StudentClass
+  ): Promise<GamificationApiResponse> {
+    const apiUrl = this.getApiUrl();
+    if (!apiUrl || !sessionToken) {
+      return { success: false, error: 'Session token or server URL missing.', code: 'UNAUTHORIZED' };
+    }
+
+    try {
+      return await this.postRequest<GamificationApiResponse>(apiUrl, {
+        action: 'student_get_leaderboard',
+        sessionToken,
+        classId,
+      });
+    } catch (err) {
+      return {
+        success: false,
+        error: err instanceof Error ? err.message : 'Failed to fetch class leaderboard.',
+      };
     }
   }
 

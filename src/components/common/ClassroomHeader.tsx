@@ -1,6 +1,9 @@
 import React from 'react';
 import { useArcade } from '../../context/ArcadeContext';
+import { useAuth } from '../../context/AuthContext';
+import { useGamification } from '../../context/GamificationContext';
 import { useTeacherAuth } from '../../context/TeacherAuthContext';
+import { sounds } from '../../services/soundEffects';
 import { StudentProfileBadge } from '../auth/StudentProfileBadge';
 import { 
   Gamepad2, 
@@ -12,7 +15,8 @@ import {
   Settings, 
   GraduationCap,
   ShieldCheck,
-  Layers
+  Layers,
+  Trophy
 } from 'lucide-react';
 
 export const ClassroomHeader: React.FC = () => {
@@ -32,6 +36,8 @@ export const ClassroomHeader: React.FC = () => {
   } = useArcade();
 
   const { openDashboard, isAuthenticated: isTeacherAuthenticated } = useTeacherAuth();
+  const { authMode } = useAuth();
+  const { openLeaderboardModal } = useGamification();
 
   const isHome = navigation.view === 'home';
 
@@ -122,6 +128,21 @@ export const ClassroomHeader: React.FC = () => {
         <div className="flex items-center gap-2 sm:gap-3">
           {/* Student Profile / Mode Status Badge */}
           <StudentProfileBadge />
+
+          {/* Class Leaderboard Shortcut for Logged-In Students */}
+          {authMode === 'student' && (
+            <button
+              onClick={() => {
+                sounds.playNavigate();
+                openLeaderboardModal();
+              }}
+              title="View Class Leaderboards"
+              aria-label="View Class Leaderboards"
+              className="p-2.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 hover:border-amber-400 text-amber-400 hover:text-amber-300 transition-all hover:scale-105 active:scale-95 flex items-center justify-center shadow-sm"
+            >
+              <Trophy className="w-5 h-5" />
+            </button>
+          )}
 
           {/* Audio Effects Toggle */}
           <button
