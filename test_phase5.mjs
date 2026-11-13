@@ -378,6 +378,47 @@ const xpReplay4 = vmContext.calculateAttemptXpServer({
 });
 assert(xpReplay4.xpEarned === 5, `4th replay gives 5 XP practice bonus (got ${xpReplay4.xpEarned})`);
 
+// Test 1.6: 5th attempt yields 5 XP practice bonus
+const xpReplay5 = vmContext.calculateAttemptXpServer({
+  percentage: 100,
+  score: 10,
+  maxScore: 10,
+  gameType: 'quiz-show',
+  isFirstCompletion: false,
+  previousBestPercentage: 100,
+  priorAttemptsCount: 4,
+});
+assert(xpReplay5.xpEarned === 5, `5th replay gives 5 XP practice bonus (got ${xpReplay5.xpEarned})`);
+
+// Test 1.7: 6th attempt (no improvement) yields 0 XP (Practice Cap reached!)
+const xpReplay6 = vmContext.calculateAttemptXpServer({
+  percentage: 100,
+  score: 10,
+  maxScore: 10,
+  gameType: 'quiz-show',
+  isFirstCompletion: false,
+  previousBestPercentage: 100,
+  priorAttemptsCount: 5,
+});
+assert(xpReplay6.xpEarned === 0, `6th replay without improvement yields 0 XP due to finite practice cap (got ${xpReplay6.xpEarned})`);
+assert(xpReplay6.breakdown.practiceBonus === 0, 'Practice bonus is capped at 0 XP for attempt 6+');
+assert(xpReplay6.replayNotice.includes('Practice XP cap reached'), 'Notice indicates practice cap reached');
+
+// Test 1.8: 6th attempt with score improvement (60% -> 100%) still awards accuracy delta + perfect bonus
+const xpReplay6Improved = vmContext.calculateAttemptXpServer({
+  percentage: 100,
+  score: 10,
+  maxScore: 10,
+  gameType: 'quiz-show',
+  isFirstCompletion: false,
+  previousBestPercentage: 60,
+  priorAttemptsCount: 5,
+});
+assert(xpReplay6Improved.xpEarned === 57, `6th attempt improving from 60% to 100% awards 57 XP (32 acc + 25 perf + 0 practice, got ${xpReplay6Improved.xpEarned})`);
+assert(xpReplay6Improved.breakdown.accuracyImprovement === 32, 'Earns 32 XP accuracy improvement');
+assert(xpReplay6Improved.breakdown.flawlessBonus === 25, 'Earns 25 XP flawless bonus');
+assert(xpReplay6Improved.breakdown.practiceBonus === 0, 'Practice bonus is 0 on attempt 6');
+
 console.log('✅ XP & Anti-Farming Replay Policy tests passed!\n');
 
 // ============================================================================
@@ -695,6 +736,268 @@ assert(attemptsSheet.rows.length === preDryRunAttemptRowCount, 'Dry run did NOT 
 assert(achievementsSheet.rows.length === preDryRunAchRowCount, 'Dry run did NOT modify Achievements row count');
 
 console.log('✅ Database Setup & Dry-Run Migration tests passed!\n');
+
+// ============================================================================
+// TEST SUITE 7: Fresh Student Unlocking Isolation
+// ============================================================================
+console.log('--- TEST SUITE 7: Fresh Student Unlocking Isolation ---');
+
+const s701Login = callGas({ action: 'student_login', studentNumber: '701', pin: '1234' });
+assert(s701Login.success === true, 'Student 701 login succeeded');
+const s701Token = s701Login.sessionToken;
+
+callGas({
+  action: 'game_start_attempt',
+  sessionToken: s701Token,
+  attemptId: 'att_fresh_701_1',
+  gradeId: 'grade-7',
+  unitId: 'g7-u1',
+  unitTitle: 'Life Online',
+  activityId: 'g7-u1-match',
+  activityTitle: 'Match It Online',
+  gameType: 'match_it',
+  totalQuestions: 10,
+  startedAt: new Date().toISOString(),
+});
+
+const compFresh = callGas({
+  action: 'game_complete_attempt',
+  sessionToken: s701Token,
+  attemptId: 'att_fresh_701_1',
+  score: 10,
+  totalQuestions: 10,
+  correctAnswers: 10,
+  percentage: 100,
+  durationSeconds: 45,
+});
+
+assert(compFresh.success === true, 'Fresh attempt completed successfully');
+const freshNewBadgeIds = (compFresh.gamification.unlockedAchievements || []).map(b => b.id);
+assert(freshNewBadgeIds.includes('first_game'), 'first_game is unlocked for fresh student');
+assert(freshNewBadgeIds.includes('perfect_score'), 'perfect_score is unlocked for fresh 100% attempt');
+
+// Strict check: Unrelated game-type badges must NOT be unlocked!
+const unrelatedBadges = [
+  'quiz_ace',
+  'sentence_architect',
+  'detective_pro',
+  'station_conductor',
+  'true_false_guru',
+  'explorer_all_types'
+];
+for (const bId of unrelatedBadges) {
+  assert(!freshNewBadgeIds.includes(bId), `Unrelated badge ${bId} is strictly absent from fresh Match It completion`);
+}
+assert(freshNewBadgeIds.length === 2, `Fresh student gets exactly 2 badges (got ${freshNewBadgeIds.length})`);
+
+console.log('✅ Fresh Student Unlocking Isolation tests passed!\n');
+
+// ============================================================================
+// TEST SUITE 8: Historical Attempt Student (TEST Bug Reproduction & Defense)
+// ============================================================================
+console.log('--- TEST SUITE 8: Historical Attempt Student (Bug Reproduction Defense) ---');
+
+// Student 702 logs in
+const s702Login = callGas({ action: 'student_login', studentNumber: '702', pin: '1234' });
+assert(s702Login.success === true, 'Student 702 login succeeded');
+const s702Token = s702Login.sessionToken;
+
+// Seed 24 historical completed attempts for student 702 across various game types,
+// simulating prior testing history BEFORE Phase 5 was created.
+// (Achievements sheet has ZERO rows for student 702).
+const histGameTypes = [
+  'quiz_battle', 'quiz_battle', 'quiz_battle', 'quiz_battle',
+  'sentence_builder', 'sentence_builder', 'sentence_builder',
+  'reading_detective', 'reading_detective', 'reading_detective',
+  'train_station', 'train_station',
+  'true_false', 'true_false', 'true_false',
+  'quiz_battle', 'quiz_battle', 'sentence_builder',
+  'reading_detective', 'true_false', 'quiz_battle',
+  'quiz_battle', 'sentence_builder', 'quiz_battle'
+];
+
+for (let h = 0; h < 24; h++) {
+  const attId = `att_hist_702_${h + 1}`;
+  const gType = histGameTypes[h];
+  const actId = `g7-act-hist-${h + 1}`;
+
+  callGas({
+    action: 'game_start_attempt',
+    sessionToken: s702Token,
+    attemptId: attId,
+    gradeId: 'grade-7',
+    unitId: 'g7-u1',
+    unitTitle: 'Unit',
+    activityId: actId,
+    activityTitle: `Historical Act ${h + 1}`,
+    gameType: gType,
+    totalQuestions: 10,
+    startedAt: new Date(Date.now() - (25 - h) * 3600000).toISOString(),
+  });
+
+  callGas({
+    action: 'game_complete_attempt',
+    sessionToken: s702Token,
+    attemptId: attId,
+    score: 10,
+    totalQuestions: 10,
+    correctAnswers: 10,
+    percentage: 100,
+    durationSeconds: 40,
+    completedAt: new Date(Date.now() - (25 - h) * 3600000 + 60000).toISOString(),
+  });
+}
+
+// Student 702 now completes Attempt 25: A Match It activity with 100%
+const att25Id = 'att_702_match_it_25';
+callGas({
+  action: 'game_start_attempt',
+  sessionToken: s702Token,
+  attemptId: att25Id,
+  gradeId: 'grade-7',
+  unitId: 'g7-u1',
+  unitTitle: 'Life Online',
+  activityId: 'g7-u1-match-test',
+  activityTitle: 'Match It Final Review',
+  gameType: 'match_it',
+  totalQuestions: 10,
+  startedAt: new Date().toISOString(),
+});
+
+const comp25 = callGas({
+  action: 'game_complete_attempt',
+  sessionToken: s702Token,
+  attemptId: att25Id,
+  score: 10,
+  totalQuestions: 10,
+  correctAnswers: 10,
+  percentage: 100,
+  durationSeconds: 50,
+});
+
+assert(comp25.success === true, 'Attempt 25 completed successfully');
+const newBadges25 = (comp25.gamification.unlockedAchievements || []).map(b => b.id);
+
+// CRITICAL ASSERTION: The result modal MUST NOT display unrelated badges that were already qualified historically!
+assert(!newBadges25.includes('quiz_ace'), 'Battle Master (Quiz Battle) is NOT returned as new on Match It completion');
+assert(!newBadges25.includes('sentence_architect'), 'Sentence Architect is NOT returned as new on Match It completion');
+assert(!newBadges25.includes('detective_pro'), 'Chief Inspector is NOT returned as new on Match It completion');
+assert(!newBadges25.includes('station_conductor'), 'Express Conductor is NOT returned as new on Match It completion');
+assert(!newBadges25.includes('true_false_guru'), 'Truth Seeker is NOT returned as new on Match It completion');
+assert(!newBadges25.includes('first_game'), 'First Steps is NOT returned as new (earned on attempt 1)');
+assert(!newBadges25.includes('perfect_score'), 'Flawless Victory is NOT returned as new (earned on historical attempt)');
+
+// Verify that ONLY genuinely triggered badges (explorer_all_types for 6th game type, milestone_25 for 25th distinct activity) are in result modal
+assert(newBadges25.includes('explorer_all_types'), 'Genuinely triggered: Arcade Explorer (6th game type)');
+assert(newBadges25.includes('milestone_25'), 'Genuinely triggered: Halfway Hero (25th distinct activity)');
+assert(newBadges25.length === 2, `Exactly the 2 genuinely triggered badges in result modal (got ${newBadges25.length})`);
+
+// Check Profile: Existing historical achievements MUST remain visible in the profile!
+const s702ProfileRes = callGas({ action: 'student_get_profile', sessionToken: s702Token });
+assert(s702ProfileRes.success === true, 'Profile fetched successfully for student 702');
+const unlockedInProfile = s702ProfileRes.profile.achievements.filter(a => a.unlockedAt !== null).map(a => a.id);
+assert(unlockedInProfile.includes('quiz_ace'), 'Profile shows Quiz Ace unlocked');
+assert(unlockedInProfile.includes('sentence_architect'), 'Profile shows Sentence Architect unlocked');
+assert(unlockedInProfile.includes('detective_pro'), 'Profile shows Detective Pro unlocked');
+assert(unlockedInProfile.includes('station_conductor'), 'Profile shows Station Conductor unlocked');
+assert(unlockedInProfile.includes('true_false_guru'), 'Profile shows True False Guru unlocked');
+assert(unlockedInProfile.includes('first_game'), 'Profile shows First Game unlocked');
+assert(unlockedInProfile.includes('perfect_score'), 'Profile shows Perfect Score unlocked');
+
+console.log('✅ Historical Attempt Student tests passed!\n');
+
+// ============================================================================
+// TEST SUITE 9: Duplicate Completion Idempotency
+// ============================================================================
+console.log('--- TEST SUITE 9: Duplicate Completion Idempotency ---');
+
+const preRetryAttemptsCount = attemptsSheet.rows.length;
+const preRetryAchCount = achievementsSheet.rows.length;
+
+const comp25Retry = callGas({
+  action: 'game_complete_attempt',
+  sessionToken: s702Token,
+  attemptId: att25Id,
+  score: 10,
+  totalQuestions: 10,
+  percentage: 100,
+});
+
+assert(comp25Retry.success === true, 'Retry succeeds cleanly');
+assert(comp25Retry.gamification.unlockedAchievements.length === 0, 'Retry returns 0 unlocked achievements');
+assert(comp25Retry.gamification.xpEarned === comp25.gamification.xpEarned, 'Retry returns identical original XP earned');
+assert(attemptsSheet.rows.length === preRetryAttemptsCount, 'Retry did NOT append rows to Attempts sheet');
+assert(achievementsSheet.rows.length === preRetryAchCount, 'Retry did NOT append rows to Achievements sheet');
+
+console.log('✅ Duplicate Completion Idempotency tests passed!\n');
+
+// ============================================================================
+// TEST SUITE 10: Replay Practice Cap in Real Gameplay
+// ============================================================================
+console.log('--- TEST SUITE 10: Replay Practice Cap in Real Gameplay ---');
+
+const s703Login = callGas({ action: 'student_login', studentNumber: '703', pin: '1234' });
+const s703Token = s703Login.sessionToken;
+
+const repActId = 'g7-u2-practice-cap-test';
+const expectedXpByAttempt = [
+  125, // Att 1: 20 base + 80 acc + 25 perf
+  15,  // Att 2: 15 practice bonus
+  10,  // Att 3: 10 practice bonus
+  5,   // Att 4: 5 practice bonus
+  5,   // Att 5: 5 practice bonus
+  0    // Att 6+: 0 XP (Practice cap reached!)
+];
+
+for (let a = 1; a <= 6; a++) {
+  const aId = `att_703_cap_${a}`;
+  callGas({
+    action: 'game_start_attempt',
+    sessionToken: s703Token,
+    attemptId: aId,
+    gradeId: 'grade-7',
+    unitId: 'g7-u2',
+    unitTitle: 'Danger',
+    activityId: repActId,
+    activityTitle: 'Practice Cap Activity',
+    gameType: 'true_false',
+    totalQuestions: 10,
+    startedAt: new Date().toISOString(),
+  });
+
+  const comp = callGas({
+    action: 'game_complete_attempt',
+    sessionToken: s703Token,
+    attemptId: aId,
+    score: 10,
+    totalQuestions: 10,
+    correctAnswers: 10,
+    percentage: 100,
+    durationSeconds: 30,
+  });
+
+  assert(comp.gamification.xpEarned === expectedXpByAttempt[a - 1], `Attempt ${a} earned expected ${expectedXpByAttempt[a - 1]} XP (got ${comp.gamification.xpEarned})`);
+  if (a >= 6) {
+    assert(comp.gamification.replayNotice.includes('Practice XP cap reached'), 'Attempt 6 informs that practice cap is reached');
+  }
+}
+
+console.log('✅ Replay Practice Cap in Real Gameplay tests passed!\n');
+
+// ============================================================================
+// TEST SUITE 11: Achievements Audit & Dry-Run Repair Tool
+// ============================================================================
+console.log('--- TEST SUITE 11: Achievements Audit & Dry-Run Repair Tool ---');
+
+const preRepairAchRowCount = achievementsSheet.rows.length;
+const repairAudit = vmContext.dryRunRepairStudentAchievements(mockSpreadsheet);
+
+assert(repairAudit.dryRun === true, 'dryRunRepairStudentAchievements defaults to dryRun === true');
+assert(typeof repairAudit.totalDiscrepancies === 'number', 'Reports totalDiscrepancies number');
+assert(Array.isArray(repairAudit.auditReport), 'Reports auditReport array');
+assert(achievementsSheet.rows.length === preRepairAchRowCount, 'Dry run did NOT mutate Achievements sheet rows');
+
+console.log('✅ Achievements Audit & Dry-Run Repair Tool tests passed!\n');
 
 // ============================================================================
 // Summary

@@ -2565,16 +2565,20 @@ function handleCompleteAttempt(ss, payload) {
   var newLevel = levelObj.level;
   var isLevelUp = newLevel > oldLevel;
 
-  allStudentCompleted.push({
+  var priorCompletedAttempts = allStudentCompleted.slice();
+
+  var currentAttemptObj = {
     attemptId: attemptId,
     activityId: activityId,
     gameType: gameType,
     percentage: percentage,
     completedAt: payload.completedAt || now
-  });
+  };
+
+  allStudentCompleted.push(currentAttemptObj);
 
   // Evaluate achievements and persist any newly unlocked
-  var unlockedBadges = checkAndUnlockAchievements(ss, auth, allStudentCompleted, attemptId);
+  var unlockedBadges = checkAndUnlockAchievements(ss, auth, priorCompletedAttempts, currentAttemptObj);
 
   attemptsSheet.getRange(attemptRowIndex, colMap["score"]).setValue(score);
   attemptsSheet.getRange(attemptRowIndex, colMap["total_questions"]).setValue(totalQuestions);
@@ -3348,7 +3352,24 @@ function calculateAttemptXpServer(percentage, isFirstCompletion, previousBestPer
   }
 
   var prevBest = Math.max(0, Math.min(100, Math.round(previousBestPercentage || 0)));
-  var practiceBonusXp = (attNum === 2) ? 15 : (attNum === 3) ? 10 : 5;
+
+  // Replay Practice Bonus Policy:
+  // Attempt 1: First play (base + accuracy + perfect = up to 125 XP)
+  // Attempt 2: 15 XP
+  // Attempt 3: 10 XP
+  // Attempt 4: 5 XP
+  // Attempt 5: 5 XP
+  // Attempt 6+: 0 XP (Hard cap on practice farming for the same activity)
+  var practiceBonusXp = 0;
+  if (attNum === 2) {
+    practiceBonusXp = 15;
+  } else if (attNum === 3) {
+    practiceBonusXp = 10;
+  } else if (attNum === 4 || attNum === 5) {
+    practiceBonusXp = 5;
+  } else {
+    practiceBonusXp = 0; // Capped! Max 35 XP practice bonus per activity lifetime
+  }
 
   if (safePct > prevBest) {
     var improvementXp = Math.round(((safePct - prevBest) / 100) * 80);
@@ -3384,17 +3405,184 @@ function calculateAttemptXpServer(percentage, isFirstCompletion, previousBestPer
       practiceBonus: practiceBonusXp,
       accuracyImprovement: 0
     },
-    replayNotice: "Great practice! Replay practice bonus awarded."
+    replayNotice: (attNum >= 6)
+      ? "Practice XP cap reached for this activity (max 5 attempts). Play other activities to earn more XP!"
+      : "Great practice! Replay practice bonus awarded."
   };
 }
 
 /**
- * Evaluates achievement criteria for a student and persists newly unlocked badges to Achievements sheet.
+ * Pure evaluation function checking whether an achievements catalog badge criteria
+ * is met by a given list of completed attempts.
  */
-function checkAndUnlockAchievements(ss, studentAuth, completedAttempts, triggerAttemptId) {
+function evaluateBadgeEligibility(badgeDef, attemptsList) {
+  if (!attemptsList || !Array.isArray(attemptsList) || attemptsList.length === 0) {
+    return false;
+  }
+
+  var distinctActivities = {};
+  var distinctGameTypes = {};
+  var perfectCount = 0;
+  var gameTypeCounts = {};
+  var attemptsByActivity = {};
+
+  var validGameTypes = {
+    "quiz_battle": true,
+    "match_it": true,
+    "sentence_builder": true,
+    "true_false": true,
+    "reading_detective": true,
+    "train_station": true
+  };
+
+  for (var j = 0; j < attemptsList.length; j++) {
+    var att = attemptsList[j];
+    var actId = String(att.activityId || "").trim();
+    if (actId) {
+      distinctActivities[actId] = true;
+      if (!attemptsByActivity[actId]) {
+        attemptsByActivity[actId] = [];
+      }
+      attemptsByActivity[actId].push(Number(att.percentage) || 0);
+    }
+
+    var gType = String(att.gameType || "").trim();
+    if (gType && validGameTypes[gType]) {
+      distinctGameTypes[gType] = true;
+      gameTypeCounts[gType] = (gameTypeCounts[gType] || 0) + 1;
+    }
+
+    if (Number(att.percentage) === 100) {
+      perfectCount++;
+    }
+  }
+
+  var hasImprovement = false;
+  for (var actKey in attemptsByActivity) {
+    var scores = attemptsByActivity[actKey];
+    if (scores.length >= 2) {
+      var runningBest = scores[0];
+      for (var s = 1; s < scores.length; s++) {
+        if (scores[s] > runningBest) {
+          hasImprovement = true;
+          break;
+        }
+        if (scores[s] > runningBest) {
+          runningBest = scores[s];
+        }
+      }
+      if (hasImprovement) break;
+    }
+  }
+
+  var distinctActivitiesCount = Object.keys(distinctActivities).length;
+  var distinctGameTypesCount = Object.keys(distinctGameTypes).length;
+  var currentProgress = 0;
+
+  switch (badgeDef.id) {
+    case "first_game":
+      currentProgress = attemptsList.length >= 1 ? 1 : 0;
+      break;
+    case "perfect_score":
+      currentProgress = perfectCount >= 1 ? 1 : 0;
+      break;
+    case "perfect_streak_3":
+      currentProgress = perfectCount;
+      break;
+    case "mastery_improver":
+      currentProgress = hasImprovement ? 1 : 0;
+      break;
+    case "quiz_ace":
+      currentProgress = gameTypeCounts["quiz_battle"] || 0;
+      break;
+    case "match_master":
+      currentProgress = gameTypeCounts["match_it"] || 0;
+      break;
+    case "sentence_architect":
+      currentProgress = gameTypeCounts["sentence_builder"] || 0;
+      break;
+    case "detective_pro":
+      currentProgress = gameTypeCounts["reading_detective"] || 0;
+      break;
+    case "station_conductor":
+      currentProgress = gameTypeCounts["train_station"] || 0;
+      break;
+    case "true_false_guru":
+      currentProgress = gameTypeCounts["true_false"] || 0;
+      break;
+    case "explorer_all_types":
+      currentProgress = distinctGameTypesCount;
+      break;
+    case "milestone_5":
+    case "milestone_10":
+    case "milestone_25":
+      currentProgress = distinctActivitiesCount;
+      break;
+    default:
+      currentProgress = 0;
+  }
+
+  return currentProgress >= badgeDef.target;
+}
+
+/**
+ * Finds the specific historical attempt that first achieved a badge's criteria.
+ */
+function findTriggeringAttemptId(badgeDef, attemptsList) {
+  if (!attemptsList || attemptsList.length === 0) return "";
+  for (var i = 1; i <= attemptsList.length; i++) {
+    var sub = attemptsList.slice(0, i);
+    if (evaluateBadgeEligibility(badgeDef, sub)) {
+      return attemptsList[i - 1].attemptId || "";
+    }
+  }
+  return attemptsList[attemptsList.length - 1].attemptId || "";
+}
+
+/**
+ * Finds the timestamp of the specific historical attempt that first achieved a badge's criteria.
+ */
+function findTriggeringTimestamp(badgeDef, attemptsList, fallbackNow) {
+  if (!attemptsList || attemptsList.length === 0) return fallbackNow;
+  for (var i = 1; i <= attemptsList.length; i++) {
+    var sub = attemptsList.slice(0, i);
+    if (evaluateBadgeEligibility(badgeDef, sub)) {
+      return attemptsList[i - 1].completedAt || fallbackNow;
+    }
+  }
+  return attemptsList[attemptsList.length - 1].completedAt || fallbackNow;
+}
+
+/**
+ * Evaluates achievement criteria for a student and persists newly unlocked badges to Achievements sheet.
+ * Differentiates between badges already earned in historical attempts vs. badges actively unlocked
+ * by the current attempt, ensuring the result modal receives ONLY newly triggered achievements.
+ */
+function checkAndUnlockAchievements(ss, studentAuth, priorCompletedAttempts, currentAttemptOrTriggerId) {
   var achievementsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ACHIEVEMENTS);
   setupSheetHeaders(achievementsSheet, CONFIG.ACHIEVEMENT_HEADERS, "#1e293b", "#eab308");
   var colMap = getSheetColumnMap(achievementsSheet, CONFIG.ACHIEVEMENT_HEADERS);
+
+  var priorAttempts = [];
+  var currentAttempt = null;
+
+  if (typeof currentAttemptOrTriggerId === "object" && currentAttemptOrTriggerId !== null) {
+    priorAttempts = Array.isArray(priorCompletedAttempts) ? priorCompletedAttempts : [];
+    currentAttempt = currentAttemptOrTriggerId;
+  } else if (Array.isArray(priorCompletedAttempts)) {
+    var triggerId = String(currentAttemptOrTriggerId || "");
+    var all = priorCompletedAttempts;
+    if (triggerId) {
+      priorAttempts = all.filter(function(a) { return a.attemptId !== triggerId; });
+      var matched = all.filter(function(a) { return a.attemptId === triggerId; });
+      currentAttempt = matched.length > 0 ? matched[0] : null;
+    } else {
+      priorAttempts = all.slice(0, -1);
+      currentAttempt = all[all.length - 1] || null;
+    }
+  }
+
+  var allAttempts = (priorAttempts || []).concat(currentAttempt ? [currentAttempt] : []);
 
   var existingData = achievementsSheet.getDataRange().getValues();
   var alreadyUnlockedMap = {};
@@ -3407,95 +3595,29 @@ function checkAndUnlockAchievements(ss, studentAuth, completedAttempts, triggerA
     }
   }
 
-  var distinctActivities = {};
-  var distinctGameTypes = {};
-  var perfectCount = 0;
-  var gameTypeCounts = {};
-  var attemptsByActivity = {};
-
-  for (var j = 0; j < completedAttempts.length; j++) {
-    var att = completedAttempts[j];
-    distinctActivities[att.activityId] = true;
-    if (att.gameType) {
-      distinctGameTypes[att.gameType] = true;
-      gameTypeCounts[att.gameType] = (gameTypeCounts[att.gameType] || 0) + 1;
-    }
-    if (att.percentage === 100) {
-      perfectCount++;
-    }
-    if (!attemptsByActivity[att.activityId]) {
-      attemptsByActivity[att.activityId] = [];
-    }
-    attemptsByActivity[att.activityId].push(att.percentage);
-  }
-
-  var hasImprovement = false;
-  for (var actKey in attemptsByActivity) {
-    var scores = attemptsByActivity[actKey];
-    if (scores.length >= 2) {
-      for (var s = 1; s < scores.length; s++) {
-        if (scores[s] > scores[0]) {
-          hasImprovement = true;
-          break;
-        }
-      }
-    }
-  }
-
-  var distinctActivitiesCount = Object.keys(distinctActivities).length;
-  var distinctGameTypesCount = Object.keys(distinctGameTypes).length;
   var newlyUnlocked = [];
+  var rowsToAppend = [];
   var now = new Date().toISOString();
 
   for (var c = 0; c < ACHIEVEMENTS_CATALOG.length; c++) {
     var def = ACHIEVEMENTS_CATALOG[c];
-    if (alreadyUnlockedMap[def.id]) continue; // Already unlocked
+    if (alreadyUnlockedMap[def.id]) continue; // Already persisted in sheet
 
-    var currentProgress = 0;
-    switch (def.id) {
-      case "first_game":
-        currentProgress = completedAttempts.length >= 1 ? 1 : 0;
-        break;
-      case "perfect_score":
-        currentProgress = perfectCount >= 1 ? 1 : 0;
-        break;
-      case "perfect_streak_3":
-        currentProgress = perfectCount;
-        break;
-      case "mastery_improver":
-        currentProgress = hasImprovement ? 1 : 0;
-        break;
-      case "quiz_ace":
-        currentProgress = gameTypeCounts["quiz_battle"] || 0;
-        break;
-      case "match_master":
-        currentProgress = gameTypeCounts["match_it"] || 0;
-        break;
-      case "sentence_architect":
-        currentProgress = gameTypeCounts["sentence_builder"] || 0;
-        break;
-      case "detective_pro":
-        currentProgress = gameTypeCounts["reading_detective"] || 0;
-        break;
-      case "station_conductor":
-        currentProgress = gameTypeCounts["train_station"] || 0;
-        break;
-      case "true_false_guru":
-        currentProgress = gameTypeCounts["true_false"] || 0;
-        break;
-      case "explorer_all_types":
-        currentProgress = distinctGameTypesCount;
-        break;
-      case "milestone_5":
-      case "milestone_10":
-      case "milestone_25":
-        currentProgress = distinctActivitiesCount;
-        break;
-      default:
-        currentProgress = 0;
-    }
+    var wasEligibleBefore = evaluateBadgeEligibility(def, priorAttempts);
+    var isEligibleNow = evaluateBadgeEligibility(def, allAttempts);
 
-    if (currentProgress >= def.target) {
+    if (isEligibleNow) {
+      // An achievement is newly unlocked ONLY if this current attempt crossed the threshold
+      var isNewlyTriggeredByThisAttempt = !wasEligibleBefore && (currentAttempt !== null && currentAttempt !== undefined);
+
+      var triggerAttId = isNewlyTriggeredByThisAttempt
+        ? (currentAttempt.attemptId || "")
+        : findTriggeringAttemptId(def, priorAttempts);
+
+      var unlockTimestamp = isNewlyTriggeredByThisAttempt
+        ? now
+        : findTriggeringTimestamp(def, priorAttempts, now);
+
       var unlockId = "ach_" + Utilities.getUuid();
       var unlockRow = [
         unlockId,
@@ -3504,23 +3626,32 @@ function checkAndUnlockAchievements(ss, studentAuth, completedAttempts, triggerA
         studentAuth.class || "",
         def.id,
         def.title,
-        now,
-        triggerAttemptId || ""
+        unlockTimestamp,
+        triggerAttId
       ];
-      achievementsSheet.appendRow(unlockRow);
-      alreadyUnlockedMap[def.id] = now;
+      rowsToAppend.push(unlockRow);
+      alreadyUnlockedMap[def.id] = unlockTimestamp;
 
-      newlyUnlocked.push({
-        id: def.id,
-        title: def.title,
-        description: def.description,
-        icon: def.icon,
-        category: def.category,
-        target: def.target,
-        progress: def.target,
-        unlockedAt: now
-      });
+      // Only add to newlyUnlocked if actively unlocked by THIS current attempt!
+      if (isNewlyTriggeredByThisAttempt) {
+        newlyUnlocked.push({
+          id: def.id,
+          title: def.title,
+          description: def.description,
+          icon: def.icon,
+          category: def.category,
+          target: def.target,
+          progress: def.target,
+          unlockedAt: now
+        });
+      }
     }
+  }
+
+  if (rowsToAppend.length > 0) {
+    var lastCol = achievementsSheet.getLastColumn();
+    var startRow = achievementsSheet.getLastRow() + 1;
+    achievementsSheet.getRange(startRow, 1, rowsToAppend.length, lastCol).setValues(rowsToAppend);
   }
 
   return newlyUnlocked;
@@ -3900,5 +4031,135 @@ function dryRunBackfillStudentXP(ss, shouldApply) {
     totalAttemptsAudited: totalAttemptsAudited,
     totalStudentsAudited: report.length,
     students: report
+  };
+}
+
+/**
+ * Safe, read-only audit and repair tool to diagnose and align student achievement records.
+ * Compares persisted Achievements records against true historical attempt milestones.
+ * Does NOT modify Google Sheets data unless shouldApply is explicitly passed as true.
+ */
+function dryRunRepairStudentAchievements(ss, shouldApply) {
+  var attemptsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ATTEMPTS);
+  var attColMap = getSheetColumnMap(attemptsSheet, CONFIG.ATTEMPT_HEADERS);
+  var attemptsData = attemptsSheet.getDataRange().getValues();
+
+  var achievementsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ACHIEVEMENTS);
+  var achColMap = getSheetColumnMap(achievementsSheet, CONFIG.ACHIEVEMENT_HEADERS);
+  var achData = achievementsSheet.getDataRange().getValues();
+
+  var attemptsByStudent = {};
+  for (var i = 1; i < attemptsData.length; i++) {
+    var status = String(attemptsData[i][attColMap["status"] - 1] || "").trim();
+    if (status !== "completed") continue;
+    var sNum = String(attemptsData[i][attColMap["student_number"] - 1] || "").trim();
+    if (!attemptsByStudent[sNum]) attemptsByStudent[sNum] = [];
+    attemptsByStudent[sNum].push({
+      attemptId: String(attemptsData[i][attColMap["attempt_id"] - 1] || "").trim(),
+      activityId: String(attemptsData[i][attColMap["activity_id"] - 1] || "").trim(),
+      gameType: String(attemptsData[i][attColMap["game_type"] - 1] || "").trim(),
+      percentage: Number(attemptsData[i][attColMap["percentage"] - 1] || 0),
+      completedAt: String(attemptsData[i][attColMap["completed_at"] - 1] || ""),
+    });
+  }
+
+  // Sort each student's attempts by completedAt ascending
+  for (var s in attemptsByStudent) {
+    attemptsByStudent[s].sort(function(a, b) {
+      return new Date(a.completedAt || 0).getTime() - new Date(b.completedAt || 0).getTime();
+    });
+  }
+
+  var existingBadgesByStudent = {};
+  for (var j = 1; j < achData.length; j++) {
+    var stNum = String(achData[j][achColMap["student_number"] - 1] || "").trim();
+    var bId = String(achData[j][achColMap["achievement_id"] - 1] || "").trim();
+    var trId = String(achData[j][achColMap["trigger_attempt_id"] - 1] || "").trim();
+    var uTime = String(achData[j][achColMap["unlocked_at"] - 1] || "");
+    if (!existingBadgesByStudent[stNum]) existingBadgesByStudent[stNum] = {};
+    if (!existingBadgesByStudent[stNum][bId]) {
+      existingBadgesByStudent[stNum][bId] = [];
+    }
+    existingBadgesByStudent[stNum][bId].push({
+      rowIndex: j + 1,
+      triggerAttemptId: trId,
+      unlockedAt: uTime
+    });
+  }
+
+  var auditReport = [];
+  var totalDiscrepancies = 0;
+
+  for (var studentNumber in attemptsByStudent) {
+    var studentAttempts = attemptsByStudent[studentNumber];
+    var studentBadges = existingBadgesByStudent[studentNumber] || {};
+
+    for (var c = 0; c < ACHIEVEMENTS_CATALOG.length; c++) {
+      var def = ACHIEVEMENTS_CATALOG[c];
+      var isEligible = evaluateBadgeEligibility(def, studentAttempts);
+      var records = studentBadges[def.id] || [];
+
+      if (!isEligible && records.length > 0) {
+        totalDiscrepancies++;
+        auditReport.push({
+          studentNumber: studentNumber,
+          badgeId: def.id,
+          issue: "INELIGIBLE_RECORD_EXISTS",
+          details: "Record exists in Achievements but student does not meet criteria.",
+          recordsCount: records.length
+        });
+      } else if (isEligible) {
+        var trueTriggerId = findTriggeringAttemptId(def, studentAttempts);
+        var trueTimestamp = findTriggeringTimestamp(def, studentAttempts, new Date().toISOString());
+
+        if (records.length === 0) {
+          totalDiscrepancies++;
+          auditReport.push({
+            studentNumber: studentNumber,
+            badgeId: def.id,
+            issue: "MISSING_ACHIEVEMENT_RECORD",
+            details: "Student met criteria but record is missing in Achievements sheet.",
+            expectedTriggerAttemptId: trueTriggerId,
+            expectedTimestamp: trueTimestamp
+          });
+          if (shouldApply === true) {
+            var newId = "ach_" + Utilities.getUuid();
+            achievementsSheet.appendRow([
+              newId, "", studentNumber, "", def.id, def.title, trueTimestamp, trueTriggerId
+            ]);
+          }
+        } else if (records.length > 1) {
+          totalDiscrepancies++;
+          auditReport.push({
+            studentNumber: studentNumber,
+            badgeId: def.id,
+            issue: "DUPLICATE_BADGE_RECORDS",
+            details: "Found " + records.length + " duplicate rows for badge in Achievements sheet.",
+            records: records
+          });
+        } else if (records[0].triggerAttemptId !== trueTriggerId) {
+          totalDiscrepancies++;
+          auditReport.push({
+            studentNumber: studentNumber,
+            badgeId: def.id,
+            issue: "MISMATCHED_TRIGGER_ATTEMPT",
+            details: "Recorded triggerAttemptId differs from true historical trigger.",
+            recordedTriggerAttemptId: records[0].triggerAttemptId,
+            expectedTriggerAttemptId: trueTriggerId
+          });
+          if (shouldApply === true) {
+            achievementsSheet.getRange(records[0].rowIndex, achColMap["trigger_attempt_id"]).setValue(trueTriggerId);
+            achievementsSheet.getRange(records[0].rowIndex, achColMap["unlocked_at"]).setValue(trueTimestamp);
+          }
+        }
+      }
+    }
+  }
+
+  Logger.log("🔍 Achievements Audit Complete. Mode: " + (shouldApply ? "APPLIED" : "DRY-RUN") + ". Discrepancies found: " + totalDiscrepancies);
+  return {
+    dryRun: shouldApply !== true,
+    totalDiscrepancies: totalDiscrepancies,
+    auditReport: auditReport
   };
 }

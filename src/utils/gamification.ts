@@ -241,8 +241,21 @@ export function calculateAttemptXp(params: CalculateAttemptXpParams): {
   // 2. REPLAY of an existing completed activity
   const previousBest = Math.max(0, Math.min(100, Math.round(params.previousBestPercentage || 0)));
 
-  // Practice bonus decays based on replay attempt number to prevent bot spam
-  const practiceBonusXp = attemptNumber === 2 ? 15 : attemptNumber === 3 ? 10 : 5;
+  // Practice bonus decays based on replay attempt number:
+  // Attempt 2: 15 XP
+  // Attempt 3: 10 XP
+  // Attempt 4-5: 5 XP
+  // Attempt 6+: 0 XP (Hard cap on practice farming for the same activity)
+  let practiceBonusXp = 0;
+  if (attemptNumber === 2) {
+    practiceBonusXp = 15;
+  } else if (attemptNumber === 3) {
+    practiceBonusXp = 10;
+  } else if (attemptNumber === 4 || attemptNumber === 5) {
+    practiceBonusXp = 5;
+  } else {
+    practiceBonusXp = 0;
+  }
 
   if (percentage > previousBest) {
     // Mastery Improvement! Award the difference in accuracy XP + first-time perfect bonus if achieved
@@ -260,14 +273,16 @@ export function calculateAttemptXp(params: CalculateAttemptXpParams): {
     };
   }
 
-  // No score improvement: award standard practice bonus
+  // No score improvement: award standard practice bonus or inform cap reached
   return {
     xpEarned: practiceBonusXp,
     baseCompletionXp: 0,
     accuracyXp: 0,
     perfectBonusXp: 0,
     practiceBonusXp,
-    replayNotice: 'Great practice! Replay practice bonus awarded.',
+    replayNotice: attemptNumber >= 6
+      ? 'Practice XP cap reached for this activity (max 5 attempts). Play other activities to earn more XP!'
+      : 'Great practice! Replay practice bonus awarded.',
   };
 }
 
@@ -283,112 +298,143 @@ export interface AttemptSummaryForAchievements {
   completedAt: string;
 }
 
-export function evaluateAchievements(
-  completedAttempts: AttemptSummaryForAchievements[],
-  alreadyUnlockedIds: Set<string>
-): {
-  allAchievements: Achievement[];
-  newlyUnlocked: Achievement[];
-} {
+export function evaluateBadgeEligibility(
+  badgeDef: Achievement,
+  attemptsList: AttemptSummaryForAchievements[]
+): boolean {
+  if (!attemptsList || attemptsList.length === 0) return false;
+
   const distinctActivities = new Set<string>();
   const distinctGameTypes = new Set<GameType>();
   let perfectCount = 0;
   const gameTypeCounts: Record<string, number> = {};
   const attemptsByActivity: Record<string, number[]> = {};
 
-  for (const att of completedAttempts) {
-    distinctActivities.add(att.activityId);
-    if (att.gameType) {
+  const validGameTypes: Set<GameType> = new Set([
+    'quiz_battle',
+    'match_it',
+    'sentence_builder',
+    'true_false',
+    'reading_detective',
+    'train_station',
+  ]);
+
+  for (const att of attemptsList) {
+    if (att.activityId) {
+      distinctActivities.add(att.activityId);
+      if (!attemptsByActivity[att.activityId]) {
+        attemptsByActivity[att.activityId] = [];
+      }
+      attemptsByActivity[att.activityId].push(att.percentage || 0);
+    }
+
+    if (att.gameType && validGameTypes.has(att.gameType)) {
       distinctGameTypes.add(att.gameType);
       gameTypeCounts[att.gameType] = (gameTypeCounts[att.gameType] || 0) + 1;
     }
+
     if (att.percentage === 100) {
       perfectCount++;
     }
-    if (!attemptsByActivity[att.activityId]) {
-      attemptsByActivity[att.activityId] = [];
-    }
-    attemptsByActivity[att.activityId].push(att.percentage);
   }
 
-  // Check if student improved on any activity
   let hasImprovement = false;
   for (const activityId in attemptsByActivity) {
     const scores = attemptsByActivity[activityId];
     if (scores.length >= 2) {
+      let runningBest = scores[0];
       for (let i = 1; i < scores.length; i++) {
-        if (scores[i] > scores[0]) {
+        if (scores[i] > runningBest) {
           hasImprovement = true;
           break;
         }
+        if (scores[i] > runningBest) {
+          runningBest = scores[i];
+        }
       }
+      if (hasImprovement) break;
     }
   }
 
+  let currentProgress = 0;
+  switch (badgeDef.id) {
+    case 'first_game':
+      currentProgress = attemptsList.length >= 1 ? 1 : 0;
+      break;
+    case 'perfect_score':
+      currentProgress = perfectCount >= 1 ? 1 : 0;
+      break;
+    case 'perfect_streak_3':
+      currentProgress = perfectCount;
+      break;
+    case 'mastery_improver':
+      currentProgress = hasImprovement ? 1 : 0;
+      break;
+    case 'quiz_ace':
+      currentProgress = gameTypeCounts['quiz_battle'] || 0;
+      break;
+    case 'match_master':
+      currentProgress = gameTypeCounts['match_it'] || 0;
+      break;
+    case 'sentence_architect':
+      currentProgress = gameTypeCounts['sentence_builder'] || 0;
+      break;
+    case 'detective_pro':
+      currentProgress = gameTypeCounts['reading_detective'] || 0;
+      break;
+    case 'station_conductor':
+      currentProgress = gameTypeCounts['train_station'] || 0;
+      break;
+    case 'true_false_guru':
+      currentProgress = gameTypeCounts['true_false'] || 0;
+      break;
+    case 'explorer_all_types':
+      currentProgress = distinctGameTypes.size;
+      break;
+    case 'milestone_5':
+    case 'milestone_10':
+    case 'milestone_25':
+      currentProgress = distinctActivities.size;
+      break;
+    default:
+      currentProgress = 0;
+  }
+
+  return currentProgress >= badgeDef.target;
+}
+
+export function evaluateAchievements(
+  completedAttempts: AttemptSummaryForAchievements[],
+  alreadyUnlockedIds: Set<string>,
+  priorAttempts?: AttemptSummaryForAchievements[]
+): {
+  allAchievements: Achievement[];
+  newlyUnlocked: Achievement[];
+} {
   const allAchievements: Achievement[] = [];
   const newlyUnlocked: Achievement[] = [];
 
   for (const def of ACHIEVEMENTS_CATALOG) {
-    let currentProgress = 0;
-    let isUnlocked = alreadyUnlockedIds.has(def.id);
+    const wasEligibleBefore = priorAttempts ? evaluateBadgeEligibility(def, priorAttempts) : false;
+    const isEligibleNow = evaluateBadgeEligibility(def, completedAttempts);
+    const isAlreadyPersisted = alreadyUnlockedIds.has(def.id);
 
-    switch (def.id) {
-      case 'first_game':
-        currentProgress = completedAttempts.length >= 1 ? 1 : 0;
-        break;
-      case 'perfect_score':
-        currentProgress = perfectCount >= 1 ? 1 : 0;
-        break;
-      case 'perfect_streak_3':
-        currentProgress = Math.min(def.target, perfectCount);
-        break;
-      case 'mastery_improver':
-        currentProgress = hasImprovement ? 1 : 0;
-        break;
-      case 'quiz_ace':
-        currentProgress = Math.min(def.target, gameTypeCounts['quiz_battle'] || 0);
-        break;
-      case 'match_master':
-        currentProgress = Math.min(def.target, gameTypeCounts['match_it'] || 0);
-        break;
-      case 'sentence_architect':
-        currentProgress = Math.min(def.target, gameTypeCounts['sentence_builder'] || 0);
-        break;
-      case 'detective_pro':
-        currentProgress = Math.min(def.target, gameTypeCounts['reading_detective'] || 0);
-        break;
-      case 'station_conductor':
-        currentProgress = Math.min(def.target, gameTypeCounts['train_station'] || 0);
-        break;
-      case 'true_false_guru':
-        currentProgress = Math.min(def.target, gameTypeCounts['true_false'] || 0);
-        break;
-      case 'explorer_all_types':
-        currentProgress = Math.min(def.target, distinctGameTypes.size);
-        break;
-      case 'milestone_5':
-      case 'milestone_10':
-      case 'milestone_25':
-        currentProgress = Math.min(def.target, distinctActivities.size);
-        break;
-      default:
-        currentProgress = 0;
-    }
-
-    if (!isUnlocked && currentProgress >= def.target) {
-      isUnlocked = true;
+    if (isEligibleNow) {
+      const isNewlyTriggered = !isAlreadyPersisted && !wasEligibleBefore;
       const unlockedItem: Achievement = {
         ...def,
-        progress: currentProgress,
+        progress: def.target,
         unlockedAt: new Date().toISOString(),
       };
       allAchievements.push(unlockedItem);
-      newlyUnlocked.push(unlockedItem);
+      if (isNewlyTriggered) {
+        newlyUnlocked.push(unlockedItem);
+      }
     } else {
       allAchievements.push({
         ...def,
-        progress: currentProgress,
-        unlockedAt: isUnlocked ? new Date().toISOString() : null,
+        progress: 0,
+        unlockedAt: isAlreadyPersisted ? new Date().toISOString() : null,
       });
     }
   }
