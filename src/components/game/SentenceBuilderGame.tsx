@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import type { Activity, SentenceBuilderQuestion } from '../../types/schema';
 import { motion } from 'framer-motion';
 import { sounds } from '../../services/soundEffects';
@@ -45,6 +45,19 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ activi
   const [isRevealed, setIsRevealed] = useState(false);
   const [score, setScore] = useState(initialScore);
   const [isGameOver, setIsGameOver] = useState(false);
+
+  const hasInitializedFromCheckpointRef = useRef(Boolean(resumeCheckpoint));
+  useEffect(() => {
+    if (!hasInitializedFromCheckpointRef.current && resumeCheckpoint) {
+      hasInitializedFromCheckpointRef.current = true;
+      if (resumeCheckpoint.currentIndex !== undefined && resumeCheckpoint.currentIndex > 0 && resumeCheckpoint.currentIndex < sentences.length) {
+        setCurrentIndex(resumeCheckpoint.currentIndex);
+      }
+      if (resumeCheckpoint.score !== undefined) {
+        setScore(resumeCheckpoint.score);
+      }
+    }
+  }, [resumeCheckpoint, sentences.length]);
 
   const currentSentence = sentences[currentIndex];
 

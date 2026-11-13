@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import type { Activity, TrainStationQuestion, TrainScheduleItem } from '../../types/schema';
 import { TRAIN_SCHEDULES } from '../../data/grade8/unit3/game4Station';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -57,6 +57,19 @@ export const TrainStationGame: React.FC<TrainStationGameProps> = ({ activity, on
   const [score, setScore] = useState(initialScore);
   const [isGameOver, setIsGameOver] = useState(false);
   const [manualHighlightedTrain, setManualHighlightedTrain] = useState<string | null>(null);
+
+  const hasInitializedFromCheckpointRef = useRef(Boolean(resumeCheckpoint));
+  useEffect(() => {
+    if (!hasInitializedFromCheckpointRef.current && resumeCheckpoint) {
+      hasInitializedFromCheckpointRef.current = true;
+      if (resumeCheckpoint.currentIndex !== undefined && resumeCheckpoint.currentIndex > 0 && resumeCheckpoint.currentIndex < questions.length) {
+        setCurrentIndex(resumeCheckpoint.currentIndex);
+      }
+      if (resumeCheckpoint.score !== undefined) {
+        setScore(resumeCheckpoint.score);
+      }
+    }
+  }, [resumeCheckpoint, questions.length]);
 
   const currentQ = questions[currentIndex];
   const isAnswered = selectedOption !== null || isAnswerRevealed;

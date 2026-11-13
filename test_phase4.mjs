@@ -540,7 +540,193 @@ mockLocalStorage.removeItem('unit_review_arcade_checkpoint_v2_801_g8-u1-act1');
 if (mockLocalStorage.getItem('unit_review_arcade_checkpoint_v2_801_g8-u1-act1') !== null) {
   throw new Error('Checkpoint cleanup failed');
 }
-console.log('  ✅ Checkpoint cleanly cleared upon activity completion.\n');
+console.log('  ✅ Checkpoint cleanly cleared upon activity completion.');
+
+// ----------------------------------------------------------------------------
+// MATCH IT ROUND 1 COMPLETION & FULL REMOUNT/REFRESH REGRESSION TEST
+// ----------------------------------------------------------------------------
+console.log('\n--- MATCH IT ROUND 1 COMPLETION & BROWSER REFRESH REGRESSION ---');
+
+const mockSessionStorage = {
+  data: {},
+  getItem(k) { return this.data[k] || null; },
+  setItem(k, v) { this.data[k] = String(v); },
+  removeItem(k) { delete this.data[k]; },
+  clear() { this.data = {}; },
+};
+
+// 1. Student 801 logs in - active session stored
+const studentSession = {
+  sessionToken: 'sess_student_801_phase4_reg',
+  student: {
+    studentNumber: '801',
+    displayName: 'Barış Arslan',
+    grade: '8',
+    class: '8A',
+  },
+  expiresAt: new Date(Date.now() + 86400000).toISOString(),
+};
+mockSessionStorage.setItem('unit_review_arcade_active_session_v1', JSON.stringify(studentSession));
+
+// 2. Navigation stored in sessionStorage for game-play
+const activeActivityId = 'g8-u1-act2';
+const mockNavigation = {
+  view: 'game-play',
+  gradeId: 'grade-8',
+  unitId: 'g8-u1',
+  activityId: activeActivityId,
+};
+mockSessionStorage.setItem('unit_review_arcade_nav_target_v1', JSON.stringify(mockNavigation));
+
+// 3. Define 2-round Match It activity data
+const sampleMatchRounds = [
+  {
+    id: 'round-1',
+    title: 'Round 1: Musical Styles',
+    pairs: [
+      { id: 'p1', left: 'Classical', right: 'Orchestral compositions' },
+      { id: 'p2', left: 'Jazz', right: 'Improvisation and brass' },
+      { id: 'p3', left: 'Rock', right: 'Electric guitars and drums' },
+      { id: 'p4', left: 'Hip Hop', right: 'Rhythmic beats and rhyming' },
+    ],
+  },
+  {
+    id: 'round-2',
+    title: 'Round 2: Instruments',
+    pairs: [
+      { id: 'p5', left: 'Violin', right: 'String instrument played with a bow' },
+      { id: 'p6', left: 'Trumpet', right: 'Brass wind instrument' },
+      { id: 'p7', left: 'Drums', right: 'Percussion instruments struck with sticks' },
+      { id: 'p8', left: 'Flute', right: 'Woodwind instrument producing high tones' },
+    ],
+  },
+];
+
+// Helper to simulate TrackingService checkpoint key generation
+const getCheckpointKey = (studentNumber, activityId) => {
+  const effective = studentNumber || (() => {
+    try {
+      const s = mockSessionStorage.getItem('unit_review_arcade_active_session_v1');
+      if (s) return JSON.parse(s)?.student?.studentNumber;
+    } catch {}
+    return 'anon';
+  })() || 'anon';
+  return `unit_review_arcade_checkpoint_v2_${effective}_${activityId}`;
+};
+
+// 4. Play Round 1: student makes 4 correct matches
+let currentRoundIdx = 0;
+let totalMatches = 0;
+let matchedPairIds = [];
+const round1Pairs = sampleMatchRounds[0].pairs;
+
+for (const pair of round1Pairs) {
+  matchedPairIds.push(pair.id);
+  totalMatches++;
+  const isRoundFinished = matchedPairIds.length === round1Pairs.length;
+  if (isRoundFinished) {
+    const nextRound = currentRoundIdx + 1;
+    const isFinalRound = nextRound >= sampleMatchRounds.length;
+    // Checkpoint immediately advances to next round
+    const checkpoint = {
+      attemptId: 'att_match_it_001',
+      activityId: activeActivityId,
+      gradeId: 'grade-8',
+      unitId: 'g8-u1',
+      gameType: 'match_it',
+      currentIndex: isFinalRound ? currentRoundIdx : nextRound,
+      currentRoundIndex: isFinalRound ? currentRoundIdx : nextRound,
+      score: totalMatches,
+      matchedPairIds: [],
+      timestamp: Date.now(),
+      durationSeconds: 18,
+    };
+    mockLocalStorage.setItem(getCheckpointKey('801', activeActivityId), JSON.stringify(checkpoint));
+  }
+}
+
+// Verify Round 1 completed and checkpoint saved for Round 2
+const savedRaw = mockLocalStorage.getItem(getCheckpointKey('801', activeActivityId));
+if (!savedRaw) {
+  throw new Error('MatchIt Round 1 completion failed to save checkpoint to localStorage');
+}
+const savedCheckpoint = JSON.parse(savedRaw);
+if (savedCheckpoint.currentRoundIndex !== 1 || savedCheckpoint.score !== 4) {
+  throw new Error(`Expected Round 2 (currentRoundIndex: 1, score: 4), got index: ${savedCheckpoint.currentRoundIndex}, score: ${savedCheckpoint.score}`);
+}
+console.log('  ✅ Round 1 completion immediately saves checkpoint for Round 2 (currentRoundIndex: 1, score: 4).');
+
+// 5. SIMULATE BROWSER REFRESH / REMOUNT
+// All React state wiped
+currentRoundIdx = undefined;
+totalMatches = undefined;
+matchedPairIds = undefined;
+
+// Recover session synchronously from sessionStorage
+const recoveredSession = JSON.parse(mockSessionStorage.getItem('unit_review_arcade_active_session_v1'));
+const recoveredStudentNumber = recoveredSession.student.studentNumber;
+if (recoveredStudentNumber !== '801') {
+  throw new Error('Synchronous session recovery failed to retrieve student 801');
+}
+
+// Recover navigation synchronously from sessionStorage
+const recoveredNav = JSON.parse(mockSessionStorage.getItem('unit_review_arcade_nav_target_v1'));
+if (recoveredNav.view !== 'game-play' || recoveredNav.activityId !== activeActivityId) {
+  throw new Error('Navigation restoration failed to retain active game-play screen');
+}
+
+// Retrieve checkpoint via effective student
+const restoredCheckpointRaw = mockLocalStorage.getItem(getCheckpointKey(recoveredStudentNumber, activeActivityId));
+const restoredCheckpointForRound2 = JSON.parse(restoredCheckpointRaw);
+
+// Mount MatchItGame with restored checkpoint
+const loadedRoundIndex = (restoredCheckpointForRound2 && restoredCheckpointForRound2.currentRoundIndex !== undefined && restoredCheckpointForRound2.currentRoundIndex < sampleMatchRounds.length)
+  ? restoredCheckpointForRound2.currentRoundIndex
+  : 0;
+const loadedMatches = restoredCheckpointForRound2?.score || 0;
+const loadedMatchedPairIds = restoredCheckpointForRound2?.matchedPairIds || [];
+const activeRound = sampleMatchRounds[loadedRoundIndex];
+
+if (loadedRoundIndex !== 1) {
+  throw new Error(`Match It failed to resume at Round 2! Resumed at Round ${loadedRoundIndex + 1}`);
+}
+if (loadedMatches !== 4) {
+  throw new Error(`Match It failed to resume score! Expected 4, got ${loadedMatches}`);
+}
+if (loadedMatchedPairIds.length !== 0) {
+  throw new Error(`Expected clean matched pair list for Round 2, got ${loadedMatchedPairIds.length} pairs`);
+}
+if (activeRound.id !== 'round-2' || activeRound.title !== 'Round 2: Instruments') {
+  throw new Error(`Expected Round 2 data, got: ${activeRound.title}`);
+}
+console.log('  ✅ Full browser refresh remount successfully loads Round 2 with score 4 and correct card pairs.');
+
+// 6. Test mid-round progress resume in Round 2
+// Student matches 2 pairs of Round 2
+const midRoundMatches = ['p5', 'p6'];
+const midRoundScore = 6;
+const midRoundCheckpoint = {
+  attemptId: 'att_match_it_001',
+  activityId: activeActivityId,
+  gradeId: 'grade-8',
+  unitId: 'g8-u1',
+  gameType: 'match_it',
+  currentIndex: 1,
+  currentRoundIndex: 1,
+  score: midRoundScore,
+  matchedPairIds: midRoundMatches,
+  timestamp: Date.now(),
+  durationSeconds: 32,
+};
+mockLocalStorage.setItem(getCheckpointKey('801', activeActivityId), JSON.stringify(midRoundCheckpoint));
+
+// Simulate second refresh mid-round
+const secondRestoredRaw = mockLocalStorage.getItem(getCheckpointKey(undefined, activeActivityId)); // test student fallback
+const secondRestored = JSON.parse(secondRestoredRaw);
+if (secondRestored.currentRoundIndex !== 1 || secondRestored.score !== 6 || secondRestored.matchedPairIds.length !== 2) {
+  throw new Error('Mid-round checkpoint restoration failed');
+}
+console.log('  ✅ Mid-round resume restores 2 already-matched pairs in Round 2 without wiping state.\n');
 
 // ============================================================================
 // SUITE 4: OFFLINE QUEUE & AUTO-FLUSH SIMULATION

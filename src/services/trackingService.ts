@@ -201,8 +201,24 @@ export class TrackingService {
   // CHECKPOINT & RESUME STORAGE (LOCALSTORAGE FOR PERSISTENCE)
   // -------------------------------------------------------------------------
 
+  private static getActiveStudentNumber(): string | undefined {
+    try {
+      const stored = sessionStorage.getItem('unit_review_arcade_active_session_v1');
+      if (stored) {
+        const parsed = JSON.parse(stored) as { student?: { studentNumber?: string } };
+        if (parsed?.student?.studentNumber) {
+          return String(parsed.student.studentNumber).trim();
+        }
+      }
+    } catch {
+      // ignore
+    }
+    return undefined;
+  }
+
   private static getCheckpointKey(studentNumber?: string, activityId?: string): string {
-    return `${CHECKPOINT_PREFIX}_${studentNumber || 'anon'}_${activityId || 'default'}`;
+    const effective = studentNumber || this.getActiveStudentNumber() || 'anon';
+    return `${CHECKPOINT_PREFIX}_${effective}_${activityId || 'default'}`;
   }
 
   public static saveCheckpoint(
@@ -210,7 +226,8 @@ export class TrackingService {
     checkpoint: GameResumeCheckpoint
   ): void {
     try {
-      const key = this.getCheckpointKey(studentNumber, checkpoint.activityId);
+      const effectiveStudent = studentNumber || this.getActiveStudentNumber();
+      const key = this.getCheckpointKey(effectiveStudent, checkpoint.activityId);
       localStorage.setItem(key, JSON.stringify(checkpoint));
     } catch (err) {
       console.warn('Failed to persist checkpoint to localStorage:', err);
@@ -222,7 +239,8 @@ export class TrackingService {
     activityId: string
   ): GameResumeCheckpoint | null {
     try {
-      const key = this.getCheckpointKey(studentNumber, activityId);
+      const effectiveStudent = studentNumber || this.getActiveStudentNumber();
+      const key = this.getCheckpointKey(effectiveStudent, activityId);
       const data = localStorage.getItem(key);
       if (!data) return null;
       return JSON.parse(data) as GameResumeCheckpoint;
@@ -236,7 +254,8 @@ export class TrackingService {
     activityId: string
   ): void {
     try {
-      const key = this.getCheckpointKey(studentNumber, activityId);
+      const effectiveStudent = studentNumber || this.getActiveStudentNumber();
+      const key = this.getCheckpointKey(effectiveStudent, activityId);
       localStorage.removeItem(key);
     } catch {
       // ignore

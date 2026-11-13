@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import type { Activity, MatchItQuestion, MatchRound } from '../../types/schema';
 import { motion } from 'framer-motion';
 import { sounds } from '../../services/soundEffects';
@@ -41,6 +41,26 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
   const [isRoundComplete, setIsRoundComplete] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
 
+  // Preserve initial matched pair IDs on initial mount
+  const isInitialRoundMountRef = useRef(true);
+
+  // Sync state if resumeCheckpoint arrives or updates after initial mount
+  const hasInitializedFromCheckpointRef = useRef(Boolean(resumeCheckpoint));
+  useEffect(() => {
+    if (!hasInitializedFromCheckpointRef.current && resumeCheckpoint) {
+      hasInitializedFromCheckpointRef.current = true;
+      if (resumeCheckpoint.currentRoundIndex !== undefined && resumeCheckpoint.currentRoundIndex < rounds.length) {
+        setCurrentRoundIndex(resumeCheckpoint.currentRoundIndex);
+      }
+      if (resumeCheckpoint.score !== undefined) {
+        setTotalMatchesMade(resumeCheckpoint.score);
+      }
+      if (resumeCheckpoint.matchedPairIds && resumeCheckpoint.matchedPairIds.length > 0) {
+        setMatchedPairIds(resumeCheckpoint.matchedPairIds);
+      }
+    }
+  }, [resumeCheckpoint, rounds.length]);
+
   const currentRound = rounds[currentRoundIndex];
   const totalRounds = rounds.length;
   const totalPairsAcrossGame = useMemo(
@@ -74,7 +94,11 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
     // Randomize order
     setLeftCards([...left].sort(() => Math.random() - 0.5));
     setRightCards([...right].sort(() => Math.random() - 0.5));
-    setMatchedPairIds([]);
+    if (isInitialRoundMountRef.current) {
+      isInitialRoundMountRef.current = false;
+    } else {
+      setMatchedPairIds([]);
+    }
     setSelectedLeft(null);
     setSelectedRight(null);
     setIsRoundComplete(false);
@@ -100,16 +124,32 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
         // MATCH!
         sounds.playSuccess();
         const pairId = selectedLeft.id;
-        setMatchedPairIds((prev) => {
-          const next = [...prev, pairId];
-          if (currentRound && next.length === currentRound.pairs.length) {
-            setIsRoundComplete(true);
-          }
-          return next;
-        });
-        setTotalMatchesMade((t) => t + 1);
+        const nextMatched = [...matchedPairIds, pairId];
+        const nextMatchesTotal = totalMatchesMade + 1;
+        setMatchedPairIds(nextMatched);
+        setTotalMatchesMade(nextMatchesTotal);
         setSelectedLeft(null);
         setSelectedRight(null);
+
+        const isRoundFinished = currentRound && nextMatched.length === currentRound.pairs.length;
+        if (isRoundFinished) {
+          setIsRoundComplete(true);
+          const nextRound = currentRoundIndex + 1;
+          const isFinalRound = nextRound >= totalRounds;
+          saveCheckpoint({
+            currentRoundIndex: isFinalRound ? currentRoundIndex : nextRound,
+            currentIndex: isFinalRound ? currentRoundIndex : nextRound,
+            score: nextMatchesTotal,
+            matchedPairIds: [],
+          });
+        } else {
+          saveCheckpoint({
+            currentRoundIndex,
+            currentIndex: currentRoundIndex,
+            score: nextMatchesTotal,
+            matchedPairIds: nextMatched,
+          });
+        }
       } else {
         // MISMATCH!
         sounds.playBack();
@@ -124,7 +164,7 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
         return () => clearTimeout(timer);
       }
     }
-  }, [selectedLeft, selectedRight, currentRound, currentRoundIndex, interactionCount, recordAnswer]);
+  }, [selectedLeft, selectedRight, currentRound, currentRoundIndex, interactionCount, recordAnswer, matchedPairIds, totalMatchesMade, totalRounds, saveCheckpoint]);
 
   const handleCardClick = (card: ShuffledCard) => {
     if (matchedPairIds.includes(card.id) || mismatchedIds.length > 0) return;
@@ -145,6 +185,7 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
       setMatchedPairIds([]);
       saveCheckpoint({
         currentRoundIndex: nextRound,
+        currentIndex: nextRound,
         score: totalMatchesMade,
         matchedPairIds: [],
       });

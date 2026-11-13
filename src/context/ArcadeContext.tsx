@@ -52,14 +52,40 @@ interface ArcadeContextType {
   removeToast: (id: string) => void;
 }
 
+const NAVIGATION_STORAGE_KEY = 'unit_review_arcade_nav_target_v1';
+
+const getInitialNavigation = (): NavigationTarget => {
+  try {
+    const stored = sessionStorage.getItem(NAVIGATION_STORAGE_KEY);
+    if (stored) {
+      const parsed = JSON.parse(stored) as NavigationTarget;
+      if (parsed && typeof parsed.view === 'string') {
+        return parsed;
+      }
+    }
+  } catch {
+    // fallback
+  }
+  return { view: 'home' };
+};
+
 const ArcadeContext = createContext<ArcadeContextType | undefined>(undefined);
 
 export const ArcadeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [data, setData] = useState<ArcadeData>(() => StorageService.loadData());
-  const [navigation, setNavigation] = useState<NavigationTarget>({ view: 'home' });
+  const [navigation, setNavigationState] = useState<NavigationTarget>(() => getInitialNavigation());
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
   const [isMuted, setIsMuted] = useState<boolean>(() => sounds.isMuted());
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
+
+  const setNavigation = useCallback((target: NavigationTarget) => {
+    setNavigationState(target);
+    try {
+      sessionStorage.setItem(NAVIGATION_STORAGE_KEY, JSON.stringify(target));
+    } catch {
+      // ignore
+    }
+  }, []);
 
   // Toast notification helper
   const addToast = useCallback((text: string, type: 'success' | 'info' | 'warning' | 'error' = 'info') => {

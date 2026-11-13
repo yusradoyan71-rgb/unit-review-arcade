@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import type { Activity, MultipleChoiceQuestion } from '../../types/schema';
 import { motion } from 'framer-motion';
 import { sounds } from '../../services/soundEffects';
@@ -51,6 +51,19 @@ export const QuizBattleGame: React.FC<QuizBattleGameProps> = ({ activity, onExit
   const [isAnswerRevealed, setIsAnswerRevealed] = useState(false);
   const [score, setScore] = useState(initialScore);
   const [isGameOver, setIsGameOver] = useState(false);
+
+  const hasInitializedFromCheckpointRef = useRef(Boolean(resumeCheckpoint));
+  useEffect(() => {
+    if (!hasInitializedFromCheckpointRef.current && resumeCheckpoint) {
+      hasInitializedFromCheckpointRef.current = true;
+      if (resumeCheckpoint.currentIndex !== undefined && resumeCheckpoint.currentIndex > 0 && resumeCheckpoint.currentIndex < questions.length) {
+        setCurrentIndex(resumeCheckpoint.currentIndex);
+      }
+      if (resumeCheckpoint.score !== undefined) {
+        setScore(resumeCheckpoint.score);
+      }
+    }
+  }, [resumeCheckpoint, questions.length]);
 
   const currentQ = questions[currentIndex];
   const isAnswered = selectedOption !== null || isAnswerRevealed;

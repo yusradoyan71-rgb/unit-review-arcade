@@ -40,14 +40,33 @@ const normalizeStudent = (raw: StudentProfile): StudentProfile => ({
   class: String(raw.class || '').trim() as StudentClass,
 });
 
+const getInitialSession = (): ActiveSession | null => {
+  try {
+    const stored = sessionStorage.getItem(SESSION_STORAGE_KEY);
+    if (stored) {
+      const parsed = JSON.parse(stored) as ActiveSession;
+      if (parsed?.sessionToken && parsed?.student) {
+        return {
+          ...parsed,
+          student: normalizeStudent(parsed.student),
+        };
+      }
+    }
+  } catch (err) {
+    console.warn('Failed to recover stored student session synchronously:', err);
+  }
+  return null;
+};
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [authMode, setAuthMode] = useState<AuthMode>('classroom');
-  const [student, setStudent] = useState<StudentProfile | null>(null);
-  const [sessionToken, setSessionToken] = useState<string | null>(null);
+  const [initialSession] = useState<ActiveSession | null>(() => getInitialSession());
+  const [authMode, setAuthMode] = useState<AuthMode>(() => (initialSession ? 'student' : 'classroom'));
+  const [student, setStudent] = useState<StudentProfile | null>(() => initialSession?.student || null);
+  const [sessionToken, setSessionToken] = useState<string | null>(() => initialSession?.sessionToken || null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isCheckingSession, setIsCheckingSession] = useState<boolean>(true);
+  const [isCheckingSession, setIsCheckingSession] = useState<boolean>(() => !initialSession);
   const [loginError, setLoginError] = useState<string | null>(null);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
 
@@ -61,7 +80,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         if (stored) {
           const parsed = JSON.parse(stored) as ActiveSession;
           if (parsed && parsed.sessionToken && parsed.student) {
-            // Optimistically restore session
+            // Ensure state matches synchronous recovery
             setSessionToken(parsed.sessionToken);
             setStudent(normalizeStudent(parsed.student));
             setAuthMode('student');

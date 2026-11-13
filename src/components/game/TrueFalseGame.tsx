@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import type { Activity, TrueFalseQuestion } from '../../types/schema';
 import { motion } from 'framer-motion';
 import { sounds } from '../../services/soundEffects';
@@ -33,6 +33,19 @@ export const TrueFalseGame: React.FC<TrueFalseGameProps> = ({ activity, onExit }
   const [selectedAnswer, setSelectedAnswer] = useState<boolean | null>(null);
   const [score, setScore] = useState(initialScore);
   const [isGameOver, setIsGameOver] = useState(false);
+
+  const hasInitializedFromCheckpointRef = useRef(Boolean(resumeCheckpoint));
+  useEffect(() => {
+    if (!hasInitializedFromCheckpointRef.current && resumeCheckpoint) {
+      hasInitializedFromCheckpointRef.current = true;
+      if (resumeCheckpoint.currentIndex !== undefined && resumeCheckpoint.currentIndex > 0 && resumeCheckpoint.currentIndex < statements.length) {
+        setCurrentIndex(resumeCheckpoint.currentIndex);
+      }
+      if (resumeCheckpoint.score !== undefined) {
+        setScore(resumeCheckpoint.score);
+      }
+    }
+  }, [resumeCheckpoint, statements.length]);
 
   const currentStatement = statements[currentIndex];
   const isAnswered = selectedAnswer !== null;
