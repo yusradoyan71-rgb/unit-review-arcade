@@ -3965,12 +3965,64 @@ function handleStudentGetLeaderboard(ss, payload) {
 
 /**
  * Safe, idempotent, read-only simulation tool for inspecting historical XP and level distribution.
- * Does NOT write to Google Sheets unless shouldApply is explicitly passed as true.
+ * NEVER mutates Google Sheets data: zero insertSheet, setValue, setValues calls.
+ * Can be run directly from Google Apps Script editor with NO arguments.
+ *
+ * @param {GoogleAppsScript.Spreadsheet.Spreadsheet} [optSs] Optional spreadsheet instance. If omitted, uses getArcadeSpreadsheet().
+ * @returns {Object} Simulation report.
  */
-function dryRunBackfillStudentXP(ss, shouldApply) {
-  var attemptsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ATTEMPTS);
+function dryRunBackfillStudentXP(optSs) {
+  var ss = optSs || null;
+  if (!ss) {
+    try {
+      ss = getArcadeSpreadsheet();
+    } catch (err) {
+      Logger.log("❌ Cannot run XP backfill simulation: " + err.message);
+      return {
+        success: false,
+        dryRun: true,
+        error: "SPREADSHEET_NOT_CONNECTED",
+        message: err.message,
+        totalAttemptsAudited: 0,
+        totalStudentsAudited: 0,
+        students: []
+      };
+    }
+  }
+
+  if (!ss) {
+    Logger.log("❌ Cannot run XP backfill simulation: Spreadsheet instance is undefined.");
+    return {
+      success: false,
+      dryRun: true,
+      error: "SPREADSHEET_NOT_FOUND",
+      message: "Spreadsheet instance could not be resolved.",
+      totalAttemptsAudited: 0,
+      totalStudentsAudited: 0,
+      students: []
+    };
+  }
+
+  var attemptsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.ATTEMPTS);
+  if (!attemptsSheet) {
+    var msg = "Required sheet '" + CONFIG.SHEET_NAMES.ATTEMPTS + "' does not exist.";
+    Logger.log("⚠️ " + msg);
+    return {
+      success: false,
+      dryRun: true,
+      error: "MISSING_REQUIRED_SHEET",
+      missingSheet: CONFIG.SHEET_NAMES.ATTEMPTS,
+      message: msg,
+      totalAttemptsAudited: 0,
+      totalStudentsAudited: 0,
+      students: []
+    };
+  }
+
   var attColMap = getSheetColumnMap(attemptsSheet, CONFIG.ATTEMPT_HEADERS);
-  var attemptsData = attemptsSheet.getDataRange().getValues();
+  var attemptsData = (attemptsSheet.getLastRow() > 0 && attemptsSheet.getLastColumn() > 0)
+    ? attemptsSheet.getDataRange().getValues()
+    : [];
 
   var studentSims = {};
   var totalAttemptsAudited = 0;
@@ -4003,10 +4055,6 @@ function dryRunBackfillStudentXP(ss, shouldApply) {
     studentSims[sNum].attemptsCount++;
     studentSims[sNum].distinctActivities[actId] = true;
     if (pct === 100) studentSims[sNum].perfectCount++;
-
-    if (shouldApply === true && attColMap["xp_earned"]) {
-      attemptsSheet.getRange(i + 1, attColMap["xp_earned"]).setValue(xpCalc.xpEarned);
-    }
   }
 
   var report = [];
@@ -4024,10 +4072,10 @@ function dryRunBackfillStudentXP(ss, shouldApply) {
     });
   }
 
-  Logger.log("📊 Gamification Backfill " + (shouldApply ? "APPLIED" : "DRY-RUN") + " across " + totalAttemptsAudited + " attempts.");
+  Logger.log("📊 Gamification Backfill (DRY-RUN) across " + totalAttemptsAudited + " attempts.");
   return {
-    mode: shouldApply ? "applied" : "dry_run",
-    dryRun: shouldApply !== true,
+    success: true,
+    dryRun: true,
     totalAttemptsAudited: totalAttemptsAudited,
     totalStudentsAudited: report.length,
     students: report
@@ -4035,18 +4083,83 @@ function dryRunBackfillStudentXP(ss, shouldApply) {
 }
 
 /**
- * Safe, read-only audit and repair tool to diagnose and align student achievement records.
+ * Safe, read-only audit tool to diagnose and report student achievement records.
  * Compares persisted Achievements records against true historical attempt milestones.
- * Does NOT modify Google Sheets data unless shouldApply is explicitly passed as true.
+ * NEVER mutates Google Sheets data: zero insertSheet, appendRow, setValue, setValues, deleteRow calls.
+ * Can be run directly from Google Apps Script editor with NO arguments.
+ *
+ * @param {GoogleAppsScript.Spreadsheet.Spreadsheet} [optSs] Optional spreadsheet instance. If omitted, uses getArcadeSpreadsheet().
+ * @returns {Object} Diagnostic report containing dryRun: true, totalDiscrepancies, and auditReport list.
  */
-function dryRunRepairStudentAchievements(ss, shouldApply) {
-  var attemptsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ATTEMPTS);
-  var attColMap = getSheetColumnMap(attemptsSheet, CONFIG.ATTEMPT_HEADERS);
-  var attemptsData = attemptsSheet.getDataRange().getValues();
+function dryRunRepairStudentAchievements(optSs) {
+  var ss = optSs || null;
+  if (!ss) {
+    try {
+      ss = getArcadeSpreadsheet();
+    } catch (err) {
+      Logger.log("❌ Cannot run achievements audit: " + err.message);
+      return {
+        success: false,
+        dryRun: true,
+        error: "SPREADSHEET_NOT_CONNECTED",
+        message: err.message,
+        totalDiscrepancies: 0,
+        auditReport: []
+      };
+    }
+  }
 
-  var achievementsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ACHIEVEMENTS);
+  if (!ss) {
+    Logger.log("❌ Cannot run achievements audit: Spreadsheet instance is undefined.");
+    return {
+      success: false,
+      dryRun: true,
+      error: "SPREADSHEET_NOT_FOUND",
+      message: "Spreadsheet instance could not be resolved.",
+      totalDiscrepancies: 0,
+      auditReport: []
+    };
+  }
+
+  var attemptsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.ATTEMPTS);
+  if (!attemptsSheet) {
+    var msgAttempts = "Required sheet '" + CONFIG.SHEET_NAMES.ATTEMPTS + "' does not exist in the connected spreadsheet.";
+    Logger.log("⚠️ " + msgAttempts);
+    return {
+      success: false,
+      dryRun: true,
+      error: "MISSING_REQUIRED_SHEET",
+      missingSheet: CONFIG.SHEET_NAMES.ATTEMPTS,
+      message: msgAttempts,
+      totalDiscrepancies: 0,
+      auditReport: []
+    };
+  }
+
+  var achievementsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.ACHIEVEMENTS);
+  if (!achievementsSheet) {
+    var msgAch = "Required sheet '" + CONFIG.SHEET_NAMES.ACHIEVEMENTS + "' does not exist in the connected spreadsheet.";
+    Logger.log("⚠️ " + msgAch);
+    return {
+      success: false,
+      dryRun: true,
+      error: "MISSING_REQUIRED_SHEET",
+      missingSheet: CONFIG.SHEET_NAMES.ACHIEVEMENTS,
+      message: msgAch,
+      totalDiscrepancies: 0,
+      auditReport: []
+    };
+  }
+
+  var attColMap = getSheetColumnMap(attemptsSheet, CONFIG.ATTEMPT_HEADERS);
+  var attemptsData = (attemptsSheet.getLastRow() > 0 && attemptsSheet.getLastColumn() > 0)
+    ? attemptsSheet.getDataRange().getValues()
+    : [];
+
   var achColMap = getSheetColumnMap(achievementsSheet, CONFIG.ACHIEVEMENT_HEADERS);
-  var achData = achievementsSheet.getDataRange().getValues();
+  var achData = (achievementsSheet.getLastRow() > 0 && achievementsSheet.getLastColumn() > 0)
+    ? achievementsSheet.getDataRange().getValues()
+    : [];
 
   var attemptsByStudent = {};
   for (var i = 1; i < attemptsData.length; i++) {
@@ -4059,7 +4172,7 @@ function dryRunRepairStudentAchievements(ss, shouldApply) {
       activityId: String(attemptsData[i][attColMap["activity_id"] - 1] || "").trim(),
       gameType: String(attemptsData[i][attColMap["game_type"] - 1] || "").trim(),
       percentage: Number(attemptsData[i][attColMap["percentage"] - 1] || 0),
-      completedAt: String(attemptsData[i][attColMap["completed_at"] - 1] || ""),
+      completedAt: String(attemptsData[i][attColMap["completed_at"] - 1] || "")
     });
   }
 
@@ -4104,9 +4217,11 @@ function dryRunRepairStudentAchievements(ss, shouldApply) {
         auditReport.push({
           studentNumber: studentNumber,
           badgeId: def.id,
+          badgeTitle: def.title,
           issue: "INELIGIBLE_RECORD_EXISTS",
           details: "Record exists in Achievements but student does not meet criteria.",
-          recordsCount: records.length
+          recordsCount: records.length,
+          records: records
         });
       } else if (isEligible) {
         var trueTriggerId = findTriggeringAttemptId(def, studentAttempts);
@@ -4117,22 +4232,18 @@ function dryRunRepairStudentAchievements(ss, shouldApply) {
           auditReport.push({
             studentNumber: studentNumber,
             badgeId: def.id,
+            badgeTitle: def.title,
             issue: "MISSING_ACHIEVEMENT_RECORD",
             details: "Student met criteria but record is missing in Achievements sheet.",
             expectedTriggerAttemptId: trueTriggerId,
             expectedTimestamp: trueTimestamp
           });
-          if (shouldApply === true) {
-            var newId = "ach_" + Utilities.getUuid();
-            achievementsSheet.appendRow([
-              newId, "", studentNumber, "", def.id, def.title, trueTimestamp, trueTriggerId
-            ]);
-          }
         } else if (records.length > 1) {
           totalDiscrepancies++;
           auditReport.push({
             studentNumber: studentNumber,
             badgeId: def.id,
+            badgeTitle: def.title,
             issue: "DUPLICATE_BADGE_RECORDS",
             details: "Found " + records.length + " duplicate rows for badge in Achievements sheet.",
             records: records
@@ -4142,24 +4253,132 @@ function dryRunRepairStudentAchievements(ss, shouldApply) {
           auditReport.push({
             studentNumber: studentNumber,
             badgeId: def.id,
+            badgeTitle: def.title,
             issue: "MISMATCHED_TRIGGER_ATTEMPT",
             details: "Recorded triggerAttemptId differs from true historical trigger.",
+            rowIndex: records[0].rowIndex,
             recordedTriggerAttemptId: records[0].triggerAttemptId,
-            expectedTriggerAttemptId: trueTriggerId
+            expectedTriggerAttemptId: trueTriggerId,
+            expectedTimestamp: trueTimestamp
           });
-          if (shouldApply === true) {
-            achievementsSheet.getRange(records[0].rowIndex, achColMap["trigger_attempt_id"]).setValue(trueTriggerId);
-            achievementsSheet.getRange(records[0].rowIndex, achColMap["unlocked_at"]).setValue(trueTimestamp);
-          }
         }
       }
     }
   }
 
-  Logger.log("🔍 Achievements Audit Complete. Mode: " + (shouldApply ? "APPLIED" : "DRY-RUN") + ". Discrepancies found: " + totalDiscrepancies);
+  Logger.log("🔍 Achievements Audit Complete (DRY-RUN). Total discrepancies found: " + totalDiscrepancies);
   return {
-    dryRun: shouldApply !== true,
+    success: true,
+    dryRun: true,
     totalDiscrepancies: totalDiscrepancies,
     auditReport: auditReport
+  };
+}
+
+/**
+ * Explicit, separately guarded mutating repair operation for student achievements.
+ * NEVER invoked by dryRunRepairStudentAchievements.
+ * Requires confirmationToken === 'CONFIRM_APPLY_REPAIR'.
+ *
+ * @param {GoogleAppsScript.Spreadsheet.Spreadsheet} [optSs] Optional spreadsheet instance. If omitted, uses getArcadeSpreadsheet().
+ * @param {string} confirmationToken Must be exactly 'CONFIRM_APPLY_REPAIR'.
+ * @returns {Object} Result of repair operation.
+ */
+function repairStudentAchievements(optSs, confirmationToken) {
+  if (confirmationToken !== "CONFIRM_APPLY_REPAIR") {
+    var guardMsg = "Safety Guard: repairStudentAchievements mutates data in the Achievements sheet. " +
+      "To execute, you must call: repairStudentAchievements(null, 'CONFIRM_APPLY_REPAIR'). " +
+      "Run dryRunRepairStudentAchievements() first to inspect discrepancies.";
+    Logger.log("🔒 " + guardMsg);
+    return {
+      success: false,
+      applied: false,
+      error: "CONFIRMATION_REQUIRED",
+      message: guardMsg
+    };
+  }
+
+  var ss = optSs || null;
+  if (!ss) {
+    try {
+      ss = getArcadeSpreadsheet();
+    } catch (err) {
+      Logger.log("❌ Cannot run repair: " + err.message);
+      return {
+        success: false,
+        applied: false,
+        error: "SPREADSHEET_NOT_CONNECTED",
+        message: err.message
+      };
+    }
+  }
+
+  if (!ss) {
+    return {
+      success: false,
+      applied: false,
+      error: "SPREADSHEET_NOT_FOUND",
+      message: "Spreadsheet instance could not be resolved."
+    };
+  }
+
+  // Ensure Achievements sheet exists with headers (repair mode is allowed to create/format it)
+  var achievementsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ACHIEVEMENTS);
+  setupSheetHeaders(achievementsSheet, CONFIG.ACHIEVEMENT_HEADERS, "#1e293b", "#eab308");
+
+  // Run dry run audit on this spreadsheet
+  var audit = dryRunRepairStudentAchievements(ss);
+  if (!audit.success) {
+    return {
+      success: false,
+      applied: false,
+      error: audit.error,
+      message: audit.message
+    };
+  }
+
+  if (audit.totalDiscrepancies === 0) {
+    Logger.log("✅ No achievement discrepancies found. Zero repairs required.");
+    return {
+      success: true,
+      applied: true,
+      totalRepairsApplied: 0,
+      message: "No discrepancies found."
+    };
+  }
+
+  var achColMap = getSheetColumnMap(achievementsSheet, CONFIG.ACHIEVEMENT_HEADERS);
+  var repairsApplied = 0;
+
+  for (var i = 0; i < audit.auditReport.length; i++) {
+    var item = audit.auditReport[i];
+    if (item.issue === "MISSING_ACHIEVEMENT_RECORD") {
+      var newId = "ach_" + Utilities.getUuid();
+      achievementsSheet.appendRow([
+        newId,
+        "",
+        item.studentNumber,
+        "",
+        item.badgeId,
+        item.badgeTitle || item.badgeId,
+        item.expectedTimestamp,
+        item.expectedTriggerAttemptId
+      ]);
+      repairsApplied++;
+    } else if (item.issue === "MISMATCHED_TRIGGER_ATTEMPT") {
+      if (item.rowIndex && achColMap["trigger_attempt_id"] && achColMap["unlocked_at"]) {
+        achievementsSheet.getRange(item.rowIndex, achColMap["trigger_attempt_id"]).setValue(item.expectedTriggerAttemptId);
+        achievementsSheet.getRange(item.rowIndex, achColMap["unlocked_at"]).setValue(item.expectedTimestamp);
+        repairsApplied++;
+      }
+    }
+  }
+
+  Logger.log("🛠️ Repaired " + repairsApplied + " achievement discrepancy record(s).");
+  return {
+    success: true,
+    applied: true,
+    totalRepairsApplied: repairsApplied,
+    audit: audit
   };
 }

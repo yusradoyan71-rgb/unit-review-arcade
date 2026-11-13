@@ -216,11 +216,11 @@ const gasContext = {
   Array,
   Object,
   JSON,
-  Logger: { log: () => {} },
+  Logger: { log: () => { } },
   ContentService: {
     createTextOutput: (text) => ({
       text,
-      setMimeType: () => {},
+      setMimeType: () => { },
       getContent: () => text,
     }),
     MimeType: { JSON: 'application/json' },
@@ -255,7 +255,7 @@ const gasContext = {
   SpreadsheetApp: {
     openById: () => mockSpreadsheet,
     getActiveSpreadsheet: () => mockSpreadsheet,
-    flush: () => {},
+    flush: () => { },
   },
 };
 
@@ -989,13 +989,141 @@ console.log('✅ Replay Practice Cap in Real Gameplay tests passed!\n');
 // ============================================================================
 console.log('--- TEST SUITE 11: Achievements Audit & Dry-Run Repair Tool ---');
 
+// Set SPREADSHEET_ID in script properties to simulate standalone project
+mockProps.setProperty('SPREADSHEET_ID', 'test_arcade_spreadsheet_id');
+
+// Test 11.1: Standard dry-run audit with mock spreadsheet argument
 const preRepairAchRowCount = achievementsSheet.rows.length;
 const repairAudit = vmContext.dryRunRepairStudentAchievements(mockSpreadsheet);
 
 assert(repairAudit.dryRun === true, 'dryRunRepairStudentAchievements defaults to dryRun === true');
+assert(repairAudit.success === true, 'dryRunRepairStudentAchievements returns success: true');
 assert(typeof repairAudit.totalDiscrepancies === 'number', 'Reports totalDiscrepancies number');
 assert(Array.isArray(repairAudit.auditReport), 'Reports auditReport array');
 assert(achievementsSheet.rows.length === preRepairAchRowCount, 'Dry run did NOT mutate Achievements sheet rows');
+
+// Test 11.2: No-argument invocation directly from GAS editor
+const noArgAudit = vmContext.dryRunRepairStudentAchievements();
+assert(noArgAudit.dryRun === true, 'No-argument dryRunRepairStudentAchievements returns dryRun: true');
+assert(noArgAudit.success === true, 'No-argument dryRunRepairStudentAchievements succeeds via getArcadeSpreadsheet()');
+assert(typeof noArgAudit.totalDiscrepancies === 'number', 'No-argument call returns numeric discrepancies');
+assert(Array.isArray(noArgAudit.auditReport), 'No-argument call returns auditReport array');
+
+// Test 11.3: No-argument invocation for dryRunBackfillStudentXP
+const noArgXpBackfill = vmContext.dryRunBackfillStudentXP();
+assert(noArgXpBackfill.dryRun === true, 'No-argument dryRunBackfillStudentXP returns dryRun: true');
+assert(noArgXpBackfill.success === true, 'No-argument dryRunBackfillStudentXP succeeds via getArcadeSpreadsheet()');
+assert(typeof noArgXpBackfill.totalStudentsAudited === 'number', 'No-argument call returns totalStudentsAudited');
+
+// Test 11.4: Undefined / Disconnected Spreadsheet diagnostic
+mockProps.deleteProperty('SPREADSHEET_ID');
+const originalGetActive = gasContext.SpreadsheetApp.getActiveSpreadsheet;
+gasContext.SpreadsheetApp.getActiveSpreadsheet = () => null;
+
+const disconnectedAudit = vmContext.dryRunRepairStudentAchievements();
+assert(disconnectedAudit.dryRun === true, 'Disconnected audit returns dryRun: true');
+assert(disconnectedAudit.success === false, 'Disconnected audit reports failure cleanly');
+assert(disconnectedAudit.error === 'SPREADSHEET_NOT_CONNECTED', 'Disconnected audit returns SPREADSHEET_NOT_CONNECTED error');
+assert(disconnectedAudit.message.includes('No Google Spreadsheet connected'), 'Provides helpful setup guidance message');
+
+// Restore spreadsheet connection
+mockProps.setProperty('SPREADSHEET_ID', 'test_arcade_spreadsheet_id');
+gasContext.SpreadsheetApp.getActiveSpreadsheet = originalGetActive;
+
+// Test 11.5: Missing required sheet 'Attempts' returns diagnostic without creating sheet
+const ssMissingAttempts = new MockSpreadsheet('Missing Attempts DB');
+const achOnly = ssMissingAttempts.insertSheet('Achievements');
+achOnly.appendRow(['achievement_id', 'session_id', 'student_number', 'student_name', 'badge_id', 'badge_title', 'unlocked_at', 'trigger_attempt_id']);
+
+let insertCountMissingAttempts = 0;
+const origInsertMissingAttempts = ssMissingAttempts.insertSheet.bind(ssMissingAttempts);
+ssMissingAttempts.insertSheet = (name) => {
+  insertCountMissingAttempts++;
+  return origInsertMissingAttempts(name);
+};
+
+const missingAttemptsAudit = vmContext.dryRunRepairStudentAchievements(ssMissingAttempts);
+assert(missingAttemptsAudit.success === false, 'Missing Attempts returns success: false');
+assert(missingAttemptsAudit.error === 'MISSING_REQUIRED_SHEET', 'Missing Attempts reports MISSING_REQUIRED_SHEET');
+assert(missingAttemptsAudit.missingSheet === 'Attempts', 'Correctly identifies missing Attempts sheet');
+assert(insertCountMissingAttempts === 0, 'Proof: insertSheet was NEVER called for missing Attempts sheet');
+assert(ssMissingAttempts.sheets['Attempts'] === undefined, 'Proof: Attempts sheet was NOT created in dry-run mode');
+
+// Test 11.6: Missing required sheet 'Achievements' returns diagnostic without creating sheet
+const ssMissingAch = new MockSpreadsheet('Missing Achievements DB');
+const attOnly = ssMissingAch.insertSheet('Attempts');
+attOnly.appendRow(['attempt_id', 'student_number', 'status', 'completed_at']);
+
+let insertCountMissingAch = 0;
+const origInsertMissingAch = ssMissingAch.insertSheet.bind(ssMissingAch);
+ssMissingAch.insertSheet = (name) => {
+  insertCountMissingAch++;
+  return origInsertMissingAch(name);
+};
+
+const missingAchAudit = vmContext.dryRunRepairStudentAchievements(ssMissingAch);
+assert(missingAchAudit.success === false, 'Missing Achievements returns success: false');
+assert(missingAchAudit.error === 'MISSING_REQUIRED_SHEET', 'Missing Achievements reports MISSING_REQUIRED_SHEET');
+assert(missingAchAudit.missingSheet === 'Achievements', 'Correctly identifies missing Achievements sheet');
+assert(insertCountMissingAch === 0, 'Proof: insertSheet was NEVER called for missing Achievements sheet');
+assert(ssMissingAch.sheets['Achievements'] === undefined, 'Proof: Achievements sheet was NOT created in dry-run mode');
+
+// Test 11.7: Proof of ZERO writes in dry-run mode
+let writeOpCount = 0;
+const monitorSheet = (sheet) => {
+  const origAppend = sheet.appendRow.bind(sheet);
+  sheet.appendRow = (...args) => { writeOpCount++; return origAppend(...args); };
+  const origClear = sheet.clear.bind(sheet);
+  sheet.clear = (...args) => { writeOpCount++; return origClear(...args); };
+  const origDelete = sheet.deleteRow.bind(sheet);
+  sheet.deleteRow = (...args) => { writeOpCount++; return origDelete(...args); };
+  const origGetRange = sheet.getRange.bind(sheet);
+  sheet.getRange = (...args) => {
+    const range = origGetRange(...args);
+    const origSetVal = range.setValue.bind(range);
+    range.setValue = (...vargs) => { writeOpCount++; return origSetVal(...vargs); };
+    const origSetVals = range.setValues.bind(range);
+    range.setValues = (...vargs) => { writeOpCount++; return origSetVals(...vargs); };
+    return range;
+  };
+};
+
+const origInsertSheet = mockSpreadsheet.insertSheet.bind(mockSpreadsheet);
+mockSpreadsheet.insertSheet = (name) => {
+  writeOpCount++;
+  return origInsertSheet(name);
+};
+
+Object.values(mockSpreadsheet.sheets).forEach(monitorSheet);
+
+// Run all dry-run functions
+vmContext.dryRunRepairStudentAchievements(mockSpreadsheet);
+vmContext.dryRunRepairStudentAchievements();
+vmContext.dryRunBackfillStudentXP(mockSpreadsheet);
+vmContext.dryRunBackfillStudentXP();
+
+assert(writeOpCount === 0, `Proof of zero writes in dry-run: writeOpCount is strictly 0 (got ${writeOpCount})`);
+
+// Test 11.8: Separately guarded repairStudentAchievements write operation
+const noTokenRepair = vmContext.repairStudentAchievements();
+assert(noTokenRepair.success === false, 'repairStudentAchievements with no args returns success: false');
+assert(noTokenRepair.applied === false, 'repairStudentAchievements with no args did not apply writes');
+assert(noTokenRepair.error === 'CONFIRMATION_REQUIRED', 'repairStudentAchievements requires CONFIRMATION_REQUIRED');
+
+const wrongTokenRepair = vmContext.repairStudentAchievements(mockSpreadsheet, 'APPLY_PLEASE');
+assert(wrongTokenRepair.success === false, 'Wrong confirmation token returns success: false');
+assert(wrongTokenRepair.error === 'CONFIRMATION_REQUIRED', 'Wrong token rejected with CONFIRMATION_REQUIRED');
+
+// Authorized repair execution
+const authRepair = vmContext.repairStudentAchievements(mockSpreadsheet, 'CONFIRM_APPLY_REPAIR');
+assert(authRepair.success === true, 'Authorized repair succeeds');
+assert(authRepair.applied === true, 'Authorized repair applied is true');
+assert(typeof authRepair.totalRepairsApplied === 'number', 'Authorized repair returns totalRepairsApplied');
+
+// Second repair run on clean data reports 0 repairs needed
+const repeatRepair = vmContext.repairStudentAchievements(mockSpreadsheet, 'CONFIRM_APPLY_REPAIR');
+assert(repeatRepair.success === true, 'Repeat repair succeeds cleanly');
+assert(repeatRepair.totalRepairsApplied === 0, 'Repeat repair applies 0 repairs (idempotent)');
 
 console.log('✅ Achievements Audit & Dry-Run Repair Tool tests passed!\n');
 
