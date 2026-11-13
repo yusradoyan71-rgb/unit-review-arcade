@@ -1002,7 +1002,57 @@ assert(typeof repairAudit.totalDiscrepancies === 'number', 'Reports totalDiscrep
 assert(Array.isArray(repairAudit.auditReport), 'Reports auditReport array');
 assert(achievementsSheet.rows.length === preRepairAchRowCount, 'Dry run did NOT mutate Achievements sheet rows');
 
-// Test 11.2: No-argument invocation directly from GAS editor
+// Test 11.2: Complete Structured Diagnostic Logging Verification
+const ssDiscrepancy = new MockSpreadsheet('Discrepancy DB');
+const sAtt = ssDiscrepancy.insertSheet('Attempts');
+sAtt.appendRow(vmContext.CONFIG.ATTEMPT_HEADERS);
+// Student 801 in class 8A with 3 completed Quiz Battle attempts (eligible for first_game, perfect_score, quiz_ace)
+sAtt.appendRow(['att_801_q1', 'sess_1', 'std_801', '801', '8A', 'grade-8', 'g8-u1', 'Friendship', 'g8-u1-act1', 'Quiz', 'quiz_battle', 1, 10, 10, 10, 10, 0, 0, 100, '2026-11-13T10:00:00Z', '2026-11-13T10:05:00Z', 300, 'completed', '', 125]);
+sAtt.appendRow(['att_801_q2', 'sess_1', 'std_801', '801', '8A', 'grade-8', 'g8-u1', 'Friendship', 'g8-u1-act2', 'Quiz 2', 'quiz_battle', 1, 10, 10, 10, 10, 0, 0, 100, '2026-11-13T10:10:00Z', '2026-11-13T10:15:00Z', 300, 'completed', '', 125]);
+sAtt.appendRow(['att_801_q3', 'sess_1', 'std_801', '801', '8A', 'grade-8', 'g8-u1', 'Friendship', 'g8-u1-act3', 'Quiz 3', 'quiz_battle', 1, 10, 10, 10, 10, 0, 0, 100, '2026-11-13T10:20:00Z', '2026-11-13T10:25:00Z', 300, 'completed', '', 125]);
+
+const sAch = ssDiscrepancy.insertSheet('Achievements');
+sAch.appendRow(vmContext.CONFIG.ACHIEVEMENT_HEADERS);
+// Record first_game with wrong trigger attempt to test MISMATCHED_TRIGGER_ATTEMPT
+sAch.appendRow(['ach_1', 'sess_1', '801', 'Barış Arslan', 'first_game', 'First Steps', '2026-11-13T10:05:00Z', 'att_wrong_trigger']);
+
+const capturedLogs = [];
+const origGasLog = gasContext.Logger.log;
+gasContext.Logger.log = (msg) => capturedLogs.push(String(msg));
+
+const loggingAudit = vmContext.dryRunRepairStudentAchievements(ssDiscrepancy);
+gasContext.Logger.log = origGasLog;
+
+assert(loggingAudit.success === true, 'Diagnostic logging audit succeeded');
+assert(loggingAudit.totalDiscrepancies === 4, `Discrepancies count matches expected 4 (got ${loggingAudit.totalDiscrepancies})`);
+assert(Array.isArray(loggingAudit.auditReport), 'auditReport is array');
+assert(typeof loggingAudit.summaryByType === 'object', 'summaryByType is object');
+assert(typeof loggingAudit.summaryByStudent === 'object', 'summaryByStudent is object');
+
+// Verify all required fields on every auditReport item
+loggingAudit.auditReport.forEach((item, idx) => {
+  assert(Boolean(item.studentNumber), `Item ${idx} has studentNumber (${item.studentNumber})`);
+  assert(item.studentClass === '8A', `Item ${idx} has studentClass 8A (${item.studentClass})`);
+  assert(Boolean(item.badgeId), `Item ${idx} has badgeId (${item.badgeId})`);
+  assert(Boolean(item.discrepancyType), `Item ${idx} has discrepancyType (${item.discrepancyType})`);
+  assert(item.existingTriggerAttemptId !== undefined, `Item ${idx} has existingTriggerAttemptId`);
+  assert(item.expectedTriggerAttemptId !== undefined, `Item ${idx} has expectedTriggerAttemptId`);
+  assert(Boolean(item.proposedAction), `Item ${idx} has proposedAction`);
+});
+
+// Verify structured log formatting
+const joinedLogs = capturedLogs.join('\n');
+assert(joinedLogs.includes('STUDENT ACHIEVEMENTS AUDIT (DRY-RUN)'), 'Logs include audit header banner');
+assert(joinedLogs.includes('Mode: READ-ONLY (Zero spreadsheet writes, no data modified)'), 'Logs include read-only mode banner');
+assert(joinedLogs.includes('DETAILED DISCREPANCY LOG'), 'Logs include detailed discrepancy log section');
+assert(joinedLogs.includes('SUMMARY GROUPED BY DISCREPANCY TYPE'), 'Logs include summary grouped by type');
+assert(joinedLogs.includes('SUMMARY GROUPED BY STUDENT'), 'Logs include summary grouped by student');
+assert(joinedLogs.includes('• Proposed Action:'), 'Logs include proposed action');
+assert(joinedLogs.includes('• Existing Trigger Attempt:'), 'Logs include existing trigger attempt ID');
+assert(joinedLogs.includes('• Expected Trigger Attempt:'), 'Logs include expected trigger attempt ID');
+assert(joinedLogs.includes('DRY-RUN ONLY: NO CHANGES WERE APPLIED TO GOOGLE SHEETS'), 'Logs include dry-run completion footer');
+
+// Test 11.3: No-argument invocation directly from GAS editor
 const noArgAudit = vmContext.dryRunRepairStudentAchievements();
 assert(noArgAudit.dryRun === true, 'No-argument dryRunRepairStudentAchievements returns dryRun: true');
 assert(noArgAudit.success === true, 'No-argument dryRunRepairStudentAchievements succeeds via getArcadeSpreadsheet()');

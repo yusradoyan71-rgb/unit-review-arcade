@@ -4162,10 +4162,38 @@ function dryRunRepairStudentAchievements(optSs) {
     : [];
 
   var attemptsByStudent = {};
+  var studentClassMap = {};
+  var studentNameMap = {};
+
+  // Inspect Students sheet for class and student names if available
+  var studentsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.STUDENTS);
+  if (studentsSheet) {
+    var stdColMap = getSheetColumnMap(studentsSheet, CONFIG.STUDENT_HEADERS);
+    var stdData = (studentsSheet.getLastRow() > 0 && studentsSheet.getLastColumn() > 0)
+      ? studentsSheet.getDataRange().getValues()
+      : [];
+    for (var k = 1; k < stdData.length; k++) {
+      var sNum = String(stdData[k][stdColMap["student_number"] - 1] || "").trim();
+      var sCls = String(stdData[k][stdColMap["class"] - 1] || "").trim();
+      var sNam = String(stdData[k][stdColMap["full_name"] - 1] || "").trim();
+      if (sNum) {
+        if (sCls && !studentClassMap[sNum]) studentClassMap[sNum] = sCls;
+        if (sNam && !studentNameMap[sNum]) studentNameMap[sNum] = sNam;
+      }
+    }
+  }
+
   for (var i = 1; i < attemptsData.length; i++) {
     var status = String(attemptsData[i][attColMap["status"] - 1] || "").trim();
     if (status !== "completed") continue;
     var sNum = String(attemptsData[i][attColMap["student_number"] - 1] || "").trim();
+    if (!sNum) continue;
+
+    var sClsAtt = String(attemptsData[i][attColMap["class"] - 1] || "").trim();
+    if (sClsAtt && !studentClassMap[sNum]) {
+      studentClassMap[sNum] = sClsAtt;
+    }
+
     if (!attemptsByStudent[sNum]) attemptsByStudent[sNum] = [];
     attemptsByStudent[sNum].push({
       attemptId: String(attemptsData[i][attColMap["attempt_id"] - 1] || "").trim(),
@@ -4206,6 +4234,8 @@ function dryRunRepairStudentAchievements(optSs) {
   for (var studentNumber in attemptsByStudent) {
     var studentAttempts = attemptsByStudent[studentNumber];
     var studentBadges = existingBadgesByStudent[studentNumber] || {};
+    var sClass = studentClassMap[studentNumber] || "Unknown";
+    var sFullName = studentNameMap[studentNumber] || "";
 
     for (var c = 0; c < ACHIEVEMENTS_CATALOG.length; c++) {
       var def = ACHIEVEMENTS_CATALOG[c];
@@ -4214,12 +4244,19 @@ function dryRunRepairStudentAchievements(optSs) {
 
       if (!isEligible && records.length > 0) {
         totalDiscrepancies++;
+        var existingTrigsIneligible = records.map(function(r) { return r.triggerAttemptId || "—"; }).join(", ");
         auditReport.push({
           studentNumber: studentNumber,
+          studentClass: sClass,
+          studentName: sFullName,
           badgeId: def.id,
           badgeTitle: def.title,
+          discrepancyType: "INELIGIBLE_RECORD_EXISTS",
           issue: "INELIGIBLE_RECORD_EXISTS",
-          details: "Record exists in Achievements but student does not meet criteria.",
+          details: "Record exists in Achievements sheet, but student attempts do not meet badge criteria.",
+          existingTriggerAttemptId: existingTrigsIneligible || "None",
+          expectedTriggerAttemptId: "None (Ineligible)",
+          proposedAction: "Review and delete ineligible badge row(s) from Achievements sheet.",
           recordsCount: records.length,
           records: records
         });
@@ -4231,47 +4268,139 @@ function dryRunRepairStudentAchievements(optSs) {
           totalDiscrepancies++;
           auditReport.push({
             studentNumber: studentNumber,
+            studentClass: sClass,
+            studentName: sFullName,
             badgeId: def.id,
             badgeTitle: def.title,
+            discrepancyType: "MISSING_ACHIEVEMENT_RECORD",
             issue: "MISSING_ACHIEVEMENT_RECORD",
-            details: "Student met criteria but record is missing in Achievements sheet.",
+            details: "Student met criteria historically, but badge record is missing from Achievements sheet.",
+            existingTriggerAttemptId: "— (None recorded)",
             expectedTriggerAttemptId: trueTriggerId,
-            expectedTimestamp: trueTimestamp
+            expectedTimestamp: trueTimestamp,
+            proposedAction: "Append new achievement row attributed to true milestone attempt '" + trueTriggerId + "'."
           });
         } else if (records.length > 1) {
           totalDiscrepancies++;
+          var duplicateTrigs = records.map(function(r) { return r.triggerAttemptId || "—"; }).join(", ");
           auditReport.push({
             studentNumber: studentNumber,
+            studentClass: sClass,
+            studentName: sFullName,
             badgeId: def.id,
             badgeTitle: def.title,
+            discrepancyType: "DUPLICATE_BADGE_RECORDS",
             issue: "DUPLICATE_BADGE_RECORDS",
             details: "Found " + records.length + " duplicate rows for badge in Achievements sheet.",
+            existingTriggerAttemptId: duplicateTrigs,
+            expectedTriggerAttemptId: trueTriggerId,
+            expectedTimestamp: trueTimestamp,
+            proposedAction: "Deduplicate: keep earliest unlock row and remove extra duplicate rows.",
             records: records
           });
         } else if (records[0].triggerAttemptId !== trueTriggerId) {
           totalDiscrepancies++;
           auditReport.push({
             studentNumber: studentNumber,
+            studentClass: sClass,
+            studentName: sFullName,
             badgeId: def.id,
             badgeTitle: def.title,
+            discrepancyType: "MISMATCHED_TRIGGER_ATTEMPT",
             issue: "MISMATCHED_TRIGGER_ATTEMPT",
-            details: "Recorded triggerAttemptId differs from true historical trigger.",
+            details: "Recorded triggerAttemptId differs from true historical milestone attempt.",
             rowIndex: records[0].rowIndex,
+            existingTriggerAttemptId: records[0].triggerAttemptId,
             recordedTriggerAttemptId: records[0].triggerAttemptId,
             expectedTriggerAttemptId: trueTriggerId,
-            expectedTimestamp: trueTimestamp
+            expectedTimestamp: trueTimestamp,
+            proposedAction: "Update row " + records[0].rowIndex + " trigger_attempt_id from '" + records[0].triggerAttemptId + "' to '" + trueTriggerId + "' and sync timestamp."
           });
         }
       }
     }
   }
 
-  Logger.log("🔍 Achievements Audit Complete (DRY-RUN). Total discrepancies found: " + totalDiscrepancies);
+  // Generate structured, human-readable log output in Apps Script Execution Log
+  var totalAuditedStudents = Object.keys(attemptsByStudent).length;
+  Logger.log("========================================================================================");
+  Logger.log("🔍 UNIT REVIEW ARCADE — STUDENT ACHIEVEMENTS AUDIT (DRY-RUN)");
+  Logger.log("========================================================================================");
+  Logger.log("Mode: READ-ONLY (Zero spreadsheet writes, no data modified)");
+  Logger.log("Audited Students with Completed Attempts: " + totalAuditedStudents);
+  Logger.log("Total Discrepancies Identified: " + totalDiscrepancies);
+
+  var summaryByType = {};
+  var summaryByStudent = {};
+
+  if (totalDiscrepancies === 0) {
+    Logger.log("✅ All student achievement records are 100% consistent with historical attempt milestones.");
+    Logger.log("========================================================================================");
+  } else {
+    Logger.log("----------------------------------------------------------------------------------------");
+    Logger.log("📋 DETAILED DISCREPANCY LOG (" + totalDiscrepancies + " item" + (totalDiscrepancies === 1 ? "" : "s") + ")");
+    Logger.log("----------------------------------------------------------------------------------------");
+
+    for (var d = 0; d < auditReport.length; d++) {
+      var item = auditReport[d];
+      var studentLabel = item.studentNumber + " (Class: " + item.studentClass + (item.studentName ? " | " + item.studentName : "") + ")";
+
+      Logger.log("[" + (d + 1) + "/" + totalDiscrepancies + "] Student: " + studentLabel);
+      Logger.log("  • Badge: " + item.badgeId + " (\"" + item.badgeTitle + "\")");
+      Logger.log("  • Discrepancy Type: " + item.discrepancyType);
+      Logger.log("  • Details: " + item.details);
+      Logger.log("  • Existing Trigger Attempt: " + item.existingTriggerAttemptId);
+      Logger.log("  • Expected Trigger Attempt: " + item.expectedTriggerAttemptId);
+      Logger.log("  • Proposed Action: " + item.proposedAction);
+      Logger.log("");
+
+      summaryByType[item.discrepancyType] = (summaryByType[item.discrepancyType] || 0) + 1;
+      if (!summaryByStudent[item.studentNumber]) {
+        summaryByStudent[item.studentNumber] = {
+          studentNumber: item.studentNumber,
+          studentClass: item.studentClass,
+          studentName: item.studentName,
+          count: 0,
+          discrepancies: []
+        };
+      }
+      summaryByStudent[item.studentNumber].count++;
+      summaryByStudent[item.studentNumber].discrepancies.push(item);
+    }
+
+    Logger.log("----------------------------------------------------------------------------------------");
+    Logger.log("📊 SUMMARY GROUPED BY DISCREPANCY TYPE");
+    Logger.log("----------------------------------------------------------------------------------------");
+    for (var typeKey in summaryByType) {
+      Logger.log("  • " + typeKey + ": " + summaryByType[typeKey] + " item(s)");
+    }
+
+    Logger.log("----------------------------------------------------------------------------------------");
+    Logger.log("👥 SUMMARY GROUPED BY STUDENT");
+    Logger.log("----------------------------------------------------------------------------------------");
+    for (var sNumKey in summaryByStudent) {
+      var sGroup = summaryByStudent[sNumKey];
+      var sDesc = sGroup.studentNumber + " (Class: " + sGroup.studentClass + (sGroup.studentName ? " | " + sGroup.studentName : "") + ")";
+      Logger.log("  • Student " + sDesc + ": " + sGroup.count + " discrepancy(ies)");
+      for (var g = 0; g < sGroup.discrepancies.length; g++) {
+        var sub = sGroup.discrepancies[g];
+        Logger.log("    [" + (g + 1) + "] " + sub.discrepancyType + " -> " + sub.badgeId + " (\"" + sub.badgeTitle + "\") | Proposed: " + sub.proposedAction);
+      }
+    }
+
+    Logger.log("========================================================================================");
+    Logger.log("ℹ️ DRY-RUN ONLY: NO CHANGES WERE APPLIED TO GOOGLE SHEETS.");
+    Logger.log("To apply these repairs, run repairStudentAchievements(null, 'CONFIRM_APPLY_REPAIR').");
+    Logger.log("========================================================================================");
+  }
+
   return {
     success: true,
     dryRun: true,
     totalDiscrepancies: totalDiscrepancies,
-    auditReport: auditReport
+    auditReport: auditReport,
+    summaryByType: summaryByType,
+    summaryByStudent: summaryByStudent
   };
 }
 
