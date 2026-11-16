@@ -10,7 +10,6 @@ import { getQuestionsForGame } from '../../../data/gamesZone';
 import { GamesZoneService } from '../../../services/gamesZoneService';
 import { sounds } from '../../../services/soundEffects';
 import { lineIntersectsBox } from './slicingPhysics';
-export { lineIntersectsBox };
 
 interface WordNinjaGameProps {
   gradeId: GradeId;
