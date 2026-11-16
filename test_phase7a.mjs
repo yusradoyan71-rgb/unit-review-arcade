@@ -448,27 +448,27 @@ runTest('Word Ninja targets have 100% neutral styling before slice with zero vis
 });
 
 // ---------------------------------------------------------------------------
-// TEST 13: GRAMMAR RUNNER - READING PHASE & RELAXED GAME SPEED
+// TEST 13: GRAMMAR RUNNER - CONTINUOUS AUTOMATIC APPROACH & PRESERVED SPEED
 // ---------------------------------------------------------------------------
-runTest('Grammar Runner enforces dedicated reading phase and relaxed gate speeds', () => {
+runTest('Grammar Runner automatically approaches without start button or waiting phase at perfect speed', () => {
   const runnerSource = fs.readFileSync('./src/components/gamesZone/grammarRunner/GrammarRunnerGame.tsx', 'utf-8');
 
-  // 1. Reading phase durations: Easy 10s, Med 12s, Hard 14s
-  assert.ok(
-    runnerSource.includes("difficulty === 'hard' ? 14 : difficulty === 'medium' ? 12 : 10"),
-    'Reading phase must configure 10s (easy), 12s (med), 14s (hard)'
-  );
-
-  // 2. Gate approach speeds are slow and gentle: easy: 0.18, medium: 0.26, hard: 0.34
+  // 1. Gate approach speeds remain strictly calibrated: easy: 0.18, medium: 0.26, hard: 0.34
   assert.ok(
     runnerSource.includes("difficulty === 'hard' ? 0.34 : difficulty === 'medium' ? 0.26 : 0.18"),
-    'Gate approach speed must be gentle: 0.18 (easy), 0.26 (med), 0.34 (hard)'
+    'Gate approach speed must be preserved: 0.18 (easy), 0.26 (med), 0.34 (hard)'
   );
 
-  // 3. User controls for reading phase: +10s More Time and Ready to Run
-  assert.ok(runnerSource.includes('+10s More Time'), '+10s extension button must be available');
-  assert.ok(runnerSource.includes('Ready to Run!'), 'Immediate run button must be available');
-  assert.ok(runnerSource.includes('isReadingPhase'), 'Dedicated reading phase state must control game loop');
+  // 2. No manual "Start Approaching" or "Ready to Run!" button, nor "+10s" button
+  assert.equal(runnerSource.includes('Start Approaching'), false, 'Must not have Start Approaching button');
+  assert.equal(runnerSource.includes('Ready to Run!'), false, 'Must not have Ready to Run button');
+  assert.equal(runnerSource.includes('+10s More Time'), false, 'Must not have +10s button');
+  assert.equal(runnerSource.includes('isReadingPhase'), false, 'Must not have reading phase blocking game loop');
+
+  // 3. Questions and answer choices appear immediately with gates approaching automatically
+  assert.ok(runnerSource.includes('currentQ.laneOptions.map'), 'Must render lane options directly');
+  assert.ok(runnerSource.includes('animFrameRef.current = requestAnimationFrame(step)'), 'Must loop automatically');
+  assert.ok(runnerSource.includes('onPause'), 'Pause/resume functionality must be preserved');
 });
 
 // ---------------------------------------------------------------------------

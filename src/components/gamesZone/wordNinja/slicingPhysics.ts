@@ -60,3 +60,4 @@ export function lineIntersectsBox(
     segmentsIntersect(x1, y1, x2, y2, xLeft, yBottom, xLeft, yTop)
   );
 }
+
