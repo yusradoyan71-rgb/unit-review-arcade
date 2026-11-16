@@ -1437,6 +1437,85 @@ assert(rollbackResult.rollbackExecuted === true, 'Automatic rollback was execute
 const rolledBackRows = scenario6.achSheet.rows.slice(1);
 assert(rolledBackRows.every(r => r[7] === 'att_mweq7htq_g7zcy1pl'), 'All rows restored to original trigger ID after rollback');
 
+// Test 12.12: Standalone Apps Script Execution (Null Document Lock with Active Script Lock)
+const origDocLock = vmContext.LockService.getDocumentLock;
+const origScriptLock = vmContext.LockService.getScriptLock;
+
+let scriptLockAcquired = false;
+let scriptLockReleased = false;
+const customScriptLock = {
+  tryLock: (timeout) => {
+    scriptLockAcquired = true;
+    return true;
+  },
+  releaseLock: () => {
+    scriptLockReleased = true;
+  }
+};
+
+vmContext.LockService.getDocumentLock = () => null; // Standalone Apps Script returns null
+vmContext.LockService.getScriptLock = () => customScriptLock;
+
+const standaloneScenario = buildApproved12BadgeScenario();
+const standaloneResult = vmContext.runApprovedTestAchievementRepair(standaloneScenario.ss);
+
+assert(standaloneResult.success === true, 'Standalone execution succeeds when getDocumentLock returns null');
+assert(standaloneResult.applied === true, 'Repair applied in standalone environment');
+assert(scriptLockAcquired === true, 'LockService.getScriptLock().tryLock was invoked');
+assert(scriptLockReleased === true, 'LockService.getScriptLock().releaseLock was invoked in finally block');
+
+// Test 12.13: Standalone Execution with Null Script Lock (Graceful Fallback without Exception)
+let nullLockExecDidThrow = false;
+vmContext.LockService.getDocumentLock = () => null;
+vmContext.LockService.getScriptLock = () => null;
+
+const nullLockScenario = buildApproved12BadgeScenario();
+try {
+  const nullLockResult = vmContext.runApprovedTestAchievementRepair(nullLockScenario.ss);
+  assert(nullLockResult.success === true, 'Execution succeeds even when both lock methods return null');
+} catch (err) {
+  nullLockExecDidThrow = true;
+}
+assert(nullLockExecDidThrow === false, 'Did not throw Cannot read properties of null (reading tryLock)');
+
+// Test 12.14: Lock Timeout / Failed Lock Acquisition
+let timeoutReleased = false;
+const timeoutLock = {
+  tryLock: (timeout) => false, // Fails to acquire lock
+  releaseLock: () => { timeoutReleased = true; }
+};
+vmContext.LockService.getScriptLock = () => timeoutLock;
+
+const timeoutScenario = buildApproved12BadgeScenario();
+const timeoutResult = vmContext.runApprovedTestAchievementRepair(timeoutScenario.ss);
+
+assert(timeoutResult.success === false, 'Lock timeout halts execution');
+assert(timeoutResult.error === 'LOCK_TIMEOUT', 'Reports LOCK_TIMEOUT error code');
+assert(timeoutReleased === false, 'releaseLock is not called when lock was not acquired');
+assert(timeoutScenario.achSheet.rows.slice(1).every(r => r[7] === 'att_mweq7htq_g7zcy1pl'), 'Achievements untouched on lock timeout');
+assert(Object.keys(timeoutScenario.ss.sheets).filter(k => k.startsWith('_backup_achievements_')).length === 0, 'No backup sheet created on lock timeout');
+
+// Test 12.15: Safe Lock Release on Early Validation Failure
+let earlyAbortReleased = false;
+const earlyAbortLock = {
+  tryLock: (timeout) => true,
+  releaseLock: () => { earlyAbortReleased = true; }
+};
+vmContext.LockService.getScriptLock = () => earlyAbortLock;
+
+const earlyAbortScenario = buildApproved12BadgeScenario();
+// Add extra attempt to trigger SCOPE_MISMATCH
+earlyAbortScenario.attSheet.appendRow(['att_802_x', 'sess_1', 'std_802', '802', '8A', 'grade-8', 'g8-u1', 'Friendship', 'g8-u1-act1', 'Quiz 1', 'quiz_battle', 1, 10, 10, 10, 10, 0, 0, 100, '2026-11-01T10:00:00Z', '2026-11-01T10:05:00Z', 300, 'completed', '', 125]);
+const earlyAbortResult = vmContext.runApprovedTestAchievementRepair(earlyAbortScenario.ss);
+
+assert(earlyAbortResult.success === false, 'Aborts on validation failure');
+assert(earlyAbortResult.error === 'SCOPE_MISMATCH', 'Reports SCOPE_MISMATCH');
+assert(earlyAbortReleased === true, 'Lock was safely released in finally block on early abort');
+
+// Restore original lock mocks
+vmContext.LockService.getDocumentLock = origDocLock;
+vmContext.LockService.getScriptLock = origScriptLock;
+
 console.log('✅ Approved Test-Only Achievement Repair Workflow tests passed!\n');
 
 // ============================================================================

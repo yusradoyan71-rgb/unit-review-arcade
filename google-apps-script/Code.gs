@@ -4647,15 +4647,48 @@ function runApprovedTestAchievementRepair(optSs) {
     };
   }
 
-  // 2. ACQUIRE DOCUMENT LOCK
-  var lock = LockService.getDocumentLock();
-  if (!lock.tryLock(15000)) {
-    Logger.log("❌ Lock timeout: another operation is in progress. Please retry.");
-    return {
-      success: false,
-      error: "LOCK_TIMEOUT",
-      message: "Could not acquire document lock. Please wait and retry."
-    };
+  // 2. ACQUIRE LOCK (Safe for Standalone Apps Script & Container-Bound)
+  // In standalone scripts, LockService.getDocumentLock() returns null.
+  // We prioritize LockService.getScriptLock() which is supported across all Apps Script projects,
+  // verify non-null lock before calling tryLock(), and handle lock timeouts safely without modifying records.
+  var lock = null;
+  var hasLock = false;
+
+  try {
+    if (typeof LockService !== "undefined" && LockService) {
+      if (typeof LockService.getScriptLock === "function") {
+        lock = LockService.getScriptLock();
+      }
+      if (!lock && typeof LockService.getDocumentLock === "function") {
+        lock = LockService.getDocumentLock();
+      }
+    }
+  } catch (lInitErr) {
+    Logger.log("⚠️ Notice: Lock initialization returned error: " + lInitErr.message);
+  }
+
+  if (lock && typeof lock.tryLock === "function") {
+    try {
+      hasLock = lock.tryLock(15000);
+    } catch (lTryErr) {
+      Logger.log("❌ Error attempting to acquire script lock: " + lTryErr.message);
+      return {
+        success: false,
+        error: "LOCK_ERROR",
+        message: "Failed to acquire script lock: " + lTryErr.message
+      };
+    }
+
+    if (!hasLock) {
+      Logger.log("❌ Lock timeout: another operation is in progress. Please retry.");
+      return {
+        success: false,
+        error: "LOCK_TIMEOUT",
+        message: "Could not acquire script lock within 15 seconds. Another operation may be in progress. Please wait and retry."
+      };
+    }
+  } else if (!lock) {
+    Logger.log("⚠️ Notice: LockService returned null lock; proceeding safely without concurrency lock.");
   }
 
   try {
@@ -4897,7 +4930,13 @@ function runApprovedTestAchievementRepair(optSs) {
       affectedRows: affectedRows
     };
   } finally {
-    lock.releaseLock();
+    if (hasLock && lock && typeof lock.releaseLock === "function") {
+      try {
+        lock.releaseLock();
+      } catch (relErr) {
+        Logger.log("⚠️ Warning: Failed to release script lock: " + relErr.message);
+      }
+    }
   }
 }
 
