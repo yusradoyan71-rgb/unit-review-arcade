@@ -12,6 +12,7 @@
 
 import type { AuthApiResponse, LoginCredentials, StudentClass } from '../types/auth';
 import type { GamificationApiResponse } from '../types/gamification';
+import type { PersonalizedLearningApiResponse } from '../types/personalizedLearning';
 
 const STORAGE_API_KEY = 'unit_review_arcade_api_url';
 
@@ -310,6 +311,85 @@ export class ApiService {
       return {
         success: false,
         error: err instanceof Error ? err.message : 'Failed to fetch class leaderboard.',
+      };
+    }
+  }
+
+  /**
+   * Fetches the student's historical mistakes with real-time correction tracking (Phase 6).
+   */
+  public static async getStudentMistakes(sessionToken: string): Promise<PersonalizedLearningApiResponse> {
+    const apiUrl = this.getApiUrl();
+    if (!apiUrl || !sessionToken) {
+      return { success: false, error: 'Session token or server URL missing.', code: 'UNAUTHORIZED' };
+    }
+
+    try {
+      return await this.postRequest<PersonalizedLearningApiResponse>(apiUrl, {
+        action: 'student_get_mistakes',
+        sessionToken,
+      });
+    } catch (err) {
+      return {
+        success: false,
+        error: err instanceof Error ? err.message : 'Failed to fetch student mistakes.',
+      };
+    }
+  }
+
+  /**
+   * Fetches unit and skill topic mastery analytics separated by Grade 7 and Grade 8 (Phase 6).
+   */
+  public static async getStudentMastery(sessionToken: string): Promise<PersonalizedLearningApiResponse> {
+    const apiUrl = this.getApiUrl();
+    if (!apiUrl || !sessionToken) {
+      return { success: false, error: 'Session token or server URL missing.', code: 'UNAUTHORIZED' };
+    }
+
+    try {
+      return await this.postRequest<PersonalizedLearningApiResponse>(apiUrl, {
+        action: 'student_get_mastery',
+        sessionToken,
+      });
+    } catch (err) {
+      return {
+        success: false,
+        error: err instanceof Error ? err.message : 'Failed to fetch student mastery.',
+      };
+    }
+  }
+
+  /**
+   * Records a practice retry for a mistake, updating correction status and XP (Phase 6).
+   */
+  public static async recordMistakeRetry(
+    sessionToken: string,
+    payload: {
+      questionId: string;
+      activityId: string;
+      unitId: string;
+      isCorrect: boolean;
+      studentResponse?: string;
+      correctAnswer?: string;
+      questionPrompt?: string;
+      timeSpentSeconds?: number;
+    }
+  ): Promise<PersonalizedLearningApiResponse> {
+    const apiUrl = this.getApiUrl();
+    if (!apiUrl || !sessionToken) {
+      return { success: false, error: 'Session token or server URL missing.', code: 'UNAUTHORIZED' };
+    }
+
+    try {
+      return await this.postRequest<PersonalizedLearningApiResponse>(apiUrl, {
+        action: 'student_record_mistake_retry',
+        sessionToken,
+        ...payload,
+      });
+    } catch (err) {
+      return {
+        success: false,
+        error: err instanceof Error ? err.message : 'Failed to record mistake retry.',
       };
     }
   }

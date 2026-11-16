@@ -3,11 +3,15 @@ import { ArcadeProvider, useArcade } from './context/ArcadeContext';
 import { AuthProvider } from './context/AuthContext';
 import { TeacherAuthProvider, useTeacherAuth } from './context/TeacherAuthContext';
 import { GamificationProvider } from './context/GamificationContext';
+import { PersonalizedLearningProvider } from './context/PersonalizedLearningContext';
 import { ClassroomHeader } from './components/common/ClassroomHeader';
 import { ToastContainer } from './components/common/ToastContainer';
 import { StudentLoginModal } from './components/auth/StudentLoginModal';
 import { StudentProfileModal } from './components/gamification/StudentProfileModal';
 import { ClassLeaderboardModal } from './components/gamification/ClassLeaderboardModal';
+import { MyMistakesModal } from './components/personalized/MyMistakesModal';
+import { TopicMasteryModal } from './components/personalized/TopicMasteryModal';
+import { SmartReviewModal } from './components/personalized/SmartReviewModal';
 import { HomeScreen } from './components/home/HomeScreen';
 import { UnitLibraryScreen } from './components/library/UnitLibraryScreen';
 import { UnitDashboardScreen } from './components/dashboard/UnitDashboardScreen';
@@ -127,6 +131,11 @@ const MainView: React.FC = () => {
       {/* Class Leaderboard Modal */}
       <ClassLeaderboardModal />
 
+      {/* Phase 6: Personalized Learning Modals */}
+      <MyMistakesModal />
+      <TopicMasteryModal />
+      <SmartReviewModal />
+
       {/* Feedback Toast System */}
       <ToastContainer />
     </div>
@@ -139,7 +148,9 @@ export function App() {
       <TeacherAuthProvider>
         <ArcadeProvider>
           <GamificationProvider>
-            <MainView />
+            <PersonalizedLearningProvider>
+              <MainView />
+            </PersonalizedLearningProvider>
           </GamificationProvider>
         </ArcadeProvider>
       </TeacherAuthProvider>

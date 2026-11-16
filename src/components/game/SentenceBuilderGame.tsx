@@ -340,6 +340,12 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ activi
                   <span className="text-xs text-slate-300 mt-1">
                     Correct sentence: <strong className="text-emerald-300 font-mono">{currentSentence.correctSentence}</strong>
                   </span>
+                  {currentSentence.explanation && (
+                    <div className="mt-2 p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-200">
+                      <span className="font-bold text-amber-400 block text-[10px] uppercase tracking-wide">Explanation:</span>
+                      {currentSentence.explanation}
+                    </div>
+                  )}
                 </div>
               )}
             </div>

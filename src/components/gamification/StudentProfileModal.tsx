@@ -9,6 +9,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useGamification } from '../../context/GamificationContext';
+import { usePersonalizedLearning } from '../../context/PersonalizedLearningContext';
 import { sounds } from '../../services/soundEffects';
 import type { AchievementCategory } from '../../types/gamification';
 import {
@@ -61,6 +62,8 @@ export const StudentProfileModal: React.FC = () => {
     openLeaderboardModal,
     refreshProfile,
   } = useGamification();
+
+  const { openMistakesModal, openMasteryModal, uncorrectedMistakesCount } = usePersonalizedLearning();
 
   const [activeTab, setActiveTab] = useState<'all' | AchievementCategory>('all');
 
@@ -229,6 +232,61 @@ export const StudentProfileModal: React.FC = () => {
               </span>
               <span className="text-[10px] text-slate-500">100% Scores</span>
             </div>
+          </div>
+
+          {/* Phase 6: Personalized Learning Quick Action Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <button
+              onClick={() => {
+                sounds.playNavigate();
+                closeModals();
+                openMistakesModal();
+              }}
+              className="p-3.5 rounded-2xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-left transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-between group"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-rose-500/20 border border-rose-500/40 flex items-center justify-center text-rose-400">
+                  <RotateCw className="w-5 h-5 group-hover:rotate-180 transition-transform duration-500" />
+                </div>
+                <div>
+                  <div className="font-arcade text-xs sm:text-sm font-bold text-white tracking-wide">
+                    MY MISTAKES
+                  </div>
+                  <div className="text-[11px] text-slate-400">
+                    Review and retry missed questions
+                  </div>
+                </div>
+              </div>
+              <span className="px-2 py-0.5 rounded-md bg-rose-500/20 text-rose-300 border border-rose-500/40 text-[11px] font-mono font-bold">
+                {uncorrectedMistakesCount}
+              </span>
+            </button>
+
+            <button
+              onClick={() => {
+                sounds.playNavigate();
+                closeModals();
+                openMasteryModal();
+              }}
+              className="p-3.5 rounded-2xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-left transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-between group"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400">
+                  <Award className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                </div>
+                <div>
+                  <div className="font-arcade text-xs sm:text-sm font-bold text-white tracking-wide">
+                    TOPIC MASTERY
+                  </div>
+                  <div className="text-[11px] text-slate-400">
+                    Progress & skill breakdown by unit
+                  </div>
+                </div>
+              </div>
+              <span className="px-2 py-0.5 rounded-md bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 text-[11px] font-mono font-bold">
+                View
+              </span>
+            </button>
           </div>
 
           {/* Achievements Badges Shelf */}

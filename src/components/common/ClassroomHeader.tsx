@@ -2,6 +2,7 @@ import React from 'react';
 import { useArcade } from '../../context/ArcadeContext';
 import { useAuth } from '../../context/AuthContext';
 import { useGamification } from '../../context/GamificationContext';
+import { usePersonalizedLearning } from '../../context/PersonalizedLearningContext';
 import { useTeacherAuth } from '../../context/TeacherAuthContext';
 import { sounds } from '../../services/soundEffects';
 import { StudentProfileBadge } from '../auth/StudentProfileBadge';
@@ -16,7 +17,9 @@ import {
   GraduationCap,
   ShieldCheck,
   Layers,
-  Trophy
+  Trophy,
+  RotateCw,
+  Award
 } from 'lucide-react';
 
 export const ClassroomHeader: React.FC = () => {
@@ -38,6 +41,7 @@ export const ClassroomHeader: React.FC = () => {
   const { openDashboard, isAuthenticated: isTeacherAuthenticated } = useTeacherAuth();
   const { authMode } = useAuth();
   const { openLeaderboardModal } = useGamification();
+  const { openMistakesModal, openMasteryModal, uncorrectedMistakesCount } = usePersonalizedLearning();
 
   const isHome = navigation.view === 'home';
 
@@ -129,19 +133,53 @@ export const ClassroomHeader: React.FC = () => {
           {/* Student Profile / Mode Status Badge */}
           <StudentProfileBadge />
 
-          {/* Class Leaderboard Shortcut for Logged-In Students */}
+          {/* Personalized Learning & Gamification Shortcuts for Logged-In Students */}
           {authMode === 'student' && (
-            <button
-              onClick={() => {
-                sounds.playNavigate();
-                openLeaderboardModal();
-              }}
-              title="View Class Leaderboards"
-              aria-label="View Class Leaderboards"
-              className="p-2.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 hover:border-amber-400 text-amber-400 hover:text-amber-300 transition-all hover:scale-105 active:scale-95 flex items-center justify-center shadow-sm"
-            >
-              <Trophy className="w-5 h-5" />
-            </button>
+            <>
+              {/* My Mistakes Shortcut */}
+              <button
+                onClick={() => {
+                  sounds.playNavigate();
+                  openMistakesModal();
+                }}
+                title="My Mistakes & Retry"
+                aria-label="My Mistakes & Retry"
+                className="relative p-2.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 hover:border-rose-400 text-rose-400 hover:text-rose-300 transition-all hover:scale-105 active:scale-95 flex items-center justify-center shadow-sm"
+              >
+                <RotateCw className="w-5 h-5" />
+                {uncorrectedMistakesCount > 0 && (
+                  <span className="absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] px-1 rounded-full bg-rose-600 border border-slate-900 text-[10px] font-mono font-extrabold text-white flex items-center justify-center animate-pulse">
+                    {uncorrectedMistakesCount}
+                  </span>
+                )}
+              </button>
+
+              {/* Topic Mastery Shortcut */}
+              <button
+                onClick={() => {
+                  sounds.playNavigate();
+                  openMasteryModal();
+                }}
+                title="Topic Mastery Progress"
+                aria-label="Topic Mastery Progress"
+                className="p-2.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 hover:border-cyan-400 text-cyan-400 hover:text-cyan-300 transition-all hover:scale-105 active:scale-95 flex items-center justify-center shadow-sm"
+              >
+                <Award className="w-5 h-5" />
+              </button>
+
+              {/* Class Leaderboard Shortcut */}
+              <button
+                onClick={() => {
+                  sounds.playNavigate();
+                  openLeaderboardModal();
+                }}
+                title="View Class Leaderboards"
+                aria-label="View Class Leaderboards"
+                className="p-2.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 hover:border-amber-400 text-amber-400 hover:text-amber-300 transition-all hover:scale-105 active:scale-95 flex items-center justify-center shadow-sm"
+              >
+                <Trophy className="w-5 h-5" />
+              </button>
+            </>
           )}
 
           {/* Audio Effects Toggle */}

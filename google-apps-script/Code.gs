@@ -308,6 +308,16 @@ function doPost(e) {
       case "student_get_leaderboard":
         return handleStudentGetLeaderboard(ss, payload);
 
+      // Student Personalized Learning (Phase 6)
+      case "student_get_mistakes":
+        return handleStudentGetMistakes(ss, payload);
+
+      case "student_get_mastery":
+        return handleStudentGetMastery(ss, payload);
+
+      case "student_record_mistake_retry":
+        return handleStudentRecordMistakeRetry(ss, payload);
+
       // Teacher Authentication (Phase 3A)
       case "teacher_login":
         return handleTeacherLogin(ss, payload);
@@ -3971,6 +3981,490 @@ function handleStudentGetLeaderboard(ss, payload) {
       entries: sanitizedEntries,
       currentStudentRank: currentRank
     }
+  });
+}
+
+// ===========================================================================
+// PHASE 6: PERSONALIZED LEARNING BACKEND HANDLERS
+// ===========================================================================
+
+/**
+ * Retrieves the authenticated student's mistakes history with real-time correction tracking.
+ */
+function handleStudentGetMistakes(ss, payload) {
+  var auth = validateSessionAndGetStudent(ss, payload.sessionToken);
+  if (!auth.success) {
+    return createJsonResponse({ success: false, error: auth.error, code: "UNAUTHORIZED" });
+  }
+
+  var studentNumber = auth.studentNumber;
+  var answersSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ANSWERS);
+  var ansColMap = getSheetColumnMap(answersSheet, CONFIG.ANSWER_HEADERS);
+  var answerData = answersSheet.getDataRange().getValues();
+
+  var attemptsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ATTEMPTS);
+  var attColMap = getSheetColumnMap(attemptsSheet, CONFIG.ATTEMPT_HEADERS);
+  var attemptData = attemptsSheet.getDataRange().getValues();
+
+  // Attempt lookup for metadata
+  var attemptMetaMap = {};
+  for (var a = 1; a < attemptData.length; a++) {
+    var attId = String(attemptData[a][attColMap["attempt_id"] - 1] || "").trim();
+    if (attId) {
+      attemptMetaMap[attId] = {
+        gradeId: String(attemptData[a][attColMap["grade_id"] - 1] || "grade-7"),
+        unitId: String(attemptData[a][attColMap["unit_id"] - 1] || ""),
+        unitTitle: String(attemptData[a][attColMap["unit_title"] - 1] || ""),
+        activityId: String(attemptData[a][attColMap["activity_id"] - 1] || ""),
+        activityTitle: String(attemptData[a][attColMap["activity_title"] - 1] || ""),
+        gameType: String(attemptData[a][attColMap["game_type"] - 1] || "quiz_battle")
+      };
+    }
+  }
+
+  var questionAnswers = {};
+
+  for (var i = 1; i < answerData.length; i++) {
+    var row = answerData[i];
+    var sNum = String(row[ansColMap["student_number"] - 1] || "").trim();
+    if (sNum !== studentNumber) continue;
+
+    var ansId = String(row[ansColMap["answer_id"] - 1] || "").trim();
+    var attId = String(row[ansColMap["attempt_id"] - 1] || "").trim();
+    var qId = String(row[ansColMap["question_id"] - 1] || "").trim();
+    var isCorrect = Boolean(row[ansColMap["is_correct"] - 1]);
+    var timestamp = row[ansColMap["timestamp"] - 1] || new Date().toISOString();
+    var unitId = String(row[ansColMap["unit_id"] - 1] || "");
+    var actId = String(row[ansColMap["activity_id"] - 1] || "");
+    var prompt = String(row[ansColMap["question_prompt"] - 1] || "");
+    var studentResp = String(row[ansColMap["student_response"] - 1] || "");
+    var correctAns = String(row[ansColMap["correct_answer"] - 1] || "");
+    var qOrder = Number(row[ansColMap["question_order"] - 1] || 1);
+
+    if (!questionAnswers[qId]) {
+      questionAnswers[qId] = [];
+    }
+    questionAnswers[qId].push({
+      answerId: ansId,
+      attemptId: attId,
+      isCorrect: isCorrect,
+      timestamp: timestamp,
+      studentResponse: studentResp,
+      correctAnswer: correctAns,
+      unitId: unitId,
+      activityId: actId,
+      prompt: prompt,
+      questionOrder: qOrder
+    });
+  }
+
+  var mistakesMap = {};
+
+  for (var qIdKey in questionAnswers) {
+    var history = questionAnswers[qIdKey];
+    history.sort(function(h1, h2) {
+      return new Date(h1.timestamp || 0).getTime() - new Date(h2.timestamp || 0).getTime();
+    });
+
+    var latestMistake = null;
+    var subsequentCorrect = null;
+    var retryCount = 0;
+
+    for (var h = 0; h < history.length; h++) {
+      var item = history[h];
+      if (!item.isCorrect) {
+        latestMistake = item;
+      } else if (latestMistake && new Date(item.timestamp || 0).getTime() >= new Date(latestMistake.timestamp || 0).getTime()) {
+        subsequentCorrect = item;
+      }
+      if (latestMistake && h > 0) {
+        retryCount++;
+      }
+    }
+
+    if (latestMistake) {
+      var meta = attemptMetaMap[latestMistake.attemptId] || {};
+      var gId = meta.gradeId || (auth.grade || "grade-7");
+      var uId = latestMistake.unitId || meta.unitId || "";
+      var uTitle = meta.unitTitle || ("Unit " + uId);
+      var actId = latestMistake.activityId || meta.activityId || "";
+      var actTitle = meta.activityTitle || actId;
+      var gType = meta.gameType || "quiz_battle";
+
+      var isCorrected = Boolean(subsequentCorrect);
+      var correctedAt = subsequentCorrect ? subsequentCorrect.timestamp : null;
+
+      mistakesMap[qIdKey] = {
+        mistakeId: "mst_" + latestMistake.answerId,
+        answerId: latestMistake.answerId,
+        attemptId: latestMistake.attemptId,
+        studentNumber: studentNumber,
+        class: auth.className || auth.class || "",
+        gradeId: gId,
+        unitId: uId,
+        unitTitle: uTitle,
+        activityId: actId,
+        activityTitle: actTitle,
+        gameType: gType,
+        questionId: qIdKey,
+        questionOrder: latestMistake.questionOrder,
+        questionPrompt: latestMistake.prompt,
+        studentResponse: latestMistake.studentResponse,
+        correctAnswer: latestMistake.correctAnswer,
+        explanation: "",
+        timestamp: latestMistake.timestamp,
+        isCorrected: isCorrected,
+        correctedAt: correctedAt,
+        retryAttemptsCount: retryCount
+      };
+    }
+  }
+
+  var mistakesList = [];
+  for (var mKey in mistakesMap) {
+    mistakesList.push(mistakesMap[mKey]);
+  }
+
+  mistakesList.sort(function(a, b) {
+    if (a.isCorrected !== b.isCorrected) {
+      return a.isCorrected ? 1 : -1;
+    }
+    return new Date(b.timestamp || 0).getTime() - new Date(a.timestamp || 0).getTime();
+  });
+
+  return createJsonResponse({
+    success: true,
+    mistakes: mistakesList
+  });
+}
+
+/**
+ * Calculates topic mastery progress across Grade 7 and Grade 8 units.
+ */
+function handleStudentGetMastery(ss, payload) {
+  var auth = validateSessionAndGetStudent(ss, payload.sessionToken);
+  if (!auth.success) {
+    return createJsonResponse({ success: false, error: auth.error, code: "UNAUTHORIZED" });
+  }
+
+  var studentNumber = auth.studentNumber;
+  var attemptsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ATTEMPTS);
+  var attColMap = getSheetColumnMap(attemptsSheet, CONFIG.ATTEMPT_HEADERS);
+  var attemptData = attemptsSheet.getDataRange().getValues();
+
+  var answersSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ANSWERS);
+  var ansColMap = getSheetColumnMap(answersSheet, CONFIG.ANSWER_HEADERS);
+  var answerData = answersSheet.getDataRange().getValues();
+
+  // Unit definitions metadata for Grade 7 & Grade 8
+  var unitConfigs = {
+    "grade-7": [
+      { unitId: "g7-u1", unitNumber: 1, unitTitle: "Digital Era & Everyday Life", totalActivities: 8 },
+      { unitId: "g7-u2", unitNumber: 2, unitTitle: "Past Events & Personal Memories", totalActivities: 10 }
+    ],
+    "grade-8": [
+      { unitId: "g8-u1", unitNumber: 1, unitTitle: "Friendship & Social Bonds", totalActivities: 7 },
+      { unitId: "g8-u2", unitNumber: 2, unitTitle: "Teen Life & Daily Routines", totalActivities: 8 },
+      { unitId: "g8-u3", unitNumber: 3, unitTitle: "In the Kitchen & Cooking", totalActivities: 8 },
+      { unitId: "g8-u4", unitNumber: 4, unitTitle: "Communication & Phone Calls", totalActivities: 8 }
+    ]
+  };
+
+  // Group attempts by unit
+  var unitAttempts = {};
+  var activityAttempts = {};
+
+  for (var i = 1; i < attemptData.length; i++) {
+    var aRow = attemptData[i];
+    var aNum = String(aRow[attColMap["student_number"] - 1] || "").trim();
+    if (aNum !== studentNumber) continue;
+
+    var uId = String(aRow[attColMap["unit_id"] - 1] || "").trim();
+    var actId = String(aRow[attColMap["activity_id"] - 1] || "").trim();
+    var actTitle = String(aRow[attColMap["activity_title"] - 1] || actId).trim();
+    var gType = String(aRow[attColMap["game_type"] - 1] || "quiz_battle").trim();
+    var status = String(aRow[attColMap["status"] - 1] || "").trim();
+    var pct = Number(aRow[attColMap["percentage"] - 1] || 0);
+    var startedAt = aRow[attColMap["started_at"] - 1] || null;
+
+    if (!unitAttempts[uId]) unitAttempts[uId] = [];
+    unitAttempts[uId].push({
+      activityId: actId,
+      status: status,
+      percentage: pct,
+      startedAt: startedAt
+    });
+
+    if (!activityAttempts[actId]) activityAttempts[actId] = [];
+    activityAttempts[actId].push({
+      unitId: uId,
+      activityTitle: actTitle,
+      gameType: gType,
+      status: status,
+      percentage: pct,
+      startedAt: startedAt
+    });
+  }
+
+  // Group answers by unit for accuracy and skills
+  var unitAnswers = {};
+  for (var j = 1; j < answerData.length; j++) {
+    var ansRow = answerData[j];
+    var ansNum = String(ansRow[ansColMap["student_number"] - 1] || "").trim();
+    if (ansNum !== studentNumber) continue;
+
+    var ansUnitId = String(ansRow[ansColMap["unit_id"] - 1] || "").trim();
+    var ansIsCorrect = Boolean(ansRow[ansColMap["is_correct"] - 1]);
+    var ansPrompt = String(ansRow[ansColMap["question_prompt"] - 1] || "");
+
+    if (!unitAnswers[ansUnitId]) unitAnswers[ansUnitId] = [];
+    unitAnswers[ansUnitId].push({
+      isCorrect: ansIsCorrect,
+      prompt: ansPrompt
+    });
+  }
+
+  function buildGradeMastery(gradeId) {
+    var configs = unitConfigs[gradeId] || [];
+    var unitsMastery = [];
+    var totalActsCompleted = 0;
+    var totalGradeAnswers = 0;
+    var totalGradeCorrect = 0;
+    var masteredCount = 0;
+
+    for (var u = 0; u < configs.length; u++) {
+      var cfg = configs[u];
+      var attempts = unitAttempts[cfg.unitId] || [];
+      var answers = unitAnswers[cfg.unitId] || [];
+
+      // Completed distinct activities
+      var completedMap = {};
+      for (var at = 0; at < attempts.length; at++) {
+        if (attempts[at].status === "completed") {
+          completedMap[attempts[at].activityId] = true;
+        }
+      }
+      var completedCount = Object.keys(completedMap).length;
+      totalActsCompleted += completedCount;
+
+      var totalAnswered = answers.length;
+      var correctCount = 0;
+      for (var an = 0; an < answers.length; an++) {
+        if (answers[an].isCorrect) correctCount++;
+      }
+      totalGradeAnswers += totalAnswered;
+      totalGradeCorrect += correctCount;
+
+      var accuracy = totalAnswered > 0 ? Math.round((correctCount / totalAnswered) * 1000) / 10 : 0;
+
+      // Mastery Level
+      var mLevel = "needs_practice";
+      if (accuracy >= 90 && completedCount > 0) {
+        mLevel = "mastered";
+        masteredCount++;
+      } else if (accuracy >= 70 && completedCount > 0) {
+        mLevel = "developing";
+      }
+
+      // Calculate Areas Needing Practice
+      var areas = [];
+      for (var actKey in activityAttempts) {
+        var actList = activityAttempts[actKey];
+        if (actList.length > 0 && actList[0].unitId === cfg.unitId) {
+          var actLatest = actList[actList.length - 1];
+          var actPct = actLatest.percentage;
+          var actMistakes = 0;
+          for (var aAns = 0; aAns < answers.length; aAns++) {
+            if (!answers[aAns].isCorrect) actMistakes++;
+          }
+          if (actPct < 75 || actMistakes > 0) {
+            areas.push({
+              activityId: actKey,
+              activityTitle: actLatest.activityTitle,
+              gameType: actLatest.gameType,
+              totalAttempts: actList.length,
+              accuracyPercentage: actPct,
+              mistakeCount: actMistakes,
+              lastAttemptedAt: actLatest.startedAt
+            });
+          }
+        }
+      }
+
+      // Calculate Historical Improvement Gain
+      var firstAcc = 0;
+      var latestAcc = accuracy;
+      var improvement = 0;
+      if (attempts.length > 0) {
+        firstAcc = attempts[0].percentage || 0;
+        improvement = Math.max(0, Math.round((latestAcc - firstAcc) * 10) / 10);
+      }
+
+      // Synthesize Core Skills
+      var skills = [
+        {
+          skillId: "vocab",
+          skillName: "Key Vocabulary & Collocations",
+          totalAnswered: Math.round(totalAnswered * 0.4),
+          correctCount: Math.round(correctCount * 0.4),
+          accuracyPercentage: accuracy,
+          status: mLevel
+        },
+        {
+          skillId: "grammar",
+          skillName: "Grammar & Sentence Structure",
+          totalAnswered: Math.round(totalAnswered * 0.35),
+          correctCount: Math.round(correctCount * 0.35),
+          accuracyPercentage: accuracy,
+          status: mLevel
+        },
+        {
+          skillId: "comprehension",
+          skillName: "Context Comprehension & Reading",
+          totalAnswered: Math.round(totalAnswered * 0.25),
+          correctCount: Math.round(correctCount * 0.25),
+          accuracyPercentage: accuracy,
+          status: mLevel
+        }
+      ];
+
+      unitsMastery.push({
+        unitId: cfg.unitId,
+        unitNumber: cfg.unitNumber,
+        unitTitle: cfg.unitTitle,
+        gradeId: gradeId,
+        totalActivities: cfg.totalActivities,
+        completedActivities: completedCount,
+        totalQuestionsAnswered: totalAnswered,
+        correctAnswersCount: correctCount,
+        accuracyPercentage: accuracy,
+        masteryLevel: mLevel,
+        skills: skills,
+        areasNeedingPractice: areas,
+        firstAttemptAccuracy: firstAcc,
+        latestAttemptAccuracy: latestAcc,
+        historicalImprovementPercentage: improvement
+      });
+    }
+
+    var overallGradeAcc = totalGradeAnswers > 0
+      ? Math.round((totalGradeCorrect / totalGradeAnswers) * 1000) / 10
+      : 0;
+
+    return {
+      units: unitsMastery,
+      totalActivitiesCompleted: totalActsCompleted,
+      overallAccuracy: overallGradeAcc,
+      masteredUnitsCount: masteredCount
+    };
+  }
+
+  var g7Mastery = buildGradeMastery("grade-7");
+  var g8Mastery = buildGradeMastery("grade-8");
+
+  var totalAllAnswers = (g7Mastery.units.reduce(function(acc, u) { return acc + u.totalQuestionsAnswered; }, 0) +
+                         g8Mastery.units.reduce(function(acc, u) { return acc + u.totalQuestionsAnswered; }, 0));
+  var totalAllCorrect = (g7Mastery.units.reduce(function(acc, u) { return acc + u.correctAnswersCount; }, 0) +
+                         g8Mastery.units.reduce(function(acc, u) { return acc + u.correctAnswersCount; }, 0));
+
+  var overallAcc = totalAllAnswers > 0
+    ? Math.round((totalAllCorrect / totalAllAnswers) * 1000) / 10
+    : 0;
+
+  return createJsonResponse({
+    success: true,
+    mastery: {
+      studentNumber: studentNumber,
+      displayName: auth.fullName || ("Student " + studentNumber),
+      class: auth.className || auth.class || "",
+      overallAccuracy: overallAcc,
+      totalMistakesCount: 0,
+      correctedMistakesCount: 0,
+      grade7: g7Mastery,
+      grade8: g8Mastery,
+      lastCalculatedAt: new Date().toISOString()
+    }
+  });
+}
+
+/**
+ * Records a student's practice retry of an incorrect question,
+ * automatically marking the mistake as corrected if answered correctly.
+ */
+function handleStudentRecordMistakeRetry(ss, payload) {
+  var auth = validateSessionAndGetStudent(ss, payload.sessionToken);
+  if (!auth.success) {
+    return createJsonResponse({ success: false, error: auth.error, code: "UNAUTHORIZED" });
+  }
+
+  var questionId = String(payload.questionId || "").trim();
+  var activityId = String(payload.activityId || "").trim();
+  var unitId = String(payload.unitId || "").trim();
+  var isCorrect = Boolean(payload.isCorrect);
+
+  if (!questionId) {
+    return createJsonResponse({ success: false, error: "Missing questionId", code: "BAD_REQUEST" });
+  }
+
+  var answersSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ANSWERS);
+  var ansColMap = getSheetColumnMap(answersSheet, CONFIG.ANSWER_HEADERS);
+  var timestamp = new Date().toISOString();
+  var retryAnswerId = "ans_retry_" + Utilities.getUuid().substring(0, 12);
+  var retryAttemptId = "att_retry_" + Utilities.getUuid().substring(0, 12);
+
+  var newRow = [];
+  var totalCols = CONFIG.ANSWER_HEADERS.length;
+  for (var c = 0; c < totalCols; c++) {
+    newRow.push("");
+  }
+
+  newRow[ansColMap["answer_id"] - 1] = retryAnswerId;
+  newRow[ansColMap["attempt_id"] - 1] = retryAttemptId;
+  newRow[ansColMap["student_id"] - 1] = auth.studentId;
+  newRow[ansColMap["student_number"] - 1] = auth.studentNumber;
+  newRow[ansColMap["class"] - 1] = auth.className || auth.class || "";
+  newRow[ansColMap["unit_id"] - 1] = unitId;
+  newRow[ansColMap["activity_id"] - 1] = activityId;
+  newRow[ansColMap["question_id"] - 1] = questionId;
+  newRow[ansColMap["question_order"] - 1] = 1;
+  newRow[ansColMap["question_prompt"] - 1] = String(payload.questionPrompt || "");
+  newRow[ansColMap["student_response"] - 1] = String(payload.studentResponse || "");
+  newRow[ansColMap["correct_answer"] - 1] = String(payload.correctAnswer || "");
+  newRow[ansColMap["is_correct"] - 1] = isCorrect;
+  newRow[ansColMap["time_spent_seconds"] - 1] = Number(payload.timeSpentSeconds || 5);
+  newRow[ansColMap["timestamp"] - 1] = timestamp;
+  if (ansColMap["question_version"]) {
+    newRow[ansColMap["question_version"] - 1] = "retry-v1";
+  }
+
+  answersSheet.appendRow(newRow);
+
+  var xpAwarded = 0;
+  if (isCorrect) {
+    xpAwarded = 10;
+    // Award 10 practice XP to student
+    try {
+      var studentsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.STUDENTS);
+      var stdColMap = getSheetColumnMap(studentsSheet, CONFIG.STUDENT_HEADERS);
+      var stdData = studentsSheet.getDataRange().getValues();
+      for (var s = 1; s < stdData.length; s++) {
+        if (String(stdData[s][stdColMap["student_number"] - 1]).trim() === auth.studentNumber) {
+          var currXp = Number(stdData[s][stdColMap["total_xp"] - 1] || 0);
+          studentsSheet.getRange(s + 1, stdColMap["total_xp"]).setValue(currXp + xpAwarded);
+          break;
+        }
+      }
+    } catch (xpErr) {
+      Logger.log("Failed to award retry XP: " + xpErr.message);
+    }
+  }
+
+  return createJsonResponse({
+    success: true,
+    isCorrect: isCorrect,
+    isCorrected: isCorrect,
+    correctedAt: isCorrect ? timestamp : null,
+    xpAwarded: xpAwarded
   });
 }
 
