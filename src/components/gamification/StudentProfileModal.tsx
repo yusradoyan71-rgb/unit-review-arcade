@@ -74,7 +74,7 @@ export const StudentProfileModal: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'all' | AchievementCategory>('all');
 
   const studentNumber = profile?.studentNumber || '';
-  const monsterConfig = profile?.monster || MonsterService.getMonster(studentNumber);
+  const monsterConfig = MonsterService.resolveMonster(profile?.monster, studentNumber);
   const coinBalance = profile?.totalCoins ?? CoinService.getBalance(studentNumber);
 
   if (!isProfileModalOpen) return null;

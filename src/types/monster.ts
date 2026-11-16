@@ -259,3 +259,4 @@ export const FUTURE_SHOP_CATALOG: ShopItemPreview[] = [
     icon: 'Zap',
   },
 ];
+

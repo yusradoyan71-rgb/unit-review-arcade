@@ -8,9 +8,11 @@
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import type { AuthMode, StudentProfile, StudentClass, LoginCredentials, ActiveSession } from '../types/auth';
+import type { MonsterConfig } from '../types/monster';
 import { getGradeForClass } from '../types/auth';
 import { ApiService } from '../services/apiService';
 import { TrackingService } from '../services/trackingService';
+import { MonsterService } from '../services/monsterService';
 import { sounds } from '../services/soundEffects';
 
 interface AuthContextType {
@@ -31,6 +33,8 @@ interface AuthContextType {
   enterClassroomMode: () => void;
   clearError: () => void;
   updateSessionToken: (newToken: string, newExpiresAt?: string) => void;
+  updateStudentMonster: (newMonster: MonsterConfig) => void;
+  updateStudent: (partial: Partial<StudentProfile>) => void;
 }
 
 const SESSION_STORAGE_KEY = 'unit_review_arcade_active_session_v1';
@@ -38,11 +42,14 @@ const SESSION_STORAGE_KEY = 'unit_review_arcade_active_session_v1';
 const normalizeStudent = (raw: StudentProfile): StudentProfile => {
   const studentClass = String(raw.class || '').trim() as StudentClass;
   const grade = getGradeForClass(studentClass);
+  const studentNumber = String(raw.studentNumber || '').trim();
+  const monster = MonsterService.resolveMonster(raw.monster, studentNumber);
   return {
     ...raw,
-    studentNumber: String(raw.studentNumber || '').trim(),
+    studentNumber,
     class: studentClass,
     grade: grade,
+    monster,
   };
 };
 
@@ -94,7 +101,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             // Verify with backend
             const check = await ApiService.checkSession(parsed.sessionToken);
             if (check.success && check.student) {
-              setStudent(normalizeStudent(check.student));
+              const normalized = normalizeStudent(check.student);
+              setStudent(normalized);
+              if (normalized.monster && normalized.studentNumber) {
+                MonsterService.updateCachedMonster(normalized.studentNumber, normalized.monster);
+              }
+
+              // Update sessionStorage to maintain exact session sync across page reloads
+              const refreshedSession: ActiveSession = {
+                ...parsed,
+                student: normalized,
+              };
+              sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(refreshedSession));
             } else {
               // Session expired or invalidated server-side
               sessionStorage.removeItem(SESSION_STORAGE_KEY);
@@ -143,6 +161,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         if (res.success && res.student && res.sessionToken) {
           sounds.playSuccess();
           const normalizedStudent = normalizeStudent(res.student);
+          if (normalizedStudent.monster && normalizedStudent.studentNumber) {
+            MonsterService.updateCachedMonster(normalizedStudent.studentNumber, normalizedStudent.monster);
+          }
           setStudent(normalizedStudent);
           setSessionToken(res.sessionToken);
           setAuthMode('student');
@@ -220,6 +241,50 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, [student]);
 
+  // 6. Update student monster in-place and keep session storage synchronized
+  const updateStudentMonster = useCallback((newMonster: MonsterConfig) => {
+    setStudent(prev => {
+      if (!prev) return prev;
+      const updated = { ...prev, monster: newMonster };
+      if (prev.studentNumber) {
+        MonsterService.updateCachedMonster(prev.studentNumber, newMonster);
+      }
+      try {
+        const stored = sessionStorage.getItem(SESSION_STORAGE_KEY);
+        if (stored) {
+          const parsed = JSON.parse(stored) as ActiveSession;
+          parsed.student = { ...parsed.student, monster: newMonster };
+          sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(parsed));
+        }
+      } catch (err) {
+        console.warn('Failed to update session storage monster:', err);
+      }
+      return updated;
+    });
+  }, []);
+
+  // 7. Update partial student profile in-place
+  const updateStudent = useCallback((partial: Partial<StudentProfile>) => {
+    setStudent(prev => {
+      if (!prev) return prev;
+      const updated = { ...prev, ...partial };
+      if (partial.monster && prev.studentNumber) {
+        MonsterService.updateCachedMonster(prev.studentNumber, partial.monster);
+      }
+      try {
+        const stored = sessionStorage.getItem(SESSION_STORAGE_KEY);
+        if (stored) {
+          const parsed = JSON.parse(stored) as ActiveSession;
+          parsed.student = { ...parsed.student, ...partial };
+          sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(parsed));
+        }
+      } catch (err) {
+        console.warn('Failed to update session storage student profile:', err);
+      }
+      return updated;
+    });
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{
@@ -238,6 +303,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         enterClassroomMode,
         clearError,
         updateSessionToken,
+        updateStudentMonster,
+        updateStudent,
       }}
     >
       {children}

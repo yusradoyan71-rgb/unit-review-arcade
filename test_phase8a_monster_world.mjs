@@ -27,6 +27,7 @@ import vm from 'node:vm';
 import { calculateLevelFromXp, getUnlimitedLevelTitle } from './src/utils/gamification.ts';
 import { CoinService } from './src/services/coinService.ts';
 import { MonsterService } from './src/services/monsterService.ts';
+import { ApiService } from './src/services/apiService.ts';
 import { DEFAULT_MONSTER_CONFIG, COIN_ECONOMY } from './src/types/monster.ts';
 
 // Mock localStorage for Node environment
@@ -46,6 +47,18 @@ let passedTests = 0;
 function runTest(name, fn) {
   try {
     fn();
+    console.log(`  ✓ ${name}`);
+    passedTests++;
+  } catch (err) {
+    console.error(`  ✗ ${name}`);
+    console.error(err);
+    process.exit(1);
+  }
+}
+
+async function runAsyncTest(name, fn) {
+  try {
+    await fn();
     console.log(`  ✓ ${name}`);
     passedTests++;
   } catch (err) {
@@ -299,7 +312,10 @@ const vmContext = {
 };
 
 vm.createContext(vmContext);
-const codeGsSource = fs.readFileSync('./google-apps-script/Code.gs', 'utf-8');
+const codeGsPath = fs.existsSync('./google-apps-script/Code.gs')
+  ? './google-apps-script/Code.gs'
+  : './unit-review-arcade/google-apps-script/Code.gs';
+const codeGsSource = fs.readFileSync(codeGsPath, 'utf-8');
 vm.runInContext(codeGsSource, vmContext);
 
 // Initialize base curriculum and demo student accounts
@@ -580,6 +596,44 @@ runTest('Student 701 gets persisted monster companion', () => {
   assert.equal(getRes.monster.hornType, 'cat_ears');
 });
 
+runTest('Student 701 session check restores exact saved monster after refresh', () => {
+  const checkRes = callGas({
+    action: 'student_session_check',
+    sessionToken: sessionToken701,
+  });
+  assert.equal(checkRes.success, true);
+  assert.equal(checkRes.student.studentNumber, '701');
+  assert.equal(checkRes.student.monster.name, 'Boba');
+  assert.equal(checkRes.student.monster.bodyColor, 'purple');
+  assert.equal(checkRes.student.monster.bodyShape, 'fuzzy');
+  assert.equal(checkRes.student.monster.hornType, 'cat_ears');
+});
+
+runTest('Student 701 profile endpoint returns saved monster and coin balance', () => {
+  const profileRes = callGas({
+    action: 'student_get_profile',
+    sessionToken: sessionToken701,
+  });
+  assert.equal(profileRes.success, true);
+  assert.equal(profileRes.profile.studentNumber, '701');
+  assert.equal(profileRes.profile.monster.name, 'Boba');
+  assert.equal(profileRes.profile.monster.bodyColor, 'purple');
+  assert.equal(profileRes.profile.monster.hornType, 'cat_ears');
+  assert.ok(profileRes.profile.totalCoins !== undefined);
+});
+
+runTest('Student 701 re-login restores exact saved monster (Simulating cross-device sync)', () => {
+  const reLoginRes = callGas({
+    action: 'student_login',
+    studentNumber: '701',
+    pin: '1234',
+  });
+  assert.equal(reLoginRes.success, true);
+  assert.equal(reLoginRes.student.monster.name, 'Boba');
+  assert.equal(reLoginRes.student.monster.bodyColor, 'purple');
+  assert.equal(reLoginRes.student.monster.bodyShape, 'fuzzy');
+});
+
 runTest('Student 801 profile has separate independent monster (Isolation)', () => {
   const getRes801 = callGas({
     action: 'student_get_monster',
@@ -588,6 +642,101 @@ runTest('Student 801 profile has separate independent monster (Isolation)', () =
   assert.equal(getRes801.success, true);
   assert.equal(getRes801.monster.name, 'Pip'); // Still default, not Boba!
   assert.equal(getRes801.monster.bodyColor, 'cyan');
+});
+
+runTest('Student 801 saves independent custom monster and both accounts stay isolated', () => {
+  const saveRes801 = callGas({
+    action: 'student_save_monster',
+    sessionToken: sessionToken801,
+    monster: {
+      name: 'Ziggy',
+      bodyShape: 'star',
+      bodyColor: 'pink',
+      eyeType: 'cyclops',
+      mouthType: 'fang_grin',
+      hornType: 'single_horn',
+      cheekType: 'stars',
+      pattern: 'heart',
+    },
+  });
+  assert.equal(saveRes801.success, true);
+  assert.equal(saveRes801.monster.name, 'Ziggy');
+
+  // Verify Student 701 is still Boba
+  const get701 = callGas({ action: 'student_get_monster', sessionToken: sessionToken701 });
+  assert.equal(get701.monster.name, 'Boba');
+  assert.equal(get701.monster.bodyColor, 'purple');
+
+  // Verify Student 801 is Ziggy
+  const get801 = callGas({ action: 'student_get_monster', sessionToken: sessionToken801 });
+  assert.equal(get801.monster.name, 'Ziggy');
+  assert.equal(get801.monster.bodyColor, 'pink');
+});
+
+runTest('MonsterService.resolveMonster prevents stale default Pip from overriding saved customizations', () => {
+  // Case A: Candidate is default Pip, cached is customized -> cached wins
+  const defaultPip = { ...DEFAULT_MONSTER_CONFIG };
+  const customCached = {
+    name: 'Boba',
+    bodyShape: 'fuzzy',
+    bodyColor: 'purple',
+    eyeType: 'anime',
+    mouthType: 'smile',
+    hornType: 'cat_ears',
+    cheekType: 'spiral',
+    pattern: 'spots',
+    accessories: {},
+    updatedAt: '2026-11-17T01:00:00.000Z',
+  };
+  mockStorage.set('ura_monster_config_701', JSON.stringify(customCached));
+
+  const resolvedA = MonsterService.resolveMonster(defaultPip, '701');
+  assert.equal(resolvedA.name, 'Boba');
+  assert.equal(resolvedA.bodyColor, 'purple');
+
+  // Case B: Candidate has newer timestamp -> candidate wins
+  const newerServerMonster = {
+    ...customCached,
+    name: 'Boba Updated',
+    updatedAt: '2026-11-17T02:00:00.000Z',
+  };
+  const resolvedB = MonsterService.resolveMonster(newerServerMonster, '701');
+  assert.equal(resolvedB.name, 'Boba Updated');
+
+  // Case C: Candidate is null -> cached is returned
+  const resolvedC = MonsterService.resolveMonster(null, '701');
+  assert.equal(resolvedC.name, 'Boba');
+
+  // Case D: Neither exists -> default Pip
+  const resolvedD = MonsterService.resolveMonster(null, 'non_existent_999');
+  assert.equal(resolvedD.name, 'Pip');
+});
+
+await runAsyncTest('MonsterService.saveMonster fails closed and returns success:false when backend rejects save', async () => {
+  const origSave = ApiService.saveMonster;
+  try {
+    ApiService.saveMonster = async () => ({
+      success: false,
+      error: 'Session expired or network error',
+    });
+
+    const result = await MonsterService.saveMonster('701', 'mock_token', {
+      name: 'UnsavedMonster',
+      bodyShape: 'blob',
+      bodyColor: 'lime',
+      eyeType: 'sleepy',
+      mouthType: 'smile',
+      hornType: 'none',
+      cheekType: 'none',
+      pattern: 'none',
+      accessories: {},
+    });
+
+    assert.equal(result.success, false, 'Must not claim success if backend failed');
+    assert.ok(result.error);
+  } finally {
+    ApiService.saveMonster = origSave;
+  }
 });
 
 runTest('Unauthenticated request to student_save_monster is rejected', () => {

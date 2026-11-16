@@ -13,6 +13,15 @@
 import type { AuthApiResponse, LoginCredentials, StudentClass } from '../types/auth';
 import type { GamificationApiResponse } from '../types/gamification';
 import type { PersonalizedLearningApiResponse } from '../types/personalizedLearning';
+import type { MonsterConfig } from '../types/monster';
+
+export interface MonsterApiResponse {
+  success: boolean;
+  monster?: MonsterConfig;
+  totalCoins?: number;
+  error?: string;
+  code?: string;
+}
 
 const STORAGE_API_KEY = 'unit_review_arcade_api_url';
 
@@ -390,6 +399,51 @@ export class ApiService {
       return {
         success: false,
         error: err instanceof Error ? err.message : 'Failed to record mistake retry.',
+      };
+    }
+  }
+
+  /**
+   * Saves student monster configuration to backend (Phase 8A).
+   */
+  public static async saveMonster(sessionToken: string, monster: MonsterConfig): Promise<MonsterApiResponse> {
+    const apiUrl = this.getApiUrl();
+    if (!apiUrl || !sessionToken) {
+      return { success: false, error: 'Session token or server URL missing.', code: 'UNAUTHORIZED' };
+    }
+
+    try {
+      return await this.postRequest<MonsterApiResponse>(apiUrl, {
+        action: 'student_save_monster',
+        sessionToken,
+        monster,
+      });
+    } catch (err) {
+      return {
+        success: false,
+        error: err instanceof Error ? err.message : 'Failed to save monster to cloud.',
+      };
+    }
+  }
+
+  /**
+   * Fetches student monster configuration and coin balance from backend (Phase 8A).
+   */
+  public static async getMonster(sessionToken: string): Promise<MonsterApiResponse> {
+    const apiUrl = this.getApiUrl();
+    if (!apiUrl || !sessionToken) {
+      return { success: false, error: 'Session token or server URL missing.', code: 'UNAUTHORIZED' };
+    }
+
+    try {
+      return await this.postRequest<MonsterApiResponse>(apiUrl, {
+        action: 'student_get_monster',
+        sessionToken,
+      });
+    } catch (err) {
+      return {
+        success: false,
+        error: err instanceof Error ? err.message : 'Failed to fetch monster from cloud.',
       };
     }
   }

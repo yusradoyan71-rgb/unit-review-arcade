@@ -382,3 +382,4 @@ export const MonsterAvatar: React.FC<MonsterAvatarProps> = ({
     </div>
   );
 };
+

@@ -9,8 +9,10 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { useAuth } from './AuthContext';
 import { ApiService } from '../services/apiService';
+import { MonsterService } from '../services/monsterService';
 import type { StudentClass } from '../types/auth';
 import type { StudentGamificationProfile, ClassLeaderboard } from '../types/gamification';
+import type { MonsterConfig } from '../types/monster';
 
 interface GamificationContextType {
   profile: StudentGamificationProfile | null;
@@ -30,6 +32,7 @@ interface GamificationContextType {
   selectLeaderboardClass: (classId: StudentClass) => void;
   refreshProfile: () => Promise<void>;
   refreshLeaderboard: (classId?: StudentClass) => Promise<void>;
+  updateProfileMonster: (monster: MonsterConfig) => void;
 }
 
 const GamificationContext = createContext<GamificationContextType | undefined>(undefined);
@@ -82,9 +85,20 @@ export const GamificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
     try {
       const res = await ApiService.getStudentProfile(sessionToken);
       if (res.success && res.profile) {
-        setProfile(res.profile);
+        const resolvedMonster = MonsterService.resolveMonster(
+          res.profile.monster,
+          res.profile.studentNumber
+        );
+        const resolvedProfile: StudentGamificationProfile = {
+          ...res.profile,
+          monster: resolvedMonster,
+        };
+        if (resolvedProfile.studentNumber && resolvedMonster) {
+          MonsterService.updateCachedMonster(resolvedProfile.studentNumber, resolvedMonster);
+        }
+        setProfile(resolvedProfile);
         try {
-          sessionStorage.setItem(STORAGE_KEY_CACHED_PROFILE, JSON.stringify(res.profile));
+          sessionStorage.setItem(STORAGE_KEY_CACHED_PROFILE, JSON.stringify(resolvedProfile));
         } catch {
           // ignore
         }
@@ -168,6 +182,22 @@ export const GamificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
     [refreshLeaderboard]
   );
 
+  const updateProfileMonster = useCallback((monster: MonsterConfig) => {
+    setProfile(prev => {
+      if (!prev) return prev;
+      const updated: StudentGamificationProfile = { ...prev, monster };
+      if (prev.studentNumber) {
+        MonsterService.updateCachedMonster(prev.studentNumber, monster);
+      }
+      try {
+        sessionStorage.setItem(STORAGE_KEY_CACHED_PROFILE, JSON.stringify(updated));
+      } catch (err) {
+        console.warn('Failed to cache updated profile monster:', err);
+      }
+      return updated;
+    });
+  }, []);
+
   return (
     <GamificationContext.Provider
       value={{
@@ -186,6 +216,7 @@ export const GamificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
         selectLeaderboardClass,
         refreshProfile,
         refreshLeaderboard,
+        updateProfileMonster,
       }}
     >
       {children}
@@ -213,6 +244,7 @@ export const useGamification = () => {
       selectLeaderboardClass: () => {},
       refreshProfile: async () => {},
       refreshLeaderboard: async () => {},
+      updateProfileMonster: () => {},
     };
   }
   return context;

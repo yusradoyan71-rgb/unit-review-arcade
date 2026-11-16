@@ -6033,7 +6033,8 @@ function getStudentMonsterConfig(ss, studentNumber) {
     if (data.length > 1) {
       var colMap = getSheetColumnMap(mSheet, CONFIG.MONSTER_HEADERS);
       var sCol = colMap["student_number"] - 1;
-      for (var i = 1; i < data.length; i++) {
+      // Search from bottom up to find the most recent save for this student
+      for (var i = data.length - 1; i >= 1; i--) {
         if (String(data[i][sCol] || "").trim() === String(studentNumber).trim()) {
           var accJson = String(data[i][colMap["accessories_json"] - 1] || "{}");
           var acc = {};
@@ -6086,20 +6087,22 @@ function saveStudentMonsterConfig(ss, studentNumber, studentClass, monsterConfig
     }
   }
 
-  var rowVals = [
-    studentNumber,
-    studentClass || "",
-    sanitized.name,
-    sanitized.bodyShape,
-    sanitized.bodyColor,
-    sanitized.eyeType,
-    sanitized.mouthType,
-    sanitized.hornType,
-    sanitized.cheekType,
-    sanitized.pattern,
-    JSON.stringify(sanitized.accessories || {}),
-    sanitized.updatedAt
-  ];
+  var lastCol = Math.max(mSheet.getLastColumn(), CONFIG.MONSTER_HEADERS.length);
+  var rowVals = [];
+  for (var k = 0; k < lastCol; k++) rowVals.push("");
+
+  rowVals[colMap["student_number"] - 1] = studentNumber;
+  rowVals[colMap["class"] - 1] = studentClass || "";
+  rowVals[colMap["monster_name"] - 1] = sanitized.name;
+  rowVals[colMap["body_shape"] - 1] = sanitized.bodyShape;
+  rowVals[colMap["body_color"] - 1] = sanitized.bodyColor;
+  rowVals[colMap["eye_type"] - 1] = sanitized.eyeType;
+  rowVals[colMap["mouth_type"] - 1] = sanitized.mouthType;
+  rowVals[colMap["horn_type"] - 1] = sanitized.hornType;
+  rowVals[colMap["cheek_type"] - 1] = sanitized.cheekType;
+  rowVals[colMap["pattern"] - 1] = sanitized.pattern;
+  rowVals[colMap["accessories_json"] - 1] = JSON.stringify(sanitized.accessories || {});
+  rowVals[colMap["updated_at"] - 1] = sanitized.updatedAt;
 
   if (rowIndex > 0) {
     mSheet.getRange(rowIndex, 1, 1, rowVals.length).setValues([rowVals]);

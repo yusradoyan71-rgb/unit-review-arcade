@@ -13,9 +13,11 @@ import {
   Crown,
   Shirt,
   Info,
+  AlertCircle,
 } from 'lucide-react';
 import { useArcade } from '../../context/ArcadeContext';
 import { useAuth } from '../../context/AuthContext';
+import { useGamification } from '../../context/GamificationContext';
 import { MonsterAvatar } from './MonsterAvatar';
 import { MonsterService, MONSTER_OPTIONS } from '../../services/monsterService';
 import { CoinService } from '../../services/coinService';
@@ -37,26 +39,46 @@ type StudioTab = 'color' | 'shape' | 'eyes' | 'mouth' | 'features' | 'patterns' 
 
 export const MonsterWorldScreen: React.FC = () => {
   const { navigateTo } = useArcade();
-  const { student, sessionToken } = useAuth();
+  const { student, sessionToken, updateStudentMonster } = useAuth();
+  const { updateProfileMonster } = useGamification();
   const studentNumber = student?.studentNumber || '';
 
   const [monster, setMonster] = useState<MonsterConfig>(() => {
-    return student?.monster || MonsterService.getMonster(studentNumber);
+    return MonsterService.resolveMonster(student?.monster, studentNumber);
   });
   const [activeTab, setActiveTab] = useState<StudioTab>('color');
   const [isSaving, setIsSaving] = useState(false);
   const [savedNotice, setSavedNotice] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
   const [selectedShopItem, setSelectedShopItem] = useState<ShopItemPreview | null>(null);
 
   // Coins balance
   const coinSummary = CoinService.getSummary(studentNumber);
   const balance = student?.totalCoins ?? coinSummary.balance;
 
+  // On mount or when session is verified, sync latest cloud monster from backend
   useEffect(() => {
-    if (student?.monster) {
-      setMonster(student.monster);
+    let isCancelled = false;
+
+    if (studentNumber && sessionToken) {
+      MonsterService.fetchMonster(studentNumber, sessionToken).then(res => {
+        if (!isCancelled && res.success && res.monster) {
+          setMonster(res.monster);
+          updateStudentMonster?.(res.monster);
+          updateProfileMonster?.(res.monster);
+        }
+      }).catch(err => {
+        console.warn('[MonsterWorldScreen] Background monster fetch deferred:', err);
+      });
+    } else if (studentNumber) {
+      const resolved = MonsterService.resolveMonster(student?.monster, studentNumber);
+      setMonster(resolved);
     }
-  }, [student?.monster]);
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [studentNumber, sessionToken, updateStudentMonster, updateProfileMonster]);
 
   const handleUpdate = <K extends keyof MonsterConfig>(key: K, value: MonsterConfig[K]) => {
     setMonster(prev => ({
@@ -64,24 +86,33 @@ export const MonsterWorldScreen: React.FC = () => {
       [key]: value,
     }));
     setSavedNotice(false);
+    setSaveError(null);
   };
 
   const handleSurpriseMe = () => {
     const randomMonster = MonsterService.generateRandomMonster(monster.name);
     setMonster(randomMonster);
     setSavedNotice(false);
+    setSaveError(null);
   };
 
   const handleSave = async () => {
     if (!studentNumber) return;
     setIsSaving(true);
+    setSaveError(null);
 
     const token = sessionToken || '';
     const result = await MonsterService.saveMonster(studentNumber, token, monster);
 
-    if (result.success) {
+    if (result.success && result.monster) {
+      setMonster(result.monster);
+      updateStudentMonster?.(result.monster);
+      updateProfileMonster?.(result.monster);
       setSavedNotice(true);
       setTimeout(() => setSavedNotice(false), 3000);
+    } else {
+      setSavedNotice(false);
+      setSaveError(result.error || 'Could not save monster to server. Please try again.');
     }
     setIsSaving(false);
   };
@@ -234,6 +265,14 @@ export const MonsterWorldScreen: React.FC = () => {
                 )}
               </button>
             </div>
+
+            {/* Error Notice */}
+            {saveError && (
+              <div className="w-full mt-3 p-3 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs text-center flex items-center justify-center gap-2">
+                <AlertCircle className="w-4 h-4 shrink-0" />
+                <span>{saveError}</span>
+              </div>
+            )}
           </div>
 
           {/* Monster Coins Earning Guide Card */}

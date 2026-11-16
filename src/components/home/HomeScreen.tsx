@@ -30,7 +30,7 @@ export const HomeScreen: React.FC = () => {
 
   // Student Monster & Economy state
   const studentNumber = student?.studentNumber || '';
-  const monsterConfig = student?.monster || MonsterService.getMonster(studentNumber);
+  const monsterConfig = MonsterService.resolveMonster(student?.monster, studentNumber);
   const coinBalance = student?.totalCoins ?? CoinService.getBalance(studentNumber);
 
   // Level & XP calculations (supporting unlimited levels)

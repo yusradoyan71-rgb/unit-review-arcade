@@ -59,48 +59,127 @@ export class MonsterService {
   }
 
   /**
+   * Updates the locally cached monster for a student in localStorage.
+   */
+  public static updateCachedMonster(studentNumber: string, config: MonsterConfig): MonsterConfig {
+    const validated = this.validateConfig(config);
+    if (studentNumber) {
+      try {
+        localStorage.setItem(`${MONSTER_STORAGE_PREFIX}${studentNumber}`, JSON.stringify(validated));
+      } catch (e) {
+        console.warn('[MonsterService] Failed to cache monster to localStorage:', e);
+      }
+    }
+    return validated;
+  }
+
+  /**
+   * Resolves the authoritative monster between a candidate config (e.g. from session or profile)
+   * and the local persistent cache for the given student.
+   * Ensures customized monsters are never overwritten by stale default Pip during page refresh.
+   */
+  public static resolveMonster(config?: MonsterConfig | null, studentNumber?: string): MonsterConfig {
+    const cached = studentNumber ? this.getMonster(studentNumber) : null;
+    if (!config) return cached || { ...DEFAULT_MONSTER_CONFIG };
+    if (!cached) return this.validateConfig(config);
+
+    // If both have timestamps, the newer one wins
+    if (cached.updatedAt && config.updatedAt) {
+      const cachedTime = new Date(cached.updatedAt).getTime();
+      const configTime = new Date(config.updatedAt).getTime();
+      if (!isNaN(cachedTime) && !isNaN(configTime)) {
+        return cachedTime >= configTime ? cached : this.validateConfig(config);
+      }
+    }
+
+    // Default vs Custom: A customized configuration always wins over default Pip
+    const isDefaultConfig = config.name === 'Pip' && config.bodyColor === 'cyan' && config.bodyShape === 'blob';
+    const isDefaultCached = cached.name === 'Pip' && cached.bodyColor === 'cyan' && cached.bodyShape === 'blob';
+
+    if (isDefaultConfig && !isDefaultCached) return cached;
+    if (!isDefaultConfig && isDefaultCached) return this.validateConfig(config);
+
+    // If candidate has an explicit update timestamp but cached does not, candidate wins
+    if (config.updatedAt && !cached.updatedAt) return this.validateConfig(config);
+    if (!config.updatedAt && cached.updatedAt) return cached;
+
+    return this.validateConfig(config);
+  }
+
+  /**
+   * Fetches student monster configuration directly from backend (Phase 8A).
+   * Restores customizations across devices, after cache clears, or on fresh login.
+   */
+  public static async fetchMonster(
+    studentNumber: string,
+    sessionToken: string
+  ): Promise<{ success: boolean; monster: MonsterConfig; totalCoins?: number; error?: string }> {
+    if (!sessionToken || !studentNumber) {
+      const local = this.getMonster(studentNumber);
+      return { success: true, monster: local };
+    }
+
+    try {
+      const response = await ApiService.getMonster(sessionToken);
+      if (response && response.success && response.monster) {
+        const validated = this.updateCachedMonster(studentNumber, response.monster);
+        return { success: true, monster: validated, totalCoins: response.totalCoins };
+      }
+      return {
+        success: false,
+        monster: this.getMonster(studentNumber),
+        error: response?.error || 'Failed to fetch monster from cloud',
+      };
+    } catch (err) {
+      return {
+        success: false,
+        monster: this.getMonster(studentNumber),
+        error: err instanceof Error ? err.message : 'Network error fetching monster',
+      };
+    }
+  }
+
+  /**
    * Save monster configuration to local storage and sync to backend.
+   * STRICT REQUIREMENT: Only returns success: true if backend confirms persistent save
+   * when sessionToken is provided.
    */
   public static async saveMonster(
     studentNumber: string,
     sessionToken: string,
     config: MonsterConfig
-  ): Promise<{ success: boolean; monster: MonsterConfig; error?: string }> {
+  ): Promise<{ success: boolean; monster: MonsterConfig; totalCoins?: number; error?: string }> {
     const validated = this.validateConfig(config);
     validated.updatedAt = new Date().toISOString();
 
-    // 1. Instant local persistence
-    try {
-      localStorage.setItem(`${MONSTER_STORAGE_PREFIX}${studentNumber}`, JSON.stringify(validated));
-    } catch {}
-
-    // 2. Cloud synchronization
-    if (sessionToken) {
-      try {
-        const response = await ApiService.post<{
-          success: boolean;
-          monster?: MonsterConfig;
-          totalCoins?: number;
-          error?: string;
-        }>({
-          action: 'student_save_monster',
-          sessionToken,
-          monster: validated,
-        });
-
-        if (response && response.success && response.monster) {
-          const serverMonster = this.validateConfig(response.monster);
-          try {
-            localStorage.setItem(`${MONSTER_STORAGE_PREFIX}${studentNumber}`, JSON.stringify(serverMonster));
-          } catch {}
-          return { success: true, monster: serverMonster };
-        }
-      } catch (err) {
-        console.warn('[MonsterService] Cloud sync deferred (network/offline):', err);
-      }
+    if (!sessionToken) {
+      // Unauthenticated / guest play: save to local cache only
+      this.updateCachedMonster(studentNumber, validated);
+      return { success: true, monster: validated };
     }
 
-    return { success: true, monster: validated };
+    try {
+      const response = await ApiService.saveMonster(sessionToken, validated);
+
+      if (response && response.success && response.monster) {
+        const serverMonster = this.updateCachedMonster(studentNumber, response.monster);
+        return { success: true, monster: serverMonster, totalCoins: response.totalCoins };
+      }
+
+      return {
+        success: false,
+        monster: validated,
+        error: response?.error || 'Server rejected monster save. Please try again.',
+      };
+    } catch (err) {
+      const errMsg = err instanceof Error ? err.message : 'Network error saving monster.';
+      console.warn('[MonsterService] Cloud save failed:', errMsg);
+      return {
+        success: false,
+        monster: validated,
+        error: errMsg,
+      };
+    }
   }
 
   /**
