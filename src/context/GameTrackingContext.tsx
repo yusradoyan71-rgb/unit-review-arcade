@@ -214,6 +214,7 @@ export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
         shuffledQuestionIds: updates.shuffledQuestionIds,
         currentRoundIndex: updates.currentRoundIndex,
         matchedPairIds: updates.matchedPairIds,
+        mismatchCount: updates.mismatchCount,
         completedSentenceIndices: updates.completedSentenceIndices,
         timestamp: Date.now(),
         durationSeconds,
@@ -297,14 +298,24 @@ export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
       }
 
       const durationSeconds = Math.max(1, Math.round((Date.now() - startTimeRef.current) / 1000));
+      const answeredCount = summary.answeredQuestions ?? answersRef.current.length;
+      const correctCount = summary.correctAnswers ?? answersRef.current.filter((a) => a.isCorrect).length;
+      const incorrectCount = summary.incorrectAnswers ?? (answersRef.current.length - answersRef.current.filter((a) => a.isCorrect).length);
+      const totalEvaluated = correctCount + incorrectCount;
+      const defaultPercentage = totalEvaluated > 0
+        ? (incorrectCount > 0
+            ? Math.round((correctCount / totalEvaluated) * 1000) / 10
+            : (summary.totalQuestions > 0 ? Math.round((summary.score / summary.totalQuestions) * 100) : 100))
+        : (summary.totalQuestions > 0 ? Math.round((summary.score / summary.totalQuestions) * 100) : 0);
+
       const completeSummary: CompleteAttemptSummary = {
         score: summary.score,
         totalQuestions: summary.totalQuestions,
-        answeredQuestions: summary.answeredQuestions ?? answersRef.current.length,
-        correctAnswers: summary.correctAnswers ?? answersRef.current.filter((a) => a.isCorrect).length,
-        incorrectAnswers: summary.incorrectAnswers ?? (answersRef.current.length - answersRef.current.filter((a) => a.isCorrect).length),
-        skippedQuestions: summary.skippedQuestions ?? Math.max(0, summary.totalQuestions - answersRef.current.length),
-        percentage: summary.percentage,
+        answeredQuestions: answeredCount,
+        correctAnswers: correctCount,
+        incorrectAnswers: incorrectCount,
+        skippedQuestions: summary.skippedQuestions ?? Math.max(0, summary.totalQuestions - answeredCount),
+        percentage: summary.percentage !== undefined ? summary.percentage : defaultPercentage,
         durationSeconds,
         completedAt: new Date().toISOString(),
       };

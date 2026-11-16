@@ -177,6 +177,7 @@ export interface GameResumeCheckpoint {
   shuffledQuestionIds?: string[];
   currentRoundIndex?: number;
   matchedPairIds?: string[];
+  mismatchCount?: number;
   completedSentenceIndices?: number[];
   timestamp: number;
   durationSeconds: number;

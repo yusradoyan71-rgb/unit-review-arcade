@@ -477,7 +477,12 @@ export class TrackingService {
     const correctCount = summary.correctAnswers ?? pending.filter((a) => a.isCorrect).length;
     const incorrectCount = summary.incorrectAnswers ?? (answeredCount - correctCount);
     const skippedCount = summary.skippedQuestions ?? Math.max(0, summary.totalQuestions - answeredCount);
-    const percentage = summary.percentage ?? (summary.totalQuestions > 0 ? Math.round((summary.score / summary.totalQuestions) * 100) : 0);
+    const totalEvaluated = correctCount + incorrectCount;
+    const percentage = summary.percentage ?? (totalEvaluated > 0
+      ? (incorrectCount > 0
+          ? Math.round((correctCount / totalEvaluated) * 1000) / 10
+          : (summary.totalQuestions > 0 ? Math.round((summary.score / summary.totalQuestions) * 100) : 100))
+      : (summary.totalQuestions > 0 ? Math.round((summary.score / summary.totalQuestions) * 100) : 0));
 
     const payload: CompleteAttemptPayload = {
       action: 'game_complete_attempt',

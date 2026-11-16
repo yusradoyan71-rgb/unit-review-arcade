@@ -11,6 +11,8 @@ interface GameResultsModalProps {
   activityTitle: string;
   onRestart: () => void;
   onExit: () => void;
+  accuracyPercentage?: number;
+  scoreLabel?: string;
 }
 
 export const GameResultsModal: React.FC<GameResultsModalProps> = ({
@@ -19,9 +21,16 @@ export const GameResultsModal: React.FC<GameResultsModalProps> = ({
   activityTitle,
   onRestart,
   onExit,
+  accuracyPercentage,
+  scoreLabel,
 }) => {
   const { lastGamification } = useGameTracking();
-  const percentage = totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0;
+  const rawPercentage = accuracyPercentage !== undefined
+    ? accuracyPercentage
+    : (totalQuestions > 0 ? (score / totalQuestions) * 100 : 0);
+  const formattedAccuracy = Number.isInteger(rawPercentage)
+    ? `${rawPercentage}%`
+    : `${rawPercentage.toFixed(1)}%`;
 
   useEffect(() => {
     sounds.playSuccess();
@@ -63,7 +72,9 @@ export const GameResultsModal: React.FC<GameResultsModalProps> = ({
         {/* Score Card */}
         <div className="grid grid-cols-2 gap-4 mb-4">
           <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col items-center">
-            <span className="text-xs font-semibold text-slate-400 uppercase">Correct Answers</span>
+            <span className="text-xs font-semibold text-slate-400 uppercase">
+              {scoreLabel || 'Correct Answers'}
+            </span>
             <span className="font-mono text-3xl font-extrabold text-cyan-400 mt-1">
               {score} / {totalQuestions}
             </span>
@@ -72,7 +83,7 @@ export const GameResultsModal: React.FC<GameResultsModalProps> = ({
           <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col items-center">
             <span className="text-xs font-semibold text-slate-400 uppercase">Accuracy</span>
             <span className="font-mono text-3xl font-extrabold text-purple-400 mt-1">
-              {percentage}%
+              {formattedAccuracy}
             </span>
           </div>
         </div>

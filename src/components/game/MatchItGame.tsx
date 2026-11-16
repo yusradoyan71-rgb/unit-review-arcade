@@ -29,6 +29,7 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
     : 0;
   const initialMatches = resumeCheckpoint?.score || 0;
   const initialMatchedPairIds = resumeCheckpoint?.matchedPairIds || [];
+  const initialMismatches = resumeCheckpoint?.mismatchCount || 0;
 
   const [currentRoundIndex, setCurrentRoundIndex] = useState(initialRoundIndex);
   const [selectedLeft, setSelectedLeft] = useState<ShuffledCard | null>(null);
@@ -36,7 +37,7 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
   const [matchedPairIds, setMatchedPairIds] = useState<string[]>(initialMatchedPairIds);
   const [mismatchedIds, setMismatchedIds] = useState<string[]>([]);
   const [totalMatchesMade, setTotalMatchesMade] = useState(initialMatches);
-  const [mismatchCount, setMismatchCount] = useState(0);
+  const [mismatchCount, setMismatchCount] = useState(initialMismatches);
   const [isRoundComplete, setIsRoundComplete] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
 
@@ -45,6 +46,7 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
   const interactionCountRef = useRef(0);
   const matchedPairIdsRef = useRef<string[]>(initialMatchedPairIds);
   const totalMatchesMadeRef = useRef<number>(initialMatches);
+  const mismatchCountRef = useRef<number>(initialMismatches);
   const mismatchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isResolvingMismatchRef = useRef<boolean>(false);
 
@@ -72,6 +74,10 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
       if (resumeCheckpoint.matchedPairIds && resumeCheckpoint.matchedPairIds.length > 0) {
         setMatchedPairIds(resumeCheckpoint.matchedPairIds);
         matchedPairIdsRef.current = resumeCheckpoint.matchedPairIds;
+      }
+      if (resumeCheckpoint.mismatchCount !== undefined) {
+        setMismatchCount(resumeCheckpoint.mismatchCount);
+        mismatchCountRef.current = resumeCheckpoint.mismatchCount;
       }
     }
   }, [resumeCheckpoint, rounds.length]);
@@ -164,6 +170,7 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
           currentIndex: isFinalRound ? currentRoundIndex : nextRound,
           score: nextMatchesTotal,
           matchedPairIds: [],
+          mismatchCount: mismatchCountRef.current,
         });
       } else {
         saveCheckpoint({
@@ -171,13 +178,15 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
           currentIndex: currentRoundIndex,
           score: nextMatchesTotal,
           matchedPairIds: nextMatched,
+          mismatchCount: mismatchCountRef.current,
         });
       }
     } else {
       // MISMATCH!
       // Play mismatch sound once
       sounds.playBack();
-      setMismatchCount((m) => m + 1);
+      mismatchCountRef.current += 1;
+      setMismatchCount(mismatchCountRef.current);
       const cardIds = [leftCard.cardId, rightCard.cardId];
       setMismatchedIds(cardIds);
       isResolvingMismatchRef.current = true;
@@ -253,19 +262,25 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
         currentIndex: nextRound,
         score: totalMatchesMadeRef.current,
         matchedPairIds: [],
+        mismatchCount: mismatchCountRef.current,
       });
     } else {
       setIsGameOver(true);
+      const totalCorrect = totalMatchesMadeRef.current;
+      const totalIncorrect = mismatchCountRef.current;
+      const totalEvaluated = totalCorrect + totalIncorrect;
+      const accuracyPct = totalEvaluated > 0
+        ? Math.round((totalCorrect / totalEvaluated) * 1000) / 10
+        : 100;
+
       completeGame({
-        score: totalMatchesMadeRef.current,
+        score: totalCorrect,
         totalQuestions: totalPairsAcrossGame,
-        answeredQuestions: totalPairsAcrossGame,
-        correctAnswers: totalMatchesMadeRef.current,
-        incorrectAnswers: mismatchCount,
+        answeredQuestions: totalEvaluated,
+        correctAnswers: totalCorrect,
+        incorrectAnswers: totalIncorrect,
         skippedQuestions: 0,
-        percentage: (totalMatchesMadeRef.current + mismatchCount) > 0
-          ? Math.round((totalMatchesMadeRef.current / (totalMatchesMadeRef.current + mismatchCount)) * 100)
-          : 100,
+        percentage: accuracyPct,
       });
     }
   };
@@ -279,6 +294,8 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
     isResolvingMismatchRef.current = false;
     setMismatchedIds([]);
     matchedPairIdsRef.current = [];
+    mismatchCountRef.current = 0;
+    setMismatchCount(0);
     totalMatchesMadeRef.current = 0;
     interactionCountRef.current = 0;
     clearCheckpoint();
@@ -428,6 +445,12 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
         <GameResultsModal
           score={totalMatchesMade}
           totalQuestions={totalPairsAcrossGame}
+          accuracyPercentage={
+            (totalMatchesMade + mismatchCount) > 0
+              ? Math.round((totalMatchesMade / (totalMatchesMade + mismatchCount)) * 1000) / 10
+              : 100
+          }
+          scoreLabel="Matched Pairs"
           activityTitle={activity.title}
           onRestart={handleRestart}
           onExit={onExit}

@@ -2496,12 +2496,23 @@ function handleCompleteAttempt(ss, payload) {
   var skippedQuestions = Number(payload.skippedQuestions !== undefined ? payload.skippedQuestions : attemptRow[colMap["skipped_questions"] - 1]);
 
   var percentage;
-  if (payload.percentage !== undefined) {
+  if (payload.percentage !== undefined && !isNaN(Number(payload.percentage))) {
     percentage = Number(payload.percentage);
-  } else if (totalQuestions > 0) {
-    percentage = Math.round((correctAnswers / totalQuestions) * 100);
   } else {
-    percentage = 0;
+    var totalEvaluated = correctAnswers + incorrectAnswers;
+    if (totalEvaluated > 0) {
+      percentage = Math.round((correctAnswers / totalEvaluated) * 1000) / 10;
+    } else if (totalQuestions > 0) {
+      percentage = Math.round((correctAnswers / totalQuestions) * 100);
+    } else {
+      percentage = 0;
+    }
+  }
+
+  // Hard safeguard: an attempt with incorrect answers can NEVER be evaluated as 100% accuracy
+  if (incorrectAnswers > 0 && percentage >= 100) {
+    var totalEval = correctAnswers + incorrectAnswers;
+    percentage = Math.round((correctAnswers / totalEval) * 1000) / 10;
   }
 
   var duration = Number(payload.durationSeconds !== undefined ? payload.durationSeconds : attemptRow[colMap["duration_seconds"] - 1]);

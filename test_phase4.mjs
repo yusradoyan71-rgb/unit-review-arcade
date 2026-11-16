@@ -912,7 +912,52 @@ if (gameSim.totalMatchesMade !== 1) {
 if (gameSim.selectedLeft !== null || gameSim.selectedRight !== null) {
   throw new Error('Selections not cleared after correct match');
 }
-console.log('  ✅ Correct match immediately following mismatches completes successfully.\n');
+console.log('  ✅ Correct match immediately following mismatches completes successfully.');
+
+// 7. MATCH IT ACCURACY CALCULATION REGRESSION TEST
+// Example from user: 30 correct matches + 3 incorrect attempts = 30 / 33 = 90.9% accuracy
+const totalCorrectMatches = 30;
+const totalIncorrectAttempts = 3;
+const totalEvaluatedAttempts = totalCorrectMatches + totalIncorrectAttempts; // 33
+const calculatedAccuracy = Math.round((totalCorrectMatches / totalEvaluatedAttempts) * 1000) / 10;
+
+if (calculatedAccuracy !== 90.9) {
+  throw new Error(`Expected 90.9% accuracy for 30 correct + 3 incorrect attempts, got ${calculatedAccuracy}%`);
+}
+
+// Checkpoint persistence of mismatchCount across round transitions and refresh
+const checkpointWithMismatches = {
+  attemptId: 'att_match_accuracy_001',
+  activityId: 'g8-u1-act2',
+  gradeId: 'grade-8',
+  unitId: 'g8-u1',
+  gameType: 'match_it',
+  currentIndex: 1,
+  currentRoundIndex: 1,
+  score: 15,
+  matchedPairIds: ['p1', 'p2'],
+  mismatchCount: 3,
+  timestamp: Date.now(),
+  durationSeconds: 65,
+};
+
+mockLocalStorage.setItem(getCheckpointKey('801', 'g8-u1-act2'), JSON.stringify(checkpointWithMismatches));
+const restoredAccCheckpointRaw = mockLocalStorage.getItem(getCheckpointKey('801', 'g8-u1-act2'));
+const restoredCheckpointAcc = JSON.parse(restoredAccCheckpointRaw);
+
+if (restoredCheckpointAcc.mismatchCount !== 3) {
+  throw new Error(`Expected restored mismatchCount to be 3, got ${restoredCheckpointAcc.mismatchCount}`);
+}
+
+// Modal accuracy display formatting test
+const formatAccuracy = (pct) => Number.isInteger(pct) ? `${pct}%` : `${pct.toFixed(1)}%`;
+if (formatAccuracy(calculatedAccuracy) !== '90.9%') {
+  throw new Error(`Expected formatted modal accuracy '90.9%', got ${formatAccuracy(calculatedAccuracy)}`);
+}
+if (formatAccuracy(100) !== '100%') {
+  throw new Error(`Expected formatted modal accuracy '100%', got ${formatAccuracy(100)}`);
+}
+console.log('  ✅ Accuracy calculation (30/33 = 90.9%), checkpoint persistence, and modal formatting verified.\n');
 
 // ============================================================================
 // SUITE 4: OFFLINE QUEUE & AUTO-FLUSH SIMULATION

@@ -315,6 +315,23 @@ assert(xpFirstPerfect.breakdown.baseCompletion === 20, 'Base completion is 20 XP
 assert(xpFirstPerfect.breakdown.accuracy === 80, 'Accuracy is 80 XP');
 assert(xpFirstPerfect.breakdown.flawlessBonus === 25, 'Flawless bonus is 25 XP');
 
+// Test 1.1b: Match It 30 correct + 3 incorrect attempts -> 30/33 = 90.9% accuracy
+// 20 base + Math.round(91% of 80) = 73 accuracy + 0 perfect bonus = 93 XP
+const matchItAccuracy = Math.round((30 / (30 + 3)) * 1000) / 10; // 90.9
+const xpMatchItMismatches = vmContext.calculateAttemptXpServer({
+  percentage: matchItAccuracy,
+  score: 30,
+  maxScore: 30,
+  gameType: 'match_it',
+  isFirstCompletion: true,
+  previousBestPercentage: 0,
+  priorAttemptsCount: 0,
+});
+assert(matchItAccuracy === 90.9, `Match It evaluated accuracy is 90.9% (got ${matchItAccuracy})`);
+assert(xpMatchItMismatches.perfectBonusXp === 0, 'No flawless bonus awarded when mismatches exist');
+assert(xpMatchItMismatches.xpEarned === 93, `90.9% accuracy earns 93 XP (20 base + 73 acc + 0 perfect, got ${xpMatchItMismatches.xpEarned})`);
+assert(xpMatchItMismatches.breakdown.flawlessBonus === 0, 'Breakdown flawless bonus is 0');
+
 // Test 1.2: First-time play partial score (60%) -> 20 base + 48 accuracy + 0 perfect = 68 XP
 const xpFirstPartial = vmContext.calculateAttemptXpServer({
   percentage: 60,
