@@ -8,8 +8,12 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useArcade } from '../../context/ArcadeContext';
 import { useGamification } from '../../context/GamificationContext';
 import { usePersonalizedLearning } from '../../context/PersonalizedLearningContext';
+import { MonsterAvatar } from '../monster/MonsterAvatar';
+import { MonsterService } from '../../services/monsterService';
+import { CoinService } from '../../services/coinService';
 import { sounds } from '../../services/soundEffects';
 import type { AchievementCategory } from '../../types/gamification';
 import {
@@ -33,6 +37,7 @@ import {
   CheckCircle,
   Clock,
   RotateCw,
+  Coins,
 } from 'lucide-react';
 
 const BADGE_ICONS: Record<string, React.ElementType> = {
@@ -53,6 +58,7 @@ const BADGE_ICONS: Record<string, React.ElementType> = {
 };
 
 export const StudentProfileModal: React.FC = () => {
+  const { navigateTo } = useArcade();
   const {
     profile,
     isLoadingProfile,
@@ -66,6 +72,10 @@ export const StudentProfileModal: React.FC = () => {
   const { openMistakesModal, openMasteryModal, uncorrectedMistakesCount } = usePersonalizedLearning();
 
   const [activeTab, setActiveTab] = useState<'all' | AchievementCategory>('all');
+
+  const studentNumber = profile?.studentNumber || '';
+  const monsterConfig = profile?.monster || MonsterService.getMonster(studentNumber);
+  const coinBalance = profile?.totalCoins ?? CoinService.getBalance(studentNumber);
 
   if (!isProfileModalOpen) return null;
 
@@ -143,30 +153,60 @@ export const StudentProfileModal: React.FC = () => {
           {/* Level & XP Hero Banner */}
           <div className="p-5 rounded-2xl bg-gradient-to-r from-slate-950 to-indigo-950/40 border border-indigo-500/30 shadow-lg relative overflow-hidden">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="px-3 py-1 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-500 text-slate-950 font-arcade text-sm font-black shadow-md shadow-amber-400/20">
-                    LEVEL {profile?.level || 1}
-                  </span>
-                  <span className="text-base sm:text-lg font-bold text-white tracking-wide">
-                    {profile?.levelTitle || 'Novice Explorer'}
-                  </span>
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 rounded-2xl bg-slate-900/80 border border-indigo-500/30 flex items-center justify-center p-1 shrink-0 overflow-hidden shadow-inner">
+                  <MonsterAvatar config={monsterConfig} size={58} animate />
                 </div>
-                <p className="text-xs text-slate-400 mt-1">
-                  Total XP Earned: <span className="font-mono text-cyan-300 font-extrabold">{profile?.totalXp || 0} XP</span>
-                </p>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="px-3 py-1 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-500 text-slate-950 font-arcade text-sm font-black shadow-md shadow-amber-400/20">
+                      LEVEL {profile?.level || 1}
+                    </span>
+                    <span className="text-base sm:text-lg font-bold text-white tracking-wide">
+                      {profile?.levelTitle || 'Novice Explorer'}
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2.5 mt-1.5 text-xs text-slate-400">
+                    <span>
+                      XP: <strong className="font-mono text-cyan-300 font-extrabold">{profile?.totalXp || 0}</strong>
+                    </span>
+                    <span>•</span>
+                    <span className="flex items-center gap-1 text-amber-300 font-bold">
+                      <Coins className="w-3.5 h-3.5 text-amber-400" />
+                      <span>{coinBalance} Coins</span>
+                    </span>
+                    <span>•</span>
+                    <span className="text-purple-300 font-medium">
+                      Companion: {monsterConfig.name}
+                    </span>
+                  </div>
+                </div>
               </div>
 
-              <button
-                onClick={() => {
-                  sounds.playNavigate();
-                  openLeaderboardModal(profile?.class);
-                }}
-                className="px-4 py-2 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-amber-300 hover:text-amber-200 text-xs font-bold flex items-center justify-center gap-1.5 transition-all self-start sm:self-auto hover:scale-105 active:scale-95"
-              >
-                <Trophy className="w-4 h-4 text-amber-400" />
-                <span>Class Leaderboard</span>
-              </button>
+              <div className="flex items-center gap-2 self-start sm:self-auto">
+                <button
+                  onClick={() => {
+                    sounds.playNavigate();
+                    closeModals();
+                    navigateTo({ view: 'monster-world' });
+                  }}
+                  className="px-3.5 py-2 rounded-xl bg-purple-500/15 hover:bg-purple-500/25 border border-purple-500/40 text-purple-300 hover:text-purple-200 text-xs font-bold flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95"
+                >
+                  <Sparkles className="w-4 h-4 text-purple-400" />
+                  <span>Monster World</span>
+                </button>
+
+                <button
+                  onClick={() => {
+                    sounds.playNavigate();
+                    openLeaderboardModal(profile?.class);
+                  }}
+                  className="px-3.5 py-2 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-amber-300 hover:text-amber-200 text-xs font-bold flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95"
+                >
+                  <Trophy className="w-4 h-4 text-amber-400" />
+                  <span>Leaderboard</span>
+                </button>
+              </div>
             </div>
 
             {/* XP Progress Bar */}

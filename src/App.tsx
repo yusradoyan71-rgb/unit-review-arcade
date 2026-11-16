@@ -20,6 +20,7 @@ import { TeacherLoginModal } from './components/teacher/TeacherLoginModal';
 import { TeacherDashboardScreen } from './components/teacher/dashboard/TeacherDashboardScreen';
 import { GameContainer } from './components/game/GameContainer';
 import { GamesZoneContainer } from './components/gamesZone/GamesZoneContainer';
+import { MonsterWorldScreen } from './components/monster/MonsterWorldScreen';
 import { useAuth } from './context/AuthContext';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -121,6 +122,19 @@ const MainView: React.FC = () => {
                 studentNumber={student?.studentNumber || 'guest'}
                 studentClass={student?.class}
               />
+            </motion.div>
+          )}
+
+          {navigation.view === 'monster-world' && (
+            <motion.div
+              key="monster-world"
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.25 }}
+              className="flex-1 flex flex-col"
+            >
+              <MonsterWorldScreen />
             </motion.div>
           )}
 

@@ -1,6 +1,11 @@
 import React from 'react';
 import { useArcade } from '../../context/ArcadeContext';
 import { useAuth } from '../../context/AuthContext';
+import { useGamification } from '../../context/GamificationContext';
+import { MonsterAvatar } from '../monster/MonsterAvatar';
+import { MonsterService } from '../../services/monsterService';
+import { CoinService } from '../../services/coinService';
+import { calculateLevelFromXp } from '../../utils/gamification';
 import { motion } from 'framer-motion';
 import { 
   Sparkles, 
@@ -10,16 +15,35 @@ import {
   Layers, 
   Zap, 
   Tv, 
-  HardDrive
+  HardDrive,
+  Coins
 } from 'lucide-react';
 import { sounds } from '../../services/soundEffects';
 
 export const HomeScreen: React.FC = () => {
   const { goToGrade, openTeacherPanel, navigateTo, data } = useArcade();
   const { student } = useAuth();
+  const { profile: gamificationProfile } = useGamification();
 
   const grade7Count = data.units['grade-7']?.length || 0;
   const grade8Count = data.units['grade-8']?.length || 0;
+
+  // Student Monster & Economy state
+  const studentNumber = student?.studentNumber || '';
+  const monsterConfig = student?.monster || MonsterService.getMonster(studentNumber);
+  const coinBalance = student?.totalCoins ?? CoinService.getBalance(studentNumber);
+
+  // Level & XP calculations (supporting unlimited levels)
+  const totalXp = gamificationProfile?.totalXp || 0;
+  const levelInfo = gamificationProfile?.level
+    ? {
+        level: gamificationProfile.level,
+        title: gamificationProfile.levelTitle,
+        progressPercent: gamificationProfile.progressPercent,
+        currentLevelXp: gamificationProfile.currentLevelXp,
+        nextLevelXp: gamificationProfile.nextLevelXp,
+      }
+    : calculateLevelFromXp(totalXp);
 
   return (
     <div className="relative min-h-[calc(100vh-4.5rem)] flex flex-col justify-between py-6 px-4 md:px-8 max-w-7xl mx-auto w-full">
@@ -64,51 +88,125 @@ export const HomeScreen: React.FC = () => {
         </motion.p>
       </div>
 
-      {/* Standalone Games Zone Featured Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.45, delay: 0.15 }}
-        whileHover={{ y: -4, transition: { duration: 0.2 } }}
-        whileTap={{ scale: 0.99 }}
-        onMouseEnter={() => sounds.playHover()}
-        onClick={() => {
-          sounds.playNavigate();
-          navigateTo({ view: 'games-zone' });
-        }}
-        className="relative cursor-pointer max-w-5xl mx-auto w-full mb-6 p-6 sm:p-7 rounded-3xl bg-gradient-to-r from-indigo-950/90 via-slate-900/95 to-purple-950/90 border-2 border-indigo-500/40 hover:border-indigo-400 shadow-2xl shadow-indigo-950/50 flex flex-col sm:flex-row items-center justify-between gap-6 overflow-hidden group"
-      >
-        <div className="absolute top-0 right-1/4 w-48 h-48 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none group-hover:bg-indigo-500/20 transition-all duration-500" />
-        
-        <div className="flex items-center gap-5">
-          <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-2xl bg-gradient-to-tr from-indigo-600 to-purple-500 text-white flex items-center justify-center shadow-lg shadow-indigo-600/40 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
-            <Sparkles className="w-8 h-8 sm:w-10 sm:h-10" />
-          </div>
+      {/* Featured Sections Grid: Games Zone & Monster World */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto w-full mb-6">
+        {/* CARD 1: GAMES ZONE */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.15 }}
+          whileHover={{ y: -4, transition: { duration: 0.2 } }}
+          whileTap={{ scale: 0.99 }}
+          onMouseEnter={() => sounds.playHover()}
+          onClick={() => {
+            sounds.playNavigate();
+            navigateTo({ view: 'games-zone' });
+          }}
+          className="relative cursor-pointer w-full p-5 sm:p-6 rounded-3xl bg-gradient-to-br from-indigo-950/90 via-slate-900/95 to-purple-950/90 border-2 border-indigo-500/40 hover:border-indigo-400 shadow-xl shadow-indigo-950/40 flex flex-col justify-between overflow-hidden group"
+        >
+          <div className="absolute top-0 right-0 w-36 h-36 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none group-hover:bg-indigo-500/20 transition-all duration-500" />
+          
           <div>
-            <div className="flex items-center gap-2 mb-1">
+            <div className="flex items-center justify-between gap-2 mb-3">
               <span className="px-2.5 py-0.5 rounded-full bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-[10px] font-black uppercase tracking-wider">
-                NEW • STANDALONE
+                Interactive Arcade
               </span>
-              <span className="text-xs font-bold text-slate-400">
-                4 Interactive Games
-              </span>
+              <span className="text-xs font-bold text-slate-400">4 Games</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-white group-hover:text-indigo-200 transition-colors tracking-tight">
-              GAMES ZONE
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-400 max-w-xl mt-1 leading-relaxed">
-              Word Ninja, Grammar Runner, Word Fishing & Sentence Tower. Independent English speed & grammar challenges with Grade 7 & 8 modes.
+
+            <div className="flex items-center gap-4 mb-3">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-indigo-600 to-purple-500 text-white flex items-center justify-center shadow-lg shadow-indigo-600/40 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 shrink-0">
+                <Sparkles className="w-7 h-7" />
+              </div>
+              <div>
+                <h2 className="text-xl sm:text-2xl font-black text-white group-hover:text-indigo-200 transition-colors tracking-tight">
+                  GAMES ZONE
+                </h2>
+                <span className="text-xs text-indigo-300 font-semibold">Word Ninja, Runner & more</span>
+              </div>
+            </div>
+
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Speed, vocabulary, and grammar challenges independent of unit curriculum. Earn bonus XP and Monster Coins!
             </p>
           </div>
-        </div>
 
-        <div className="flex items-center gap-3 shrink-0">
-          <div className="px-5 py-2.5 rounded-xl bg-indigo-600 group-hover:bg-indigo-500 text-white font-black text-sm flex items-center gap-2 shadow-lg shadow-indigo-600/30 transition-all">
-            <span>Enter Zone</span>
-            <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between">
+            <span className="text-xs font-bold text-indigo-300 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+              Play Games Zone
+            </span>
+            <div className="w-8 h-8 rounded-xl bg-indigo-600/20 border border-indigo-500/30 text-indigo-300 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-all">
+              <ChevronRight className="w-4 h-4" />
+            </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+
+        {/* CARD 2: MONSTER WORLD */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.2 }}
+          whileHover={{ y: -4, transition: { duration: 0.2 } }}
+          whileTap={{ scale: 0.99 }}
+          onMouseEnter={() => sounds.playHover()}
+          onClick={() => {
+            sounds.playNavigate();
+            navigateTo({ view: 'monster-world' });
+          }}
+          className="relative cursor-pointer w-full p-5 sm:p-6 rounded-3xl bg-gradient-to-br from-purple-950/90 via-slate-900/95 to-amber-950/70 border-2 border-amber-500/40 hover:border-amber-400 shadow-xl shadow-amber-950/30 flex flex-col justify-between overflow-hidden group"
+        >
+          <div className="absolute top-0 right-0 w-36 h-36 bg-amber-500/10 rounded-full blur-2xl pointer-events-none group-hover:bg-amber-500/20 transition-all duration-500" />
+          
+          <div>
+            <div className="flex items-center justify-between gap-2 mb-3">
+              <span className="px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-300 text-[10px] font-black uppercase tracking-wider flex items-center gap-1">
+                <Coins className="w-3 h-3 text-amber-400" />
+                {coinBalance} Coins
+              </span>
+              <span className="text-xs font-bold text-purple-300">
+                Lvl {levelInfo.level} • {levelInfo.title}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-4 mb-3">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-purple-900/80 to-slate-950 flex items-center justify-center border border-purple-500/30 shadow-lg group-hover:scale-110 transition-transform duration-300 shrink-0 overflow-hidden">
+                <MonsterAvatar config={monsterConfig} size={52} animate />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h2 className="text-xl sm:text-2xl font-black text-white group-hover:text-amber-200 transition-colors tracking-tight flex items-center gap-2">
+                  <span>MONSTER WORLD</span>
+                </h2>
+                <span className="text-xs text-amber-300/90 font-semibold truncate block">
+                  Companion: {monsterConfig.name}
+                </span>
+              </div>
+            </div>
+
+            {/* Level XP Progress Bar */}
+            <div className="mt-2 mb-2">
+              <div className="flex justify-between items-center text-[10px] font-bold text-slate-400 mb-1">
+                <span>XP Progress</span>
+                <span className="text-indigo-300">{levelInfo.progressPercent}%</span>
+              </div>
+              <div className="h-2 w-full rounded-full bg-slate-800 border border-slate-700/60 overflow-hidden">
+                <div
+                  className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-amber-400 rounded-full transition-all duration-500"
+                  style={{ width: `${levelInfo.progressPercent}%` }}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between">
+            <span className="text-xs font-bold text-amber-300 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+              Customize Companion & View Shop
+            </span>
+            <div className="w-8 h-8 rounded-xl bg-amber-500/20 border border-amber-500/30 text-amber-300 flex items-center justify-center group-hover:bg-amber-500 group-hover:text-slate-950 transition-all">
+              <ChevronRight className="w-4 h-4" />
+            </div>
+          </div>
+        </motion.div>
+      </div>
 
       {/* Main Interactive Grade Cards Grid (Strict Content Isolation) */}
       <div className={`gap-6 md:gap-8 mx-auto w-full my-auto py-4 ${

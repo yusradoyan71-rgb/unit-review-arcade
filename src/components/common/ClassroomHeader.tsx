@@ -20,8 +20,10 @@ import {
   Trophy,
   RotateCw,
   Award,
-  Sparkles
+  Sparkles,
+  Coins
 } from 'lucide-react';
+import { CoinService } from '../../services/coinService';
 
 export const ClassroomHeader: React.FC = () => {
   const { 
@@ -127,6 +129,14 @@ export const ClassroomHeader: React.FC = () => {
                 </span>
               )}
 
+              {/* Monster World Breadcrumb */}
+              {navigation.view === 'monster-world' && (
+                <span className="px-2.5 py-1 rounded-lg bg-amber-500/15 text-amber-300 border border-amber-500/30 font-semibold flex items-center gap-1.5">
+                  <Coins className="w-3.5 h-3.5 text-amber-400" />
+                  Monster World
+                </span>
+              )}
+
               {/* Teacher Panel Breadcrumb */}
               {navigation.view === 'teacher-panel' && (
                 <span className="px-2.5 py-1 rounded-lg bg-amber-500/10 text-amber-300 border border-amber-500/20 font-semibold flex items-center gap-1.5">
@@ -208,6 +218,24 @@ export const ClassroomHeader: React.FC = () => {
           >
             <Sparkles className="w-4 h-4 text-indigo-400" />
             <span className="hidden sm:inline">Games Zone</span>
+          </button>
+
+          {/* Monster World & Coins Shortcut */}
+          <button
+            onClick={() => {
+              sounds.playNavigate();
+              navigateTo({ view: 'monster-world' });
+            }}
+            title="Monster World & Customizer"
+            aria-label="Monster World"
+            className={`px-3 py-1.5 rounded-xl border transition-all flex items-center gap-1.5 text-xs font-bold hover:scale-105 active:scale-95 ${
+              navigation.view === 'monster-world'
+                ? 'bg-amber-600 text-white border-amber-400 shadow-md shadow-amber-600/30'
+                : 'bg-amber-500/15 hover:bg-amber-500/25 border-amber-500/30 text-amber-300 hover:text-white'
+            }`}
+          >
+            <Coins className="w-4 h-4 text-amber-400" />
+            <span className="font-extrabold">{student?.totalCoins ?? CoinService.getBalance(student?.studentNumber || '')}</span>
           </button>
 
           {/* Audio Effects Toggle */}

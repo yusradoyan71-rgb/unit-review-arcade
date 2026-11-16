@@ -395,6 +395,14 @@ export class ApiService {
   }
 
   /**
+   * Generic POST method for custom actions.
+   */
+  public static async post<T>(payload: unknown): Promise<T> {
+    const apiUrl = this.getApiUrl();
+    return await this.postRequest<T>(apiUrl, payload);
+  }
+
+  /**
    * HTTP POST wrapper designed specifically for Google Apps Script Web Apps.
    * Sends JSON wrapped in text/plain;charset=utf-8 to bypass browser CORS preflight.
    */

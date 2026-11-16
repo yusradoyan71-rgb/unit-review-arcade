@@ -217,4 +217,5 @@ export type NavigationTarget =
   | { view: 'game-play'; gradeId: GradeId; unitId: string; activityId: string }
   | { view: 'teacher-panel'; initialTab?: 'units' | 'activities' | 'backup' | 'tracking'; targetGradeId?: GradeId }
   | { view: 'games-zone'; gradeId?: GradeId }
-  | { view: 'games-zone-play'; gameId: GamesZoneGameId; gradeId: GradeId; difficulty: GamesZoneDifficulty };
+  | { view: 'games-zone-play'; gameId: GamesZoneGameId; gradeId: GradeId; difficulty: GamesZoneDifficulty }
+  | { view: 'monster-world' };

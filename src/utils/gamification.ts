@@ -28,8 +28,40 @@ export const LEVEL_DEFINITIONS: StudentLevel[] = [
   { level: 12, title: 'Language Virtuoso',    minXp: 4150, maxXp: 4850 },
   { level: 13, title: 'Grand Scholar',        minXp: 4850, maxXp: 5600 },
   { level: 14, title: 'Arcade Legend',        minXp: 5600, maxXp: 6400 },
-  { level: 15, title: 'Mythic Champion',      minXp: 6400, maxXp: 10000 },
+  { level: 15, title: 'Mythic Champion',      minXp: 6400, maxXp: 15000 },
 ];
+
+/**
+ * Procedural prestige titles for unlimited levels beyond Level 15.
+ */
+export function getUnlimitedLevelTitle(level: number): string {
+  if (level <= 15) {
+    const tier = LEVEL_DEFINITIONS.find(d => d.level === level);
+    return tier ? tier.title : 'Novice Explorer';
+  }
+
+  const PRESTIGE_TIERS = [
+    { min: 16, max: 20, base: 'Grandmaster' },
+    { min: 21, max: 25, base: 'Arcade Paragon' },
+    { min: 26, max: 30, base: 'Ascendant Scholar' },
+    { min: 31, max: 35, base: 'Celestial Virtuoso' },
+    { min: 36, max: 40, base: 'Transcendent' },
+    { min: 41, max: 45, base: 'Immortal' },
+    { min: 46, max: 50, base: 'Cosmic Overlord' },
+  ];
+
+  const ROMANS = ['I', 'II', 'III', 'IV', 'V'];
+  for (let i = 0; i < PRESTIGE_TIERS.length; i++) {
+    const p = PRESTIGE_TIERS[i];
+    if (level >= p.min && level <= p.max) {
+      const rank = ROMANS[level - p.min] || String(level - p.min + 1);
+      return `${p.base} ${rank}`;
+    }
+  }
+
+  // Beyond Level 50: Infinite Apex Champion
+  return `Apex Legend ${level}`;
+}
 
 export function calculateLevelFromXp(totalXp: number): {
   level: number;
@@ -42,29 +74,60 @@ export function calculateLevelFromXp(totalXp: number): {
 } {
   const safeXp = Math.max(0, Math.floor(totalXp || 0));
 
-  let currentTier = LEVEL_DEFINITIONS[0];
-  for (let i = 0; i < LEVEL_DEFINITIONS.length; i++) {
-    const tier = LEVEL_DEFINITIONS[i];
-    if (safeXp >= tier.minXp) {
-      currentTier = tier;
-    } else {
-      break;
+  // 1. Tiers 1 through 15 (Backward-compatible with original curriculum thresholds)
+  if (safeXp <= 15000) {
+    let currentTier = LEVEL_DEFINITIONS[0];
+    for (let i = 0; i < LEVEL_DEFINITIONS.length; i++) {
+      const tier = LEVEL_DEFINITIONS[i];
+      if (safeXp >= tier.minXp) {
+        currentTier = tier;
+      } else {
+        break;
+      }
     }
+
+    const isMaxLevel15 = currentTier.level === 15 && safeXp >= 15000;
+    const currentLevelXp = safeXp - currentTier.minXp;
+    const levelSpan = currentTier.maxXp - currentTier.minXp;
+    const nextLevelXp = isMaxLevel15 ? 0 : Math.max(0, currentTier.maxXp - safeXp);
+    const progressPercent = isMaxLevel15
+      ? 100
+      : Math.min(100, Math.max(0, Math.round((currentLevelXp / levelSpan) * 100)));
+
+    return {
+      level: currentTier.level,
+      title: currentTier.title,
+      minXp: currentTier.minXp,
+      maxXp: currentTier.maxXp,
+      currentLevelXp,
+      nextLevelXp,
+      progressPercent,
+    };
   }
 
-  const isMaxLevel = currentTier.level >= LEVEL_DEFINITIONS.length;
-  const currentLevelXp = safeXp - currentTier.minXp;
-  const levelSpan = currentTier.maxXp - currentTier.minXp;
-  const nextLevelXp = isMaxLevel ? 0 : Math.max(0, currentTier.maxXp - safeXp);
-  const progressPercent = isMaxLevel
-    ? 100
-    : Math.min(100, Math.max(0, Math.round((currentLevelXp / levelSpan) * 100)));
+  // 2. Unlimited Levels Beyond 15 (Level 16, 17, ... 50, 100+)
+  // Level 16 begins at 15,000 XP with initial span of 1,000 XP.
+  // Each subsequent level adds +100 XP to the span, maintaining sustainable progression.
+  let currentLevel = 16;
+  let currentMinXp = 15000;
+  let currentSpan = 1000;
+
+  while (safeXp >= currentMinXp + currentSpan) {
+    currentMinXp += currentSpan;
+    currentLevel++;
+    currentSpan += 100;
+  }
+
+  const currentMaxXp = currentMinXp + currentSpan;
+  const currentLevelXp = safeXp - currentMinXp;
+  const nextLevelXp = Math.max(0, currentMaxXp - safeXp);
+  const progressPercent = Math.min(100, Math.max(0, Math.round((currentLevelXp / currentSpan) * 100)));
 
   return {
-    level: currentTier.level,
-    title: currentTier.title,
-    minXp: currentTier.minXp,
-    maxXp: currentTier.maxXp,
+    level: currentLevel,
+    title: getUnlimitedLevelTitle(currentLevel),
+    minXp: currentMinXp,
+    maxXp: currentMaxXp,
     currentLevelXp,
     nextLevelXp,
     progressPercent,

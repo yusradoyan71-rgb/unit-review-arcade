@@ -63,8 +63,34 @@ var CONFIG = {
     DASHBOARD: "Dashboard",
     TEACHER_SESSIONS: "TeacherSessions",
     CURRICULUM: "Curriculum",
-    ACHIEVEMENTS: "Achievements"
+    ACHIEVEMENTS: "Achievements",
+    MONSTERS: "Monsters",
+    COIN_TRANSACTIONS: "CoinTransactions"
   },
+  MONSTER_HEADERS: [
+    "student_number",
+    "class",
+    "monster_name",
+    "body_shape",
+    "body_color",
+    "eye_type",
+    "mouth_type",
+    "horn_type",
+    "cheek_type",
+    "pattern",
+    "accessories_json",
+    "updated_at"
+  ],
+  COIN_TRANSACTION_HEADERS: [
+    "transaction_id",
+    "student_number",
+    "class",
+    "amount",
+    "balance_after",
+    "reason",
+    "source_id",
+    "created_at"
+  ],
   STUDENT_HEADERS: [
     "student_id",
     "student_number",
@@ -317,6 +343,16 @@ function doPost(e) {
 
       case "student_record_mistake_retry":
         return handleStudentRecordMistakeRetry(ss, payload);
+
+      // Student Monster World & Economy (Phase 8A)
+      case "student_save_monster":
+        return handleStudentSaveMonster(ss, payload);
+
+      case "student_get_monster":
+        return handleStudentGetMonster(ss, payload);
+
+      case "student_record_games_zone_coins":
+        return handleStudentRecordGamesZoneCoins(ss, payload);
 
       // Teacher Authentication (Phase 3A)
       case "teacher_login":
@@ -2032,7 +2068,9 @@ function handleStudentLogin(ss, payload) {
       displayName: displayInitials,
       firstName: firstName,
       class: studentClass,
-      grade: resolveGradeFromStudent(studentClass, grade)
+      grade: resolveGradeFromStudent(studentClass, grade),
+      totalCoins: getStudentCoinBalance(ss, studentNumber),
+      monster: getStudentMonsterConfig(ss, studentNumber)
     },
     expiresAt: expiresAt.toISOString()
   });
@@ -2112,7 +2150,9 @@ function handleSessionCheck(ss, payload) {
       displayName: displayInitials,
       firstName: firstName,
       class: String(studentClass),
-      grade: grade
+      grade: grade,
+      totalCoins: getStudentCoinBalance(ss, studentNumber),
+      monster: getStudentMonsterConfig(ss, studentNumber)
     }
   });
 }
@@ -2601,6 +2641,7 @@ function handleCompleteAttempt(ss, payload) {
     var existingPercentage = Number(attemptRow[colMap["percentage"] - 1] || 0);
     var existingXp = colMap["xp_earned"] ? Number(attemptRow[colMap["xp_earned"] - 1] || 0) : 0;
     var currentSummary = getStudentGamificationSummary(ss, auth.studentNumber);
+    var currentCoins = getStudentCoinBalance(ss, auth.studentNumber);
     return createJsonResponse({
       success: true,
       attemptId: attemptId,
@@ -2621,6 +2662,11 @@ function handleCompleteAttempt(ss, payload) {
         levelTitle: currentSummary.levelTitle,
         unlockedAchievements: [],
         replayNotice: "Attempt already recorded."
+      },
+      coins: {
+        coinsEarned: 0,
+        totalCoins: currentCoins,
+        message: "Attempt already completed. No duplicate coins awarded."
       }
     });
   }
@@ -2743,6 +2789,73 @@ function handleCompleteAttempt(ss, payload) {
     attemptsSheet.getRange(attemptRowIndex, colMap["xp_earned"]).setValue(xpEarned);
   }
 
+  // Calculate Monster Coins (Phase 8A)
+  var firstCompletionCoins = isFirstCompletion ? 5 : 0;
+  var highAccuracyCoins = percentage >= 90 ? 3 : 0;
+  var perfectScoreCoins = percentage >= 100 ? 5 : 0;
+
+  // Daily First Activity bonus (+5 coins)
+  var compDateStr = String(payload.completedAt || now);
+  var todayPrefix = compDateStr.substring(0, 10);
+  var priorTodayAttempts = 0;
+  for (var t = 0; t < priorCompletedAttempts.length; t++) {
+    var ca = String(priorCompletedAttempts[t].completedAt || "");
+    if (ca.substring(0, 10) === todayPrefix) {
+      priorTodayAttempts++;
+    }
+  }
+  var dailyFirstCoins = (priorTodayAttempts === 0) ? 5 : 0;
+
+  // Level Up reward (+10 coins per new level reached)
+  var levelDiff = Math.max(0, newLevel - oldLevel);
+  var levelUpCoins = levelDiff * 10;
+
+  // Replay policy coins & transaction reason
+  var replayCoins = 0;
+  var txReason = "activity_completion";
+  if (!isFirstCompletion) {
+    if (percentage > previousBestPercentage) {
+      replayCoins = 2; // Score improvement
+      txReason = "replay_improvement";
+    } else {
+      // Replaying without improvement (decay practice coin: 1 coin, max 5 daily)
+      var txSheetForCap = getSheetRobust(ss, CONFIG.SHEET_NAMES.COIN_TRANSACTIONS);
+      var todayPracticeCoins = 0;
+      if (txSheetForCap) {
+        var txData = txSheetForCap.getDataRange().getValues();
+        var txColMap = getSheetColumnMap(txSheetForCap, CONFIG.COIN_TRANSACTION_HEADERS);
+        var sCol = txColMap["student_number"] - 1;
+        var rCol = txColMap["reason"] - 1;
+        var cCol = txColMap["created_at"] - 1;
+        var aCol = txColMap["amount"] - 1;
+        for (var k = 1; k < txData.length; k++) {
+          if (String(txData[k][sCol] || "").trim() === String(studentNumber).trim() &&
+              String(txData[k][rCol] || "").trim() === "replay_practice" &&
+              String(txData[k][cCol] || "").substring(0, 10) === todayPrefix) {
+            todayPracticeCoins += Number(txData[k][aCol] || 0);
+          }
+        }
+      }
+      if (todayPracticeCoins < 5) {
+        replayCoins = 1;
+        txReason = "replay_practice";
+      }
+    }
+  }
+
+  var totalCoinsEarned = firstCompletionCoins + highAccuracyCoins + perfectScoreCoins + dailyFirstCoins + levelUpCoins + replayCoins;
+
+  // Record coin transaction
+  var coinTxResult = recordCoinTransaction(
+    ss,
+    studentNumber,
+    auth.class,
+    totalCoinsEarned,
+    txReason,
+    attemptId,
+    payload.completedAt || now
+  );
+
   return createJsonResponse({
     success: true,
     attemptId: attemptId,
@@ -2762,6 +2875,18 @@ function handleCompleteAttempt(ss, payload) {
       levelTitle: levelObj.title,
       unlockedAchievements: unlockedBadges,
       replayNotice: xpResult.replayNotice
+    },
+    coins: {
+      coinsEarned: totalCoinsEarned,
+      totalCoins: coinTxResult.balanceAfter,
+      breakdown: {
+        firstCompletion: firstCompletionCoins,
+        highAccuracy: highAccuracyCoins,
+        perfectScore: perfectScoreCoins,
+        dailyFirst: dailyFirstCoins,
+        levelUp: levelUpCoins,
+        replay: replayCoins
+      }
     }
   });
 }
@@ -3469,8 +3594,41 @@ var LEVEL_DEFINITIONS = [
   { level: 12, title: "Language Virtuoso",    minXp: 4150, maxXp: 4850 },
   { level: 13, title: "Grand Scholar",        minXp: 4850, maxXp: 5600 },
   { level: 14, title: "Arcade Legend",        minXp: 5600, maxXp: 6400 },
-  { level: 15, title: "Mythic Champion",      minXp: 6400, maxXp: 10000 }
+  { level: 15, title: "Mythic Champion",      minXp: 6400, maxXp: 15000 }
 ];
+
+/**
+ * Procedural prestige titles for unlimited levels beyond Level 15.
+ */
+function getUnlimitedLevelTitle(level) {
+  if (level <= 15) {
+    for (var i = 0; i < LEVEL_DEFINITIONS.length; i++) {
+      if (LEVEL_DEFINITIONS[i].level === level) return LEVEL_DEFINITIONS[i].title;
+    }
+    return "Novice Explorer";
+  }
+
+  var PRESTIGE_TIERS = [
+    { min: 16, max: 20, base: "Grandmaster" },
+    { min: 21, max: 25, base: "Arcade Paragon" },
+    { min: 26, max: 30, base: "Ascendant Scholar" },
+    { min: 31, max: 35, base: "Celestial Virtuoso" },
+    { min: 36, max: 40, base: "Transcendent" },
+    { min: 41, max: 45, base: "Immortal" },
+    { min: 46, max: 50, base: "Cosmic Overlord" }
+  ];
+
+  var ROMANS = ["I", "II", "III", "IV", "V"];
+  for (var j = 0; j < PRESTIGE_TIERS.length; j++) {
+    var p = PRESTIGE_TIERS[j];
+    if (level >= p.min && level <= p.max) {
+      var rank = ROMANS[level - p.min] || String(level - p.min + 1);
+      return p.base + " " + rank;
+    }
+  }
+
+  return "Apex Legend " + level;
+}
 
 var ACHIEVEMENTS_CATALOG = [
   { id: "first_game", title: "First Steps", description: "Complete your first review activity in the arcade.", icon: "Sparkles", category: "starter", target: 1 },
@@ -3491,36 +3649,67 @@ var ACHIEVEMENTS_CATALOG = [
 
 /**
  * Calculates student level, title, and progress from total XP.
+ * Supports unlimited progression beyond Level 15.
  */
 function getLevelFromXp(totalXp) {
   var safeXp = Math.max(0, Math.floor(totalXp || 0));
-  var currentTier = LEVEL_DEFINITIONS[0];
 
-  for (var i = 0; i < LEVEL_DEFINITIONS.length; i++) {
-    var tier = LEVEL_DEFINITIONS[i];
-    if (safeXp >= tier.minXp) {
-      currentTier = tier;
-    } else {
-      break;
+  // 1. Tiers 1 through 15 (Backward-compatible with original curriculum thresholds)
+  if (safeXp <= 15000) {
+    var currentTier = LEVEL_DEFINITIONS[0];
+
+    for (var i = 0; i < LEVEL_DEFINITIONS.length; i++) {
+      var tier = LEVEL_DEFINITIONS[i];
+      if (safeXp >= tier.minXp) {
+        currentTier = tier;
+      } else {
+        break;
+      }
     }
+
+    var isMaxLevel15 = currentTier.level === 15 && safeXp >= 15000;
+    var currentLevelXp = safeXp - currentTier.minXp;
+    var levelSpan = currentTier.maxXp - currentTier.minXp;
+    var nextLevelXp = isMaxLevel15 ? 0 : Math.max(0, currentTier.maxXp - safeXp);
+    var progressPercent = isMaxLevel15
+      ? 100
+      : Math.min(100, Math.max(0, Math.round((currentLevelXp / levelSpan) * 100)));
+
+    return {
+      level: currentTier.level,
+      title: currentTier.title,
+      minXp: currentTier.minXp,
+      maxXp: currentTier.maxXp,
+      currentLevelXp: currentLevelXp,
+      nextLevelXp: nextLevelXp,
+      progressPercent: progressPercent
+    };
   }
 
-  var isMaxLevel = currentTier.level >= LEVEL_DEFINITIONS.length;
-  var currentLevelXp = safeXp - currentTier.minXp;
-  var levelSpan = currentTier.maxXp - currentTier.minXp;
-  var nextLevelXp = isMaxLevel ? 0 : Math.max(0, currentTier.maxXp - safeXp);
-  var progressPercent = isMaxLevel
-    ? 100
-    : Math.min(100, Math.max(0, Math.round((currentLevelXp / levelSpan) * 100)));
+  // 2. Unlimited Levels Beyond 15 (Level 16, 17, ... 50, 100+)
+  var currentLevel = 16;
+  var currentMinXp = 15000;
+  var currentSpan = 1000;
+
+  while (safeXp >= currentMinXp + currentSpan) {
+    currentMinXp += currentSpan;
+    currentLevel++;
+    currentSpan += 100;
+  }
+
+  var currentMaxXp = currentMinXp + currentSpan;
+  var lvlXp = safeXp - currentMinXp;
+  var nxtXp = Math.max(0, currentMaxXp - safeXp);
+  var pct = Math.min(100, Math.max(0, Math.round((lvlXp / currentSpan) * 100)));
 
   return {
-    level: currentTier.level,
-    title: currentTier.title,
-    minXp: currentTier.minXp,
-    maxXp: currentTier.maxXp,
-    currentLevelXp: currentLevelXp,
-    nextLevelXp: nextLevelXp,
-    progressPercent: progressPercent
+    level: currentLevel,
+    title: getUnlimitedLevelTitle(currentLevel),
+    minXp: currentMinXp,
+    maxXp: currentMaxXp,
+    currentLevelXp: lvlXp,
+    nextLevelXp: nxtXp,
+    progressPercent: pct
   };
 }
 
@@ -4013,7 +4202,9 @@ function handleStudentGetProfile(ss, payload) {
     progressPercent: summary.progressPercent,
     stats: summary.stats,
     achievements: summary.achievements,
-    recentActivity: summary.recentActivity
+    recentActivity: summary.recentActivity,
+    totalCoins: getStudentCoinBalance(ss, auth.studentNumber),
+    monster: getStudentMonsterConfig(ss, auth.studentNumber)
   };
 
   return createJsonResponse({
@@ -5762,5 +5953,368 @@ function repairStudentAchievements(optSs, confirmationToken) {
     applied: true,
     totalRepairsApplied: repairsApplied,
     audit: audit
+  };
+}
+
+// ============================================================================
+// PHASE 8A: MONSTER WORLD & MONSTER COINS ECONOMY
+// ============================================================================
+
+var ALLOWED_MONSTER_BODY_SHAPES = ["blob", "fuzzy", "sprout", "slime", "chubby", "star"];
+var ALLOWED_MONSTER_BODY_COLORS = ["cyan", "purple", "pink", "lime", "orange", "amber", "emerald", "indigo"];
+var ALLOWED_MONSTER_EYE_TYPES = ["cyclops", "anime", "sleepy", "wink", "three_eyes", "googly"];
+var ALLOWED_MONSTER_MOUTH_TYPES = ["smile", "fang_grin", "laughing", "goofy_teeth", "cat_mouth", "whistle"];
+var ALLOWED_MONSTER_HORN_TYPES = ["none", "single_horn", "twin_horns", "antennae", "leaves", "cat_ears"];
+var ALLOWED_MONSTER_CHEEK_TYPES = ["none", "blush_dots", "freckles", "spiral", "stars"];
+var ALLOWED_MONSTER_PATTERNS = ["none", "belly_patch", "spots", "stripes", "heart"];
+
+var DEFAULT_MONSTER_DATA = {
+  name: "Pip",
+  bodyShape: "blob",
+  bodyColor: "cyan",
+  eyeType: "anime",
+  mouthType: "smile",
+  hornType: "antennae",
+  cheekType: "blush_dots",
+  pattern: "belly_patch",
+  accessories: {}
+};
+
+/**
+ * Sanitizes and validates a student's monster configuration.
+ */
+function sanitizeMonsterConfig(input) {
+  if (!input || typeof input !== "object") {
+    return JSON.parse(JSON.stringify(DEFAULT_MONSTER_DATA));
+  }
+
+  var name = String(input.name || "Pip").trim().substring(0, 24);
+  if (!name) name = "Pip";
+
+  var bodyShape = ALLOWED_MONSTER_BODY_SHAPES.indexOf(input.bodyShape) !== -1 ? input.bodyShape : "blob";
+  var bodyColor = ALLOWED_MONSTER_BODY_COLORS.indexOf(input.bodyColor) !== -1 ? input.bodyColor : "cyan";
+  var eyeType = ALLOWED_MONSTER_EYE_TYPES.indexOf(input.eyeType) !== -1 ? input.eyeType : "anime";
+  var mouthType = ALLOWED_MONSTER_MOUTH_TYPES.indexOf(input.mouthType) !== -1 ? input.mouthType : "smile";
+  var hornType = ALLOWED_MONSTER_HORN_TYPES.indexOf(input.hornType) !== -1 ? input.hornType : "antennae";
+  var cheekType = ALLOWED_MONSTER_CHEEK_TYPES.indexOf(input.cheekType) !== -1 ? input.cheekType : "blush_dots";
+  var pattern = ALLOWED_MONSTER_PATTERNS.indexOf(input.pattern) !== -1 ? input.pattern : "belly_patch";
+
+  var accessories = {};
+  if (input.accessories && typeof input.accessories === "object") {
+    if (input.accessories.hat) accessories.hat = String(input.accessories.hat).trim();
+    if (input.accessories.glasses) accessories.glasses = String(input.accessories.glasses).trim();
+    if (input.accessories.clothing) accessories.clothing = String(input.accessories.clothing).trim();
+    if (input.accessories.wings) accessories.wings = String(input.accessories.wings).trim();
+  }
+
+  return {
+    name: name,
+    bodyShape: bodyShape,
+    bodyColor: bodyColor,
+    eyeType: eyeType,
+    mouthType: mouthType,
+    hornType: hornType,
+    cheekType: cheekType,
+    pattern: pattern,
+    accessories: accessories,
+    updatedAt: input.updatedAt || new Date().toISOString()
+  };
+}
+
+/**
+ * Reads student monster configuration from database.
+ */
+function getStudentMonsterConfig(ss, studentNumber) {
+  if (!ss || !studentNumber) return JSON.parse(JSON.stringify(DEFAULT_MONSTER_DATA));
+
+  var mSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.MONSTERS);
+  if (mSheet) {
+    var data = mSheet.getDataRange().getValues();
+    if (data.length > 1) {
+      var colMap = getSheetColumnMap(mSheet, CONFIG.MONSTER_HEADERS);
+      var sCol = colMap["student_number"] - 1;
+      for (var i = 1; i < data.length; i++) {
+        if (String(data[i][sCol] || "").trim() === String(studentNumber).trim()) {
+          var accJson = String(data[i][colMap["accessories_json"] - 1] || "{}");
+          var acc = {};
+          try { acc = JSON.parse(accJson); } catch (e) {}
+
+          return sanitizeMonsterConfig({
+            name: data[i][colMap["monster_name"] - 1],
+            bodyShape: data[i][colMap["body_shape"] - 1],
+            bodyColor: data[i][colMap["body_color"] - 1],
+            eyeType: data[i][colMap["eye_type"] - 1],
+            mouthType: data[i][colMap["mouth_type"] - 1],
+            hornType: data[i][colMap["horn_type"] - 1],
+            cheekType: data[i][colMap["cheek_type"] - 1],
+            pattern: data[i][colMap["pattern"] - 1],
+            accessories: acc,
+            updatedAt: data[i][colMap["updated_at"] - 1]
+          });
+        }
+      }
+    }
+  }
+
+  return JSON.parse(JSON.stringify(DEFAULT_MONSTER_DATA));
+}
+
+/**
+ * Saves student monster configuration to Monsters sheet.
+ */
+function saveStudentMonsterConfig(ss, studentNumber, studentClass, monsterConfig) {
+  var sanitized = sanitizeMonsterConfig(monsterConfig);
+  sanitized.updatedAt = new Date().toISOString();
+
+  var mSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.MONSTERS);
+  if (!mSheet) {
+    return sanitized;
+  }
+
+  if (mSheet.getLastRow() === 0) {
+    mSheet.appendRow(CONFIG.MONSTER_HEADERS);
+  }
+
+  var data = mSheet.getDataRange().getValues();
+  var colMap = getSheetColumnMap(mSheet, CONFIG.MONSTER_HEADERS);
+  var rowIndex = -1;
+
+  for (var i = 1; i < data.length; i++) {
+    if (String(data[i][colMap["student_number"] - 1] || "").trim() === String(studentNumber).trim()) {
+      rowIndex = i + 1;
+      break;
+    }
+  }
+
+  var rowVals = [
+    studentNumber,
+    studentClass || "",
+    sanitized.name,
+    sanitized.bodyShape,
+    sanitized.bodyColor,
+    sanitized.eyeType,
+    sanitized.mouthType,
+    sanitized.hornType,
+    sanitized.cheekType,
+    sanitized.pattern,
+    JSON.stringify(sanitized.accessories || {}),
+    sanitized.updatedAt
+  ];
+
+  if (rowIndex > 0) {
+    mSheet.getRange(rowIndex, 1, 1, rowVals.length).setValues([rowVals]);
+  } else {
+    mSheet.appendRow(rowVals);
+  }
+
+  return sanitized;
+}
+
+/**
+ * Reads student's current Monster Coin balance.
+ * Server authoritative, never negative.
+ */
+function getStudentCoinBalance(ss, studentNumber) {
+  if (!ss || !studentNumber) return 0;
+
+  var txSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.COIN_TRANSACTIONS);
+  if (txSheet) {
+    var data = txSheet.getDataRange().getValues();
+    if (data.length > 1) {
+      var colMap = getSheetColumnMap(txSheet, CONFIG.COIN_TRANSACTION_HEADERS);
+      var sCol = colMap["student_number"] - 1;
+      var bCol = colMap["balance_after"] - 1;
+
+      // Scan bottom-up to find the most recent transaction balance
+      for (var i = data.length - 1; i >= 1; i--) {
+        if (String(data[i][sCol] || "").trim() === String(studentNumber).trim()) {
+          var bal = Number(data[i][bCol] || 0);
+          return Math.max(0, isNaN(bal) ? 0 : bal);
+        }
+      }
+    }
+  }
+
+  return 0;
+}
+
+/**
+ * Records a coin transaction and returns the new balance.
+ */
+function recordCoinTransaction(ss, studentNumber, studentClass, amount, reason, sourceId, timestamp) {
+  if (!ss || !studentNumber || amount === 0) {
+    return {
+      transactionId: "",
+      balanceAfter: getStudentCoinBalance(ss, studentNumber),
+      amount: 0
+    };
+  }
+
+  var currentBalance = getStudentCoinBalance(ss, studentNumber);
+  var balanceAfter = Math.max(0, currentBalance + amount);
+  var txId = "ctx_" + Utilities.getUuid().substring(0, 8);
+  var txTime = timestamp || new Date().toISOString();
+
+  var txSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.COIN_TRANSACTIONS);
+  if (txSheet) {
+    if (txSheet.getLastRow() === 0) {
+      txSheet.appendRow(CONFIG.COIN_TRANSACTION_HEADERS);
+    }
+    txSheet.appendRow([
+      txId,
+      studentNumber,
+      studentClass || "",
+      amount,
+      balanceAfter,
+      reason || "activity_completion",
+      sourceId || "",
+      txTime
+    ]);
+  }
+
+  return {
+    transactionId: txId,
+    balanceAfter: balanceAfter,
+    amount: amount
+  };
+}
+
+/**
+ * ACTION: student_save_monster
+ * Validates and saves student monster design.
+ */
+function handleStudentSaveMonster(ss, payload) {
+  var auth = validateSessionAndGetStudent(ss, payload.sessionToken);
+  if (!auth.success) {
+    return createJsonResponse({ success: false, error: auth.error, code: "UNAUTHORIZED" });
+  }
+
+  var monster = payload.monster;
+  if (!monster || typeof monster !== "object") {
+    return createJsonResponse({ success: false, error: "Missing monster configuration.", code: "BAD_REQUEST" });
+  }
+
+  var saved = saveStudentMonsterConfig(ss, auth.studentNumber, auth.class, monster);
+
+  return createJsonResponse({
+    success: true,
+    monster: saved,
+    totalCoins: getStudentCoinBalance(ss, auth.studentNumber)
+  });
+}
+
+/**
+ * ACTION: student_get_monster
+ * Returns student monster design and current coin balance.
+ */
+function handleStudentGetMonster(ss, payload) {
+  var auth = validateSessionAndGetStudent(ss, payload.sessionToken);
+  if (!auth.success) {
+    return createJsonResponse({ success: false, error: auth.error, code: "UNAUTHORIZED" });
+  }
+
+  var monster = getStudentMonsterConfig(ss, auth.studentNumber);
+  var totalCoins = getStudentCoinBalance(ss, auth.studentNumber);
+
+  return createJsonResponse({
+    success: true,
+    monster: monster,
+    totalCoins: totalCoins
+  });
+}
+
+/**
+ * ACTION: student_record_games_zone_coins
+ * Awards coins for Games Zone completions within the daily cap (25 coins max).
+ */
+function handleStudentRecordGamesZoneCoins(ss, payload) {
+  var auth = validateSessionAndGetStudent(ss, payload.sessionToken);
+  if (!auth.success) {
+    return createJsonResponse({ success: false, error: auth.error, code: "UNAUTHORIZED" });
+  }
+
+  var gameId = String(payload.gameId || "").trim();
+  var difficulty = String(payload.difficulty || "easy").toLowerCase();
+  var accuracy = Number(payload.accuracyPercentage || 0);
+  var correctAnswers = Number(payload.correctAnswers || 0);
+
+  if (correctAnswers <= 0) {
+    return createJsonResponse({
+      success: true,
+      coinsEarned: 0,
+      totalCoins: getStudentCoinBalance(ss, auth.studentNumber),
+      isCapped: false
+    });
+  }
+
+  // Base coins: Easy = 3, Medium = 4, Hard = 5
+  var baseCoins = 3;
+  if (difficulty === "medium") baseCoins = 4;
+  if (difficulty === "hard") baseCoins = 5;
+
+  var bonusCoins = accuracy >= 90 ? 1 : 0;
+  var earned = baseCoins + bonusCoins;
+
+  // Daily Games Zone Cap (25 coins max per calendar day)
+  var todayStr = new Date().toISOString().substring(0, 10);
+  var txSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.COIN_TRANSACTIONS);
+  var todayGzEarned = 0;
+  if (txSheet) {
+    var data = txSheet.getDataRange().getValues();
+    var colMap = getSheetColumnMap(txSheet, CONFIG.COIN_TRANSACTION_HEADERS);
+    for (var i = 1; i < data.length; i++) {
+      var sNum = String(data[i][colMap["student_number"] - 1] || "").trim();
+      var rsn = String(data[i][colMap["reason"] - 1] || "").trim();
+      var cAt = String(data[i][colMap["created_at"] - 1] || "");
+      if (sNum === auth.studentNumber && rsn === "games_zone_completion" && cAt.substring(0, 10) === todayStr) {
+        todayGzEarned += Number(data[i][colMap["amount"] - 1] || 0);
+      }
+    }
+  }
+
+  var available = Math.max(0, 25 - todayGzEarned);
+  var awarded = Math.min(earned, available);
+  var isCapped = awarded < earned;
+
+  var txResult = recordCoinTransaction(
+    ss,
+    auth.studentNumber,
+    auth.class,
+    awarded,
+    "games_zone_completion",
+    "gz_" + gameId + "_" + difficulty + "_" + Utilities.getUuid().substring(0, 6)
+  );
+
+  return createJsonResponse({
+    success: true,
+    coinsEarned: awarded,
+    isCapped: isCapped,
+    totalCoins: txResult.balanceAfter
+  });
+}
+
+/**
+ * Safe, idempotent setup helper for Phase 8A Monster World sheets.
+ * NEVER alters existing student or attempts data.
+ */
+function setupPhase8AMonsterWorld(ss) {
+  if (!ss) {
+    return { success: false, error: "Spreadsheet not found" };
+  }
+
+  var mSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.MONSTERS);
+  if (mSheet && mSheet.getLastRow() === 0) {
+    mSheet.appendRow(CONFIG.MONSTER_HEADERS);
+  }
+
+  var txSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.COIN_TRANSACTIONS);
+  if (txSheet && txSheet.getLastRow() === 0) {
+    txSheet.appendRow(CONFIG.COIN_TRANSACTION_HEADERS);
+  }
+
+  return {
+    success: true,
+    monstersCreated: !!mSheet,
+    transactionsCreated: !!txSheet
   };
 }

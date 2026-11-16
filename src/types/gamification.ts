@@ -8,6 +8,7 @@
 
 import type { StudentClass, StudentGrade } from './auth';
 import type { GameType } from './schema';
+import type { MonsterConfig } from './monster';
 
 export type AchievementCategory = 'starter' | 'mastery' | 'milestone' | 'explorer';
 
@@ -64,6 +65,8 @@ export interface StudentGamificationProfile {
   stats: StudentGamificationStats;
   achievements: Achievement[];
   recentActivity: StudentRecentActivity[];
+  totalCoins?: number;
+  monster?: MonsterConfig;
 }
 
 export interface LeaderboardEntry {

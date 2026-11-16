@@ -3,6 +3,8 @@
  * Version: 1.0.0
  */
 
+import type { MonsterConfig } from './monster';
+
 export type StudentClass = '7A' | '7B' | '8A' | '8B';
 export type StudentGrade = 'grade-7' | 'grade-8';
 
@@ -24,6 +26,8 @@ export interface StudentProfile {
   firstName: string;
   class: StudentClass;
   grade: StudentGrade;
+  totalCoins?: number;
+  monster?: MonsterConfig;
 }
 
 export type AuthMode = 'classroom' | 'student';
