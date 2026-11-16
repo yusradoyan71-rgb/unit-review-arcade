@@ -37,12 +37,25 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
   const [mismatchedIds, setMismatchedIds] = useState<string[]>([]);
   const [totalMatchesMade, setTotalMatchesMade] = useState(initialMatches);
   const [mismatchCount, setMismatchCount] = useState(0);
-  const [interactionCount, setInteractionCount] = useState(0);
   const [isRoundComplete, setIsRoundComplete] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
 
-  // Preserve initial matched pair IDs on initial mount
+  // Synchronous refs to prevent race conditions, stale closures, and rapid click issues
   const isInitialRoundMountRef = useRef(true);
+  const interactionCountRef = useRef(0);
+  const matchedPairIdsRef = useRef<string[]>(initialMatchedPairIds);
+  const totalMatchesMadeRef = useRef<number>(initialMatches);
+  const mismatchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isResolvingMismatchRef = useRef<boolean>(false);
+
+  // Cleanup pending timer on unmount
+  useEffect(() => {
+    return () => {
+      if (mismatchTimerRef.current) {
+        clearTimeout(mismatchTimerRef.current);
+      }
+    };
+  }, []);
 
   // Sync state if resumeCheckpoint arrives or updates after initial mount
   const hasInitializedFromCheckpointRef = useRef(Boolean(resumeCheckpoint));
@@ -54,9 +67,11 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
       }
       if (resumeCheckpoint.score !== undefined) {
         setTotalMatchesMade(resumeCheckpoint.score);
+        totalMatchesMadeRef.current = resumeCheckpoint.score;
       }
       if (resumeCheckpoint.matchedPairIds && resumeCheckpoint.matchedPairIds.length > 0) {
         setMatchedPairIds(resumeCheckpoint.matchedPairIds);
+        matchedPairIdsRef.current = resumeCheckpoint.matchedPairIds;
       }
     }
   }, [resumeCheckpoint, rounds.length]);
@@ -75,6 +90,13 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
   // Initialize or change round
   useEffect(() => {
     if (!currentRound || !currentRound.pairs) return;
+
+    if (mismatchTimerRef.current) {
+      clearTimeout(mismatchTimerRef.current);
+      mismatchTimerRef.current = null;
+    }
+    isResolvingMismatchRef.current = false;
+    setMismatchedIds([]);
 
     const pairs = currentRound.pairs;
     const left: ShuffledCard[] = pairs.map((p) => ({
@@ -98,113 +120,167 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
       isInitialRoundMountRef.current = false;
     } else {
       setMatchedPairIds([]);
+      matchedPairIdsRef.current = [];
     }
     setSelectedLeft(null);
     setSelectedRight(null);
     setIsRoundComplete(false);
   }, [currentRoundIndex, currentRound]);
 
-  // Check match whenever both sides are selected
-  useEffect(() => {
-    if (selectedLeft && selectedRight) {
-      const isMatch = selectedLeft.id === selectedRight.id;
-      const order = interactionCount + 1;
-      setInteractionCount(order);
+  const evaluateSelection = (leftCard: ShuffledCard, rightCard: ShuffledCard) => {
+    const isMatch = leftCard.id === rightCard.id;
+    const nextOrder = interactionCountRef.current + 1;
+    interactionCountRef.current = nextOrder;
 
-      recordAnswer({
-        questionId: selectedLeft.id,
-        questionOrder: order,
-        questionPrompt: `Round ${currentRoundIndex + 1}: ${currentRound?.title || 'Matching'}`,
-        studentResponse: `${selectedLeft.text} ➔ ${selectedRight.text}`,
-        correctAnswer: `${selectedLeft.text} ➔ (paired)`,
-        isCorrect: isMatch,
-      });
+    recordAnswer({
+      questionId: leftCard.id,
+      questionOrder: nextOrder,
+      questionPrompt: `Round ${currentRoundIndex + 1}: ${currentRound?.title || 'Matching'}`,
+      studentResponse: `${leftCard.text} ➔ ${rightCard.text}`,
+      correctAnswer: `${leftCard.text} ➔ (paired)`,
+      isCorrect: isMatch,
+    });
 
-      if (isMatch) {
-        // MATCH!
-        sounds.playSuccess();
-        const pairId = selectedLeft.id;
-        const nextMatched = [...matchedPairIds, pairId];
-        const nextMatchesTotal = totalMatchesMade + 1;
-        setMatchedPairIds(nextMatched);
-        setTotalMatchesMade(nextMatchesTotal);
+    if (isMatch) {
+      // MATCH!
+      sounds.playSuccess();
+      const pairId = leftCard.id;
+      const nextMatched = [...matchedPairIdsRef.current, pairId];
+      const nextMatchesTotal = totalMatchesMadeRef.current + 1;
+      matchedPairIdsRef.current = nextMatched;
+      totalMatchesMadeRef.current = nextMatchesTotal;
+      setMatchedPairIds(nextMatched);
+      setTotalMatchesMade(nextMatchesTotal);
+      setSelectedLeft(null);
+      setSelectedRight(null);
+
+      const isRoundFinished = Boolean(currentRound && nextMatched.length === currentRound.pairs.length);
+      if (isRoundFinished) {
+        setIsRoundComplete(true);
+        const nextRound = currentRoundIndex + 1;
+        const isFinalRound = nextRound >= totalRounds;
+        saveCheckpoint({
+          currentRoundIndex: isFinalRound ? currentRoundIndex : nextRound,
+          currentIndex: isFinalRound ? currentRoundIndex : nextRound,
+          score: nextMatchesTotal,
+          matchedPairIds: [],
+        });
+      } else {
+        saveCheckpoint({
+          currentRoundIndex,
+          currentIndex: currentRoundIndex,
+          score: nextMatchesTotal,
+          matchedPairIds: nextMatched,
+        });
+      }
+    } else {
+      // MISMATCH!
+      // Play mismatch sound once
+      sounds.playBack();
+      setMismatchCount((m) => m + 1);
+      const cardIds = [leftCard.cardId, rightCard.cardId];
+      setMismatchedIds(cardIds);
+      isResolvingMismatchRef.current = true;
+
+      if (mismatchTimerRef.current) {
+        clearTimeout(mismatchTimerRef.current);
+      }
+
+      mismatchTimerRef.current = setTimeout(() => {
+        setMismatchedIds([]);
         setSelectedLeft(null);
         setSelectedRight(null);
-
-        const isRoundFinished = currentRound && nextMatched.length === currentRound.pairs.length;
-        if (isRoundFinished) {
-          setIsRoundComplete(true);
-          const nextRound = currentRoundIndex + 1;
-          const isFinalRound = nextRound >= totalRounds;
-          saveCheckpoint({
-            currentRoundIndex: isFinalRound ? currentRoundIndex : nextRound,
-            currentIndex: isFinalRound ? currentRoundIndex : nextRound,
-            score: nextMatchesTotal,
-            matchedPairIds: [],
-          });
-        } else {
-          saveCheckpoint({
-            currentRoundIndex,
-            currentIndex: currentRoundIndex,
-            score: nextMatchesTotal,
-            matchedPairIds: nextMatched,
-          });
-        }
-      } else {
-        // MISMATCH!
-        sounds.playBack();
-        setMismatchCount((m) => m + 1);
-        const cardIds = [selectedLeft.cardId, selectedRight.cardId];
-        setMismatchedIds(cardIds);
-        const timer = setTimeout(() => {
-          setMismatchedIds([]);
-          setSelectedLeft(null);
-          setSelectedRight(null);
-        }, 800);
-        return () => clearTimeout(timer);
-      }
+        isResolvingMismatchRef.current = false;
+        mismatchTimerRef.current = null;
+      }, 800);
     }
-  }, [selectedLeft, selectedRight, currentRound, currentRoundIndex, interactionCount, recordAnswer, matchedPairIds, totalMatchesMade, totalRounds, saveCheckpoint]);
+  };
 
   const handleCardClick = (card: ShuffledCard) => {
-    if (matchedPairIds.includes(card.id) || mismatchedIds.length > 0) return;
+    if (
+      isResolvingMismatchRef.current ||
+      mismatchedIds.length > 0 ||
+      matchedPairIdsRef.current.includes(card.id) ||
+      isRoundComplete ||
+      isGameOver
+    ) {
+      return;
+    }
 
     sounds.playTap();
+
     if (card.side === 'left') {
-      setSelectedLeft((prev) => (prev?.cardId === card.cardId ? null : card));
+      if (selectedLeft?.cardId === card.cardId) {
+        setSelectedLeft(null);
+        return;
+      }
+
+      setSelectedLeft(card);
+
+      if (selectedRight) {
+        evaluateSelection(card, selectedRight);
+      }
     } else {
-      setSelectedRight((prev) => (prev?.cardId === card.cardId ? null : card));
+      if (selectedRight?.cardId === card.cardId) {
+        setSelectedRight(null);
+        return;
+      }
+
+      setSelectedRight(card);
+
+      if (selectedLeft) {
+        evaluateSelection(selectedLeft, card);
+      }
     }
   };
 
   const handleNextRound = () => {
     sounds.playTap();
+    if (mismatchTimerRef.current) {
+      clearTimeout(mismatchTimerRef.current);
+      mismatchTimerRef.current = null;
+    }
+    isResolvingMismatchRef.current = false;
+    setMismatchedIds([]);
+
     if (currentRoundIndex + 1 < totalRounds) {
       const nextRound = currentRoundIndex + 1;
       setCurrentRoundIndex(nextRound);
       setMatchedPairIds([]);
+      matchedPairIdsRef.current = [];
       saveCheckpoint({
         currentRoundIndex: nextRound,
         currentIndex: nextRound,
-        score: totalMatchesMade,
+        score: totalMatchesMadeRef.current,
         matchedPairIds: [],
       });
     } else {
       setIsGameOver(true);
       completeGame({
-        score: totalMatchesMade,
+        score: totalMatchesMadeRef.current,
         totalQuestions: totalPairsAcrossGame,
         answeredQuestions: totalPairsAcrossGame,
-        correctAnswers: totalMatchesMade,
+        correctAnswers: totalMatchesMadeRef.current,
         incorrectAnswers: mismatchCount,
         skippedQuestions: 0,
-        percentage: (totalMatchesMade + mismatchCount) > 0 ? Math.round((totalMatchesMade / (totalMatchesMade + mismatchCount)) * 100) : 100,
+        percentage: (totalMatchesMadeRef.current + mismatchCount) > 0
+          ? Math.round((totalMatchesMadeRef.current / (totalMatchesMadeRef.current + mismatchCount)) * 100)
+          : 100,
       });
     }
   };
 
   const handleRestart = () => {
     sounds.playTap();
+    if (mismatchTimerRef.current) {
+      clearTimeout(mismatchTimerRef.current);
+      mismatchTimerRef.current = null;
+    }
+    isResolvingMismatchRef.current = false;
+    setMismatchedIds([]);
+    matchedPairIdsRef.current = [];
+    totalMatchesMadeRef.current = 0;
+    interactionCountRef.current = 0;
     clearCheckpoint();
     restartGame();
   };

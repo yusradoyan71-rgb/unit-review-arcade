@@ -728,6 +728,192 @@ if (secondRestored.currentRoundIndex !== 1 || secondRestored.score !== 6 || seco
 }
 console.log('  ✅ Mid-round resume restores 2 already-matched pairs in Round 2 without wiping state.\n');
 
+// ----------------------------------------------------------------------------
+// MATCH IT INCORRECT-PAIR HANDLING & UNFREEZE REGRESSION TEST
+// ----------------------------------------------------------------------------
+console.log('--- MATCH IT INCORRECT-PAIR HANDLING & UNFREEZE REGRESSION ---');
+
+// Mock sound tracker
+let playBackCallCount = 0;
+let playSuccessCallCount = 0;
+let playTapCallCount = 0;
+const mockSounds = {
+  playBack: () => { playBackCallCount++; },
+  playSuccess: () => { playSuccessCallCount++; },
+  playTap: () => { playTapCallCount++; },
+};
+
+// Simulation harness for MatchItGame engine
+class MatchItEngineSimulation {
+  constructor(pairs) {
+    this.pairs = pairs;
+    this.leftCards = pairs.map(p => ({ id: p.id, cardId: `left-${p.id}`, text: p.left, side: 'left' }));
+    this.rightCards = pairs.map(p => ({ id: p.id, cardId: `right-${p.id}`, text: p.right, side: 'right' }));
+    this.selectedLeft = null;
+    this.selectedRight = null;
+    this.matchedPairIds = [];
+    this.mismatchedIds = [];
+    this.mismatchCount = 0;
+    this.totalMatchesMade = 0;
+    this.recordedAnswers = [];
+    this.isResolvingMismatch = false;
+    this.mismatchTimer = null;
+    this.isRoundComplete = false;
+  }
+
+  handleCardClick(card) {
+    if (this.isResolvingMismatch || this.mismatchedIds.length > 0 || this.matchedPairIds.includes(card.id) || this.isRoundComplete) {
+      return false; // click blocked safely
+    }
+
+    mockSounds.playTap();
+
+    if (card.side === 'left') {
+      if (this.selectedLeft?.cardId === card.cardId) {
+        this.selectedLeft = null;
+        return true;
+      }
+      this.selectedLeft = card;
+      if (this.selectedRight) {
+        this.evaluateSelection(card, this.selectedRight);
+      }
+    } else {
+      if (this.selectedRight?.cardId === card.cardId) {
+        this.selectedRight = null;
+        return true;
+      }
+      this.selectedRight = card;
+      if (this.selectedLeft) {
+        this.evaluateSelection(this.selectedLeft, card);
+      }
+    }
+    return true;
+  }
+
+  evaluateSelection(leftCard, rightCard) {
+    const isMatch = leftCard.id === rightCard.id;
+    this.recordedAnswers.push({
+      questionId: leftCard.id,
+      studentResponse: `${leftCard.text} ➔ ${rightCard.text}`,
+      isCorrect: isMatch,
+    });
+
+    if (isMatch) {
+      mockSounds.playSuccess();
+      this.matchedPairIds.push(leftCard.id);
+      this.totalMatchesMade++;
+      this.selectedLeft = null;
+      this.selectedRight = null;
+      if (this.matchedPairIds.length === this.pairs.length) {
+        this.isRoundComplete = true;
+      }
+    } else {
+      mockSounds.playBack();
+      this.mismatchCount++;
+      this.mismatchedIds = [leftCard.cardId, rightCard.cardId];
+      this.isResolvingMismatch = true;
+      if (this.mismatchTimer) clearTimeout(this.mismatchTimer);
+      this.mismatchTimer = setTimeout(() => {
+        this.mismatchedIds = [];
+        this.selectedLeft = null;
+        this.selectedRight = null;
+        this.isResolvingMismatch = false;
+        this.mismatchTimer = null;
+      }, 800);
+    }
+  }
+
+  advanceTimer(ms = 800) {
+    if (this.mismatchTimer) {
+      clearTimeout(this.mismatchTimer);
+      this.mismatchedIds = [];
+      this.selectedLeft = null;
+      this.selectedRight = null;
+      this.isResolvingMismatch = false;
+      this.mismatchTimer = null;
+    }
+  }
+}
+
+const testPairs = sampleMatchRounds[0].pairs; // 4 pairs
+const gameSim = new MatchItEngineSimulation(testPairs);
+
+// 1. Select Left Card 1 (Classical)
+gameSim.handleCardClick(gameSim.leftCards[0]);
+if (!gameSim.selectedLeft || gameSim.selectedLeft.id !== 'p1') {
+  throw new Error('Failed to select left card');
+}
+
+// 2. Select Incorrect Right Card 2 (Jazz meaning: "Improvisation and brass")
+gameSim.handleCardClick(gameSim.rightCards[1]);
+
+// VERIFY IMMEDIATE MISMATCH STATE:
+// - Cards are marked as mismatched (turned red)
+if (gameSim.mismatchedIds.length !== 2) {
+  throw new Error(`Expected 2 mismatched cards, got ${gameSim.mismatchedIds.length}`);
+}
+if (!gameSim.mismatchedIds.includes('left-p1') || !gameSim.mismatchedIds.includes('right-p2')) {
+  throw new Error('Mismatched card IDs do not match selected pair');
+}
+// - Audio played EXACTLY ONCE
+if (playBackCallCount !== 1) {
+  throw new Error(`Incorrect-answer audio should play exactly once! Called ${playBackCallCount} times`);
+}
+// - Telemetry recorded exactly once with isCorrect: false
+if (gameSim.recordedAnswers.length !== 1 || gameSim.recordedAnswers[0].isCorrect !== false) {
+  throw new Error('Mismatch telemetry not recorded correctly');
+}
+
+// 3. RAPID CLICKS DURING 800ms FLASH: Must be safely ignored
+const rapidClickResult = gameSim.handleCardClick(gameSim.leftCards[2]);
+if (rapidClickResult !== false) {
+  throw new Error('Rapid click during mismatch resolution must be blocked');
+}
+if (playBackCallCount !== 1) {
+  throw new Error('Rapid click caused duplicate audio trigger');
+}
+
+// 4. TIMER ELAPSES: Cards reset and unfreeze
+gameSim.advanceTimer(800);
+
+if (gameSim.mismatchedIds.length !== 0) {
+  throw new Error('Mismatched IDs not cleared after timer elapsed');
+}
+if (gameSim.selectedLeft !== null || gameSim.selectedRight !== null) {
+  throw new Error('Card selections not reset to null after timer elapsed');
+}
+if (gameSim.isResolvingMismatch !== false) {
+  throw new Error('Mismatch lock flag not released after timer elapsed');
+}
+console.log('  ✅ Incorrect selection turns cards red, plays sound once, and cleanly resets after timeout.');
+
+// 5. CONSECUTIVE INCORRECT SELECTION: Game must not freeze on repeated mistakes
+gameSim.handleCardClick(gameSim.leftCards[0]); // Left 1
+gameSim.handleCardClick(gameSim.rightCards[2]); // Right 3 (wrong)
+if (gameSim.mismatchedIds.length !== 2) throw new Error('Second mismatch failed to trigger');
+if (playBackCallCount !== 2) throw new Error(`Expected exactly 2 playBack calls, got ${playBackCallCount}`);
+gameSim.advanceTimer(800);
+if (gameSim.mismatchedIds.length !== 0) throw new Error('Second mismatch not cleared');
+console.log('  ✅ Consecutive incorrect selections handled without freeze or stuck audio.');
+
+// 6. CORRECT SELECTION AFTER MISMATCHES
+gameSim.handleCardClick(gameSim.leftCards[0]); // Left 1 (Classical)
+gameSim.handleCardClick(gameSim.rightCards[0]); // Right 1 (Orchestral compositions) -> MATCH!
+
+if (playSuccessCallCount !== 1) {
+  throw new Error('Success audio not played on valid match');
+}
+if (!gameSim.matchedPairIds.includes('p1')) {
+  throw new Error('Correct pair not marked as matched');
+}
+if (gameSim.totalMatchesMade !== 1) {
+  throw new Error('Score not incremented on correct match');
+}
+if (gameSim.selectedLeft !== null || gameSim.selectedRight !== null) {
+  throw new Error('Selections not cleared after correct match');
+}
+console.log('  ✅ Correct match immediately following mismatches completes successfully.\n');
+
 // ============================================================================
 // SUITE 4: OFFLINE QUEUE & AUTO-FLUSH SIMULATION
 // ============================================================================
