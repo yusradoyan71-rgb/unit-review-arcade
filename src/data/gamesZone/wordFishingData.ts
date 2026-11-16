@@ -1,10 +1,14 @@
 /**
- * UNIT REVIEW ARCADE — WORD FISHING DATA BANK (PHASE 7A)
- * Version: 7.0.0
+ * UNIT REVIEW ARCADE — WORD FISHING DATA BANK (PHASE 7A - AUDITED & SIMPLIFIED)
+ * Version: 7.1.0
  * 
  * 240 validated unique questions across:
  * - Grade 7: Easy (40), Medium (40), Hard (40)
  * - Grade 8: Easy (40), Medium (40), Hard (40)
+ * 
+ * AUDIT COMPLETE:
+ * All questions conform to middle school English (Grade 7 A1-A2; Grade 8 A2-B1 / LGS targets).
+ * Obscure and college-level definitions replaced with natural, accessible clues.
  */
 
 import type { WordFishingBank } from '../../types/gamesZone';
@@ -14,355 +18,259 @@ export const WORD_FISHING_BANK: WordFishingBank = {
     easy: [
       {
             "id": "wf_g7_e_01",
-            "cluePrompt": "Hook the animal known as 'Man's best friend'",
+            "cluePrompt": "Hook the pet that barks and wags its tail",
             "clueCategory": "Animals",
             "targetWord": "Dog",
             "distractorWords": [
-                  "Lion",
-                  "Monkey",
-                  "Eagle"
+                  "Cat",
+                  "Rabbit",
+                  "Horse"
             ],
-            "explanation": "Dogs are domestic animals celebrated for their loyalty."
+            "explanation": "A dog is a friendly domestic pet known as man's best friend."
       },
       {
             "id": "wf_g7_e_02",
-            "cluePrompt": "Hook the large animal with a long trunk and big ears",
+            "cluePrompt": "Hook the animal that gives us milk on the farm",
+            "clueCategory": "Animals",
+            "targetWord": "Cow",
+            "distractorWords": [
+                  "Lion",
+                  "Monkey",
+                  "Tiger"
+            ],
+            "explanation": "Cows are farm animals that provide fresh milk and dairy."
+      },
+      {
+            "id": "wf_g7_e_03",
+            "cluePrompt": "Hook the giant wild animal with big ears and a long trunk",
             "clueCategory": "Animals",
             "targetWord": "Elephant",
             "distractorWords": [
                   "Giraffe",
                   "Zebra",
-                  "Tiger"
+                  "Bear"
             ],
-            "explanation": "Elephants are the largest living land mammals with long trunks."
-      },
-      {
-            "id": "wf_g7_e_03",
-            "cluePrompt": "Hook the animal that produces milk and eats grass on farms",
-            "clueCategory": "Animals",
-            "targetWord": "Cow",
-            "distractorWords": [
-                  "Bear",
-                  "Wolf",
-                  "Fox"
-            ],
-            "explanation": "Cows are farm animals that give us milk and dairy products."
+            "explanation": "Elephants are the largest living land animals with long trunks."
       },
       {
             "id": "wf_g7_e_04",
-            "cluePrompt": "Hook the sea creature with eight arms",
-            "clueCategory": "Sea Life",
+            "cluePrompt": "Hook the sea animal that has eight long arms",
+            "clueCategory": "Animals",
             "targetWord": "Octopus",
             "distractorWords": [
+                  "Dolphin",
                   "Shark",
-                  "Whale",
-                  "Dolphin"
+                  "Whale"
             ],
-            "explanation": "An octopus is an ocean mollusc with eight flexible arms."
+            "explanation": "An octopus is an ocean creature with eight arms."
       },
       {
             "id": "wf_g7_e_05",
-            "cluePrompt": "Hook the tall animal with a very long neck",
+            "cluePrompt": "Hook the tall yellow animal with a very long neck",
             "clueCategory": "Animals",
             "targetWord": "Giraffe",
             "distractorWords": [
                   "Hippo",
-                  "Camel",
-                  "Horse"
+                  "Kangaroo",
+                  "Camel"
             ],
-            "explanation": "Giraffes are tall African mammals with iconic long necks."
+            "explanation": "Giraffes are tall animals that eat leaves from tall trees."
       },
       {
             "id": "wf_g7_e_06",
-            "cluePrompt": "Hook the bird that can swim underwater but cannot fly",
+            "cluePrompt": "Hook the small domestic pet that loves catching mice",
             "clueCategory": "Animals",
-            "targetWord": "Penguin",
+            "targetWord": "Cat",
             "distractorWords": [
-                  "Parrot",
-                  "Sparrow",
-                  "Pigeon"
+                  "Duck",
+                  "Goat",
+                  "Sheep"
             ],
-            "explanation": "Penguins are flightless birds adapted for swimming in cold oceans."
+            "explanation": "Cats are popular domestic pets that purr and catch mice."
       },
       {
             "id": "wf_g7_e_07",
-            "cluePrompt": "Hook the insect that makes sweet honey in hives",
-            "clueCategory": "Insects",
-            "targetWord": "Bee",
-            "distractorWords": [
-                  "Ant",
-                  "Fly",
-                  "Mosquito"
-            ],
-            "explanation": "Honey bees collect nectar and produce sweet honey."
-      },
-      {
-            "id": "wf_g7_e_08",
-            "cluePrompt": "Hook the small domestic animal that loves to catch mice",
-            "clueCategory": "Pets",
-            "targetWord": "Cat",
-            "distractorWords": [
-                  "Rabbit",
-                  "Duck",
-                  "Sheep"
-            ],
-            "explanation": "Cats are independent domestic pets famous for catching mice."
-      },
-      {
-            "id": "wf_g7_e_09",
-            "cluePrompt": "Hook the animal that hops and carries its baby in a pouch",
-            "clueCategory": "Animals",
-            "targetWord": "Kangaroo",
-            "distractorWords": [
-                  "Koala",
-                  "Panda",
-                  "Cheetah"
-            ],
-            "explanation": "Kangaroos are Australian marsupials with pouches."
-      },
-      {
-            "id": "wf_g7_e_10",
-            "cluePrompt": "Hook the huge ocean mammal that breathes air through a blowhole",
-            "clueCategory": "Sea Life",
-            "targetWord": "Whale",
-            "distractorWords": [
-                  "Tuna",
-                  "Jellyfish",
-                  "Crab"
-            ],
-            "explanation": "Whales are warm-blooded ocean mammals, not fish."
-      },
-      {
-            "id": "wf_g7_e_11",
-            "cluePrompt": "Hook the yellow fruit that monkeys love to eat",
+            "cluePrompt": "Hook the sweet yellow fruit that you peel before eating",
             "clueCategory": "Food",
             "targetWord": "Banana",
             "distractorWords": [
                   "Apple",
                   "Orange",
-                  "Grape"
+                  "Lemon"
             ],
-            "explanation": "Bananas are curved, yellow tropical fruits."
+            "explanation": "Bananas are soft, sweet yellow fruits."
       },
       {
-            "id": "wf_g7_e_12",
-            "cluePrompt": "Hook the round baked food with sauce, cheese, and toppings",
+            "id": "wf_g7_e_08",
+            "cluePrompt": "Hook the round Italian food topped with cheese and tomato sauce",
             "clueCategory": "Food",
             "targetWord": "Pizza",
             "distractorWords": [
                   "Soup",
-                  "Salad",
-                  "Steak"
+                  "Rice",
+                  "Salad"
             ],
-            "explanation": "Pizza is a famous Italian dish topped with cheese and tomato sauce."
+            "explanation": "Pizza is a delicious baked crust topped with melted cheese."
       },
       {
-            "id": "wf_g7_e_13",
-            "cluePrompt": "Hook the warm liquid food usually eaten in a bowl with a spoon",
-            "clueCategory": "Food",
-            "targetWord": "Soup",
-            "distractorWords": [
-                  "Bread",
-                  "Burger",
-                  "Cake"
-            ],
-            "explanation": "Soup is a liquid food made by boiling vegetables, meat, or lentils."
-      },
-      {
-            "id": "wf_g7_e_14",
-            "cluePrompt": "Hook the white liquid produced by cows and goats",
+            "id": "wf_g7_e_09",
+            "cluePrompt": "Hook the healthy white drink that gives you strong bones",
             "clueCategory": "Drinks",
             "targetWord": "Milk",
             "distractorWords": [
+                  "Cola",
                   "Tea",
-                  "Lemonade",
                   "Coffee"
             ],
-            "explanation": "Milk is a nutrient-rich dairy drink full of calcium."
+            "explanation": "Milk is rich in calcium and helps build strong bones."
       },
       {
-            "id": "wf_g7_e_15",
-            "cluePrompt": "Hook the cold sweet dessert made from cream or milk",
-            "clueCategory": "Desserts",
-            "targetWord": "Ice cream",
-            "distractorWords": [
-                  "Toast",
-                  "Biscuit",
-                  "Pie"
-            ],
-            "explanation": "Ice cream is a chilled sweet treat loved worldwide."
-      },
-      {
-            "id": "wf_g7_e_16",
-            "cluePrompt": "Hook the red vegetable commonly sliced into fresh salads",
-            "clueCategory": "Vegetables",
-            "targetWord": "Tomato",
-            "distractorWords": [
-                  "Carrot",
-                  "Potato",
-                  "Cucumber"
-            ],
-            "explanation": "Tomatoes are juicy red fruits botanically, eaten as vegetables."
-      },
-      {
-            "id": "wf_g7_e_17",
-            "cluePrompt": "Hook the orange root vegetable that rabbits enjoy",
-            "clueCategory": "Vegetables",
-            "targetWord": "Carrot",
-            "distractorWords": [
-                  "Onion",
-                  "Garlic",
-                  "Cabbage"
-            ],
-            "explanation": "Carrots are crunchy, orange root vegetables rich in vitamin A."
-      },
-      {
-            "id": "wf_g7_e_18",
-            "cluePrompt": "Hook the popular morning beverage made from brewed dried leaves",
-            "clueCategory": "Drinks",
-            "targetWord": "Tea",
-            "distractorWords": [
-                  "Cola",
-                  "Milkshake",
-                  "Smoothie"
-            ],
-            "explanation": "Tea is brewed by steeping dried tea leaves in hot water."
-      },
-      {
-            "id": "wf_g7_e_19",
-            "cluePrompt": "Hook the baked bakery item made from flour, yeast, and water",
+            "id": "wf_g7_e_10",
+            "cluePrompt": "Hook the baked food made from flour used to make sandwiches",
             "clueCategory": "Food",
             "targetWord": "Bread",
             "distractorWords": [
-                  "Pasta",
-                  "Rice",
-                  "Cereal"
+                  "Butter",
+                  "Yogurt",
+                  "Cheese"
             ],
-            "explanation": "Bread is a staple food baked from dough."
+            "explanation": "Bread is a staple bakery food used for toast and sandwiches."
       },
       {
-            "id": "wf_g7_e_20",
-            "cluePrompt": "Hook the oval food laid by chickens with a white and yolk",
+            "id": "wf_g7_e_11",
+            "cluePrompt": "Hook the cold and sweet summer dessert that comes in a cone",
+            "clueCategory": "Food",
+            "targetWord": "Ice cream",
+            "distractorWords": [
+                  "Hot soup",
+                  "Toast",
+                  "Biscuit"
+            ],
+            "explanation": "Ice cream is a frozen sweet treat loved during warm weather."
+      },
+      {
+            "id": "wf_g7_e_12",
+            "cluePrompt": "Hook the red fruit that grows on trees and is crunchy to bite",
+            "clueCategory": "Food",
+            "targetWord": "Apple",
+            "distractorWords": [
+                  "Grape",
+                  "Melon",
+                  "Peach"
+            ],
+            "explanation": "Apples are crisp, round fruits that can be red, green, or yellow."
+      },
+      {
+            "id": "wf_g7_e_13",
+            "cluePrompt": "Hook the orange vegetable that rabbits love to munch",
+            "clueCategory": "Food",
+            "targetWord": "Carrot",
+            "distractorWords": [
+                  "Potato",
+                  "Onion",
+                  "Garlic"
+            ],
+            "explanation": "Carrots are crunchy, orange root vegetables."
+      },
+      {
+            "id": "wf_g7_e_14",
+            "cluePrompt": "Hook the round food laid by hens that people fry or boil for breakfast",
             "clueCategory": "Food",
             "targetWord": "Egg",
             "distractorWords": [
-                  "Cheese",
-                  "Butter",
-                  "Yogurt"
+                  "Pancake",
+                  "Mushroom",
+                  "Olive"
             ],
-            "explanation": "Eggs are laid by hens and are rich in protein."
+            "explanation": "Eggs come from hens and are packed with protein."
       },
       {
-            "id": "wf_g7_e_21",
-            "cluePrompt": "Hook the book with blank pages used for writing study notes",
-            "clueCategory": "School Supplies",
-            "targetWord": "Notebook",
-            "distractorWords": [
-                  "Eraser",
-                  "Scissors",
-                  "Compass"
-            ],
-            "explanation": "Students write notes and homework inside a notebook."
-      },
-      {
-            "id": "wf_g7_e_22",
-            "cluePrompt": "Hook the tool used to rub out pencil mistakes",
-            "clueCategory": "School Supplies",
-            "targetWord": "Eraser",
+            "id": "wf_g7_e_15",
+            "cluePrompt": "Hook the school tool you use to write notes with pencil lead",
+            "clueCategory": "School",
+            "targetWord": "Pencil",
             "distractorWords": [
                   "Ruler",
-                  "Stapler",
-                  "Pencil sharpener"
+                  "Scissors",
+                  "Glue"
             ],
-            "explanation": "An eraser (rubber) cleans pencil marks off paper."
+            "explanation": "A pencil uses graphite lead to write and draw on paper."
       },
       {
-            "id": "wf_g7_e_23",
-            "cluePrompt": "Hook the bag used by students to carry books to class",
-            "clueCategory": "School Supplies",
+            "id": "wf_g7_e_16",
+            "cluePrompt": "Hook the rubber item you use to erase pencil mistakes",
+            "clueCategory": "School",
+            "targetWord": "Eraser",
+            "distractorWords": [
+                  "Sharpener",
+                  "Stapler",
+                  "Folder"
+            ],
+            "explanation": "An eraser rubs away pencil markings cleanly from paper."
+      },
+      {
+            "id": "wf_g7_e_17",
+            "cluePrompt": "Hook the bag you pack with books to carry to school",
+            "clueCategory": "School",
             "targetWord": "Backpack",
             "distractorWords": [
                   "Suitcase",
                   "Wallet",
                   "Handbag"
             ],
-            "explanation": "A backpack is worn on the back to carry school essentials."
+            "explanation": "A backpack carries study books and pencil cases comfortably."
       },
       {
-            "id": "wf_g7_e_24",
-            "cluePrompt": "Hook the straight wooden or plastic tool used to measure centimetres",
-            "clueCategory": "School Supplies",
+            "id": "wf_g7_e_18",
+            "cluePrompt": "Hook the straight tool with numbers used to draw straight lines",
+            "clueCategory": "School",
             "targetWord": "Ruler",
             "distractorWords": [
-                  "Calculator",
-                  "Highlighter",
-                  "Folder"
+                  "Compass",
+                  "Pen",
+                  "Brush"
             ],
-            "explanation": "A ruler has centimetre markings for drawing straight lines."
+            "explanation": "A ruler has centimetre marks to measure and draw lines."
       },
       {
-            "id": "wf_g7_e_25",
-            "cluePrompt": "Hook the piece of furniture designed for sleeping comfortably",
-            "clueCategory": "Furniture",
+            "id": "wf_g7_e_19",
+            "cluePrompt": "Hook the piece of furniture with a mattress where you sleep at night",
+            "clueCategory": "Home",
             "targetWord": "Bed",
             "distractorWords": [
                   "Sofa",
-                  "Wardrobe",
-                  "Bookshelf"
+                  "Desk",
+                  "Armchair"
             ],
-            "explanation": "A bed with a mattress is where we sleep at night."
+            "explanation": "A comfortable bed is where you sleep and rest every night."
       },
       {
-            "id": "wf_g7_e_26",
-            "cluePrompt": "Hook the kitchen appliance used to keep food and drinks cold",
-            "clueCategory": "Appliances",
+            "id": "wf_g7_e_20",
+            "cluePrompt": "Hook the kitchen appliance that keeps milk, fruit, and food cold",
+            "clueCategory": "Home",
             "targetWord": "Fridge",
             "distractorWords": [
                   "Oven",
                   "Toaster",
-                  "Blender"
+                  "Kettle"
             ],
-            "explanation": "A refrigerator keeps perishables fresh at cold temperatures."
+            "explanation": "A refrigerator keeps food cool so it does not spoil."
       },
       {
-            "id": "wf_g7_e_27",
-            "cluePrompt": "Hook the room in a house where meals are cooked",
-            "clueCategory": "Rooms",
+            "id": "wf_g7_e_21",
+            "cluePrompt": "Hook the room in a house where delicious meals are cooked",
+            "clueCategory": "Home",
             "targetWord": "Kitchen",
             "distractorWords": [
+                  "Bedroom",
                   "Bathroom",
-                  "Attic",
                   "Balcony"
             ],
-            "explanation": "The kitchen is equipped with a stove and oven for cooking."
+            "explanation": "Meals and family recipes are prepared in the kitchen."
       },
       {
-            "id": "wf_g7_e_28",
-            "cluePrompt": "Hook the furniture piece with drawers and a flat top for studying",
-            "clueCategory": "Furniture",
-            "targetWord": "Desk",
-            "distractorWords": [
-                  "Armchair",
-                  "Cupboard",
-                  "Stool"
-            ],
-            "explanation": "A study desk provides a flat surface for reading and writing."
-      },
-      {
-            "id": "wf_g7_e_29",
-            "cluePrompt": "Hook the item on the wall that tells what hour and minute it is",
-            "clueCategory": "Home",
-            "targetWord": "Clock",
-            "distractorWords": [
-                  "Mirror",
-                  "Painting",
-                  "Calendar"
-            ],
-            "explanation": "Clocks measure and show the current time of day."
-      },
-      {
-            "id": "wf_g7_e_30",
-            "cluePrompt": "Hook the opening in a wall with glass that lets sunlight in",
+            "id": "wf_g7_e_22",
+            "cluePrompt": "Hook the opening with transparent glass that lets sunlight into a room",
             "clueCategory": "Home",
             "targetWord": "Window",
             "distractorWords": [
@@ -370,71 +278,71 @@ export const WORD_FISHING_BANK: WordFishingBank = {
                   "Ceiling",
                   "Floor"
             ],
-            "explanation": "Windows allow natural light and fresh air into a room."
+            "explanation": "Windows let fresh daylight and air into houses."
       },
       {
-            "id": "wf_g7_e_31",
-            "cluePrompt": "Hook the professional who treats sick or injured patients",
-            "clueCategory": "Occupations",
-            "targetWord": "Doctor",
+            "id": "wf_g7_e_23",
+            "cluePrompt": "Hook the object on the wall that shows the hour and minute",
+            "clueCategory": "Home",
+            "targetWord": "Clock",
+            "distractorWords": [
+                  "Painting",
+                  "Mirror",
+                  "Curtain"
+            ],
+            "explanation": "Clocks measure and show the current time of day."
+      },
+      {
+            "id": "wf_g7_e_24",
+            "cluePrompt": "Hook the person who teaches lessons to students in a school",
+            "clueCategory": "Jobs",
+            "targetWord": "Teacher",
             "distractorWords": [
                   "Chef",
                   "Pilot",
                   "Mechanic"
             ],
-            "explanation": "Doctors examine patients and prescribe medical treatments."
+            "explanation": "Teachers guide and educate students in classrooms."
       },
       {
-            "id": "wf_g7_e_32",
-            "cluePrompt": "Hook the person who educates students in a school classroom",
-            "clueCategory": "Occupations",
-            "targetWord": "Teacher",
+            "id": "wf_g7_e_25",
+            "cluePrompt": "Hook the medical professional who examines you when you are ill",
+            "clueCategory": "Jobs",
+            "targetWord": "Doctor",
             "distractorWords": [
                   "Lawyer",
-                  "Waiter",
-                  "Farmer"
-            ],
-            "explanation": "Teachers guide and instruct students in learning subjects."
-      },
-      {
-            "id": "wf_g7_e_33",
-            "cluePrompt": "Hook the person who prepares delicious meals in a restaurant",
-            "clueCategory": "Occupations",
-            "targetWord": "Chef",
-            "distractorWords": [
-                  "Tailor",
-                  "Dentist",
+                  "Actor",
                   "Architect"
             ],
-            "explanation": "Chefs are professional cooks in kitchens and restaurants."
+            "explanation": "Doctors help heal sick people and prescribe medicine."
       },
       {
-            "id": "wf_g7_e_34",
-            "cluePrompt": "Hook the person who flies aeroplanes through the sky",
-            "clueCategory": "Occupations",
-            "targetWord": "Pilot",
-            "distractorWords": [
-                  "Driver",
-                  "Sailor",
-                  "Astronaut"
-            ],
-            "explanation": "Pilots operate the flight controls of aircraft."
-      },
-      {
-            "id": "wf_g7_e_35",
-            "cluePrompt": "Hook the doctor specializing in taking care of teeth and gums",
-            "clueCategory": "Occupations",
+            "id": "wf_g7_e_26",
+            "cluePrompt": "Hook the doctor who looks after your teeth and fills cavities",
+            "clueCategory": "Jobs",
             "targetWord": "Dentist",
             "distractorWords": [
-                  "Surgeon",
                   "Pharmacist",
-                  "Nurse"
+                  "Nurse",
+                  "Optician"
             ],
-            "explanation": "Dentists clean teeth, fill cavities, and check oral health."
+            "explanation": "Dentists take care of teeth, gums, and oral hygiene."
       },
       {
-            "id": "wf_g7_e_36",
-            "cluePrompt": "Hook the quiet place where you can borrow and read books",
+            "id": "wf_g7_e_27",
+            "cluePrompt": "Hook the person who prepares food in a restaurant kitchen",
+            "clueCategory": "Jobs",
+            "targetWord": "Chef",
+            "distractorWords": [
+                  "Waiter",
+                  "Driver",
+                  "Tailor"
+            ],
+            "explanation": "Chefs are professional cooks who make restaurant meals."
+      },
+      {
+            "id": "wf_g7_e_28",
+            "cluePrompt": "Hook the quiet building where you can borrow and read library books",
             "clueCategory": "Places",
             "targetWord": "Library",
             "distractorWords": [
@@ -442,61 +350,157 @@ export const WORD_FISHING_BANK: WordFishingBank = {
                   "Gym",
                   "Stadium"
             ],
-            "explanation": "A library lends books and provides silent study areas."
+            "explanation": "Libraries lend storybooks and study books to readers."
       },
       {
-            "id": "wf_g7_e_37",
-            "cluePrompt": "Hook the shop where people buy fresh bread and pastries",
+            "id": "wf_g7_e_29",
+            "cluePrompt": "Hook the shop where people buy fresh bread, bagels, and cakes",
             "clueCategory": "Places",
             "targetWord": "Bakery",
             "distractorWords": [
                   "Pharmacy",
-                  "Butcher",
-                  "Florist"
+                  "Bank",
+                  "Butcher"
             ],
-            "explanation": "A bakery bakes and sells fresh bread, bagels, and rolls."
+            "explanation": "Bakeries bake and sell fresh daily bread and pastries."
       },
       {
-            "id": "wf_g7_e_38",
-            "cluePrompt": "Hook the building where people go to watch movies on a big screen",
+            "id": "wf_g7_e_30",
+            "cluePrompt": "Hook the place where you watch movies on a gigantic screen",
             "clueCategory": "Places",
             "targetWord": "Cinema",
             "distractorWords": [
                   "Museum",
                   "Post office",
-                  "Bank"
+                  "Park"
             ],
-            "explanation": "Cinemas project motion pictures onto large screens with surround sound."
+            "explanation": "A cinema projects films on a huge screen with surround sound."
+      },
+      {
+            "id": "wf_g7_e_31",
+            "cluePrompt": "Hook the two-wheeled vehicle you pedal with your feet",
+            "clueCategory": "Transport",
+            "targetWord": "Bicycle",
+            "distractorWords": [
+                  "Bus",
+                  "Train",
+                  "Airplane"
+            ],
+            "explanation": "Bicycles have two wheels and pedals for exercise and travel."
+      },
+      {
+            "id": "wf_g7_e_32",
+            "cluePrompt": "Hook the large vehicle that carries many students together to school",
+            "clueCategory": "Transport",
+            "targetWord": "School bus",
+            "distractorWords": [
+                  "Taxi",
+                  "Motorcycle",
+                  "Helicopter"
+            ],
+            "explanation": "School buses safely transport students to and from school."
+      },
+      {
+            "id": "wf_g7_e_33",
+            "cluePrompt": "Hook the part of the body at the end of your arm with five fingers",
+            "clueCategory": "Body",
+            "targetWord": "Hand",
+            "distractorWords": [
+                  "Foot",
+                  "Knee",
+                  "Elbow"
+            ],
+            "explanation": "Your hand has fingers and a thumb to hold objects."
+      },
+      {
+            "id": "wf_g7_e_34",
+            "cluePrompt": "Hook the organs on your face that allow you to see the world",
+            "clueCategory": "Body",
+            "targetWord": "Eyes",
+            "distractorWords": [
+                  "Ears",
+                  "Nose",
+                  "Lips"
+            ],
+            "explanation": "We see colors, books, and friends with our eyes."
+      },
+      {
+            "id": "wf_g7_e_35",
+            "cluePrompt": "Hook the family word for your mother's son",
+            "clueCategory": "Family",
+            "targetWord": "Brother",
+            "distractorWords": [
+                  "Sister",
+                  "Cousin",
+                  "Uncle"
+            ],
+            "explanation": "Your mother's son is your brother."
+      },
+      {
+            "id": "wf_g7_e_36",
+            "cluePrompt": "Hook the season when snow falls and the weather is cold",
+            "clueCategory": "Seasons",
+            "targetWord": "Winter",
+            "distractorWords": [
+                  "Summer",
+                  "Spring",
+                  "Autumn"
+            ],
+            "explanation": "Winter is the coldest season when snow often falls."
+      },
+      {
+            "id": "wf_g7_e_37",
+            "cluePrompt": "Hook the bright star in the sky that warms our planet by day",
+            "clueCategory": "Nature",
+            "targetWord": "Sun",
+            "distractorWords": [
+                  "Moon",
+                  "Cloud",
+                  "Star"
+            ],
+            "explanation": "The sun provides natural heat and light to our world."
+      },
+      {
+            "id": "wf_g7_e_38",
+            "cluePrompt": "Hook the opposite of feeling sad",
+            "clueCategory": "Feelings",
+            "targetWord": "Happy",
+            "distractorWords": [
+                  "Angry",
+                  "Tired",
+                  "Bored"
+            ],
+            "explanation": "Happy means feeling joy, cheerful energy, and smiles."
       },
       {
             "id": "wf_g7_e_39",
-            "cluePrompt": "Hook the shop where medicines are dispensed by a pharmacist",
-            "clueCategory": "Places",
-            "targetWord": "Pharmacy",
+            "cluePrompt": "Hook the opposite of small or tiny",
+            "clueCategory": "Adjectives",
+            "targetWord": "Big",
             "distractorWords": [
-                  "Stationery",
-                  "Supermarket",
-                  "Boutique"
+                  "Short",
+                  "Little",
+                  "Thin"
             ],
-            "explanation": "Pharmacies dispense prescriptions and health remedies."
+            "explanation": "Big describes something large in size or volume."
       },
       {
             "id": "wf_g7_e_40",
-            "cluePrompt": "Hook the place where athletes play matches in front of spectators",
-            "clueCategory": "Places",
-            "targetWord": "Stadium",
+            "cluePrompt": "Hook the item of clothing you wear on your feet inside shoes",
+            "clueCategory": "Clothes",
+            "targetWord": "Socks",
             "distractorWords": [
-                  "Airport",
-                  "Harbour",
-                  "Factory"
+                  "Gloves",
+                  "Hat",
+                  "Scarf"
             ],
-            "explanation": "A stadium has sports fields surrounded by seating tiers."
+            "explanation": "Socks keep your feet warm and comfortable inside shoes."
       }
 ],
     medium: [
       {
             "id": "wf_g7_m_01",
-            "cluePrompt": "Hook the water sport where athletes paddle through rapid rivers",
+            "cluePrompt": "Hook the water sport where swimmers paddle through river rapids in an inflatable boat",
             "clueCategory": "Sports",
             "targetWord": "Rafting",
             "distractorWords": [
@@ -504,11 +508,11 @@ export const WORD_FISHING_BANK: WordFishingBank = {
                   "Archery",
                   "Darts"
             ],
-            "explanation": "White-water rafting involves navigating river rapids in an inflatable raft."
+            "explanation": "White-water rafting is an adventurous river paddling sport."
       },
       {
             "id": "wf_g7_m_02",
-            "cluePrompt": "Hook the game played with two rackets, a net, and a shuttlecock",
+            "cluePrompt": "Hook the racquet sport played by hitting a feathered shuttlecock over a net",
             "clueCategory": "Sports",
             "targetWord": "Badminton",
             "distractorWords": [
@@ -516,227 +520,131 @@ export const WORD_FISHING_BANK: WordFishingBank = {
                   "Cricket",
                   "Polo"
             ],
-            "explanation": "Badminton is played hitting a feathered shuttlecock over a net."
+            "explanation": "Badminton uses lightweight rackets to hit a shuttlecock."
       },
       {
             "id": "wf_g7_m_03",
-            "cluePrompt": "Hook the sport where two teams try to throw a ball into elevated hoops",
-            "clueCategory": "Sports",
-            "targetWord": "Basketball",
+            "cluePrompt": "Hook the game with kings, queens, and knights played on a black-and-white board",
+            "clueCategory": "Games",
+            "targetWord": "Chess",
             "distractorWords": [
-                  "Volleyball",
-                  "Handball",
-                  "Baseball"
+                  "Monopoly",
+                  "Scrabble",
+                  "Checkers"
             ],
-            "explanation": "Basketball involves dribbling and shooting into an elevated hoop."
+            "explanation": "Chess is a classic strategic board game with 64 squares."
       },
       {
             "id": "wf_g7_m_04",
-            "cluePrompt": "Hook the activity of walking long distances across countryside or hills",
+            "cluePrompt": "Hook walking long trails in nature and climbing hills for exercise",
             "clueCategory": "Hobbies",
             "targetWord": "Hiking",
             "distractorWords": [
                   "Jogging",
-                  "Climbing",
-                  "Skiing"
+                  "Skating",
+                  "Surfing"
             ],
-            "explanation": "Hiking is scenic trail walking in nature."
+            "explanation": "Hiking involves scenic walking along countryside trails."
       },
       {
             "id": "wf_g7_m_05",
-            "cluePrompt": "Hook the winter sport where athletes slide down snow-covered slopes on two planks",
-            "clueCategory": "Sports",
-            "targetWord": "Skiing",
-            "distractorWords": [
-                  "Skating",
-                  "Surfing",
-                  "Sledging"
-            ],
-            "explanation": "Skiing uses two long skis strapped to boots to glide on snow."
-      },
-      {
-            "id": "wf_g7_m_06",
-            "cluePrompt": "Hook the target sport where arrows are shot from a bow",
-            "clueCategory": "Sports",
-            "targetWord": "Archery",
-            "distractorWords": [
-                  "Fencing",
-                  "Javelin",
-                  "Billiards"
-            ],
-            "explanation": "Archery is the skill of shooting arrows at a bullseye."
-      },
-      {
-            "id": "wf_g7_m_07",
-            "cluePrompt": "Hook the peaceful hobby of cultivating flowers and plants in soil",
-            "clueCategory": "Hobbies",
-            "targetWord": "Gardening",
-            "distractorWords": [
-                  "Knitting",
-                  "Pottery",
-                  "Woodwork"
-            ],
-            "explanation": "Gardening involves growing plants, vegetables, and ornamental flowers."
-      },
-      {
-            "id": "wf_g7_m_08",
-            "cluePrompt": "Hook the combat sport where athletes wear protective gloves inside a ring",
-            "clueCategory": "Sports",
-            "targetWord": "Boxing",
-            "distractorWords": [
-                  "Karate",
-                  "Wrestling",
-                  "Judo"
-            ],
-            "explanation": "Boxing is a sport involving punches thrown with padded gloves."
-      },
-      {
-            "id": "wf_g7_m_09",
-            "cluePrompt": "Hook the board game featuring kings, queens, bishops, and knights",
-            "clueCategory": "Games",
-            "targetWord": "Chess",
-            "distractorWords": [
-                  "Checkers",
-                  "Monopoly",
-                  "Scrabble"
-            ],
-            "explanation": "Chess is an ancient strategy game played on an 8x8 chequered board."
-      },
-      {
-            "id": "wf_g7_m_10",
-            "cluePrompt": "Hook the water sport where riders stand on a board catching ocean waves",
+            "cluePrompt": "Hook the sport where riders catch ocean waves standing on a surfboard",
             "clueCategory": "Sports",
             "targetWord": "Surfing",
             "distractorWords": [
                   "Diving",
                   "Rowing",
-                  "Kayaking"
+                  "Sailing"
             ],
-            "explanation": "Surfers ride ocean swells towards shore on surfboards."
+            "explanation": "Surfers ride waves toward the shore on a surfboard."
       },
       {
-            "id": "wf_g7_m_11",
-            "cluePrompt": "Hook the word meaning 'Feeling happy, enthusiastic, and eager about an upcoming event'",
-            "clueCategory": "Emotions",
+            "id": "wf_g7_m_06",
+            "cluePrompt": "Hook the winter sport of gliding down snow-covered mountains on two skis",
+            "clueCategory": "Sports",
+            "targetWord": "Skiing",
+            "distractorWords": [
+                  "Ice hockey",
+                  "Bobsled",
+                  "Snowboarding"
+            ],
+            "explanation": "Skiing uses skis and poles to slide downhill on snow."
+      },
+      {
+            "id": "wf_g7_m_07",
+            "cluePrompt": "Hook the feeling of energetic excitement about a fun event coming up",
+            "clueCategory": "Feelings",
             "targetWord": "Excited",
             "distractorWords": [
                   "Bored",
                   "Angry",
-                  "Tired"
+                  "Sleepy"
             ],
-            "explanation": "Excited describes energetic anticipation and happiness."
+            "explanation": "Feeling excited means looking forward to something with joy."
       },
       {
-            "id": "wf_g7_m_12",
-            "cluePrompt": "Hook the word for someone who feels afraid or frightened by danger",
-            "clueCategory": "Emotions",
-            "targetWord": "Scared",
-            "distractorWords": [
-                  "Brave",
-                  "Calm",
-                  "Proud"
-            ],
-            "explanation": "Scared means feeling fear or panic."
-      },
-      {
-            "id": "wf_g7_m_13",
-            "cluePrompt": "Hook the personality trait for someone who readily shares their belongings with others",
-            "clueCategory": "Personality",
-            "targetWord": "Generous",
-            "distractorWords": [
-                  "Selfish",
-                  "Greedy",
-                  "Mean"
-            ],
-            "explanation": "Generous people enjoy giving and sharing freely."
-      },
-      {
-            "id": "wf_g7_m_14",
-            "cluePrompt": "Hook the trait for a person who always tells the truth and never lies",
+            "id": "wf_g7_m_08",
+            "cluePrompt": "Hook the personality trait of someone who always tells the truth and never lies",
             "clueCategory": "Personality",
             "targetWord": "Honest",
             "distractorWords": [
-                  "Dishonest",
+                  "Selfish",
                   "Sneaky",
-                  "Deceptive"
+                  "Impolite"
             ],
-            "explanation": "Honesty means sincerity and telling the factual truth."
+            "explanation": "Honest students tell the truth and act with sincerity."
       },
       {
-            "id": "wf_g7_m_15",
-            "cluePrompt": "Hook the feeling of being displeased because something is dull and uninteresting",
-            "clueCategory": "Emotions",
-            "targetWord": "Bored",
-            "distractorWords": [
-                  "Curious",
-                  "Astonished",
-                  "Delighted"
-            ],
-            "explanation": "Boredom occurs when an activity lacks excitement or interest."
-      },
-      {
-            "id": "wf_g7_m_16",
-            "cluePrompt": "Hook the personality trait of someone who refuses to change their mind easily",
+            "id": "wf_g7_m_09",
+            "cluePrompt": "Hook someone who loves sharing their things and helping others freely",
             "clueCategory": "Personality",
-            "targetWord": "Stubborn",
+            "targetWord": "Generous",
             "distractorWords": [
-                  "Easygoing",
-                  "Flexible",
-                  "Polite"
-            ],
-            "explanation": "Stubborn people firmly hold onto their opinions."
-      },
-      {
-            "id": "wf_g7_m_17",
-            "cluePrompt": "Hook the emotion felt when something unexpected and extraordinary happens",
-            "clueCategory": "Emotions",
-            "targetWord": "Surprised",
-            "distractorWords": [
-                  "Upset",
-                  "Annoyed",
-                  "Jealous"
-            ],
-            "explanation": "Surprise is the reaction to an unexpected revelation or event."
-      },
-      {
-            "id": "wf_g7_m_18",
-            "cluePrompt": "Hook the trait of someone who always arrives on time without delay",
-            "clueCategory": "Personality",
-            "targetWord": "Punctual",
-            "distractorWords": [
-                  "Clumsy",
-                  "Forgetful",
+                  "Mean",
+                  "Greedy",
                   "Lazy"
             ],
-            "explanation": "Punctual people are never late for appointments."
+            "explanation": "Generous people share their snacks, books, and time gladly."
       },
       {
-            "id": "wf_g7_m_19",
-            "cluePrompt": "Hook the feeling of deep satisfaction with one's own or another's achievement",
-            "clueCategory": "Emotions",
-            "targetWord": "Proud",
-            "distractorWords": [
-                  "Ashamed",
-                  "Guilty",
-                  "Embarrassed"
-            ],
-            "explanation": "Pride is a positive emotion stemming from notable accomplishment."
-      },
-      {
-            "id": "wf_g7_m_20",
-            "cluePrompt": "Hook the trait of being quiet and nervous around unfamiliar people",
+            "id": "wf_g7_m_10",
+            "cluePrompt": "Hook someone who is quiet and nervous when speaking to new people",
             "clueCategory": "Personality",
             "targetWord": "Shy",
             "distractorWords": [
                   "Outgoing",
                   "Talkative",
-                  "Confident"
+                  "Loud"
             ],
-            "explanation": "Shy people feel timid and hesitant in social settings."
+            "explanation": "Shy people feel timid and hesitant in unfamiliar crowds."
       },
       {
-            "id": "wf_g7_m_21",
-            "cluePrompt": "Hook the sudden electric discharge accompanied by bright light during a storm",
+            "id": "wf_g7_m_11",
+            "cluePrompt": "Hook the person who always arrives on time and is never late",
+            "clueCategory": "Personality",
+            "targetWord": "Punctual",
+            "distractorWords": [
+                  "Clumsy",
+                  "Forgetful",
+                  "Messy"
+            ],
+            "explanation": "Punctual individuals value time and arrive as scheduled."
+      },
+      {
+            "id": "wf_g7_m_12",
+            "cluePrompt": "Hook the feeling of boredom when an activity lacks any fun or interest",
+            "clueCategory": "Feelings",
+            "targetWord": "Bored",
+            "distractorWords": [
+                  "Curious",
+                  "Delighted",
+                  "Shocked"
+            ],
+            "explanation": "We feel bored when there is nothing interesting to do."
+      },
+      {
+            "id": "wf_g7_m_13",
+            "cluePrompt": "Hook the bright flash of electricity seen in the sky during a thunderstorm",
             "clueCategory": "Weather",
             "targetWord": "Lightning",
             "distractorWords": [
@@ -744,23 +652,23 @@ export const WORD_FISHING_BANK: WordFishingBank = {
                   "Hail",
                   "Breeze"
             ],
-            "explanation": "Lightning is a brilliant electrical flash between clouds and earth."
+            "explanation": "Lightning is an electrical discharge that lights up the sky."
       },
       {
-            "id": "wf_g7_m_22",
-            "cluePrompt": "Hook the loud booming sound that follows an electrical lightning flash",
+            "id": "wf_g7_m_14",
+            "cluePrompt": "Hook the loud booming sound that follows a lightning flash",
             "clueCategory": "Weather",
             "targetWord": "Thunder",
             "distractorWords": [
-                  "Tornado",
+                  "Storm",
                   "Fog",
-                  "Drizzle"
+                  "Rainbow"
             ],
-            "explanation": "Thunder is the sonic shockwave produced by lightning heating air."
+            "explanation": "Thunder is the sonic rumble created by lightning."
       },
       {
-            "id": "wf_g7_m_23",
-            "cluePrompt": "Hook pellets of frozen rain that fall in showers from cumulonimbus clouds",
+            "id": "wf_g7_m_15",
+            "cluePrompt": "Hook small balls of frozen ice that fall from the sky like rain",
             "clueCategory": "Weather",
             "targetWord": "Hail",
             "distractorWords": [
@@ -768,143 +676,119 @@ export const WORD_FISHING_BANK: WordFishingBank = {
                   "Dew",
                   "Frost"
             ],
-            "explanation": "Hail consists of solid balls of ice falling from storm clouds."
+            "explanation": "Hail consists of solid ice pellets falling during storms."
       },
       {
-            "id": "wf_g7_m_24",
-            "cluePrompt": "Hook thick cloud water droplets near the ground that restrict visibility",
+            "id": "wf_g7_m_16",
+            "cluePrompt": "Hook the thick cloud near the ground that makes it hard for drivers to see",
             "clueCategory": "Weather",
             "targetWord": "Fog",
             "distractorWords": [
-                  "Mist",
-                  "Smog",
-                  "Smoke"
+                  "Breeze",
+                  "Smoke",
+                  "Dust"
             ],
-            "explanation": "Dense fog reduces visibility for drivers and navigators."
+            "explanation": "Dense fog reduces visibility on roads and mountains."
       },
       {
-            "id": "wf_g7_m_25",
-            "cluePrompt": "Hook a gentle, light wind that blows pleasantly on a warm day",
-            "clueCategory": "Weather",
-            "targetWord": "Breeze",
-            "distractorWords": [
-                  "Gale",
-                  "Hurricane",
-                  "Typhoon"
-            ],
-            "explanation": "A breeze is a soft, refreshing movement of air."
-      },
-      {
-            "id": "wf_g7_m_26",
-            "cluePrompt": "Hook the curved arc of seven vibrant colours appearing in the sky after rain",
+            "id": "wf_g7_m_17",
+            "cluePrompt": "Hook the colorful arch of seven colors appearing in the sky after rain",
             "clueCategory": "Nature",
             "targetWord": "Rainbow",
             "distractorWords": [
-                  "Aurora",
                   "Horizon",
-                  "Sunrise"
+                  "Sunset",
+                  "Aurora"
             ],
-            "explanation": "Rainbows form when sunlight refracts through falling raindrops."
+            "explanation": "Rainbows form when sunlight shines through raindrops."
       },
       {
-            "id": "wf_g7_m_27",
-            "cluePrompt": "Hook an arid dry biome with sandy dunes and very scarce rainfall",
+            "id": "wf_g7_m_18",
+            "cluePrompt": "Hook a large dry land with sand dunes where very little rain falls",
             "clueCategory": "Geography",
             "targetWord": "Desert",
             "distractorWords": [
-                  "Swamp",
                   "Jungle",
-                  "Glacier"
+                  "Glacier",
+                  "Swamp"
             ],
-            "explanation": "Deserts are barren landscapes with little precipitation."
+            "explanation": "Deserts are arid regions with cacti and sand dunes."
       },
       {
-            "id": "wf_g7_m_28",
-            "cluePrompt": "Hook a piece of land entirely surrounded on all sides by water",
+            "id": "wf_g7_m_19",
+            "cluePrompt": "Hook a piece of land completely surrounded by water on all sides",
             "clueCategory": "Geography",
             "targetWord": "Island",
             "distractorWords": [
                   "Peninsula",
                   "Valley",
-                  "Canyon"
+                  "Cliff"
             ],
-            "explanation": "An island is completely encircled by ocean, sea, or lake."
+            "explanation": "An island is surrounded by the sea, ocean, or lake."
       },
       {
-            "id": "wf_g7_m_29",
-            "cluePrompt": "Hook a massive mountain of slow-moving compressed ice found in polar regions",
-            "clueCategory": "Geography",
-            "targetWord": "Glacier",
-            "distractorWords": [
-                  "Volcano",
-                  "Plateau",
-                  "Crater"
-            ],
-            "explanation": "Glaciers are enormous bodies of dense, slowly flowing ice."
-      },
-      {
-            "id": "wf_g7_m_30",
-            "cluePrompt": "Hook a mountain opening with a crater that can erupt lava and ash",
-            "clueCategory": "Geography",
+            "id": "wf_g7_m_20",
+            "cluePrompt": "Hook a mountain that can erupt hot red lava and smoke from its top",
+            "clueCategory": "Nature",
             "targetWord": "Volcano",
             "distractorWords": [
                   "Waterfall",
                   "Cave",
-                  "Cliff"
+                  "Canyon"
             ],
-            "explanation": "Volcanoes rupture Earth's crust to vent molten magma."
+            "explanation": "Volcanoes erupt molten lava and volcanic ash."
       },
       {
-            "id": "wf_g7_m_31",
-            "cluePrompt": "Hook the official government document required for travelling to foreign countries",
+            "id": "wf_g7_m_21",
+            "cluePrompt": "Hook the official passport booklet you need when travelling to foreign countries",
             "clueCategory": "Travel",
             "targetWord": "Passport",
             "distractorWords": [
+                  "Ticket",
                   "Receipt",
-                  "License",
-                  "Diploma"
+                  "License"
             ],
-            "explanation": "Passports certify citizenship and allow international border crossing."
+            "explanation": "A passport is the official document needed to visit other nations."
       },
       {
-            "id": "wf_g7_m_32",
-            "cluePrompt": "Hook bags and suitcases packed with personal clothes for a trip",
+            "id": "wf_g7_m_22",
+            "cluePrompt": "Hook the suitcases and travel bags you pack with clothes for a journey",
             "clueCategory": "Travel",
             "targetWord": "Luggage",
             "distractorWords": [
-                  "Cargo",
                   "Parcel",
-                  "Package"
+                  "Backpack",
+                  "Box"
             ],
-            "explanation": "Luggage (or baggage) holds travellers' personal belongings."
+            "explanation": "Luggage carries your holiday clothes and belongings."
       },
       {
-            "id": "wf_g7_m_33",
-            "cluePrompt": "Hook an object bought or kept as a memento of a visit or holiday",
+            "id": "wf_g7_m_23",
+            "cluePrompt": "Hook a small gift or item you buy on holiday to remember your trip",
             "clueCategory": "Travel",
             "targetWord": "Souvenir",
             "distractorWords": [
-                  "Coupon",
-                  "Brochure",
-                  "Postcard"
+                  "Bill",
+                  "Postcard",
+                  "Map"
             ],
-            "explanation": "A souvenir reminds travellers of places they have visited."
+            "explanation": "Souvenirs are keepsakes bought to remember visited places."
       },
       {
-            "id": "wf_g7_m_34",
-            "cluePrompt": "Hook the building where people board commercial aeroplanes",
+            "id": "wf_g7_m_24",
+            "cluePrompt": "Hook the place with runways where passengers board airplanes",
             "clueCategory": "Travel",
             "targetWord": "Airport",
             "distractorWords": [
+                  "Harbor",
                   "Station",
-                  "Terminal",
-                  "Subway"
+                  "Metro"
             ],
-            "explanation": "Airports feature runways, hangars, and passenger terminals."
+            "explanation": "Airports feature departure halls and airplane runways."
       },
       {
-            "id": "wf_g7_m_35",
-            "cluePrompt": "Hook a continuous pain located inside the head",
+            "id": "wf_g7_m_25",
+            "cluePrompt": "Hook the unpleasant continuous pain felt inside your head",
             "clueCategory": "Health",
             "targetWord": "Headache",
             "distractorWords": [
@@ -912,59 +796,59 @@ export const WORD_FISHING_BANK: WordFishingBank = {
                   "Fever",
                   "Cough"
             ],
-            "explanation": "A headache is pain experienced anywhere in the region of the head."
+            "explanation": "A headache is pain felt in the head, often relieved by rest."
       },
       {
-            "id": "wf_g7_m_36",
-            "cluePrompt": "Hook an abnormally high body temperature that signals illness or infection",
+            "id": "wf_g7_m_26",
+            "cluePrompt": "Hook having a high body temperature when your body fights off an illness",
             "clueCategory": "Health",
             "targetWord": "Fever",
             "distractorWords": [
-                  "Chill",
-                  "Bruise",
-                  "Scratch"
+                  "Cold",
+                  "Scratch",
+                  "Bruise"
             ],
-            "explanation": "A fever is body temperature elevated above the normal 37°C."
+            "explanation": "A fever means body temperature is higher than normal."
       },
       {
-            "id": "wf_g7_m_37",
-            "cluePrompt": "Hook an instrument used by doctors to measure body temperature",
+            "id": "wf_g7_m_27",
+            "cluePrompt": "Hook the instrument doctors use to measure your body temperature",
             "clueCategory": "Health",
             "targetWord": "Thermometer",
             "distractorWords": [
                   "Stethoscope",
-                  "Bandage",
-                  "Syringe"
+                  "Syringe",
+                  "Bandage"
             ],
-            "explanation": "Thermometers accurately register internal thermal readings."
+            "explanation": "Thermometers read internal body temperature accurately."
       },
       {
-            "id": "wf_g7_m_38",
-            "cluePrompt": "Hook a strip of fabric used to bind and protect a wound or injury",
+            "id": "wf_g7_m_28",
+            "cluePrompt": "Hook a strip of cloth wrapped around a cut or sprained wrist to protect it",
             "clueCategory": "Health",
             "targetWord": "Bandage",
             "distractorWords": [
                   "Plaster",
-                  "Stitch",
-                  "Ointment"
+                  "Towel",
+                  "Tissue"
             ],
-            "explanation": "Bandages support dressings and immobilize injured limbs."
+            "explanation": "A bandage supports and shields injuries while they heal."
       },
       {
-            "id": "wf_g7_m_39",
-            "cluePrompt": "Hook the written order from a doctor specifying medicine for a patient",
+            "id": "wf_g7_m_29",
+            "cluePrompt": "Hook the note a doctor writes for the chemist telling what medicine you need",
             "clueCategory": "Health",
             "targetWord": "Prescription",
             "distractorWords": [
                   "Receipt",
-                  "Bill",
-                  "Notice"
+                  "Letter",
+                  "Card"
             ],
-            "explanation": "A prescription authorizes a chemist to supply medical drugs."
+            "explanation": "A prescription gives permission to get needed pharmacy medicine."
       },
       {
-            "id": "wf_g7_m_40",
-            "cluePrompt": "Hook the vehicle equipped to transport injured patients swiftly to hospital",
+            "id": "wf_g7_m_30",
+            "cluePrompt": "Hook the emergency vehicle with flashing sirens that rushes patients to hospital",
             "clueCategory": "Health",
             "targetWord": "Ambulance",
             "distractorWords": [
@@ -972,489 +856,609 @@ export const WORD_FISHING_BANK: WordFishingBank = {
                   "Fire truck",
                   "Taxi"
             ],
-            "explanation": "Ambulances provide emergency medical care en route to hospital."
+            "explanation": "Ambulances transport sick or injured people quickly to hospital."
+      },
+      {
+            "id": "wf_g7_m_31",
+            "cluePrompt": "Hook the hobby of planting flowers, seeds, and watering plants in soil",
+            "clueCategory": "Hobbies",
+            "targetWord": "Gardening",
+            "distractorWords": [
+                  "Painting",
+                  "Knitting",
+                  "Cooking"
+            ],
+            "explanation": "Gardening involves caring for plants, vegetables, and flowers."
+      },
+      {
+            "id": "wf_g7_m_32",
+            "cluePrompt": "Hook an ancient stone castle where kings and medieval knights once lived",
+            "clueCategory": "History",
+            "targetWord": "Castle",
+            "distractorWords": [
+                  "Villa",
+                  "Cottage",
+                  "Apartment"
+            ],
+            "explanation": "Castles were fortified stone homes for royalty."
+      },
+      {
+            "id": "wf_g7_m_33",
+            "cluePrompt": "Hook the musical event where a band plays live music on stage for an audience",
+            "clueCategory": "Entertainment",
+            "targetWord": "Concert",
+            "distractorWords": [
+                  "Movie",
+                  "Exhibition",
+                  "Play"
+            ],
+            "explanation": "A concert is a live musical performance by singers or bands."
+      },
+      {
+            "id": "wf_g7_m_34",
+            "cluePrompt": "Hook a short printed magazine or newspaper you read for entertainment and articles",
+            "clueCategory": "Media",
+            "targetWord": "Magazine",
+            "distractorWords": [
+                  "Dictionary",
+                  "Atlas",
+                  "Notebook"
+            ],
+            "explanation": "Magazines have articles, pictures, and interviews on fun topics."
+      },
+      {
+            "id": "wf_g7_m_35",
+            "cluePrompt": "Hook being sensible, careful, and doing your school duties without reminders",
+            "clueCategory": "Personality",
+            "targetWord": "Responsible",
+            "distractorWords": [
+                  "Reckless",
+                  "Careless",
+                  "Forgetful"
+            ],
+            "explanation": "Responsible students take ownership of their tasks."
+      },
+      {
+            "id": "wf_g7_m_36",
+            "cluePrompt": "Hook working together as a friendly team to solve a classroom challenge",
+            "clueCategory": "Teamwork",
+            "targetWord": "Cooperation",
+            "distractorWords": [
+                  "Argument",
+                  "Fighting",
+                  "Dispute"
+            ],
+            "explanation": "Cooperation means teaming up and helping one another."
+      },
+      {
+            "id": "wf_g7_m_37",
+            "cluePrompt": "Hook looking on the bright side and believing good things will happen",
+            "clueCategory": "Mindset",
+            "targetWord": "Optimistic",
+            "distractorWords": [
+                  "Gloomy",
+                  "Grumpy",
+                  "Negative"
+            ],
+            "explanation": "Optimistic people stay cheerful and hope for the best."
+      },
+      {
+            "id": "wf_g7_m_38",
+            "cluePrompt": "Hook saying 'please' and 'thank you' and treating everyone with good manners",
+            "clueCategory": "Manners",
+            "targetWord": "Polite",
+            "distractorWords": [
+                  "Rude",
+                  "Cheeky",
+                  "Loud"
+            ],
+            "explanation": "Polite individuals treat others with courtesy and respect."
+      },
+      {
+            "id": "wf_g7_m_39",
+            "cluePrompt": "Hook finding the correct answer to a difficult problem or puzzle",
+            "clueCategory": "Skills",
+            "targetWord": "Solution",
+            "distractorWords": [
+                  "Mistake",
+                  "Problem",
+                  "Question"
+            ],
+            "explanation": "A solution solves a riddle, problem, or difficult situation."
+      },
+      {
+            "id": "wf_g7_m_40",
+            "cluePrompt": "Hook achieving your goal through hard study and practice",
+            "clueCategory": "Success",
+            "targetWord": "Success",
+            "distractorWords": [
+                  "Failure",
+                  "Loss",
+                  "Defeat"
+            ],
+            "explanation": "Success is the rewarding result of perseverance and effort."
       }
 ],
     hard: [
       {
             "id": "wf_g7_h_01",
-            "cluePrompt": "Hook the process of converting waste materials into reusable new products",
+            "cluePrompt": "Hook sorting plastic bottles, paper, and glass into recycling bins",
             "clueCategory": "Environment",
             "targetWord": "Recycling",
             "distractorWords": [
                   "Littering",
                   "Polluting",
-                  "Deforestation"
+                  "Wasting"
             ],
-            "explanation": "Recycling recovers raw materials like plastic, glass, and paper."
+            "explanation": "Recycling turns used materials into fresh new items."
       },
       {
             "id": "wf_g7_h_02",
-            "cluePrompt": "Hook the natural surroundings in which plants and animals live",
-            "clueCategory": "Environment",
+            "cluePrompt": "Hook the natural home where an animal or plant lives in the wild",
+            "clueCategory": "Nature",
             "targetWord": "Habitat",
             "distractorWords": [
-                  "Territory",
-                  "Reserve",
-                  "Sanctuary"
+                  "Cage",
+                  "Zoo",
+                  "Barn"
             ],
-            "explanation": "A habitat provides organisms with food, water, and shelter."
+            "explanation": "A natural habitat provides wild animals with food, water, and shelter."
       },
       {
             "id": "wf_g7_h_03",
-            "cluePrompt": "Hook the harmful contamination of air, water, or soil by toxic substances",
+            "cluePrompt": "Hook dirty smoke, chemicals, or trash that harm clean air and water",
             "clueCategory": "Environment",
             "targetWord": "Pollution",
             "distractorWords": [
-                  "Preservation",
-                  "Purification",
-                  "Conservation"
+                  "Freshness",
+                  "Protection",
+                  "Safety"
             ],
-            "explanation": "Pollution degrades ecological systems and public health."
+            "explanation": "Pollution makes the air, rivers, or soil unclean."
       },
       {
             "id": "wf_g7_h_04",
-            "cluePrompt": "Hook animals or plants at serious risk of disappearing forever from Earth",
-            "clueCategory": "Environment",
+            "cluePrompt": "Hook rare animals like pandas that are in danger of dying out",
+            "clueCategory": "Wildlife",
             "targetWord": "Endangered",
             "distractorWords": [
-                  "Extinct",
                   "Abundant",
-                  "Domestic"
+                  "Common",
+                  "Safe"
             ],
-            "explanation": "Endangered species face imminent extinction without protection."
+            "explanation": "Endangered animals need our protection so they do not disappear."
       },
       {
             "id": "wf_g7_h_05",
-            "cluePrompt": "Hook energy harnessed directly from sunlight using photovoltaic panels",
+            "cluePrompt": "Hook clean electricity generated from sunlight using solar panels on roofs",
             "clueCategory": "Science",
             "targetWord": "Solar energy",
             "distractorWords": [
-                  "Fossil fuel",
-                  "Nuclear power",
-                  "Geothermal"
+                  "Coal",
+                  "Gasoline",
+                  "Oil"
             ],
-            "explanation": "Solar power converts radiant sun rays into clean electricity."
+            "explanation": "Solar energy uses power from the sun to make clean electricity."
       },
       {
             "id": "wf_g7_h_06",
-            "cluePrompt": "Hook the large-scale clearing or cutting down of natural forest trees",
+            "cluePrompt": "Hook cutting down too many forest trees, which harms wildlife",
             "clueCategory": "Environment",
             "targetWord": "Deforestation",
             "distractorWords": [
-                  "Reforestation",
-                  "Afforestation",
-                  "Cultivation"
+                  "Gardening",
+                  "Watering",
+                  "Planting"
             ],
-            "explanation": "Deforestation destroys biodiversity and contributes to carbon emissions."
+            "explanation": "Deforestation is the loss of forest land when trees are cut down."
       },
       {
             "id": "wf_g7_h_07",
-            "cluePrompt": "Hook the gradual increase in overall global temperature due to greenhouse gases",
-            "clueCategory": "Environment",
-            "targetWord": "Global warming",
-            "distractorWords": [
-                  "Ozone layer",
-                  "Acid rain",
-                  "Ice age"
-            ],
-            "explanation": "Global warming causes glaciers to melt and alters weather patterns."
-      },
-      {
-            "id": "wf_g7_h_08",
-            "cluePrompt": "Hook an optical instrument used to observe distant celestial bodies like stars",
+            "cluePrompt": "Hook the long tube instrument astronomers use to look at stars and planets",
             "clueCategory": "Science",
             "targetWord": "Telescope",
             "distractorWords": [
                   "Microscope",
-                  "Periscope",
-                  "Kaleidoscope"
+                  "Camera",
+                  "Compass"
             ],
-            "explanation": "Astronomers peer through telescopes to examine distant galaxies."
+            "explanation": "Telescopes magnify distant celestial stars and planets."
       },
       {
-            "id": "wf_g7_h_09",
-            "cluePrompt": "Hook an instrument used in laboratories to view microscopic bacteria and cells",
+            "id": "wf_g7_h_08",
+            "cluePrompt": "Hook the laboratory tool used to view tiny cells and bacteria",
             "clueCategory": "Science",
             "targetWord": "Microscope",
             "distractorWords": [
-                  "Stethoscope",
                   "Binoculars",
-                  "Projector"
+                  "Thermometer",
+                  "Periscope"
             ],
-            "explanation": "Microscopes magnify tiny microscopic specimens thousands of times."
+            "explanation": "Microscopes allow scientists to see tiny bacteria and microscopic cells."
       },
       {
-            "id": "wf_g7_h_10",
-            "cluePrompt": "Hook a scientific test conducted under controlled conditions to discover facts",
+            "id": "wf_g7_h_09",
+            "cluePrompt": "Hook a practical science test conducted in a lab to discover new facts",
             "clueCategory": "Science",
             "targetWord": "Experiment",
             "distractorWords": [
-                  "Hypothesis",
-                  "Conclusion",
-                  "Observation"
+                  "Opinion",
+                  "Story",
+                  "Joke"
             ],
-            "explanation": "Scientists run controlled experiments to validate hypotheses."
+            "explanation": "Scientists perform experiments to test ideas and discover truths."
       },
       {
-            "id": "wf_g7_h_11",
-            "cluePrompt": "Hook the input device with letters and numbers used to type text on computers",
+            "id": "wf_g7_h_10",
+            "cluePrompt": "Hook the plastic computer board with letter keys used for typing",
             "clueCategory": "Technology",
             "targetWord": "Keyboard",
             "distractorWords": [
                   "Monitor",
-                  "Webcam",
-                  "Speaker"
+                  "Speaker",
+                  "Mousepad"
             ],
-            "explanation": "Keyboards allow users to type characters and commands into PCs."
+            "explanation": "You use a keyboard to type letters, numbers, and sentences."
       },
       {
-            "id": "wf_g7_h_12",
-            "cluePrompt": "Hook the physical display screen where visual output is presented to the user",
-            "clueCategory": "Technology",
-            "targetWord": "Monitor",
-            "distractorWords": [
-                  "Processor",
-                  "Modem",
-                  "Motherboard"
-            ],
-            "explanation": "A computer monitor displays graphics, videos, and software windows."
-      },
-      {
-            "id": "wf_g7_h_13",
-            "cluePrompt": "Hook the act of copying data or software from the internet onto a local computer",
+            "id": "wf_g7_h_11",
+            "cluePrompt": "Hook copying photos, songs, or games from the internet to your device",
             "clueCategory": "Technology",
             "targetWord": "Download",
             "distractorWords": [
                   "Upload",
-                  "Stream",
-                  "Install"
+                  "Delete",
+                  "Print"
             ],
-            "explanation": "Downloading transfers files from a remote server to local storage."
+            "explanation": "Downloading brings digital files from the web onto your device."
       },
       {
-            "id": "wf_g7_h_14",
-            "cluePrompt": "Hook the secret sequence of characters used to log in securely to an account",
-            "clueCategory": "Technology",
-            "targetWord": "Password",
-            "distractorWords": [
-                  "Username",
-                  "Fingerprint",
-                  "Captcha"
-            ],
-            "explanation": "Strong passwords prevent unauthorized access to digital profiles."
-      },
-      {
-            "id": "wf_g7_h_15",
-            "cluePrompt": "Hook the portable computer with an integrated screen and folding clamshell body",
-            "clueCategory": "Technology",
-            "targetWord": "Laptop",
-            "distractorWords": [
-                  "Tablet",
-                  "Desktop",
-                  "Console"
-            ],
-            "explanation": "Laptops combine mobile computing power with built-in battery."
-      },
-      {
-            "id": "wf_g7_h_16",
-            "cluePrompt": "Hook a wireless internet network technology found in homes and schools",
-            "clueCategory": "Technology",
-            "targetWord": "Wi-Fi",
-            "distractorWords": [
-                  "Bluetooth",
-                  "Ethernet",
-                  "Cellular"
-            ],
-            "explanation": "Wi-Fi enables wireless radio-wave data transfer between devices."
-      },
-      {
-            "id": "wf_g7_h_17",
-            "cluePrompt": "Hook sending files, images, or videos from your computer up to a web server",
+            "id": "wf_g7_h_12",
+            "cluePrompt": "Hook sending your photos or homework from your device up to the internet",
             "clueCategory": "Technology",
             "targetWord": "Upload",
             "distractorWords": [
                   "Download",
-                  "Delete",
-                  "Refresh"
+                  "Erase",
+                  "Unplug"
             ],
-            "explanation": "Uploading pushes local digital files up to internet platforms."
+            "explanation": "Uploading transfers local files up to an online platform."
       },
       {
-            "id": "wf_g7_h_18",
-            "cluePrompt": "Hook an application program designed to run on smartphones and tablets",
+            "id": "wf_g7_h_13",
+            "cluePrompt": "Hook the secret combination of letters and numbers that protects your account",
             "clueCategory": "Technology",
-            "targetWord": "App",
+            "targetWord": "Password",
             "distractorWords": [
-                  "Driver",
-                  "Browser",
-                  "Algorithm"
+                  "Username",
+                  "Email",
+                  "Nickname"
             ],
-            "explanation": "Apps offer specific software tools and games on smart mobile devices."
+            "explanation": "A private password keeps your digital accounts secure."
       },
       {
-            "id": "wf_g7_h_19",
-            "cluePrompt": "Hook an unwanted and harmful computer code designed to damage or infect devices",
+            "id": "wf_g7_h_14",
+            "cluePrompt": "Hook the portable computer you can fold closed and carry in your bag",
             "clueCategory": "Technology",
-            "targetWord": "Virus",
+            "targetWord": "Laptop",
             "distractorWords": [
-                  "Bug",
-                  "Firewall",
-                  "Cookie"
+                  "Television",
+                  "Desktop",
+                  "Monitor"
             ],
-            "explanation": "Computer viruses replicate maliciously to corrupt or steal data."
+            "explanation": "A laptop is a compact computer with a built-in screen and battery."
       },
       {
-            "id": "wf_g7_h_20",
-            "cluePrompt": "Hook software used to browse and view webpages on the World Wide Web",
+            "id": "wf_g7_h_15",
+            "cluePrompt": "Hook wireless internet connection that lets your phone surf the web at home",
             "clueCategory": "Technology",
-            "targetWord": "Browser",
+            "targetWord": "Wi-Fi",
             "distractorWords": [
-                  "Search engine",
-                  "Operating system",
-                  "Database"
+                  "Cable",
+                  "Radio",
+                  "Bluetooth"
             ],
-            "explanation": "Web browsers like Chrome and Firefox render HTML webpages."
+            "explanation": "Wi-Fi connects computers and phones to the internet without wires."
       },
       {
-            "id": "wf_g7_h_21",
-            "cluePrompt": "Hook a tall ancient structure with a square base and four triangular sloping sides",
-            "clueCategory": "Architecture",
-            "targetWord": "Pyramid",
+            "id": "wf_g7_h_16",
+            "cluePrompt": "Hook software like Chrome or Safari used to browse webpages on the internet",
+            "clueCategory": "Technology",
+            "targetWord": "Web browser",
             "distractorWords": [
-                  "Temple",
-                  "Palace",
-                  "Dome"
+                  "Folder",
+                  "Calculator",
+                  "Spreadsheet"
             ],
-            "explanation": "Ancient Egyptians erected stone pyramids as royal tombs."
+            "explanation": "A browser loads and displays internet websites."
       },
       {
-            "id": "wf_g7_h_22",
-            "cluePrompt": "Hook a large fortified medieval stone fortress built by royalty and lords",
-            "clueCategory": "Architecture",
-            "targetWord": "Castle",
-            "distractorWords": [
-                  "Mansion",
-                  "Cottage",
-                  "Bungalow"
-            ],
-            "explanation": "Castles featured moats, battlements, and thick stone defensive walls."
-      },
-      {
-            "id": "wf_g7_h_23",
-            "cluePrompt": "Hook an artistic stone, bronze, or marble figure sculpted to represent a person",
+            "id": "wf_g7_h_17",
+            "cluePrompt": "Hook the carved stone or bronze monument created in the likeness of a person",
             "clueCategory": "Art",
             "targetWord": "Statue",
             "distractorWords": [
-                  "Mural",
-                  "Portrait",
-                  "Mosaic"
+                  "Painting",
+                  "Drawing",
+                  "Photo"
             ],
-            "explanation": "Statues are three-dimensional carvings honouring figures."
+            "explanation": "A statue is a 3D sculpture honouring a historic figure or hero."
       },
       {
-            "id": "wf_g7_h_24",
-            "cluePrompt": "Hook a traditional story passed down through generations explaining myths",
-            "clueCategory": "Literature",
-            "targetWord": "Legend",
+            "id": "wf_g7_h_18",
+            "cluePrompt": "Hook the book that tells the real-life story of a famous person's life",
+            "clueCategory": "Reading",
+            "targetWord": "Biography",
             "distractorWords": [
-                  "Novel",
-                  "Biography",
+                  "Fairy tale",
+                  "Comic",
                   "Poem"
             ],
-            "explanation": "Legends blend historical memory with folklore and heroic deeds."
+            "explanation": "A biography describes the real life and achievements of a person."
       },
       {
-            "id": "wf_g7_h_25",
-            "cluePrompt": "Hook a musical performance presented live on stage by a band or orchestra",
-            "clueCategory": "Music",
-            "targetWord": "Concert",
-            "distractorWords": [
-                  "Exhibition",
-                  "Play",
-                  "Festival"
-            ],
-            "explanation": "A concert is a live musical show attended by music fans."
-      },
-      {
-            "id": "wf_g7_h_26",
-            "cluePrompt": "Hook a theatrical play where actors perform a dramatic script before an audience",
-            "clueCategory": "Theatre",
-            "targetWord": "Drama",
-            "distractorWords": [
-                  "Opera",
-                  "Ballet",
-                  "Circus"
-            ],
-            "explanation": "Dramatic plays portray narratives through dialogue and acting."
-      },
-      {
-            "id": "wf_g7_h_27",
-            "cluePrompt": "Hook a large outdoor public fair with carnival rides, food stalls, and music",
-            "clueCategory": "Culture",
-            "targetWord": "Festival",
-            "distractorWords": [
-                  "Carnival",
-                  "Banquet",
-                  "Ceremony"
-            ],
-            "explanation": "Festivals celebrate cultural holidays or seasonal harvests."
-      },
-      {
-            "id": "wf_g7_h_28",
-            "cluePrompt": "Hook a short printed publication with news, articles, and photographs",
-            "clueCategory": "Media",
-            "targetWord": "Magazine",
-            "distractorWords": [
-                  "Journal",
-                  "Brochure",
-                  "Flyer"
-            ],
-            "explanation": "Magazines are published weekly or monthly covering hobbies and news."
-      },
-      {
-            "id": "wf_g7_h_29",
-            "cluePrompt": "Hook an official conversation where a journalist asks a celebrity questions",
+            "id": "wf_g7_h_19",
+            "cluePrompt": "Hook when a reporter asks a famous athlete or scientist questions for the news",
             "clueCategory": "Media",
             "targetWord": "Interview",
             "distractorWords": [
-                  "Debate",
+                  "Argument",
                   "Lecture",
-                  "Speech"
+                  "Debate"
             ],
-            "explanation": "Interviews gather quotes and insights directly from prominent figures."
+            "explanation": "In an interview, journalists ask questions to learn new details."
       },
       {
-            "id": "wf_g7_h_30",
-            "cluePrompt": "Hook the written story of a real person's entire life composed by another writer",
-            "clueCategory": "Literature",
-            "targetWord": "Biography",
-            "distractorWords": [
-                  "Autobiography",
-                  "Memoir",
-                  "Anthology"
-            ],
-            "explanation": "A biography chronicles a notable subject's lifetime accomplishments."
-      },
-      {
-            "id": "wf_g7_h_31",
-            "cluePrompt": "Hook the ability to understand and respect beliefs that differ from one's own",
-            "clueCategory": "Values",
-            "targetWord": "Tolerance",
-            "distractorWords": [
-                  "Prejudice",
-                  "Ignorance",
-                  "Hostility"
-            ],
-            "explanation": "Tolerance is accepting different lifestyles and cultural customs."
-      },
-      {
-            "id": "wf_g7_h_32",
-            "cluePrompt": "Hook the mental courage to face danger, pain, or difficulty without backing down",
+            "id": "wf_g7_h_20",
+            "cluePrompt": "Hook the mental courage to face danger or fear without giving up",
             "clueCategory": "Values",
             "targetWord": "Bravery",
             "distractorWords": [
-                  "Cowardice",
-                  "Hesitation",
-                  "Weakness"
+                  "Fear",
+                  "Weakness",
+                  "Hesitation"
             ],
-            "explanation": "Bravery allows heroes to stand resolute against frightening hazards."
+            "explanation": "Bravery means acting with courage even when something is scary."
+      },
+      {
+            "id": "wf_g7_h_21",
+            "cluePrompt": "Hook feeling thankful and appreciating the help people give you",
+            "clueCategory": "Values",
+            "targetWord": "Gratitude",
+            "distractorWords": [
+                  "Anger",
+                  "Jealousy",
+                  "Pride"
+            ],
+            "explanation": "Gratitude is showing appreciation and warmth to helpful friends."
+      },
+      {
+            "id": "wf_g7_h_22",
+            "cluePrompt": "Hook having confidence in your abilities and not doubting yourself",
+            "clueCategory": "Mindset",
+            "targetWord": "Confidence",
+            "distractorWords": [
+                  "Worry",
+                  "Confusion",
+                  "Shyness"
+            ],
+            "explanation": "Confidence means believing in your practice and strengths."
+      },
+      {
+            "id": "wf_g7_h_23",
+            "cluePrompt": "Hook planting small green tree saplings in the soil to grow a forest",
+            "clueCategory": "Nature",
+            "targetWord": "Plant trees",
+            "distractorWords": [
+                  "Cut trees",
+                  "Burn leaves",
+                  "Build road"
+            ],
+            "explanation": "Planting trees cleans our air and creates homes for birds."
+      },
+      {
+            "id": "wf_g7_h_24",
+            "cluePrompt": "Hook picking up plastic wrappers and bottles dropped on the grass",
+            "clueCategory": "Environment",
+            "targetWord": "Collect litter",
+            "distractorWords": [
+                  "Drop litter",
+                  "Ignore trash",
+                  "Break glass"
+            ],
+            "explanation": "Collecting litter keeps parks and playgrounds clean and safe."
+      },
+      {
+            "id": "wf_g7_h_25",
+            "cluePrompt": "Hook an expert who travels into space in a rocket ship",
+            "clueCategory": "Jobs",
+            "targetWord": "Astronaut",
+            "distractorWords": [
+                  "Sailor",
+                  "Miner",
+                  "Builder"
+            ],
+            "explanation": "Astronauts train to fly into space and explore the solar system."
+      },
+      {
+            "id": "wf_g7_h_26",
+            "cluePrompt": "Hook a person whose job is to design buildings, schools, and houses",
+            "clueCategory": "Jobs",
+            "targetWord": "Architect",
+            "distractorWords": [
+                  "Plumber",
+                  "Electrician",
+                  "Carpenter"
+            ],
+            "explanation": "Architects draw plans to construct beautiful, sturdy buildings."
+      },
+      {
+            "id": "wf_g7_h_27",
+            "cluePrompt": "Hook someone whose job is to put out fires and rescue trapped people",
+            "clueCategory": "Jobs",
+            "targetWord": "Firefighter",
+            "distractorWords": [
+                  "Police officer",
+                  "Security",
+                  "Guard"
+            ],
+            "explanation": "Firefighters bravely extinguish fires and help in emergencies."
+      },
+      {
+            "id": "wf_g7_h_28",
+            "cluePrompt": "Hook the brave sport of climbing up natural rocky mountain cliffs with ropes",
+            "clueCategory": "Sports",
+            "targetWord": "Rock climbing",
+            "distractorWords": [
+                  "Running",
+                  "Bowling",
+                  "Fishing"
+            ],
+            "explanation": "Rock climbing requires strength, agility, and safety ropes."
+      },
+      {
+            "id": "wf_g7_h_29",
+            "cluePrompt": "Hook the traditional skill of shooting arrows at a target with a bow",
+            "clueCategory": "Sports",
+            "targetWord": "Archery",
+            "distractorWords": [
+                  "Fencing",
+                  "Wrestling",
+                  "Karate"
+            ],
+            "explanation": "Archery tests concentration when shooting arrows at a bullseye."
+      },
+      {
+            "id": "wf_g7_h_30",
+            "cluePrompt": "Hook sleeping outside in a tent under the night stars in the forest",
+            "clueCategory": "Hobbies",
+            "targetWord": "Camping",
+            "distractorWords": [
+                  "Shopping",
+                  "Sightseeing",
+                  "Hotel stay"
+            ],
+            "explanation": "Camping is staying in tents and cooking food over campfires."
+      },
+      {
+            "id": "wf_g7_h_31",
+            "cluePrompt": "Hook the hard protective cap you strap on your head when riding a bicycle",
+            "clueCategory": "Safety",
+            "targetWord": "Helmet",
+            "distractorWords": [
+                  "Beanie",
+                  "Cap",
+                  "Sunhat"
+            ],
+            "explanation": "A safety helmet protects your head from bumps and falls."
+      },
+      {
+            "id": "wf_g7_h_32",
+            "cluePrompt": "Hook protective glasses that keep water out of your eyes while swimming",
+            "clueCategory": "Sports",
+            "targetWord": "Goggles",
+            "distractorWords": [
+                  "Sunglasses",
+                  "Spectacles",
+                  "Visor"
+            ],
+            "explanation": "Swimming goggles seal tightly so you can see underwater."
       },
       {
             "id": "wf_g7_h_33",
-            "cluePrompt": "Hook the feeling of deep gratitude and appreciation toward someone who assisted you",
-            "clueCategory": "Values",
-            "targetWord": "Thankfulness",
+            "cluePrompt": "Hook the warm clothing accessory you wrap around your neck in winter",
+            "clueCategory": "Clothes",
+            "targetWord": "Scarf",
             "distractorWords": [
-                  "Resentment",
-                  "Bitterness",
-                  "Pride"
+                  "Belt",
+                  "Tie",
+                  "Bracelet"
             ],
-            "explanation": "Expressing thankfulness acknowledges kindness and support received."
+            "explanation": "A woolen scarf keeps your neck warm in chilly weather."
       },
       {
             "id": "wf_g7_h_34",
-            "cluePrompt": "Hook doing something without any hesitation or fear",
-            "clueCategory": "Values",
-            "targetWord": "Confident",
+            "cluePrompt": "Hook the warm clothing items you wear on your hands to keep fingers warm",
+            "clueCategory": "Clothes",
+            "targetWord": "Gloves",
             "distractorWords": [
-                  "Hesitant",
-                  "Doubtful",
-                  "Insecure"
+                  "Socks",
+                  "Slippers",
+                  "Boots"
             ],
-            "explanation": "Confidence reflects trust in one's skills and preparedness."
+            "explanation": "Gloves shield your hands and fingers from winter cold."
       },
       {
             "id": "wf_g7_h_35",
-            "cluePrompt": "Hook acting in a sensible, careful, and mature manner",
-            "clueCategory": "Values",
-            "targetWord": "Responsible",
+            "cluePrompt": "Hook turning off tap water while brushing teeth to avoid wasting water",
+            "clueCategory": "Environment",
+            "targetWord": "Save water",
             "distractorWords": [
-                  "Reckless",
-                  "Careless",
-                  "Immature"
+                  "Waste water",
+                  "Pollute water",
+                  "Boil water"
             ],
-            "explanation": "Responsible students take ownership of tasks and commitments."
+            "explanation": "Saving water protects our lakes and keeps clean water plentiful."
       },
       {
             "id": "wf_g7_h_36",
-            "cluePrompt": "Hook working smoothly with other classmates toward a shared victory",
-            "clueCategory": "Values",
-            "targetWord": "Cooperation",
+            "cluePrompt": "Hook remembering to switch off lights when you leave an empty room",
+            "clueCategory": "Environment",
+            "targetWord": "Save electricity",
             "distractorWords": [
-                  "Competition",
-                  "Conflict",
-                  "Isolation"
+                  "Leave lights on",
+                  "Waste energy",
+                  "Burn fuel"
             ],
-            "explanation": "Cooperation combines group strengths to achieve shared goals."
+            "explanation": "Turning off lights saves energy and helps the environment."
       },
       {
             "id": "wf_g7_h_37",
-            "cluePrompt": "Hook having high hopes and believing that good results will happen",
-            "clueCategory": "Mindset",
-            "targetWord": "Optimistic",
+            "cluePrompt": "Hook the gold, silver, or bronze award given to athletes on the sports podium",
+            "clueCategory": "Sports",
+            "targetWord": "Medal",
             "distractorWords": [
-                  "Pessimistic",
-                  "Cynical",
-                  "Negative"
+                  "Flag",
+                  "Ticket",
+                  "Whistle"
             ],
-            "explanation": "Optimists expect favorable outcomes and look on the bright side."
+            "explanation": "Winners on the sports podium are awarded champion medals."
       },
       {
             "id": "wf_g7_h_38",
-            "cluePrompt": "Hook the quality of being polite, kind, and respectful in conversation",
-            "clueCategory": "Social",
-            "targetWord": "Courteous",
+            "cluePrompt": "Hook the silver cup prize given to the winning sports team",
+            "clueCategory": "Sports",
+            "targetWord": "Trophy",
             "distractorWords": [
-                  "Rude",
-                  "Impatient",
-                  "Cheeky"
+                  "Ribbon",
+                  "Poster",
+                  "Badge"
             ],
-            "explanation": "Courteous individuals show impeccable manners and consideration."
+            "explanation": "A trophy is a championship cup won at tournament finals."
       },
       {
             "id": "wf_g7_h_39",
-            "cluePrompt": "Hook finding an answer or resolution to a complex problem or puzzle",
-            "clueCategory": "Skills",
-            "targetWord": "Solution",
+            "cluePrompt": "Hook a funny TV program with jokes that makes the audience laugh",
+            "clueCategory": "Media",
+            "targetWord": "Comedy",
             "distractorWords": [
-                  "Obstacle",
-                  "Barrier",
-                  "Dilemma"
+                  "Horror",
+                  "News",
+                  "Documentary"
             ],
-            "explanation": "A solution successfully resolves a challenging question or difficulty."
+            "explanation": "Comedies are amusing shows designed to bring laughter."
       },
       {
             "id": "wf_g7_h_40",
-            "cluePrompt": "Hook the achievement of a desired aim, objective, or prosperity",
-            "clueCategory": "Success",
-            "targetWord": "Success",
+            "cluePrompt": "Hook a TV program about real animals, nature, and wild oceans",
+            "clueCategory": "Media",
+            "targetWord": "Documentary",
             "distractorWords": [
-                  "Failure",
-                  "Defeat",
-                  "Loss"
+                  "Cartoon",
+                  "Drama",
+                  "Commercial"
             ],
-            "explanation": "Success is the rewarding fruition of persistent effort and skill."
+            "explanation": "Nature documentaries show real wildlife behavior on television."
       }
 ],
   },
@@ -1470,191 +1474,203 @@ export const WORD_FISHING_BANK: WordFishingBank = {
                   "Stranger",
                   "Rival"
             ],
-            "explanation": "A buddy is an intimate, trustworthy pal."
+            "explanation": "A buddy is a loyal pal who stands by you through thick and thin."
       },
       {
             "id": "wf_g8_e_02",
-            "cluePrompt": "Hook the quality of keeping personal confidences and never betraying friends",
-            "clueCategory": "Friendship",
-            "targetWord": "Loyalty",
-            "distractorWords": [
-                  "Treachery",
-                  "Jealousy",
-                  "Betrayal"
-            ],
-            "explanation": "Loyalty means staying faithful and supportive to your companions."
-      },
-      {
-            "id": "wf_g8_e_03",
-            "cluePrompt": "Hook the trait of someone who supports and encourages friends when they feel low",
-            "clueCategory": "Friendship",
-            "targetWord": "Supportive",
-            "distractorWords": [
-                  "Critical",
-                  "Indifferent",
-                  "Mocking"
-            ],
-            "explanation": "Supportive friends provide emotional comfort and encouragement."
-      },
-      {
-            "id": "wf_g8_e_04",
-            "cluePrompt": "Hook the feeling of firmly relying on the honesty and integrity of another person",
+            "cluePrompt": "Hook keeping secrets and never breaking a friend's confidence",
             "clueCategory": "Friendship",
             "targetWord": "Trust",
             "distractorWords": [
-                  "Suspicion",
                   "Doubt",
-                  "Fear"
+                  "Jealousy",
+                  "Lie"
             ],
-            "explanation": "Trust is the cornerstone of healthy, enduring relationships."
+            "explanation": "Trust means relying fully on a companion's honesty."
       },
       {
-            "id": "wf_g8_e_05",
-            "cluePrompt": "Hook the action of spending time casually socializing with friends",
+            "id": "wf_g8_e_03",
+            "cluePrompt": "Hook encouraging friends and helping them whenever they feel down",
+            "clueCategory": "Friendship",
+            "targetWord": "Supportive",
+            "distractorWords": [
+                  "Mean",
+                  "Selfish",
+                  "Strict"
+            ],
+            "explanation": "Supportive friends listen and offer comfort in tough times."
+      },
+      {
+            "id": "wf_g8_e_04",
+            "cluePrompt": "Hook spending fun, relaxing free time together with your friends",
             "clueCategory": "Teen Life",
             "targetWord": "Hang out",
             "distractorWords": [
-                  "Drop out",
                   "Fall out",
-                  "Turn out"
+                  "Give up",
+                  "Drop out"
             ],
-            "explanation": "'Hang out' means relaxing and spending leisurely hours together."
+            "explanation": "Hanging out means spending friendly, leisurely hours together."
+      },
+      {
+            "id": "wf_g8_e_05",
+            "cluePrompt": "Hook having a harmonious, friendly relationship with someone",
+            "clueCategory": "Friendship",
+            "targetWord": "Get along",
+            "distractorWords": [
+                  "Argue",
+                  "Fight",
+                  "Break up"
+            ],
+            "explanation": "Getting along with peers means enjoying mutual friendship."
       },
       {
             "id": "wf_g8_e_06",
-            "cluePrompt": "Hook the phrase meaning to have a harmonious, friendly relationship with someone",
-            "clueCategory": "Relationships",
-            "targetWord": "Get along",
-            "distractorWords": [
-                  "Break up",
-                  "Look down",
-                  "Give up"
-            ],
-            "explanation": "'Get along with' means enjoying peaceable mutual friendship."
-      },
-      {
-            "id": "wf_g8_e_07",
-            "cluePrompt": "Hook the verb meaning to have the same interests and hobbies as someone else",
+            "cluePrompt": "Hook having similar interests, music tastes, and hobbies as a friend",
             "clueCategory": "Friendship",
             "targetWord": "Have in common",
             "distractorWords": [
-                  "Stand out",
-                  "Take apart",
-                  "Look after"
+                  "Disagree",
+                  "Dislike",
+                  "Ignore"
             ],
-            "explanation": "Friends have interests in common when they enjoy similar things."
+            "explanation": "Friends have things in common when they enjoy similar hobbies."
+      },
+      {
+            "id": "wf_g8_e_07",
+            "cluePrompt": "Hook a written or verbal invitation asking a friend to your birthday party",
+            "clueCategory": "Social",
+            "targetWord": "Invitation",
+            "distractorWords": [
+                  "Refusal",
+                  "Excuse",
+                  "Argument"
+            ],
+            "explanation": "An invitation invites guests to join a celebratory party."
       },
       {
             "id": "wf_g8_e_08",
-            "cluePrompt": "Hook someone who is always friendly, welcoming, and hospitable to guests",
-            "clueCategory": "Traits",
-            "targetWord": "Welcoming",
+            "cluePrompt": "Hook politely saying 'yes' when a friend invites you to play games",
+            "clueCategory": "Friendship",
+            "targetWord": "Accept",
             "distractorWords": [
-                  "Distant",
-                  "Cold",
-                  "Hostile"
+                  "Refuse",
+                  "Reject",
+                  "Ignore"
             ],
-            "explanation": "Welcoming hosts treat visitors with warmth and kindness."
+            "explanation": "Accepting an invitation means agreeing happily to come."
       },
       {
             "id": "wf_g8_e_09",
-            "cluePrompt": "Hook someone who always thinks only about their own personal benefit",
-            "clueCategory": "Traits",
-            "targetWord": "Selfish",
+            "cluePrompt": "Hook politely saying 'no' when you cannot attend an event",
+            "clueCategory": "Friendship",
+            "targetWord": "Refuse",
             "distractorWords": [
-                  "Altruistic",
-                  "Selfless",
-                  "Empathetic"
+                  "Accept",
+                  "Welcome",
+                  "Invite"
             ],
-            "explanation": "Selfish individuals ignore others' needs to prioritise themselves."
+            "explanation": "Refusing an offer means declining politely when busy."
       },
       {
             "id": "wf_g8_e_10",
-            "cluePrompt": "Hook the trait of someone who makes people laugh with witty humour",
-            "clueCategory": "Traits",
-            "targetWord": "Amusing",
+            "cluePrompt": "Hook giving a polite reason why you cannot come to a party",
+            "clueCategory": "Friendship",
+            "targetWord": "Excuse",
             "distractorWords": [
-                  "Boring",
-                  "Gloomy",
-                  "Severe"
+                  "Demand",
+                  "Order",
+                  "Secret"
             ],
-            "explanation": "Amusing people tell hilarious jokes and entertain peers."
+            "explanation": "An excuse explains why you are unable to attend an activity."
       },
       {
             "id": "wf_g8_e_11",
-            "cluePrompt": "Hook the cooking technique of heating food in boiling water inside a saucepan",
+            "cluePrompt": "Hook the cooking action of heating water until it bubbles at 100 degrees",
             "clueCategory": "Cooking",
             "targetWord": "Boil",
             "distractorWords": [
-                  "Roast",
-                  "Grill",
-                  "Fry"
+                  "Freeze",
+                  "Bake",
+                  "Grill"
             ],
-            "explanation": "Boiling cooks ingredients submerged in bubbling water at 100°C."
+            "explanation": "Boiling cooks pasta and eggs in bubbling hot water."
       },
       {
             "id": "wf_g8_e_12",
-            "cluePrompt": "Hook the technique of cooking dough or pastries inside a hot enclosed oven",
+            "cluePrompt": "Hook cooking cake dough or biscuits inside a hot enclosed oven",
             "clueCategory": "Cooking",
             "targetWord": "Bake",
             "distractorWords": [
-                  "Steam",
-                  "Sauté",
-                  "Microwave"
+                  "Fry",
+                  "Boil",
+                  "Steam"
             ],
-            "explanation": "Baking uses dry indirect heat to cook breads and cakes."
+            "explanation": "Baking uses dry heat inside an oven to bake cookies."
       },
       {
             "id": "wf_g8_e_13",
-            "cluePrompt": "Hook the action of cutting vegetables into smaller irregular bite-sized pieces with a knife",
-            "clueCategory": "Kitchen",
+            "cluePrompt": "Hook cutting onions and tomatoes into small bite-sized pieces with a knife",
+            "clueCategory": "Cooking",
             "targetWord": "Chop",
             "distractorWords": [
-                  "Peel",
                   "Spread",
-                  "Squeeze"
+                  "Peel",
+                  "Stir"
             ],
-            "explanation": "Chopping divides onions and herbs into small diced pieces."
+            "explanation": "Chopping cuts vegetables into smaller diced pieces."
       },
       {
             "id": "wf_g8_e_14",
-            "cluePrompt": "Hook the culinary action of removing the outer skin from potatoes or apples",
-            "clueCategory": "Kitchen",
+            "cluePrompt": "Hook removing the thin outer skin from an apple or potato",
+            "clueCategory": "Cooking",
             "targetWord": "Peel",
             "distractorWords": [
+                  "Mash",
                   "Grate",
-                  "Stir",
                   "Whisk"
             ],
-            "explanation": "Peeling strips the inedible skin off fruits and tubers."
+            "explanation": "Peeling strips away the skin of potatoes or apples."
       },
       {
             "id": "wf_g8_e_15",
-            "cluePrompt": "Hook the kitchen utensil with metal holes used to shred cheese and carrots into ribbons",
-            "clueCategory": "Utensils",
-            "targetWord": "Grater",
+            "cluePrompt": "Hook cutting bread or meat into thin flat pieces",
+            "clueCategory": "Cooking",
+            "targetWord": "Slice",
             "distractorWords": [
-                  "Whisk",
-                  "Colander",
-                  "Ladle"
+                  "Freeze",
+                  "Boil",
+                  "Peel"
             ],
-            "explanation": "A grater shreds firm cheeses and carrots through sharp slits."
+            "explanation": "Slicing produces even, flat slices of bread or cheese."
       },
       {
             "id": "wf_g8_e_16",
-            "cluePrompt": "Hook the perforated bowl used to drain water from boiled spaghetti",
-            "clueCategory": "Utensils",
-            "targetWord": "Colander",
+            "cluePrompt": "Hook rubbing hard yellow cheese against sharp metal holes to make shreds",
+            "clueCategory": "Cooking",
+            "targetWord": "Grate",
             "distractorWords": [
-                  "Saucepan",
-                  "Skillet",
-                  "Rolling pin"
+                  "Whisk",
+                  "Boil",
+                  "Pour"
             ],
-            "explanation": "A colander allows boiling water to drain while retaining pasta."
+            "explanation": "Grating shreds cheese over pasta and pizza."
       },
       {
             "id": "wf_g8_e_17",
-            "cluePrompt": "Hook the step-by-step cooking instructions and list of ingredients for a meal",
+            "cluePrompt": "Hook beating eggs and cream quickly in a bowl with a wire tool",
+            "clueCategory": "Cooking",
+            "targetWord": "Whisk",
+            "distractorWords": [
+                  "Bake",
+                  "Peel",
+                  "Chop"
+            ],
+            "explanation": "Whisking whips air into eggs until they are frothy."
+      },
+      {
+            "id": "wf_g8_e_18",
+            "cluePrompt": "Hook the step-by-step cooking instructions to prepare a tasty dish",
             "clueCategory": "Cooking",
             "targetWord": "Recipe",
             "distractorWords": [
@@ -1662,637 +1678,697 @@ export const WORD_FISHING_BANK: WordFishingBank = {
                   "Bill",
                   "Order"
             ],
-            "explanation": "A recipe details the exact proportions and cooking sequence."
+            "explanation": "A recipe lists the steps and ingredients for a meal."
       },
       {
-            "id": "wf_g8_e_18",
-            "cluePrompt": "Hook any raw food item that is combined to prepare a culinary dish",
+            "id": "wf_g8_e_19",
+            "cluePrompt": "Hook any food item like flour, sugar, or salt used in a recipe",
             "clueCategory": "Cooking",
             "targetWord": "Ingredient",
             "distractorWords": [
                   "Utensil",
-                  "Nutrient",
-                  "Seasoning"
+                  "Plate",
+                  "Napkin"
             ],
-            "explanation": "Flour, eggs, and sugar are key baking ingredients."
-      },
-      {
-            "id": "wf_g8_e_19",
-            "cluePrompt": "Hook the cooking method where food is cooked over direct flame on metal bars",
-            "clueCategory": "Cooking",
-            "targetWord": "Grill",
-            "distractorWords": [
-                  "Steam",
-                  "Poach",
-                  "Simmer"
-            ],
-            "explanation": "Grilling chars food over coals or gas burners with smoky flavor."
+            "explanation": "Ingredients are the items combined to cook a dish."
       },
       {
             "id": "wf_g8_e_20",
-            "cluePrompt": "Hook the kitchen action of beating eggs vigorously with a wire tool",
+            "cluePrompt": "Hook cooking meatballs or chicken over hot charcoal bars outdoors",
             "clueCategory": "Cooking",
-            "targetWord": "Whisk",
+            "targetWord": "Grill",
             "distractorWords": [
-                  "Slice",
-                  "Dice",
-                  "Knead"
+                  "Boil",
+                  "Steam",
+                  "Poach"
             ],
-            "explanation": "Whisking whips air into eggs and cream until fluffy."
+            "explanation": "Grilling cooks barbecue food over hot coals."
       },
       {
             "id": "wf_g8_e_21",
-            "cluePrompt": "Hook a phone call conducted where both callers see each other's live camera video",
-            "clueCategory": "Communication",
-            "targetWord": "Video call",
+            "cluePrompt": "Hook the kitchen utensil with a long handle and deep spoon used to serve soup",
+            "clueCategory": "Kitchen",
+            "targetWord": "Ladle",
             "distractorWords": [
-                  "Voicemail",
-                  "Text message",
-                  "Morse code"
+                  "Fork",
+                  "Knife",
+                  "Whisk"
             ],
-            "explanation": "Video calls stream synchronized audio and live camera feeds."
+            "explanation": "A ladle serves soup from the pot into dinner bowls."
       },
       {
             "id": "wf_g8_e_22",
-            "cluePrompt": "Hook the act of dialling a number and talking to someone over mobile networks",
-            "clueCategory": "Communication",
-            "targetWord": "Phone conversation",
+            "cluePrompt": "Hook the bowl with drain holes used to drain boiling water from pasta",
+            "clueCategory": "Kitchen",
+            "targetWord": "Colander",
             "distractorWords": [
-                  "Handwritten letter",
-                  "Telegram",
-                  "Smoke signal"
+                  "Saucepan",
+                  "Skillet",
+                  "Baking sheet"
             ],
-            "explanation": "Phone conversations permit direct two-way spoken communication."
+            "explanation": "A colander lets water drain out while holding the pasta."
       },
       {
             "id": "wf_g8_e_23",
-            "cluePrompt": "Hook the audio recording left when a called recipient does not answer the line",
-            "clueCategory": "Communication",
-            "targetWord": "Voicemail",
+            "cluePrompt": "Hook the taste of honey, chocolate, and sugar",
+            "clueCategory": "Food",
+            "targetWord": "Sweet",
             "distractorWords": [
-                  "Ringtone",
-                  "Notification",
-                  "Broadcast"
+                  "Salty",
+                  "Sour",
+                  "Bitter"
             ],
-            "explanation": "Voicemail records voice notes for unanswered phone lines."
+            "explanation": "Sugar and honey have a sweet taste."
       },
       {
             "id": "wf_g8_e_24",
-            "cluePrompt": "Hook a person who follows and watches updates on a social media channel regularly",
-            "clueCategory": "Social Media",
-            "targetWord": "Subscriber",
+            "cluePrompt": "Hook the sour taste of fresh lemon juice",
+            "clueCategory": "Food",
+            "targetWord": "Sour",
             "distractorWords": [
-                  "Troll",
-                  "Spammer",
-                  "Hacker"
+                  "Sweet",
+                  "Spicy",
+                  "Greasy"
             ],
-            "explanation": "Subscribers sign up to receive alerts from preferred channels."
+            "explanation": "Lemons and vinegar have a sharp, sour flavor."
       },
       {
             "id": "wf_g8_e_25",
-            "cluePrompt": "Hook a digital alert popping up on your smartphone screen to announce new messages",
-            "clueCategory": "Technology",
-            "targetWord": "Notification",
+            "cluePrompt": "Hook food with lots of red chili peppers that makes your tongue feel hot",
+            "clueCategory": "Food",
+            "targetWord": "Spicy",
             "distractorWords": [
-                  "Malware",
-                  "Cookie",
-                  "Pop-up ad"
+                  "Sweet",
+                  "Cold",
+                  "Mild"
             ],
-            "explanation": "Notifications inform users about fresh emails and social alerts."
+            "explanation": "Chili peppers give Mexican and Asian dishes a spicy kick."
       },
       {
             "id": "wf_g8_e_26",
-            "cluePrompt": "Hook a small graphical icon used in digital messaging to express emotions",
-            "clueCategory": "Digital",
-            "targetWord": "Emoji",
+            "cluePrompt": "Hook the kitchen action of moving a wooden spoon in circles inside a pot",
+            "clueCategory": "Cooking",
+            "targetWord": "Stir",
             "distractorWords": [
-                  "Font",
-                  "Pixel",
-                  "Avatar"
+                  "Chop",
+                  "Peel",
+                  "Grate"
             ],
-            "explanation": "Emojis visually convey smiles, laughter, hearts, and gestures."
+            "explanation": "Stirring blends soup ingredients evenly while cooking."
       },
       {
             "id": "wf_g8_e_27",
-            "cluePrompt": "Hook the act of sending short typed SMS messages between phone handsets",
+            "cluePrompt": "Hook speaking face-to-face with a friend in real life instead of texting",
+            "clueCategory": "Communication",
+            "targetWord": "In person",
+            "distractorWords": [
+                  "Online",
+                  "Virtually",
+                  "By mail"
+            ],
+            "explanation": "Talking in person means meeting up physically."
+      },
+      {
+            "id": "wf_g8_e_28",
+            "cluePrompt": "Hook the recorded voice message left when someone doesn't answer your call",
+            "clueCategory": "Communication",
+            "targetWord": "Voicemail",
+            "distractorWords": [
+                  "Email",
+                  "Letter",
+                  "Ringtone"
+            ],
+            "explanation": "Voicemail saves an audio message for unanswered calls."
+      },
+      {
+            "id": "wf_g8_e_29",
+            "cluePrompt": "Hook typing short messages on a mobile phone to a classmate",
             "clueCategory": "Communication",
             "targetWord": "Texting",
             "distractorWords": [
                   "Printing",
-                  "Faxing",
-                  "Scanning"
+                  "Painting",
+                  "Calling"
             ],
-            "explanation": "Texting exchanges rapid short text messages on mobile phones."
-      },
-      {
-            "id": "wf_g8_e_28",
-            "cluePrompt": "Hook the sound made by a telephone handset when receiving an incoming call",
-            "clueCategory": "Digital",
-            "targetWord": "Ringtone",
-            "distractorWords": [
-                  "Dial tone",
-                  "Static",
-                  "Feedback"
-            ],
-            "explanation": "Ringtones alert users that an incoming call is arriving."
-      },
-      {
-            "id": "wf_g8_e_29",
-            "cluePrompt": "Hook speaking face to face without relying on digital screens or telephone lines",
-            "clueCategory": "Communication",
-            "targetWord": "In person",
-            "distractorWords": [
-                  "Virtually",
-                  "Remotely",
-                  "Digitally"
-            ],
-            "explanation": "Communicating in person involves real physical presence."
+            "explanation": "Texting sends quick SMS and chat messages on mobile phones."
       },
       {
             "id": "wf_g8_e_30",
-            "cluePrompt": "Hook keeping in touch with distant relatives or old classmates across years",
-            "clueCategory": "Social",
-            "targetWord": "Keep in touch",
+            "cluePrompt": "Hook a live phone call where you see each other on your screens",
+            "clueCategory": "Communication",
+            "targetWord": "Video call",
             "distractorWords": [
-                  "Lose track",
-                  "Turn away",
-                  "Shut down"
+                  "Radio",
+                  "Telegram",
+                  "Voicemail"
             ],
-            "explanation": "'Keep in touch' signifies maintaining communication over time."
+            "explanation": "Video calls let friends see and talk to each other live."
       },
       {
             "id": "wf_g8_e_31",
-            "cluePrompt": "Hook the aerial extreme sport of jumping out of an aircraft with a parachute",
-            "clueCategory": "Extreme Sports",
-            "targetWord": "Skydiving",
+            "cluePrompt": "Hook keeping contact with friends over many years so you don't lose touch",
+            "clueCategory": "Friendship",
+            "targetWord": "Keep in touch",
             "distractorWords": [
-                  "Paragliding",
-                  "Windsurfing",
-                  "Scuba diving"
+                  "Argue",
+                  "Forget",
+                  "Hang up"
             ],
-            "explanation": "Skydiving involves freefalling before opening a parachute."
+            "explanation": "Keeping in touch preserves connections with pals."
       },
       {
             "id": "wf_g8_e_32",
-            "cluePrompt": "Hook the thrilling sport of leaping off a bridge attached to a thick elastic rope",
-            "clueCategory": "Extreme Sports",
-            "targetWord": "Bungee jumping",
+            "cluePrompt": "Hook ending a phone call by tapping the red end button",
+            "clueCategory": "Communication",
+            "targetWord": "Hang up",
             "distractorWords": [
-                  "Parkour",
-                  "Motocross",
-                  "Base jumping"
+                  "Dial",
+                  "Connect",
+                  "Pick up"
             ],
-            "explanation": "Bungee jumpers bounce on elastic cords suspended above canyons."
+            "explanation": "Hanging up finishes a telephone conversation."
       },
       {
             "id": "wf_g8_e_33",
-            "cluePrompt": "Hook underwater swimming equipped with oxygen tanks and breathing regulators",
-            "clueCategory": "Sports",
-            "targetWord": "Scuba diving",
+            "cluePrompt": "Hook answering an incoming phone call when your smartphone rings",
+            "clueCategory": "Communication",
+            "targetWord": "Pick up",
             "distractorWords": [
-                  "Snorkelling",
-                  "Water polo",
-                  "Synchronised swimming"
+                  "Hang up",
+                  "Reject",
+                  "Ignore"
             ],
-            "explanation": "Scuba divers explore marine depths carrying pressurized tanks."
+            "explanation": "Picking up answers the ringing telephone."
       },
       {
             "id": "wf_g8_e_34",
-            "cluePrompt": "Hook climbing steep natural rock faces using ropes and harnesses",
-            "clueCategory": "Sports",
-            "targetWord": "Rock climbing",
+            "cluePrompt": "Hook entering a phone number on keypad to place a telephone call",
+            "clueCategory": "Communication",
+            "targetWord": "Dial",
             "distractorWords": [
-                  "Bouldering",
-                  "Trekking",
-                  "Mountaineering"
+                  "Erase",
+                  "Scroll",
+                  "Download"
             ],
-            "explanation": "Rock climbers ascend sheer granite walls using harnesses."
+            "explanation": "Dialing enters numbers to connect to a person's phone."
       },
       {
             "id": "wf_g8_e_35",
-            "cluePrompt": "Hook gliding through the air strapped beneath a lightweight canopy wing",
-            "clueCategory": "Extreme Sports",
-            "targetWord": "Paragliding",
+            "cluePrompt": "Hook a musical tune played by your phone when someone calls you",
+            "clueCategory": "Communication",
+            "targetWord": "Ringtone",
             "distractorWords": [
-                  "Hang gliding",
-                  "Skydiving",
-                  "Kitesurfing"
+                  "Static",
+                  "Silence",
+                  "Dial tone"
             ],
-            "explanation": "Paragliders soar on thermals launching from hilltops."
+            "explanation": "A ringtone plays aloud to announce an incoming call."
       },
       {
             "id": "wf_g8_e_36",
-            "cluePrompt": "Hook the adrenaline rush felt when attempting challenging adventures",
-            "clueCategory": "Adventure",
-            "targetWord": "Thrill",
+            "cluePrompt": "Hook a yellow smiley icon in a chat message showing how you feel",
+            "clueCategory": "Digital",
+            "targetWord": "Emoji",
             "distractorWords": [
-                  "Boredom",
-                  "Fatigue",
-                  "Sorrow"
+                  "Photo",
+                  "Video",
+                  "Audio"
             ],
-            "explanation": "Thrills are bursts of exhilarating excitement and adventure."
+            "explanation": "Emojis show smiles, hearts, and emotions in text messages."
       },
       {
             "id": "wf_g8_e_37",
-            "cluePrompt": "Hook the protective hard gear worn on the head when riding or doing extreme sports",
-            "clueCategory": "Safety",
-            "targetWord": "Helmet",
+            "cluePrompt": "Hook a pop-up alert on your phone showing a new message has arrived",
+            "clueCategory": "Digital",
+            "targetWord": "Notification",
             "distractorWords": [
-                  "Goggles",
-                  "Kneepads",
-                  "Gloves"
+                  "Virus",
+                  "Spam",
+                  "Battery"
             ],
-            "explanation": "Helmets shield the skull from severe impacts and concussions."
+            "explanation": "Notifications alert you to incoming messages and news."
       },
       {
             "id": "wf_g8_e_38",
-            "cluePrompt": "Hook safety straps strapped around the waist and thighs when climbing",
-            "clueCategory": "Safety",
-            "targetWord": "Harness",
+            "cluePrompt": "Hook being someone friends can always depend on and trust",
+            "clueCategory": "Personality",
+            "targetWord": "Reliable",
             "distractorWords": [
-                  "Carabiner",
-                  "Anchor",
-                  "Lanyard"
+                  "Unfair",
+                  "Deceitful",
+                  "Lazy"
             ],
-            "explanation": "A climbing harness secures climbers to safety ropes."
+            "explanation": "Reliable friends keep their promises every time."
       },
       {
             "id": "wf_g8_e_39",
-            "cluePrompt": "Hook protective eyewear worn to shield eyes from water or rushing wind",
-            "clueCategory": "Safety",
-            "targetWord": "Goggles",
+            "cluePrompt": "Hook wanting what another person has and feeling jealous",
+            "clueCategory": "Feelings",
+            "targetWord": "Jealous",
             "distractorWords": [
-                  "Sunglasses",
-                  "Spectacles",
-                  "Visor"
+                  "Proud",
+                  "Supportive",
+                  "Calm"
             ],
-            "explanation": "Goggles seal tightly to protect the eyes during skiing or swimming."
+            "explanation": "Jealousy is an unhappy feeling when envying others."
       },
       {
             "id": "wf_g8_e_40",
-            "cluePrompt": "Hook a brave person who loves seeking dangerous excitement and thrills",
+            "cluePrompt": "Hook refusing to change your opinion even when you might be wrong",
             "clueCategory": "Personality",
-            "targetWord": "Adrenalin seeker",
+            "targetWord": "Stubborn",
             "distractorWords": [
-                  "Homebody",
-                  "Observer",
-                  "Coward"
+                  "Easygoing",
+                  "Polite",
+                  "Flexible"
             ],
-            "explanation": "Adrenaline junkies actively chase exhilarating physical challenges."
+            "explanation": "Stubborn people stick firmly to their viewpoint."
       }
 ],
     medium: [
       {
             "id": "wf_g8_m_01",
-            "cluePrompt": "Hook a holiday resort package where all meals, drinks, and activities are prepaid",
+            "cluePrompt": "Hook an all-inclusive holiday hotel where food and drinks are included in the price",
             "clueCategory": "Tourism",
             "targetWord": "All-inclusive",
             "distractorWords": [
-                  "Self-catering",
-                  "Bed and breakfast",
-                  "Room only"
+                  "Room only",
+                  "Self-service",
+                  "Takeaway"
             ],
-            "explanation": "All-inclusive packages cover lodging, dining, and recreation."
+            "explanation": "All-inclusive resorts provide meals, drinks, and activities."
       },
       {
             "id": "wf_g8_m_02",
-            "cluePrompt": "Hook historic structures and remains dating from civilisations thousands of years old",
-            "clueCategory": "Heritage",
+            "cluePrompt": "Hook ancient stone ruins from civilisations that lived thousands of years ago",
+            "clueCategory": "Tourism",
             "targetWord": "Ancient ruins",
             "distractorWords": [
-                  "Modern towers",
+                  "Modern malls",
                   "Skyscrapers",
                   "Highways"
             ],
-            "explanation": "Ancient ruins like Ephesus showcase classical Greco-Roman architecture."
+            "explanation": "Ancient ruins like Ephesus show how ancestors lived long ago."
       },
       {
             "id": "wf_g8_m_03",
-            "cluePrompt": "Hook a place to stay while on holiday, such as a hotel, hostel, or rental villa",
+            "cluePrompt": "Hook a place where travellers stay overnight on holiday, like a hotel or hostel",
             "clueCategory": "Tourism",
             "targetWord": "Accommodation",
             "distractorWords": [
                   "Transportation",
-                  "Entertainment",
+                  "Souvenir",
                   "Itinerary"
             ],
-            "explanation": "Accommodation denotes lodging arrangements made by travellers."
+            "explanation": "Accommodation means lodging where tourists sleep."
       },
       {
             "id": "wf_g8_m_04",
-            "cluePrompt": "Hook the planned route, schedule, and list of stops for a travel trip",
-            "clueCategory": "Travel",
+            "cluePrompt": "Hook the daily travel plan and list of sights a tourist will visit",
+            "clueCategory": "Tourism",
             "targetWord": "Itinerary",
             "distractorWords": [
-                  "Brochure",
-                  "Boarding pass",
-                  "Voucher"
+                  "Passport",
+                  "Receipt",
+                  "Ticket"
             ],
-            "explanation": "An itinerary itemizes daily excursion timetables and destinations."
+            "explanation": "An itinerary schedules places to see on each day of a trip."
       },
       {
             "id": "wf_g8_m_05",
-            "cluePrompt": "Hook a prominent geographical feature or monument easily recognized by travellers",
+            "cluePrompt": "Hook a famous building or tower in a city that everyone recognizes easily",
             "clueCategory": "Tourism",
             "targetWord": "Landmark",
             "distractorWords": [
-                  "Boundary",
-                  "Checkpoint",
-                  "Crossroad"
+                  "Subway",
+                  "Alley",
+                  "Sidewalk"
             ],
-            "explanation": "Landmarks like Galata Tower serve as unmistakable city focal points."
+            "explanation": "Landmarks like Galata Tower or the Eiffel Tower are famous symbols."
       },
       {
             "id": "wf_g8_m_06",
-            "cluePrompt": "Hook the ultimate place or town to which a traveller is heading",
+            "cluePrompt": "Hook the final city or holiday spot where your journey ends",
             "clueCategory": "Tourism",
             "targetWord": "Destination",
             "distractorWords": [
                   "Departure",
                   "Transit",
-                  "Stopover"
+                  "Station"
             ],
-            "explanation": "Destination is the goal journey endpoint of an expedition."
+            "explanation": "Your destination is the place you are travelling to reach."
       },
       {
             "id": "wf_g8_m_07",
-            "cluePrompt": "Hook traditional dishes and culinary styles unique to a particular nation or region",
-            "clueCategory": "Cuisine",
+            "cluePrompt": "Hook traditional dishes and foods famous in a specific city or country",
+            "clueCategory": "Tourism",
             "targetWord": "Local cuisine",
             "distractorWords": [
                   "Fast food",
                   "Junk food",
-                  "Snack"
+                  "Snacks"
             ],
-            "explanation": "Local cuisine presents indigenous recipes and culinary traditions."
+            "explanation": "Local cuisine reflects regional cooking traditions and spices."
       },
       {
             "id": "wf_g8_m_08",
-            "cluePrompt": "Hook travelling around a city visiting famous historic sights and monuments",
+            "cluePrompt": "Hook touring around a new city to see its famous sights, monuments, and parks",
             "clueCategory": "Tourism",
             "targetWord": "Sightseeing",
             "distractorWords": [
                   "Shopping",
-                  "Sunbathing",
-                  "Commuting"
+                  "Commuting",
+                  "Sleeping"
             ],
-            "explanation": "Sightseeing visits iconic cultural and architectural attractions."
+            "explanation": "Sightseeing means visiting famous architectural and historical sights."
       },
       {
             "id": "wf_g8_m_09",
-            "cluePrompt": "Hook breathtakingly scenic views of countryside, hills, or coastlines",
-            "clueCategory": "Nature",
-            "targetWord": "Landscape",
-            "distractorWords": [
-                  "Backyard",
-                  "Basement",
-                  "Alley"
-            ],
-            "explanation": "A landscape encompasses sweeping panoramic rural panoramas."
-      },
-      {
-            "id": "wf_g8_m_10",
-            "cluePrompt": "Hook an official specialist who leads tourists and explains history at cultural sites",
+            "cluePrompt": "Hook the guide who shows tourists around historic sites and explains their stories",
             "clueCategory": "Tourism",
             "targetWord": "Tour guide",
             "distractorWords": [
-                  "Hotel concierge",
-                  "Ticket agent",
-                  "Chauffeur"
+                  "Driver",
+                  "Pilot",
+                  "Ticket agent"
             ],
-            "explanation": "Tour guides offer interpretive commentary on heritage sites."
+            "explanation": "Tour guides explain history and culture to tourists."
+      },
+      {
+            "id": "wf_g8_m_10",
+            "cluePrompt": "Hook the sweeping view of green hills, mountains, and trees in nature",
+            "clueCategory": "Nature",
+            "targetWord": "Landscape",
+            "distractorWords": [
+                  "Ceiling",
+                  "Basement",
+                  "Backyard"
+            ],
+            "explanation": "A landscape is a beautiful panoramic view of natural scenery."
       },
       {
             "id": "wf_g8_m_11",
-            "cluePrompt": "Hook the chore of cleaning carpets and floors using an electrical suction device",
+            "cluePrompt": "Hook cleaning the carpets and rugs using an electric suction machine",
             "clueCategory": "Chores",
             "targetWord": "Vacuum the floor",
             "distractorWords": [
-                  "Mop the deck",
-                  "Sweep the porch",
-                  "Dust the shelf"
+                  "Wash dishes",
+                  "Make bed",
+                  "Water plants"
             ],
-            "explanation": "Vacuuming lifts dust particles from carpets via motorized suction."
+            "explanation": "Vacuuming lifts dirt and dust out of carpets."
       },
       {
             "id": "wf_g8_m_12",
-            "cluePrompt": "Hook the household task of smoothing wrinkled laundered clothes with a hot iron",
+            "cluePrompt": "Hook smoothing out wrinkles on clean shirts and trousers with a hot iron",
             "clueCategory": "Chores",
             "targetWord": "Do the ironing",
             "distractorWords": [
-                  "Fold the sheets",
-                  "Wash the laundry",
-                  "Sort the towels"
+                  "Mop floor",
+                  "Dust shelf",
+                  "Take out trash"
             ],
-            "explanation": "Ironing presses out textile wrinkles using heat and steam."
+            "explanation": "Ironing uses heat and steam to make garments neat."
       },
       {
             "id": "wf_g8_m_13",
-            "cluePrompt": "Hook placing plates, glasses, and cutlery on the dining table before dinner",
+            "cluePrompt": "Hook putting plates, glasses, forks, and napkins on the dining table before dinner",
             "clueCategory": "Chores",
             "targetWord": "Set the table",
             "distractorWords": [
-                  "Clear the table",
-                  "Wash the dishes",
-                  "Pack the lunch"
+                  "Clear table",
+                  "Wash floor",
+                  "Dry dishes"
             ],
-            "explanation": "'Set the table' arranges plates, napkins, and utensils for dining."
+            "explanation": "Setting the table prepares place settings for dinner guests."
       },
       {
             "id": "wf_g8_m_14",
-            "cluePrompt": "Hook placing dirty dinner plates into the washing machine and adding detergent",
+            "cluePrompt": "Hook putting dirty dinner plates and cutlery into the dishwashing machine",
             "clueCategory": "Chores",
             "targetWord": "Load the dishwasher",
             "distractorWords": [
-                  "Empty the trash",
-                  "Scrub the sink",
-                  "Rinse the glasses"
+                  "Empty bins",
+                  "Clean oven",
+                  "Mop kitchen"
             ],
-            "explanation": "Loading the dishwasher packs soiled dishware into spray racks."
+            "explanation": "Loading the dishwasher packs dishes into racks for cleaning."
       },
       {
             "id": "wf_g8_m_15",
-            "cluePrompt": "Hook carrying household waste bags outside to the public rubbish container",
+            "cluePrompt": "Hook taking the kitchen garbage bags out to the big rubbish bin outside",
             "clueCategory": "Chores",
             "targetWord": "Take out the trash",
             "distractorWords": [
-                  "Mow the lawn",
-                  "Water the plants",
-                  "Walk the dog"
+                  "Feed the cat",
+                  "Sweep patio",
+                  "Wash car"
             ],
-            "explanation": "Taking out the trash disposes of refuse bags into exterior bins."
+            "explanation": "Taking out trash removes household rubbish bags."
       },
       {
             "id": "wf_g8_m_16",
-            "cluePrompt": "Hook pulling weeds, cutting grass, and planting flowers in the house garden",
-            "clueCategory": "Chores",
-            "targetWord": "Do the gardening",
-            "distractorWords": [
-                  "Clean the garage",
-                  "Wash the windows",
-                  "Paint the fence"
-            ],
-            "explanation": "Gardening involves caring for soil, shrubs, lawns, and flowerbeds."
-      },
-      {
-            "id": "wf_g8_m_17",
-            "cluePrompt": "Hook wiping away fine gray particles from bookshelves and wooden furniture",
+            "cluePrompt": "Hook wiping away gray dust particles from wooden desks and bookshelves",
             "clueCategory": "Chores",
             "targetWord": "Dust the furniture",
             "distractorWords": [
-                  "Wax the floor",
-                  "Bleach the tiles",
-                  "Polish the silver"
+                  "Scrub floor",
+                  "Paint wall",
+                  "Wash sheets"
             ],
-            "explanation": "Dusting removes settled airborne particles from surfaces."
+            "explanation": "Dusting clears away fine dust from wooden tables."
       },
       {
-            "id": "wf_g8_m_18",
-            "cluePrompt": "Hook washing dirty shirts, trousers, and socks in the laundry appliance",
+            "id": "wf_g8_m_17",
+            "cluePrompt": "Hook washing dirty shirts, trousers, and socks in the washing machine",
             "clueCategory": "Chores",
             "targetWord": "Do the laundry",
             "distractorWords": [
-                  "Hang the curtains",
-                  "Sew the buttons",
-                  "Starch the collars"
+                  "Iron clothes",
+                  "Fold towels",
+                  "Sew buttons"
             ],
-            "explanation": "Doing the laundry washes and spins garments clean."
+            "explanation": "Doing laundry washes dirty clothing clean."
       },
       {
-            "id": "wf_g8_m_19",
-            "cluePrompt": "Hook a duty, obligation, or chore that you are expected to handle reliably",
+            "id": "wf_g8_m_18",
+            "cluePrompt": "Hook a personal duty or chore that you are responsible for doing regularly",
             "clueCategory": "Values",
             "targetWord": "Responsibility",
             "distractorWords": [
-                  "Privilege",
-                  "Distraction",
+                  "Hobby",
+                  "Game",
                   "Reward"
             ],
-            "explanation": "Responsibilities are tasks one is accountable to complete."
+            "explanation": "A responsibility is a duty you take care of faithfully."
+      },
+      {
+            "id": "wf_g8_m_19",
+            "cluePrompt": "Hook a bedroom that is organized, clean, and free of messy clutter",
+            "clueCategory": "Home",
+            "targetWord": "Neat and tidy",
+            "distractorWords": [
+                  "Messy",
+                  "Disorderly",
+                  "Dirty"
+            ],
+            "explanation": "A neat and tidy bedroom has everything organized in place."
       },
       {
             "id": "wf_g8_m_20",
-            "cluePrompt": "Hook tidy, organized, and free from clutter or mess in a bedroom",
-            "clueCategory": "Traits",
-            "targetWord": "Neat and tidy",
+            "cluePrompt": "Hook clearing away plates and glasses from the table after finishing dinner",
+            "clueCategory": "Chores",
+            "targetWord": "Clear the table",
             "distractorWords": [
-                  "Chaotic",
-                  "Disorderly",
-                  "Messy"
+                  "Set the table",
+                  "Cook dinner",
+                  "Make salad"
             ],
-            "explanation": "A neat and tidy room has everything stored in its proper place."
+            "explanation": "Clearing the table takes dirty dishes to the kitchen sink."
       },
       {
             "id": "wf_g8_m_21",
-            "cluePrompt": "Hook the process of finding or uncovering something that existed but was unknown",
-            "clueCategory": "Science",
-            "targetWord": "Discovery",
+            "cluePrompt": "Hook jumping out of an airplane with a parachute for a sky-high thrill",
+            "clueCategory": "Extreme Sports",
+            "targetWord": "Skydiving",
             "distractorWords": [
-                  "Invention",
-                  "Fabrication",
-                  "Copy"
+                  "Swimming",
+                  "Jogging",
+                  "Cycling"
             ],
-            "explanation": "Discoveries uncover existing natural truths, like penicillin or gravity."
+            "explanation": "Skydiving involves jumping from a plane before opening a parachute."
       },
       {
             "id": "wf_g8_m_22",
-            "cluePrompt": "Hook creating a brand new mechanical device or process that never existed before",
-            "clueCategory": "Science",
-            "targetWord": "Invention",
+            "cluePrompt": "Hook leaping off a tall bridge attached to a strong, stretchy rubber rope",
+            "clueCategory": "Extreme Sports",
+            "targetWord": "Bungee jumping",
             "distractorWords": [
-                  "Discovery",
-                  "Imitation",
-                  "Duplication"
+                  "High jump",
+                  "Diving",
+                  "Parkour"
             ],
-            "explanation": "Inventions engineer novel instruments, like the lightbulb or telephone."
+            "explanation": "Bungee jumping lets thrill-seekers bounce on elastic cords."
       },
       {
             "id": "wf_g8_m_23",
-            "cluePrompt": "Hook a room equipped with scientific glassware and apparatus for testing hypotheses",
-            "clueCategory": "Science",
-            "targetWord": "Laboratory",
+            "cluePrompt": "Hook swimming deep underwater wearing an oxygen tank and breathing mask",
+            "clueCategory": "Sports",
+            "targetWord": "Scuba diving",
             "distractorWords": [
-                  "Auditorium",
-                  "Greenhouse",
-                  "Observatory"
+                  "Snorkelling",
+                  "Surfing",
+                  "Rowing"
             ],
-            "explanation": "Laboratories offer sterile testing benches for experiments."
+            "explanation": "Scuba divers carry pressurized air tanks to explore reefs."
       },
       {
             "id": "wf_g8_m_24",
-            "cluePrompt": "Hook a medicine, medical treatment, or therapy that restores health after illness",
-            "clueCategory": "Medicine",
-            "targetWord": "Cure",
+            "cluePrompt": "Hook soaring through the sky strapped under a wide fabric glider wing",
+            "clueCategory": "Extreme Sports",
+            "targetWord": "Paragliding",
             "distractorWords": [
-                  "Symptom",
-                  "Diagnosis",
-                  "Outbreak"
+                  "Skating",
+                  "Skiing",
+                  "Rafting"
             ],
-            "explanation": "A cure permanently eradicates a disease from a patient."
+            "explanation": "Paragliders launch from mountain slopes and float on thermals."
       },
       {
             "id": "wf_g8_m_25",
-            "cluePrompt": "Hook a proposed scientific explanation that can be tested through experimentation",
-            "clueCategory": "Science",
-            "targetWord": "Hypothesis",
+            "cluePrompt": "Hook a burst of heart-racing excitement and adventure during extreme sports",
+            "clueCategory": "Feelings",
+            "targetWord": "Adrenaline rush",
             "distractorWords": [
-                  "Conspiracy",
-                  "Myth",
-                  "Rumour"
+                  "Tiredness",
+                  "Boredom",
+                  "Sadness"
             ],
-            "explanation": "A hypothesis offers a reasoned testable guess for observed phenomena."
+            "explanation": "An adrenaline rush is an energetic surge of excitement."
       },
       {
             "id": "wf_g8_m_26",
-            "cluePrompt": "Hook the invisible force that pulls physical objects down toward Earth's centre",
-            "clueCategory": "Physics",
-            "targetWord": "Gravity",
+            "cluePrompt": "Hook someone who seeks adventure and exciting challenges",
+            "clueCategory": "Personality",
+            "targetWord": "Adventurous",
             "distractorWords": [
-                  "Friction",
-                  "Magnetism",
-                  "Pressure"
+                  "Lazy",
+                  "Timid",
+                  "Boring"
             ],
-            "explanation": "Gravity pulls masses downward with an acceleration of 9.8 m/s²."
+            "explanation": "Adventurous people love exploring new and thrilling activities."
       },
       {
             "id": "wf_g8_m_27",
-            "cluePrompt": "Hook an astronomical vehicle built to fly and carry astronauts into outer space",
-            "clueCategory": "Space",
-            "targetWord": "Spacecraft",
+            "cluePrompt": "Hook strong straps wrapped around your body to keep you safe while climbing",
+            "clueCategory": "Safety",
+            "targetWord": "Harness",
             "distractorWords": [
-                  "Submarine",
-                  "Helicopter",
-                  "Hovercraft"
+                  "Belt",
+                  "Ribbon",
+                  "Scarf"
             ],
-            "explanation": "Spacecraft rocket past Earth's atmosphere into planetary orbit."
+            "explanation": "A climbing harness clips into safety ropes to prevent falls."
       },
       {
             "id": "wf_g8_m_28",
-            "cluePrompt": "Hook a medicine prepared with weakened antigens that grants immunity against viruses",
-            "clueCategory": "Medicine",
-            "targetWord": "Vaccine",
+            "cluePrompt": "Hook the wooden pole with a flat blade used to row and steer a raft",
+            "clueCategory": "Equipment",
+            "targetWord": "Paddle",
             "distractorWords": [
-                  "Antibiotic",
-                  "Painkiller",
-                  "Vitamin"
+                  "Stick",
+                  "Ruler",
+                  "Bat"
             ],
-            "explanation": "Vaccines stimulate antibody production to defend against pathogens."
+            "explanation": "Paddles help rafters steer through white-water waves."
       },
       {
             "id": "wf_g8_m_29",
-            "cluePrompt": "Hook an expert who conducts systematic research to expand scientific knowledge",
-            "clueCategory": "Occupations",
-            "targetWord": "Scientist",
+            "cluePrompt": "Hook a thick foam jacket you wear on boats to stay afloat in water",
+            "clueCategory": "Safety",
+            "targetWord": "Life jacket",
             "distractorWords": [
-                  "Novelist",
-                  "Politician",
-                  "Artist"
+                  "Raincoat",
+                  "Winter coat",
+                  "Sweater"
             ],
-            "explanation": "Scientists employ the scientific method to investigate natural phenomena."
+            "explanation": "Life jackets keep swimmers safely floating in water."
       },
       {
             "id": "wf_g8_m_30",
-            "cluePrompt": "Hook artificial human-made machines launched to orbit Earth and relay communications",
+            "cluePrompt": "Hook creating a brand new device or tool that nobody ever built before",
+            "clueCategory": "Science",
+            "targetWord": "Invention",
+            "distractorWords": [
+                  "Imitation",
+                  "Copy",
+                  "Mistake"
+            ],
+            "explanation": "Inventions are original mechanical or technological creations."
+      },
+      {
+            "id": "wf_g8_m_31",
+            "cluePrompt": "Hook finding or uncovering something in nature that was previously unknown",
+            "clueCategory": "Science",
+            "targetWord": "Discovery",
+            "distractorWords": [
+                  "Secret",
+                  "Invention",
+                  "Plan"
+            ],
+            "explanation": "Discoveries uncover existing natural wonders, like fossils or islands."
+      },
+      {
+            "id": "wf_g8_m_32",
+            "cluePrompt": "Hook the special room equipped with beakers and test tubes where scientists work",
+            "clueCategory": "Science",
+            "targetWord": "Laboratory",
+            "distractorWords": [
+                  "Library",
+                  "Auditorium",
+                  "Greenhouse"
+            ],
+            "explanation": "Scientists run safe experiments inside laboratories."
+      },
+      {
+            "id": "wf_g8_m_33",
+            "cluePrompt": "Hook an expert who studies natural science and discovers how things work",
+            "clueCategory": "Jobs",
+            "targetWord": "Scientist",
+            "distractorWords": [
+                  "Politician",
+                  "Lawyer",
+                  "Accountant"
+            ],
+            "explanation": "Scientists study physics, biology, and chemistry to discover facts."
+      },
+      {
+            "id": "wf_g8_m_34",
+            "cluePrompt": "Hook a treatment or medicine that heals a disease completely",
+            "clueCategory": "Medicine",
+            "targetWord": "Cure",
+            "distractorWords": [
+                  "Wound",
+                  "Symptom",
+                  "Fever"
+            ],
+            "explanation": "A cure restores a patient back to full health."
+      },
+      {
+            "id": "wf_g8_m_35",
+            "cluePrompt": "Hook an injection given to protect children from catching serious viral illnesses",
+            "clueCategory": "Medicine",
+            "targetWord": "Vaccine",
+            "distractorWords": [
+                  "Vitamin",
+                  "Bandage",
+                  "Lotion"
+            ],
+            "explanation": "Vaccines build strong immunity against dangerous viruses."
+      },
+      {
+            "id": "wf_g8_m_36",
+            "cluePrompt": "Hook artificial metal probes launched into outer space to orbit Earth and send TV signals",
             "clueCategory": "Space",
             "targetWord": "Satellite",
             "distractorWords": [
@@ -2300,609 +2376,537 @@ export const WORD_FISHING_BANK: WordFishingBank = {
                   "Meteor",
                   "Comet"
             ],
-            "explanation": "Satellites orbit Earth relaying GPS signals and weather radar."
-      },
-      {
-            "id": "wf_g8_m_31",
-            "cluePrompt": "Hook a sudden violent shaking of the ground caused by movements in Earth's tectonic plates",
-            "clueCategory": "Disasters",
-            "targetWord": "Earthquake",
-            "distractorWords": [
-                  "Avalanche",
-                  "Drought",
-                  "Hurricane"
-            ],
-            "explanation": "Earthquakes release seismic energy along geological fault lines."
-      },
-      {
-            "id": "wf_g8_m_32",
-            "cluePrompt": "Hook an overflow of huge amounts of water submerging normally dry urban or rural land",
-            "clueCategory": "Disasters",
-            "targetWord": "Flood",
-            "distractorWords": [
-                  "Tsunami",
-                  "Tornado",
-                  "Wildfire"
-            ],
-            "explanation": "Floods occur when torrential downpours breach river banks."
-      },
-      {
-            "id": "wf_g8_m_33",
-            "cluePrompt": "Hook a prolonged period of abnormally low rainfall leading to severe water shortages",
-            "clueCategory": "Disasters",
-            "targetWord": "Drought",
-            "distractorWords": [
-                  "Blizzard",
-                  "Monsoon",
-                  "Cyclone"
-            ],
-            "explanation": "Droughts dry out water reservoirs and devastate agricultural crops."
-      },
-      {
-            "id": "wf_g8_m_34",
-            "cluePrompt": "Hook a mass of snow, ice, and rocks tumbling swiftly down a steep mountainside",
-            "clueCategory": "Disasters",
-            "targetWord": "Avalanche",
-            "distractorWords": [
-                  "Mudslide",
-                  "Sinkhole",
-                  "Quarry"
-            ],
-            "explanation": "Avalanches roar down alpine slopes with crushing momentum."
-      },
-      {
-            "id": "wf_g8_m_35",
-            "cluePrompt": "Hook a violently rotating column of air extending from a thunderstorm to the ground",
-            "clueCategory": "Disasters",
-            "targetWord": "Tornado",
-            "distractorWords": [
-                  "Typhoon",
-                  "Squall",
-                  "Dust storm"
-            ],
-            "explanation": "Tornadoes exhibit destructive funnel winds exceeding 300 km/h."
-      },
-      {
-            "id": "wf_g8_m_36",
-            "cluePrompt": "Hook a gigantic ocean sea wave generated by undersea seismic earthquakes",
-            "clueCategory": "Disasters",
-            "targetWord": "Tsunami",
-            "distractorWords": [
-                  "Riptide",
-                  "High tide",
-                  "Undertow"
-            ],
-            "explanation": "Tsunamis surge ashore in devastating walls of seawater."
+            "explanation": "Satellites orbit Earth relaying GPS and weather data."
       },
       {
             "id": "wf_g8_m_37",
-            "cluePrompt": "Hook an uncontrollable forest fire sweeping rapidly through dry brush and woodland",
-            "clueCategory": "Disasters",
-            "targetWord": "Wildfire",
+            "cluePrompt": "Hook a vehicle designed to carry astronauts into outer space",
+            "clueCategory": "Space",
+            "targetWord": "Spacecraft",
             "distractorWords": [
-                  "Campfire",
-                  "Bonfire",
-                  "Flare"
+                  "Submarine",
+                  "Helicopter",
+                  "Cruiser"
             ],
-            "explanation": "Wildfires consume acres of timber driven by fierce dry winds."
+            "explanation": "Spacecraft rocket past Earth's atmosphere into space."
       },
       {
             "id": "wf_g8_m_38",
-            "cluePrompt": "Hook a protective safe building designed to shield people from catastrophe or storms",
-            "clueCategory": "Safety",
-            "targetWord": "Shelter",
-            "distractorWords": [
-                  "Warehouse",
-                  "Basement",
-                  "Shed"
-            ],
-            "explanation": "Shelters provide survival refuge and provisions during crises."
-      },
-      {
-            "id": "wf_g8_m_39",
-            "cluePrompt": "Hook an assembled pack with bandages, antiseptics, and painkillers for urgent injuries",
+            "cluePrompt": "Hook a small emergency kit with bandages, antiseptic, and plasters for injuries",
             "clueCategory": "Safety",
             "targetWord": "First-aid kit",
             "distractorWords": [
                   "Toolbox",
-                  "Survival vest",
-                  "Ration box"
+                  "Sewing box",
+                  "Lunchbox"
             ],
-            "explanation": "First-aid kits contain sterile dressings for immediate injury care."
+            "explanation": "A first-aid kit treats small cuts and injuries quickly."
+      },
+      {
+            "id": "wf_g8_m_39",
+            "cluePrompt": "Hook a safe, sturdy building where families go for protection during a storm",
+            "clueCategory": "Safety",
+            "targetWord": "Shelter",
+            "distractorWords": [
+                  "Shed",
+                  "Barn",
+                  "Garage"
+            ],
+            "explanation": "Emergency shelters protect people during bad storms."
       },
       {
             "id": "wf_g8_m_40",
-            "cluePrompt": "Hook the emergency order to remove people immediately from a zone of imminent danger",
+            "cluePrompt": "Hook moving people away from a dangerous flood area to a safe place",
             "clueCategory": "Safety",
-            "targetWord": "Evacuation",
+            "targetWord": "Evacuate",
             "distractorWords": [
-                  "Relocation",
-                  "Migration",
-                  "Quarantine"
+                  "Return",
+                  "Stay",
+                  "Ignore"
             ],
-            "explanation": "Evacuations clear civilian populations away from disaster zones."
+            "explanation": "Evacuating moves people out of danger to safety."
       }
 ],
     hard: [
       {
             "id": "wf_g8_h_01",
-            "cluePrompt": "Hook the direct outcome or effect produced by a specific prior action or decision",
-            "clueCategory": "Academic",
-            "targetWord": "Consequence",
+            "cluePrompt": "Hook a sudden violent shaking of the ground caused by shifts in Earth's crust",
+            "clueCategory": "Disasters",
+            "targetWord": "Earthquake",
             "distractorWords": [
-                  "Pretext",
-                  "Coincidence",
-                  "Assumption"
+                  "Flood",
+                  "Drought",
+                  "Hurricane"
             ],
-            "explanation": "A consequence is a logical or practical result following an act."
+            "explanation": "An earthquake shakes the ground when tectonic plates move."
       },
       {
             "id": "wf_g8_h_02",
-            "cluePrompt": "Hook facts, documents, and physical traces that prove whether a claim is true",
-            "clueCategory": "Academic",
-            "targetWord": "Evidence",
+            "cluePrompt": "Hook a huge overflow of water that covers streets and houses after heavy rain",
+            "clueCategory": "Disasters",
+            "targetWord": "Flood",
             "distractorWords": [
-                  "Hypothesis",
-                  "Conjecture",
-                  "Speculation"
+                  "Drought",
+                  "Wildfire",
+                  "Snowstorm"
             ],
-            "explanation": "Evidence substantiates factual conclusions in research and law."
+            "explanation": "Floods happen when heavy rain causes rivers to overflow."
       },
       {
             "id": "wf_g8_h_03",
-            "cluePrompt": "Hook an important meaning, noteworthy impact, or high consequence of an event",
-            "clueCategory": "Academic",
-            "targetWord": "Significance",
+            "cluePrompt": "Hook a long period with no rain where lakes dry up and crops cannot grow",
+            "clueCategory": "Disasters",
+            "targetWord": "Drought",
             "distractorWords": [
-                  "Triviality",
-                  "Irrelevance",
-                  "Mediocrity"
+                  "Flood",
+                  "Thunder",
+                  "Blizzard"
             ],
-            "explanation": "Significance denotes historical or scientific importance."
+            "explanation": "A drought is a prolonged lack of rain that dries out rivers."
       },
       {
             "id": "wf_g8_h_04",
-            "cluePrompt": "Hook the state of extreme poverty where people lack basic necessities like food and water",
-            "clueCategory": "Global Issues",
-            "targetWord": "Poverty",
+            "cluePrompt": "Hook a huge mass of snow and ice tumbling rapidly down a steep mountain",
+            "clueCategory": "Disasters",
+            "targetWord": "Avalanche",
             "distractorWords": [
-                  "Prosperity",
-                  "Abundance",
-                  "Affluence"
+                  "Earthquake",
+                  "Tornado",
+                  "Wildfire"
             ],
-            "explanation": "Poverty is severe deprivation of fundamental human living standards."
+            "explanation": "Avalanches roar down snowy alpine mountainsides."
       },
       {
             "id": "wf_g8_h_05",
-            "cluePrompt": "Hook mutual support, unity, and shared responsibility among members of a community",
-            "clueCategory": "Values",
-            "targetWord": "Solidarity",
+            "cluePrompt": "Hook a spinning funnel of fierce wind that sweeps across land like a whirlwind",
+            "clueCategory": "Disasters",
+            "targetWord": "Tornado",
             "distractorWords": [
-                  "Discord",
-                  "Division",
-                  "Alienation"
+                  "Fog",
+                  "Drizzle",
+                  "Breeze"
             ],
-            "explanation": "Solidarity unites communities in harmonious mutual aid."
+            "explanation": "A tornado is a violently spinning column of air."
       },
       {
             "id": "wf_g8_h_06",
-            "cluePrompt": "Hook the capability of an energy resource to be replenished naturally without depleting",
-            "clueCategory": "Environment",
-            "targetWord": "Renewable",
+            "cluePrompt": "Hook a massive ocean wave triggered by undersea earthquakes that hits the coast",
+            "clueCategory": "Disasters",
+            "targetWord": "Tsunami",
             "distractorWords": [
-                  "Exhaustible",
-                  "Finite",
-                  "Consumable"
+                  "Riptide",
+                  "High tide",
+                  "River"
             ],
-            "explanation": "Renewable energy from wind and sun renews indefinitely."
+            "explanation": "Tsunamis are gigantic waves caused by underwater tremors."
       },
       {
             "id": "wf_g8_h_07",
-            "cluePrompt": "Hook an extreme and widespread scarcity of food causing starvation across a region",
-            "clueCategory": "Global Issues",
-            "targetWord": "Famine",
+            "cluePrompt": "Hook a dangerous fire that spreads quickly across dry forest trees and brush",
+            "clueCategory": "Disasters",
+            "targetWord": "Wildfire",
             "distractorWords": [
-                  "Drought",
-                  "Plague",
-                  "Epidemic"
+                  "Campfire",
+                  "Candle",
+                  "Bonfire"
             ],
-            "explanation": "Famine occurs when crop collapse causes severe mass malnutrition."
+            "explanation": "Wildfires consume forest timber fueled by hot winds."
       },
       {
             "id": "wf_g8_h_08",
-            "cluePrompt": "Hook preserving natural landscapes and cultural heritage from destruction or neglect",
-            "clueCategory": "Conservation",
-            "targetWord": "Preservation",
+            "cluePrompt": "Hook rocks and earth sliding suddenly down a steep hillside after rain",
+            "clueCategory": "Disasters",
+            "targetWord": "Landslide",
             "distractorWords": [
-                  "Exploitation",
-                  "Degradation",
-                  "Destruction"
+                  "Earthquake",
+                  "Drought",
+                  "Flood"
             ],
-            "explanation": "Preservation safeguards historical relics and wildlife sanctuaries."
+            "explanation": "Landslides slide wet mud and rocks down hills."
       },
       {
             "id": "wf_g8_h_09",
-            "cluePrompt": "Hook the wide variety of plant and animal species living within a particular ecosystem",
-            "clueCategory": "Ecology",
-            "targetWord": "Biodiversity",
+            "cluePrompt": "Hook saving people or animals from danger after a natural disaster",
+            "clueCategory": "Safety",
+            "targetWord": "Rescue",
             "distractorWords": [
-                  "Monoculture",
-                  "Biomass",
-                  "Equilibrium"
+                  "Harm",
+                  "Damage",
+                  "Ignore"
             ],
-            "explanation": "Biodiversity measures the genetic richness of living systems."
+            "explanation": "Rescue teams save people trapped after an emergency."
       },
       {
             "id": "wf_g8_h_10",
-            "cluePrompt": "Hook the deliberate avoidance of wasteful consumption to protect natural resources",
-            "clueCategory": "Environment",
-            "targetWord": "Sustainability",
+            "cluePrompt": "Hook a person who stays alive after living through a terrible accident",
+            "clueCategory": "Safety",
+            "targetWord": "Survivor",
             "distractorWords": [
-                  "Overconsumption",
-                  "Depletion",
-                  "Extravagance"
+                  "Casualty",
+                  "Witness",
+                  "Bystander"
             ],
-            "explanation": "Sustainability meets present needs without compromising the future."
+            "explanation": "A survivor lives through a catastrophe safely."
       },
       {
             "id": "wf_g8_h_11",
-            "cluePrompt": "Hook the mental power to bounce back and recover swiftly from adversity or misfortune",
-            "clueCategory": "Mindset",
-            "targetWord": "Resilience",
+            "cluePrompt": "Hook harm or broken destruction caused to houses by a fierce storm",
+            "clueCategory": "Safety",
+            "targetWord": "Damage",
             "distractorWords": [
-                  "Fragility",
-                  "Vulnerability",
-                  "Surrender"
+                  "Repair",
+                  "Protection",
+                  "Comfort"
             ],
-            "explanation": "Resilient people recover strength after suffering setbacks."
+            "explanation": "Storms can cause severe damage to roofs and trees."
       },
       {
             "id": "wf_g8_h_12",
-            "cluePrompt": "Hook the deep capacity to comprehend and share the feelings of another suffering person",
-            "clueCategory": "Empathy",
-            "targetWord": "Compassion",
+            "cluePrompt": "Hook an unexpected dangerous situation like an accident that needs fast action",
+            "clueCategory": "Safety",
+            "targetWord": "Emergency",
             "distractorWords": [
-                  "Apathy",
-                  "Cruelty",
-                  "Indifference"
+                  "Routine",
+                  "Party",
+                  "Holiday"
             ],
-            "explanation": "Compassion is sympathetic concern motivating acts to relieve misery."
+            "explanation": "An emergency requires urgent help from firefighters or doctors."
       },
       {
             "id": "wf_g8_h_13",
-            "cluePrompt": "Hook strict adherence to strong ethical and moral codes of honesty at all times",
-            "clueCategory": "Values",
-            "targetWord": "Integrity",
+            "cluePrompt": "Hook giving helpful suggestions to a friend to help them solve a dilemma",
+            "clueCategory": "Friendship",
+            "targetWord": "Advice",
             "distractorWords": [
-                  "Deceit",
-                  "Pretence",
-                  "Corruption"
+                  "Criticism",
+                  "Insult",
+                  "Complaint"
             ],
-            "explanation": "Integrity is unwavering honesty even when unobserved."
+            "explanation": "Good friends give wise, encouraging advice when asked."
       },
       {
             "id": "wf_g8_h_14",
-            "cluePrompt": "Hook working stubbornly toward long-term goals despite hardship and slow progress",
-            "clueCategory": "Mindset",
-            "targetWord": "Perseverance",
+            "cluePrompt": "Hook liking one thing more than another, like preferring tea over coffee",
+            "clueCategory": "Preferences",
+            "targetWord": "Prefer",
             "distractorWords": [
-                  "Lethargy",
-                  "Apathy",
-                  "Resignation"
+                  "Dislike",
+                  "Hate",
+                  "Refuse"
             ],
-            "explanation": "Perseverance is dogged steadfastness against discouragement."
+            "explanation": "To prefer means to like one option better than another."
       },
       {
             "id": "wf_g8_h_15",
-            "cluePrompt": "Hook willingness to consider and evaluate ideas that conflict with your own bias",
-            "clueCategory": "Mindset",
-            "targetWord": "Open-minded",
+            "cluePrompt": "Hook protecting nature, wild animals, and clean oceans from harm",
+            "clueCategory": "Environment",
+            "targetWord": "Protect",
             "distractorWords": [
-                  "Bigoted",
-                  "Intolerant",
-                  "Narrow-minded"
+                  "Pollute",
+                  "Destroy",
+                  "Litter"
             ],
-            "explanation": "Open-minded thinkers welcome novel perspectives and evidence."
+            "explanation": "Protecting our planet preserves clean air and wildlife."
       },
       {
             "id": "wf_g8_h_16",
-            "cluePrompt": "Hook excessive pride or arrogant self-admiration that alienates colleagues",
-            "clueCategory": "Flaws",
-            "targetWord": "Vanity",
+            "cluePrompt": "Hook working stubbornly toward your dreams and not giving up when tasks get tough",
+            "clueCategory": "Mindset",
+            "targetWord": "Perseverance",
             "distractorWords": [
-                  "Modesty",
-                  "Humility",
-                  "Diffidence"
+                  "Giving up",
+                  "Laziness",
+                  "Carelessness"
             ],
-            "explanation": "Vanity is exaggerated obsession with personal appearance or glory."
+            "explanation": "Perseverance means keeping on trying until you succeed."
       },
       {
             "id": "wf_g8_h_17",
-            "cluePrompt": "Hook an intuitive flash of understanding that solves a puzzling conundrum",
-            "clueCategory": "Intellect",
-            "targetWord": "Insight",
+            "cluePrompt": "Hook wanting to learn more, asking good questions, and exploring new ideas",
+            "clueCategory": "Mindset",
+            "targetWord": "Curious",
             "distractorWords": [
-                  "Blindness",
-                  "Stupor",
-                  "Illusion"
+                  "Bored",
+                  "Lazy",
+                  "Indifferent"
             ],
-            "explanation": "Insight provides clear discernment into complex inner realities."
+            "explanation": "Curious students love discovering how things work."
       },
       {
             "id": "wf_g8_h_18",
-            "cluePrompt": "Hook being extremely attentive and careful to avoid any potential peril or blunder",
-            "clueCategory": "Mindset",
-            "targetWord": "Cautious",
+            "cluePrompt": "Hook waiting calmly without getting angry when something takes time",
+            "clueCategory": "Personality",
+            "targetWord": "Patient",
             "distractorWords": [
-                  "Reckless",
-                  "Rash",
-                  "Impulsive"
+                  "Impatient",
+                  "Angry",
+                  "Rude"
             ],
-            "explanation": "Cautious decision-makers weigh risks before taking action."
+            "explanation": "Patient people remain calm even when queues are long."
       },
       {
             "id": "wf_g8_h_19",
-            "cluePrompt": "Hook having genuine modest humility without boasting of one's talents",
-            "clueCategory": "Values",
-            "targetWord": "Modesty",
+            "cluePrompt": "Hook having strong dreams and working hard to achieve high future goals",
+            "clueCategory": "Personality",
+            "targetWord": "Ambitious",
             "distractorWords": [
-                  "Arrogance",
-                  "Haughtiness",
-                  "Conceit"
+                  "Lazy",
+                  "Hopeless",
+                  "Timid"
             ],
-            "explanation": "Modest individuals refrain from boasting of personal triumphs."
+            "explanation": "Ambitious students set high goals for high school and beyond."
       },
       {
             "id": "wf_g8_h_20",
-            "cluePrompt": "Hook expressing oneself fluently, persuasively, and with articulate elegance",
-            "clueCategory": "Communication",
-            "targetWord": "Eloquent",
+            "cluePrompt": "Hook someone you can count on and who will never let you down",
+            "clueCategory": "Personality",
+            "targetWord": "Trustworthy",
             "distractorWords": [
-                  "Incoherent",
-                  "Hesitant",
-                  "Muddled"
+                  "Dishonest",
+                  "Sneaky",
+                  "Selfish"
             ],
-            "explanation": "Eloquent speakers command persuasive and polished rhetoric."
+            "explanation": "Trustworthy friends can be trusted with any secret."
       },
       {
             "id": "wf_g8_h_21",
-            "cluePrompt": "Hook the fundamental legal rules and principles that establish how a nation is governed",
-            "clueCategory": "Civics",
-            "targetWord": "Constitution",
+            "cluePrompt": "Hook energy from wind or sunshine that never runs out or causes pollution",
+            "clueCategory": "Environment",
+            "targetWord": "Renewable energy",
             "distractorWords": [
-                  "Treaty",
-                  "Charter",
-                  "Manifesto"
+                  "Fossil fuels",
+                  "Coal",
+                  "Gas"
             ],
-            "explanation": "The constitution is the supreme law grounding democratic rights."
+            "explanation": "Renewable energy like solar and wind power never runs out."
       },
       {
             "id": "wf_g8_h_22",
-            "cluePrompt": "Hook fair treatment and impartiality under the law for all citizens without prejudice",
-            "clueCategory": "Law",
-            "targetWord": "Justice",
+            "cluePrompt": "Hook friendly to nature and not causing harm to the environment",
+            "clueCategory": "Environment",
+            "targetWord": "Eco-friendly",
             "distractorWords": [
-                  "Tyranny",
-                  "Partiality",
-                  "Iniquity"
+                  "Toxic",
+                  "Polluting",
+                  "Wasteful"
             ],
-            "explanation": "Justice administers equitable fairness and legal vindication."
+            "explanation": "Eco-friendly products protect clean air and wildlife."
       },
       {
             "id": "wf_g8_h_23",
-            "cluePrompt": "Hook an official agreement reached between sovereign nations after international negotiations",
-            "clueCategory": "Diplomacy",
-            "targetWord": "Treaty",
+            "cluePrompt": "Hook helping your community or school without asking for money",
+            "clueCategory": "Values",
+            "targetWord": "Volunteer",
             "distractorWords": [
-                  "Pact",
-                  "Accord",
-                  "Sanction"
+                  "Employer",
+                  "Customer",
+                  "Buyer"
             ],
-            "explanation": "Treaties codify formal peace or trade terms between states."
+            "explanation": "Volunteers give their free time generously to help others."
       },
       {
             "id": "wf_g8_h_24",
-            "cluePrompt": "Hook a system of government where citizens elect their representatives through voting",
-            "clueCategory": "Governance",
-            "targetWord": "Democracy",
+            "cluePrompt": "Hook reaching an agreement where both sides give up a small wish to make peace",
+            "clueCategory": "Social",
+            "targetWord": "Compromise",
             "distractorWords": [
-                  "Monarchy",
-                  "Autocracy",
-                  "Oligarchy"
+                  "Argument",
+                  "Fight",
+                  "Conflict"
             ],
-            "explanation": "Democracies derive authority from the consent of voters."
+            "explanation": "A compromise settles a disagreement fairly for both sides."
       },
       {
             "id": "wf_g8_h_25",
-            "cluePrompt": "Hook an unreasonable preconceived opinion formed about a group without factual basis",
-            "clueCategory": "Society",
-            "targetWord": "Prejudice",
+            "cluePrompt": "Hook a wonderful breakthrough discovery that solves a difficult medical puzzle",
+            "clueCategory": "Science",
+            "targetWord": "Breakthrough",
             "distractorWords": [
-                  "Fairness",
-                  "Neutrality",
-                  "Objectivity"
+                  "Mistake",
+                  "Problem",
+                  "Failure"
             ],
-            "explanation": "Prejudice discriminates unjustifiably based on stereotype."
+            "explanation": "A scientific breakthrough opens up exciting new treatments."
       },
       {
             "id": "wf_g8_h_26",
-            "cluePrompt": "Hook the legal right or entitlement possessed by human beings simply by virtue of being human",
-            "clueCategory": "Rights",
-            "targetWord": "Human rights",
+            "cluePrompt": "Hook the result or outcome that happens after making a bad decision",
+            "clueCategory": "Values",
+            "targetWord": "Consequence",
             "distractorWords": [
-                  "Privilege",
-                  "Exemption",
-                  "Concession"
+                  "Reward",
+                  "Gift",
+                  "Prize"
             ],
-            "explanation": "Human rights guarantee inherent dignity and freedom to all."
+            "explanation": "Every action has consequences we must take responsibility for."
       },
       {
             "id": "wf_g8_h_27",
-            "cluePrompt": "Hook an official ban on commerce or trade imposed upon a country as a diplomatic penalty",
-            "clueCategory": "Diplomacy",
-            "targetWord": "Sanction",
+            "cluePrompt": "Hook facts, proof, and clues that show whether a statement is true",
+            "clueCategory": "Skills",
+            "targetWord": "Evidence",
             "distractorWords": [
-                  "Tariff",
-                  "Quota",
-                  "Subsidy"
+                  "Rumor",
+                  "Gossip",
+                  "Guess"
             ],
-            "explanation": "Sanctions leverage trade embargoes to enforce international compliance."
+            "explanation": "Scientists look for factual evidence to prove ideas."
       },
       {
             "id": "wf_g8_h_28",
-            "cluePrompt": "Hook an organized peaceful gathering of citizens voicing grievance or demands in public",
-            "clueCategory": "Civics",
-            "targetWord": "Demonstration",
+            "cluePrompt": "Hook unity and mutual support among classmates during hard times",
+            "clueCategory": "Values",
+            "targetWord": "Solidarity",
             "distractorWords": [
-                  "Riot",
-                  "Mutiny",
-                  "Insurrection"
+                  "Division",
+                  "Discord",
+                  "Conflict"
             ],
-            "explanation": "Peaceful demonstrations express public political demands."
+            "explanation": "Solidarity means standing together in harmony and mutual support."
       },
       {
             "id": "wf_g8_h_29",
-            "cluePrompt": "Hook an elected assembly responsible for debating and enacting national statutory legislation",
-            "clueCategory": "Governance",
-            "targetWord": "Parliament",
+            "cluePrompt": "Hook looking after historic monuments and ancient relics so they last forever",
+            "clueCategory": "Culture",
+            "targetWord": "Preservation",
             "distractorWords": [
-                  "Cabinet",
-                  "Tribunal",
-                  "Congress"
+                  "Demolition",
+                  "Destruction",
+                  "Damage"
             ],
-            "explanation": "Parliaments draft, debate, and pass statutory laws."
+            "explanation": "Preservation protects old castles and monuments from decay."
       },
       {
             "id": "wf_g8_h_30",
-            "cluePrompt": "Hook the state of being completely independent and exempt from foreign rule or subjugation",
-            "clueCategory": "Civics",
-            "targetWord": "Sovereignty",
+            "cluePrompt": "Hook the variety of different birds, animals, and plants living in a forest",
+            "clueCategory": "Nature",
+            "targetWord": "Wildlife variety",
             "distractorWords": [
-                  "Vassalage",
-                  "Colonialism",
-                  "Dependency"
+                  "Desert",
+                  "Concrete",
+                  "Factory"
             ],
-            "explanation": "Sovereignty gives a country total self-governance over its territory."
+            "explanation": "A healthy forest has a rich variety of wild plants and animals."
       },
       {
             "id": "wf_g8_h_31",
-            "cluePrompt": "Hook the study and engineering of automated computer systems and physical robots",
-            "clueCategory": "Innovation",
-            "targetWord": "Robotics",
+            "cluePrompt": "Hook acting honestly and doing what is right even when nobody is watching",
+            "clueCategory": "Values",
+            "targetWord": "Integrity",
             "distractorWords": [
-                  "Cybernetics",
-                  "Mechanics",
-                  "Automation"
+                  "Dishonesty",
+                  "Cheating",
+                  "Lying"
             ],
-            "explanation": "Robotics designs mechanical robots to perform industrial tasks."
+            "explanation": "Integrity means being honest and true to your values at all times."
       },
       {
             "id": "wf_g8_h_32",
-            "cluePrompt": "Hook computer software capable of performing tasks that traditionally require human intellect",
-            "clueCategory": "Innovation",
-            "targetWord": "Artificial intelligence",
+            "cluePrompt": "Hook the ability to bounce back and stay cheerful after facing a setback",
+            "clueCategory": "Mindset",
+            "targetWord": "Resilience",
             "distractorWords": [
-                  "Virtual reality",
-                  "Blockchain",
-                  "Quantum computing"
+                  "Surrender",
+                  "Weakness",
+                  "Panic"
             ],
-            "explanation": "AI enables algorithmic problem-solving and pattern recognition."
+            "explanation": "Resilient students bounce back with a smile after losing a game."
       },
       {
             "id": "wf_g8_h_33",
-            "cluePrompt": "Hook computer simulation generating realistic 3D environments viewed through specialized headsets",
-            "clueCategory": "Innovation",
-            "targetWord": "Virtual reality",
+            "cluePrompt": "Hook deep kindness and caring for others who are hurt or having a hard day",
+            "clueCategory": "Values",
+            "targetWord": "Compassion",
             "distractorWords": [
-                  "Augmented reality",
-                  "Holography",
-                  "Projection"
+                  "Cruelty",
+                  "Coldness",
+                  "Spite"
             ],
-            "explanation": "Virtual reality immerses users in simulated interactive realms."
+            "explanation": "Compassion is showing gentle caring and sympathy to friends in need."
       },
       {
             "id": "wf_g8_h_34",
-            "cluePrompt": "Hook the alteration of the genetic structure of an organism to enhance specific traits",
-            "clueCategory": "Biology",
-            "targetWord": "Genetic engineering",
+            "cluePrompt": "Hook having modest humility and not boasting about your test scores",
+            "clueCategory": "Personality",
+            "targetWord": "Modest",
             "distractorWords": [
-                  "Selective breeding",
-                  "Cloning",
-                  "Cross-pollination"
+                  "Boastful",
+                  "Arrogant",
+                  "Proud"
             ],
-            "explanation": "Genetic modification edits DNA sequences directly in labs."
+            "explanation": "Modest winners celebrate quietly without showing off."
       },
       {
             "id": "wf_g8_h_35",
-            "cluePrompt": "Hook an innovative, unprecedented idea or breakthrough that fundamentally alters progress",
-            "clueCategory": "Innovation",
-            "targetWord": "Breakthrough",
+            "cluePrompt": "Hook being open to new ideas and respecting opinions different from your own",
+            "clueCategory": "Mindset",
+            "targetWord": "Open-minded",
             "distractorWords": [
-                  "Stalemate",
-                  "Regression",
-                  "Drawback"
+                  "Stubborn",
+                  "Narrow-minded",
+                  "Intolerant"
             ],
-            "explanation": "A breakthrough marks a giant innovative leap forward."
+            "explanation": "Open-minded learners listen respectfully to new viewpoints."
       },
       {
             "id": "wf_g8_h_36",
-            "cluePrompt": "Hook an early functional model constructed to test the design and concept of a machine",
-            "clueCategory": "Engineering",
-            "targetWord": "Prototype",
+            "cluePrompt": "Hook speaking clearly, smoothly, and expressing your thoughts persuasively",
+            "clueCategory": "Communication",
+            "targetWord": "Fluent",
             "distractorWords": [
-                  "Blueprint",
-                  "Replica",
-                  "Specimen"
+                  "Mumbled",
+                  "Silent",
+                  "Confused"
             ],
-            "explanation": "Prototypes let engineers identify bugs before mass production."
+            "explanation": "Fluent English speakers speak naturally and comfortably."
       },
       {
             "id": "wf_g8_h_37",
-            "cluePrompt": "Hook a step-by-step mathematical computational procedure for solving a defined problem",
-            "clueCategory": "Computing",
-            "targetWord": "Algorithm",
+            "cluePrompt": "Hook an early test model made by inventors before building the final machine",
+            "clueCategory": "Engineering",
+            "targetWord": "Prototype",
             "distractorWords": [
-                  "Flowchart",
-                  "Syntax",
-                  "Compiler"
+                  "Toy",
+                  "Drawing",
+                  "Waste"
             ],
-            "explanation": "Algorithms dictate computer processing calculations."
+            "explanation": "Inventors test a prototype to fix problems before making more."
       },
       {
             "id": "wf_g8_h_38",
-            "cluePrompt": "Hook the branch of physics and astronomy dealing with the origin and evolution of the universe",
-            "clueCategory": "Science",
-            "targetWord": "Cosmology",
+            "cluePrompt": "Hook automated mechanical machines built to help doctors or explore Mars",
+            "clueCategory": "Technology",
+            "targetWord": "Robots",
             "distractorWords": [
-                  "Astrology",
-                  "Meteorology",
-                  "Geology"
+                  "Statues",
+                  "Tools",
+                  "Furniture"
             ],
-            "explanation": "Cosmology examines cosmic origins, dark matter, and the Big Bang."
+            "explanation": "Robots are automated machines that perform useful tasks."
       },
       {
             "id": "wf_g8_h_39",
-            "cluePrompt": "Hook the process of converting private data into secure mathematical cipher codes",
-            "clueCategory": "Cybersecurity",
-            "targetWord": "Encryption",
+            "cluePrompt": "Hook the set of rules or democratic laws that protect citizens' freedoms",
+            "clueCategory": "Civics",
+            "targetWord": "Constitution",
             "distractorWords": [
-                  "Decryption",
-                  "Compression",
-                  "Formatting"
+                  "Bill",
+                  "Tax",
+                  "Notice"
             ],
-            "explanation": "Encryption renders sensitive messages unreadable to eavesdroppers."
+            "explanation": "The constitution is the supreme law that protects citizens' rights."
       },
       {
             "id": "wf_g8_h_40",
-            "cluePrompt": "Hook the transmission of clean data and power without any physical conducting cords",
-            "clueCategory": "Technology",
-            "targetWord": "Wireless",
+            "cluePrompt": "Hook a system where citizens choose their leaders through democratic voting",
+            "clueCategory": "Civics",
+            "targetWord": "Democracy",
             "distractorWords": [
-                  "Fibre-optic",
-                  "Coaxial",
-                  "Hardwired"
+                  "Monarchy",
+                  "Empire",
+                  "Dynasty"
             ],
-            "explanation": "Wireless systems communicate via electromagnetic waves without physical wires."
+            "explanation": "In a democracy, citizens vote to choose their representatives."
       }
 ],
   },

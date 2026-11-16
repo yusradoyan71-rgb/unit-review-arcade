@@ -419,3 +419,4 @@ export const WordFishingGame: React.FC<WordFishingGameProps> = ({
     </div>
   );
 };
+

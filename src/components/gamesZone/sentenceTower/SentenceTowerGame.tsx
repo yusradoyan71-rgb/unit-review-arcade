@@ -162,6 +162,20 @@ export const SentenceTowerGame: React.FC<SentenceTowerGameProps> = ({
     const currentQ = questions[currentIndex];
     if (!currentQ) return;
 
+    // Require all word blocks to be placed
+    if (placedWords.length < currentQ.scrambledWords.length) {
+      if (!isMuted) sounds.playError();
+      setFeedback({
+        isSuccess: false,
+        text: `Incomplete floor! Use all ${currentQ.scrambledWords.length} blocks.`,
+        explanation: `You placed ${placedWords.length} of ${currentQ.scrambledWords.length} words. Tap the remaining words below to finish the sentence.`,
+      });
+      setTimeout(() => {
+        setFeedback(null);
+      }, 1800);
+      return;
+    }
+
     const assembled = placedWords.map((w) => w.text).join(' ');
     const normAssembled = normalizeSentence(assembled);
     const normCanonical = normalizeSentence(currentQ.correctSentence);
@@ -191,7 +205,7 @@ export const SentenceTowerGame: React.FC<SentenceTowerGameProps> = ({
         } else {
           setCurrentIndex((i) => i + 1);
         }
-      }, 1000);
+      }, 1200);
     } else {
       // Incorrect order!
       if (!isMuted) sounds.playError();
@@ -202,15 +216,18 @@ export const SentenceTowerGame: React.FC<SentenceTowerGameProps> = ({
       setLives(newLives);
       setFeedback({
         isSuccess: false,
-        text: `Sentence Unbalanced! Try arranging again.`,
+        text: newLives <= 0 ? 'Tower Collapsed!' : 'Sentence Unbalanced! Try arranging again.',
+        explanation: currentQ.explanation
+          ? `Grammar tip: ${currentQ.explanation}`
+          : `Hint: Check the word order for ${currentQ.themeOrTopic}.`,
       });
 
       setTimeout(() => {
         setFeedback(null);
-        if (newLives <= 0 || currentIndex + 1 >= questions.length) {
+        if (newLives <= 0) {
           finishGame(correctCount, newIncorrect, score);
         }
-      }, 1100);
+      }, 2000);
     }
   };
 
@@ -393,9 +410,13 @@ export const SentenceTowerGame: React.FC<SentenceTowerGameProps> = ({
               type="button"
               onClick={handleSubmitSentence}
               disabled={placedWords.length === 0}
-              className="flex-1 py-3 px-6 rounded-xl font-black text-base text-white bg-gradient-to-r from-emerald-600 to-green-500 hover:brightness-110 active:scale-[0.98] transition-all shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2 disabled:opacity-40 disabled:pointer-events-none"
+              className={`flex-1 py-3 px-6 rounded-xl font-black text-base transition-all shadow-lg flex items-center justify-center gap-2 ${
+                placedWords.length === currentQ.scrambledWords.length
+                  ? 'bg-gradient-to-r from-emerald-600 to-green-500 text-white hover:brightness-110 active:scale-[0.98] shadow-emerald-600/30 cursor-pointer'
+                  : 'bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-700 cursor-pointer'
+              }`}
             >
-              <CheckCircle2 className="w-5 h-5" /> Build Floor ({placedWords.length}/
+              <CheckCircle2 className="w-5 h-5 text-emerald-400" /> Build Floor ({placedWords.length}/
               {currentQ.scrambledWords.length})
             </button>
           </div>
@@ -404,3 +425,4 @@ export const SentenceTowerGame: React.FC<SentenceTowerGameProps> = ({
     </div>
   );
 };
+

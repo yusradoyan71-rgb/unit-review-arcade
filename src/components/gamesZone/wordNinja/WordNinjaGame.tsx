@@ -9,6 +9,8 @@ import type {
 import { getQuestionsForGame } from '../../../data/gamesZone';
 import { GamesZoneService } from '../../../services/gamesZoneService';
 import { sounds } from '../../../services/soundEffects';
+import { lineIntersectsBox } from './slicingPhysics';
+export { lineIntersectsBox };
 
 interface WordNinjaGameProps {
   gradeId: GradeId;
@@ -55,8 +57,11 @@ export const WordNinjaGame: React.FC<WordNinjaGameProps> = ({
 
   const startTimeRef = useRef(Date.now());
   const arenaRef = useRef<HTMLDivElement>(null);
+  const targetRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const animationFrameRef = useRef<number | null>(null);
   const isPointerDownRef = useRef(false);
+  const lastPointRef = useRef<{ x: number; y: number } | null>(null);
+  const slicedInCurrentStrokeRef = useRef<Set<string>>(new Set());
 
   // Load questions
   useEffect(() => {
@@ -79,13 +84,12 @@ export const WordNinjaGame: React.FC<WordNinjaGameProps> = ({
       ...q.distractorWords.map((w) => ({ word: w, isCorrect: false })),
     ];
 
-    // Shuffle targets
+    // Shuffle targets randomly
     allWords.sort(() => Math.random() - 0.5);
 
     const speedMultiplier = difficulty === 'hard' ? 0.35 : difficulty === 'medium' ? 0.25 : 0.15;
 
     const targets: FloatingTarget[] = allWords.map((item, idx) => {
-      // distribute initial positions
       const angle = (idx / allWords.length) * Math.PI * 2;
       return {
         id: `target_${idx}_${Date.now()}`,
@@ -100,6 +104,8 @@ export const WordNinjaGame: React.FC<WordNinjaGameProps> = ({
     });
 
     setActiveTargets(targets);
+    targetRefs.current = {};
+    slicedInCurrentStrokeRef.current.clear();
   }, [difficulty]);
 
   useEffect(() => {
@@ -122,9 +128,9 @@ export const WordNinjaGame: React.FC<WordNinjaGameProps> = ({
           let nvy = target.vy;
 
           // Bounce off boundaries
-          if (nx < 8 || nx > 85) {
+          if (nx < 10 || nx > 85) {
             nvx = -nvx;
-            nx = Math.max(8, Math.min(85, nx));
+            nx = Math.max(10, Math.min(85, nx));
           }
           if (ny < 12 || ny > 80) {
             nvy = -nvy;
@@ -201,7 +207,7 @@ export const WordNinjaGame: React.FC<WordNinjaGameProps> = ({
         setCombo((c) => Math.min(5, c + 1));
         const newCorrect = correctCount + 1;
         setCorrectCount(newCorrect);
-        setFeedback({ text: `+${earned} Perfect Slice!`, isSuccess: true });
+        setFeedback({ text: `+${earned} Slice Cut!`, isSuccess: true });
 
         setTimeout(() => {
           setFeedback(null);
@@ -210,7 +216,7 @@ export const WordNinjaGame: React.FC<WordNinjaGameProps> = ({
           } else {
             setCurrentIndex((i) => i + 1);
           }
-        }, 600);
+        }, 650);
       } else {
         // Sliced wrong distractor!
         if (!isMuted) sounds.playError();
@@ -226,7 +232,7 @@ export const WordNinjaGame: React.FC<WordNinjaGameProps> = ({
           if (newLives <= 0) {
             finishGame(correctCount, newIncorrect, score);
           }
-        }, 700);
+        }, 750);
       }
     },
     [
@@ -243,25 +249,78 @@ export const WordNinjaGame: React.FC<WordNinjaGameProps> = ({
     ]
   );
 
-  // Slicing gesture trail
+  // Check swipe intersection against all unsliced targets
+  const checkSwipeIntersection = useCallback(
+    (p1: { x: number; y: number }, p2: { x: number; y: number }) => {
+      if (!arenaRef.current || isPaused) return;
+      const arenaRect = arenaRef.current.getBoundingClientRect();
+
+      for (const target of activeTargets) {
+        if (target.isSliced || slicedInCurrentStrokeRef.current.has(target.id)) continue;
+        const el = targetRefs.current[target.id];
+        if (!el) continue;
+
+        const elRect = el.getBoundingClientRect();
+        const bx = elRect.left - arenaRect.left;
+        const by = elRect.top - arenaRect.top;
+        const bw = elRect.width;
+        const bh = elRect.height;
+
+        if (lineIntersectsBox(p1.x, p1.y, p2.x, p2.y, bx, by, bw, bh)) {
+          slicedInCurrentStrokeRef.current.add(target.id);
+          handleSliceTarget(target);
+          break; // slice one per segment
+        }
+      }
+    },
+    [activeTargets, isPaused, handleSliceTarget]
+  );
+
+  // Slicing gesture handlers
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    isPointerDownRef.current = true;
-    if (arenaRef.current) {
-      const rect = arenaRef.current.getBoundingClientRect();
-      setSliceTrail([{ x: e.clientX - rect.left, y: e.clientY - rect.top }]);
+    if (!arenaRef.current || isPaused) return;
+    try {
+      (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+    } catch {
+      // ignore pointer capture errors if unsupported
     }
+
+    isPointerDownRef.current = true;
+    slicedInCurrentStrokeRef.current.clear();
+
+    const rect = arenaRef.current.getBoundingClientRect();
+    const point = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    lastPointRef.current = point;
+    setSliceTrail([point]);
+
+    // Check direct touch / point collision on start
+    checkSwipeIntersection(point, point);
   };
 
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!isPointerDownRef.current || !arenaRef.current) return;
+    if (!isPointerDownRef.current || !arenaRef.current || isPaused) return;
     const rect = arenaRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    setSliceTrail((prev) => [...prev.slice(-6), { x, y }]);
+    const currentPoint = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+
+    if (lastPointRef.current) {
+      checkSwipeIntersection(lastPointRef.current, currentPoint);
+    }
+
+    lastPointRef.current = currentPoint;
+    setSliceTrail((prev) => [...prev.slice(-8), currentPoint]);
   };
 
-  const handlePointerUp = () => {
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
     isPointerDownRef.current = false;
+    lastPointRef.current = null;
+    slicedInCurrentStrokeRef.current.clear();
+    try {
+      if ((e.currentTarget as HTMLElement).hasPointerCapture(e.pointerId)) {
+        (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+      }
+    } catch {
+      // ignore
+    }
     setTimeout(() => setSliceTrail([]), 150);
   };
 
@@ -338,19 +397,27 @@ export const WordNinjaGame: React.FC<WordNinjaGameProps> = ({
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
         className="relative flex-1 w-full h-full cursor-crosshair overflow-hidden touch-none"
       >
-        {/* Slice Trail Canvas/SVG */}
+        {/* Glowing Katana Slice Trail */}
         {sliceTrail.length > 1 && (
           <svg className="absolute inset-0 w-full h-full pointer-events-none z-30">
+            <defs>
+              <linearGradient id="bladeGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#38BDF8" />
+                <stop offset="50%" stopColor="#F43F5E" />
+                <stop offset="100%" stopColor="#FFFFFF" />
+              </linearGradient>
+            </defs>
             <polyline
               points={sliceTrail.map((p) => `${p.x},${p.y}`).join(' ')}
               fill="none"
-              stroke="#F43F5E"
+              stroke="url(#bladeGlow)"
               strokeWidth="6"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="filter drop-shadow-[0_0_8px_#F43F5E]"
+              className="filter drop-shadow-[0_0_10px_#38BDF8]"
             />
           </svg>
         )}
@@ -361,8 +428,8 @@ export const WordNinjaGame: React.FC<WordNinjaGameProps> = ({
             <div
               className={`px-6 py-3 rounded-2xl font-black text-lg md:text-xl shadow-2xl backdrop-blur-md border ${
                 feedback.isSuccess
-                  ? 'bg-emerald-950/80 border-emerald-500 text-emerald-200'
-                  : 'bg-rose-950/80 border-rose-500 text-rose-200'
+                  ? 'bg-emerald-950/90 border-emerald-500 text-emerald-200'
+                  : 'bg-rose-950/90 border-rose-500 text-rose-200'
               }`}
             >
               {feedback.text}
@@ -370,39 +437,65 @@ export const WordNinjaGame: React.FC<WordNinjaGameProps> = ({
           </div>
         )}
 
-        {/* Floating Flying Targets */}
+        {/* Floating Flying Targets — 100% NEUTRAL STYLING BEFORE SLICE (NO ANSWER LEAK) */}
         {activeTargets.map((target) => (
-          <button
+          <div
             key={target.id}
-            type="button"
-            onPointerDown={(e) => {
-              e.stopPropagation();
-              handleSliceTarget(target);
+            ref={(el) => {
+              targetRefs.current[target.id] = el;
             }}
             style={{
               left: `${target.x}%`,
               top: `${target.y}%`,
               transform: 'translate(-50%, -50%)',
             }}
-            disabled={target.isSliced}
-            className={`absolute z-20 px-5 py-3 rounded-2xl font-black text-base md:text-lg shadow-xl transition-transform active:scale-90 ${
-              target.isSliced
-                ? 'opacity-0 scale-125 transition-all duration-300'
-                : 'opacity-100'
-            } ${
-              target.isCorrect
-                ? 'bg-gradient-to-r from-red-600 to-rose-700 text-white border-2 border-red-400/80 shadow-red-600/40'
-                : 'bg-gradient-to-r from-slate-800 to-slate-900 text-slate-200 border-2 border-slate-600/80 hover:border-slate-400'
+            className={`absolute z-20 pointer-events-none transition-transform duration-200 ${
+              target.isSliced ? 'scale-110' : ''
             }`}
           >
-            {target.word}
-          </button>
+            {target.isSliced ? (
+              /* Sliced State with satisfying split animation and revealing green/red feedback */
+              <div className="relative flex flex-col items-center">
+                {/* Upper slice half sliding up-left */}
+                <div
+                  className={`px-5 py-1.5 rounded-t-2xl font-black text-base md:text-lg border-x-2 border-t-2 shadow-2xl transition-all duration-500 -translate-y-3 -translate-x-3 -rotate-12 opacity-80 ${
+                    target.isCorrect
+                      ? 'bg-emerald-600 text-white border-emerald-300 shadow-emerald-500/50'
+                      : 'bg-rose-600 text-white border-rose-300 shadow-rose-500/50'
+                  }`}
+                >
+                  {target.word}
+                </div>
+                {/* Slicing laser divider */}
+                <div
+                  className={`w-full h-1 ${
+                    target.isCorrect ? 'bg-emerald-300 shadow-[0_0_8px_#10B981]' : 'bg-rose-300 shadow-[0_0_8px_#EF4444]'
+                  }`}
+                />
+                {/* Lower slice half sliding down-right */}
+                <div
+                  className={`px-5 py-1.5 rounded-b-2xl font-black text-base md:text-lg border-x-2 border-b-2 shadow-2xl transition-all duration-500 translate-y-3 translate-x-3 rotate-12 opacity-80 ${
+                    target.isCorrect
+                      ? 'bg-emerald-600 text-white border-emerald-300 shadow-emerald-500/50'
+                      : 'bg-rose-600 text-white border-rose-300 shadow-rose-500/50'
+                  }`}
+                >
+                  {target.word}
+                </div>
+              </div>
+            ) : (
+              /* Unsliced Neutral State: Identical styling for all options, ZERO answer cues */
+              <div className="px-5 py-3 rounded-2xl font-black text-base md:text-lg bg-gradient-to-r from-slate-800/95 via-slate-850/95 to-slate-900/95 text-slate-100 border-2 border-slate-700/80 shadow-xl shadow-black/50">
+                {target.word}
+              </div>
+            )}
+          </div>
         ))}
 
         {/* Smartboard Hint at bottom */}
         <div className="absolute bottom-3 inset-x-0 text-center pointer-events-none">
-          <span className="text-[11px] font-semibold text-slate-500 bg-slate-950/60 px-3 py-1 rounded-full border border-slate-800">
-            Smartboard & Mouse: Tap or swipe directly across the target word
+          <span className="text-[11px] font-semibold text-slate-400 bg-slate-950/70 px-4 py-1.5 rounded-full border border-slate-800">
+            Swipe or drag through the target word to slice it like a ninja!
           </span>
         </div>
       </div>

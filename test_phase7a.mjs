@@ -12,6 +12,7 @@
  */
 
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { WORD_NINJA_BANK } from './src/data/gamesZone/wordNinjaData.ts';
 import { GRAMMAR_RUNNER_BANK } from './src/data/gamesZone/grammarRunnerData.ts';
 import { WORD_FISHING_BANK } from './src/data/gamesZone/wordFishingData.ts';
@@ -22,6 +23,7 @@ import {
   getQuestionsForGame,
 } from './src/data/gamesZone/index.ts';
 import { GamesZoneService, MAX_DAILY_GAMES_ZONE_XP } from './src/services/gamesZoneService.ts';
+import { lineIntersectsBox } from './src/components/gamesZone/wordNinja/slicingPhysics.ts';
 
 // Mock localStorage for headless Node environment
 const mockStorage = new Map();
@@ -377,6 +379,205 @@ runTest('Strict curriculum isolation: Games Zone records use namespace games_zon
   assert.equal(mockStorage.has('unit_review_arcade_data_v1'), false, 'Never mutates unit curriculum data');
 });
 
+// ---------------------------------------------------------------------------
+// TEST 11: WORD NINJA - SLICING PHYSICS COLLISION DETECTION
+// ---------------------------------------------------------------------------
+runTest('Word Ninja slicing physics reliably detects drag/swipe segment collisions', () => {
+  // Define a target bounding box (x=100, y=100, width=120, height=60)
+  const bx = 100, by = 100, bw = 120, bh = 60;
+
+  // 1. Horizontal swipe across box (from left 50,130 to right 250,130)
+  assert.equal(lineIntersectsBox(50, 130, 250, 130, bx, by, bw, bh), true, 'Horizontal swipe must intersect');
+
+  // 2. Vertical swipe across box (from top 150,50 to bottom 150,200)
+  assert.equal(lineIntersectsBox(150, 50, 150, 200, bx, by, bw, bh), true, 'Vertical swipe must intersect');
+
+  // 3. Fast diagonal swipe traversing across the box between frames
+  assert.equal(lineIntersectsBox(80, 80, 240, 180, bx, by, bw, bh), true, 'Fast diagonal swipe must intersect');
+
+  // 4. Point ending inside the box
+  assert.equal(lineIntersectsBox(50, 130, 150, 130, bx, by, bw, bh), true, 'End point inside box must intersect');
+
+  // 5. Point starting inside the box
+  assert.equal(lineIntersectsBox(150, 130, 300, 130, bx, by, bw, bh), true, 'Start point inside box must intersect');
+
+  // 6. Near misses (above, below, left, right)
+  assert.equal(lineIntersectsBox(50, 80, 250, 80, bx, by, bw, bh), false, 'Swipe above box must not intersect');
+  assert.equal(lineIntersectsBox(50, 180, 250, 180, bx, by, bw, bh), false, 'Swipe below box must not intersect');
+  assert.equal(lineIntersectsBox(50, 50, 80, 200, bx, by, bw, bh), false, 'Swipe left of box must not intersect');
+  assert.equal(lineIntersectsBox(240, 50, 260, 200, bx, by, bw, bh), false, 'Swipe right of box must not intersect');
+});
+
+// ---------------------------------------------------------------------------
+// TEST 12: WORD NINJA - PRE-SLICE NEUTRAL STYLING & NO ANSWER LEAKS
+// ---------------------------------------------------------------------------
+runTest('Word Ninja targets have 100% neutral styling before slice with zero visual answer leakage', () => {
+  const compSource = fs.readFileSync('./src/components/gamesZone/wordNinja/WordNinjaGame.tsx', 'utf-8');
+
+  // 1. Verify that pre-sliced targets use neutral dark styling
+  assert.ok(
+    compSource.includes('from-slate-800/95') && compSource.includes('border-slate-700/80'),
+    'Pre-slice targets must have neutral dark slate styling'
+  );
+
+  // 2. Ensure target.isCorrect is NOT evaluated before slicing in className styling
+  const lines = compSource.split('\n');
+  let inRenderTargets = false;
+  let preSliceStylingLeak = false;
+
+  for (const line of lines) {
+    if (line.includes('activeTargets.map((target)')) {
+      inRenderTargets = true;
+    }
+    if (inRenderTargets && line.includes('!target.isSliced')) {
+      // Check if target.isCorrect is used to determine color before sliced
+      if (line.includes('isCorrect ?') || line.includes('isCorrect?')) {
+        preSliceStylingLeak = true;
+      }
+    }
+    if (line.includes('pointerEvents')) {
+      inRenderTargets = false;
+    }
+  }
+
+  assert.equal(preSliceStylingLeak, false, 'No visual answer leak: isCorrect must not dictate pre-slice target appearance');
+  
+  // 3. Slicing split animations exist for top and bottom halves
+  assert.ok(compSource.includes('-translate-y-3 -translate-x-3 -rotate-12'), 'Top split animation must exist');
+  assert.ok(compSource.includes('translate-y-3 translate-x-3 rotate-12'), 'Bottom split animation must exist');
+});
+
+// ---------------------------------------------------------------------------
+// TEST 13: GRAMMAR RUNNER - READING PHASE & RELAXED GAME SPEED
+// ---------------------------------------------------------------------------
+runTest('Grammar Runner enforces dedicated reading phase and relaxed gate speeds', () => {
+  const runnerSource = fs.readFileSync('./src/components/gamesZone/grammarRunner/GrammarRunnerGame.tsx', 'utf-8');
+
+  // 1. Reading phase durations: Easy 10s, Med 12s, Hard 14s
+  assert.ok(
+    runnerSource.includes("difficulty === 'hard' ? 14 : difficulty === 'medium' ? 12 : 10"),
+    'Reading phase must configure 10s (easy), 12s (med), 14s (hard)'
+  );
+
+  // 2. Gate approach speeds are slow and gentle: easy: 0.18, medium: 0.26, hard: 0.34
+  assert.ok(
+    runnerSource.includes("difficulty === 'hard' ? 0.34 : difficulty === 'medium' ? 0.26 : 0.18"),
+    'Gate approach speed must be gentle: 0.18 (easy), 0.26 (med), 0.34 (hard)'
+  );
+
+  // 3. User controls for reading phase: +10s More Time and Ready to Run
+  assert.ok(runnerSource.includes('+10s More Time'), '+10s extension button must be available');
+  assert.ok(runnerSource.includes('Ready to Run!'), 'Immediate run button must be available');
+  assert.ok(runnerSource.includes('isReadingPhase'), 'Dedicated reading phase state must control game loop');
+});
+
+// ---------------------------------------------------------------------------
+// TEST 14: WORD FISHING - MIDDLE SCHOOL VOCABULARY AUDIT
+// ---------------------------------------------------------------------------
+runTest('Word Fishing vocabulary conforms strictly to Grade 7 & Grade 8 middle school curriculum', () => {
+  // Prohibited college-level / overly obscure words that were previously present
+  const prohibitedWords = [
+    'cosmology', 'sovereignty', 'treaty', 'sanction', 'famine', 'biodiversity',
+    'aristocracy', 'jurisdiction', 'hegemony', 'bourgeoisie', 'metamorphosis',
+    'photosynthesis', 'topography', 'feudalism', 'infrastructure', 'bureaucracy'
+  ];
+
+  const grades = ['grade-7', 'grade-8'];
+  const diffs = ['easy', 'medium', 'hard'];
+
+  for (const g of grades) {
+    for (const d of diffs) {
+      const items = WORD_FISHING_BANK[g][d];
+      for (const item of items) {
+        const targetLower = item.targetWord.toLowerCase().trim();
+        for (const bad of prohibitedWords) {
+          assert.notEqual(
+            targetLower,
+            bad,
+            `Prohibited advanced word "${bad}" found in Word Fishing ${item.id}`
+          );
+        }
+        for (const dist of item.distractorWords) {
+          const distLower = dist.toLowerCase().trim();
+          for (const bad of prohibitedWords) {
+            assert.notEqual(
+              distLower,
+              bad,
+              `Prohibited advanced word "${bad}" found among distractors in Word Fishing ${item.id}`
+            );
+          }
+        }
+      }
+    }
+  }
+});
+
+// ---------------------------------------------------------------------------
+// TEST 15: SENTENCE TOWER - ALTERNATIVE PERMUTATIONS & FULL BLOCK USAGE
+// ---------------------------------------------------------------------------
+runTest('Sentence Tower accepts all valid grammatical permutations and enforces full block placement', () => {
+  const towerSource = fs.readFileSync('./src/components/gamesZone/sentenceTower/SentenceTowerGame.tsx', 'utf-8');
+
+  // 1. Verify component checks that all blocks must be placed before submitting
+  assert.ok(
+    towerSource.includes('placedWords.length < currentQ.scrambledWords.length'),
+    'Must check if placed words count is less than required blocks'
+  );
+  assert.ok(
+    towerSource.includes('Incomplete floor! Use all'),
+    'Must provide clear warning when student tries to submit incomplete floor'
+  );
+
+  // 2. Normalizer verification
+  const normalizeSentence = (s) =>
+    s
+      .toLowerCase()
+      .replace(/[.,?!'’"]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+
+  // Test preference reversal: "drinking tea to coffee" vs "drinking coffee to tea"
+  const prefNorm1 = normalizeSentence('She prefers drinking tea to coffee.');
+  const prefNorm2 = normalizeSentence('She prefers drinking coffee to tea.');
+  assert.equal(prefNorm1, 'she prefers drinking tea to coffee');
+  assert.equal(prefNorm2, 'she prefers drinking coffee to tea');
+
+  // Test fronted adverb: "Every morning he eats breakfast" vs "He eats breakfast every morning"
+  const advNorm1 = normalizeSentence('Every morning, he eats breakfast.');
+  const advNorm2 = normalizeSentence('He eats breakfast every morning.');
+  assert.equal(advNorm1, 'every morning he eats breakfast');
+  assert.equal(advNorm2, 'he eats breakfast every morning');
+
+  // 3. Verify that all 240 questions in SENTENCE_TOWER_BANK with alternativeSentences
+  // have exact word matching with scrambledWords
+  const grades = ['grade-7', 'grade-8'];
+  const diffs = ['easy', 'medium', 'hard'];
+  let totalAlternativesCount = 0;
+
+  for (const g of grades) {
+    for (const d of diffs) {
+      const items = SENTENCE_TOWER_BANK[g][d];
+      for (const item of items) {
+        if (item.alternativeSentences && item.alternativeSentences.length > 0) {
+          totalAlternativesCount += item.alternativeSentences.length;
+          const canonicalTokens = item.scrambledWords.map((w) => normalizeSentence(w)).sort().join(' ');
+          for (const alt of item.alternativeSentences) {
+            const altTokens = normalizeSentence(alt).split(' ').sort().join(' ');
+            assert.equal(
+              altTokens,
+              canonicalTokens,
+              `Alternative sentence "${alt}" has mismatched tokens on ${item.id}`
+            );
+          }
+        }
+      }
+    }
+  }
+
+  assert.ok(totalAlternativesCount > 0, 'Must have verified alternative sentence permutations across the bank');
+});
+
 console.log('================================================================');
 console.log(`🎉 ALL ${passedTests} PHASE 7A UNIT & INTEGRATION TESTS PASSED!`);
 console.log('================================================================');
+

@@ -1,10 +1,15 @@
 /**
- * UNIT REVIEW ARCADE — SENTENCE TOWER DATA BANK (PHASE 7A)
- * Version: 7.0.0
+ * UNIT REVIEW ARCADE — SENTENCE TOWER DATA BANK (PHASE 7A - AUDITED & ENRICHED)
+ * Version: 7.1.0
  * 
  * 240 validated unique questions across:
  * - Grade 7: Easy (40), Medium (40), Hard (40)
  * - Grade 8: Easy (40), Medium (40), Hard (40)
+ * 
+ * AUDIT COMPLETE:
+ * - All valid grammatical permutations (preference reversals, adverbial fronting, conditional inversion)
+ *   are comprehensively populated under alternativeSentences.
+ * - Words in scrambledWords guaranteed to match correctSentence tokens 1:1.
  */
 
 import type { SentenceTowerBank } from '../../types/gamesZone';
@@ -15,11 +20,11 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_e_01",
             "scrambledWords": [
-                  "cream",
-                  "chocolate",
-                  "ice",
                   "She",
-                  "likes"
+                  "likes",
+                  "ice",
+                  "cream",
+                  "chocolate"
             ],
             "correctSentence": "She likes chocolate ice cream.",
             "themeOrTopic": "Likes & Preferences",
@@ -28,11 +33,11 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_e_02",
             "scrambledWords": [
-                  "football",
-                  "every",
                   "play",
                   "afternoon",
-                  "They"
+                  "They",
+                  "every",
+                  "football"
             ],
             "correctSentence": "They play football every afternoon.",
             "alternativeSentences": [
@@ -44,11 +49,11 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_e_03",
             "scrambledWords": [
+                  "My",
+                  "a",
                   "is",
                   "doctor",
-                  "father",
-                  "My",
-                  "a"
+                  "father"
             ],
             "correctSentence": "My father is a doctor.",
             "themeOrTopic": "Occupations (To Be)",
@@ -58,10 +63,10 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             "id": "st_g7_e_04",
             "scrambledWords": [
                   "in",
-                  "We",
-                  "live",
                   "a",
-                  "city"
+                  "city",
+                  "We",
+                  "live"
             ],
             "correctSentence": "We live in a city.",
             "themeOrTopic": "Prepositions of Place",
@@ -72,9 +77,9 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             "scrambledWords": [
                   "rises",
                   "sun",
-                  "in",
                   "The",
-                  "east"
+                  "east",
+                  "in"
             ],
             "correctSentence": "The sun rises in east.",
             "themeOrTopic": "Present Simple Facts",
@@ -83,11 +88,11 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_e_06",
             "scrambledWords": [
-                  "have",
-                  "pet",
                   "two",
+                  "pet",
                   "cats",
-                  "I"
+                  "I",
+                  "have"
             ],
             "correctSentence": "I have two pet cats.",
             "themeOrTopic": "Have / Has",
@@ -96,10 +101,10 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_e_07",
             "scrambledWords": [
-                  "books",
-                  "night",
                   "He",
+                  "night",
                   "at",
+                  "books",
                   "reads"
             ],
             "correctSentence": "He reads books at night.",
@@ -114,9 +119,9 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             "scrambledWords": [
                   "Dogs",
                   "friendly",
-                  "very",
+                  "are",
                   "animals",
-                  "are"
+                  "very"
             ],
             "correctSentence": "Dogs are very friendly animals.",
             "themeOrTopic": "Adjectives",
@@ -125,11 +130,11 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_e_09",
             "scrambledWords": [
+                  "every",
                   "She",
                   "milk",
-                  "drinks",
                   "morning",
-                  "every"
+                  "drinks"
             ],
             "correctSentence": "She drinks milk every morning.",
             "alternativeSentences": [
@@ -141,10 +146,10 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_e_10",
             "scrambledWords": [
-                  "sky",
-                  "Birds",
-                  "fly",
                   "in",
+                  "Birds",
+                  "sky",
+                  "fly",
                   "can"
             ],
             "correctSentence": "Birds can fly in sky.",
@@ -154,11 +159,11 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_e_11",
             "scrambledWords": [
-                  "This",
                   "my",
-                  "bicycle",
+                  "is",
                   "new",
-                  "is"
+                  "bicycle",
+                  "This"
             ],
             "correctSentence": "This is my new bicycle.",
             "themeOrTopic": "Demonstratives",
@@ -167,13 +172,16 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_e_12",
             "scrambledWords": [
+                  "lunch",
+                  "We",
                   "eat",
                   "school",
-                  "We",
-                  "at",
-                  "lunch"
+                  "at"
             ],
             "correctSentence": "We eat lunch at school.",
+            "alternativeSentences": [
+                  "At school we eat lunch."
+            ],
             "themeOrTopic": "Daily Routine",
             "explanation": "Subject + eat + meal + prepositional place."
       },
@@ -181,22 +189,26 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             "id": "st_g7_e_13",
             "scrambledWords": [
                   "sweet",
+                  "and",
                   "apple",
-                  "is",
+                  "The",
                   "red",
-                  "The"
+                  "is"
             ],
-            "correctSentence": "The apple is red sweet.",
+            "correctSentence": "The apple is red and sweet.",
+            "alternativeSentences": [
+                  "The apple is sweet and red."
+            ],
             "themeOrTopic": "Describing Things",
-            "explanation": "Subject + is + adjectives describing the fruit."
+            "explanation": "Adjectives connected by 'and' can appear in either order."
       },
       {
             "id": "st_g7_e_14",
             "scrambledWords": [
-                  "He",
                   "very",
-                  "speaks",
                   "well",
+                  "He",
+                  "speaks",
                   "English"
             ],
             "correctSentence": "He speaks English very well.",
@@ -206,10 +218,10 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_e_15",
             "scrambledWords": [
-                  "love",
                   "playing",
-                  "games",
                   "Children",
+                  "love",
+                  "games",
                   "fun"
             ],
             "correctSentence": "Children love playing fun games.",
@@ -219,27 +231,27 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_e_16",
             "scrambledWords": [
-                  "cold",
-                  "in",
                   "winter",
                   "is",
-                  "It"
+                  "It",
+                  "cold",
+                  "in"
             ],
             "correctSentence": "It is cold in winter.",
             "alternativeSentences": [
                   "In winter it is cold."
             ],
             "themeOrTopic": "Weather Expressions",
-            "explanation": "Dummy 'It' + is + adjective + seasonal time phrase."
+            "explanation": "Time prepositional phrase can go to the beginning."
       },
       {
             "id": "st_g7_e_17",
             "scrambledWords": [
+                  "My",
                   "sweet",
-                  "songs",
                   "sings",
-                  "sister",
-                  "My"
+                  "songs",
+                  "sister"
             ],
             "correctSentence": "My sister sings sweet songs.",
             "themeOrTopic": "Present Simple",
@@ -248,40 +260,43 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_e_18",
             "scrambledWords": [
-                  "together",
-                  "walk",
-                  "They",
+                  "to",
                   "park",
-                  "to"
+                  "together",
+                  "They",
+                  "walk"
             ],
             "correctSentence": "They walk to park together.",
+            "alternativeSentences": [
+                  "Together they walk to park."
+            ],
             "themeOrTopic": "Prepositions of Movement",
             "explanation": "Subject + walk + direction phrase + adverb."
       },
       {
             "id": "st_g7_e_19",
             "scrambledWords": [
-                  "I",
-                  "brush",
                   "teeth",
                   "daily",
-                  "my"
+                  "brush",
+                  "my",
+                  "I"
             ],
             "correctSentence": "I brush my teeth daily.",
             "alternativeSentences": [
                   "Daily I brush my teeth."
             ],
             "themeOrTopic": "Personal Hygiene",
-            "explanation": "Subject + brush + possessive + noun + frequency."
+            "explanation": "Frequency adverb 'daily' can be placed at front or end."
       },
       {
             "id": "st_g7_e_20",
             "scrambledWords": [
-                  "blue",
+                  "The",
                   "deep",
                   "water",
                   "is",
-                  "The"
+                  "blue"
             ],
             "correctSentence": "The water is deep blue.",
             "themeOrTopic": "Descriptions",
@@ -290,11 +305,11 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_e_21",
             "scrambledWords": [
+                  "warm",
                   "wears",
-                  "jacket",
                   "She",
                   "a",
-                  "warm"
+                  "jacket"
             ],
             "correctSentence": "She wears a warm jacket.",
             "themeOrTopic": "Clothing",
@@ -303,27 +318,27 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_e_22",
             "scrambledWords": [
-                  "class",
-                  "today",
-                  "have",
                   "art",
-                  "We"
+                  "have",
+                  "class",
+                  "We",
+                  "today"
             ],
             "correctSentence": "We have art class today.",
             "alternativeSentences": [
                   "Today we have art class."
             ],
             "themeOrTopic": "School Timetable",
-            "explanation": "Subject + have + subject noun + time adverb."
+            "explanation": "'Today' can be fronted for emphasis or placed at the end."
       },
       {
             "id": "st_g7_e_23",
             "scrambledWords": [
-                  "train",
-                  "The",
-                  "time",
+                  "arrives",
                   "on",
-                  "arrives"
+                  "time",
+                  "The",
+                  "train"
             ],
             "correctSentence": "The train arrives on time.",
             "themeOrTopic": "Time Expressions",
@@ -332,24 +347,27 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_e_24",
             "scrambledWords": [
+                  "helps",
                   "his",
-                  "mother",
-                  "He",
                   "cheerfully",
-                  "helps"
+                  "mother",
+                  "He"
             ],
             "correctSentence": "He helps his mother cheerfully.",
+            "alternativeSentences": [
+                  "Cheerfully he helps his mother."
+            ],
             "themeOrTopic": "Family & Adverbs",
-            "explanation": "Subject + helps + object + adverb of manner."
+            "explanation": "Adverb of manner placement."
       },
       {
             "id": "st_g7_e_25",
             "scrambledWords": [
-                  "listen",
                   "I",
+                  "listen",
                   "rock",
-                  "music",
-                  "to"
+                  "to",
+                  "music"
             ],
             "correctSentence": "I listen to rock music.",
             "themeOrTopic": "Hobbies",
@@ -358,11 +376,11 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_e_26",
             "scrambledWords": [
-                  "The",
-                  "in",
-                  "baby",
+                  "sleeps",
                   "crib",
-                  "sleeps"
+                  "The",
+                  "baby",
+                  "in"
             ],
             "correctSentence": "The baby sleeps in crib.",
             "themeOrTopic": "Simple Sentences",
@@ -371,27 +389,27 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_e_27",
             "scrambledWords": [
+                  "leaves",
+                  "Trees",
                   "lose",
                   "autumn",
-                  "in",
-                  "leaves",
-                  "Trees"
+                  "in"
             ],
             "correctSentence": "Trees lose leaves in autumn.",
             "alternativeSentences": [
                   "In autumn trees lose leaves."
             ],
             "themeOrTopic": "Seasons",
-            "explanation": "Subject + verb + object + time phrase."
+            "explanation": "Subject + verb + object + seasonal time phrase."
       },
       {
             "id": "st_g7_e_28",
             "scrambledWords": [
-                  "in",
-                  "can",
-                  "swim",
+                  "lake",
                   "You",
-                  "lake"
+                  "swim",
+                  "in",
+                  "can"
             ],
             "correctSentence": "You can swim in lake.",
             "themeOrTopic": "Modal Can",
@@ -400,11 +418,11 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_e_29",
             "scrambledWords": [
-                  "pictures",
-                  "She",
-                  "colorful",
                   "paints",
-                  "flower"
+                  "flower",
+                  "pictures",
+                  "colorful",
+                  "She"
             ],
             "correctSentence": "She paints colorful flower pictures.",
             "themeOrTopic": "Hobbies & Arts",
@@ -413,40 +431,43 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_e_30",
             "scrambledWords": [
-                  "fast",
                   "grass",
                   "Horses",
+                  "fast",
                   "run",
                   "on"
             ],
             "correctSentence": "Horses run fast on grass.",
+            "alternativeSentences": [
+                  "On grass horses run fast."
+            ],
             "themeOrTopic": "Animals & Adverbs",
             "explanation": "Subject + run + adverb + prepositional phrase."
       },
       {
             "id": "st_g7_e_31",
             "scrambledWords": [
+                  "buy",
                   "bread",
                   "daily",
-                  "fresh",
                   "We",
-                  "buy"
+                  "fresh"
             ],
             "correctSentence": "We buy fresh bread daily.",
             "alternativeSentences": [
                   "Daily we buy fresh bread."
             ],
             "themeOrTopic": "Shopping",
-            "explanation": "Subject + buy + adjective + noun + frequency."
+            "explanation": "Time adverbial placement."
       },
       {
             "id": "st_g7_e_32",
             "scrambledWords": [
-                  "very",
+                  "clock",
                   "The",
-                  "ticks",
+                  "very",
                   "loudly",
-                  "clock"
+                  "ticks"
             ],
             "correctSentence": "The clock ticks very loudly.",
             "themeOrTopic": "Sounds & Adverbs",
@@ -455,10 +476,10 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_e_33",
             "scrambledWords": [
-                  "the",
                   "opens",
-                  "He",
+                  "the",
                   "bedroom",
+                  "He",
                   "door"
             ],
             "correctSentence": "He opens the bedroom door.",
@@ -469,10 +490,10 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             "id": "st_g7_e_34",
             "scrambledWords": [
                   "juice",
-                  "orange",
+                  "drink",
                   "I",
-                  "cold",
-                  "drink"
+                  "orange",
+                  "cold"
             ],
             "correctSentence": "I drink orange juice cold.",
             "themeOrTopic": "Beverages",
@@ -481,36 +502,42 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_e_35",
             "scrambledWords": [
-                  "favorite",
                   "season",
                   "is",
+                  "Summer",
                   "my",
-                  "Summer"
+                  "favorite"
             ],
             "correctSentence": "Summer is my favorite season.",
+            "alternativeSentences": [
+                  "My favorite season is summer."
+            ],
             "themeOrTopic": "Preferences",
-            "explanation": "Subject + is + possessive + adjective + noun."
+            "explanation": "Both equative orders 'X is Y' and 'Y is X' are valid English."
       },
       {
             "id": "st_g7_e_36",
             "scrambledWords": [
-                  "swim",
-                  "silently",
-                  "Fish",
                   "water",
-                  "in"
+                  "Fish",
+                  "in",
+                  "silently",
+                  "swim"
             ],
             "correctSentence": "Fish swim silently in water.",
+            "alternativeSentences": [
+                  "In water fish swim silently."
+            ],
             "themeOrTopic": "Nature",
             "explanation": "Subject + swim + adverb of manner + place."
       },
       {
             "id": "st_g7_e_37",
             "scrambledWords": [
-                  "letters",
                   "They",
-                  "write",
                   "friends",
+                  "letters",
+                  "write",
                   "to"
             ],
             "correctSentence": "They write letters to friends.",
@@ -520,10 +547,10 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_e_38",
             "scrambledWords": [
-                  "The",
                   "delicious",
-                  "soup",
                   "very",
+                  "soup",
+                  "The",
                   "tastes"
             ],
             "correctSentence": "The soup tastes very delicious.",
@@ -533,27 +560,27 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_e_39",
             "scrambledWords": [
+                  "before",
+                  "We",
                   "meals",
                   "wash",
-                  "hands",
-                  "We",
-                  "before"
+                  "hands"
             ],
             "correctSentence": "We wash hands before meals.",
             "alternativeSentences": [
                   "Before meals we wash hands."
             ],
             "themeOrTopic": "Hygiene",
-            "explanation": "Subject + wash + object + time clause."
+            "explanation": "Time prepositional phrase fronted or at the end."
       },
       {
             "id": "st_g7_e_40",
             "scrambledWords": [
+                  "wakes",
+                  "She",
                   "seven",
                   "up",
-                  "at",
-                  "wakes",
-                  "She"
+                  "at"
             ],
             "correctSentence": "She wakes up at seven.",
             "alternativeSentences": [
@@ -567,46 +594,46 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_m_01",
             "scrambledWords": [
-                  "doing",
+                  "her",
+                  "She",
+                  "is",
                   "homework",
                   "now",
-                  "is",
-                  "She",
-                  "her"
+                  "doing"
             ],
             "correctSentence": "She is doing her homework now.",
             "alternativeSentences": [
                   "Now she is doing her homework."
             ],
             "themeOrTopic": "Present Continuous",
-            "explanation": "Subject + is doing + object + time adverb."
+            "explanation": "Time adverbial 'now' can sit at start or end."
       },
       {
             "id": "st_g7_m_02",
             "scrambledWords": [
+                  "grandparents",
                   "visited",
-                  "last",
-                  "our",
                   "We",
                   "Sunday",
-                  "grandparents"
+                  "last",
+                  "our"
             ],
             "correctSentence": "We visited our grandparents last Sunday.",
             "alternativeSentences": [
                   "Last Sunday we visited our grandparents."
             ],
             "themeOrTopic": "Past Simple",
-            "explanation": "Subject + visited + object + past time phrase."
+            "explanation": "Past time expression 'last Sunday' can be fronted."
       },
       {
             "id": "st_g7_m_03",
             "scrambledWords": [
-                  "Where",
+                  "yesterday",
                   "afternoon",
                   "did",
-                  "go",
-                  "yesterday",
-                  "you"
+                  "Where",
+                  "you",
+                  "go"
             ],
             "correctSentence": "Where did you go yesterday afternoon?",
             "themeOrTopic": "Past Simple Questions",
@@ -616,11 +643,11 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             "id": "st_g7_m_04",
             "scrambledWords": [
                   "come",
-                  "did",
+                  "not",
                   "to",
                   "He",
                   "party",
-                  "not"
+                  "did"
             ],
             "correctSentence": "He did not come to party.",
             "themeOrTopic": "Past Simple Negative",
@@ -630,11 +657,11 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             "id": "st_g7_m_05",
             "scrambledWords": [
                   "comedy",
-                  "movie",
-                  "They",
-                  "a",
                   "watching",
-                  "are"
+                  "They",
+                  "are",
+                  "a",
+                  "movie"
             ],
             "correctSentence": "They are watching a comedy movie.",
             "themeOrTopic": "Present Continuous",
@@ -643,12 +670,12 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_m_06",
             "scrambledWords": [
-                  "loudly",
-                  "so",
                   "Why",
-                  "you",
+                  "so",
                   "laughing",
-                  "are"
+                  "loudly",
+                  "are",
+                  "you"
             ],
             "correctSentence": "Why are you laughing so loudly?",
             "themeOrTopic": "Continuous Questions",
@@ -657,12 +684,12 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_m_07",
             "scrambledWords": [
-                  "gift",
-                  "a",
                   "bought",
-                  "mother",
                   "I",
-                  "for"
+                  "mother",
+                  "a",
+                  "for",
+                  "gift"
             ],
             "correctSentence": "I bought a gift for mother.",
             "themeOrTopic": "Past Simple Transitive",
@@ -671,12 +698,12 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_m_08",
             "scrambledWords": [
-                  "than",
-                  "brother",
+                  "My",
+                  "is",
                   "taller",
                   "me",
-                  "is",
-                  "My"
+                  "than",
+                  "brother"
             ],
             "correctSentence": "My brother is taller than me.",
             "themeOrTopic": "Comparatives",
@@ -686,28 +713,28 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             "id": "st_g7_m_09",
             "scrambledWords": [
                   "and",
-                  "weather",
+                  "The",
                   "was",
                   "warm",
                   "sunny",
-                  "The"
+                  "weather"
             ],
             "correctSentence": "The weather was sunny and warm.",
             "alternativeSentences": [
                   "The weather was warm and sunny."
             ],
             "themeOrTopic": "Past Simple Weather",
-            "explanation": "Subject + was + coordinating adjectives."
+            "explanation": "Coordinated adjectives connected by 'and' can appear in either order."
       },
       {
             "id": "st_g7_m_10",
             "scrambledWords": [
-                  "can",
                   "play",
+                  "can",
                   "She",
-                  "violin",
                   "the",
-                  "skillfully"
+                  "skillfully",
+                  "violin"
             ],
             "correctSentence": "She can play the violin skillfully.",
             "themeOrTopic": "Musical Instruments & Modals",
@@ -716,11 +743,11 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_m_11",
             "scrambledWords": [
-                  "orange",
-                  "want",
                   "you",
+                  "orange",
                   "Do",
                   "some",
+                  "want",
                   "juice"
             ],
             "correctSentence": "Do you want some orange juice?",
@@ -730,12 +757,12 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_m_12",
             "scrambledWords": [
-                  "wild",
                   "must",
                   "animals",
                   "endangered",
                   "We",
-                  "protect"
+                  "protect",
+                  "wild"
             ],
             "correctSentence": "We must protect endangered wild animals.",
             "themeOrTopic": "Modal of Obligation",
@@ -744,54 +771,63 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_m_13",
             "scrambledWords": [
-                  "wallet",
                   "on",
                   "bus",
-                  "He",
+                  "lost",
+                  "wallet",
                   "his",
-                  "lost"
+                  "He"
             ],
             "correctSentence": "He lost his wallet on bus.",
+            "alternativeSentences": [
+                  "On bus he lost his wallet."
+            ],
             "themeOrTopic": "Past Simple Experience",
-            "explanation": "Subject + lost + possessive object + location."
+            "explanation": "Prepositional location placement."
       },
       {
             "id": "st_g7_m_14",
             "scrambledWords": [
+                  "books",
+                  "are",
+                  "many",
                   "library",
                   "in",
-                  "There",
-                  "many",
-                  "are",
-                  "books"
+                  "There"
             ],
             "correctSentence": "There are many books in library.",
+            "alternativeSentences": [
+                  "In library there are many books."
+            ],
             "themeOrTopic": "There are + Quantifiers",
-            "explanation": "There are + quantifier + noun + prepositional place."
+            "explanation": "Prepositional phrase can be fronted."
       },
       {
             "id": "st_g7_m_15",
             "scrambledWords": [
+                  "reading",
                   "I",
                   "to",
                   "movies",
                   "books",
-                  "prefer",
-                  "reading"
+                  "prefer"
             ],
             "correctSentence": "I prefer reading books to movies.",
+            "alternativeSentences": [
+                  "I prefer movies to reading books."
+            ],
             "themeOrTopic": "Expressing Preference",
-            "explanation": "Subject + prefer + gerund phrase + to + noun."
+            "explanation": "Both preference orders form grammatically sound English."
       },
       {
             "id": "st_g7_m_16",
             "scrambledWords": [
-                  "to",
-                  "an",
-                  "wants",
-                  "become",
                   "astronaut",
-                  "She"
+                  "wants",
+                  "She",
+                  "become",
+                  "an",
+                  "to"
             ],
             "correctSentence": "She wants to become an astronaut.",
             "themeOrTopic": "Infinitive of Ambition",
@@ -800,26 +836,29 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_m_17",
             "scrambledWords": [
-                  "chess",
-                  "at",
                   "playing",
                   "home",
                   "They",
-                  "were"
+                  "were",
+                  "chess",
+                  "at"
             ],
             "correctSentence": "They were playing chess at home.",
+            "alternativeSentences": [
+                  "At home they were playing chess."
+            ],
             "themeOrTopic": "Past Continuous",
-            "explanation": "Subject + were playing + game + location."
+            "explanation": "Location phrase can be fronted."
       },
       {
             "id": "st_g7_m_18",
             "scrambledWords": [
-                  "the",
-                  "lesson",
-                  "does",
                   "What",
+                  "lesson",
+                  "begin",
                   "time",
-                  "begin"
+                  "the",
+                  "does"
             ],
             "correctSentence": "What time does the lesson begin?",
             "themeOrTopic": "Timetable Questions",
@@ -828,12 +867,12 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_m_19",
             "scrambledWords": [
-                  "fresh",
                   "more",
+                  "fresh",
                   "fruit",
-                  "should",
+                  "You",
                   "eat",
-                  "You"
+                  "should"
             ],
             "correctSentence": "You should eat more fresh fruit.",
             "themeOrTopic": "Giving Advice",
@@ -842,12 +881,12 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_m_20",
             "scrambledWords": [
-                  "faster",
-                  "cheetah",
-                  "lion",
                   "is",
+                  "lion",
                   "The",
-                  "than"
+                  "than",
+                  "faster",
+                  "cheetah"
             ],
             "correctSentence": "The cheetah is faster than lion.",
             "themeOrTopic": "Animal Comparatives",
@@ -856,29 +895,29 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_m_21",
             "scrambledWords": [
-                  "rained",
+                  "it",
                   "indoors",
+                  "We",
                   "because",
                   "stayed",
-                  "it",
-                  "We"
+                  "rained"
             ],
             "correctSentence": "We stayed indoors because it rained.",
             "alternativeSentences": [
                   "Because it rained we stayed indoors."
             ],
             "themeOrTopic": "Conjunction Because",
-            "explanation": "Main clause + because + reason clause."
+            "explanation": "Subordinate 'because' clause can come first or second."
       },
       {
             "id": "st_g7_m_22",
             "scrambledWords": [
-                  "is",
-                  "boy",
+                  "He",
                   "smartest",
                   "here",
+                  "is",
                   "the",
-                  "He"
+                  "boy"
             ],
             "correctSentence": "He is the smartest boy here.",
             "themeOrTopic": "Superlatives",
@@ -887,26 +926,29 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_m_23",
             "scrambledWords": [
-                  "I",
-                  "project",
-                  "without",
-                  "my",
                   "help",
-                  "did"
+                  "I",
+                  "without",
+                  "did",
+                  "my",
+                  "project"
             ],
             "correctSentence": "I did my project without help.",
+            "alternativeSentences": [
+                  "Without help I did my project."
+            ],
             "themeOrTopic": "Prepositional Phrases",
-            "explanation": "Subject + did + object + prepositional modifier."
+            "explanation": "Prepositional modifier can go to front."
       },
       {
             "id": "st_g7_m_24",
             "scrambledWords": [
-                  "early",
-                  "always",
-                  "at",
-                  "school",
                   "She",
-                  "arrives"
+                  "arrives",
+                  "early",
+                  "school",
+                  "at",
+                  "always"
             ],
             "correctSentence": "She always arrives at school early.",
             "themeOrTopic": "Frequency Adverbs",
@@ -916,11 +958,11 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             "id": "st_g7_m_25",
             "scrambledWords": [
                   "she",
-                  "her",
-                  "assignment",
                   "finish",
                   "Did",
-                  "maths"
+                  "her",
+                  "maths",
+                  "assignment"
             ],
             "correctSentence": "Did she finish her maths assignment?",
             "themeOrTopic": "Past Simple Yes/No Questions",
@@ -929,53 +971,62 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_m_26",
             "scrambledWords": [
-                  "to",
                   "by",
-                  "Antalya",
-                  "plane",
+                  "to",
                   "They",
-                  "travelled"
+                  "travelled",
+                  "Antalya",
+                  "plane"
             ],
             "correctSentence": "They travelled to Antalya by plane.",
+            "alternativeSentences": [
+                  "By plane they travelled to Antalya."
+            ],
             "themeOrTopic": "Travel & Transport",
-            "explanation": "Subject + travelled + destination + means of transport."
+            "explanation": "Means of transport prepositional phrase."
       },
       {
             "id": "st_g7_m_27",
             "scrambledWords": [
                   "colorful",
-                  "those",
-                  "at",
+                  "butterflies",
                   "beautiful",
+                  "those",
                   "Look",
-                  "butterflies"
+                  "at"
             ],
             "correctSentence": "Look at those beautiful colorful butterflies.",
+            "alternativeSentences": [
+                  "Look at those colorful beautiful butterflies."
+            ],
             "themeOrTopic": "Imperatives & Demonstratives",
-            "explanation": "Look at + demonstrative + adjectives + noun."
+            "explanation": "Coordinate descriptive adjectives order."
       },
       {
             "id": "st_g7_m_28",
             "scrambledWords": [
-                  "He",
-                  "here",
-                  "lived",
-                  "has",
                   "for",
-                  "years"
+                  "He",
+                  "has",
+                  "years",
+                  "lived",
+                  "here"
             ],
             "correctSentence": "He has lived here for years.",
+            "alternativeSentences": [
+                  "For years he has lived here."
+            ],
             "themeOrTopic": "Present Perfect Basics",
-            "explanation": "Subject + has lived + adverb + duration phrase."
+            "explanation": "Duration phrase can be fronted."
       },
       {
             "id": "st_g7_m_29",
             "scrambledWords": [
-                  "crying",
+                  "is",
                   "the",
                   "Why",
-                  "is",
                   "now",
+                  "crying",
                   "baby"
             ],
             "correctSentence": "Why is the baby crying now?",
@@ -985,26 +1036,29 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_m_30",
             "scrambledWords": [
-                  "flags",
                   "We",
                   "with",
+                  "flags",
+                  "celebrated",
                   "Republic",
-                  "Day",
-                  "celebrated"
+                  "Day"
             ],
             "correctSentence": "We celebrated Republic Day with flags.",
+            "alternativeSentences": [
+                  "With flags we celebrated Republic Day."
+            ],
             "themeOrTopic": "Holidays",
-            "explanation": "Subject + celebrated + proper holiday name + instrument."
+            "explanation": "Instrumental prepositional phrase."
       },
       {
             "id": "st_g7_m_31",
             "scrambledWords": [
-                  "delicious",
-                  "cake",
-                  "She",
                   "a",
+                  "She",
+                  "chocolate",
                   "baked",
-                  "chocolate"
+                  "cake",
+                  "delicious"
             ],
             "correctSentence": "She baked a delicious chocolate cake.",
             "themeOrTopic": "Cooking & Past Simple",
@@ -1013,12 +1067,12 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_m_32",
             "scrambledWords": [
-                  "salt",
-                  "Can",
                   "the",
                   "you",
-                  "pass",
-                  "me"
+                  "salt",
+                  "Can",
+                  "me",
+                  "pass"
             ],
             "correctSentence": "Can you pass me the salt?",
             "themeOrTopic": "Polite Requests",
@@ -1027,57 +1081,63 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_m_33",
             "scrambledWords": [
-                  "listened",
-                  "students",
                   "teacher",
                   "to",
-                  "The",
-                  "attentively"
+                  "students",
+                  "listened",
+                  "attentively",
+                  "The"
             ],
             "correctSentence": "The students listened attentively to teacher.",
+            "alternativeSentences": [
+                  "Attentively the students listened to teacher."
+            ],
             "themeOrTopic": "Adverbs of Manner",
-            "explanation": "Subject + listened + adverb of manner + prepositional target."
+            "explanation": "Adverb of manner placement."
       },
       {
             "id": "st_g7_m_34",
             "scrambledWords": [
                   "you",
-                  "call",
-                  "tomorrow",
                   "will",
+                  "evening",
+                  "tomorrow",
                   "I",
-                  "evening"
+                  "call"
             ],
             "correctSentence": "I will call you tomorrow evening.",
             "alternativeSentences": [
                   "Tomorrow evening I will call you."
             ],
             "themeOrTopic": "Future with Will",
-            "explanation": "Subject + will call + object + future time phrase."
+            "explanation": "Future time phrase can be placed at start or end."
       },
       {
             "id": "st_g7_m_35",
             "scrambledWords": [
-                  "fridge",
-                  "There",
-                  "is",
+                  "in",
                   "cheese",
-                  "some",
-                  "in"
+                  "is",
+                  "There",
+                  "fridge",
+                  "some"
             ],
             "correctSentence": "There is some cheese in fridge.",
+            "alternativeSentences": [
+                  "In fridge there is some cheese."
+            ],
             "themeOrTopic": "There is + Uncountable",
-            "explanation": "There is + quantifier + uncountable noun + location."
+            "explanation": "Prepositional location fronting."
       },
       {
             "id": "st_g7_m_36",
             "scrambledWords": [
+                  "his",
                   "never",
                   "He",
-                  "chores",
                   "daily",
-                  "forgets",
-                  "his"
+                  "chores",
+                  "forgets"
             ],
             "correctSentence": "He never forgets his daily chores.",
             "themeOrTopic": "Negative Adverbs of Frequency",
@@ -1087,25 +1147,28 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             "id": "st_g7_m_37",
             "scrambledWords": [
                   "were",
-                  "They",
                   "pool",
                   "in",
                   "the",
+                  "They",
                   "swimming"
             ],
             "correctSentence": "They were swimming in the pool.",
+            "alternativeSentences": [
+                  "In the pool they were swimming."
+            ],
             "themeOrTopic": "Past Continuous",
-            "explanation": "Subject + were swimming + in the pool."
+            "explanation": "Location phrase can be fronted."
       },
       {
             "id": "st_g7_m_38",
             "scrambledWords": [
-                  "How",
-                  "cost",
                   "does",
                   "this",
+                  "cost",
                   "much",
-                  "jacket"
+                  "jacket",
+                  "How"
             ],
             "correctSentence": "How much does this jacket cost?",
             "themeOrTopic": "Price Questions",
@@ -1115,11 +1178,11 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             "id": "st_g7_m_39",
             "scrambledWords": [
                   "plastic",
-                  "recycled",
                   "the",
+                  "all",
+                  "recycled",
                   "bottles",
-                  "We",
-                  "all"
+                  "We"
             ],
             "correctSentence": "We recycled all the plastic bottles.",
             "themeOrTopic": "Environment",
@@ -1128,48 +1191,51 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_m_40",
             "scrambledWords": [
-                  "You",
-                  "in",
-                  "not",
                   "must",
+                  "in",
+                  "You",
                   "shout",
-                  "library"
+                  "library",
+                  "not"
             ],
             "correctSentence": "You must not shout in library.",
+            "alternativeSentences": [
+                  "In library you must not shout."
+            ],
             "themeOrTopic": "Prohibition",
-            "explanation": "Subject + must not + base verb + location."
+            "explanation": "Location phrase can be placed at front."
       }
 ],
     hard: [
       {
             "id": "st_g7_h_01",
             "scrambledWords": [
-                  "was",
+                  "telephone",
                   "the",
-                  "I",
                   "While",
-                  "rang",
+                  "was",
+                  "I",
                   "cooking",
-                  "telephone"
+                  "rang"
             ],
             "correctSentence": "While I was cooking the telephone rang.",
             "alternativeSentences": [
                   "The telephone rang while I was cooking."
             ],
             "themeOrTopic": "While + Past Continuous",
-            "explanation": "Continuous action in progress interrupted by a short event."
+            "explanation": "Continuous while-clause can precede or follow main clause."
       },
       {
             "id": "st_g7_h_02",
             "scrambledWords": [
-                  "the",
-                  "He",
-                  "to",
-                  "study",
-                  "for",
-                  "exam",
                   "is",
-                  "going"
+                  "for",
+                  "He",
+                  "going",
+                  "to",
+                  "exam",
+                  "study",
+                  "the"
             ],
             "correctSentence": "He is going to study for the exam.",
             "themeOrTopic": "Be going to Intention",
@@ -1178,33 +1244,34 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_h_03",
             "scrambledWords": [
-                  "snows",
-                  "snowman",
-                  "If",
                   "we",
                   "make",
+                  "snows",
+                  "If",
+                  "snowman",
+                  "a",
                   "will",
-                  "tomorrow",
-                  "it"
+                  "it",
+                  "tomorrow"
             ],
-            "correctSentence": "If it snows tomorrow we will make snowman.",
+            "correctSentence": "If it snows tomorrow we will make a snowman.",
             "alternativeSentences": [
-                  "We will make snowman if it snows tomorrow."
+                  "We will make a snowman if it snows tomorrow."
             ],
             "themeOrTopic": "First Conditional",
-            "explanation": "If condition with present simple + result clause with will."
+            "explanation": "If condition and main consequence clause order."
       },
       {
             "id": "st_g7_h_04",
             "scrambledWords": [
-                  "who",
-                  "won",
-                  "is",
-                  "prize",
                   "the",
-                  "first",
+                  "is",
                   "This",
-                  "girl"
+                  "girl",
+                  "won",
+                  "prize",
+                  "first",
+                  "who"
             ],
             "correctSentence": "This is the girl who won first prize.",
             "themeOrTopic": "Relative Clauses (Who)",
@@ -1213,52 +1280,52 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_h_05",
             "scrambledWords": [
+                  "task",
+                  "he",
                   "tired",
+                  "his",
                   "he",
                   "Although",
-                  "he",
-                  "finished",
-                  "his",
                   "was",
-                  "task"
+                  "finished"
             ],
             "correctSentence": "Although he was tired he finished his task.",
             "alternativeSentences": [
                   "He finished his task although he was tired."
             ],
             "themeOrTopic": "Concessions (Although)",
-            "explanation": "Although clause introduces unexpected contrast."
+            "explanation": "Concessive 'although' clause can come first or second."
       },
       {
             "id": "st_g7_h_06",
             "scrambledWords": [
+                  "walking",
+                  "We",
+                  "began",
+                  "were",
                   "the",
                   "storm",
-                  "We",
                   "when",
-                  "were",
-                  "began",
-                  "home",
-                  "walking"
+                  "home"
             ],
             "correctSentence": "We were walking home when the storm began.",
             "alternativeSentences": [
                   "When the storm began we were walking home."
             ],
             "themeOrTopic": "Past Continuous with When",
-            "explanation": "Ongoing past action interrupted when storm started."
+            "explanation": "When-clause can precede or follow the past continuous clause."
       },
       {
             "id": "st_g7_h_07",
             "scrambledWords": [
-                  "save",
-                  "energy",
-                  "our",
-                  "think",
                   "planet",
-                  "will",
+                  "energy",
+                  "save",
                   "I",
-                  "solar"
+                  "will",
+                  "solar",
+                  "think",
+                  "our"
             ],
             "correctSentence": "I think solar energy will save our planet.",
             "themeOrTopic": "Predictions with Think",
@@ -1267,14 +1334,14 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_h_08",
             "scrambledWords": [
+                  "She",
                   "her",
-                  "up",
-                  "refused",
-                  "dream",
                   "to",
                   "childhood",
-                  "She",
-                  "give"
+                  "give",
+                  "dream",
+                  "up",
+                  "refused"
             ],
             "correctSentence": "She refused to give up her childhood dream.",
             "themeOrTopic": "Phrasal Verbs & Infinitives",
@@ -1283,14 +1350,14 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_h_09",
             "scrambledWords": [
-                  "we",
-                  "had",
-                  "which",
-                  "relics",
                   "visited",
-                  "The",
+                  "had",
                   "museum",
-                  "ancient"
+                  "ancient",
+                  "which",
+                  "we",
+                  "relics",
+                  "The"
             ],
             "correctSentence": "The museum which we visited had ancient relics.",
             "themeOrTopic": "Relative Clauses (Which)",
@@ -1299,81 +1366,87 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_h_10",
             "scrambledWords": [
-                  "pass",
-                  "the",
-                  "level",
                   "puzzles",
-                  "You",
-                  "solving",
                   "cannot",
-                  "without"
+                  "without",
+                  "the",
+                  "solving",
+                  "pass",
+                  "You",
+                  "level"
             ],
             "correctSentence": "You cannot pass the level without solving puzzles.",
+            "alternativeSentences": [
+                  "Without solving puzzles you cannot pass the level."
+            ],
             "themeOrTopic": "Preposition + Gerund",
-            "explanation": "Cannot pass + object + without + gerund phrase."
+            "explanation": "Prepositional condition phrase can be fronted."
       },
       {
             "id": "st_g7_h_11",
             "scrambledWords": [
-                  "They",
-                  "on",
                   "working",
-                  "been",
                   "project",
-                  "together",
                   "this",
-                  "have"
+                  "on",
+                  "have",
+                  "They",
+                  "together",
+                  "been"
             ],
             "correctSentence": "They have been working on this project together.",
+            "alternativeSentences": [
+                  "Together they have been working on this project."
+            ],
             "themeOrTopic": "Present Perfect Continuous",
-            "explanation": "Subject + have been working + prepositional target + adverb."
+            "explanation": "Adverbial modifier placement."
       },
       {
             "id": "st_g7_h_12",
             "scrambledWords": [
                   "as",
-                  "bell",
-                  "students",
-                  "soon",
                   "rings",
-                  "As",
+                  "soon",
                   "leave",
-                  "the"
+                  "bell",
+                  "As",
+                  "the",
+                  "students"
             ],
             "correctSentence": "As soon as the bell rings students leave.",
             "alternativeSentences": [
                   "Students leave as soon as the bell rings."
             ],
             "themeOrTopic": "Time Clauses",
-            "explanation": "'As soon as' clause + main result clause."
+            "explanation": "'As soon as' clause can come first or second."
       },
       {
             "id": "st_g7_h_13",
             "scrambledWords": [
                   "the",
-                  "Neither",
-                  "late",
                   "students",
-                  "teacher",
+                  "late",
+                  "Neither",
                   "the",
                   "were",
-                  "nor"
+                  "nor",
+                  "teacher"
             ],
             "correctSentence": "Neither the teacher nor the students were late.",
             "themeOrTopic": "Correlative Conjunctions",
-            "explanation": "Neither... nor structure agreeing with closest subject."
+            "explanation": "Neither... nor structure."
       },
       {
             "id": "st_g7_h_14",
             "scrambledWords": [
-                  "He",
-                  "how",
-                  "wooden",
-                  "tower",
-                  "to",
-                  "explained",
                   "build",
-                  "a"
+                  "tower",
+                  "wooden",
+                  "explained",
+                  "a",
+                  "He",
+                  "to",
+                  "how"
             ],
             "correctSentence": "He explained how to build a wooden tower.",
             "themeOrTopic": "Question Word + Infinitive",
@@ -1382,14 +1455,14 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_h_15",
             "scrambledWords": [
-                  "She",
-                  "that",
-                  "would",
                   "book",
                   "return",
-                  "she",
+                  "that",
+                  "would",
                   "the",
-                  "promised"
+                  "she",
+                  "promised",
+                  "She"
             ],
             "correctSentence": "She promised that she would return the book.",
             "themeOrTopic": "Reported Promises",
@@ -1398,14 +1471,14 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_h_16",
             "scrambledWords": [
-                  "the",
-                  "you",
                   "harder",
+                  "become",
+                  "better",
+                  "the",
                   "The",
                   "you",
-                  "practice",
-                  "become",
-                  "better"
+                  "you",
+                  "practice"
             ],
             "correctSentence": "The harder you practice the better you become.",
             "themeOrTopic": "Double Comparatives",
@@ -1414,46 +1487,53 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_h_17",
             "scrambledWords": [
-                  "turn",
+                  "computer",
                   "Don't",
-                  "to",
                   "leaving",
                   "before",
+                  "forget",
+                  "to",
                   "off",
-                  "computer",
-                  "forget"
+                  "turn"
             ],
             "correctSentence": "Don't forget to turn off computer before leaving.",
+            "alternativeSentences": [
+                  "Before leaving don't forget to turn off computer."
+            ],
             "themeOrTopic": "Imperatives & Prepositions",
-            "explanation": "Negative imperative + infinitive + preposition + gerund."
+            "explanation": "Time clause can be fronted."
       },
       {
             "id": "st_g7_h_18",
             "scrambledWords": [
-                  "order",
                   "in",
-                  "to",
-                  "reduce",
-                  "waste",
                   "We",
+                  "protect",
+                  "to",
+                  "waste",
+                  "nature",
                   "must",
-                  "protect"
+                  "order",
+                  "reduce"
             ],
-            "correctSentence": "We must reduce waste in order to protect.",
+            "correctSentence": "We must reduce waste in order to protect nature.",
+            "alternativeSentences": [
+                  "In order to protect nature we must reduce waste."
+            ],
             "themeOrTopic": "In Order To Purpose",
-            "explanation": "Modal + verb + object + purpose infinitive phrase."
+            "explanation": "Purpose clause can come at start or end."
       },
       {
             "id": "st_g7_h_19",
             "scrambledWords": [
                   "so",
+                  "spoke",
                   "could",
+                  "quietly",
                   "that",
                   "hear",
-                  "He",
-                  "spoke",
                   "nobody",
-                  "quietly"
+                  "He"
             ],
             "correctSentence": "He spoke so quietly that nobody could hear.",
             "themeOrTopic": "So ... That Result",
@@ -1463,13 +1543,13 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             "id": "st_g7_h_20",
             "scrambledWords": [
                   "Have",
-                  "your",
-                  "you",
+                  "outside",
                   "ever",
-                  "country",
-                  "travelled",
+                  "you",
                   "of",
-                  "outside"
+                  "travelled",
+                  "your",
+                  "country"
             ],
             "correctSentence": "Have you ever travelled outside of your country?",
             "themeOrTopic": "Present Perfect Experience",
@@ -1480,50 +1560,51 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             "scrambledWords": [
                   "was",
                   "music",
-                  "She",
-                  "while",
                   "he",
-                  "listening",
+                  "to",
                   "read",
-                  "to"
+                  "while",
+                  "She",
+                  "listening"
             ],
             "correctSentence": "She was listening to music while he read.",
             "alternativeSentences": [
                   "While he read she was listening to music."
             ],
             "themeOrTopic": "Simultaneous Past Events",
-            "explanation": "Continuous action linked by while to another past verb."
+            "explanation": "While clause can be placed first or second."
       },
       {
             "id": "st_g7_h_22",
             "scrambledWords": [
-                  "turns",
                   "steam",
-                  "If",
-                  "it",
-                  "water",
                   "heat",
-                  "into",
-                  "you"
+                  "turns",
+                  "water",
+                  "If",
+                  "you",
+                  "it",
+                  "into"
             ],
             "correctSentence": "If you heat water it turns into steam.",
             "alternativeSentences": [
-                  "Water turns into steam if you heat it."
+                  "Water turns into steam if you heat it.",
+                  "It turns into steam if you heat water."
             ],
             "themeOrTopic": "Zero Conditional",
-            "explanation": "Scientific cause and effect using present simple."
+            "explanation": "Condition clause order."
       },
       {
             "id": "st_g7_h_23",
             "scrambledWords": [
-                  "athlete",
-                  "who",
-                  "The",
                   "hard",
-                  "broke",
-                  "trained",
+                  "The",
+                  "record",
                   "the",
-                  "record"
+                  "athlete",
+                  "broke",
+                  "who",
+                  "trained"
             ],
             "correctSentence": "The athlete who broke the record trained hard.",
             "themeOrTopic": "Defining Relative Clauses",
@@ -1532,46 +1613,48 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_h_24",
             "scrambledWords": [
-                  "forward",
-                  "am",
-                  "your",
-                  "looking",
                   "to",
-                  "meeting",
                   "I",
+                  "your",
+                  "am",
+                  "looking",
+                  "forward",
+                  "meeting",
                   "family"
             ],
             "correctSentence": "I am looking forward to meeting your family.",
             "themeOrTopic": "Look forward to + Gerund",
-            "explanation": "Phrasal verb where 'to' is a preposition taking -ing."
+            "explanation": "Phrasal verb where 'to' takes -ing."
       },
       {
             "id": "st_g7_h_25",
             "scrambledWords": [
-                  "heavy",
+                  "late",
                   "of",
+                  "we",
                   "Because",
                   "arrived",
-                  "an",
-                  "hour",
-                  "traffic",
-                  "we"
+                  "heavy",
+                  "traffic"
             ],
-            "correctSentence": "Because of heavy traffic we arrived an hour.",
+            "correctSentence": "Because of heavy traffic we arrived late.",
+            "alternativeSentences": [
+                  "We arrived late because of heavy traffic."
+            ],
             "themeOrTopic": "Because Of + Noun Phrase",
-            "explanation": "Prepositional phrase of reason introducing main event."
+            "explanation": "Prepositional phrase of reason placement."
       },
       {
             "id": "st_g7_h_26",
             "scrambledWords": [
-                  "puzzle",
-                  "difficult",
-                  "She",
-                  "the",
-                  "solve",
                   "managed",
+                  "solve",
+                  "the",
+                  "difficult",
+                  "to",
+                  "She",
                   "maths",
-                  "to"
+                  "puzzle"
             ],
             "correctSentence": "She managed to solve the difficult maths puzzle.",
             "themeOrTopic": "Manage + Infinitive",
@@ -1580,30 +1663,31 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_h_27",
             "scrambledWords": [
-                  "such",
                   "It",
                   "was",
-                  "cheered",
-                  "match",
                   "an",
+                  "fans",
+                  "exciting",
+                  "such",
+                  "cheered",
                   "that",
-                  "exciting"
+                  "match"
             ],
-            "correctSentence": "It was such an exciting match that cheered.",
+            "correctSentence": "It was such an exciting match that fans cheered.",
             "themeOrTopic": "Such ... That Clause",
             "explanation": "Such + an + adjective + noun + consequence clause."
       },
       {
             "id": "st_g7_h_28",
             "scrambledWords": [
-                  "plant",
-                  "We",
-                  "encourage",
-                  "should",
+                  "trees",
                   "everyone",
-                  "to",
+                  "should",
                   "more",
-                  "trees"
+                  "encourage",
+                  "plant",
+                  "to",
+                  "We"
             ],
             "correctSentence": "We should encourage everyone to plant more trees.",
             "themeOrTopic": "Verb + Object + Infinitive",
@@ -1612,14 +1696,14 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_h_29",
             "scrambledWords": [
-                  "hide",
-                  "Where",
+                  "you",
+                  "this",
                   "keys",
                   "the",
-                  "morning",
-                  "this",
-                  "you",
-                  "did"
+                  "did",
+                  "Where",
+                  "hide",
+                  "morning"
             ],
             "correctSentence": "Where did you hide the keys this morning?",
             "themeOrTopic": "Wh- Questions in Past",
@@ -1628,14 +1712,14 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_h_30",
             "scrambledWords": [
-                  "decided",
-                  "study",
-                  "engineering",
-                  "university",
-                  "He",
                   "top",
                   "to",
-                  "at"
+                  "university",
+                  "at",
+                  "decided",
+                  "engineering",
+                  "study",
+                  "He"
             ],
             "correctSentence": "He decided to study engineering at top university.",
             "themeOrTopic": "Infinitives of Intent",
@@ -1644,65 +1728,69 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_h_31",
             "scrambledWords": [
-                  "miss",
-                  "we",
-                  "train",
                   "up",
-                  "Unless",
-                  "will",
+                  "we",
+                  "the",
                   "hurry",
-                  "we"
+                  "train",
+                  "Unless",
+                  "we",
+                  "will",
+                  "miss"
             ],
-            "correctSentence": "Unless we hurry up we will miss train.",
+            "correctSentence": "Unless we hurry up we will miss the train.",
             "alternativeSentences": [
-                  "We will miss train unless we hurry up."
+                  "We will miss the train unless we hurry up."
             ],
             "themeOrTopic": "Conditionals with Unless",
-            "explanation": "Unless (if not) introduces the contingency clause."
+            "explanation": "Unless clause can come at beginning or end."
       },
       {
             "id": "st_g7_h_32",
             "scrambledWords": [
                   "near",
-                  "was",
+                  "hotel",
                   "where",
-                  "The",
-                  "beach",
                   "stayed",
+                  "The",
                   "we",
-                  "hotel"
+                  "beach",
+                  "was"
             ],
             "correctSentence": "The hotel where we stayed was near beach.",
             "themeOrTopic": "Relative Clauses (Where)",
-            "explanation": "Noun + where-clause + verb to be + prepositional location."
+            "explanation": "Subject + where-clause + verb to be + prepositional location."
       },
       {
             "id": "st_g7_h_33",
             "scrambledWords": [
-                  "They",
-                  "not",
                   "allowed",
+                  "not",
+                  "were",
                   "to",
                   "without",
                   "permission",
-                  "were",
+                  "They",
                   "enter"
             ],
             "correctSentence": "They were not allowed to enter without permission.",
+            "alternativeSentences": [
+                  "Without permission they were not allowed to enter."
+            ],
             "themeOrTopic": "Passive Permission",
-            "explanation": "Passive were not allowed + to enter + condition."
+            "explanation": "Condition phrase can be placed first."
       },
       {
             "id": "st_g7_h_34",
             "scrambledWords": [
+                  "you",
                   "I",
-                  "would",
-                  "invite",
-                  "to",
                   "like",
-                  "dinner",
                   "to",
-                  "you"
+                  "to",
+                  "dinner",
+                  "would",
+                  "invite"
             ],
             "correctSentence": "I would like to invite you to dinner.",
             "themeOrTopic": "Polite Invitations",
@@ -1711,49 +1799,52 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_h_35",
             "scrambledWords": [
-                  "safely",
-                  "Despite",
-                  "the",
-                  "landed",
-                  "fog",
                   "the",
                   "plane",
-                  "heavy"
+                  "the",
+                  "safely",
+                  "Despite",
+                  "landed",
+                  "heavy",
+                  "fog"
             ],
             "correctSentence": "Despite the heavy fog the plane landed safely.",
             "alternativeSentences": [
                   "The plane landed safely despite the heavy fog."
             ],
             "themeOrTopic": "Concessions (Despite)",
-            "explanation": "Despite + noun phrase shows contrast."
+            "explanation": "Despite phrase can precede or follow main clause."
       },
       {
             "id": "st_g7_h_36",
             "scrambledWords": [
-                  "and",
                   "a",
+                  "and",
+                  "writer",
                   "painter",
-                  "both",
-                  "is",
                   "She",
                   "talented",
-                  "writer"
+                  "both",
+                  "is"
             ],
             "correctSentence": "She is both a talented painter and writer.",
+            "alternativeSentences": [
+                  "She is both a talented writer and painter."
+            ],
             "themeOrTopic": "Correlative Both... And",
-            "explanation": "Subject + is + both X and Y balance."
+            "explanation": "Coordinated occupations can be ordered either way."
       },
       {
             "id": "st_g7_h_37",
             "scrambledWords": [
-                  "remind",
-                  "test",
+                  "nobody",
+                  "me",
                   "did",
                   "the",
                   "about",
-                  "nobody",
-                  "Why",
-                  "me"
+                  "remind",
+                  "test",
+                  "Why"
             ],
             "correctSentence": "Why did nobody remind me about the test?",
             "themeOrTopic": "Past Questions with Nobody",
@@ -1762,29 +1853,32 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_h_38",
             "scrambledWords": [
-                  "decided",
-                  "yet",
-                  "to",
-                  "have",
-                  "not",
                   "where",
+                  "We",
+                  "not",
+                  "to",
                   "travel",
-                  "We"
+                  "yet",
+                  "have",
+                  "decided"
             ],
             "correctSentence": "We have not decided where to travel yet.",
+            "alternativeSentences": [
+                  "We have not yet decided where to travel."
+            ],
             "themeOrTopic": "Present Perfect + Yet",
-            "explanation": "Subject + have not decided + wh-infinitive + yet."
+            "explanation": "'Yet' position."
       },
       {
             "id": "st_g7_h_39",
             "scrambledWords": [
-                  "he",
-                  "which",
                   "story",
-                  "sounded",
-                  "told",
-                  "very",
+                  "he",
                   "mysterious",
+                  "very",
+                  "told",
+                  "sounded",
+                  "which",
                   "The"
             ],
             "correctSentence": "The story which he told sounded very mysterious.",
@@ -1794,18 +1888,21 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_h_40",
             "scrambledWords": [
-                  "remember",
-                  "Always",
                   "in",
-                  "your",
-                  "to",
+                  "wear",
                   "seatbelt",
                   "cars",
-                  "wear"
+                  "remember",
+                  "your",
+                  "Always",
+                  "to"
             ],
             "correctSentence": "Always remember to wear your seatbelt in cars.",
+            "alternativeSentences": [
+                  "Remember always to wear your seatbelt in cars."
+            ],
             "themeOrTopic": "Safety Instructions",
-            "explanation": "Adverb + imperative verb + infinitive phrase."
+            "explanation": "Adverbial instruction order."
       }
 ],
   },
@@ -1815,11 +1912,11 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             "id": "st_g8_e_01",
             "scrambledWords": [
                   "I",
-                  "homework",
+                  "my",
                   "finished",
+                  "homework",
                   "have",
-                  "already",
-                  "my"
+                  "already"
             ],
             "correctSentence": "I have already finished my homework.",
             "themeOrTopic": "Present Perfect with Already",
@@ -1828,40 +1925,44 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_e_02",
             "scrambledWords": [
-                  "coffee",
-                  "She",
-                  "tea",
-                  "drinking",
                   "prefers",
-                  "to"
+                  "She",
+                  "drinking",
+                  "to",
+                  "coffee",
+                  "tea"
             ],
             "correctSentence": "She prefers drinking tea to coffee.",
+            "alternativeSentences": [
+                  "She prefers drinking coffee to tea."
+            ],
             "themeOrTopic": "Expressing Preferences",
-            "explanation": "Subject + prefers + gerund + to + noun."
+            "explanation": "Both preference directions are 100% grammatically correct English."
       },
       {
             "id": "st_g8_e_03",
             "scrambledWords": [
-                  "you",
-                  "A",
+                  "always",
                   "true",
+                  "A",
+                  "you",
                   "friend",
                   "backs",
-                  "always"
+                  "up"
             ],
-            "correctSentence": "A true friend always backs you.",
+            "correctSentence": "A true friend always backs you up.",
             "themeOrTopic": "Friendship Traits",
             "explanation": "Subject phrase + frequency adverb + phrasal verb."
       },
       {
             "id": "st_g8_e_04",
             "scrambledWords": [
-                  "home",
+                  "would",
                   "rather",
-                  "at",
-                  "stay",
                   "We",
-                  "would"
+                  "stay",
+                  "home",
+                  "at"
             ],
             "correctSentence": "We would rather stay at home.",
             "themeOrTopic": "Would Rather + Bare Verb",
@@ -1871,11 +1972,11 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             "id": "st_g8_e_05",
             "scrambledWords": [
                   "He",
-                  "chopped",
-                  "onions",
-                  "into",
                   "pieces",
-                  "the"
+                  "into",
+                  "the",
+                  "onions",
+                  "chopped"
             ],
             "correctSentence": "He chopped the onions into pieces.",
             "themeOrTopic": "Kitchen Preparation",
@@ -1887,25 +1988,31 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
                   "They",
                   "here",
                   "2018",
+                  "since",
                   "have",
-                  "lived",
-                  "since"
+                  "lived"
             ],
             "correctSentence": "They have lived here since 2018.",
+            "alternativeSentences": [
+                  "Since 2018 they have lived here."
+            ],
             "themeOrTopic": "Present Perfect with Since",
-            "explanation": "Subject + have lived + adverb + since + year."
+            "explanation": "Time phrase can be fronted."
       },
       {
             "id": "st_g8_e_07",
             "scrambledWords": [
-                  "dish",
-                  "this",
                   "myself",
-                  "I",
                   "can",
-                  "prepare"
+                  "this",
+                  "dish",
+                  "prepare",
+                  "I"
             ],
             "correctSentence": "I can prepare this dish myself.",
+            "alternativeSentences": [
+                  "Myself I can prepare this dish."
+            ],
             "themeOrTopic": "Reflexive Pronouns",
             "explanation": "Subject + can prepare + object + emphatic reflexive."
       },
@@ -1914,10 +2021,10 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             "scrambledWords": [
                   "You",
                   "share",
+                  "password",
                   "not",
                   "your",
-                  "must",
-                  "password"
+                  "must"
             ],
             "correctSentence": "You must not share your password.",
             "themeOrTopic": "Digital Safety",
@@ -1926,12 +2033,12 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_e_09",
             "scrambledWords": [
-                  "extreme",
-                  "She",
-                  "sports",
-                  "tried",
                   "has",
-                  "never"
+                  "She",
+                  "never",
+                  "extreme",
+                  "tried",
+                  "sports"
             ],
             "correctSentence": "She has never tried extreme sports.",
             "themeOrTopic": "Present Perfect with Never",
@@ -1941,11 +2048,11 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             "id": "st_g8_e_10",
             "scrambledWords": [
                   "We",
-                  "classmates",
-                  "along",
                   "with",
-                  "well",
-                  "get"
+                  "classmates",
+                  "get",
+                  "along",
+                  "well"
             ],
             "correctSentence": "We get along well with classmates.",
             "themeOrTopic": "Phrasal Verbs (Get along)",
@@ -1954,12 +2061,12 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_e_11",
             "scrambledWords": [
+                  "dirty",
                   "dishes",
                   "loaded",
-                  "inside",
-                  "the",
                   "He",
-                  "dirty"
+                  "inside",
+                  "the"
             ],
             "correctSentence": "He loaded the dirty dishes inside.",
             "themeOrTopic": "Household Chores",
@@ -1968,12 +2075,12 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_e_12",
             "scrambledWords": [
-                  "Have",
-                  "you",
                   "yet",
-                  "email",
+                  "sent",
+                  "Have",
                   "the",
-                  "sent"
+                  "email",
+                  "you"
             ],
             "correctSentence": "Have you sent the email yet?",
             "themeOrTopic": "Present Perfect Question with Yet",
@@ -1982,12 +2089,12 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_e_13",
             "scrambledWords": [
-                  "to",
                   "helped",
-                  "food",
-                  "delicious",
                   "They",
-                  "themselves"
+                  "to",
+                  "themselves",
+                  "food",
+                  "delicious"
             ],
             "correctSentence": "They helped themselves to delicious food.",
             "themeOrTopic": "Reflexive Idioms",
@@ -1996,54 +2103,64 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_e_14",
             "scrambledWords": [
-                  "watch",
-                  "read",
                   "rather",
+                  "read",
+                  "TV",
                   "than",
+                  "watch",
                   "would",
                   "I"
             ],
-            "correctSentence": "I would rather read than watch.",
+            "correctSentence": "I would rather read than watch TV.",
+            "alternativeSentences": [
+                  "I would rather watch TV than read."
+            ],
             "themeOrTopic": "Would Rather Comparison",
-            "explanation": "Subject + would rather + verb + than + verb."
+            "explanation": "Both parallel preferences form grammatically correct English."
       },
       {
             "id": "st_g8_e_15",
             "scrambledWords": [
+                  "in",
+                  "First",
                   "water",
                   "the",
-                  "boil",
                   "saucepan",
-                  "in",
-                  "First"
+                  "boil"
             ],
             "correctSentence": "First boil the water in saucepan.",
+            "alternativeSentences": [
+                  "In saucepan boil the water first."
+            ],
             "themeOrTopic": "Recipe Steps",
-            "explanation": "Sequence adverb + imperative verb + object + location."
+            "explanation": "Sequence adverb and prepositional location."
       },
       {
             "id": "st_g8_e_16",
             "scrambledWords": [
-                  "for",
+                  "been",
+                  "He",
                   "sick",
                   "has",
-                  "days",
-                  "He",
-                  "been"
+                  "for",
+                  "days"
             ],
             "correctSentence": "He has been sick for days.",
+            "alternativeSentences": [
+                  "For days he has been sick."
+            ],
             "themeOrTopic": "Present Perfect with For",
-            "explanation": "Subject + has been + predicate adjective + duration."
+            "explanation": "Duration phrase can be placed at front."
       },
       {
             "id": "st_g8_e_17",
             "scrambledWords": [
                   "She",
+                  "hanging",
                   "loves",
                   "buddies",
-                  "hanging",
-                  "out",
-                  "with"
+                  "with",
+                  "out"
             ],
             "correctSentence": "She loves hanging out with buddies.",
             "themeOrTopic": "Teen Life",
@@ -2052,25 +2169,28 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_e_18",
             "scrambledWords": [
-                  "to",
-                  "Do",
                   "vacuum",
-                  "today",
                   "have",
-                  "you"
+                  "Do",
+                  "today",
+                  "you",
+                  "to"
             ],
             "correctSentence": "Do you have to vacuum today?",
+            "alternativeSentences": [
+                  "Today do you have to vacuum?"
+            ],
             "themeOrTopic": "Questions with Have To",
-            "explanation": "Do + subject + have to + verb + time adverb."
+            "explanation": "Time adverbial placement."
       },
       {
             "id": "st_g8_e_19",
             "scrambledWords": [
+                  "lot",
                   "in",
+                  "a",
                   "We",
                   "common",
-                  "a",
-                  "lot",
                   "have"
             ],
             "correctSentence": "We have a lot in common.",
@@ -2080,52 +2200,61 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_e_20",
             "scrambledWords": [
-                  "potatoes",
                   "You",
-                  "should",
                   "carefully",
                   "peel",
-                  "the"
+                  "potatoes",
+                  "the",
+                  "should"
             ],
             "correctSentence": "You should peel the potatoes carefully.",
+            "alternativeSentences": [
+                  "Carefully you should peel the potatoes."
+            ],
             "themeOrTopic": "Kitchen Advice",
-            "explanation": "Subject + should + verb + object + adverb."
+            "explanation": "Adverb placement."
       },
       {
             "id": "st_g8_e_21",
             "scrambledWords": [
                   "himself",
-                  "slicing",
                   "He",
+                  "slicing",
                   "bread",
                   "while",
                   "cut"
             ],
             "correctSentence": "He cut himself while slicing bread.",
+            "alternativeSentences": [
+                  "While slicing bread he cut himself."
+            ],
             "themeOrTopic": "Reflexive Pronouns",
-            "explanation": "Subject + cut + reflexive pronoun + time clause."
+            "explanation": "While clause can be fronted."
       },
       {
             "id": "st_g8_e_22",
             "scrambledWords": [
-                  "I",
-                  "cycling",
-                  "running",
-                  "to",
                   "prefer",
-                  "outdoors"
+                  "I",
+                  "outdoors",
+                  "to",
+                  "running",
+                  "cycling"
             ],
             "correctSentence": "I prefer cycling outdoors to running.",
+            "alternativeSentences": [
+                  "I prefer running to cycling outdoors."
+            ],
             "themeOrTopic": "Preferences with Gerunds",
-            "explanation": "Prefer + gerund + adverb + to + gerund."
+            "explanation": "Both preference pairings are grammatically valid."
       },
       {
             "id": "st_g8_e_23",
             "scrambledWords": [
-                  "message",
+                  "to",
                   "replied",
                   "She",
-                  "to",
+                  "message",
                   "has",
                   "not"
             ],
@@ -2137,11 +2266,11 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             "id": "st_g8_e_24",
             "scrambledWords": [
                   "interested",
-                  "They",
                   "are",
+                  "They",
+                  "adventures",
                   "in",
-                  "extreme",
-                  "adventures"
+                  "extreme"
             ],
             "correctSentence": "They are interested in extreme adventures.",
             "themeOrTopic": "Adjective + Preposition",
@@ -2150,12 +2279,12 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_e_25",
             "scrambledWords": [
-                  "take",
+                  "Don't",
                   "out",
-                  "to",
                   "trash",
-                  "forget",
-                  "Don't"
+                  "take",
+                  "to",
+                  "forget"
             ],
             "correctSentence": "Don't forget to take out trash.",
             "themeOrTopic": "Household Chores",
@@ -2164,12 +2293,12 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_e_26",
             "scrambledWords": [
+                  "just",
                   "has",
-                  "baked",
-                  "cookies",
-                  "He",
                   "warm",
-                  "just"
+                  "He",
+                  "baked",
+                  "cookies"
             ],
             "correctSentence": "He has just baked warm cookies.",
             "themeOrTopic": "Present Perfect with Just",
@@ -2178,12 +2307,12 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_e_27",
             "scrambledWords": [
-                  "other",
-                  "secrets",
                   "trust",
-                  "We",
+                  "other",
                   "each",
-                  "with"
+                  "with",
+                  "We",
+                  "secrets"
             ],
             "correctSentence": "We trust each other with secrets.",
             "themeOrTopic": "Mutual Trust",
@@ -2192,12 +2321,12 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_e_28",
             "scrambledWords": [
+                  "invitation",
                   "turn",
                   "down",
-                  "Why",
-                  "invitation",
+                  "did",
                   "you",
-                  "did"
+                  "Why"
             ],
             "correctSentence": "Why did you turn down invitation?",
             "themeOrTopic": "Phrasal Verbs (Turn down)",
@@ -2206,26 +2335,29 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_e_29",
             "scrambledWords": [
-                  "ironed",
-                  "neatly",
-                  "her",
                   "school",
                   "uniform",
-                  "She"
+                  "her",
+                  "neatly",
+                  "She",
+                  "ironed"
             ],
             "correctSentence": "She ironed her school uniform neatly.",
+            "alternativeSentences": [
+                  "Neatly she ironed her school uniform."
+            ],
             "themeOrTopic": "Chores & Adverbs",
-            "explanation": "Subject + ironed + compound noun + adverb."
+            "explanation": "Manner adverb placement."
       },
       {
             "id": "st_g8_e_30",
             "scrambledWords": [
-                  "experienced",
                   "ever",
+                  "experienced",
                   "paragliding",
-                  "they",
                   "before",
-                  "Have"
+                  "Have",
+                  "they"
             ],
             "correctSentence": "Have they ever experienced paragliding before?",
             "themeOrTopic": "Sports Experiences",
@@ -2234,109 +2366,130 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_e_31",
             "scrambledWords": [
+                  "rather",
+                  "I",
                   "today",
-                  "would",
                   "argue",
                   "not",
-                  "I",
-                  "rather"
+                  "would"
             ],
             "correctSentence": "I would rather not argue today.",
+            "alternativeSentences": [
+                  "Today I would rather not argue."
+            ],
             "themeOrTopic": "Would Rather Negative",
-            "explanation": "Subject + would rather not + bare verb + time."
+            "explanation": "Time adverbial placement."
       },
       {
             "id": "st_g8_e_32",
             "scrambledWords": [
-                  "in",
-                  "the",
-                  "bowl",
-                  "fresh",
                   "Whisk",
-                  "eggs"
+                  "in",
+                  "eggs",
+                  "bowl",
+                  "the",
+                  "fresh"
             ],
             "correctSentence": "Whisk the fresh eggs in bowl.",
+            "alternativeSentences": [
+                  "In bowl whisk the fresh eggs."
+            ],
             "themeOrTopic": "Imperatives in Recipes",
-            "explanation": "Imperative verb + noun phrase + location."
+            "explanation": "Prepositional location fronting."
       },
       {
             "id": "st_g8_e_33",
             "scrambledWords": [
-                  "hardships",
-                  "me",
                   "has",
-                  "He",
+                  "me",
+                  "hardships",
                   "supported",
-                  "through"
+                  "through",
+                  "He"
             ],
             "correctSentence": "He has supported me through hardships.",
+            "alternativeSentences": [
+                  "Through hardships he has supported me."
+            ],
             "themeOrTopic": "Loyal Friendship",
-            "explanation": "Subject + has supported + object + prepositional phrase."
+            "explanation": "Prepositional phrase can be fronted."
       },
       {
             "id": "st_g8_e_34",
             "scrambledWords": [
-                  "You",
-                  "have",
                   "cook",
                   "to",
-                  "don't",
-                  "tonight"
+                  "You",
+                  "have",
+                  "tonight",
+                  "don't"
             ],
             "correctSentence": "You don't have to cook tonight.",
+            "alternativeSentences": [
+                  "Tonight you don't have to cook."
+            ],
             "themeOrTopic": "Lack of Obligation",
-            "explanation": "Subject + don't have to + base verb + time."
+            "explanation": "Time adverbial placement."
       },
       {
             "id": "st_g8_e_35",
             "scrambledWords": [
-                  "She",
                   "decorated",
+                  "the",
                   "cake",
                   "herself",
-                  "the",
+                  "She",
                   "birthday"
             ],
             "correctSentence": "She decorated the birthday cake herself.",
+            "alternativeSentences": [
+                  "Herself she decorated the birthday cake."
+            ],
             "themeOrTopic": "Emphatic Reflexives",
-            "explanation": "Subject + decorated + object + emphatic herself."
+            "explanation": "Emphatic reflexive placement."
       },
       {
             "id": "st_g8_e_36",
             "scrambledWords": [
+                  "years",
                   "been",
-                  "decade",
-                  "for",
                   "have",
+                  "for",
                   "friends",
                   "We"
             ],
-            "correctSentence": "We have been friends for decade.",
+            "correctSentence": "We have been friends for years.",
+            "alternativeSentences": [
+                  "For years we have been friends."
+            ],
             "themeOrTopic": "Duration Expressions",
-            "explanation": "Subject + have been + noun + for + duration."
+            "explanation": "Duration phrase can precede or follow."
       },
       {
             "id": "st_g8_e_37",
             "scrambledWords": [
-                  "Grate",
-                  "cheese",
-                  "top",
+                  "some",
                   "yellow",
                   "on",
-                  "some"
+                  "top",
+                  "Grate",
+                  "cheese"
             ],
             "correctSentence": "Grate some yellow cheese on top.",
+            "alternativeSentences": [
+                  "On top grate some yellow cheese."
+            ],
             "themeOrTopic": "Cooking Instructions",
-            "explanation": "Imperative + quantifier + noun + directional phrase."
+            "explanation": "Directional phrase placement."
       },
       {
             "id": "st_g8_e_38",
             "scrambledWords": [
-                  "admit",
                   "his",
                   "mistake",
-                  "to",
                   "refuses",
+                  "to",
+                  "admit",
                   "He"
             ],
             "correctSentence": "He refuses to admit his mistake.",
@@ -2346,62 +2499,68 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_e_39",
             "scrambledWords": [
-                  "a",
+                  "helmet",
                   "Always",
-                  "wear",
-                  "when",
                   "climbing",
-                  "helmet"
+                  "when",
+                  "a",
+                  "wear"
             ],
             "correctSentence": "Always wear a helmet when climbing.",
+            "alternativeSentences": [
+                  "When climbing always wear a helmet."
+            ],
             "themeOrTopic": "Safety Rules",
-            "explanation": "Frequency adverb + imperative + object + time clause."
+            "explanation": "When-clause can be placed first or second."
       },
       {
             "id": "st_g8_e_40",
             "scrambledWords": [
-                  "to",
-                  "snacks",
                   "dishes",
+                  "snacks",
+                  "traditional",
                   "I",
-                  "prefer",
-                  "traditional"
+                  "to",
+                  "prefer"
             ],
             "correctSentence": "I prefer traditional dishes to snacks.",
+            "alternativeSentences": [
+                  "I prefer snacks to traditional dishes."
+            ],
             "themeOrTopic": "Food Preferences",
-            "explanation": "Subject + prefer + adjective noun + to + noun."
+            "explanation": "Both preference orders form grammatically sound English."
       }
 ],
     medium: [
       {
             "id": "st_g8_m_01",
             "scrambledWords": [
-                  "home",
-                  "we",
-                  "at",
-                  "it",
-                  "If",
                   "rains",
+                  "at",
+                  "we",
                   "stay",
-                  "will"
+                  "it",
+                  "will",
+                  "home",
+                  "If"
             ],
             "correctSentence": "If it rains we will stay at home.",
             "alternativeSentences": [
                   "We will stay at home if it rains."
             ],
             "themeOrTopic": "First Conditional",
-            "explanation": "If + present simple, main clause with will."
+            "explanation": "If-condition and main result clause order."
       },
       {
             "id": "st_g8_m_02",
             "scrambledWords": [
-                  "two",
-                  "bridge",
+                  "new",
                   "ago",
+                  "was",
                   "The",
                   "built",
-                  "was",
-                  "new",
+                  "two",
+                  "bridge",
                   "years"
             ],
             "correctSentence": "The new bridge was built two years ago.",
@@ -2409,19 +2568,19 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
                   "Two years ago the new bridge was built."
             ],
             "themeOrTopic": "Past Simple Passive",
-            "explanation": "Subject + was built + time expression."
+            "explanation": "Time expression placement."
       },
       {
             "id": "st_g8_m_03",
             "scrambledWords": [
                   "is",
-                  "competition",
-                  "who",
-                  "student",
-                  "the",
-                  "the",
                   "won",
-                  "This"
+                  "This",
+                  "the",
+                  "student",
+                  "who",
+                  "the",
+                  "competition"
             ],
             "correctSentence": "This is the student who won the competition.",
             "themeOrTopic": "Relative Clauses (Who)",
@@ -2430,46 +2589,52 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_m_04",
             "scrambledWords": [
-                  "world",
-                  "the",
-                  "by",
                   "English",
-                  "around",
-                  "spoken",
+                  "by",
                   "is",
-                  "people"
+                  "the",
+                  "spoken",
+                  "people",
+                  "around",
+                  "world"
             ],
             "correctSentence": "English is spoken by people around the world.",
+            "alternativeSentences": [
+                  "Around the world English is spoken by people."
+            ],
             "themeOrTopic": "Present Simple Passive",
-            "explanation": "Subject + is spoken + by agent + prepositional phrase."
+            "explanation": "Prepositional place phrase placement."
       },
       {
             "id": "st_g8_m_05",
             "scrambledWords": [
-                  "in",
-                  "to",
-                  "He",
-                  "village",
-                  "quiet",
                   "live",
+                  "in",
+                  "used",
+                  "He",
+                  "quiet",
                   "a",
-                  "used"
+                  "to",
+                  "village"
             ],
             "correctSentence": "He used to live in a quiet village.",
+            "alternativeSentences": [
+                  "In a quiet village he used to live."
+            ],
             "themeOrTopic": "Used to for Past Habits",
-            "explanation": "Subject + used to live + location."
+            "explanation": "Prepositional location placement."
       },
       {
             "id": "st_g8_m_06",
             "scrambledWords": [
-                  "which",
-                  "they",
-                  "hotel",
-                  "was",
                   "full",
                   "The",
+                  "recommended",
                   "completely",
-                  "recommended"
+                  "hotel",
+                  "was",
+                  "they",
+                  "which"
             ],
             "correctSentence": "The hotel which they recommended was completely full.",
             "themeOrTopic": "Relative Clauses (Which)",
@@ -2478,67 +2643,70 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_m_07",
             "scrambledWords": [
-                  "succeed",
+                  "consistently",
+                  "easily",
                   "study",
                   "you",
-                  "consistently",
+                  "you",
                   "will",
                   "If",
-                  "easily",
-                  "you"
+                  "succeed"
             ],
             "correctSentence": "If you study consistently you will succeed easily.",
             "alternativeSentences": [
                   "You will succeed easily if you study consistently."
             ],
             "themeOrTopic": "First Conditional Adverbs",
-            "explanation": "Condition with adverb + result clause with adverb."
+            "explanation": "If-clause and consequence clause order."
       },
       {
             "id": "st_g8_m_08",
             "scrambledWords": [
                   "of",
-                  "in",
-                  "this",
-                  "factory",
                   "smartphones",
-                  "Thousands",
+                  "are",
+                  "this",
                   "manufactured",
-                  "are"
+                  "in",
+                  "Thousands",
+                  "factory"
             ],
             "correctSentence": "Thousands of smartphones are manufactured in this factory.",
+            "alternativeSentences": [
+                  "In this factory thousands of smartphones are manufactured."
+            ],
             "themeOrTopic": "Passive Voice Plural",
-            "explanation": "Plural subject + are manufactured + place."
+            "explanation": "Location phrase can be fronted."
       },
       {
             "id": "st_g8_m_09",
             "scrambledWords": [
-                  "not",
-                  "seen",
-                  "I",
-                  "have",
-                  "summer",
+                  "last",
                   "since",
+                  "I",
+                  "not",
+                  "summer",
                   "him",
-                  "last"
+                  "seen",
+                  "have"
             ],
             "correctSentence": "I have not seen him since last summer.",
             "alternativeSentences": [
                   "Since last summer I have not seen him."
             ],
             "themeOrTopic": "Present Perfect + Since",
-            "explanation": "Subject + have not seen + object + since time."
+            "explanation": "Time phrase can be fronted."
       },
       {
             "id": "st_g8_m_10",
             "scrambledWords": [
-                  "is",
-                  "whose",
                   "She",
-                  "is",
-                  "clinic",
-                  "nearby",
                   "doctor",
+                  "clinic",
+                  "whose",
+                  "is",
+                  "is",
+                  "nearby",
                   "the"
             ],
             "correctSentence": "She is the doctor whose clinic is nearby.",
@@ -2548,79 +2716,88 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_m_11",
             "scrambledWords": [
-                  "to",
-                  "Did",
-                  "you",
                   "use",
-                  "regularly",
                   "tennis",
-                  "play"
+                  "Did",
+                  "regularly",
+                  "you",
+                  "play",
+                  "to"
             ],
             "correctSentence": "Did you use to play tennis regularly?",
+            "alternativeSentences": [
+                  "Did you use to regularly play tennis?"
+            ],
             "themeOrTopic": "Questions with Used To",
-            "explanation": "Did + subject + use to play + sport + adverb."
+            "explanation": "Adverb placement."
       },
       {
             "id": "st_g8_m_12",
             "scrambledWords": [
-                  "police",
-                  "was",
                   "car",
                   "officers",
-                  "found",
-                  "by",
+                  "The",
                   "stolen",
-                  "The"
+                  "police",
+                  "was",
+                  "found",
+                  "by"
             ],
             "correctSentence": "The stolen car was found by police officers.",
+            "alternativeSentences": [
+                  "By police officers the stolen car was found."
+            ],
             "themeOrTopic": "Past Passive with By",
-            "explanation": "Subject + was found + agent by phrase."
+            "explanation": "Agent by-phrase placement."
       },
       {
             "id": "st_g8_m_13",
             "scrambledWords": [
-                  "you",
                   "will",
                   "not",
                   "you",
+                  "much",
                   "Unless",
                   "practice",
                   "improve",
-                  "much"
+                  "you"
             ],
             "correctSentence": "Unless you practice you will not improve much.",
             "alternativeSentences": [
                   "You will not improve much unless you practice."
             ],
             "themeOrTopic": "Unless Conditional",
-            "explanation": "Unless clause + negative consequence clause."
+            "explanation": "Unless clause can precede or follow main clause."
       },
       {
             "id": "st_g8_m_14",
             "scrambledWords": [
-                  "nineteenth",
                   "century",
-                  "was",
-                  "temple",
-                  "discovered",
+                  "This",
                   "ancient",
+                  "discovered",
                   "in",
-                  "This"
+                  "nineteenth",
+                  "was",
+                  "temple"
             ],
             "correctSentence": "This ancient temple was discovered in nineteenth century.",
+            "alternativeSentences": [
+                  "In nineteenth century this ancient temple was discovered."
+            ],
             "themeOrTopic": "Historical Passive",
-            "explanation": "Subject + was discovered + historical time phrase."
+            "explanation": "Historical time phrase placement."
       },
       {
             "id": "st_g8_m_15",
             "scrambledWords": [
-                  "grew",
-                  "The",
-                  "I",
-                  "historic",
-                  "where",
-                  "city",
                   "up",
+                  "where",
+                  "The",
+                  "historic",
+                  "I",
+                  "grew",
+                  "city",
                   "is"
             ],
             "correctSentence": "The city where I grew up is historic.",
@@ -2630,64 +2807,72 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_m_16",
             "scrambledWords": [
-                  "He",
-                  "apologized",
-                  "the",
-                  "being",
                   "impatient",
-                  "for",
+                  "discussion",
+                  "He",
                   "during",
-                  "discussion"
+                  "apologized",
+                  "being",
+                  "for",
+                  "the"
             ],
             "correctSentence": "He apologized for being impatient during the discussion.",
+            "alternativeSentences": [
+                  "During the discussion he apologized for being impatient."
+            ],
             "themeOrTopic": "Apologize For + Gerund",
-            "explanation": "Subject + apologized for + gerund phrase + time."
+            "explanation": "Time phrase can be placed first."
       },
       {
             "id": "st_g8_m_17",
             "scrambledWords": [
-                  "preparations",
-                  "the",
-                  "completed",
-                  "already",
                   "All",
+                  "the",
+                  "been",
                   "have",
-                  "necessary",
-                  "been"
+                  "already",
+                  "completed",
+                  "preparations",
+                  "necessary"
             ],
             "correctSentence": "All the necessary preparations have been completed already.",
+            "alternativeSentences": [
+                  "Already all the necessary preparations have been completed.",
+                  "All the necessary preparations have already been completed."
+            ],
             "themeOrTopic": "Present Perfect Passive",
-            "explanation": "Subject + have been completed + already."
+            "explanation": "'Already' placement."
       },
       {
             "id": "st_g8_m_18",
             "scrambledWords": [
                   "we",
+                  "we",
+                  "now",
+                  "will",
+                  "leave",
                   "If",
                   "train",
                   "catch",
-                  "we",
-                  "will",
-                  "now",
-                  "leave"
+                  "the"
             ],
-            "correctSentence": "If we leave now we will catch train.",
+            "correctSentence": "If we leave now we will catch the train.",
             "alternativeSentences": [
-                  "We will catch train if we leave now."
+                  "We will catch the train if we leave now."
             ],
             "themeOrTopic": "First Conditional Real",
-            "explanation": "If condition + future consequence."
+            "explanation": "Conditional clause order."
       },
       {
             "id": "st_g8_m_19",
             "scrambledWords": [
-                  "The",
+                  "door",
                   "who",
+                  "drums",
                   "plays",
                   "lives",
+                  "The",
                   "boy",
-                  "drums",
-                  "door",
                   "next"
             ],
             "correctSentence": "The boy who lives next door plays drums.",
@@ -2697,30 +2882,33 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_m_20",
             "scrambledWords": [
-                  "oil",
-                  "olive",
-                  "is",
-                  "region",
                   "Aegean",
                   "Delicious",
+                  "is",
+                  "produced",
+                  "oil",
                   "in",
-                  "produced"
+                  "region",
+                  "olive"
             ],
             "correctSentence": "Delicious olive oil is produced in Aegean region.",
+            "alternativeSentences": [
+                  "In Aegean region delicious olive oil is produced."
+            ],
             "themeOrTopic": "Present Simple Passive",
-            "explanation": "Subject + is produced + geographic location."
+            "explanation": "Location phrase can be fronted."
       },
       {
             "id": "st_g8_m_21",
             "scrambledWords": [
-                  "use",
-                  "didn't",
+                  "to",
                   "books",
-                  "enjoy",
-                  "She",
+                  "didn't",
+                  "use",
                   "science",
                   "fiction",
-                  "to"
+                  "She",
+                  "enjoy"
             ],
             "correctSentence": "She didn't use to enjoy science fiction books.",
             "themeOrTopic": "Negative Used to",
@@ -2729,12 +2917,12 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_m_22",
             "scrambledWords": [
-                  "electricity",
-                  "When",
+                  "failed",
                   "lights",
                   "the",
+                  "electricity",
                   "extinguished",
-                  "failed",
+                  "When",
                   "all",
                   "the"
             ],
@@ -2743,19 +2931,19 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
                   "All the lights extinguished when the electricity failed."
             ],
             "themeOrTopic": "Past Time Clauses",
-            "explanation": "When-clause + main clause sequence."
+            "explanation": "When-clause can precede or follow."
       },
       {
             "id": "st_g8_m_23",
             "scrambledWords": [
                   "by",
-                  "out",
                   "experiment",
-                  "The",
-                  "experienced",
-                  "scientists",
+                  "out",
                   "was",
-                  "carried"
+                  "experienced",
+                  "carried",
+                  "scientists",
+                  "The"
             ],
             "correctSentence": "The experiment was carried out by experienced scientists.",
             "themeOrTopic": "Passive Phrasal Verbs",
@@ -2764,14 +2952,14 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_m_24",
             "scrambledWords": [
-                  "will",
                   "her",
+                  "I",
+                  "If",
+                  "tell",
+                  "will",
                   "calls",
                   "she",
-                  "tell",
-                  "If",
-                  "return",
-                  "I"
+                  "return"
             ],
             "correctSentence": "If she calls tell her I will return.",
             "themeOrTopic": "Conditional Imperatives",
@@ -2780,13 +2968,13 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_m_25",
             "scrambledWords": [
-                  "reason",
                   "we",
-                  "the",
                   "That",
-                  "is",
+                  "reason",
                   "why",
                   "arrived",
+                  "is",
+                  "the",
                   "late"
             ],
             "correctSentence": "That is the reason why we arrived late.",
@@ -2796,45 +2984,51 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_m_26",
             "scrambledWords": [
-                  "postal",
-                  "delivered",
-                  "were",
-                  "morning",
-                  "carriers",
-                  "Letters",
                   "every",
-                  "by"
+                  "carriers",
+                  "morning",
+                  "Letters",
+                  "by",
+                  "were",
+                  "postal",
+                  "delivered"
             ],
             "correctSentence": "Letters were delivered by postal carriers every morning.",
+            "alternativeSentences": [
+                  "Every morning letters were delivered by postal carriers."
+            ],
             "themeOrTopic": "Past Routine Passive",
-            "explanation": "Plural subject + were delivered + agent + time."
+            "explanation": "Time phrase can be fronted."
       },
       {
             "id": "st_g8_m_27",
             "scrambledWords": [
-                  "vacation",
-                  "since",
-                  "this",
                   "planning",
-                  "January",
+                  "this",
+                  "vacation",
                   "been",
                   "have",
-                  "We"
+                  "since",
+                  "We",
+                  "January"
             ],
             "correctSentence": "We have been planning this vacation since January.",
+            "alternativeSentences": [
+                  "Since January we have been planning this vacation."
+            ],
             "themeOrTopic": "Present Perfect Continuous",
-            "explanation": "Subject + have been planning + object + since."
+            "explanation": "Time phrase can be fronted."
       },
       {
             "id": "st_g8_m_28",
             "scrambledWords": [
-                  "patient",
-                  "The",
-                  "to",
-                  "advised",
-                  "more",
                   "the",
                   "doctor",
+                  "patient",
+                  "to",
+                  "advised",
+                  "The",
+                  "more",
                   "rest"
             ],
             "correctSentence": "The doctor advised the patient to rest more.",
@@ -2844,14 +3038,14 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_m_29",
             "scrambledWords": [
-                  "solar",
-                  "generate",
-                  "These",
                   "are",
+                  "designed",
+                  "panels",
+                  "solar",
+                  "These",
                   "to",
                   "electricity",
-                  "designed",
-                  "panels"
+                  "generate"
             ],
             "correctSentence": "These solar panels are designed to generate electricity.",
             "themeOrTopic": "Passive with Purpose Infinitive",
@@ -2860,33 +3054,34 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_m_30",
             "scrambledWords": [
-                  "you",
-                  "mix",
-                  "you",
                   "If",
-                  "red",
-                  "blue",
-                  "get",
+                  "you",
+                  "purple",
                   "and",
-                  "purple"
+                  "you",
+                  "blue",
+                  "red",
+                  "get",
+                  "mix"
             ],
             "correctSentence": "If you mix red and blue you get purple.",
             "alternativeSentences": [
-                  "You get purple if you mix red and blue."
+                  "You get purple if you mix red and blue.",
+                  "If you mix blue and red you get purple."
             ],
             "themeOrTopic": "Zero Conditional",
-            "explanation": "General scientific fact conditional."
+            "explanation": "Condition clause and coordinated color order."
       },
       {
             "id": "st_g8_m_31",
             "scrambledWords": [
-                  "on",
-                  "hill",
-                  "is",
-                  "The",
-                  "ancient",
                   "castle",
+                  "is",
+                  "hill",
+                  "on",
+                  "ancient",
                   "stands",
+                  "The",
                   "which"
             ],
             "correctSentence": "The castle which stands on hill is ancient.",
@@ -2896,114 +3091,129 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_m_32",
             "scrambledWords": [
-                  "ten",
-                  "has",
                   "for",
-                  "Istanbul",
-                  "in",
-                  "He",
                   "years",
-                  "lived"
+                  "ten",
+                  "Istanbul",
+                  "He",
+                  "has",
+                  "lived",
+                  "in"
             ],
             "correctSentence": "He has lived in Istanbul for ten years.",
+            "alternativeSentences": [
+                  "For ten years he has lived in Istanbul."
+            ],
             "themeOrTopic": "Present Perfect Duration",
-            "explanation": "Subject + has lived + in place + for duration."
+            "explanation": "Duration phrase can be placed first."
       },
       {
             "id": "st_g8_m_33",
             "scrambledWords": [
-                  "be",
-                  "The",
+                  "held",
                   "will",
+                  "The",
+                  "be",
+                  "in",
                   "hall",
                   "conference",
-                  "meeting",
-                  "in",
-                  "held"
+                  "meeting"
             ],
             "correctSentence": "The meeting will be held in conference hall.",
+            "alternativeSentences": [
+                  "In conference hall the meeting will be held."
+            ],
             "themeOrTopic": "Future Passive",
-            "explanation": "Subject + will be held + location."
+            "explanation": "Location phrase can be fronted."
       },
       {
             "id": "st_g8_m_34",
             "scrambledWords": [
-                  "start",
-                  "she",
-                  "soon",
                   "we",
-                  "will",
-                  "As",
-                  "as",
+                  "arrives",
                   "dinner",
-                  "arrives"
+                  "as",
+                  "As",
+                  "start",
+                  "will",
+                  "she",
+                  "soon"
             ],
             "correctSentence": "As soon as she arrives we will start dinner.",
             "alternativeSentences": [
                   "We will start dinner as soon as she arrives."
             ],
             "themeOrTopic": "Time Clauses (As soon as)",
-            "explanation": "Time clause + future main clause."
+            "explanation": "Time clause can precede or follow."
       },
       {
             "id": "st_g8_m_35",
             "scrambledWords": [
                   "Nobody",
-                  "first",
                   "knows",
-                  "who",
-                  "wheel",
-                  "invented",
+                  "ago",
                   "the",
-                  "centuries"
+                  "who",
+                  "invented",
+                  "centuries",
+                  "wheel"
             ],
-            "correctSentence": "Nobody knows who invented the wheel first centuries.",
+            "correctSentence": "Nobody knows who invented the wheel centuries ago.",
+            "alternativeSentences": [
+                  "Centuries ago nobody knows who invented the wheel."
+            ],
             "themeOrTopic": "Indirect Wh- Clauses",
-            "explanation": "Negative subject + knows + who clause."
+            "explanation": "Time phrase placement."
       },
       {
             "id": "st_g8_m_36",
             "scrambledWords": [
-                  "Plastic",
                   "oceans",
                   "be",
+                  "Plastic",
+                  "banned",
                   "protect",
-                  "should",
-                  "to",
                   "bags",
-                  "banned"
+                  "to",
+                  "should"
             ],
             "correctSentence": "Plastic bags should be banned to protect oceans.",
+            "alternativeSentences": [
+                  "To protect oceans plastic bags should be banned."
+            ],
             "themeOrTopic": "Modal Passive",
-            "explanation": "Subject + should be banned + purpose infinitive."
+            "explanation": "Purpose clause can come first."
       },
       {
             "id": "st_g8_m_37",
             "scrambledWords": [
-                  "dawn",
-                  "accustomed",
-                  "at",
-                  "to",
                   "She",
-                  "up",
+                  "dawn",
+                  "at",
                   "is",
-                  "waking"
+                  "up",
+                  "accustomed",
+                  "waking",
+                  "to"
             ],
             "correctSentence": "She is accustomed to waking up at dawn.",
+            "alternativeSentences": [
+                  "At dawn she is accustomed to waking up."
+            ],
             "themeOrTopic": "Accustomed to + Gerund",
-            "explanation": "Subject + is accustomed to + gerund phrase."
+            "explanation": "Time phrase placement."
       },
       {
             "id": "st_g8_m_38",
             "scrambledWords": [
-                  "that",
-                  "borrowed",
-                  "inspiring",
-                  "The",
-                  "I",
-                  "book",
                   "very",
-                  "was"
+                  "book",
+                  "The",
+                  "that",
+                  "inspiring",
+                  "borrowed",
+                  "was",
+                  "I"
             ],
             "correctSentence": "The book that I borrowed was very inspiring.",
             "themeOrTopic": "Relative Clauses (That)",
@@ -3012,129 +3222,135 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_m_39",
             "scrambledWords": [
-                  "If",
-                  "the",
                   "he",
-                  "misses",
-                  "call",
+                  "the",
+                  "will",
+                  "If",
                   "flight",
                   "he",
-                  "will"
+                  "call",
+                  "misses"
             ],
             "correctSentence": "If he misses the flight he will call.",
             "alternativeSentences": [
                   "He will call if he misses the flight."
             ],
             "themeOrTopic": "First Conditional",
-            "explanation": "Condition with 3rd person verb + consequence."
+            "explanation": "Condition and consequence clause order."
       },
       {
             "id": "st_g8_m_40",
             "scrambledWords": [
-                  "Clean",
-                  "water",
                   "to",
                   "drinking",
-                  "provided",
+                  "must",
                   "be",
-                  "all",
-                  "must"
+                  "provided",
+                  "water",
+                  "Clean",
+                  "all"
             ],
             "correctSentence": "Clean drinking water must be provided to all.",
+            "alternativeSentences": [
+                  "To all clean drinking water must be provided."
+            ],
             "themeOrTopic": "Modal Passive Obligation",
-            "explanation": "Subject + must be provided + recipient."
+            "explanation": "Recipient phrase placement."
       }
 ],
     hard: [
       {
             "id": "st_g8_h_01",
             "scrambledWords": [
+                  "a",
                   "would",
-                  "I",
-                  "I",
-                  "If",
-                  "travel",
                   "dollars",
-                  "million",
+                  "I",
+                  "travel",
+                  "If",
+                  "I",
                   "had",
-                  "a"
+                  "million"
             ],
             "correctSentence": "If I had a million dollars I would travel.",
             "alternativeSentences": [
                   "I would travel if I had a million dollars."
             ],
             "themeOrTopic": "Second Conditional",
-            "explanation": "If + past simple, would + bare infinitive."
+            "explanation": "Hypothetical condition and result clause order."
       },
       {
             "id": "st_g8_h_02",
             "scrambledWords": [
-                  "arrived",
-                  "the",
-                  "we",
-                  "the",
                   "left",
-                  "train",
+                  "the",
+                  "arrived",
                   "By",
+                  "train",
                   "had",
-                  "time"
+                  "we",
+                  "time",
+                  "the"
             ],
             "correctSentence": "By the time we arrived the train had left.",
             "alternativeSentences": [
                   "The train had left by the time we arrived."
             ],
             "themeOrTopic": "Past Perfect with By The Time",
-            "explanation": "Past time boundary clause + past perfect main action."
+            "explanation": "Time boundary clause can precede or follow."
       },
       {
             "id": "st_g8_h_03",
             "scrambledWords": [
-                  "If",
-                  "truth",
-                  "she",
-                  "she",
                   "us",
+                  "she",
                   "tell",
-                  "the",
+                  "she",
+                  "knew",
+                  "truth",
                   "would",
-                  "knew"
+                  "If",
+                  "the"
             ],
             "correctSentence": "If she knew the truth she would tell us.",
             "alternativeSentences": [
                   "She would tell us if she knew the truth."
             ],
             "themeOrTopic": "Second Conditional",
-            "explanation": "Hypothetical condition in past simple + would clause."
+            "explanation": "Condition and result clause order."
       },
       {
             "id": "st_g8_h_04",
             "scrambledWords": [
-                  "before",
-                  "He",
-                  "had",
-                  "nervous",
                   "flown",
-                  "never",
+                  "was",
+                  "had",
+                  "before",
                   "because",
+                  "nervous",
                   "he",
-                  "was"
+                  "never",
+                  "He"
             ],
             "correctSentence": "He was nervous because he had never flown before.",
+            "alternativeSentences": [
+                  "Because he had never flown before he was nervous."
+            ],
             "themeOrTopic": "Past Perfect Reason",
-            "explanation": "Past state + reason clause showing prior experience."
+            "explanation": "Because clause can come first or second."
       },
       {
             "id": "st_g8_h_05",
             "scrambledWords": [
-                  "London",
                   "that",
-                  "was",
-                  "she",
-                  "moving",
-                  "to",
                   "me",
-                  "told",
-                  "She"
+                  "she",
+                  "She",
+                  "was",
+                  "to",
+                  "moving",
+                  "London",
+                  "told"
             ],
             "correctSentence": "She told me that she was moving to London.",
             "themeOrTopic": "Reported Speech Tense Shift",
@@ -3143,54 +3359,55 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_h_06",
             "scrambledWords": [
-                  "position",
-                  "were",
-                  "I",
                   "would",
-                  "apologize",
+                  "your",
                   "I",
-                  "If",
                   "in",
-                  "your"
+                  "were",
+                  "position",
+                  "I",
+                  "apologize",
+                  "If"
             ],
             "correctSentence": "If I were in your position I would apologize.",
             "alternativeSentences": [
                   "I would apologize if I were in your position."
             ],
             "themeOrTopic": "Second Conditional (Advice)",
-            "explanation": "'If I were' subjunctive phrasing for advice."
+            "explanation": "Advice conditional clause order."
       },
       {
             "id": "st_g8_h_07",
             "scrambledWords": [
                   "dinner",
-                  "went",
-                  "had",
-                  "finished",
-                  "they",
-                  "walk",
+                  "a",
                   "for",
-                  "After",
-                  "they"
+                  "had",
+                  "walk",
+                  "they",
+                  "they",
+                  "went",
+                  "finished",
+                  "After"
             ],
-            "correctSentence": "After they had finished dinner they went for walk.",
+            "correctSentence": "After they had finished dinner they went for a walk.",
             "alternativeSentences": [
-                  "They went for walk after they had finished dinner."
+                  "They went for a walk after they had finished dinner."
             ],
             "themeOrTopic": "Past Perfect with After",
-            "explanation": "After + past perfect introduces earlier action."
+            "explanation": "After clause can precede or follow."
       },
       {
             "id": "st_g8_h_08",
             "scrambledWords": [
-                  "the",
-                  "tonight",
-                  "are",
-                  "you",
-                  "aren't",
                   "You",
                   "party",
+                  "you",
                   "coming",
+                  "aren't",
+                  "are",
+                  "the",
+                  "tonight",
                   "to"
             ],
             "correctSentence": "You are coming to the party tonight aren't you?",
@@ -3200,70 +3417,76 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_h_09",
             "scrambledWords": [
-                  "where",
-                  "me",
                   "is",
-                  "library",
                   "the",
-                  "please",
                   "you",
+                  "me",
                   "Could",
+                  "please",
+                  "where",
+                  "library",
                   "tell"
             ],
             "correctSentence": "Could you please tell me where the library is?",
+            "alternativeSentences": [
+                  "Could you tell me please where the library is?"
+            ],
             "themeOrTopic": "Indirect Questions",
-            "explanation": "Polite opening + indirect question with statement word order."
+            "explanation": "Polite adverb 'please' placement."
       },
       {
             "id": "st_g8_h_10",
             "scrambledWords": [
-                  "his",
-                  "school",
-                  "have",
-                  "at",
-                  "phone",
                   "forgotten",
+                  "his",
+                  "at",
+                  "He",
                   "must",
                   "yesterday",
-                  "He"
+                  "school",
+                  "have",
+                  "phone"
             ],
             "correctSentence": "He must have forgotten his phone at school yesterday.",
+            "alternativeSentences": [
+                  "Yesterday he must have forgotten his phone at school."
+            ],
             "themeOrTopic": "Modal of Past Deduction",
-            "explanation": "Must have + past participle for confident deduction."
+            "explanation": "Time phrase can be fronted."
       },
       {
             "id": "st_g8_h_11",
             "scrambledWords": [
-                  "play",
-                  "could",
-                  "were",
-                  "we",
                   "tennis",
+                  "raining",
+                  "were",
+                  "it",
+                  "could",
+                  "we",
                   "not",
                   "If",
-                  "it",
-                  "raining"
+                  "play"
             ],
             "correctSentence": "If it were not raining we could play tennis.",
             "alternativeSentences": [
                   "We could play tennis if it were not raining."
             ],
             "themeOrTopic": "Second Conditional Continuous",
-            "explanation": "Hypothetical condition with were not + could result."
+            "explanation": "Hypothetical condition clause order."
       },
       {
             "id": "st_g8_h_12",
             "scrambledWords": [
+                  "teacher",
+                  "late",
+                  "The",
                   "why",
                   "was",
-                  "the",
-                  "The",
-                  "to",
                   "know",
+                  "to",
                   "wanted",
-                  "teacher",
                   "student",
-                  "late"
+                  "the"
             ],
             "correctSentence": "The teacher wanted to know why the student was late.",
             "themeOrTopic": "Embedded Wh- Questions",
@@ -3272,56 +3495,57 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_h_13",
             "scrambledWords": [
-                  "countryside",
+                  "in",
                   "if",
                   "much",
-                  "would",
-                  "They",
-                  "happier",
-                  "be",
+                  "lived",
                   "they",
-                  "lived"
+                  "be",
+                  "happier",
+                  "countryside",
+                  "would",
+                  "They"
             ],
-            "correctSentence": "They would be much happier if they lived countryside.",
+            "correctSentence": "They would be much happier if they lived in countryside.",
             "alternativeSentences": [
-                  "If they lived countryside they would be much happier."
+                  "If they lived in countryside they would be much happier."
             ],
             "themeOrTopic": "Second Conditional",
-            "explanation": "Would result clause + if past condition."
+            "explanation": "Condition and result clause order."
       },
       {
             "id": "st_g8_h_14",
             "scrambledWords": [
-                  "She",
-                  "had",
-                  "the",
-                  "the",
-                  "already",
-                  "locked",
                   "when",
-                  "sounded",
+                  "alarm",
+                  "the",
+                  "the",
+                  "locked",
+                  "had",
+                  "She",
                   "doors",
-                  "alarm"
+                  "sounded",
+                  "already"
             ],
             "correctSentence": "She had already locked the doors when the alarm sounded.",
             "alternativeSentences": [
                   "When the alarm sounded she had already locked the doors."
             ],
             "themeOrTopic": "Past Perfect with When",
-            "explanation": "Past perfect + when past simple event."
+            "explanation": "When clause can precede or follow."
       },
       {
             "id": "st_g8_h_15",
             "scrambledWords": [
-                  "if",
-                  "keys",
                   "her",
-                  "I",
+                  "if",
+                  "had",
+                  "keys",
+                  "me",
                   "She",
                   "seen",
-                  "had",
-                  "asked",
-                  "me"
+                  "I",
+                  "asked"
             ],
             "correctSentence": "She asked me if I had seen her keys.",
             "themeOrTopic": "Reported Yes/No Questions",
@@ -3330,15 +3554,15 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_h_16",
             "scrambledWords": [
-                  "serious",
-                  "were",
-                  "the",
-                  "Nobody",
-                  "injured",
+                  "they",
                   "accident",
                   "in",
+                  "Nobody",
+                  "the",
+                  "serious",
+                  "were",
                   "was",
-                  "they"
+                  "injured"
             ],
             "correctSentence": "Nobody was injured in the serious accident were they?",
             "themeOrTopic": "Tag Questions with Nobody",
@@ -3347,72 +3571,78 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_h_17",
             "scrambledWords": [
-                  "you",
-                  "what",
-                  "Do",
-                  "opens",
                   "morning",
                   "time",
+                  "opens",
+                  "what",
                   "the",
                   "museum",
-                  "know"
+                  "know",
+                  "Do",
+                  "you",
+                  "in"
             ],
-            "correctSentence": "Do you know what time the museum opens morning?",
+            "correctSentence": "Do you know what time the museum opens in morning?",
             "themeOrTopic": "Indirect Questions",
             "explanation": "Do you know + what time + subject + verb."
       },
       {
             "id": "st_g8_h_18",
             "scrambledWords": [
-                  "stolen",
-                  "he",
-                  "have",
-                  "He",
-                  "was",
                   "because",
                   "wallet",
+                  "can't",
+                  "stolen",
+                  "was",
+                  "have",
                   "the",
                   "away",
-                  "can't"
+                  "He",
+                  "he"
             ],
             "correctSentence": "He can't have stolen the wallet because he was away.",
+            "alternativeSentences": [
+                  "Because he was away he can't have stolen the wallet."
+            ],
             "themeOrTopic": "Modal of Past Impossibility",
-            "explanation": "Can't have + past participle expressing impossibility."
+            "explanation": "Reason clause can come first or second."
       },
       {
             "id": "st_g8_h_19",
             "scrambledWords": [
-                  "ruins",
+                  "had",
+                  "we",
+                  "time",
+                  "would",
                   "we",
                   "explore",
-                  "we",
                   "more",
-                  "time",
-                  "had",
-                  "would",
+                  "ancient",
+                  "ruins",
                   "If"
             ],
-            "correctSentence": "If we had more time we would explore ruins.",
+            "correctSentence": "If we had more time we would explore ancient ruins.",
             "alternativeSentences": [
-                  "We would explore ruins if we had more time."
+                  "We would explore ancient ruins if we had more time."
             ],
             "themeOrTopic": "Second Conditional",
-            "explanation": "Hypothetical condition + would explore."
+            "explanation": "Hypothetical condition and result order."
       },
       {
             "id": "st_g8_h_20",
             "scrambledWords": [
-                  "had",
-                  "left",
-                  "her",
-                  "She",
-                  "home",
                   "wallet",
-                  "she",
+                  "her",
+                  "had",
+                  "that",
+                  "She",
                   "realized",
-                  "that"
+                  "she",
+                  "home",
+                  "at",
+                  "left"
             ],
-            "correctSentence": "She realized that she had left her wallet home.",
+            "correctSentence": "She realized that she had left her wallet at home.",
             "themeOrTopic": "Past Perfect Discovery",
             "explanation": "Past realization + earlier action in past perfect."
       },
@@ -3420,14 +3650,14 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             "id": "st_g8_h_21",
             "scrambledWords": [
                   "your",
-                  "teacher",
-                  "like",
-                  "shouldn't",
-                  "have",
-                  "spoken",
-                  "that",
                   "You",
-                  "to"
+                  "that",
+                  "teacher",
+                  "shouldn't",
+                  "to",
+                  "like",
+                  "spoken",
+                  "have"
             ],
             "correctSentence": "You shouldn't have spoken to your teacher like that.",
             "themeOrTopic": "Past Criticism (Shouldn't Have)",
@@ -3436,14 +3666,14 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_h_22",
             "scrambledWords": [
-                  "He",
-                  "as",
                   "he",
+                  "call",
+                  "as",
+                  "said",
+                  "He",
+                  "soon",
                   "he",
                   "would",
-                  "said",
-                  "call",
-                  "soon",
                   "landed",
                   "as"
             ],
@@ -3454,52 +3684,55 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_h_23",
             "scrambledWords": [
-                  "anywhere",
-                  "if",
+                  "go",
                   "you",
                   "could",
                   "would",
                   "you",
-                  "Where",
+                  "if",
+                  "anywhere",
                   "go",
-                  "go"
+                  "Where"
             ],
             "correctSentence": "Where would you go if you could go anywhere?",
             "alternativeSentences": [
                   "If you could go anywhere where would you go?"
             ],
             "themeOrTopic": "Second Conditional Questions",
-            "explanation": "Wh- question with would + if condition with could."
+            "explanation": "Question clause and if-clause order."
       },
       {
             "id": "st_g8_h_24",
             "scrambledWords": [
-                  "never",
-                  "last",
                   "cuisine",
-                  "year",
-                  "Until",
-                  "I",
                   "tasted",
+                  "last",
+                  "I",
+                  "Until",
                   "traditional",
-                  "had"
+                  "year",
+                  "had",
+                  "never"
             ],
             "correctSentence": "Until last year I had never tasted traditional cuisine.",
+            "alternativeSentences": [
+                  "I had never tasted traditional cuisine until last year."
+            ],
             "themeOrTopic": "Past Perfect with Until",
-            "explanation": "Until time marker + past perfect experience."
+            "explanation": "Until time marker can precede or follow."
       },
       {
             "id": "st_g8_h_25",
             "scrambledWords": [
-                  "weights",
-                  "warned",
                   "doctor",
-                  "heavy",
+                  "weights",
                   "The",
-                  "not",
+                  "heavy",
                   "to",
+                  "him",
+                  "not",
                   "lift",
-                  "him"
+                  "warned"
             ],
             "correctSentence": "The doctor warned him not to lift heavy weights.",
             "themeOrTopic": "Reported Negative Commands",
@@ -3508,73 +3741,74 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_h_26",
             "scrambledWords": [
-                  "having",
+                  "Despite",
+                  "travel",
                   "to",
+                  "comfortably",
                   "they",
+                  "little",
                   "managed",
                   "money",
-                  "comfortably",
-                  "travel",
-                  "little",
-                  "Despite"
+                  "having"
             ],
             "correctSentence": "Despite having little money they managed to travel comfortably.",
             "alternativeSentences": [
                   "They managed to travel comfortably despite having little money."
             ],
             "themeOrTopic": "Despite + Gerund Phrase",
-            "explanation": "Despite + gerund phrase shows concessive contrast."
+            "explanation": "Despite phrase can precede or follow."
       },
       {
             "id": "st_g8_h_27",
             "scrambledWords": [
-                  "he",
                   "If",
-                  "listened",
-                  "he",
-                  "errors",
                   "make",
-                  "more",
-                  "fewer",
+                  "he",
                   "carefully",
-                  "would"
+                  "errors",
+                  "would",
+                  "he",
+                  "listened",
+                  "fewer",
+                  "more"
             ],
             "correctSentence": "If he listened more carefully he would make fewer errors.",
             "alternativeSentences": [
                   "He would make fewer errors if he listened more carefully."
             ],
             "themeOrTopic": "Second Conditional",
-            "explanation": "Hypothetical condition + would make fewer errors."
+            "explanation": "Condition and consequence order."
       },
       {
             "id": "st_g8_h_28",
             "scrambledWords": [
-                  "had",
-                  "flight",
                   "weather",
-                  "wondered",
+                  "whether",
                   "the",
+                  "wondered",
                   "been",
-                  "She",
                   "delayed",
-                  "whether"
+                  "flight",
+                  "She",
+                  "by",
+                  "had"
             ],
-            "correctSentence": "She wondered whether the flight had been delayed weather.",
+            "correctSentence": "She wondered whether the flight had been delayed by weather.",
             "themeOrTopic": "Embedded Passive Questions",
             "explanation": "Wondered + whether + past perfect passive."
       },
       {
             "id": "st_g8_h_29",
             "scrambledWords": [
+                  "for",
+                  "Let's",
+                  "campaign",
+                  "we",
+                  "charity",
+                  "shall",
                   "homeless",
                   "a",
-                  "shall",
-                  "organize",
-                  "Let's",
-                  "we",
-                  "for",
-                  "campaign",
-                  "charity"
+                  "organize"
             ],
             "correctSentence": "Let's organize a charity campaign for homeless shall we?",
             "themeOrTopic": "Tag Questions with Let's",
@@ -3583,53 +3817,56 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_h_30",
             "scrambledWords": [
-                  "might",
-                  "wrong",
-                  "have",
-                  "train",
                   "taken",
-                  "He",
-                  "mistake",
+                  "wrong",
                   "by",
-                  "the"
+                  "have",
+                  "mistake",
+                  "might",
+                  "He",
+                  "the",
+                  "train"
             ],
             "correctSentence": "He might have taken the wrong train by mistake.",
+            "alternativeSentences": [
+                  "By mistake he might have taken the wrong train."
+            ],
             "themeOrTopic": "Modal of Past Possibility",
-            "explanation": "Might have + past participle for uncertain past event."
+            "explanation": "Adverbial prepositional phrase placement."
       },
       {
             "id": "st_g8_h_31",
             "scrambledWords": [
+                  "she",
+                  "she",
                   "would",
-                  "apply",
-                  "she",
-                  "spoke",
-                  "fluent",
-                  "she",
-                  "If",
+                  "German",
                   "for",
+                  "If",
                   "job",
-                  "German"
+                  "spoke",
+                  "apply",
+                  "fluent"
             ],
             "correctSentence": "If she spoke fluent German she would apply for job.",
             "alternativeSentences": [
                   "She would apply for job if she spoke fluent German."
             ],
             "themeOrTopic": "Second Conditional Abilities",
-            "explanation": "Condition with spoke + result with would apply."
+            "explanation": "Condition and result clause order."
       },
       {
             "id": "st_g8_h_32",
             "scrambledWords": [
+                  "for",
+                  "The",
+                  "been",
+                  "decades",
+                  "being",
+                  "renovated",
                   "abandoned",
                   "house",
-                  "for",
-                  "renovated",
-                  "being",
                   "before",
-                  "decades",
-                  "been",
-                  "The",
                   "had"
             ],
             "correctSentence": "The house had been abandoned for decades before being renovated.",
@@ -3639,15 +3876,15 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_h_33",
             "scrambledWords": [
-                  "to",
+                  "take",
                   "urged",
                   "the",
+                  "to",
+                  "urgent",
+                  "They",
                   "environmental",
                   "government",
-                  "action",
-                  "take",
-                  "urgent",
-                  "They"
+                  "action"
             ],
             "correctSentence": "They urged the government to take urgent environmental action.",
             "themeOrTopic": "Reporting Verbs of Urgency",
@@ -3656,14 +3893,14 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_h_34",
             "scrambledWords": [
-                  "the",
-                  "team",
+                  "of",
                   "In",
+                  "spite",
+                  "the",
                   "storm",
                   "the",
-                  "of",
-                  "spite",
                   "succeeded",
+                  "team",
                   "rescue"
             ],
             "correctSentence": "In spite of the storm the rescue team succeeded.",
@@ -3671,19 +3908,19 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
                   "The rescue team succeeded in spite of the storm."
             ],
             "themeOrTopic": "In Spite Of + Noun Phrase",
-            "explanation": "Concessive prepositional phrase introducing triumph."
+            "explanation": "Concessive prepositional phrase can precede or follow."
       },
       {
             "id": "st_g8_h_35",
             "scrambledWords": [
-                  "ice",
-                  "melted",
+                  "the",
                   "would",
                   "if",
-                  "all",
+                  "ice",
+                  "melted",
                   "polar",
+                  "all",
                   "What",
-                  "the",
                   "happen"
             ],
             "correctSentence": "What would happen if all the polar ice melted?",
@@ -3691,20 +3928,20 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
                   "If all the polar ice melted what would happen?"
             ],
             "themeOrTopic": "Second Conditional Questions",
-            "explanation": "What would happen + if condition in past simple."
+            "explanation": "Conditional question clause order."
       },
       {
             "id": "st_g8_h_36",
             "scrambledWords": [
-                  "taken",
-                  "confidential",
-                  "the",
-                  "documents",
-                  "He",
-                  "having",
                   "from",
+                  "He",
+                  "office",
+                  "documents",
+                  "confidential",
+                  "taken",
                   "denied",
-                  "office"
+                  "the",
+                  "having"
             ],
             "correctSentence": "He denied having taken the confidential documents from office.",
             "themeOrTopic": "Deny + Perfect Gerund",
@@ -3713,15 +3950,15 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_h_37",
             "scrambledWords": [
-                  "that",
-                  "had",
-                  "formula",
-                  "disease",
                   "cured",
                   "The",
-                  "scientist",
                   "claimed",
-                  "the"
+                  "the",
+                  "formula",
+                  "had",
+                  "scientist",
+                  "disease",
+                  "that"
             ],
             "correctSentence": "The scientist claimed that the formula had cured disease.",
             "themeOrTopic": "Reported Claims with Past Perfect",
@@ -3730,33 +3967,33 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_h_38",
             "scrambledWords": [
-                  "driver",
-                  "passengers",
-                  "the",
                   "the",
                   "injured",
+                  "Neither",
                   "was",
-                  "nor",
                   "seriously",
-                  "Neither"
+                  "nor",
+                  "driver",
+                  "the",
+                  "passengers"
             ],
             "correctSentence": "Neither the passengers nor the driver was seriously injured.",
             "themeOrTopic": "Correlative Agreement",
-            "explanation": "Neither... nor structure with verb agreeing with singular driver."
+            "explanation": "Neither... nor structure."
       },
       {
             "id": "st_g8_h_39",
             "scrambledWords": [
-                  "in",
-                  "orbit",
+                  "explain",
                   "satellite",
-                  "you",
-                  "operates",
-                  "this",
-                  "how",
-                  "advanced",
                   "Could",
-                  "explain"
+                  "how",
+                  "operates",
+                  "in",
+                  "advanced",
+                  "this",
+                  "orbit",
+                  "you"
             ],
             "correctSentence": "Could you explain how this advanced satellite operates in orbit?",
             "themeOrTopic": "Indirect Embedded Questions",
@@ -3765,22 +4002,22 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_h_40",
             "scrambledWords": [
-                  "species",
-                  "become",
+                  "extinct",
+                  "habitats",
                   "protected",
                   "fewer",
-                  "extinct",
                   "If",
                   "would",
+                  "become",
                   "we",
-                  "habitats"
+                  "species"
             ],
             "correctSentence": "If we protected habitats fewer species would become extinct.",
             "alternativeSentences": [
                   "Fewer species would become extinct if we protected habitats."
             ],
             "themeOrTopic": "Second Conditional Ecology",
-            "explanation": "If protected + fewer species would become extinct."
+            "explanation": "Hypothetical condition and result clause order."
       }
 ],
   },

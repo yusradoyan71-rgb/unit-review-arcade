@@ -77,3 +77,4 @@ export const GamePauseModal: React.FC<GamePauseModalProps> = ({
     </div>
   );
 };
+
