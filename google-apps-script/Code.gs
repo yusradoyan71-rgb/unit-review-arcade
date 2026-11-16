@@ -6299,7 +6299,12 @@ function handleStudentRecordGamesZoneCoins(ss, payload) {
  */
 function setupPhase8AMonsterWorld(ss) {
   if (!ss) {
-    return { success: false, error: "Spreadsheet not found" };
+    try {
+      ss = getArcadeSpreadsheet();
+    } catch (e) {
+      Logger.log("❌ Could not connect to spreadsheet: " + e.message);
+      return { success: false, error: "Spreadsheet not found: " + e.message };
+    }
   }
 
   var mSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.MONSTERS);
@@ -6312,6 +6317,7 @@ function setupPhase8AMonsterWorld(ss) {
     txSheet.appendRow(CONFIG.COIN_TRANSACTION_HEADERS);
   }
 
+  Logger.log("✅ Phase 8A Monster World sheets verified on '" + ss.getName() + "'.");
   return {
     success: true,
     monstersCreated: !!mSheet,
