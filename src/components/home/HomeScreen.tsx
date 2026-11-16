@@ -14,7 +14,7 @@ import {
 import { sounds } from '../../services/soundEffects';
 
 export const HomeScreen: React.FC = () => {
-  const { goToGrade, openTeacherPanel, data } = useArcade();
+  const { goToGrade, openTeacherPanel, navigateTo, data } = useArcade();
 
   const grade7Count = data.units['grade-7']?.length || 0;
   const grade8Count = data.units['grade-8']?.length || 0;
@@ -59,6 +59,52 @@ export const HomeScreen: React.FC = () => {
           Select a grade level to open the unit library and launch interactive classroom games.
         </motion.p>
       </div>
+
+      {/* Standalone Games Zone Featured Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, delay: 0.15 }}
+        whileHover={{ y: -4, transition: { duration: 0.2 } }}
+        whileTap={{ scale: 0.99 }}
+        onMouseEnter={() => sounds.playHover()}
+        onClick={() => {
+          sounds.playNavigate();
+          navigateTo({ view: 'games-zone' });
+        }}
+        className="relative cursor-pointer max-w-5xl mx-auto w-full mb-6 p-6 sm:p-7 rounded-3xl bg-gradient-to-r from-indigo-950/90 via-slate-900/95 to-purple-950/90 border-2 border-indigo-500/40 hover:border-indigo-400 shadow-2xl shadow-indigo-950/50 flex flex-col sm:flex-row items-center justify-between gap-6 overflow-hidden group"
+      >
+        <div className="absolute top-0 right-1/4 w-48 h-48 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none group-hover:bg-indigo-500/20 transition-all duration-500" />
+        
+        <div className="flex items-center gap-5">
+          <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-2xl bg-gradient-to-tr from-indigo-600 to-purple-500 text-white flex items-center justify-center shadow-lg shadow-indigo-600/40 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+            <Sparkles className="w-8 h-8 sm:w-10 sm:h-10" />
+          </div>
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="px-2.5 py-0.5 rounded-full bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-[10px] font-black uppercase tracking-wider">
+                NEW • STANDALONE
+              </span>
+              <span className="text-xs font-bold text-slate-400">
+                4 Interactive Games
+              </span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black text-white group-hover:text-indigo-200 transition-colors tracking-tight">
+              GAMES ZONE
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-400 max-w-xl mt-1 leading-relaxed">
+              Word Ninja, Grammar Runner, Word Fishing & Sentence Tower. Independent English speed & grammar challenges with Grade 7 & 8 modes.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-3 shrink-0">
+          <div className="px-5 py-2.5 rounded-xl bg-indigo-600 group-hover:bg-indigo-500 text-white font-black text-sm flex items-center gap-2 shadow-lg shadow-indigo-600/30 transition-all">
+            <span>Enter Zone</span>
+            <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </div>
+        </div>
+      </motion.div>
 
       {/* Main Interactive Grade Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto w-full my-auto py-4">

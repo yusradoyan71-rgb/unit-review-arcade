@@ -19,11 +19,14 @@ import { TeacherPanelModal } from './components/teacher/TeacherPanelModal';
 import { TeacherLoginModal } from './components/teacher/TeacherLoginModal';
 import { TeacherDashboardScreen } from './components/teacher/dashboard/TeacherDashboardScreen';
 import { GameContainer } from './components/game/GameContainer';
+import { GamesZoneContainer } from './components/gamesZone/GamesZoneContainer';
+import { useAuth } from './context/AuthContext';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const MainView: React.FC = () => {
   const { navigation, navigateTo } = useArcade();
   const { isDashboardOpen } = useTeacherAuth();
+  const { student } = useAuth();
 
   const isTeacherPanelOpen = navigation.view === 'teacher-panel';
 
@@ -96,6 +99,25 @@ const MainView: React.FC = () => {
               className="flex-1 flex flex-col"
             >
               <GameContainer />
+            </motion.div>
+          )}
+
+          {navigation.view === 'games-zone' && (
+            <motion.div
+              key="games-zone"
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.25 }}
+              className="flex-1 flex flex-col"
+            >
+              <GamesZoneContainer
+                selectedGrade={navigation.gradeId || 'grade-7'}
+                onSelectGrade={(g) => navigateTo({ view: 'games-zone', gradeId: g })}
+                onBackToHome={() => navigateTo({ view: 'home' })}
+                studentNumber={student?.studentNumber || 'guest'}
+                studentClass={student?.class}
+              />
             </motion.div>
           )}
 

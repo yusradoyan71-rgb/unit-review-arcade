@@ -198,6 +198,35 @@ class SoundEffectsService {
       // Ignore
     }
   }
+
+  /**
+   * Gentle incorrect answer / mismatch sound
+   */
+  public playError() {
+    if (this.muted) return;
+    try {
+      this.initContext();
+      if (!this.audioCtx) return;
+
+      const osc = this.audioCtx.createOscillator();
+      const gain = this.audioCtx.createGain();
+
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(220, this.audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(140, this.audioCtx.currentTime + 0.15);
+
+      gain.gain.setValueAtTime(0.08, this.audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.audioCtx.currentTime + 0.16);
+
+      osc.connect(gain);
+      gain.connect(this.audioCtx.destination);
+
+      osc.start();
+      osc.stop(this.audioCtx.currentTime + 0.16);
+    } catch {
+      // Ignore
+    }
+  }
 }
 
 export const sounds = new SoundEffectsService();

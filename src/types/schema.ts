@@ -208,9 +208,13 @@ export interface ArcadeData {
   lastModified: string;
 }
 
+import type { GamesZoneGameId, GamesZoneDifficulty } from './gamesZone';
+
 export type NavigationTarget =
   | { view: 'home' }
   | { view: 'unit-library'; gradeId: GradeId }
   | { view: 'unit-dashboard'; gradeId: GradeId; unitId: string }
   | { view: 'game-play'; gradeId: GradeId; unitId: string; activityId: string }
-  | { view: 'teacher-panel'; initialTab?: 'units' | 'activities' | 'backup' | 'tracking'; targetGradeId?: GradeId };
+  | { view: 'teacher-panel'; initialTab?: 'units' | 'activities' | 'backup' | 'tracking'; targetGradeId?: GradeId }
+  | { view: 'games-zone'; gradeId?: GradeId }
+  | { view: 'games-zone-play'; gameId: GamesZoneGameId; gradeId: GradeId; difficulty: GamesZoneDifficulty };

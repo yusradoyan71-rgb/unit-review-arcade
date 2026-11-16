@@ -19,12 +19,14 @@ import {
   Layers,
   Trophy,
   RotateCw,
-  Award
+  Award,
+  Sparkles
 } from 'lucide-react';
 
 export const ClassroomHeader: React.FC = () => {
   const { 
     navigation, 
+    navigateTo,
     goToHome, 
     goToGrade, 
     goToUnit,
@@ -117,6 +119,14 @@ export const ClassroomHeader: React.FC = () => {
                 </>
               )}
 
+              {/* Games Zone Breadcrumb */}
+              {navigation.view === 'games-zone' && (
+                <span className="px-2.5 py-1 rounded-lg bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 font-semibold flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+                  Games Zone
+                </span>
+              )}
+
               {/* Teacher Panel Breadcrumb */}
               {navigation.view === 'teacher-panel' && (
                 <span className="px-2.5 py-1 rounded-lg bg-amber-500/10 text-amber-300 border border-amber-500/20 font-semibold flex items-center gap-1.5">
@@ -181,6 +191,24 @@ export const ClassroomHeader: React.FC = () => {
               </button>
             </>
           )}
+
+          {/* Standalone Games Zone Quick Entry */}
+          <button
+            onClick={() => {
+              sounds.playNavigate();
+              navigateTo({ view: 'games-zone' });
+            }}
+            title="Open Games Zone"
+            aria-label="Open Games Zone"
+            className={`px-3 py-1.5 rounded-xl border transition-all flex items-center gap-1.5 text-xs font-bold hover:scale-105 active:scale-95 ${
+              navigation.view === 'games-zone'
+                ? 'bg-indigo-600 text-white border-indigo-400 shadow-md shadow-indigo-600/30'
+                : 'bg-indigo-500/15 hover:bg-indigo-500/25 border-indigo-500/30 text-indigo-300 hover:text-white'
+            }`}
+          >
+            <Sparkles className="w-4 h-4 text-indigo-400" />
+            <span className="hidden sm:inline">Games Zone</span>
+          </button>
 
           {/* Audio Effects Toggle */}
           <button
