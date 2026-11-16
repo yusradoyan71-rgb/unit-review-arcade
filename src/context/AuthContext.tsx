@@ -8,6 +8,7 @@
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import type { AuthMode, StudentProfile, StudentClass, LoginCredentials, ActiveSession } from '../types/auth';
+import { getGradeForClass } from '../types/auth';
 import { ApiService } from '../services/apiService';
 import { TrackingService } from '../services/trackingService';
 import { sounds } from '../services/soundEffects';
@@ -34,11 +35,16 @@ interface AuthContextType {
 
 const SESSION_STORAGE_KEY = 'unit_review_arcade_active_session_v1';
 
-const normalizeStudent = (raw: StudentProfile): StudentProfile => ({
-  ...raw,
-  studentNumber: String(raw.studentNumber || '').trim(),
-  class: String(raw.class || '').trim() as StudentClass,
-});
+const normalizeStudent = (raw: StudentProfile): StudentProfile => {
+  const studentClass = String(raw.class || '').trim() as StudentClass;
+  const grade = getGradeForClass(studentClass);
+  return {
+    ...raw,
+    studentNumber: String(raw.studentNumber || '').trim(),
+    class: studentClass,
+    grade: grade,
+  };
+};
 
 const getInitialSession = (): ActiveSession | null => {
   try {

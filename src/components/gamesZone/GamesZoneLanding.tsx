@@ -9,6 +9,7 @@ import {
   Play,
   Sparkles,
   Lock,
+  GraduationCap,
 } from 'lucide-react';
 import type { GradeId } from '../../types/schema';
 import type { GamesZoneGameMetadata } from '../../types/gamesZone';
@@ -94,31 +95,38 @@ export const GamesZoneLanding: React.FC<GamesZoneLandingProps> = ({
             </div>
           </div>
 
-          {/* Grade Selector Toggle */}
-          <div className="flex items-center bg-slate-900 p-1 rounded-xl border border-slate-800">
-            <button
-              type="button"
-              onClick={() => onSelectGrade('grade-7')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                selectedGrade === 'grade-7'
-                  ? 'bg-indigo-600 text-white shadow'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              Grade 7
-            </button>
-            <button
-              type="button"
-              onClick={() => onSelectGrade('grade-8')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                selectedGrade === 'grade-8'
-                  ? 'bg-indigo-600 text-white shadow'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              Grade 8
-            </button>
-          </div>
+          {/* Grade Selector Toggle / Student Verified Badge */}
+          {studentNumber !== 'guest' ? (
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 text-xs font-bold shadow-sm">
+              <GraduationCap className="w-4 h-4 text-indigo-400" />
+              <span>{selectedGrade === 'grade-7' ? 'Grade 7 English' : 'Grade 8 English / LGS'}</span>
+            </div>
+          ) : (
+            <div className="flex items-center bg-slate-900 p-1 rounded-xl border border-slate-800">
+              <button
+                type="button"
+                onClick={() => onSelectGrade('grade-7')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                  selectedGrade === 'grade-7'
+                    ? 'bg-indigo-600 text-white shadow'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                Grade 7
+              </button>
+              <button
+                type="button"
+                onClick={() => onSelectGrade('grade-8')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                  selectedGrade === 'grade-8'
+                    ? 'bg-indigo-600 text-white shadow'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                Grade 8
+              </button>
+            </div>
+          )}
         </div>
       </header>
 

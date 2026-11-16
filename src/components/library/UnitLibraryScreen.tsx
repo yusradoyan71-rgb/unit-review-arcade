@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useArcade } from '../../context/ArcadeContext';
+import { useAuth } from '../../context/AuthContext';
 import type { GradeId, Unit } from '../../types/schema';
 import { motion, AnimatePresence } from 'framer-motion';
 import { EmptyState } from '../common/EmptyState';
@@ -43,15 +44,28 @@ const ICON_MAP: Record<string, React.FC<{ className?: string }>> = {
 };
 
 export const UnitLibraryScreen: React.FC<UnitLibraryScreenProps> = ({ gradeId }) => {
+  const { student, authMode } = useAuth();
   const { 
     data, 
     goToHome, 
+    goToGrade,
     goToUnit, 
     openTeacherPanel, 
     deleteUnit, 
     reorderUnits,
     createUnit 
   } = useArcade();
+
+  // Strict Grade Guard: redirect student if attempting to view another grade
+  useEffect(() => {
+    if (student && gradeId !== student.grade) {
+      goToGrade(student.grade);
+    }
+  }, [student, gradeId, goToGrade]);
+
+  if (student && gradeId !== student.grade) {
+    return null;
+  }
 
   const [isQuickCreateOpen, setIsQuickCreateOpen] = useState(false);
   const [quickTitle, setQuickTitle] = useState('');
@@ -129,26 +143,28 @@ export const UnitLibraryScreen: React.FC<UnitLibraryScreenProps> = ({ gradeId })
           </div>
         </div>
 
-        {/* Right: Quick Unit Creator / Teacher Link */}
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => {
-              sounds.playTap();
-              setIsQuickCreateOpen(true);
-            }}
-            className="px-5 py-3 rounded-2xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-semibold text-sm sm:text-base shadow-lg shadow-indigo-600/30 hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
-          >
-            <PlusCircle className="w-5 h-5" />
-            <span>Create Unit</span>
-          </button>
+        {/* Right: Quick Unit Creator / Teacher Link (Teachers & Classroom Only) */}
+        {authMode !== 'student' && (
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => {
+                sounds.playTap();
+                setIsQuickCreateOpen(true);
+              }}
+              className="px-5 py-3 rounded-2xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-semibold text-sm sm:text-base shadow-lg shadow-indigo-600/30 hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
+            >
+              <PlusCircle className="w-5 h-5" />
+              <span>Create Unit</span>
+            </button>
 
-          <button
-            onClick={() => openTeacherPanel('units', gradeId)}
-            className="px-4 py-3 rounded-2xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-amber-300 text-sm font-semibold transition-all"
-          >
-            Manage Library
-          </button>
-        </div>
+            <button
+              onClick={() => openTeacherPanel('units', gradeId)}
+              className="px-4 py-3 rounded-2xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-amber-300 text-sm font-semibold transition-all"
+            >
+              Manage Library
+            </button>
+          </div>
+        )}
 
       </div>
 
@@ -289,42 +305,44 @@ export const UnitLibraryScreen: React.FC<UnitLibraryScreenProps> = ({ gradeId })
                     </span>
 
                     {/* Teacher Quick Reorder & Delete */}
-                    <div className="flex items-center gap-1 opacity-80 group-hover:opacity-100 transition-opacity">
-                      <button
-                        onClick={() => handleMoveUnit(index, 'up')}
-                        disabled={index === 0}
-                        title="Move Up"
-                        className="p-1.5 rounded-lg bg-slate-950/80 hover:bg-slate-800 text-slate-400 hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors"
-                      >
-                        <ArrowUp className="w-3.5 h-3.5" />
-                      </button>
-                      <button
-                        onClick={() => handleMoveUnit(index, 'down')}
-                        disabled={index === gradeUnits.length - 1}
-                        title="Move Down"
-                        className="p-1.5 rounded-lg bg-slate-950/80 hover:bg-slate-800 text-slate-400 hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors"
-                      >
-                        <ArrowDown className="w-3.5 h-3.5" />
-                      </button>
-                      <button
-                        onClick={() => openTeacherPanel('units', gradeId)}
-                        title="Edit in Teacher Panel"
-                        className="p-1.5 rounded-lg bg-slate-950/80 hover:bg-slate-800 text-slate-400 hover:text-cyan-400 transition-colors"
-                      >
-                        <Edit3 className="w-3.5 h-3.5" />
-                      </button>
-                      <button
-                        onClick={() => {
-                          if (window.confirm(`Delete unit "${unit.title}"?`)) {
-                            deleteUnit(unit.id);
-                          }
-                        }}
-                        title="Delete Unit"
-                        className="p-1.5 rounded-lg bg-slate-950/80 hover:bg-rose-950 text-slate-400 hover:text-rose-400 transition-colors"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
+                    {authMode !== 'student' && (
+                      <div className="flex items-center gap-1 opacity-80 group-hover:opacity-100 transition-opacity">
+                        <button
+                          onClick={() => handleMoveUnit(index, 'up')}
+                          disabled={index === 0}
+                          title="Move Up"
+                          className="p-1.5 rounded-lg bg-slate-950/80 hover:bg-slate-800 text-slate-400 hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors"
+                        >
+                          <ArrowUp className="w-3.5 h-3.5" />
+                        </button>
+                        <button
+                          onClick={() => handleMoveUnit(index, 'down')}
+                          disabled={index === gradeUnits.length - 1}
+                          title="Move Down"
+                          className="p-1.5 rounded-lg bg-slate-950/80 hover:bg-slate-800 text-slate-400 hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors"
+                        >
+                          <ArrowDown className="w-3.5 h-3.5" />
+                        </button>
+                        <button
+                          onClick={() => openTeacherPanel('units', gradeId)}
+                          title="Edit in Teacher Panel"
+                          className="p-1.5 rounded-lg bg-slate-950/80 hover:bg-slate-800 text-slate-400 hover:text-cyan-400 transition-colors"
+                        >
+                          <Edit3 className="w-3.5 h-3.5" />
+                        </button>
+                        <button
+                          onClick={() => {
+                            if (window.confirm(`Delete unit "${unit.title}"?`)) {
+                              deleteUnit(unit.id);
+                            }
+                          }}
+                          title="Delete Unit"
+                          className="p-1.5 rounded-lg bg-slate-950/80 hover:bg-rose-950 text-slate-400 hover:text-rose-400 transition-colors"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    )}
                   </div>
 
                   {/* Icon & Title */}

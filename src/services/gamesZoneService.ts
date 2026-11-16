@@ -112,6 +112,20 @@ export class GamesZoneService {
   public static saveAttempt(attempt: GamesZoneAttemptRecord): void {
     try {
       const studentKey = attempt.studentNumber || 'guest';
+
+      // Strict Grade Guard: authenticated students cannot record attempts or XP for the other grade
+      if (studentKey !== 'guest') {
+        const cls = String(attempt.class || '').trim().toUpperCase();
+        if (cls.startsWith('7') && attempt.gradeId !== 'grade-7') {
+          console.warn('[GamesZoneService] Rejected cross-grade attempt for Grade 7 student');
+          return;
+        }
+        if (cls.startsWith('8') && attempt.gradeId !== 'grade-8') {
+          console.warn('[GamesZoneService] Rejected cross-grade attempt for Grade 8 student');
+          return;
+        }
+      }
+
       const storageKey = `${GAMES_ZONE_ATTEMPTS_PREFIX}${studentKey}`;
       
       const existingRaw = localStorage.getItem(storageKey);

@@ -13,6 +13,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { usePersonalizedLearning } from '../../context/PersonalizedLearningContext';
+import { useAuth } from '../../context/AuthContext';
 import { sounds } from '../../services/soundEffects';
 import type { GradeId } from '../../types/schema';
 import type { UnitTopicMastery, MasteryStatus } from '../../types/personalizedLearning';
@@ -29,6 +30,7 @@ import {
 } from 'lucide-react';
 
 export const TopicMasteryModal: React.FC = () => {
+  const { student } = useAuth();
   const {
     mastery,
     isMasteryModalOpen,
@@ -38,7 +40,8 @@ export const TopicMasteryModal: React.FC = () => {
     isLoading
   } = usePersonalizedLearning();
 
-  const [activeGrade, setActiveGrade] = useState<GradeId>('grade-7');
+  const [stateActiveGrade, setStateActiveGrade] = useState<GradeId>('grade-7');
+  const activeGrade: GradeId = student ? student.grade : stateActiveGrade;
 
   if (!isMasteryModalOpen) return null;
 
@@ -133,38 +136,45 @@ export const TopicMasteryModal: React.FC = () => {
 
         {/* Grade Tabs & Summary KPI Strip */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 my-4 shrink-0">
-          {/* Grade Selector */}
-          <div className="flex items-center bg-slate-950/90 rounded-2xl p-1 border border-slate-800 self-start">
-            <button
-              onClick={() => {
-                sounds.playTap();
-                setActiveGrade('grade-7');
-              }}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition-all ${
-                activeGrade === 'grade-7'
-                  ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-md shadow-cyan-500/20'
-                  : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              <GraduationCap className="w-4 h-4" />
-              <span>Grade 7 (Units 1–2)</span>
-            </button>
+          {/* Grade Selector (Classroom) or Verified Badge (Student) */}
+          {student ? (
+            <div className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 font-bold text-xs sm:text-sm shadow-sm self-start">
+              <GraduationCap className="w-4 h-4 text-indigo-400" />
+              <span>{student.grade === 'grade-7' ? 'Grade 7 Progress (Units 1–2)' : 'Grade 8 Progress (Units 1–4)'}</span>
+            </div>
+          ) : (
+            <div className="flex items-center bg-slate-950/90 rounded-2xl p-1 border border-slate-800 self-start">
+              <button
+                onClick={() => {
+                  sounds.playTap();
+                  setStateActiveGrade('grade-7');
+                }}
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition-all ${
+                  activeGrade === 'grade-7'
+                    ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-md shadow-cyan-500/20'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                <GraduationCap className="w-4 h-4" />
+                <span>Grade 7 (Units 1–2)</span>
+              </button>
 
-            <button
-              onClick={() => {
-                sounds.playTap();
-                setActiveGrade('grade-8');
-              }}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition-all ${
-                activeGrade === 'grade-8'
-                  ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md shadow-indigo-500/20'
-                  : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              <GraduationCap className="w-4 h-4" />
-              <span>Grade 8 (Units 1–4)</span>
-            </button>
-          </div>
+              <button
+                onClick={() => {
+                  sounds.playTap();
+                  setStateActiveGrade('grade-8');
+                }}
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition-all ${
+                  activeGrade === 'grade-8'
+                    ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md shadow-indigo-500/20'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                <GraduationCap className="w-4 h-4" />
+                <span>Grade 8 (Units 1–4)</span>
+              </button>
+            </div>
+          )}
 
           {/* Overall Grade Stats */}
           <div className="flex items-center gap-3 bg-slate-950/70 px-4 py-2 rounded-2xl border border-slate-800">

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useArcade } from '../../context/ArcadeContext';
+import { useAuth } from '../../context/AuthContext';
 import type { GradeId, GameType } from '../../types/schema';
 import { GAME_TYPE_METADATA } from '../../types/schema';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -37,6 +38,7 @@ const GAME_ICONS: Record<GameType, React.FC<{ className?: string }>> = {
 };
 
 export const UnitDashboardScreen: React.FC<UnitDashboardScreenProps> = ({ gradeId, unitId }) => {
+  const { student, authMode } = useAuth();
   const { 
     data, 
     goToGrade, 
@@ -45,6 +47,17 @@ export const UnitDashboardScreen: React.FC<UnitDashboardScreenProps> = ({ gradeI
     createActivity, 
     deleteActivity,
   } = useArcade();
+
+  // Strict Grade Guard: redirect student if accessing a unit outside their grade
+  useEffect(() => {
+    if (student && gradeId !== student.grade) {
+      goToGrade(student.grade);
+    }
+  }, [student, gradeId, goToGrade]);
+
+  if (student && gradeId !== student.grade) {
+    return null;
+  }
 
   const [isQuickCreateOpen, setIsQuickCreateOpen] = useState(false);
   const [actTitle, setActTitle] = useState('');
@@ -132,27 +145,29 @@ export const UnitDashboardScreen: React.FC<UnitDashboardScreenProps> = ({ gradeI
           </div>
         </div>
 
-        {/* Right: Actions */}
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => {
-              sounds.playTap();
-              setIsQuickCreateOpen(true);
-            }}
-            className="px-5 py-3 rounded-2xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-semibold text-sm sm:text-base shadow-lg shadow-indigo-600/30 hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
-          >
-            <PlusCircle className="w-5 h-5" />
-            <span>Add Activity</span>
-          </button>
+        {/* Right: Actions (Teacher & Classroom Only) */}
+        {authMode !== 'student' && (
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => {
+                sounds.playTap();
+                setIsQuickCreateOpen(true);
+              }}
+              className="px-5 py-3 rounded-2xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-semibold text-sm sm:text-base shadow-lg shadow-indigo-600/30 hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
+            >
+              <PlusCircle className="w-5 h-5" />
+              <span>Add Activity</span>
+            </button>
 
-          <button
-            onClick={() => openTeacherPanel('units', gradeId)}
-            className="px-4 py-3 rounded-2xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-amber-300 text-sm font-semibold transition-all flex items-center gap-2"
-          >
-            <Settings className="w-4 h-4" />
-            <span>Unit Settings</span>
-          </button>
-        </div>
+            <button
+              onClick={() => openTeacherPanel('units', gradeId)}
+              className="px-4 py-3 rounded-2xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-amber-300 text-sm font-semibold transition-all flex items-center gap-2"
+            >
+              <Settings className="w-4 h-4" />
+              <span>Unit Settings</span>
+            </button>
+          </div>
+        )}
 
       </div>
 
@@ -297,17 +312,19 @@ export const UnitDashboardScreen: React.FC<UnitDashboardScreenProps> = ({ gradeI
                       <span>{meta.title}</span>
                     </span>
 
-                    <button
-                      onClick={() => {
-                        if (window.confirm(`Delete activity "${act.title}"?`)) {
-                          deleteActivity(unit.id, act.id);
-                        }
-                      }}
-                      title="Delete Activity"
-                      className="p-1.5 rounded-lg bg-slate-950/80 hover:bg-rose-950 text-slate-400 hover:text-rose-400 transition-colors"
-                    >
-                      <Trash2 className="w-3.5 h-3.5" />
-                    </button>
+                    {authMode !== 'student' && (
+                      <button
+                        onClick={() => {
+                          if (window.confirm(`Delete activity "${act.title}"?`)) {
+                            deleteActivity(unit.id, act.id);
+                          }
+                        }}
+                        title="Delete Activity"
+                        className="p-1.5 rounded-lg bg-slate-950/80 hover:bg-rose-950 text-slate-400 hover:text-rose-400 transition-colors"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    )}
                   </div>
 
                   {/* Title & Instructions */}

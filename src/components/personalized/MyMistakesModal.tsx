@@ -13,6 +13,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePersonalizedLearning } from '../../context/PersonalizedLearningContext';
+import { useAuth } from '../../context/AuthContext';
 import { QuestionRetryModal } from './QuestionRetryModal';
 import { sounds } from '../../services/soundEffects';
 import type { StudentMistakeRecord } from '../../types/personalizedLearning';
@@ -29,6 +30,7 @@ import {
 } from 'lucide-react';
 
 export const MyMistakesModal: React.FC = () => {
+  const { student } = useAuth();
   const {
     mistakes,
     isMistakesModalOpen,
@@ -52,7 +54,7 @@ export const MyMistakesModal: React.FC = () => {
   // Filtered mistakes
   const filteredMistakes = useMemo(() => {
     return mistakes.filter((m) => {
-      if (gradeFilter !== 'all' && m.gradeId !== gradeFilter) return false;
+      if (!student && gradeFilter !== 'all' && m.gradeId !== gradeFilter) return false;
       if (statusFilter === 'uncorrected' && m.isCorrected) return false;
       if (statusFilter === 'corrected' && !m.isCorrected) return false;
 
@@ -66,14 +68,14 @@ export const MyMistakesModal: React.FC = () => {
 
       return true;
     });
-  }, [mistakes, gradeFilter, statusFilter, searchQuery]);
+  }, [mistakes, student, gradeFilter, statusFilter, searchQuery]);
 
   if (!isMistakesModalOpen) return null;
 
   const handleLaunchSmartReview = () => {
     sounds.playNavigate();
     closeMistakesModal();
-    const targetGrade = gradeFilter === 'all' ? 'grade-7' : gradeFilter;
+    const targetGrade = student ? student.grade : (gradeFilter === 'all' ? 'grade-7' : gradeFilter);
     startSmartReview(targetGrade, undefined, 10);
   };
 
@@ -182,33 +184,35 @@ export const MyMistakesModal: React.FC = () => {
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pb-3 shrink-0">
           {/* Grade & Status Tabs */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
-            {/* Grade Selector */}
-            <div className="flex items-center bg-slate-950/90 rounded-xl p-0.5 border border-slate-800">
-              <button
-                onClick={() => setGradeFilter('all')}
-                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all ${
-                  gradeFilter === 'all' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'
-                }`}
-              >
-                All
-              </button>
-              <button
-                onClick={() => setGradeFilter('grade-7')}
-                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all ${
-                  gradeFilter === 'grade-7' ? 'bg-cyan-600 text-white' : 'text-slate-400 hover:text-white'
-                }`}
-              >
-                Grade 7
-              </button>
-              <button
-                onClick={() => setGradeFilter('grade-8')}
-                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all ${
-                  gradeFilter === 'grade-8' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'
-                }`}
-              >
-                Grade 8
-              </button>
-            </div>
+            {/* Grade Selector (Classroom / Unauthenticated Only) */}
+            {!student && (
+              <div className="flex items-center bg-slate-950/90 rounded-xl p-0.5 border border-slate-800">
+                <button
+                  onClick={() => setGradeFilter('all')}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all ${
+                    gradeFilter === 'all' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  All
+                </button>
+                <button
+                  onClick={() => setGradeFilter('grade-7')}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all ${
+                    gradeFilter === 'grade-7' ? 'bg-cyan-600 text-white' : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  Grade 7
+                </button>
+                <button
+                  onClick={() => setGradeFilter('grade-8')}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all ${
+                    gradeFilter === 'grade-8' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  Grade 8
+                </button>
+              </div>
+            )}
 
             {/* Status Filter */}
             <div className="flex items-center bg-slate-950/90 rounded-xl p-0.5 border border-slate-800">

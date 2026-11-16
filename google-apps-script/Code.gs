@@ -1844,8 +1844,65 @@ function handleTeacherGetQuestionAnalytics(ss, payload) {
 }
 
 // ============================================================================
-// STUDENT AUTHENTICATION LOGIC (PHASE 1)
+// STUDENT AUTHENTICATION & GRADE AUTHORIZATION LOGIC
 // ============================================================================
+
+/**
+ * Resolves canonical gradeId ('grade-7' or 'grade-8') strictly from student class or grade field.
+ * Classes 7A and 7B strictly resolve to 'grade-7'.
+ * Classes 8A and 8B strictly resolve to 'grade-8'.
+ * Never trusts client overrides or unverified strings.
+ */
+function resolveGradeFromStudent(studentClass, rawGrade) {
+  var cStr = String(studentClass || "").trim().toUpperCase();
+  if (cStr.indexOf("7") === 0) {
+    return "grade-7";
+  }
+  if (cStr.indexOf("8") === 0) {
+    return "grade-8";
+  }
+  var gStr = String(rawGrade || "").trim().toLowerCase();
+  if (gStr === "7" || gStr === "grade-7" || gStr.indexOf("grade-7") === 0) {
+    return "grade-7";
+  }
+  if (gStr === "8" || gStr === "grade-8" || gStr.indexOf("grade-8") === 0) {
+    return "grade-8";
+  }
+  return "grade-7";
+}
+
+/**
+ * Checks if an activity ID, unit ID, or question ID belongs to the authorized grade.
+ * Blocks cross-grade game access, attempts, answers, retries, and question exposure.
+ */
+function isContentAuthorizedForGrade(activityId, unitId, questionId, studentGrade) {
+  var act = String(activityId || "").trim().toLowerCase();
+  var u = String(unitId || "").trim().toLowerCase();
+  var q = String(questionId || "").trim().toLowerCase();
+  var targetGrade = String(studentGrade || "").trim();
+
+  if (targetGrade === "grade-7") {
+    // Cannot access Grade 8 activities, units, or questions
+    if (act.indexOf("g8-") === 0 || u.indexOf("g8-") === 0 || q.indexOf("g8-") === 0 ||
+        act.indexOf("wn_g8_") === 0 || act.indexOf("gr_g8_") === 0 || act.indexOf("wf_g8_") === 0 || act.indexOf("st_g8_") === 0 ||
+        q.indexOf("wn_g8_") === 0 || q.indexOf("gr_g8_") === 0 || q.indexOf("wf_g8_") === 0 || q.indexOf("st_g8_") === 0) {
+      return false;
+    }
+    return true;
+  }
+
+  if (targetGrade === "grade-8") {
+    // Cannot access Grade 7 activities, units, or questions
+    if (act.indexOf("g7-") === 0 || u.indexOf("g7-") === 0 || q.indexOf("g7-") === 0 ||
+        act.indexOf("wn_g7_") === 0 || act.indexOf("gr_g7_") === 0 || act.indexOf("wf_g7_") === 0 || act.indexOf("st_g7_") === 0 ||
+        q.indexOf("wn_g7_") === 0 || q.indexOf("gr_g7_") === 0 || q.indexOf("wf_g7_") === 0 || q.indexOf("st_g7_") === 0) {
+      return false;
+    }
+    return true;
+  }
+
+  return false;
+}
 
 /**
  * Authenticates a student via studentNumber and PIN.
@@ -1975,7 +2032,7 @@ function handleStudentLogin(ss, payload) {
       displayName: displayInitials,
       firstName: firstName,
       class: studentClass,
-      grade: grade === "7" || grade === 7 ? "grade-7" : "grade-8"
+      grade: resolveGradeFromStudent(studentClass, grade)
     },
     expiresAt: expiresAt.toISOString()
   });
@@ -2042,7 +2099,8 @@ function handleSessionCheck(ss, payload) {
       firstName = nameParts[0] || fullName;
       displayInitials = nameParts.length > 1 ? nameParts[0] + " " + nameParts[nameParts.length - 1].charAt(0) + "." : firstName;
       var g = studentData[j][3];
-      grade = (g === "7" || g === 7) ? "grade-7" : "grade-8";
+      var cls = studentClass || studentData[j][4];
+      grade = resolveGradeFromStudent(cls, g);
       break;
     }
   }
@@ -2163,7 +2221,7 @@ function validateSessionAndGetStudent(ss, sessionToken) {
     studentNumber: studentNumber,
     className: studentClass,
     fullName: matchedStudent[2],
-    grade: matchedStudent[3] === "7" || matchedStudent[3] === 7 ? "grade-7" : "grade-8"
+    grade: resolveGradeFromStudent(studentClass || matchedStudent[4], matchedStudent[3])
   };
 }
 
@@ -2209,6 +2267,27 @@ function handleStartAttempt(ss, payload) {
   var attemptId = String(payload.attemptId || "").trim();
   if (!attemptId) {
     return createJsonResponse({ success: false, error: "Missing attemptId.", code: "BAD_REQUEST" });
+  }
+
+  var activityId = String(payload.activityId || "").trim();
+  var unitId = String(payload.unitId || "").trim();
+  var clientGradeId = String(payload.gradeId || "").trim();
+
+  // Strict Server-Side Grade Authorization Guard
+  if (clientGradeId && clientGradeId !== auth.grade) {
+    return createJsonResponse({
+      success: false,
+      error: "Unauthorized: Cross-grade attempt prohibited (" + clientGradeId + " != " + auth.grade + ").",
+      code: "GRADE_UNAUTHORIZED"
+    });
+  }
+
+  if (!isContentAuthorizedForGrade(activityId, unitId, "", auth.grade)) {
+    return createJsonResponse({
+      success: false,
+      error: "Unauthorized: Activity " + activityId + " does not belong to student's grade (" + auth.grade + ").",
+      code: "GRADE_UNAUTHORIZED"
+    });
   }
 
   var attemptsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ATTEMPTS);
@@ -2261,7 +2340,7 @@ function handleStartAttempt(ss, payload) {
   newRow[colMap["student_id"] - 1] = auth.studentId;
   newRow[colMap["student_number"] - 1] = auth.studentNumber;
   newRow[colMap["class"] - 1] = auth.className;
-  newRow[colMap["grade_id"] - 1] = String(payload.gradeId || auth.grade || "");
+  newRow[colMap["grade_id"] - 1] = auth.grade;
   newRow[colMap["unit_id"] - 1] = String(payload.unitId || "");
   newRow[colMap["unit_title"] - 1] = String(payload.unitTitle || "");
   newRow[colMap["activity_id"] - 1] = activityId;
@@ -2336,6 +2415,16 @@ function handleRecordAnswers(ss, payload) {
     return createJsonResponse({ success: false, error: "Unauthorized attempt access.", code: "FORBIDDEN" });
   }
 
+  var attemptGrade = String(attemptRow[attemptColMap["grade_id"] - 1] || "");
+  var attemptActId = String(attemptRow[attemptColMap["activity_id"] - 1] || "");
+  if ((attemptGrade && attemptGrade !== auth.grade) || !isContentAuthorizedForGrade(attemptActId, "", "", auth.grade)) {
+    return createJsonResponse({
+      success: false,
+      error: "Unauthorized: Cross-grade answers submission prohibited.",
+      code: "GRADE_UNAUTHORIZED"
+    });
+  }
+
   var answersSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ANSWERS);
   var answerColMap = getSheetColumnMap(answersSheet, CONFIG.ANSWER_HEADERS);
   var existingAnswersData = answersSheet.getDataRange().getValues();
@@ -2366,6 +2455,14 @@ function handleRecordAnswers(ss, payload) {
     var ans = answers[k];
     var ansId = String(ans.answerId || "").trim();
     var qId = String(ans.questionId || "").trim();
+
+    if (qId && !isContentAuthorizedForGrade(activityId, unitId, qId, auth.grade)) {
+      return createJsonResponse({
+        success: false,
+        error: "Unauthorized: Question " + qId + " is prohibited for grade " + auth.grade + ".",
+        code: "GRADE_UNAUTHORIZED"
+      });
+    }
     var qOrder = Number(ans.questionOrder) || (k + 1);
     var studentResp = String(ans.studentResponse || "");
     var signature = qId + "::" + qOrder + "::" + studentResp;
@@ -2443,6 +2540,27 @@ function handleCompleteAttempt(ss, payload) {
     return createJsonResponse({ success: false, error: "Missing attemptId.", code: "BAD_REQUEST" });
   }
 
+  var activityId = String(payload.activityId || "").trim();
+  var unitId = String(payload.unitId || "").trim();
+  var clientGradeId = String(payload.gradeId || "").trim();
+
+  // Strict Server-Side Grade Authorization Guard
+  if (clientGradeId && clientGradeId !== auth.grade) {
+    return createJsonResponse({
+      success: false,
+      error: "Unauthorized: Cross-grade attempt prohibited (" + clientGradeId + " != " + auth.grade + ").",
+      code: "GRADE_UNAUTHORIZED"
+    });
+  }
+
+  if (!isContentAuthorizedForGrade(activityId, unitId, "", auth.grade)) {
+    return createJsonResponse({
+      success: false,
+      error: "Unauthorized: Activity " + activityId + " does not belong to student's grade (" + auth.grade + ").",
+      code: "GRADE_UNAUTHORIZED"
+    });
+  }
+
   var attemptsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ATTEMPTS);
   var colMap = getSheetColumnMap(attemptsSheet, CONFIG.ATTEMPT_HEADERS);
   var attemptsData = attemptsSheet.getDataRange().getValues();
@@ -2464,6 +2582,16 @@ function handleCompleteAttempt(ss, payload) {
 
   if (String(attemptRow[colMap["student_number"] - 1]).trim() !== auth.studentNumber) {
     return createJsonResponse({ success: false, error: "Unauthorized attempt access.", code: "FORBIDDEN" });
+  }
+
+  var attemptGrade = String(attemptRow[colMap["grade_id"] - 1] || "");
+  var attemptActId = String(attemptRow[colMap["activity_id"] - 1] || "");
+  if ((attemptGrade && attemptGrade !== auth.grade) || !isContentAuthorizedForGrade(attemptActId, "", "", auth.grade)) {
+    return createJsonResponse({
+      success: false,
+      error: "Unauthorized: Cross-grade attempt completion prohibited.",
+      code: "GRADE_UNAUTHORIZED"
+    });
   }
 
   // Idempotency check: if attempt is already completed, return existing score safely
@@ -2653,6 +2781,27 @@ function handleAbandonAttempt(ss, payload) {
     return createJsonResponse({ success: false, error: "Missing attemptId.", code: "BAD_REQUEST" });
   }
 
+  var activityId = String(payload.activityId || "").trim();
+  var unitId = String(payload.unitId || "").trim();
+  var clientGradeId = String(payload.gradeId || "").trim();
+
+  // Strict Server-Side Grade Authorization Guard
+  if (clientGradeId && clientGradeId !== auth.grade) {
+    return createJsonResponse({
+      success: false,
+      error: "Unauthorized: Cross-grade attempt prohibited (" + clientGradeId + " != " + auth.grade + ").",
+      code: "GRADE_UNAUTHORIZED"
+    });
+  }
+
+  if (!isContentAuthorizedForGrade(activityId, unitId, "", auth.grade)) {
+    return createJsonResponse({
+      success: false,
+      error: "Unauthorized: Activity " + activityId + " does not belong to student's grade (" + auth.grade + ").",
+      code: "GRADE_UNAUTHORIZED"
+    });
+  }
+
   var attemptsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ATTEMPTS);
   var colMap = getSheetColumnMap(attemptsSheet, CONFIG.ATTEMPT_HEADERS);
   var attemptsData = attemptsSheet.getDataRange().getValues();
@@ -2674,6 +2823,16 @@ function handleAbandonAttempt(ss, payload) {
 
   if (String(attemptRow[colMap["student_number"] - 1]).trim() !== auth.studentNumber) {
     return createJsonResponse({ success: false, error: "Unauthorized attempt access.", code: "FORBIDDEN" });
+  }
+
+  var attemptGrade = String(attemptRow[colMap["grade_id"] - 1] || "");
+  var attemptActId = String(attemptRow[colMap["activity_id"] - 1] || "");
+  if ((attemptGrade && attemptGrade !== auth.grade) || !isContentAuthorizedForGrade(attemptActId, "", "", auth.grade)) {
+    return createJsonResponse({
+      success: false,
+      error: "Unauthorized: Cross-grade attempt completion prohibited.",
+      code: "GRADE_UNAUTHORIZED"
+    });
   }
 
   // Safety guard: never overwrite an already completed attempt to abandoned
@@ -2720,6 +2879,27 @@ function handleReconcileAttempt(ss, payload) {
     return createJsonResponse({ success: false, error: "Missing attemptId.", code: "BAD_REQUEST" });
   }
 
+  var activityId = String(payload.activityId || "").trim();
+  var unitId = String(payload.unitId || "").trim();
+  var clientGradeId = String(payload.gradeId || "").trim();
+
+  // Strict Server-Side Grade Authorization Guard
+  if (clientGradeId && clientGradeId !== auth.grade) {
+    return createJsonResponse({
+      success: false,
+      error: "Unauthorized: Cross-grade attempt prohibited (" + clientGradeId + " != " + auth.grade + ").",
+      code: "GRADE_UNAUTHORIZED"
+    });
+  }
+
+  if (!isContentAuthorizedForGrade(activityId, unitId, "", auth.grade)) {
+    return createJsonResponse({
+      success: false,
+      error: "Unauthorized: Activity " + activityId + " does not belong to student's grade (" + auth.grade + ").",
+      code: "GRADE_UNAUTHORIZED"
+    });
+  }
+
   var attemptsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ATTEMPTS);
   var colMap = getSheetColumnMap(attemptsSheet, CONFIG.ATTEMPT_HEADERS);
   var attemptsData = attemptsSheet.getDataRange().getValues();
@@ -2741,6 +2921,16 @@ function handleReconcileAttempt(ss, payload) {
 
   if (String(attemptRow[colMap["student_number"] - 1]).trim() !== auth.studentNumber) {
     return createJsonResponse({ success: false, error: "Unauthorized attempt access.", code: "FORBIDDEN" });
+  }
+
+  var attemptGrade = String(attemptRow[colMap["grade_id"] - 1] || "");
+  var attemptActId = String(attemptRow[colMap["activity_id"] - 1] || "");
+  if ((attemptGrade && attemptGrade !== auth.grade) || !isContentAuthorizedForGrade(attemptActId, "", "", auth.grade)) {
+    return createJsonResponse({
+      success: false,
+      error: "Unauthorized: Cross-grade attempt completion prohibited.",
+      code: "GRADE_UNAUTHORIZED"
+    });
   }
 
   var currentStatus = String(attemptRow[colMap["status"] - 1]).trim();
@@ -4086,8 +4276,14 @@ function handleStudentGetMistakes(ss, payload) {
       var meta = attemptMetaMap[latestMistake.attemptId] || {};
       var gId = meta.gradeId || (auth.grade || "grade-7");
       var uId = latestMistake.unitId || meta.unitId || "";
-      var uTitle = meta.unitTitle || ("Unit " + uId);
       var actId = latestMistake.activityId || meta.activityId || "";
+
+      // Strict Grade Isolation: Never expose cross-grade mistakes to student
+      if (gId !== auth.grade || !isContentAuthorizedForGrade(actId, uId, qIdKey, auth.grade)) {
+        continue;
+      }
+
+      var uTitle = meta.unitTitle || ("Unit " + uId);
       var actTitle = meta.activityTitle || actId;
       var gType = meta.gameType || "quiz_battle";
 
@@ -4362,14 +4558,8 @@ function handleStudentGetMastery(ss, payload) {
   var g7Mastery = buildGradeMastery("grade-7");
   var g8Mastery = buildGradeMastery("grade-8");
 
-  var totalAllAnswers = (g7Mastery.units.reduce(function(acc, u) { return acc + u.totalQuestionsAnswered; }, 0) +
-                         g8Mastery.units.reduce(function(acc, u) { return acc + u.totalQuestionsAnswered; }, 0));
-  var totalAllCorrect = (g7Mastery.units.reduce(function(acc, u) { return acc + u.correctAnswersCount; }, 0) +
-                         g8Mastery.units.reduce(function(acc, u) { return acc + u.correctAnswersCount; }, 0));
-
-  var overallAcc = totalAllAnswers > 0
-    ? Math.round((totalAllCorrect / totalAllAnswers) * 1000) / 10
-    : 0;
+  var studentGrade = auth.grade || "grade-7";
+  var overallAcc = studentGrade === "grade-7" ? g7Mastery.overallAccuracy : g8Mastery.overallAccuracy;
 
   return createJsonResponse({
     success: true,
@@ -4377,6 +4567,7 @@ function handleStudentGetMastery(ss, payload) {
       studentNumber: studentNumber,
       displayName: auth.fullName || ("Student " + studentNumber),
       class: auth.className || auth.class || "",
+      studentGrade: studentGrade,
       overallAccuracy: overallAcc,
       totalMistakesCount: 0,
       correctedMistakesCount: 0,
@@ -4404,6 +4595,15 @@ function handleStudentRecordMistakeRetry(ss, payload) {
 
   if (!questionId) {
     return createJsonResponse({ success: false, error: "Missing questionId", code: "BAD_REQUEST" });
+  }
+
+  // Strict Server-Side Grade Authorization Guard
+  if (!isContentAuthorizedForGrade(activityId, unitId, questionId, auth.grade)) {
+    return createJsonResponse({
+      success: false,
+      error: "Unauthorized: Cross-grade mistake retry prohibited.",
+      code: "GRADE_UNAUTHORIZED"
+    });
   }
 
   var answersSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ANSWERS);

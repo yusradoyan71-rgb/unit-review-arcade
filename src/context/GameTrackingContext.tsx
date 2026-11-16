@@ -75,7 +75,16 @@ export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
   onRestartAttempt,
 }) => {
   const { authMode, sessionToken, student, updateSessionToken } = useAuth();
-  const isTrackingActive = authMode === 'student' && Boolean(sessionToken);
+  
+  // Strict Grade Check: authenticated student must match the grade of the activity
+  const isGradeMismatch = Boolean(
+    student && (
+      student.grade !== gradeId ||
+      !activity.id.startsWith(student.grade === 'grade-7' ? 'g7-' : 'g8-')
+    )
+  );
+
+  const isTrackingActive = authMode === 'student' && Boolean(sessionToken) && !isGradeMismatch;
 
   const [attemptId, setAttemptId] = useState<string | null>(null);
   const [attemptNumber, setAttemptNumber] = useState<number | null>(null);
@@ -100,7 +109,8 @@ export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
 
   // Load any existing checkpoint for this student and activity
   const [resumeCheckpoint, setResumeCheckpoint] = useState<GameResumeCheckpoint | null>(() => {
-    return TrackingService.getCheckpoint(student?.studentNumber, activity.id);
+    if (isGradeMismatch) return null;
+    return TrackingService.getCheckpoint(student?.studentNumber, activity.id, student?.grade);
   });
 
   // 1. Online / Offline network monitor & auto-flush

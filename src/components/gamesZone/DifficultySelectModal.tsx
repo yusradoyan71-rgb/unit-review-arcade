@@ -10,6 +10,7 @@ import {
   Play,
   Sparkles,
   CheckCircle2,
+  GraduationCap,
 } from 'lucide-react';
 import type { GradeId } from '../../types/schema';
 import type {
@@ -114,35 +115,45 @@ export const DifficultySelectModal: React.FC<DifficultySelectModalProps> = ({
         <div className="p-6 max-h-[70vh] overflow-y-auto space-y-6">
           {activeTab === 'difficulty' ? (
             <>
-              {/* Grade Selector */}
+              {/* Grade Selector / Verified Student Indicator */}
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
                   Target Curriculum Level
                 </label>
-                <div className="grid grid-cols-2 gap-3">
-                  <button
-                    type="button"
-                    onClick={() => onSelectGrade('grade-7')}
-                    className={`py-2.5 px-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 border transition-all ${
-                      selectedGrade === 'grade-7'
-                        ? 'bg-indigo-600/20 border-indigo-500 text-indigo-300 ring-2 ring-indigo-500/30'
-                        : 'bg-slate-800/60 border-slate-700 text-slate-400 hover:text-slate-200 hover:bg-slate-800'
-                    }`}
-                  >
-                    Grade 7 (A1–A2)
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => onSelectGrade('grade-8')}
-                    className={`py-2.5 px-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 border transition-all ${
-                      selectedGrade === 'grade-8'
-                        ? 'bg-indigo-600/20 border-indigo-500 text-indigo-300 ring-2 ring-indigo-500/30'
-                        : 'bg-slate-800/60 border-slate-700 text-slate-400 hover:text-slate-200 hover:bg-slate-800'
-                    }`}
-                  >
-                    Grade 8 (A2–B1 / LGS)
-                  </button>
-                </div>
+                {studentNumber !== 'guest' ? (
+                  <div className="py-2.5 px-4 rounded-xl bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 font-bold text-sm flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <GraduationCap className="w-4 h-4 text-indigo-400" />
+                      <span>{selectedGrade === 'grade-7' ? 'Grade 7 (A1–A2 General English)' : 'Grade 8 (A2–B1 / LGS Preparation)'}</span>
+                    </div>
+                    <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded-full bg-indigo-600/30 text-indigo-200 border border-indigo-400/30">Verified</span>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-2 gap-3">
+                    <button
+                      type="button"
+                      onClick={() => onSelectGrade('grade-7')}
+                      className={`py-2.5 px-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 border transition-all ${
+                        selectedGrade === 'grade-7'
+                          ? 'bg-indigo-600/20 border-indigo-500 text-indigo-300 ring-2 ring-indigo-500/30'
+                          : 'bg-slate-800/60 border-slate-700 text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                      }`}
+                    >
+                      Grade 7 (A1–A2)
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => onSelectGrade('grade-8')}
+                      className={`py-2.5 px-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 border transition-all ${
+                        selectedGrade === 'grade-8'
+                          ? 'bg-indigo-600/20 border-indigo-500 text-indigo-300 ring-2 ring-indigo-500/30'
+                          : 'bg-slate-800/60 border-slate-700 text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                      }`}
+                    >
+                      Grade 8 (A2–B1 / LGS)
+                    </button>
+                  </div>
+                )}
               </div>
 
               {/* Difficulty Cards */}

@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect, useCallback, use
 import type { ArcadeData, GradeId, Unit, Activity, NavigationTarget } from '../types/schema';
 import { StorageService } from '../services/storageService';
 import { sounds } from '../services/soundEffects';
+import { useAuth } from './AuthContext';
 
 interface ToastMessage {
   id: string;
@@ -72,6 +73,7 @@ const getInitialNavigation = (): NavigationTarget => {
 const ArcadeContext = createContext<ArcadeContextType | undefined>(undefined);
 
 export const ArcadeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { student } = useAuth();
   const [data, setData] = useState<ArcadeData>(() => StorageService.loadData());
   const [navigation, setNavigationState] = useState<NavigationTarget>(() => getInitialNavigation());
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
@@ -86,6 +88,21 @@ export const ArcadeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       // ignore
     }
   }, []);
+
+  // Strict Grade Navigation Guard:
+  // When an authenticated student is logged in, clamp any cross-grade navigation
+  useEffect(() => {
+    if (student) {
+      if (
+        (navigation.view === 'unit-library' || navigation.view === 'unit-dashboard' || navigation.view === 'game-play') &&
+        navigation.gradeId !== student.grade
+      ) {
+        setNavigation({ view: 'unit-library', gradeId: student.grade });
+      } else if (navigation.view === 'games-zone' && navigation.gradeId !== student.grade) {
+        setNavigation({ view: 'games-zone', gradeId: student.grade });
+      }
+    }
+  }, [student, navigation, setNavigation]);
 
   // Toast notification helper
   const addToast = useCallback((text: string, type: 'success' | 'info' | 'warning' | 'error' = 'info') => {
@@ -131,49 +148,78 @@ export const ArcadeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     addToast(nextMuted ? 'Arcade sound effects muted' : 'Arcade sound effects enabled', 'info');
   }, [addToast]);
 
-  // Navigation helpers
+  // Navigation helpers with Strict Grade Protection
   const navigateTo = useCallback((target: NavigationTarget) => {
     sounds.playNavigate();
-    setNavigation(target);
+    let sanitized = { ...target };
+    if (student) {
+      if (sanitized.view === 'unit-library' && sanitized.gradeId !== student.grade) {
+        sanitized.gradeId = student.grade;
+      } else if (
+        (sanitized.view === 'unit-dashboard' || sanitized.view === 'game-play') &&
+        sanitized.gradeId !== student.grade
+      ) {
+        sanitized = { view: 'unit-library', gradeId: student.grade };
+      } else if (sanitized.view === 'games-zone') {
+        sanitized.gradeId = student.grade;
+      }
+    }
+    setNavigation(sanitized);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
+  }, [student, setNavigation]);
 
   const goToHome = useCallback(() => {
     sounds.playBack();
     setNavigation({ view: 'home' });
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
+  }, [setNavigation]);
 
   const goToGrade = useCallback((gradeId: GradeId) => {
     sounds.playTap();
-    setNavigation({ view: 'unit-library', gradeId });
+    if (student && gradeId !== student.grade) {
+      addToast(`Access restricted: You are registered in ${student.grade === 'grade-7' ? 'Grade 7' : 'Grade 8'}`, 'warning');
+      setNavigation({ view: 'unit-library', gradeId: student.grade });
+    } else {
+      setNavigation({ view: 'unit-library', gradeId });
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
+  }, [student, addToast, setNavigation]);
 
   const goToUnit = useCallback((gradeId: GradeId, unitId: string) => {
     sounds.playTap();
-    setNavigation({ view: 'unit-dashboard', gradeId, unitId });
+    if (student && gradeId !== student.grade) {
+      addToast(`Access restricted: You are registered in ${student.grade === 'grade-7' ? 'Grade 7' : 'Grade 8'}`, 'warning');
+      setNavigation({ view: 'unit-library', gradeId: student.grade });
+    } else {
+      setNavigation({ view: 'unit-dashboard', gradeId, unitId });
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
+  }, [student, addToast, setNavigation]);
 
   const goToGame = useCallback((gradeId: GradeId, unitId: string, activityId: string) => {
     sounds.playNavigate();
-    setNavigation({ view: 'game-play', gradeId, unitId, activityId });
+    if (student && gradeId !== student.grade) {
+      addToast(`Unauthorized: You can only play activities for ${student.grade === 'grade-7' ? 'Grade 7' : 'Grade 8'}`, 'error');
+      setNavigation({ view: 'unit-library', gradeId: student.grade });
+    } else {
+      setNavigation({ view: 'game-play', gradeId, unitId, activityId });
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
+  }, [student, addToast, setNavigation]);
 
   const openTeacherPanel = useCallback((initialTab?: 'units' | 'activities' | 'backup' | 'tracking', targetGradeId?: GradeId) => {
     sounds.playTap();
     setNavigation({ view: 'teacher-panel', initialTab, targetGradeId });
-  }, []);
+  }, [setNavigation]);
 
   // Active Grade / Active Unit derived
   const activeGradeId = useMemo<GradeId | null>(() => {
-    if (navigation.view === 'unit-library') return navigation.gradeId;
-    if (navigation.view === 'unit-dashboard' || navigation.view === 'game-play') return navigation.gradeId;
+    if (navigation.view === 'unit-library') return student ? student.grade : navigation.gradeId;
+    if (navigation.view === 'unit-dashboard' || navigation.view === 'game-play') return student ? student.grade : navigation.gradeId;
+    if (navigation.view === 'games-zone') return student ? student.grade : (navigation.gradeId || 'grade-7');
     if (navigation.view === 'teacher-panel') return navigation.targetGradeId || 'grade-7';
     return null;
-  }, [navigation]);
+  }, [navigation, student]);
 
   const activeUnit = useMemo<Unit | null>(() => {
     if (navigation.view === 'unit-dashboard' || navigation.view === 'game-play') {

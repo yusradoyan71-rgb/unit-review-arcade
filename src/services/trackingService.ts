@@ -237,14 +237,25 @@ export class TrackingService {
 
   public static getCheckpoint(
     studentNumber: string | undefined,
-    activityId: string
+    activityId: string,
+    studentGrade?: string
   ): GameResumeCheckpoint | null {
     try {
+      if (studentGrade) {
+        const isG7 = activityId.startsWith('g7-') || activityId.startsWith('wn_g7_') || activityId.startsWith('gr_g7_') || activityId.startsWith('wf_g7_') || activityId.startsWith('st_g7_');
+        const isG8 = activityId.startsWith('g8-') || activityId.startsWith('wn_g8_') || activityId.startsWith('gr_g8_') || activityId.startsWith('wf_g8_') || activityId.startsWith('st_g8_');
+        if (studentGrade === 'grade-7' && isG8) return null;
+        if (studentGrade === 'grade-8' && isG7) return null;
+      }
       const effectiveStudent = studentNumber || this.getActiveStudentNumber();
       const key = this.getCheckpointKey(effectiveStudent, activityId);
       const data = localStorage.getItem(key);
       if (!data) return null;
-      return JSON.parse(data) as GameResumeCheckpoint;
+      const parsed = JSON.parse(data) as GameResumeCheckpoint;
+      if (studentGrade && parsed.gradeId && parsed.gradeId !== studentGrade) {
+        return null;
+      }
+      return parsed;
     } catch {
       return null;
     }

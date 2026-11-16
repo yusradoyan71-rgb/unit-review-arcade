@@ -41,7 +41,7 @@ export const ClassroomHeader: React.FC = () => {
   } = useArcade();
 
   const { openDashboard, isAuthenticated: isTeacherAuthenticated } = useTeacherAuth();
-  const { authMode } = useAuth();
+  const { authMode, student } = useAuth();
   const { openLeaderboardModal } = useGamification();
   const { openMistakesModal, openMasteryModal, uncorrectedMistakesCount } = usePersonalizedLearning();
 
@@ -80,13 +80,13 @@ export const ClassroomHeader: React.FC = () => {
               {(navigation.view === 'unit-library' || navigation.view === 'unit-dashboard' || navigation.view === 'game-play') && (
                 <>
                   <button
-                    onClick={() => goToGrade(navigation.gradeId)}
+                    onClick={() => goToGrade(student ? student.grade : navigation.gradeId)}
                     className="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors flex items-center gap-1.5"
                   >
                     <GraduationCap className="w-4 h-4 text-cyan-400" />
-                    <span>{getGradeTitle(navigation.gradeId)}</span>
+                    <span>{getGradeTitle(student ? student.grade : navigation.gradeId)}</span>
                     <span className="text-xs px-1.5 py-0.2 rounded-full bg-slate-800 text-slate-400">
-                      {data.units[navigation.gradeId]?.length || 0}
+                      {data.units[student ? student.grade : navigation.gradeId]?.length || 0}
                     </span>
                   </button>
                 </>

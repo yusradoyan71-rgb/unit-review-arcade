@@ -112,8 +112,11 @@ const MainView: React.FC = () => {
               className="flex-1 flex flex-col"
             >
               <GamesZoneContainer
-                selectedGrade={navigation.gradeId || 'grade-7'}
-                onSelectGrade={(g) => navigateTo({ view: 'games-zone', gradeId: g })}
+                selectedGrade={student ? student.grade : (navigation.gradeId || 'grade-7')}
+                onSelectGrade={(g) => {
+                  if (student && g !== student.grade) return;
+                  navigateTo({ view: 'games-zone', gradeId: g });
+                }}
                 onBackToHome={() => navigateTo({ view: 'home' })}
                 studentNumber={student?.studentNumber || 'guest'}
                 studentClass={student?.class}

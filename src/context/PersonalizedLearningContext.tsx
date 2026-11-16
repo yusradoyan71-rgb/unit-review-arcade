@@ -144,10 +144,23 @@ export const PersonalizedLearningProvider: React.FC<{ children: React.ReactNode 
     refreshPersonalizedData();
   }, [refreshPersonalizedData]);
 
+  // Strict Grade Guard: authenticated students only see their grade's mistakes
+  const visibleMistakes = useMemo(() => {
+    if (!student) return mistakes;
+    return mistakes.filter((m) => {
+      if (m.gradeId) return m.gradeId === student.grade;
+      const isG7 = m.questionId.startsWith('g7-') || m.activityId?.startsWith('g7-') || m.unitId?.startsWith('g7-');
+      const isG8 = m.questionId.startsWith('g8-') || m.activityId?.startsWith('g8-') || m.unitId?.startsWith('g8-');
+      if (student.grade === 'grade-7') return !isG8;
+      if (student.grade === 'grade-8') return !isG7;
+      return true;
+    });
+  }, [mistakes, student]);
+
   // Count uncorrected mistakes
   const uncorrectedMistakesCount = useMemo(() => {
-    return mistakes.filter((m) => !m.isCorrected).length;
-  }, [mistakes]);
+    return visibleMistakes.filter((m) => !m.isCorrected).length;
+  }, [visibleMistakes]);
 
   // Retries an incorrect question directly
   const retryMistakeQuestion = useCallback(
@@ -160,6 +173,20 @@ export const PersonalizedLearningProvider: React.FC<{ children: React.ReactNode 
       correctAnswer?: string,
       questionPrompt?: string
     ) => {
+      // Guard against cross-grade question retries
+      if (student) {
+        const isG7 = questionId.startsWith('g7-') || activityId.startsWith('g7-') || unitId.startsWith('g7-');
+        const isG8 = questionId.startsWith('g8-') || activityId.startsWith('g8-') || unitId.startsWith('g8-');
+        if (student.grade === 'grade-7' && isG8) {
+          console.warn('[PersonalizedLearning] Rejected cross-grade mistake retry');
+          return { success: false, isCorrect: false };
+        }
+        if (student.grade === 'grade-8' && isG7) {
+          console.warn('[PersonalizedLearning] Rejected cross-grade mistake retry');
+          return { success: false, isCorrect: false };
+        }
+      }
+
       if (isCorrect) {
         // Mark corrected in local cache immediately for instantaneous UI feedback
         PersonalizedLearningService.markMistakeCorrected(studentNumber, questionId);
@@ -207,10 +234,12 @@ export const PersonalizedLearningProvider: React.FC<{ children: React.ReactNode 
   // Launches a personalized smart review session
   const startSmartReview = useCallback(
     (gradeId: GradeId, unitId?: string, maxQuestions = 10): SmartReviewSession => {
+      // Force session to student's verified grade if logged in
+      const effectiveGrade = student ? student.grade : gradeId;
       const session = PersonalizedLearningService.generateSmartReviewSession(
         data,
         studentNumber,
-        gradeId,
+        effectiveGrade,
         unitId,
         maxQuestions
       );
@@ -218,7 +247,7 @@ export const PersonalizedLearningProvider: React.FC<{ children: React.ReactNode 
       setIsSmartReviewModalOpen(true);
       return session;
     },
-    [data, studentNumber]
+    [data, studentNumber, student]
   );
 
   // Completes a smart review session
@@ -250,7 +279,7 @@ export const PersonalizedLearningProvider: React.FC<{ children: React.ReactNode 
   );
 
   const value: PersonalizedLearningContextValue = {
-    mistakes,
+    mistakes: visibleMistakes,
     mastery,
     isLoading,
     error,

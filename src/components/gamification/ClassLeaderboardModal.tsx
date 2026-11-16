@@ -7,9 +7,10 @@
  * and deterministic tie-breaking.
  */
 
-import React from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useGamification } from '../../context/GamificationContext';
+import { useAuth } from '../../context/AuthContext';
 import { sounds } from '../../services/soundEffects';
 import type { StudentClass } from '../../types/auth';
 import {
@@ -22,6 +23,7 @@ import {
 const CLASSES: StudentClass[] = ['7A', '7B', '8A', '8B'];
 
 export const ClassLeaderboardModal: React.FC = () => {
+  const { student } = useAuth();
   const {
     leaderboard,
     isLoadingLeaderboard,
@@ -32,6 +34,18 @@ export const ClassLeaderboardModal: React.FC = () => {
     selectLeaderboardClass,
     refreshLeaderboard,
   } = useGamification();
+
+  // Strict Grade Guard: authenticated students only view leaderboards for their grade's classes
+  const availableClasses: StudentClass[] = useMemo(() => {
+    if (!student) return CLASSES;
+    return student.grade === 'grade-7' ? ['7A', '7B'] : ['8A', '8B'];
+  }, [student]);
+
+  useEffect(() => {
+    if (isLeaderboardModalOpen && !availableClasses.includes(activeLeaderboardClass)) {
+      selectLeaderboardClass(availableClasses[0]);
+    }
+  }, [isLeaderboardModalOpen, availableClasses, activeLeaderboardClass, selectLeaderboardClass]);
 
   if (!isLeaderboardModalOpen) return null;
 
@@ -92,7 +106,7 @@ export const ClassLeaderboardModal: React.FC = () => {
 
         {/* Class Selection Tabs */}
         <div className="flex items-center gap-2 pt-4 pb-2 border-b border-slate-800/60 overflow-x-auto shrink-0">
-          {CLASSES.map((cls) => {
+          {availableClasses.map((cls) => {
             const isSelected = activeLeaderboardClass === cls;
             return (
               <button
