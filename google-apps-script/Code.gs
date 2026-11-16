@@ -4405,6 +4405,503 @@ function dryRunRepairStudentAchievements(optSs) {
 }
 
 /**
+ * Hard fail-closed environment guard.
+ * Positively verifies that the given spreadsheet is a designated TEST database.
+ * Strictly refuses any spreadsheet that matches production signatures,
+ * or where TEST cannot be positively proven.
+ *
+ * @param {GoogleAppsScript.Spreadsheet.Spreadsheet} ss
+ * @returns {{isTest: boolean, spreadsheetName: string, reason?: string}}
+ */
+function verifyTestSpreadsheet(ss) {
+  if (!ss) {
+    return { isTest: false, spreadsheetName: "", reason: "Spreadsheet instance is undefined or null." };
+  }
+
+  var name = "";
+  try {
+    name = (typeof ss.getName === "function") ? ss.getName() : "";
+  } catch (err) {
+    return { isTest: false, spreadsheetName: "", reason: "Failed to read spreadsheet name: " + err.message };
+  }
+
+  var upperName = name.toUpperCase();
+
+  // 1. HARD REJECT known production database names and signatures
+  var PROD_SIGNATURES = [
+    "STUDENT TRACKING DATABASE",
+    "PRODUCTION",
+    "PROD"
+  ];
+  for (var p = 0; p < PROD_SIGNATURES.length; p++) {
+    var sig = PROD_SIGNATURES[p];
+    if (upperName.indexOf(sig) !== -1 && upperName.indexOf("TEST") === -1 && upperName.indexOf("DEV") === -1) {
+      return {
+        isTest: false,
+        spreadsheetName: name,
+        reason: "CRITICAL REJECTION: Connected spreadsheet '" + name + "' matches PRODUCTION signature. All repair operations strictly refused."
+      };
+    }
+  }
+
+  // 2. Check for explicit environment setting in Script Properties
+  var scriptEnv = "";
+  try {
+    var props = PropertiesService.getScriptProperties();
+    scriptEnv = (props.getProperty("ARCADE_ENV") || props.getProperty("ENVIRONMENT") || "").trim().toUpperCase();
+  } catch (pErr) {}
+
+  if (scriptEnv === "PROD" || scriptEnv === "PRODUCTION") {
+    return {
+      isTest: false,
+      spreadsheetName: name,
+      reason: "CRITICAL REJECTION: Script Properties explicitly declare environment as PRODUCTION. All repair operations strictly refused."
+    };
+  }
+
+  // 3. POSITIVE VERIFICATION:
+  // Name must explicitly indicate test (e.g. 'Unit Review Arcade - TEST DATABASE', 'Unit Review Arcade Database [Test]')
+  // OR Script Properties must have ARCADE_ENV/ENVIRONMENT set to 'TEST' or 'DEVELOPMENT'
+  var nameHasTest = upperName.indexOf("TEST") !== -1 || upperName.indexOf("DEV") !== -1;
+  var propHasTest = scriptEnv === "TEST" || scriptEnv === "DEV" || scriptEnv === "DEVELOPMENT";
+
+  if (!nameHasTest && !propHasTest) {
+    return {
+      isTest: false,
+      spreadsheetName: name,
+      reason: "FAIL-CLOSED: Connected spreadsheet '" + name + "' cannot be positively verified as TEST. Name must contain 'TEST' or Script Property 'ARCADE_ENV' must be 'TEST'."
+    };
+  }
+
+  return {
+    isTest: true,
+    spreadsheetName: name,
+    spreadsheetId: (typeof ss.getId === "function") ? ss.getId() : ""
+  };
+}
+
+/**
+ * Creates an exact, verified restorable backup sheet of Achievements before any mutation.
+ * Copies headers, all row values, and freezes row 1.
+ * Verifies cell-by-cell that the backup is 100% identical to the source before returning.
+ *
+ * @param {GoogleAppsScript.Spreadsheet.Spreadsheet} ss
+ * @param {GoogleAppsScript.Spreadsheet.Sheet} achievementsSheet
+ * @returns {{success: boolean, backupSheetName: string, rowCount: number, error?: string}}
+ */
+function createVerifiedAchievementsBackup(ss, achievementsSheet) {
+  var now = new Date();
+  var timestampStr = Utilities.formatDate(now, "GMT", "yyyyMMdd_HHmmss");
+  var backupSheetName = "_backup_achievements_" + timestampStr;
+
+  var lastRow = achievementsSheet.getLastRow();
+  var lastCol = achievementsSheet.getLastColumn();
+  if (lastRow === 0 || lastCol === 0) {
+    return {
+      success: false,
+      backupSheetName: "",
+      rowCount: 0,
+      error: "Achievements sheet has no data to backup."
+    };
+  }
+
+  var sourceData = achievementsSheet.getRange(1, 1, lastRow, lastCol).getValues();
+
+  var backupSheet = null;
+  try {
+    var existingBackup = getSheetRobust(ss, backupSheetName);
+    if (existingBackup) {
+      backupSheetName += "_" + Math.floor(Math.random() * 1000);
+    }
+    backupSheet = ss.insertSheet(backupSheetName);
+  } catch (insertErr) {
+    return {
+      success: false,
+      backupSheetName: "",
+      rowCount: 0,
+      error: "Failed to create backup sheet '" + backupSheetName + "': " + insertErr.message
+    };
+  }
+
+  if (!backupSheet) {
+    return {
+      success: false,
+      backupSheetName: "",
+      rowCount: 0,
+      error: "Backup sheet could not be created."
+    };
+  }
+
+  try {
+    backupSheet.getRange(1, 1, sourceData.length, sourceData[0].length).setValues(sourceData);
+    if (typeof backupSheet.setFrozenRows === "function") backupSheet.setFrozenRows(1);
+    if (typeof backupSheet.setTabColor === "function") backupSheet.setTabColor("#64748b");
+  } catch (popErr) {
+    return {
+      success: false,
+      backupSheetName: backupSheetName,
+      rowCount: 0,
+      error: "Failed to populate backup data: " + popErr.message
+    };
+  }
+
+  // Read back and verify byte-for-byte
+  try {
+    var backupData = backupSheet.getDataRange().getValues();
+    if (backupData.length !== sourceData.length) {
+      return {
+        success: false,
+        backupSheetName: backupSheetName,
+        rowCount: 0,
+        error: "Backup verification failed: row count mismatch. Source=" + sourceData.length + ", Backup=" + backupData.length
+      };
+    }
+    if (backupData[0].length !== sourceData[0].length) {
+      return {
+        success: false,
+        backupSheetName: backupSheetName,
+        rowCount: 0,
+        error: "Backup verification failed: column count mismatch."
+      };
+    }
+    for (var r = 0; r < sourceData.length; r++) {
+      for (var c = 0; c < sourceData[r].length; c++) {
+        if (String(backupData[r][c]) !== String(sourceData[r][c])) {
+          return {
+            success: false,
+            backupSheetName: backupSheetName,
+            rowCount: 0,
+            error: "Backup verification failed: mismatch at row " + (r + 1) + ", col " + (c + 1)
+          };
+        }
+      }
+    }
+  } catch (vErr) {
+    return {
+      success: false,
+      backupSheetName: backupSheetName,
+      rowCount: 0,
+      error: "Backup verification readback error: " + vErr.message
+    };
+  }
+
+  Logger.log("🛡️ Verified restorable backup successfully created on sheet '" + backupSheetName + "' (" + sourceData.length + " rows).");
+  return {
+    success: true,
+    backupSheetName: backupSheetName,
+    rowCount: sourceData.length
+  };
+}
+
+/**
+ * Manually invoked Apps Script editor entry point to execute the approved
+ * 12-row achievement trigger attempt correction for student 801 in TEST ONLY.
+ * Takes NO arguments so it can be selected and executed directly from the editor toolbar.
+ *
+ * Requirements:
+ * - Hard fail-closed environment guard (verifyTestSpreadsheet)
+ * - Exact scope check: exactly 12 MISMATCHED_TRIGGER_ATTEMPT records for student 801 with att_mweq7htq_g7zcy1pl
+ * - Pre-verified restorable backup of Achievements sheet
+ * - Validation of expected trigger attempts in Attempts sheet
+ * - Row identity verification in Achievements sheet
+ * - Surgical update of trigger_attempt_id and unlocked_at only
+ * - Post-repair verification audit (0 discrepancies)
+ * - Safe rollback if mutation fails
+ * - Idempotent no-op on subsequent runs
+ *
+ * @param {GoogleAppsScript.Spreadsheet.Spreadsheet} [optSs] Optional spreadsheet for automated testing.
+ * @returns {Object} Execution report.
+ */
+function runApprovedTestAchievementRepair(optSs) {
+  var ss = optSs || null;
+  if (!ss) {
+    try {
+      ss = getArcadeSpreadsheet();
+    } catch (err) {
+      Logger.log("❌ Cannot run approved repair: " + err.message);
+      return {
+        success: false,
+        error: "SPREADSHEET_NOT_CONNECTED",
+        message: err.message
+      };
+    }
+  }
+
+  if (!ss) {
+    Logger.log("❌ Spreadsheet instance could not be resolved.");
+    return {
+      success: false,
+      error: "SPREADSHEET_NOT_FOUND",
+      message: "Spreadsheet instance could not be resolved."
+    };
+  }
+
+  // 1. HARD ENVIRONMENT GUARD
+  var envCheck = verifyTestSpreadsheet(ss);
+  if (!envCheck.isTest) {
+    Logger.log("🛑 " + envCheck.reason);
+    return {
+      success: false,
+      error: "ENV_GUARD_REJECTION",
+      message: envCheck.reason
+    };
+  }
+
+  // 2. ACQUIRE DOCUMENT LOCK
+  var lock = LockService.getDocumentLock();
+  if (!lock.tryLock(15000)) {
+    Logger.log("❌ Lock timeout: another operation is in progress. Please retry.");
+    return {
+      success: false,
+      error: "LOCK_TIMEOUT",
+      message: "Could not acquire document lock. Please wait and retry."
+    };
+  }
+
+  try {
+    // 3. PRE-REPAIR AUDIT
+    var preAudit = dryRunRepairStudentAchievements(ss);
+    if (!preAudit.success) {
+      Logger.log("❌ Pre-repair audit failed: " + preAudit.message);
+      return {
+        success: false,
+        error: preAudit.error,
+        message: "Pre-repair audit failed: " + preAudit.message
+      };
+    }
+
+    // 4. IDEMPOTENCY CHECK: If 0 discrepancies, check if repair was already applied
+    if (preAudit.totalDiscrepancies === 0) {
+      Logger.log("========================================================================================");
+      Logger.log("ℹ️ IDEMPOTENT NO-OP: Student 801 achievements already have 0 discrepancies.");
+      Logger.log("No repair needed. Zero writes performed to Google Sheets.");
+      Logger.log("========================================================================================");
+      return {
+        success: true,
+        alreadyApplied: true,
+        writesCount: 0,
+        totalDiscrepancies: 0,
+        spreadsheetName: envCheck.spreadsheetName,
+        message: "Approved repair was already applied. Audit confirmed 0 discrepancies. Zero writes performed."
+      };
+    }
+
+    // 5. EXACT APPROVED SCOPE VERIFICATION
+    var TARGET_STUDENT = "801";
+    var TARGET_EXISTING_TRIGGER = "att_mweq7htq_g7zcy1pl";
+    var APPROVED_COUNT = 12;
+
+    if (preAudit.totalDiscrepancies !== APPROVED_COUNT || preAudit.auditReport.length !== APPROVED_COUNT) {
+      var scopeErrMsg = "SAFETY ABORT: Pre-repair audit found " + preAudit.totalDiscrepancies +
+        " discrepancies, but approved repair scope is strictly " + APPROVED_COUNT + " discrepancies. " +
+        "Audit findings differ from approved scope. Zero writes performed.";
+      Logger.log("🚨 " + scopeErrMsg);
+      return {
+        success: false,
+        error: "SCOPE_MISMATCH",
+        message: scopeErrMsg,
+        actualDiscrepancies: preAudit.totalDiscrepancies,
+        approvedCount: APPROVED_COUNT
+      };
+    }
+
+    // Verify every discrepancy item matches the approved scope
+    for (var k = 0; k < preAudit.auditReport.length; k++) {
+      var item = preAudit.auditReport[k];
+      if (item.studentNumber !== TARGET_STUDENT) {
+        var studentErrMsg = "SAFETY ABORT: Discrepancy item " + (k + 1) + " belongs to student '" +
+          item.studentNumber + "', not approved student '" + TARGET_STUDENT + "'.";
+        Logger.log("🚨 " + studentErrMsg);
+        return { success: false, error: "STUDENT_MISMATCH", message: studentErrMsg };
+      }
+      if (item.discrepancyType !== "MISMATCHED_TRIGGER_ATTEMPT") {
+        var typeErrMsg = "SAFETY ABORT: Discrepancy item " + (k + 1) + " has issue '" +
+          item.discrepancyType + "', but approved scope is strictly MISMATCHED_TRIGGER_ATTEMPT.";
+        Logger.log("🚨 " + typeErrMsg);
+        return { success: false, error: "ISSUE_TYPE_MISMATCH", message: typeErrMsg };
+      }
+      if (item.existingTriggerAttemptId !== TARGET_EXISTING_TRIGGER) {
+        var trigErrMsg = "SAFETY ABORT: Discrepancy item " + (k + 1) + " has existing trigger ID '" +
+          item.existingTriggerAttemptId + "', but approved scope strictly targets '" + TARGET_EXISTING_TRIGGER + "'.";
+        Logger.log("🚨 " + trigErrMsg);
+        return { success: false, error: "TRIGGER_ID_MISMATCH", message: trigErrMsg };
+      }
+      if (!item.expectedTriggerAttemptId || item.expectedTriggerAttemptId === TARGET_EXISTING_TRIGGER) {
+        var expErrMsg = "SAFETY ABORT: Discrepancy item " + (k + 1) + " does not have a valid distinct expected trigger ID.";
+        Logger.log("🚨 " + expErrMsg);
+        return { success: false, error: "INVALID_EXPECTED_TRIGGER", message: expErrMsg };
+      }
+    }
+
+    // 6. VERIFY EXPECTED TRIGGER ATTEMPTS IN ATTEMPTS SHEET
+    var attemptsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.ATTEMPTS);
+    if (!attemptsSheet) {
+      return { success: false, error: "MISSING_SHEET", message: "Attempts sheet not found." };
+    }
+    var attColMap = getSheetColumnMap(attemptsSheet, CONFIG.ATTEMPT_HEADERS);
+    var attemptsData = attemptsSheet.getDataRange().getValues();
+    var attemptsById = {};
+
+    for (var a = 1; a < attemptsData.length; a++) {
+      var aId = String(attemptsData[a][attColMap["attempt_id"] - 1] || "").trim();
+      if (aId) {
+        attemptsById[aId] = {
+          rowIndex: a + 1,
+          studentNumber: String(attemptsData[a][attColMap["student_number"] - 1] || "").trim(),
+          status: String(attemptsData[a][attColMap["status"] - 1] || "").trim(),
+          percentage: Number(attemptsData[a][attColMap["percentage"] - 1] || 0),
+          gameType: String(attemptsData[a][attColMap["game_type"] - 1] || "").trim(),
+          completedAt: String(attemptsData[a][attColMap["completed_at"] - 1] || "")
+        };
+      }
+    }
+
+    for (var m = 0; m < preAudit.auditReport.length; m++) {
+      var repItem = preAudit.auditReport[m];
+      var expAtt = attemptsById[repItem.expectedTriggerAttemptId];
+      if (!expAtt) {
+        var attNotFoundMsg = "SAFETY ABORT: Expected trigger attempt '" + repItem.expectedTriggerAttemptId +
+          "' for badge '" + repItem.badgeId + "' does not exist in Attempts sheet.";
+        Logger.log("🚨 " + attNotFoundMsg);
+        return { success: false, error: "EXPECTED_ATTEMPT_NOT_FOUND", message: attNotFoundMsg };
+      }
+      if (expAtt.studentNumber !== TARGET_STUDENT) {
+        var attOwnerMsg = "SAFETY ABORT: Expected trigger attempt '" + repItem.expectedTriggerAttemptId +
+          "' belongs to student '" + expAtt.studentNumber + "', not '" + TARGET_STUDENT + "'.";
+        Logger.log("🚨 " + attOwnerMsg);
+        return { success: false, error: "ATTEMPT_OWNER_MISMATCH", message: attOwnerMsg };
+      }
+      if (expAtt.status !== "completed") {
+        var attStatusMsg = "SAFETY ABORT: Expected trigger attempt '" + repItem.expectedTriggerAttemptId +
+          "' status is '" + expAtt.status + "', expected 'completed'.";
+        Logger.log("🚨 " + attStatusMsg);
+        return { success: false, error: "ATTEMPT_NOT_COMPLETED", message: attStatusMsg };
+      }
+    }
+
+    // 7. VERIFY ROW IDENTITIES IN ACHIEVEMENTS SHEET
+    var achievementsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.ACHIEVEMENTS);
+    if (!achievementsSheet) {
+      return { success: false, error: "MISSING_SHEET", message: "Achievements sheet not found." };
+    }
+    var achColMap = getSheetColumnMap(achievementsSheet, CONFIG.ACHIEVEMENT_HEADERS);
+    var achData = achievementsSheet.getDataRange().getValues();
+
+    for (var r = 0; r < preAudit.auditReport.length; r++) {
+      var rowItem = preAudit.auditReport[r];
+      var targetRow = rowItem.rowIndex;
+      if (!targetRow || targetRow < 2 || targetRow > achData.length) {
+        var rowRangeMsg = "SAFETY ABORT: Target row index " + targetRow + " is out of bounds.";
+        Logger.log("🚨 " + rowRangeMsg);
+        return { success: false, error: "ROW_INDEX_OUT_OF_BOUNDS", message: rowRangeMsg };
+      }
+      var targetValues = achData[targetRow - 1];
+      var actualStudent = String(targetValues[achColMap["student_number"] - 1] || "").trim();
+      var actualBadge = String(targetValues[achColMap["achievement_id"] - 1] || "").trim();
+      var actualTrigger = String(targetValues[achColMap["trigger_attempt_id"] - 1] || "").trim();
+
+      if (actualStudent !== TARGET_STUDENT || actualBadge !== rowItem.badgeId || actualTrigger !== TARGET_EXISTING_TRIGGER) {
+        var identityMsg = "SAFETY ABORT: Row " + targetRow + " values (student=" + actualStudent +
+          ", badge=" + actualBadge + ", trigger=" + actualTrigger + ") do not match expected identity (student=" +
+          TARGET_STUDENT + ", badge=" + rowItem.badgeId + ", trigger=" + TARGET_EXISTING_TRIGGER + ").";
+        Logger.log("🚨 " + identityMsg);
+        return { success: false, error: "ROW_IDENTITY_MISMATCH", message: identityMsg };
+      }
+    }
+
+    // 8. CREATE AND VERIFY RESTORABLE BACKUP
+    var backupResult = createVerifiedAchievementsBackup(ss, achievementsSheet);
+    if (!backupResult.success) {
+      Logger.log("🚨 Backup creation failed: " + backupResult.error + ". Mutation halted.");
+      return {
+        success: false,
+        error: "BACKUP_FAILED",
+        message: "Refusing mutation because verified backup could not be created: " + backupResult.error
+      };
+    }
+
+    // 9. APPLY SURGICAL REPAIRS WITH ROLLBACK DEFENSE
+    var affectedRows = [];
+    var backupSheetName = backupResult.backupSheetName;
+
+    try {
+      for (var u = 0; u < preAudit.auditReport.length; u++) {
+        var fixItem = preAudit.auditReport[u];
+        achievementsSheet.getRange(fixItem.rowIndex, achColMap["trigger_attempt_id"]).setValue(fixItem.expectedTriggerAttemptId);
+        achievementsSheet.getRange(fixItem.rowIndex, achColMap["unlocked_at"]).setValue(fixItem.expectedTimestamp);
+
+        affectedRows.push({
+          rowIndex: fixItem.rowIndex,
+          badgeId: fixItem.badgeId,
+          badgeTitle: fixItem.badgeTitle,
+          previousTriggerId: TARGET_EXISTING_TRIGGER,
+          newTriggerId: fixItem.expectedTriggerAttemptId,
+          newTimestamp: fixItem.expectedTimestamp
+        });
+      }
+      SpreadsheetApp.flush();
+    } catch (mutationErr) {
+      Logger.log("🚨 MUTATION ERROR during repair: " + mutationErr.message + ". Initiating rollback...");
+      var rollbackOk = false;
+      try {
+        var bSheet = getSheetRobust(ss, backupSheetName);
+        if (bSheet) {
+          var bData = bSheet.getDataRange().getValues();
+          achievementsSheet.clear();
+          achievementsSheet.getRange(1, 1, bData.length, bData[0].length).setValues(bData);
+          SpreadsheetApp.flush();
+          rollbackOk = true;
+          Logger.log("🔄 Rollback successful: Achievements sheet restored to pre-repair state from '" + backupSheetName + "'.");
+        }
+      } catch (rbErr) {
+        Logger.log("❌ Rollback failed: " + rbErr.message + ". Manual recovery required from sheet '" + backupSheetName + "'.");
+      }
+      return {
+        success: false,
+        error: "MUTATION_ERROR",
+        message: mutationErr.message,
+        rollbackExecuted: rollbackOk,
+        backupSheetName: backupSheetName,
+        repairsAttempted: affectedRows.length,
+        instructions: "Achievements sheet has been rolled back from '" + backupSheetName + "'."
+      };
+    }
+
+    // 10. POST-REPAIR VERIFICATION AUDIT
+    var postAudit = dryRunRepairStudentAchievements(ss);
+
+    Logger.log("========================================================================================");
+    Logger.log("🎉 APPROVED TEST ACHIEVEMENT REPAIR EXECUTION COMPLETE");
+    Logger.log("========================================================================================");
+    Logger.log("Database: " + envCheck.spreadsheetName);
+    Logger.log("Verified Backup Sheet: " + backupSheetName);
+    Logger.log("Before Discrepancies: " + preAudit.totalDiscrepancies);
+    Logger.log("After Discrepancies:  " + postAudit.totalDiscrepancies);
+    Logger.log("Repairs Applied:      " + affectedRows.length + " rows updated");
+
+    for (var aLog = 0; aLog < affectedRows.length; aLog++) {
+      var aff = affectedRows[aLog];
+      Logger.log("  [" + (aLog + 1) + "/12] Row " + aff.rowIndex + ": " + aff.badgeId + " (\"" + aff.badgeTitle + "\") -> " + aff.newTriggerId);
+    }
+
+    Logger.log("========================================================================================");
+
+    return {
+      success: true,
+      applied: true,
+      spreadsheetName: envCheck.spreadsheetName,
+      backupSheetName: backupSheetName,
+      beforeDiscrepancies: preAudit.totalDiscrepancies,
+      afterDiscrepancies: postAudit.totalDiscrepancies,
+      repairsApplied: affectedRows.length,
+      affectedRows: affectedRows
+    };
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+/**
  * Explicit, separately guarded mutating repair operation for student achievements.
  * NEVER invoked by dryRunRepairStudentAchievements.
  * Requires confirmationToken === 'CONFIRM_APPLY_REPAIR'.
@@ -4448,6 +4945,18 @@ function repairStudentAchievements(optSs, confirmationToken) {
       applied: false,
       error: "SPREADSHEET_NOT_FOUND",
       message: "Spreadsheet instance could not be resolved."
+    };
+  }
+
+  // Hard environment check in repairStudentAchievements as well
+  var envCheck = verifyTestSpreadsheet(ss);
+  if (!envCheck.isTest) {
+    Logger.log("🛑 " + envCheck.reason);
+    return {
+      success: false,
+      applied: false,
+      error: "ENV_GUARD_REJECTION",
+      message: envCheck.reason
     };
   }
 

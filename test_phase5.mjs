@@ -178,6 +178,7 @@ class MockSpreadsheet {
   }
 
   getName() { return this.name; }
+  getId() { return 'mock_test_spreadsheet_id'; }
   getSpreadsheetLocale() { return this.locale; }
   setSpreadsheetLocale(loc) { this.locale = loc; }
   getSheetByName(name) { return this.sheets[name] || null; }
@@ -186,6 +187,10 @@ class MockSpreadsheet {
     const s = new MockSheet(name, this);
     this.sheets[name] = s;
     return s;
+  }
+  deleteSheet(sheet) {
+    const n = sheet && typeof sheet.getName === 'function' ? sheet.getName() : String(sheet);
+    delete this.sheets[n];
   }
 }
 
@@ -1176,6 +1181,263 @@ assert(repeatRepair.success === true, 'Repeat repair succeeds cleanly');
 assert(repeatRepair.totalRepairsApplied === 0, 'Repeat repair applies 0 repairs (idempotent)');
 
 console.log('✅ Achievements Audit & Dry-Run Repair Tool tests passed!\n');
+
+// ============================================================================
+// TEST SUITE 12: Approved Test-Only Achievement Repair Workflow
+// ============================================================================
+console.log('--- TEST SUITE 12: Approved Test-Only Achievement Repair Workflow ---');
+
+// Test 12.1: Environment Guard - Positive Verification of TEST spreadsheets
+const testSs1 = new MockSpreadsheet('Unit Review Arcade - TEST DATABASE');
+const verifyResult1 = vmContext.verifyTestSpreadsheet(testSs1);
+assert(verifyResult1.isTest === true, 'Identifies "Unit Review Arcade - TEST DATABASE" as TEST');
+
+const testSs2 = new MockSpreadsheet('Unit Review Arcade [Phase 5 Test]');
+const verifyResult2 = vmContext.verifyTestSpreadsheet(testSs2);
+assert(verifyResult2.isTest === true, 'Identifies "Unit Review Arcade [Phase 5 Test]" as TEST');
+
+const customSs = new MockSpreadsheet('Custom School Database');
+mockProps.setProperty('ARCADE_ENV', 'TEST');
+const verifyResult3 = vmContext.verifyTestSpreadsheet(customSs);
+assert(verifyResult3.isTest === true, 'Identifies custom sheet with ARCADE_ENV=TEST as TEST');
+mockProps.deleteProperty('ARCADE_ENV');
+
+// Test 12.2: Hard Production Refusal & Fail-Closed Guard
+const prodSs1 = new MockSpreadsheet('Unit Review Arcade – Student Tracking Database');
+const prodVerify1 = vmContext.verifyTestSpreadsheet(prodSs1);
+assert(prodVerify1.isTest === false, 'Hard rejects production name "Unit Review Arcade – Student Tracking Database"');
+assert(prodVerify1.reason.includes('matches PRODUCTION signature'), 'Rejection mentions PRODUCTION signature');
+
+const prodSs2 = new MockSpreadsheet('Unit Review Arcade Production');
+const prodVerify2 = vmContext.verifyTestSpreadsheet(prodSs2);
+assert(prodVerify2.isTest === false, 'Hard rejects name containing "Production"');
+
+const prodRepairAttempt = vmContext.runApprovedTestAchievementRepair(prodSs1);
+assert(prodRepairAttempt.success === false, 'Refuses to execute repair on production spreadsheet');
+assert(prodRepairAttempt.error === 'ENV_GUARD_REJECTION', 'Reports ENV_GUARD_REJECTION for production sheet');
+
+const unknownSs = new MockSpreadsheet('Generic Unmarked Database');
+const unknownVerify = vmContext.verifyTestSpreadsheet(unknownSs);
+assert(unknownVerify.isTest === false, 'Fails closed on unmarked database without TEST in name or properties');
+
+// Helper to construct exact 12-badge test scenario for student 801
+function buildApproved12BadgeScenario() {
+  const ss = new MockSpreadsheet('Unit Review Arcade - TEST DATABASE');
+  const attSheet = ss.insertSheet('Attempts');
+  attSheet.appendRow(vmContext.CONFIG.ATTEMPT_HEADERS);
+
+  const stdSheet = ss.insertSheet('Students');
+  stdSheet.appendRow(vmContext.CONFIG.STUDENT_HEADERS);
+  stdSheet.appendRow(['std_801', '801', 'Barış Arslan', 'grade-8', '8A', 'salt', 'hash', true, 0, null]);
+
+  // 17 distinct completed activities qualifying student 801 for exactly 12 achievements
+  const attemptsList = [
+    // Quiz Battle (3 perfect -> first_game, perfect_score, perfect_streak_3, quiz_ace)
+    ['att_801_quiz_01', 'sess_1', 'std_801', '801', '8A', 'grade-8', 'g8-u1', 'Friendship', 'g8-u1-act1', 'Quiz 1', 'quiz_battle', 1, 10, 10, 10, 10, 0, 0, 100, '2026-11-01T10:00:00Z', '2026-11-01T10:05:00Z', 300, 'completed', '', 125],
+    ['att_801_quiz_02', 'sess_1', 'std_801', '801', '8A', 'grade-8', 'g8-u1', 'Friendship', 'g8-u1-act2', 'Quiz 2', 'quiz_battle', 1, 10, 10, 10, 10, 0, 0, 100, '2026-11-02T10:00:00Z', '2026-11-02T10:05:00Z', 300, 'completed', '', 125],
+    ['att_801_quiz_03', 'sess_1', 'std_801', '801', '8A', 'grade-8', 'g8-u1', 'Friendship', 'g8-u1-act3', 'Quiz 3', 'quiz_battle', 1, 10, 10, 10, 10, 0, 0, 100, '2026-11-03T10:00:00Z', '2026-11-03T10:05:00Z', 300, 'completed', '', 125],
+
+    // Match It (3 perfect -> milestone_5 at act 5, match_master at act 6)
+    ['att_801_match_01', 'sess_1', 'std_801', '801', '8A', 'grade-8', 'g8-u1', 'Friendship', 'g8-u1-act4', 'Match 1', 'match_it', 1, 10, 10, 10, 10, 0, 0, 100, '2026-11-04T10:00:00Z', '2026-11-04T10:05:00Z', 300, 'completed', '', 125],
+    ['att_801_match_02', 'sess_1', 'std_801', '801', '8A', 'grade-8', 'g8-u1', 'Friendship', 'g8-u1-act5', 'Match 2', 'match_it', 1, 10, 10, 10, 10, 0, 0, 100, '2026-11-05T10:00:00Z', '2026-11-05T10:05:00Z', 300, 'completed', '', 125],
+    ['att_801_match_03', 'sess_1', 'std_801', '801', '8A', 'grade-8', 'g8-u1', 'Friendship', 'g8-u1-act6', 'Match 3', 'match_it', 1, 10, 10, 10, 10, 0, 0, 100, '2026-11-06T10:00:00Z', '2026-11-06T10:05:00Z', 300, 'completed', '', 125],
+
+    // Sentence Builder (3 perfect -> sentence_architect at act 9)
+    ['att_801_sent_01', 'sess_1', 'std_801', '801', '8A', 'grade-8', 'g8-u2', 'Teen Life', 'g8-u2-act1', 'Sentence 1', 'sentence_builder', 1, 10, 10, 10, 10, 0, 0, 100, '2026-11-07T10:00:00Z', '2026-11-07T10:05:00Z', 300, 'completed', '', 125],
+    ['att_801_sent_02', 'sess_1', 'std_801', '801', '8A', 'grade-8', 'g8-u2', 'Teen Life', 'g8-u2-act2', 'Sentence 2', 'sentence_builder', 1, 10, 10, 10, 10, 0, 0, 100, '2026-11-08T10:00:00Z', '2026-11-08T10:05:00Z', 300, 'completed', '', 125],
+    ['att_801_sent_03', 'sess_1', 'std_801', '801', '8A', 'grade-8', 'g8-u2', 'Teen Life', 'g8-u2-act3', 'Sentence 3', 'sentence_builder', 1, 10, 10, 10, 10, 0, 0, 100, '2026-11-09T10:00:00Z', '2026-11-09T10:05:00Z', 300, 'completed', '', 125],
+
+    // Reading Detective (3 perfect -> milestone_10 at act 10, detective_pro at act 12)
+    ['att_801_det_01', 'sess_1', 'std_801', '801', '8A', 'grade-8', 'g8-u2', 'Teen Life', 'g8-u2-act4', 'Detective 1', 'reading_detective', 1, 10, 10, 10, 10, 0, 0, 100, '2026-11-10T10:00:00Z', '2026-11-10T10:05:00Z', 300, 'completed', '', 125],
+    ['att_801_det_02', 'sess_1', 'std_801', '801', '8A', 'grade-8', 'g8-u2', 'Teen Life', 'g8-u2-act5', 'Detective 2', 'reading_detective', 1, 10, 10, 10, 10, 0, 0, 100, '2026-11-11T10:00:00Z', '2026-11-11T10:05:00Z', 300, 'completed', '', 125],
+    ['att_801_det_03', 'sess_1', 'std_801', '801', '8A', 'grade-8', 'g8-u2', 'Teen Life', 'g8-u2-act6', 'Detective 3', 'reading_detective', 1, 10, 10, 10, 10, 0, 0, 100, '2026-11-12T10:00:00Z', '2026-11-12T10:05:00Z', 300, 'completed', '', 125],
+
+    // Train Station (2 perfect -> station_conductor at act 14)
+    ['att_801_train_01', 'sess_1', 'std_801', '801', '8A', 'grade-8', 'g8-u3', 'Cooking', 'g8-u3-act1', 'Train 1', 'train_station', 1, 10, 10, 10, 10, 0, 0, 100, '2026-11-13T10:00:00Z', '2026-11-13T10:05:00Z', 300, 'completed', '', 125],
+    ['att_801_train_02', 'sess_1', 'std_801', '801', '8A', 'grade-8', 'g8-u3', 'Cooking', 'g8-u3-act2', 'Train 2', 'train_station', 1, 10, 10, 10, 10, 0, 0, 100, '2026-11-14T10:00:00Z', '2026-11-14T10:05:00Z', 300, 'completed', '', 125],
+
+    // True/False (3 perfect -> explorer_all_types at act 15, true_false_guru at act 17)
+    ['att_801_tf_01', 'sess_1', 'std_801', '801', '8A', 'grade-8', 'g8-u3', 'Cooking', 'g8-u3-act3', 'TF 1', 'true_false', 1, 10, 10, 10, 10, 0, 0, 100, '2026-11-15T10:00:00Z', '2026-11-15T10:05:00Z', 300, 'completed', '', 125],
+    ['att_801_tf_02', 'sess_1', 'std_801', '801', '8A', 'grade-8', 'g8-u3', 'Cooking', 'g8-u3-act4', 'TF 2', 'true_false', 1, 10, 10, 10, 10, 0, 0, 100, '2026-11-16T10:00:00Z', '2026-11-16T10:05:00Z', 300, 'completed', '', 125],
+    ['att_801_tf_03', 'sess_1', 'std_801', '801', '8A', 'grade-8', 'g8-u3', 'Cooking', 'g8-u3-act5', 'TF 3', 'true_false', 1, 10, 10, 10, 10, 0, 0, 100, '2026-11-17T10:00:00Z', '2026-11-17T10:05:00Z', 300, 'completed', '', 125],
+  ];
+
+  attemptsList.forEach(row => attSheet.appendRow(row));
+
+  const achSheet = ss.insertSheet('Achievements');
+  achSheet.appendRow(vmContext.CONFIG.ACHIEVEMENT_HEADERS);
+
+  // Seed the exact 12 achievements pointing to the buggy attempt ID att_mweq7htq_g7zcy1pl
+  const twelveBadges = [
+    { id: 'first_game', title: 'First Steps' },
+    { id: 'perfect_score', title: 'Flawless Victory' },
+    { id: 'perfect_streak_3', title: 'Hat Trick' },
+    { id: 'quiz_ace', title: 'Battle Master' },
+    { id: 'milestone_5', title: 'On a Roll' },
+    { id: 'match_master', title: 'Pair Perfection' },
+    { id: 'sentence_architect', title: 'Sentence Architect' },
+    { id: 'milestone_10', title: 'Knowledge Seeker' },
+    { id: 'detective_pro', title: 'Chief Inspector' },
+    { id: 'station_conductor', title: 'Express Conductor' },
+    { id: 'explorer_all_types', title: 'Arcade Explorer' },
+    { id: 'true_false_guru', title: 'Truth Seeker' },
+  ];
+
+  twelveBadges.forEach((b, idx) => {
+    achSheet.appendRow([
+      `ach_801_${idx + 1}`,
+      'sess_1',
+      '801',
+      'Barış Arslan',
+      b.id,
+      b.title,
+      '2026-11-17T12:00:00Z',
+      'att_mweq7htq_g7zcy1pl', // The observed bug trigger ID
+    ]);
+  });
+
+  return { ss, attSheet, achSheet, twelveBadges };
+}
+
+// Test 12.3: Backup Failure Halts Execution
+const brokenBackupScenario = buildApproved12BadgeScenario();
+const origInsertBroken = brokenBackupScenario.ss.insertSheet.bind(brokenBackupScenario.ss);
+brokenBackupScenario.ss.insertSheet = (name) => {
+  if (name.startsWith('_backup_achievements_')) {
+    throw new Error('Quota exceeded: Cannot create backup sheet');
+  }
+  return origInsertBroken(name);
+};
+
+const backupFailResult = vmContext.runApprovedTestAchievementRepair(brokenBackupScenario.ss);
+assert(backupFailResult.success === false, 'Repair halts when backup creation fails');
+assert(backupFailResult.error === 'BACKUP_FAILED', 'Reports BACKUP_FAILED error');
+assert(brokenBackupScenario.achSheet.rows.slice(1).every(r => r[7] === 'att_mweq7htq_g7zcy1pl'), 'Achievements rows completely untouched when backup fails');
+
+// Test 12.4: Scope Mismatch Abort (discrepancy count != 12)
+const scenarioScope = buildApproved12BadgeScenario();
+// Add an attempt for student 802 so total discrepancies becomes 13 (12 for 801 + 1 for 802)
+scenarioScope.attSheet.appendRow(['att_802_q1', 'sess_1', 'std_802', '802', '8A', 'grade-8', 'g8-u1', 'Friendship', 'g8-u1-act1', 'Quiz 1', 'quiz_battle', 1, 10, 10, 10, 10, 0, 0, 100, '2026-11-01T10:00:00Z', '2026-11-01T10:05:00Z', 300, 'completed', '', 125]);
+const scopeFailResult = vmContext.runApprovedTestAchievementRepair(scenarioScope.ss);
+assert(scopeFailResult.success === false, 'Aborts when discrepancy count is not exactly 12');
+assert(scopeFailResult.error === 'SCOPE_MISMATCH', 'Reports SCOPE_MISMATCH');
+
+// Test 12.4b: Issue Type Mismatch Abort (e.g. MISSING_ACHIEVEMENT_RECORD instead of MISMATCHED_TRIGGER_ATTEMPT)
+const scenarioMissing = buildApproved12BadgeScenario();
+scenarioMissing.achSheet.deleteRow(scenarioMissing.achSheet.rows.length);
+const issueTypeFailResult = vmContext.runApprovedTestAchievementRepair(scenarioMissing.ss);
+assert(issueTypeFailResult.success === false, 'Aborts when an issue is not MISMATCHED_TRIGGER_ATTEMPT');
+assert(issueTypeFailResult.error === 'ISSUE_TYPE_MISMATCH', 'Reports ISSUE_TYPE_MISMATCH');
+
+// Test 12.5: Student Mismatch Abort
+const scenario2 = buildApproved12BadgeScenario();
+// Change student number of row 2 to 802
+scenario2.achSheet.rows[1][2] = '802';
+const studentFailResult = vmContext.runApprovedTestAchievementRepair(scenario2.ss);
+assert(studentFailResult.success === false, 'Aborts when a discrepancy belongs to another student');
+
+// Test 12.6: Trigger ID Mismatch Abort
+const scenario3 = buildApproved12BadgeScenario();
+// Change trigger ID of row 2 to something other than att_mweq7htq_g7zcy1pl
+scenario3.achSheet.rows[1][7] = 'att_other_random_trigger';
+const trigFailResult = vmContext.runApprovedTestAchievementRepair(scenario3.ss);
+assert(trigFailResult.success === false, 'Aborts when existing trigger ID does not match att_mweq7htq_g7zcy1pl');
+
+// Test 12.7: Row Identity Mismatch Abort
+const scenario4 = buildApproved12BadgeScenario();
+// Corrupt the badge_id in row 2
+scenario4.achSheet.rows[1][4] = 'unrelated_badge_id';
+const rowIdentResult = vmContext.runApprovedTestAchievementRepair(scenario4.ss);
+assert(rowIdentResult.success === false, 'Aborts when target row in sheet does not match expected badge ID');
+
+// Test 12.8: Successful 12-Row Surgical Repair Execution
+const scenario5 = buildApproved12BadgeScenario();
+
+// Verify pre-repair audit
+const preAuditCheck = vmContext.dryRunRepairStudentAchievements(scenario5.ss);
+assert(preAuditCheck.totalDiscrepancies === 12, 'Pre-repair audit finds exactly 12 discrepancies');
+assert(preAuditCheck.auditReport.every(item => item.studentNumber === '801'), 'All 12 items belong to student 801');
+assert(preAuditCheck.auditReport.every(item => item.existingTriggerAttemptId === 'att_mweq7htq_g7zcy1pl'), 'All 12 items have bug trigger ID');
+
+// Install write monitor to verify ZERO unintended writes
+let attemptsWriteCount = 0;
+const origAttAppend = scenario5.attSheet.appendRow.bind(scenario5.attSheet);
+scenario5.attSheet.appendRow = (...args) => { attemptsWriteCount++; return origAttAppend(...args); };
+
+// Execute approved repair
+const repairExecResult = vmContext.runApprovedTestAchievementRepair(scenario5.ss);
+
+assert(repairExecResult.success === true, 'runApprovedTestAchievementRepair executed successfully');
+assert(repairExecResult.applied === true, 'applied flag is true');
+assert(repairExecResult.repairsApplied === 12, 'Exactly 12 rows were repaired (got ' + repairExecResult.repairsApplied + ')');
+assert(repairExecResult.beforeDiscrepancies === 12, 'beforeDiscrepancies reported as 12');
+assert(repairExecResult.afterDiscrepancies === 0, 'afterDiscrepancies reported as 0');
+assert(Boolean(repairExecResult.backupSheetName), 'Backup sheet name reported: ' + repairExecResult.backupSheetName);
+assert(scenario5.ss.sheets[repairExecResult.backupSheetName] !== undefined, 'Backup sheet physically exists in spreadsheet');
+
+// Verify backup sheet has exact pre-repair data
+const bSheet = scenario5.ss.sheets[repairExecResult.backupSheetName];
+assert(bSheet.rows.length === 13, 'Backup sheet has 13 rows (header + 12 achievements)');
+// All backup rows still have the pre-repair bug trigger ID
+assert(bSheet.rows.slice(1).every(r => r[7] === 'att_mweq7htq_g7zcy1pl'), 'Backup sheet preserved original bug trigger IDs');
+
+// Verify Achievements sheet now has distinct valid trigger IDs
+const updatedAchRows = scenario5.achSheet.rows.slice(1);
+assert(updatedAchRows.length === 12, 'Achievements sheet has 12 achievement rows');
+assert(updatedAchRows.every(r => r[7] !== 'att_mweq7htq_g7zcy1pl'), 'All 12 rows no longer point to bug trigger ID');
+assert(updatedAchRows.every(r => r[7].startsWith('att_801_')), 'All 12 rows point to student 801 historical attempt IDs');
+
+// Proof: Zero writes to Attempts sheet
+assert(attemptsWriteCount === 0, 'Proof of zero writes to Attempts sheet');
+
+// Test 12.9: Post-Repair Audit Verification
+const postAuditCheck = vmContext.dryRunRepairStudentAchievements(scenario5.ss);
+assert(postAuditCheck.totalDiscrepancies === 0, 'Post-repair audit strictly reports 0 discrepancies');
+
+// Test 12.10: Idempotency (Second Execution Performs Zero Writes)
+let secondRunWrites = 0;
+const monAch = scenario5.achSheet;
+const origSetVal = monAch.getRange(1, 1).setValue;
+monAch.getRange = (...args) => {
+  const rng = new MockRange(monAch, args[0], args[1], args[2] || 1, args[3] || 1);
+  rng.setValue = () => { secondRunWrites++; };
+  rng.setValues = () => { secondRunWrites++; };
+  return rng;
+};
+
+const secondRunResult = vmContext.runApprovedTestAchievementRepair(scenario5.ss);
+assert(secondRunResult.success === true, 'Second run returns success: true');
+assert(secondRunResult.alreadyApplied === true, 'Second run reports alreadyApplied: true');
+assert(secondRunResult.writesCount === 0, 'Second run reports writesCount === 0');
+assert(secondRunWrites === 0, 'Second run physically performed 0 writes');
+
+// Test 12.11: Partial Failure & Automatic Rollback
+const scenario6 = buildApproved12BadgeScenario();
+// Force setValue to throw on the 6th row during repair
+let setValCalls = 0;
+const origGetRng = scenario6.achSheet.getRange.bind(scenario6.achSheet);
+scenario6.achSheet.getRange = (r, c, nr, nc) => {
+  const range = origGetRng(r, c, nr, nc);
+  const origSV = range.setValue.bind(range);
+  range.setValue = (val) => {
+    setValCalls++;
+    if (setValCalls === 11) { // 11th cell update throws (each item updates 2 cells)
+      throw new Error('Simulated network timeout during cell update');
+    }
+    return origSV(val);
+  };
+  return range;
+};
+
+const rollbackResult = vmContext.runApprovedTestAchievementRepair(scenario6.ss);
+assert(rollbackResult.success === false, 'Partial failure returns success: false');
+assert(rollbackResult.error === 'MUTATION_ERROR', 'Reports MUTATION_ERROR');
+assert(rollbackResult.rollbackExecuted === true, 'Automatic rollback was executed');
+// Verify that after rollback, the achievements sheet has its original bug trigger IDs restored
+const rolledBackRows = scenario6.achSheet.rows.slice(1);
+assert(rolledBackRows.every(r => r[7] === 'att_mweq7htq_g7zcy1pl'), 'All rows restored to original trigger ID after rollback');
+
+console.log('✅ Approved Test-Only Achievement Repair Workflow tests passed!\n');
 
 // ============================================================================
 // Summary
