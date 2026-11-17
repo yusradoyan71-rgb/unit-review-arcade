@@ -18,6 +18,7 @@ import { StudentRosterTable } from './StudentRosterTable';
 import { StudentDetailModal } from './StudentDetailModal';
 import { QuestionAnalyticsView } from './QuestionAnalyticsView';
 import { CurriculumSyncModal } from './CurriculumSyncModal';
+import { StudentManagementView } from './StudentManagementView';
 import type { 
   TeacherOverviewKpis, 
   ClassStatSummary, 
@@ -33,6 +34,7 @@ import {
   UploadCloud, 
   Layers, 
   Users, 
+  UserCheck,
   FileQuestion, 
   AlertCircle
 } from 'lucide-react';
@@ -45,7 +47,7 @@ export const TeacherDashboardScreen: React.FC = () => {
   const [selectedClassId, setSelectedClassId] = useState<'all' | '7A' | '7B' | '8A' | '8B'>('all');
   const [selectedGradeId, setSelectedGradeId] = useState<'all' | 'grade-7' | 'grade-8'>('all');
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [dashboardTab, setDashboardTab] = useState<'overview' | 'roster' | 'analytics'>('overview');
+  const [dashboardTab, setDashboardTab] = useState<'management' | 'overview' | 'analytics'>('management');
 
   // Selected Student for Drill-down Modal
   const [selectedStudentNumber, setSelectedStudentNumber] = useState<string | null>(null);
@@ -303,25 +305,38 @@ export const TeacherDashboardScreen: React.FC = () => {
           </section>
         )}
 
-        {/* Section 3: Navigation Tabs between Roster and Question Diagnostics */}
-        <div className="flex border-b border-slate-200 gap-4">
+        {/* Section 3: Navigation Tabs between Student Management, Roster Progress, and Question Diagnostics */}
+        <div className="flex border-b border-slate-200 gap-2 sm:gap-4 overflow-x-auto">
+          <button
+            type="button"
+            onClick={() => setDashboardTab('management')}
+            className={`pb-3 px-2 text-xs sm:text-sm font-bold flex items-center gap-2 border-b-2 transition-colors whitespace-nowrap ${
+              dashboardTab === 'management'
+                ? 'border-indigo-600 text-indigo-700'
+                : 'border-transparent text-slate-500 hover:text-slate-800'
+            }`}
+          >
+            <UserCheck className="w-4 h-4 text-indigo-600" />
+            <span>Student Management ({roster.length})</span>
+          </button>
+
           <button
             type="button"
             onClick={() => setDashboardTab('overview')}
-            className={`pb-3 px-2 text-sm font-bold flex items-center gap-2 border-b-2 transition-colors ${
+            className={`pb-3 px-2 text-xs sm:text-sm font-bold flex items-center gap-2 border-b-2 transition-colors whitespace-nowrap ${
               dashboardTab === 'overview'
                 ? 'border-indigo-600 text-indigo-700'
                 : 'border-transparent text-slate-500 hover:text-slate-800'
             }`}
           >
-            <Users className="w-4 h-4 text-indigo-600" />
-            <span>Student Roster & Progress ({filteredRoster.length})</span>
+            <Users className="w-4 h-4 text-sky-600" />
+            <span>Curriculum Progress &amp; Scores ({filteredRoster.length})</span>
           </button>
 
           <button
             type="button"
             onClick={() => setDashboardTab('analytics')}
-            className={`pb-3 px-2 text-sm font-bold flex items-center gap-2 border-b-2 transition-colors ${
+            className={`pb-3 px-2 text-xs sm:text-sm font-bold flex items-center gap-2 border-b-2 transition-colors whitespace-nowrap ${
               dashboardTab === 'analytics'
                 ? 'border-indigo-600 text-indigo-700'
                 : 'border-transparent text-slate-500 hover:text-slate-800'
@@ -332,7 +347,18 @@ export const TeacherDashboardScreen: React.FC = () => {
           </button>
         </div>
 
-        {/* Tab 1: Student Roster Table */}
+        {/* Tab 1: Student Management & Enrollment */}
+        {dashboardTab === 'management' && (
+          <StudentManagementView
+            roster={roster}
+            isLoading={isLoading}
+            onRefresh={() => loadDashboardData(true)}
+            selectedClassId={selectedClassId}
+            onSelectClassId={setSelectedClassId}
+          />
+        )}
+
+        {/* Tab 2: Student Curriculum Progress Table */}
         {dashboardTab === 'overview' && (
           <StudentRosterTable
             roster={filteredRoster}
@@ -343,7 +369,7 @@ export const TeacherDashboardScreen: React.FC = () => {
           />
         )}
 
-        {/* Tab 2: Question Diagnostics Leaderboard */}
+        {/* Tab 3: Question Diagnostics Leaderboard */}
         {dashboardTab === 'analytics' && (
           <QuestionAnalyticsView
             analytics={questionAnalytics}

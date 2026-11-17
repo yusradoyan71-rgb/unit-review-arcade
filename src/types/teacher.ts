@@ -290,5 +290,120 @@ export interface DashboardFilterOptions {
   searchTerm?: string;
   startDate?: string;
   endDate?: string;
+  includeArchived?: boolean;
+}
+
+// ---------------------------------------------------------------------------
+// STUDENT ROSTER MANAGEMENT & CREDENTIALS (PHASE 3B)
+// ---------------------------------------------------------------------------
+
+export interface StudentManagementRecord {
+  studentId: string;
+  studentNumber: string;
+  fullName: string;
+  grade: string;
+  class: string;
+  isActive: boolean;
+  createdAt?: string;
+  lastLoginAt?: string | null;
+}
+
+export interface TeacherAddStudentPayload {
+  studentNumber: string;
+  fullName: string;
+  class: '7A' | '7B' | '8A' | '8B';
+  pin?: string;
+}
+
+export interface TeacherAddStudentResponse {
+  success: boolean;
+  message?: string;
+  student?: StudentManagementRecord;
+  generatedPin?: string;
+  error?: string;
+  code?: TeacherAuthErrorCode;
+}
+
+export interface TeacherBulkImportItem {
+  studentNumber: string;
+  fullName: string;
+  class: '7A' | '7B' | '8A' | '8B';
+  pin?: string;
+}
+
+export interface TeacherBulkImportResponse {
+  success: boolean;
+  count?: number;
+  message?: string;
+  importedStudents?: Array<StudentManagementRecord & { pin: string }>;
+  validationErrors?: string[];
+  error?: string;
+  code?: TeacherAuthErrorCode;
+}
+
+export interface TeacherUpdateStudentPayload {
+  studentNumber: string;
+  fullName: string;
+  class: '7A' | '7B' | '8A' | '8B';
+  isActive?: boolean;
+}
+
+export interface TeacherUpdateStudentResponse {
+  success: boolean;
+  message?: string;
+  student?: {
+    studentNumber: string;
+    fullName: string;
+    grade: string;
+    class: string;
+    isActive: boolean;
+  };
+  error?: string;
+  code?: TeacherAuthErrorCode;
+}
+
+export interface TeacherResetPinResponse {
+  success: boolean;
+  message?: string;
+  studentNumber?: string;
+  fullName?: string;
+  newPin?: string;
+  error?: string;
+  code?: TeacherAuthErrorCode;
+}
+
+export interface TeacherSetStudentActiveResponse {
+  success: boolean;
+  message?: string;
+  studentNumber?: string;
+  isActive?: boolean;
+  error?: string;
+  code?: TeacherAuthErrorCode;
+}
+
+export interface TeacherDemoAccountPreview {
+  studentNumber: string;
+  fullName: string;
+  class: string;
+  grade: string;
+  isActive: boolean;
+  isArchived: boolean;
+  attemptsCount: number;
+  sessionsCount: number;
+}
+
+export interface TeacherDemoAccountsResponse {
+  success: boolean;
+  demoAccounts?: TeacherDemoAccountPreview[];
+  error?: string;
+  code?: TeacherAuthErrorCode;
+}
+
+export interface TeacherArchiveDemoResponse {
+  success: boolean;
+  archivedCount?: number;
+  message?: string;
+  error?: string;
+  code?: TeacherAuthErrorCode;
 }
 

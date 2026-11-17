@@ -3,7 +3,6 @@ import { useAuth } from '../../context/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowLeft, 
-  HelpCircle, 
   Tv, 
   AlertCircle, 
   Loader2 
@@ -26,9 +25,8 @@ export const StudentLoginScreen: React.FC<StudentLoginScreenProps> = ({ onBackTo
   } = useAuth();
 
   const [studentClass, setStudentClass] = useState<'8A' | '8B' | '7A' | '7B'>('8A');
-  const [studentNumber, setStudentNumber] = useState<string>('801');
+  const [studentNumber, setStudentNumber] = useState<string>('');
   const [pin, setPin] = useState<string>('');
-  const [showDemoHelp, setShowDemoHelp] = useState<boolean>(false);
 
   // Number pad tap handler
   const handleNumClick = (digit: string) => {
@@ -55,15 +53,6 @@ export const StudentLoginScreen: React.FC<StudentLoginScreenProps> = ({ onBackTo
       studentNumber: studentNumber.trim(),
       pin: pin.trim(),
     });
-  };
-
-  // Quick select test accounts
-  const handleSelectDemo = (num: string, cls: '8A' | '8B' | '7A' | '7B', demoPin: string) => {
-    sounds.playTap();
-    clearError();
-    setStudentNumber(num);
-    setStudentClass(cls);
-    setPin(demoPin);
   };
 
   return (
@@ -120,52 +109,10 @@ export const StudentLoginScreen: React.FC<StudentLoginScreenProps> = ({ onBackTo
         <div className="max-w-md mx-auto mb-4 flex items-center justify-between px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-xs">
           <span className="text-slate-600 flex items-center gap-1.5 font-medium">
             <span className={`w-2 h-2 rounded-full ${isLiveBackend ? 'bg-emerald-500 animate-pulse' : 'bg-amber-500'}`} />
-            {isLiveBackend ? 'Cloud Server Connected' : 'Local Demo Mode Active'}
+            {isLiveBackend ? 'Cloud Server Connected' : 'Classroom Mode'}
           </span>
-          <button
-            type="button"
-            onClick={() => setShowDemoHelp(prev => !prev)}
-            className="text-sky-700 hover:text-sky-900 font-bold flex items-center gap-1 text-[11px]"
-          >
-            <HelpCircle className="w-3.5 h-3.5" />
-            <span>Test Accounts</span>
-          </button>
+          <span className="text-[11px] text-slate-400 font-medium">Official School Login</span>
         </div>
-
-        {/* Demo Accounts Helper Drawer */}
-        <AnimatePresence>
-          {showDemoHelp && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="max-w-md mx-auto mb-5 p-3 rounded-2xl bg-sky-50 border border-sky-200 text-xs space-y-2 overflow-hidden"
-            >
-              <div className="flex items-center justify-between font-bold text-sky-900">
-                <span>Select a sample student account:</span>
-                <span className="text-[10px] text-sky-600">Default PIN: 1234</span>
-              </div>
-              <div className="grid grid-cols-2 gap-2">
-                <button
-                  type="button"
-                  onClick={() => handleSelectDemo('801', '8A', '1234')}
-                  className="p-2 rounded-xl bg-white hover:bg-sky-100/70 border border-sky-300 text-left transition-colors"
-                >
-                  <span className="font-bold text-slate-900 block">Student 801 (Alex)</span>
-                  <span className="text-[10px] text-sky-700">Class 8A • Grade 8</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleSelectDemo('701', '7A', '1234')}
-                  className="p-2 rounded-xl bg-white hover:bg-sky-100/70 border border-sky-300 text-left transition-colors"
-                >
-                  <span className="font-bold text-slate-900 block">Student 701 (Liam)</span>
-                  <span className="text-[10px] text-emerald-700">Class 7A • Grade 7</span>
-                </button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
 
         {/* Error Alert */}
         <AnimatePresence>
@@ -200,11 +147,6 @@ export const StudentLoginScreen: React.FC<StudentLoginScreenProps> = ({ onBackTo
                     onClick={() => {
                       sounds.playTap();
                       setStudentClass(cls);
-                      if (cls.startsWith('7') && studentNumber.startsWith('8')) {
-                        setStudentNumber('701');
-                      } else if (cls.startsWith('8') && studentNumber.startsWith('7')) {
-                        setStudentNumber('801');
-                      }
                     }}
                     className={`py-2 rounded-xl font-black text-sm transition-all ${
                       isSelected
@@ -228,7 +170,7 @@ export const StudentLoginScreen: React.FC<StudentLoginScreenProps> = ({ onBackTo
               type="text"
               value={studentNumber}
               onChange={e => setStudentNumber(e.target.value)}
-              placeholder="e.g. 801"
+              placeholder="e.g. 142 or 508"
               className="w-full py-3 px-4 rounded-2xl bg-slate-50 border-2 border-sky-200 font-mono text-center text-xl font-black text-slate-900 focus:outline-none focus:border-sky-500 transition-colors shadow-inner"
             />
           </div>

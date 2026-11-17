@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
   X, 
   KeyRound, 
@@ -10,8 +10,7 @@ import {
   EyeOff, 
   AlertCircle, 
   GraduationCap, 
-  Tv, 
-  HelpCircle
+  Tv
 } from 'lucide-react';
 import { sounds } from '../../services/soundEffects';
 
@@ -30,7 +29,6 @@ export const StudentLoginModal: React.FC = () => {
   const [studentNumber, setStudentNumber] = useState('');
   const [pin, setPin] = useState('');
   const [showPin, setShowPin] = useState(false);
-  const [showDemoHelp, setShowDemoHelp] = useState(false);
 
   if (!isLoginModalOpen) return null;
 
@@ -48,13 +46,6 @@ export const StudentLoginModal: React.FC = () => {
       setStudentNumber('');
       setPin('');
     }
-  };
-
-  const handleSelectDemoAccount = (num: string, demoPin: string) => {
-    sounds.playTap();
-    setStudentNumber(num);
-    setPin(demoPin);
-    clearError();
   };
 
   return (
@@ -93,67 +84,14 @@ export const StudentLoginModal: React.FC = () => {
           </button>
         </div>
 
-        {/* Live / Demo Mode Status Indicator */}
+        {/* Live Status Indicator */}
         <div className="mb-5 flex items-center justify-between px-3 py-1.5 rounded-xl bg-sky-50/70 border border-sky-100 text-xs">
           <span className="text-slate-600 flex items-center gap-1.5 font-medium">
             <span className={`w-2 h-2 rounded-full ${isLiveBackend ? 'bg-emerald-500 animate-pulse' : 'bg-amber-500'}`} />
-            {isLiveBackend ? 'Google Sheets Server Connected' : 'Local Demo Mode Active'}
+            {isLiveBackend ? 'Google Sheets Server Connected' : 'Classroom Mode'}
           </span>
-          <button
-            type="button"
-            onClick={() => setShowDemoHelp((prev) => !prev)}
-            className="text-sky-600 hover:text-sky-700 font-bold flex items-center gap-1 text-[11px]"
-          >
-            <HelpCircle className="w-3.5 h-3.5" />
-            <span>Test Accounts</span>
-          </button>
+          <span className="text-[11px] text-slate-400 font-medium">Official School Login</span>
         </div>
-
-        {/* Demo Accounts Quick-Select Drawer */}
-        <AnimatePresence>
-          {showDemoHelp && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="mb-5 p-3 rounded-2xl bg-sky-50/80 border border-sky-200 overflow-hidden text-xs"
-            >
-              <div className="flex items-center justify-between font-bold text-sky-900 mb-2">
-                <span>Quick Test Accounts (Classes 7A, 7B, 8A, 8B):</span>
-              </div>
-              <div className="grid grid-cols-2 gap-1.5 text-[11px]">
-                <button
-                  type="button"
-                  onClick={() => handleSelectDemoAccount('701', '1234')}
-                  className="p-1.5 rounded-xl bg-white hover:bg-sky-100 border border-sky-200 text-left text-slate-700 hover:text-slate-900 transition-colors shadow-xs"
-                >
-                  <strong className="text-sky-600">[7A]</strong> No: <strong>701</strong> (PIN: 1234)
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleSelectDemoAccount('703', '1111')}
-                  className="p-1.5 rounded-xl bg-white hover:bg-sky-100 border border-sky-200 text-left text-slate-700 hover:text-slate-900 transition-colors shadow-xs"
-                >
-                  <strong className="text-sky-600">[7B]</strong> No: <strong>703</strong> (PIN: 1111)
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleSelectDemoAccount('801', '1234')}
-                  className="p-1.5 rounded-xl bg-white hover:bg-purple-100 border border-purple-200 text-left text-slate-700 hover:text-slate-900 transition-colors shadow-xs"
-                >
-                  <strong className="text-purple-600">[8A]</strong> No: <strong>801</strong> (PIN: 1234)
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleSelectDemoAccount('803', '1111')}
-                  className="p-1.5 rounded-xl bg-white hover:bg-purple-100 border border-purple-200 text-left text-slate-700 hover:text-slate-900 transition-colors shadow-xs"
-                >
-                  <strong className="text-purple-600">[8B]</strong> No: <strong>803</strong> (PIN: 1111)
-                </button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
 
         {/* Error Alert Box */}
         {loginError && (

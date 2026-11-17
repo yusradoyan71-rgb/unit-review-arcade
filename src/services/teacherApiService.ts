@@ -23,6 +23,16 @@ import type {
   TeacherPublishCurriculumResponse,
   CurriculumPublishItem,
   DashboardFilterOptions,
+  TeacherAddStudentPayload,
+  TeacherAddStudentResponse,
+  TeacherBulkImportItem,
+  TeacherBulkImportResponse,
+  TeacherUpdateStudentPayload,
+  TeacherUpdateStudentResponse,
+  TeacherResetPinResponse,
+  TeacherSetStudentActiveResponse,
+  TeacherDemoAccountsResponse,
+  TeacherArchiveDemoResponse,
 } from '../types/teacher';
 
 export class TeacherApiService {
@@ -358,6 +368,284 @@ export class TeacherApiService {
       return {
         success: false,
         error: `Curriculum publishing failed: ${message}`,
+        code: 'NETWORK_ERROR',
+      };
+    }
+  }
+
+  // ===========================================================================
+  // STUDENT ROSTER MANAGEMENT & CREDENTIALS
+  // ===========================================================================
+
+  /**
+   * Adds an individual student to the school roster.
+   */
+  public static async addStudent(
+    teacherToken: string,
+    student: TeacherAddStudentPayload
+  ): Promise<TeacherAddStudentResponse> {
+    const cleanToken = (teacherToken || '').trim();
+    if (!cleanToken) {
+      return {
+        success: false,
+        error: 'Authentication required. Please log in as a teacher.',
+        code: 'UNAUTHORIZED',
+      };
+    }
+
+    try {
+      const endpoint = ApiService.getTeacherApiUrl();
+      return await ApiService.postRequest<TeacherAddStudentResponse>(
+        endpoint,
+        {
+          action: 'teacher_add_student',
+          teacherToken: cleanToken,
+          studentNumber: student.studentNumber,
+          fullName: student.fullName,
+          class: student.class,
+          pin: student.pin,
+        },
+        18000
+      );
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Server error';
+      return {
+        success: false,
+        error: `Failed to add student: ${message}`,
+        code: 'NETWORK_ERROR',
+      };
+    }
+  }
+
+  /**
+   * Imports multiple students in a single batch.
+   */
+  public static async bulkImportStudents(
+    teacherToken: string,
+    students: TeacherBulkImportItem[]
+  ): Promise<TeacherBulkImportResponse> {
+    const cleanToken = (teacherToken || '').trim();
+    if (!cleanToken) {
+      return {
+        success: false,
+        error: 'Authentication required. Please log in as a teacher.',
+        code: 'UNAUTHORIZED',
+      };
+    }
+
+    if (!Array.isArray(students) || students.length === 0) {
+      return {
+        success: false,
+        error: 'No student records to import.',
+        code: 'BAD_REQUEST',
+      };
+    }
+
+    try {
+      const endpoint = ApiService.getTeacherApiUrl();
+      return await ApiService.postRequest<TeacherBulkImportResponse>(
+        endpoint,
+        {
+          action: 'teacher_bulk_import_students',
+          teacherToken: cleanToken,
+          students: students,
+        },
+        30000
+      );
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Server error';
+      return {
+        success: false,
+        error: `Bulk import failed: ${message}`,
+        code: 'NETWORK_ERROR',
+      };
+    }
+  }
+
+  /**
+   * Updates an existing student's name, class assignment, or active status.
+   */
+  public static async updateStudent(
+    teacherToken: string,
+    student: TeacherUpdateStudentPayload
+  ): Promise<TeacherUpdateStudentResponse> {
+    const cleanToken = (teacherToken || '').trim();
+    if (!cleanToken) {
+      return {
+        success: false,
+        error: 'Authentication required. Please log in as a teacher.',
+        code: 'UNAUTHORIZED',
+      };
+    }
+
+    try {
+      const endpoint = ApiService.getTeacherApiUrl();
+      return await ApiService.postRequest<TeacherUpdateStudentResponse>(
+        endpoint,
+        {
+          action: 'teacher_update_student',
+          teacherToken: cleanToken,
+          studentNumber: student.studentNumber,
+          fullName: student.fullName,
+          class: student.class,
+          isActive: student.isActive,
+        },
+        18000
+      );
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Server error';
+      return {
+        success: false,
+        error: `Failed to update student: ${message}`,
+        code: 'NETWORK_ERROR',
+      };
+    }
+  }
+
+  /**
+   * Resets a student's PIN and returns the new PIN for distribution.
+   */
+  public static async resetStudentPin(
+    teacherToken: string,
+    studentNumber: string,
+    newPin?: string
+  ): Promise<TeacherResetPinResponse> {
+    const cleanToken = (teacherToken || '').trim();
+    if (!cleanToken) {
+      return {
+        success: false,
+        error: 'Authentication required. Please log in as a teacher.',
+        code: 'UNAUTHORIZED',
+      };
+    }
+
+    try {
+      const endpoint = ApiService.getTeacherApiUrl();
+      return await ApiService.postRequest<TeacherResetPinResponse>(
+        endpoint,
+        {
+          action: 'teacher_reset_student_pin',
+          teacherToken: cleanToken,
+          studentNumber: studentNumber.trim(),
+          newPin: newPin ? newPin.trim() : undefined,
+        },
+        18000
+      );
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Server error';
+      return {
+        success: false,
+        error: `PIN reset failed: ${message}`,
+        code: 'NETWORK_ERROR',
+      };
+    }
+  }
+
+  /**
+   * Toggles active / inactive status for a student account.
+   */
+  public static async setStudentActive(
+    teacherToken: string,
+    studentNumber: string,
+    isActive: boolean
+  ): Promise<TeacherSetStudentActiveResponse> {
+    const cleanToken = (teacherToken || '').trim();
+    if (!cleanToken) {
+      return {
+        success: false,
+        error: 'Authentication required. Please log in as a teacher.',
+        code: 'UNAUTHORIZED',
+      };
+    }
+
+    try {
+      const endpoint = ApiService.getTeacherApiUrl();
+      return await ApiService.postRequest<TeacherSetStudentActiveResponse>(
+        endpoint,
+        {
+          action: 'teacher_set_student_active',
+          teacherToken: cleanToken,
+          studentNumber: studentNumber.trim(),
+          isActive: isActive,
+        },
+        18000
+      );
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Server error';
+      return {
+        success: false,
+        error: `Failed to change account status: ${message}`,
+        code: 'NETWORK_ERROR',
+      };
+    }
+  }
+
+  /**
+   * Fetches preview of demonstration test accounts and their activity records.
+   */
+  public static async getDemoAccountsPreview(
+    teacherToken: string
+  ): Promise<TeacherDemoAccountsResponse> {
+    const cleanToken = (teacherToken || '').trim();
+    if (!cleanToken) {
+      return {
+        success: false,
+        error: 'Authentication required. Please log in as a teacher.',
+        code: 'UNAUTHORIZED',
+      };
+    }
+
+    try {
+      const endpoint = ApiService.getTeacherApiUrl();
+      return await ApiService.postRequest<TeacherDemoAccountsResponse>(
+        endpoint,
+        {
+          action: 'teacher_get_demo_accounts_preview',
+          teacherToken: cleanToken,
+        },
+        18000
+      );
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Server error';
+      return {
+        success: false,
+        error: `Failed to load demo accounts preview: ${message}`,
+        code: 'NETWORK_ERROR',
+      };
+    }
+  }
+
+  /**
+   * Safely archives demo accounts without losing historical database records.
+   */
+  public static async archiveDemoAccounts(
+    teacherToken: string
+  ): Promise<TeacherArchiveDemoResponse> {
+    const cleanToken = (teacherToken || '').trim();
+    if (!cleanToken) {
+      return {
+        success: false,
+        error: 'Authentication required. Please log in as a teacher.',
+        code: 'UNAUTHORIZED',
+      };
+    }
+
+    try {
+      const endpoint = ApiService.getTeacherApiUrl();
+      return await ApiService.postRequest<TeacherArchiveDemoResponse>(
+        endpoint,
+        {
+          action: 'teacher_archive_demo_accounts',
+          teacherToken: cleanToken,
+          confirmed: true,
+        },
+        20000
+      );
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Server error';
+      return {
+        success: false,
+        error: `Failed to archive demo accounts: ${message}`,
         code: 'NETWORK_ERROR',
       };
     }

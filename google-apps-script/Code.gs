@@ -46,7 +46,7 @@
 // Configuration
 var CONFIG = {
   APP_NAME: "Unit Review Arcade API",
-  VERSION: "3.0.0",
+  VERSION: "3.1.0",
   SESSION_DURATION_HOURS: 12,
   TEACHER_SESSION_DURATION_HOURS: 2,
   MAX_FAILED_ATTEMPTS: 5,
@@ -386,6 +386,28 @@ function doPost(e) {
       // Teacher Curriculum Catalog Management (Phase 3A)
       case "teacher_publish_curriculum":
         return handleTeacherPublishCurriculum(ss, payload);
+
+      // Teacher Student Management & Demo Archival (Phase 3B)
+      case "teacher_add_student":
+        return handleTeacherAddStudent(ss, payload);
+
+      case "teacher_bulk_import_students":
+        return handleTeacherBulkImportStudents(ss, payload);
+
+      case "teacher_update_student":
+        return handleTeacherUpdateStudent(ss, payload);
+
+      case "teacher_reset_student_pin":
+        return handleTeacherResetStudentPin(ss, payload);
+
+      case "teacher_set_student_active":
+        return handleTeacherSetStudentActive(ss, payload);
+
+      case "teacher_get_demo_accounts_preview":
+        return handleTeacherGetDemoAccountsPreview(ss, payload);
+
+      case "teacher_archive_demo_accounts":
+        return handleTeacherArchiveDemoAccounts(ss, payload);
 
       case "ping":
         return createJsonResponse({ success: true, timestamp: new Date().toISOString(), version: CONFIG.VERSION });
@@ -1200,6 +1222,7 @@ function handleTeacherGetOverview(ss, payload) {
     if (!sNum) continue;
 
     var sClass = String(sRow[studentColMap["class"] - 1] || "").trim().toUpperCase();
+    if (sClass === "DEMO_ARCHIVE") continue; // Exclude archived demo fixtures from live classroom statistics
     var sGrade = String(sRow[studentColMap["grade"] - 1] || "").trim();
     var normGrade = (sGrade === "7" || sGrade === 7 || sGrade === "grade-7") ? "grade-7" : "grade-8";
     var lastLogin = sRow[studentColMap["last_login_at"] - 1];
@@ -1459,6 +1482,7 @@ function handleTeacherGetRoster(ss, payload) {
     if (!sNum) continue;
 
     var sClass = String(sRow[studentColMap["class"] - 1] || "").trim().toUpperCase();
+    if (sClass === "DEMO_ARCHIVE") continue; // Exclude archived demo fixtures from live classroom statistics
     var sGrade = String(sRow[studentColMap["grade"] - 1] || "").trim();
     var normGrade = (sGrade === "7" || sGrade === 7 || sGrade === "grade-7") ? "grade-7" : "grade-8";
     var fullName = String(sRow[studentColMap["full_name"] - 1] || "");
@@ -1883,6 +1907,603 @@ function handleTeacherGetQuestionAnalytics(ss, payload) {
     success: true,
     questionAnalytics: questionAnalytics
   });
+}
+
+// ============================================================================
+// TEACHER STUDENT MANAGEMENT & DEMO ARCHIVAL (PHASE 3B)
+// ============================================================================
+
+var DEMO_STUDENT_NUMBERS = ["701", "702", "703", "704", "801", "802", "803", "804"];
+
+/**
+ * Invalidates all active session tokens for a student in the Sessions sheet.
+ */
+function invalidateStudentSessions(ss, studentNumber) {
+  var sessionsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.SESSIONS);
+  if (!sessionsSheet) return;
+  var data = sessionsSheet.getDataRange().getValues();
+  var colMap = getSheetColumnMap(sessionsSheet, CONFIG.SESSION_HEADERS);
+  var now = new Date().toISOString();
+
+  for (var i = 1; i < data.length; i++) {
+    var sNum = String(data[i][colMap["student_number"] - 1] || "").trim();
+    var status = String(data[i][colMap["status"] - 1] || "");
+    if (sNum === studentNumber && status === "active") {
+      sessionsSheet.getRange(i + 1, colMap["status"]).setValue("revoked");
+      sessionsSheet.getRange(i + 1, colMap["logout_time"]).setValue(now);
+    }
+  }
+}
+
+/**
+ * Authenticated endpoint: Adds an individual student to the Students sheet.
+ */
+function handleTeacherAddStudent(ss, payload) {
+  var auth = validateTeacherSession(ss, payload.teacherToken);
+  if (!auth.valid) {
+    return createJsonResponse({ success: false, error: auth.error, code: auth.code });
+  }
+
+  var studentNumber = String(payload.studentNumber || "").trim();
+  var fullName = String(payload.fullName || "").trim();
+  var className = String(payload.class || "").trim().toUpperCase();
+  var rawPin = payload.pin !== undefined && payload.pin !== null ? String(payload.pin).trim() : "";
+
+  if (!studentNumber) {
+    return createJsonResponse({ success: false, error: "Student number is required.", code: "BAD_REQUEST" });
+  }
+  if (!fullName) {
+    return createJsonResponse({ success: false, error: "Student full name is required.", code: "BAD_REQUEST" });
+  }
+  var validClasses = ["7A", "7B", "8A", "8B"];
+  if (validClasses.indexOf(className) === -1) {
+    return createJsonResponse({ success: false, error: "Invalid class. Must be 7A, 7B, 8A, or 8B.", code: "BAD_REQUEST" });
+  }
+
+  // Validate or generate 4-digit numeric PIN
+  var pin = rawPin;
+  if (pin) {
+    if (!/^\d{4}$/.test(pin)) {
+      return createJsonResponse({ success: false, error: "PIN must be a 4-digit numeric string (0000-9999).", code: "BAD_REQUEST" });
+    }
+  } else {
+    pin = String(Math.floor(1000 + Math.random() * 9000));
+  }
+
+  var lock = LockService.getScriptLock();
+  try {
+    lock.waitLock(10000);
+  } catch (lockErr) {
+    return createJsonResponse({ success: false, error: "Server is busy. Please retry in a few moments.", code: "RATE_LIMITED" });
+  }
+
+  try {
+    var studentsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.STUDENTS);
+    setupSheetHeaders(studentsSheet, CONFIG.STUDENT_HEADERS, "#1e293b", "#38bdf8");
+
+    var studentData = studentsSheet.getDataRange().getValues();
+    var colMap = getSheetColumnMap(studentsSheet, CONFIG.STUDENT_HEADERS);
+
+    // Check duplicate student number across all rows (active and inactive)
+    for (var i = 1; i < studentData.length; i++) {
+      var existingNum = String(studentData[i][colMap["student_number"] - 1] || "").trim();
+      if (existingNum.toLowerCase() === studentNumber.toLowerCase()) {
+        return createJsonResponse({
+          success: false,
+          error: "Student number '" + studentNumber + "' is already registered (" + String(studentData[i][colMap["full_name"] - 1]) + " - Class " + String(studentData[i][colMap["class"] - 1]) + ").",
+          code: "DUPLICATE_STUDENT"
+        });
+      }
+    }
+
+    var studentId = "std_" + Utilities.getUuid().substring(0, 8);
+    var grade = className.startsWith("7") ? "grade-7" : "grade-8";
+    var salt = generateSalt();
+    var hash = hashPinWithSaltAndPepper(pin, salt);
+    var now = new Date().toISOString();
+
+    studentsSheet.appendRow([
+      studentId,
+      studentNumber,
+      fullName,
+      grade,
+      className,
+      salt,
+      hash,
+      true,  // is_active
+      0,     // failed_attempts
+      "",    // locked_until
+      now,   // created_at
+      ""     // last_login_at
+    ]);
+
+    return createJsonResponse({
+      success: true,
+      message: "Student account created successfully.",
+      student: {
+        studentId: studentId,
+        studentNumber: studentNumber,
+        fullName: fullName,
+        grade: grade,
+        class: className,
+        isActive: true,
+        createdAt: now
+      },
+      generatedPin: pin // Revealed once to authenticated teacher
+    });
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+/**
+ * Authenticated endpoint: Imports a list of students in bulk.
+ */
+function handleTeacherBulkImportStudents(ss, payload) {
+  var auth = validateTeacherSession(ss, payload.teacherToken);
+  if (!auth.valid) {
+    return createJsonResponse({ success: false, error: auth.error, code: auth.code });
+  }
+
+  var rawList = payload.students;
+  if (!Array.isArray(rawList) || rawList.length === 0) {
+    return createJsonResponse({ success: false, error: "Expected a non-empty array of students to import.", code: "BAD_REQUEST" });
+  }
+  if (rawList.length > 500) {
+    return createJsonResponse({ success: false, error: "Bulk import limit is 500 students per batch.", code: "BAD_REQUEST" });
+  }
+
+  var validClasses = ["7A", "7B", "8A", "8B"];
+  var lock = LockService.getScriptLock();
+  try {
+    lock.waitLock(15000);
+  } catch (lockErr) {
+    return createJsonResponse({ success: false, error: "Server is busy. Please retry.", code: "RATE_LIMITED" });
+  }
+
+  try {
+    var studentsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.STUDENTS);
+    setupSheetHeaders(studentsSheet, CONFIG.STUDENT_HEADERS, "#1e293b", "#38bdf8");
+
+    var studentData = studentsSheet.getDataRange().getValues();
+    var colMap = getSheetColumnMap(studentsSheet, CONFIG.STUDENT_HEADERS);
+
+    // Existing numbers set
+    var existingNumbers = {};
+    for (var i = 1; i < studentData.length; i++) {
+      var exNum = String(studentData[i][colMap["student_number"] - 1] || "").trim().toLowerCase();
+      if (exNum) existingNumbers[exNum] = true;
+    }
+
+    // Validate batch for internal duplicates and format
+    var batchNumbers = {};
+    var validatedStudents = [];
+    var errors = [];
+
+    for (var idx = 0; idx < rawList.length; idx++) {
+      var item = rawList[idx];
+      var sNum = String(item.studentNumber || "").trim();
+      var fName = String(item.fullName || "").trim();
+      var cName = String(item.class || "").trim().toUpperCase();
+      var sPin = item.pin !== undefined && item.pin !== null ? String(item.pin).trim() : "";
+
+      if (!sNum) {
+        errors.push("Row " + (idx + 1) + ": Missing student number.");
+        continue;
+      }
+      if (!fName) {
+        errors.push("Row " + (idx + 1) + " (" + sNum + "): Missing full name.");
+        continue;
+      }
+      if (validClasses.indexOf(cName) === -1) {
+        errors.push("Row " + (idx + 1) + " (" + sNum + "): Invalid class '" + cName + "'. Must be 7A, 7B, 8A, or 8B.");
+        continue;
+      }
+      if (batchNumbers[sNum.toLowerCase()]) {
+        errors.push("Row " + (idx + 1) + " (" + sNum + "): Duplicate student number in import batch.");
+        continue;
+      }
+      if (existingNumbers[sNum.toLowerCase()]) {
+        errors.push("Row " + (idx + 1) + " (" + sNum + "): Student number already exists in database.");
+        continue;
+      }
+
+      var finalPin = sPin;
+      if (finalPin) {
+        if (!/^\d{4}$/.test(finalPin)) {
+          errors.push("Row " + (idx + 1) + " (" + sNum + "): Custom PIN must be exactly 4 digits (0000-9999).");
+          continue;
+        }
+      } else {
+        finalPin = String(Math.floor(1000 + Math.random() * 9000));
+      }
+
+      batchNumbers[sNum.toLowerCase()] = true;
+      validatedStudents.push({
+        studentNumber: sNum,
+        fullName: fName,
+        className: cName,
+        pin: finalPin
+      });
+    }
+
+    if (errors.length > 0) {
+      return createJsonResponse({
+        success: false,
+        error: "Validation failed for " + errors.length + " record(s). No records were imported.",
+        validationErrors: errors,
+        code: "VALIDATION_ERROR"
+      });
+    }
+
+    var now = new Date().toISOString();
+    var rowsToInsert = [];
+    var importedList = [];
+
+    for (var k = 0; k < validatedStudents.length; k++) {
+      var s = validatedStudents[k];
+      var stdId = "std_" + Utilities.getUuid().substring(0, 8);
+      var grd = s.className.startsWith("7") ? "grade-7" : "grade-8";
+      var sSalt = generateSalt();
+      var sHash = hashPinWithSaltAndPepper(s.pin, sSalt);
+
+      rowsToInsert.push([
+        stdId,
+        s.studentNumber,
+        s.fullName,
+        grd,
+        s.className,
+        sSalt,
+        sHash,
+        true,
+        0,
+        "",
+        now,
+        ""
+      ]);
+
+      importedList.push({
+        studentId: stdId,
+        studentNumber: s.studentNumber,
+        fullName: s.fullName,
+        grade: grd,
+        class: s.className,
+        pin: s.pin // Returned once to teacher for print cards
+      });
+    }
+
+    if (rowsToInsert.length > 0) {
+      var startRow = studentsSheet.getLastRow() + 1;
+      studentsSheet.getRange(startRow, 1, rowsToInsert.length, CONFIG.STUDENT_HEADERS.length).setValues(rowsToInsert);
+    }
+
+    return createJsonResponse({
+      success: true,
+      count: importedList.length,
+      message: "Successfully imported " + importedList.length + " students.",
+      importedStudents: importedList
+    });
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+/**
+ * Authenticated endpoint: Updates an existing student's name, class, or active status.
+ * Student number is strictly immutable to preserve historical records and relationships.
+ */
+function handleTeacherUpdateStudent(ss, payload) {
+  var auth = validateTeacherSession(ss, payload.teacherToken);
+  if (!auth.valid) {
+    return createJsonResponse({ success: false, error: auth.error, code: auth.code });
+  }
+
+  var studentNumber = String(payload.studentNumber || "").trim();
+  var fullName = String(payload.fullName || "").trim();
+  var className = String(payload.class || "").trim().toUpperCase();
+  var validClasses = ["7A", "7B", "8A", "8B"];
+
+  if (!studentNumber) {
+    return createJsonResponse({ success: false, error: "Student number is required.", code: "BAD_REQUEST" });
+  }
+  if (!fullName) {
+    return createJsonResponse({ success: false, error: "Student full name is required.", code: "BAD_REQUEST" });
+  }
+  if (validClasses.indexOf(className) === -1) {
+    return createJsonResponse({ success: false, error: "Invalid class. Must be 7A, 7B, 8A, or 8B.", code: "BAD_REQUEST" });
+  }
+
+  var lock = LockService.getScriptLock();
+  try {
+    lock.waitLock(10000);
+  } catch (lockErr) {
+    return createJsonResponse({ success: false, error: "Server is busy. Please retry.", code: "RATE_LIMITED" });
+  }
+
+  try {
+    var studentsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.STUDENTS);
+    var studentData = studentsSheet.getDataRange().getValues();
+    var colMap = getSheetColumnMap(studentsSheet, CONFIG.STUDENT_HEADERS);
+
+    var targetRowIndex = -1;
+    for (var i = 1; i < studentData.length; i++) {
+      var rowNum = String(studentData[i][colMap["student_number"] - 1] || "").trim();
+      if (rowNum === studentNumber) {
+        targetRowIndex = i + 1;
+        break;
+      }
+    }
+
+    if (targetRowIndex === -1) {
+      return createJsonResponse({ success: false, error: "Student #" + studentNumber + " not found.", code: "NOT_FOUND" });
+    }
+
+    var grade = className.startsWith("7") ? "grade-7" : "grade-8";
+    studentsSheet.getRange(targetRowIndex, colMap["full_name"]).setValue(fullName);
+    studentsSheet.getRange(targetRowIndex, colMap["grade"]).setValue(grade);
+    studentsSheet.getRange(targetRowIndex, colMap["class"]).setValue(className);
+
+    var finalActive = Boolean(studentData[targetRowIndex - 1][colMap["is_active"] - 1]);
+    if (payload.isActive !== undefined) {
+      finalActive = Boolean(payload.isActive);
+      studentsSheet.getRange(targetRowIndex, colMap["is_active"]).setValue(finalActive);
+      if (!finalActive) {
+        invalidateStudentSessions(ss, studentNumber);
+      }
+    }
+
+    return createJsonResponse({
+      success: true,
+      message: "Student details updated successfully.",
+      student: {
+        studentNumber: studentNumber,
+        fullName: fullName,
+        grade: grade,
+        class: className,
+        isActive: finalActive
+      }
+    });
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+/**
+ * Authenticated endpoint: Resets a student's PIN, clears lockouts, and invalidates active sessions.
+ */
+function handleTeacherResetStudentPin(ss, payload) {
+  var auth = validateTeacherSession(ss, payload.teacherToken);
+  if (!auth.valid) {
+    return createJsonResponse({ success: false, error: auth.error, code: auth.code });
+  }
+
+  var studentNumber = String(payload.studentNumber || "").trim();
+  if (!studentNumber) {
+    return createJsonResponse({ success: false, error: "Student number is required.", code: "BAD_REQUEST" });
+  }
+
+  var rawPin = payload.newPin !== undefined && payload.newPin !== null ? String(payload.newPin).trim() : "";
+  var newPin = rawPin;
+  if (newPin) {
+    if (!/^\d{4}$/.test(newPin)) {
+      return createJsonResponse({ success: false, error: "PIN must be a 4-digit number (0000-9999).", code: "BAD_REQUEST" });
+    }
+  } else {
+    newPin = String(Math.floor(1000 + Math.random() * 9000));
+  }
+
+  var lock = LockService.getScriptLock();
+  try {
+    lock.waitLock(10000);
+  } catch (lockErr) {
+    return createJsonResponse({ success: false, error: "Server is busy. Please retry.", code: "RATE_LIMITED" });
+  }
+
+  try {
+    var studentsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.STUDENTS);
+    var studentData = studentsSheet.getDataRange().getValues();
+    var colMap = getSheetColumnMap(studentsSheet, CONFIG.STUDENT_HEADERS);
+
+    var targetRowIndex = -1;
+    var fullName = "";
+    for (var i = 1; i < studentData.length; i++) {
+      var rowNum = String(studentData[i][colMap["student_number"] - 1] || "").trim();
+      if (rowNum === studentNumber) {
+        targetRowIndex = i + 1;
+        fullName = String(studentData[i][colMap["full_name"] - 1]);
+        break;
+      }
+    }
+
+    if (targetRowIndex === -1) {
+      return createJsonResponse({ success: false, error: "Student #" + studentNumber + " not found.", code: "NOT_FOUND" });
+    }
+
+    var newSalt = generateSalt();
+    var newHash = hashPinWithSaltAndPepper(newPin, newSalt);
+
+    studentsSheet.getRange(targetRowIndex, colMap["pin_salt"]).setValue(newSalt);
+    studentsSheet.getRange(targetRowIndex, colMap["pin_hash"]).setValue(newHash);
+    studentsSheet.getRange(targetRowIndex, colMap["failed_attempts"]).setValue(0);
+    studentsSheet.getRange(targetRowIndex, colMap["locked_until"]).setValue("");
+
+    // Invalidate active sessions
+    invalidateStudentSessions(ss, studentNumber);
+
+    return createJsonResponse({
+      success: true,
+      message: "PIN reset successfully for student #" + studentNumber + ".",
+      studentNumber: studentNumber,
+      fullName: fullName,
+      newPin: newPin // Returned once to authenticated teacher
+    });
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+/**
+ * Authenticated endpoint: Activates or deactivates a student account.
+ */
+function handleTeacherSetStudentActive(ss, payload) {
+  var auth = validateTeacherSession(ss, payload.teacherToken);
+  if (!auth.valid) {
+    return createJsonResponse({ success: false, error: auth.error, code: auth.code });
+  }
+
+  var studentNumber = String(payload.studentNumber || "").trim();
+  if (!studentNumber) {
+    return createJsonResponse({ success: false, error: "Student number is required.", code: "BAD_REQUEST" });
+  }
+  var isActive = Boolean(payload.isActive);
+
+  var lock = LockService.getScriptLock();
+  try {
+    lock.waitLock(10000);
+  } catch (lockErr) {
+    return createJsonResponse({ success: false, error: "Server is busy. Please retry.", code: "RATE_LIMITED" });
+  }
+
+  try {
+    var studentsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.STUDENTS);
+    var studentData = studentsSheet.getDataRange().getValues();
+    var colMap = getSheetColumnMap(studentsSheet, CONFIG.STUDENT_HEADERS);
+
+    var targetRowIndex = -1;
+    for (var i = 1; i < studentData.length; i++) {
+      var rowNum = String(studentData[i][colMap["student_number"] - 1] || "").trim();
+      if (rowNum === studentNumber) {
+        targetRowIndex = i + 1;
+        break;
+      }
+    }
+
+    if (targetRowIndex === -1) {
+      return createJsonResponse({ success: false, error: "Student #" + studentNumber + " not found.", code: "NOT_FOUND" });
+    }
+
+    studentsSheet.getRange(targetRowIndex, colMap["is_active"]).setValue(isActive);
+    if (!isActive) {
+      invalidateStudentSessions(ss, studentNumber);
+    }
+
+    return createJsonResponse({
+      success: true,
+      message: "Student account #" + studentNumber + " " + (isActive ? "activated" : "deactivated") + " successfully.",
+      studentNumber: studentNumber,
+      isActive: isActive
+    });
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+/**
+ * Authenticated endpoint: Previews demo accounts and their associated records.
+ */
+function handleTeacherGetDemoAccountsPreview(ss, payload) {
+  var auth = validateTeacherSession(ss, payload.teacherToken);
+  if (!auth.valid) {
+    return createJsonResponse({ success: false, error: auth.error, code: auth.code });
+  }
+
+  var studentsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.STUDENTS);
+  var attemptsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.ATTEMPTS);
+  var sessionsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.SESSIONS);
+
+  var sData = studentsSheet ? studentsSheet.getDataRange().getValues() : [];
+  var aData = attemptsSheet ? attemptsSheet.getDataRange().getValues() : [];
+  var sessData = sessionsSheet ? sessionsSheet.getDataRange().getValues() : [];
+
+  var sCol = studentsSheet ? getSheetColumnMap(studentsSheet, CONFIG.STUDENT_HEADERS) : {};
+  var aCol = attemptsSheet ? getSheetColumnMap(attemptsSheet, CONFIG.ATTEMPT_HEADERS) : {};
+  var sessCol = sessionsSheet ? getSheetColumnMap(sessionsSheet, CONFIG.SESSION_HEADERS) : {};
+
+  // Count attempts by student number
+  var attemptCounts = {};
+  for (var a = 1; a < aData.length; a++) {
+    var aNum = String(aData[a][aCol["student_number"] - 1] || "").trim();
+    if (aNum) attemptCounts[aNum] = (attemptCounts[aNum] || 0) + 1;
+  }
+
+  // Count sessions by student number
+  var sessionCounts = {};
+  for (var s = 1; s < sessData.length; s++) {
+    var sNum = String(sessData[s][sessCol["student_number"] - 1] || "").trim();
+    if (sNum) sessionCounts[sNum] = (sessionCounts[sNum] || 0) + 1;
+  }
+
+  var demoList = [];
+  for (var i = 1; i < sData.length; i++) {
+    var num = String(sData[i][sCol["student_number"] - 1] || "").trim();
+    if (DEMO_STUDENT_NUMBERS.indexOf(num) !== -1) {
+      var cls = String(sData[i][sCol["class"] - 1] || "").trim();
+      var isAct = Boolean(sData[i][sCol["is_active"] - 1]);
+      demoList.push({
+        studentNumber: num,
+        fullName: String(sData[i][sCol["full_name"] - 1] || ""),
+        class: cls,
+        grade: String(sData[i][sCol["grade"] - 1] || ""),
+        isActive: isAct,
+        isArchived: cls === "DEMO_ARCHIVE" || !isAct,
+        attemptsCount: attemptCounts[num] || 0,
+        sessionsCount: sessionCounts[num] || 0
+      });
+    }
+  }
+
+  return createJsonResponse({
+    success: true,
+    demoAccounts: demoList
+  });
+}
+
+/**
+ * Authenticated endpoint: Safely archives demonstration test accounts without losing historical data.
+ */
+function handleTeacherArchiveDemoAccounts(ss, payload) {
+  var auth = validateTeacherSession(ss, payload.teacherToken);
+  if (!auth.valid) {
+    return createJsonResponse({ success: false, error: auth.error, code: auth.code });
+  }
+
+  if (payload.confirmed !== true) {
+    return createJsonResponse({ success: false, error: "Explicit confirmation required to archive demo accounts.", code: "BAD_REQUEST" });
+  }
+
+  var lock = LockService.getScriptLock();
+  try {
+    lock.waitLock(10000);
+  } catch (lockErr) {
+    return createJsonResponse({ success: false, error: "Server is busy. Please retry.", code: "RATE_LIMITED" });
+  }
+
+  try {
+    var studentsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.STUDENTS);
+    var studentData = studentsSheet.getDataRange().getValues();
+    var colMap = getSheetColumnMap(studentsSheet, CONFIG.STUDENT_HEADERS);
+
+    var archivedCount = 0;
+    for (var i = 1; i < studentData.length; i++) {
+      var num = String(studentData[i][colMap["student_number"] - 1] || "").trim();
+      if (DEMO_STUDENT_NUMBERS.indexOf(num) !== -1) {
+        var rowIndex = i + 1;
+        // Non-destructive archive: mark is_active = false and tag class as DEMO_ARCHIVE
+        studentsSheet.getRange(rowIndex, colMap["is_active"]).setValue(false);
+        studentsSheet.getRange(rowIndex, colMap["class"]).setValue("DEMO_ARCHIVE");
+        invalidateStudentSessions(ss, num);
+        archivedCount++;
+      }
+    }
+
+    return createJsonResponse({
+      success: true,
+      message: "Successfully archived " + archivedCount + " demo account(s). Classroom analytics are now clean.",
+      archivedCount: archivedCount
+    });
+  } finally {
+    lock.releaseLock();
+  }
 }
 
 // ============================================================================
