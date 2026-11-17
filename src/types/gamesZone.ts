@@ -16,7 +16,9 @@ export type GamesZoneGameId =
   | 'word_ninja'
   | 'grammar_runner'
   | 'word_fishing'
-  | 'sentence_tower';
+  | 'sentence_tower'
+  | 'grammar_basketball'
+  | 'vocabulary_invaders';
 
 export type GamesZoneDifficulty = 'easy' | 'medium' | 'hard';
 
@@ -103,6 +105,34 @@ export interface SentenceTowerItem {
   contentVersion?: number;
 }
 
+/**
+ * Grammar Basketball Question:
+ * Multiple-choice grammar prompt unlocking interactive basketball free-throw shot
+ */
+export interface GrammarBasketballItem {
+  id: string;
+  prompt: string;                  // e.g. "We _____ to Bodrum last summer and swam every day."
+  options: string[];               // 3 or 4 answer choices
+  correctOptionIndex: number;      // 0-based index of correct option
+  grammarTopic: string;            // e.g. "Simple Past Tense"
+  explanation?: string;            // Pedagogical feedback explanation
+  contentVersion?: number;
+}
+
+/**
+ * Vocabulary Invaders Question:
+ * Clue/prompt targeted at descending alien vessels carrying candidate words
+ */
+export interface VocabularyInvadersItem {
+  id: string;
+  prompt: string;                  // e.g. "Target the word that means 'A friend who always tells the truth'"
+  targetWord: string;              // The correct target word
+  distractorWords: string[];       // 2 to 3 descending distractors
+  wordCategory: string;            // e.g. "Friendship Traits", "Natural Disasters"
+  explanation?: string;            // Pedagogical feedback explanation
+  contentVersion?: number;
+}
+
 // ---------------------------------------------------------------------------
 // DATA BANK SCHEMAS
 // ---------------------------------------------------------------------------
@@ -111,6 +141,8 @@ export type WordNinjaBank = Record<GradeId, Record<GamesZoneDifficulty, WordNinj
 export type GrammarRunnerBank = Record<GradeId, Record<GamesZoneDifficulty, GrammarRunnerItem[]>>;
 export type WordFishingBank = Record<GradeId, Record<GamesZoneDifficulty, WordFishingItem[]>>;
 export type SentenceTowerBank = Record<GradeId, Record<GamesZoneDifficulty, SentenceTowerItem[]>>;
+export type GrammarBasketballBank = Record<GradeId, Record<GamesZoneDifficulty, GrammarBasketballItem[]>>;
+export type VocabularyInvadersBank = Record<GradeId, Record<GamesZoneDifficulty, VocabularyInvadersItem[]>>;
 
 // ---------------------------------------------------------------------------
 // SESSION & TELEMETRY SCHEMAS

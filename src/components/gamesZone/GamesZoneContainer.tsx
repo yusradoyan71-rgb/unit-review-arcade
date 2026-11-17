@@ -13,6 +13,8 @@ import { WordNinjaGame } from './wordNinja/WordNinjaGame';
 import { GrammarRunnerGame } from './grammarRunner/GrammarRunnerGame';
 import { WordFishingGame } from './wordFishing/WordFishingGame';
 import { SentenceTowerGame } from './sentenceTower/SentenceTowerGame';
+import { GrammarBasketballGame } from './grammarBasketball/GrammarBasketballGame';
+import { VocabularyInvadersGame } from './vocabularyInvaders/VocabularyInvadersGame';
 import { GamesZoneService } from '../../services/gamesZoneService';
 import { useAuth } from '../../context/AuthContext';
 import { useGamification } from '../../context/GamificationContext';
@@ -192,6 +194,34 @@ export const GamesZoneContainer: React.FC<GamesZoneContainerProps> = ({
             {selectedGame?.id === 'sentence_tower' && (
               <SentenceTowerGame
                 key={`st_${gameSessionKey}`}
+                gradeId={selectedGrade}
+                difficulty={currentDifficulty}
+                studentNumber={studentNumber}
+                studentClass={studentClass}
+                onComplete={handleGameComplete}
+                onPause={() => setIsPaused(true)}
+                isPaused={isPaused}
+                isMuted={isMuted}
+              />
+            )}
+
+            {selectedGame?.id === 'grammar_basketball' && (
+              <GrammarBasketballGame
+                key={`bb_${gameSessionKey}`}
+                gradeId={selectedGrade}
+                difficulty={currentDifficulty}
+                studentNumber={studentNumber}
+                studentClass={studentClass}
+                onComplete={handleGameComplete}
+                onPause={() => setIsPaused(true)}
+                isPaused={isPaused}
+                isMuted={isMuted}
+              />
+            )}
+
+            {selectedGame?.id === 'vocabulary_invaders' && (
+              <VocabularyInvadersGame
+                key={`vi_${gameSessionKey}`}
                 gradeId={selectedGrade}
                 difficulty={currentDifficulty}
                 studentNumber={studentNumber}

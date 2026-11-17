@@ -15,17 +15,23 @@ import type {
   GrammarRunnerItem,
   WordFishingItem,
   SentenceTowerItem,
+  GrammarBasketballItem,
+  VocabularyInvadersItem,
 } from '../../types/gamesZone';
 
 import { WORD_NINJA_BANK } from './wordNinjaData.ts';
 import { GRAMMAR_RUNNER_BANK } from './grammarRunnerData.ts';
 import { WORD_FISHING_BANK } from './wordFishingData.ts';
 import { SENTENCE_TOWER_BANK } from './sentenceTowerData.ts';
+import { GRAMMAR_BASKETBALL_BANK } from './grammarBasketballData.ts';
+import { VOCABULARY_INVADERS_BANK } from './vocabularyInvadersData.ts';
 
 export { WORD_NINJA_BANK } from './wordNinjaData.ts';
 export { GRAMMAR_RUNNER_BANK } from './grammarRunnerData.ts';
 export { WORD_FISHING_BANK } from './wordFishingData.ts';
 export { SENTENCE_TOWER_BANK } from './sentenceTowerData.ts';
+export { GRAMMAR_BASKETBALL_BANK } from './grammarBasketballData.ts';
+export { VOCABULARY_INVADERS_BANK } from './vocabularyInvadersData.ts';
 
 export const GAMES_ZONE_CATALOG: GamesZoneGameMetadata[] = [
   {
@@ -116,6 +122,52 @@ export const GAMES_ZONE_CATALOG: GamesZoneGameMetadata[] = [
       ],
     },
   },
+  {
+    id: 'grammar_basketball',
+    title: 'Grammar Basketball',
+    tagline: 'Answer the grammar question to unlock your shot and sink it through the hoop!',
+    category: 'grammar',
+    categoryLabel: 'Arcade Hoops',
+    iconName: 'Flame',
+    accentColor: '#F97316',
+    accentGradient: 'from-orange-500 to-amber-600',
+    badgeColor: 'bg-orange-500/20 text-orange-300 border-orange-500/30',
+    isUnlocked: true,
+    howToPlay: {
+      objective: 'Answer the grammar question correctly to step up to the free-throw line. Sink the shot for bonus combo points!',
+      controls: 'Click or tap an answer option. When shooting, click/tap anywhere on the court or press Space to release the ball.',
+      smartboardTip: 'Large tap targets designed for interactive smartboards. Students can tap the answer then tap to release the shot.',
+      rules: [
+        'Selecting the correct grammar choice always awards full grammar accuracy and base score.',
+        'Time your shot or release in the scoring zone to nail a clean swish for streak multiplier bonuses!',
+        'Missing a shot never penalizes your grammar score — basketball skills give pure bonus thrill!',
+        'Complete all 10 questions to earn your championship trophy and daily coins.',
+      ],
+    },
+  },
+  {
+    id: 'vocabulary_invaders',
+    title: 'Vocabulary Invaders',
+    tagline: 'Defend your base! Target descending friendly alien vessels matching the vocabulary clue.',
+    category: 'vocabulary',
+    categoryLabel: 'Retro Defender',
+    iconName: 'Zap',
+    accentColor: '#8B5CF6',
+    accentGradient: 'from-violet-500 to-purple-600',
+    badgeColor: 'bg-violet-500/20 text-violet-300 border-violet-500/30',
+    isUnlocked: true,
+    howToPlay: {
+      objective: 'Read the clue at the top and blast the descending alien carrying the correct English word before they land!',
+      controls: 'Click or tap directly on the target alien ship to fire your laser cannon, or use number keys 1-4.',
+      smartboardTip: 'Simply tap the alien ship carrying the right word on the smartboard.',
+      rules: [
+        'Each wave sends descending invaders carrying candidate words. Find the one matching the prompt.',
+        'Blasting the correct ship clears the wave and boosts your score and combo.',
+        'Blasting the wrong alien or letting them land damages your shield (3 shields per game).',
+        'Defend through all 10 waves to save the English galaxy and earn coins!',
+      ],
+    },
+  },
 ];
 
 export function getGameMetadata(gameId: GamesZoneGameId): GamesZoneGameMetadata | undefined {
@@ -135,7 +187,7 @@ export function getQuestionsForGame(
   gradeId: GradeId,
   difficulty: GamesZoneDifficulty,
   count: number = 10
-): (WordNinjaItem | GrammarRunnerItem | WordFishingItem | SentenceTowerItem)[] {
+): (WordNinjaItem | GrammarRunnerItem | WordFishingItem | SentenceTowerItem | GrammarBasketballItem | VocabularyInvadersItem)[] {
   let sourceBank: any[] = [];
 
   switch (gameId) {
@@ -150,6 +202,12 @@ export function getQuestionsForGame(
       break;
     case 'sentence_tower':
       sourceBank = SENTENCE_TOWER_BANK[gradeId]?.[difficulty] || [];
+      break;
+    case 'grammar_basketball':
+      sourceBank = GRAMMAR_BASKETBALL_BANK[gradeId]?.[difficulty] || [];
+      break;
+    case 'vocabulary_invaders':
+      sourceBank = VOCABULARY_INVADERS_BANK[gradeId]?.[difficulty] || [];
       break;
     default:
       sourceBank = [];

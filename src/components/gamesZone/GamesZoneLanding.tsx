@@ -75,6 +75,22 @@ const GAME_CARNIVAL_THEMES: Record<string, {
     btnClass: 'btn-game-purple',
     categoryBg: 'bg-purple-100 text-purple-800 border-purple-300',
   },
+  grammar_basketball: {
+    emoji: '🏀',
+    cardBorder: 'border-orange-200 hover:border-orange-400',
+    headerBg: 'from-orange-100 to-amber-100',
+    headerBorder: 'border-orange-200',
+    btnClass: 'btn-game-coral',
+    categoryBg: 'bg-orange-100 text-orange-800 border-orange-300',
+  },
+  vocabulary_invaders: {
+    emoji: '👾',
+    cardBorder: 'border-violet-200 hover:border-violet-400',
+    headerBg: 'from-violet-100 to-indigo-100',
+    headerBorder: 'border-violet-200',
+    btnClass: 'btn-game-purple',
+    categoryBg: 'bg-violet-100 text-violet-800 border-violet-300',
+  },
 };
 
 export const GamesZoneLanding: React.FC<GamesZoneLandingProps> = ({
@@ -218,11 +234,11 @@ export const GamesZoneLanding: React.FC<GamesZoneLandingProps> = ({
             <span>Interactive Game Pavilions</span>
           </h2>
           <span className="text-xs font-bold text-slate-500">
-            4 fast-paced game engines • 960 curriculum questions
+            6 fast-paced game engines • 1,440 curriculum questions
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {GAMES_ZONE_CATALOG.map((game) => {
             const theme = GAME_CARNIVAL_THEMES[game.id] || {
               emoji: '🎮',
