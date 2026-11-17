@@ -372,6 +372,29 @@ export interface TeacherResetPinResponse {
   code?: TeacherAuthErrorCode;
 }
 
+export interface TeacherBulkResetPinsPayload {
+  studentNumbers?: string[];
+  class?: '7A' | '7B' | '8A' | '8B' | 'all';
+}
+
+export interface TeacherBulkResetPinsItem {
+  studentId: string;
+  studentNumber: string;
+  fullName: string;
+  grade: string;
+  class: string;
+  pin: string;
+}
+
+export interface TeacherBulkResetPinsResponse {
+  success: boolean;
+  count?: number;
+  message?: string;
+  credentials?: TeacherBulkResetPinsItem[];
+  error?: string;
+  code?: TeacherAuthErrorCode;
+}
+
 export interface TeacherSetStudentActiveResponse {
   success: boolean;
   message?: string;

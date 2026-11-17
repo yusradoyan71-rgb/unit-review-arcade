@@ -30,6 +30,8 @@ import type {
   TeacherUpdateStudentPayload,
   TeacherUpdateStudentResponse,
   TeacherResetPinResponse,
+  TeacherBulkResetPinsPayload,
+  TeacherBulkResetPinsResponse,
   TeacherSetStudentActiveResponse,
   TeacherDemoAccountsResponse,
   TeacherArchiveDemoResponse,
@@ -538,6 +540,45 @@ export class TeacherApiService {
       return {
         success: false,
         error: `PIN reset failed: ${message}`,
+        code: 'NETWORK_ERROR',
+      };
+    }
+  }
+
+  /**
+   * Generates new unique 4-digit PINs for multiple students in bulk.
+   * Invalidates existing student sessions and returns plaintext PINs once to the teacher.
+   */
+  public static async bulkResetStudentPins(
+    teacherToken: string,
+    payload: TeacherBulkResetPinsPayload
+  ): Promise<TeacherBulkResetPinsResponse> {
+    const cleanToken = (teacherToken || '').trim();
+    if (!cleanToken) {
+      return {
+        success: false,
+        error: 'Authentication required. Please log in as a teacher.',
+        code: 'UNAUTHORIZED',
+      };
+    }
+
+    try {
+      const endpoint = ApiService.getTeacherApiUrl();
+      return await ApiService.postRequest<TeacherBulkResetPinsResponse>(
+        endpoint,
+        {
+          action: 'teacher_bulk_reset_student_pins',
+          teacherToken: cleanToken,
+          studentNumbers: payload.studentNumbers,
+          class: payload.class,
+        },
+        30000 // 30s allowance for bulk sheet updates and flush
+      );
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Server error';
+      return {
+        success: false,
+        error: `Bulk PIN reset failed: ${message}`,
         code: 'NETWORK_ERROR',
       };
     }

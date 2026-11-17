@@ -400,6 +400,9 @@ function doPost(e) {
       case "teacher_reset_student_pin":
         return handleTeacherResetStudentPin(ss, payload);
 
+      case "teacher_bulk_reset_student_pins":
+        return handleTeacherBulkResetStudentPins(ss, payload);
+
       case "teacher_set_student_active":
         return handleTeacherSetStudentActive(ss, payload);
 
@@ -2450,6 +2453,186 @@ function handleTeacherResetStudentPin(ss, payload) {
     });
   } finally {
     lock.releaseLock();
+  }
+}
+
+/**
+ * Authenticated endpoint: Securely resets PINs in bulk for selected students or classes.
+ * Stores salted SHA-256 hashes in Google Sheets; invalidates previous student sessions;
+ * returns newly generated plaintext 4-digit PINs once to the authenticated teacher for login cards.
+ */
+function handleTeacherBulkResetStudentPins(ss, payload) {
+  var auth = validateTeacherSession(ss, payload.teacherToken);
+  if (!auth.valid) {
+    return createJsonResponse({ success: false, error: auth.error, code: auth.code });
+  }
+
+  var studentNumbers = payload.studentNumbers;
+  var targetClass = payload.class ? String(payload.class).trim().toUpperCase() : "";
+
+  var hasNumbers = Array.isArray(studentNumbers) && studentNumbers.length > 0;
+  var hasClass = Boolean(targetClass);
+
+  if (!hasNumbers && !hasClass) {
+    return createJsonResponse({
+      success: false,
+      error: "Specify either a list of student numbers or a target class to reset.",
+      code: "BAD_REQUEST"
+    });
+  }
+
+  var lock = LockService.getScriptLock();
+  try {
+    lock.waitLock(15000);
+  } catch (lockErr) {
+    return createJsonResponse({ success: false, error: "Server is busy. Please retry.", code: "RATE_LIMITED" });
+  }
+
+  try {
+    var studentsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.STUDENTS);
+    var studentData = studentsSheet.getDataRange().getValues();
+    var colMap = getSheetColumnMap(studentsSheet, CONFIG.STUDENT_HEADERS);
+
+    var targetNumberSet = null;
+    if (hasNumbers) {
+      targetNumberSet = {};
+      for (var n = 0; n < studentNumbers.length; n++) {
+        var num = String(studentNumbers[n] || "").trim();
+        if (num) targetNumberSet[num] = true;
+      }
+    }
+
+    var targetsToUpdate = [];
+    for (var i = 1; i < studentData.length; i++) {
+      var sNum = String(studentData[i][colMap["student_number"] - 1] || "").trim();
+      var cName = String(studentData[i][colMap["class"] - 1] || "").trim().toUpperCase();
+      var stdId = String(studentData[i][colMap["student_id"] - 1] || "").trim();
+      var fName = String(studentData[i][colMap["full_name"] - 1] || "").trim();
+      var grd = String(studentData[i][colMap["grade"] - 1] || "").trim();
+
+      // Skip demo archive students unless explicitly targeted by number
+      if (cName === "DEMO_ARCHIVE" && !targetNumberSet) continue;
+
+      var match = false;
+      if (targetNumberSet) {
+        if (targetNumberSet[sNum]) match = true;
+      } else if (targetClass) {
+        if (targetClass === "ALL" || cName === targetClass) match = true;
+      }
+
+      if (match) {
+        targetsToUpdate.push({
+          rowIndex: i + 1,
+          studentId: stdId,
+          studentNumber: sNum,
+          fullName: fName,
+          grade: grd,
+          className: cName
+        });
+      }
+    }
+
+    if (targetsToUpdate.length === 0) {
+      return createJsonResponse({
+        success: false,
+        error: "No matching student accounts found to reset.",
+        code: "NOT_FOUND"
+      });
+    }
+
+    var credentials = [];
+    var affectedNumbers = [];
+    var usedPins = {};
+
+    for (var k = 0; k < targetsToUpdate.length; k++) {
+      var target = targetsToUpdate[k];
+      
+      // Secure random 4-digit PIN, ensuring uniqueness within this classroom batch
+      var newPin = "";
+      var genAttempts = 0;
+      do {
+        newPin = String(Math.floor(1000 + Math.random() * 9000));
+        genAttempts++;
+      } while (usedPins[newPin] && genAttempts < 100);
+      usedPins[newPin] = true;
+
+      var newSalt = generateSalt();
+      var newHash = hashPinWithSaltAndPepper(newPin, newSalt);
+
+      // Update in-memory grid atomically
+      var rIdx = target.rowIndex - 1;
+      studentData[rIdx][colMap["pin_salt"] - 1] = newSalt;
+      studentData[rIdx][colMap["pin_hash"] - 1] = newHash;
+      studentData[rIdx][colMap["failed_attempts"] - 1] = 0;
+      studentData[rIdx][colMap["locked_until"] - 1] = "";
+
+      affectedNumbers.push(target.studentNumber);
+      credentials.push({
+        studentId: target.studentId,
+        studentNumber: target.studentNumber,
+        fullName: target.fullName,
+        grade: target.grade,
+        class: target.className,
+        pin: newPin // Plaintext PIN returned only once for login slips
+      });
+    }
+
+    // Atomic batch write to Google Sheets: all student rows committed in a single transaction
+    try {
+      studentsSheet.getDataRange().setValues(studentData);
+      SpreadsheetApp.flush();
+    } catch (writeErr) {
+      return createJsonResponse({
+        success: false,
+        error: "Failed to persist reset PINs to database: " + writeErr.message,
+        code: "STORAGE_ERROR"
+      });
+    }
+
+    // Invalidate active sessions in bulk for all affected students
+    invalidateMultipleStudentSessions(ss, affectedNumbers);
+
+    return createJsonResponse({
+      success: true,
+      count: credentials.length,
+      message: "Successfully generated new PINs for " + credentials.length + " students.",
+      credentials: credentials
+    });
+  } catch (execErr) {
+    return createJsonResponse({
+      success: false,
+      error: "Bulk PIN reset execution error: " + execErr.message,
+      code: "INTERNAL_ERROR"
+    });
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+/**
+ * Efficient bulk session invalidation for multiple student numbers.
+ */
+function invalidateMultipleStudentSessions(ss, studentNumbers) {
+  if (!Array.isArray(studentNumbers) || studentNumbers.length === 0) return;
+  var sessionsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.SESSIONS);
+  if (!sessionsSheet) return;
+
+  var set = {};
+  for (var j = 0; j < studentNumbers.length; j++) {
+    set[String(studentNumbers[j]).trim()] = true;
+  }
+
+  var data = sessionsSheet.getDataRange().getValues();
+  var colMap = getSheetColumnMap(sessionsSheet, CONFIG.SESSION_HEADERS);
+  var now = new Date().toISOString();
+
+  for (var i = 1; i < data.length; i++) {
+    var sNum = String(data[i][colMap["student_number"] - 1] || "").trim();
+    var status = String(data[i][colMap["status"] - 1] || "");
+    if (set[sNum] && status === "active") {
+      sessionsSheet.getRange(i + 1, colMap["status"]).setValue("revoked");
+      sessionsSheet.getRange(i + 1, colMap["logout_time"]).setValue(now);
+    }
   }
 }
 

@@ -29,6 +29,7 @@ import { AddStudentModal } from './AddStudentModal';
 import { BulkImportModal } from './BulkImportModal';
 import { EditStudentModal } from './EditStudentModal';
 import { ResetPinModal } from './ResetPinModal';
+import { BulkResetPinModal } from './BulkResetPinModal';
 import { DemoAccountArchiveModal } from './DemoAccountArchiveModal';
 import { StudentCredentialCardsModal } from './StudentCredentialCardsModal';
 import type { CredentialCardItem } from './StudentCredentialCardsModal';
@@ -73,6 +74,7 @@ export const StudentManagementView: React.FC<StudentManagementViewProps> = ({
   // Modal States
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isBulkModalOpen, setIsBulkModalOpen] = useState(false);
+  const [isBulkResetModalOpen, setIsBulkResetModalOpen] = useState(false);
   const [isArchiveModalOpen, setIsArchiveModalOpen] = useState(false);
   const [editingStudent, setEditingStudent] = useState<StudentManagementRecord | null>(null);
   const [resettingPinStudent, setResettingPinStudent] = useState<StudentManagementRecord | null>(null);
@@ -167,6 +169,18 @@ export const StudentManagementView: React.FC<StudentManagementViewProps> = ({
           >
             <UploadCloud className="w-4 h-4 text-slate-500" />
             <span>Bulk Import (CSV / Excel)</span>
+          </button>
+
+          {/* Generate / Reset PINs Button */}
+          <button
+            type="button"
+            onClick={() => setIsBulkResetModalOpen(true)}
+            disabled={filteredStudents.length === 0}
+            className="px-3.5 py-2.5 rounded-xl bg-amber-50 hover:bg-amber-100 disabled:opacity-40 border border-amber-300 text-amber-800 font-bold text-xs flex items-center gap-1.5 transition-colors shadow-2xs"
+            title="Generate fresh 4-digit PINs and printable cards for classroom distribution"
+          >
+            <KeyRound className="w-4 h-4 text-amber-600" />
+            <span>Generate / Reset PINs</span>
           </button>
 
           {/* Print Class Cards Button */}
@@ -431,7 +445,23 @@ export const StudentManagementView: React.FC<StudentManagementViewProps> = ({
         student={resettingPinStudent}
         isOpen={Boolean(resettingPinStudent)}
         onClose={() => setResettingPinStudent(null)}
+        onSuccess={(_sNum, newPin) => {
+          if (resettingPinStudent) {
+            setPrintCards([{ student: resettingPinStudent, pin: newPin }]);
+          }
+          setResettingPinStudent(null);
+          onRefresh();
+        }}
+      />
+
+      {/* Bulk Reset PIN & Credential Generator Modal */}
+      <BulkResetPinModal
+        isOpen={isBulkResetModalOpen}
+        onClose={() => setIsBulkResetModalOpen(false)}
+        roster={roster}
+        initialClassId={selectedClassId}
         onSuccess={() => onRefresh()}
+        onPrintCards={(cards) => setPrintCards(cards)}
       />
 
       {/* Demo Account Archive Modal */}
@@ -446,6 +476,7 @@ export const StudentManagementView: React.FC<StudentManagementViewProps> = ({
         cards={printCards || []}
         isOpen={Boolean(printCards)}
         onClose={() => setPrintCards(null)}
+        onOpenBulkReset={() => setIsBulkResetModalOpen(true)}
       />
     </div>
   );

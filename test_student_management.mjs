@@ -601,6 +601,90 @@ const loginNew = postApi(ctx, {
 });
 assert(loginNew.success === true, 'New PIN logs in successfully');
 
+console.log('\n--- 8b. Bulk Student PIN Reset & Credential Delivery (teacher_bulk_reset_student_pins) ---');
+// 8b-1. Unauthorized bulk reset rejected
+const unauthBulkReset = postApi(ctx, {
+  action: 'teacher_bulk_reset_student_pins',
+  teacherToken: 'bad_token',
+  class: 'all',
+});
+assert(unauthBulkReset.success === false && unauthBulkReset.code === 'UNAUTHORIZED', 'Unauthorized bulk reset rejected');
+
+// 8b-2. Empty request rejected
+const emptyBulkReset = postApi(ctx, {
+  action: 'teacher_bulk_reset_student_pins',
+  teacherToken,
+});
+assert(emptyBulkReset.success === false && emptyBulkReset.code === 'BAD_REQUEST', 'Empty bulk reset request rejected');
+
+// 8b-3. Execute bulk PIN reset for specific students [105, 205]
+const bulkResetRes = postApi(ctx, {
+  action: 'teacher_bulk_reset_student_pins',
+  teacherToken,
+  studentNumbers: ['105', '205'],
+});
+assert(bulkResetRes.success === true, 'Bulk PIN reset executed successfully');
+assert(bulkResetRes.count === 2, 'Count of reset credentials is 2');
+assert(Array.isArray(bulkResetRes.credentials), 'Credentials array returned');
+
+const cred105 = bulkResetRes.credentials.find((c) => c.studentNumber === '105');
+const cred205 = bulkResetRes.credentials.find((c) => c.studentNumber === '205');
+assert(Boolean(cred105 && cred205), 'Both targeted students received credentials');
+assert(/^\d{4}$/.test(cred105.pin), 'Student 105 received valid 4-digit PIN');
+assert(/^\d{4}$/.test(cred205.pin), 'Student 205 received valid 4-digit PIN');
+assert(cred105.pin !== '7788', 'Student 105 received a newly generated PIN');
+
+// 8b-4. Database Security Check: Plaintext PIN is NOT stored in Google Sheets
+const stdSheet = ctx.activeSpreadsheet.getSheetByName('Students');
+const stdRows = stdSheet.getDataRange().getValues();
+const stdRow105 = stdRows.find((r) => String(r[1]) === '105');
+assert(stdRow105 !== undefined, 'Student 105 row found in sheet');
+assert(String(stdRow105[5]).length === 32, '32-character cryptographic salt stored');
+assert(String(stdRow105[6]).length === 64, '64-character SHA-256 hash stored');
+assert(!stdRow105.includes(cred105.pin), 'SECURITY: Plaintext PIN is NOT stored anywhere in the sheet row');
+
+// 8b-5. Demographic & Progress Preservation Check
+assert(stdRow105[2] === 'Deniz Yılmaz Demir', 'Student full name strictly preserved');
+assert(stdRow105[4] === '7B', 'Student class strictly preserved');
+assert(stdRow105[3] === 'grade-7', 'Student grade strictly preserved');
+assert(Number(stdRow105[7]) === 1 || stdRow105[7] === true, 'Student active status strictly preserved');
+
+// 8b-6. Authentication Check: Old PIN '7788' fails; new PIN succeeds
+const loginWithOld = postApi(ctx, {
+  action: 'student_login',
+  studentNumber: '105',
+  pin: '7788',
+});
+assert(loginWithOld.success === false, 'Previous PIN fails after bulk reset');
+
+const loginWithBulkNew = postApi(ctx, {
+  action: 'student_login',
+  studentNumber: '105',
+  pin: cred105.pin,
+});
+assert(loginWithBulkNew.success === true, 'New bulk-generated PIN authenticates successfully');
+
+// 8b-7. Ordinary Roster Privacy Check: teacher_get_roster NEVER exposes PINs or salts
+const rosterCheck = postApi(ctx, {
+  action: 'teacher_get_roster',
+  teacherToken,
+});
+assert(rosterCheck.success === true, 'Teacher roster retrieved');
+const rosterStudent105 = rosterCheck.roster.find((s) => s.studentNumber === '105');
+assert(rosterStudent105 !== undefined, 'Student 105 found in teacher roster');
+assert(rosterStudent105.pin === undefined, 'PIN is strictly undefined in teacher_get_roster');
+assert(rosterStudent105.pin_salt === undefined, 'PIN salt is strictly undefined in teacher_get_roster');
+assert(rosterStudent105.pin_hash === undefined, 'PIN hash is strictly undefined in teacher_get_roster');
+
+// 8b-8. Bulk Reset by Class ('all' or '7B')
+const classResetRes = postApi(ctx, {
+  action: 'teacher_bulk_reset_student_pins',
+  teacherToken,
+  class: '7B',
+});
+assert(classResetRes.success === true, 'Bulk reset by class 7B succeeded');
+assert(classResetRes.credentials.every((c) => c.class === '7B'), 'All reset accounts belong to class 7B');
+
 console.log('\n--- 9. Demo Account Archival & Isolation ---');
 // 9a. Preview demo accounts
 const previewRes = postApi(ctx, {
