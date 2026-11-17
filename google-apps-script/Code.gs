@@ -752,7 +752,8 @@ function handleTeacherLogin(ss, payload) {
   var lockAcquired = false;
 
   try {
-    lockAcquired = lock.tryLock(5000);
+    // Acquire lock for brute-force rate limiter (15s tolerance)
+    lockAcquired = lock.tryLock(15000);
     if (!lockAcquired) {
       return createJsonResponse({
         success: false,
@@ -779,7 +780,7 @@ function handleTeacherLogin(ss, payload) {
       }
     }
 
-    // 2. Verify password hash
+    // 2. Verify password hash (fast pure-V8 calculation)
     var computedHash = hashTeacherPassword(password, authConfig.salt);
     if (computedHash !== authConfig.hash) {
       var failedAttempts = authConfig.failedAttempts + 1;
@@ -805,21 +806,49 @@ function handleTeacherLogin(ss, payload) {
       });
     }
 
-    // 3. Password valid: Reset failed attempts & lockout
+    // 3. Password valid: Reset failed attempts & lockout in ScriptProperties
     props.setProperty("TEACHER_FAILED_ATTEMPTS", "0");
     if (typeof props.deleteProperty === "function") {
       props.deleteProperty("TEACHER_LOCKED_UNTIL");
     } else {
       props.setProperty("TEACHER_LOCKED_UNTIL", "");
     }
+  } catch (lockErr) {
+    return createJsonResponse({
+      success: false,
+      error: "Authentication service error: " + lockErr.message,
+      code: "INTERNAL_ERROR"
+    });
+  } finally {
+    // RELEASE LOCK IMMEDIATELY: Do not hold the script lock during slow Google Drive spreadsheet operations!
+    if (lockAcquired) {
+      try {
+        lock.releaseLock();
+        lockAcquired = false;
+      } catch (rErr) {}
+    }
+  }
 
-    // 4. Generate token and store hashed token in TeacherSessions
+  // 4. Generate token and store hashed token in TeacherSessions (OUTSIDE the lock)
+  try {
     var teacherToken = generateTeacherToken();
     var tokenHash = hashTeacherToken(teacherToken);
     var sessionId = "tsess_" + Utilities.getUuid().substring(0, 8);
     var expiresAt = new Date(now.getTime() + CONFIG.TEACHER_SESSION_DURATION_HOURS * 60 * 60 * 1000);
 
-    var teacherSessionsSheet = setupTeacherSessionsSheet(ss);
+    var teacherSessionsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.TEACHER_SESSIONS);
+    if (!teacherSessionsSheet) {
+      return createJsonResponse({
+        success: false,
+        error: "Failed to access teacher session storage. Please try again.",
+        code: "SESSION_STORAGE_ERROR"
+      });
+    }
+
+    // Only set up headers if sheet is empty, avoiding 6 slow redundant format calls on every login
+    if (teacherSessionsSheet.getLastRow() === 0) {
+      setupSheetHeaders(teacherSessionsSheet, CONFIG.TEACHER_SESSION_HEADERS, "#312e81", "#c7d2fe");
+    }
 
     teacherSessionsSheet.appendRow([
       sessionId,
@@ -832,22 +861,21 @@ function handleTeacherLogin(ss, payload) {
       payload.userAgent || "Web Browser"
     ]);
 
+    // Force flush to ensure session token is safely persisted in TeacherSessions before returning success
+    SpreadsheetApp.flush();
+
     return createJsonResponse({
       success: true,
       teacherToken: teacherToken,
       teacherName: "Teacher",
       expiresAt: expiresAt.toISOString()
     });
-  } catch (err) {
+  } catch (sessErr) {
     return createJsonResponse({
       success: false,
-      error: "Authentication error: " + err.message,
-      code: "INTERNAL_ERROR"
+      error: "Failed to persist teacher session: " + sessErr.message,
+      code: "SESSION_STORAGE_ERROR"
     });
-  } finally {
-    if (lockAcquired) {
-      try { lock.releaseLock(); } catch (e) {}
-    }
   }
 }
 

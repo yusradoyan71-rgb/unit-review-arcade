@@ -341,6 +341,48 @@ assert(teacherLoginRes.success === true, 'Teacher login successful');
 assert(Boolean(teacherLoginRes.teacherToken), 'teacherToken issued');
 const teacherToken = teacherLoginRes.teacherToken;
 
+// Security Check 1: Verify token was indeed written to TeacherSessions
+const teacherSessionsSheet = ctx.activeSpreadsheet.getSheetByName('TeacherSessions');
+assert(teacherSessionsSheet.getLastRow() >= 2, 'Session token row successfully persisted to TeacherSessions');
+
+// Security Check 1b: Verify that if session storage throws, a controlled error is returned (NOT a token)
+const origAppendRow = teacherSessionsSheet.appendRow;
+teacherSessionsSheet.appendRow = () => { throw new Error('Simulated Google Drive write error'); };
+const failedStorageRes = postApi(ctx, {
+  action: 'teacher_login',
+  password: 'TeacherMasterKey2026!',
+});
+assert(failedStorageRes.success === false, 'Session storage failure returns success: false');
+assert(failedStorageRes.code === 'SESSION_STORAGE_ERROR', 'Controlled SESSION_STORAGE_ERROR code returned');
+assert(!failedStorageRes.teacherToken, 'No unusable session token returned on storage failure');
+// Restore appendRow
+teacherSessionsSheet.appendRow = origAppendRow;
+
+// Security Check 2: Brute-force lockout and counter atomicity
+const wrongPass1 = postApi(ctx, { action: 'teacher_login', password: 'WrongPassword1' });
+assert(wrongPass1.success === false && wrongPass1.code === 'UNAUTHORIZED', 'Incorrect password rejected');
+assert(wrongPass1.attemptsRemaining === 4, 'Failed attempts counter tracks atomically (4 remaining)');
+
+// Trigger lockout with 4 more failed attempts
+postApi(ctx, { action: 'teacher_login', password: 'WrongPassword2' });
+postApi(ctx, { action: 'teacher_login', password: 'WrongPassword3' });
+postApi(ctx, { action: 'teacher_login', password: 'WrongPassword4' });
+const lockedRes = postApi(ctx, { action: 'teacher_login', password: 'WrongPassword5' });
+assert(lockedRes.success === false && lockedRes.code === 'LOCKED', 'Lockout engaged after 5 failed attempts');
+assert(lockedRes.attemptsRemaining === 0, 'Zero attempts remaining reported');
+
+// Attempting login during lockout (even with correct password) must be rejected
+const lockedLoginAttempt = postApi(ctx, { action: 'teacher_login', password: 'TeacherMasterKey2026!' });
+assert(lockedLoginAttempt.success === false && lockedLoginAttempt.code === 'LOCKED', 'Login during lockout rejected even with correct password');
+
+// Manually clear lockout to restore test state for subsequent tests
+ctx.PropertiesService.getScriptProperties().deleteProperty('TEACHER_LOCKED_UNTIL');
+ctx.PropertiesService.getScriptProperties().setProperty('TEACHER_FAILED_ATTEMPTS', '0');
+
+// Confirm login restores after lockout reset
+const restoredLogin = postApi(ctx, { action: 'teacher_login', password: 'TeacherMasterKey2026!' });
+assert(restoredLogin.success === true, 'Successful login succeeds and resets failed attempts');
+
 console.log('\n--- 2. Server-Side Teacher Authorization Verification ---');
 const unauthAdd = postApi(ctx, {
   action: 'teacher_add_student',

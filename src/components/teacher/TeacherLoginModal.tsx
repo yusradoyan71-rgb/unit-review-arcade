@@ -8,7 +8,7 @@
  * and zero credential exposure.
  */
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTeacherAuth } from '../../context/TeacherAuthContext';
 import { 
@@ -53,16 +53,23 @@ export const TeacherLoginModal: React.FC = () => {
     return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   };
 
+  const isSubmittingRef = useRef(false);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (isLocked || isLoggingIn) return;
+    if (isLocked || isLoggingIn || isSubmittingRef.current) return;
 
     const trimmed = password.trim();
     if (!trimmed) return;
 
+    isSubmittingRef.current = true;
     // Immediately clear plaintext from local state on submit
     setPassword('');
-    await login(trimmed);
+    try {
+      await login(trimmed);
+    } finally {
+      isSubmittingRef.current = false;
+    }
   };
 
   const handleClose = () => {

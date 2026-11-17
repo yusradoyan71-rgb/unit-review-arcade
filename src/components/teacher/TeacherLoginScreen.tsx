@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useTeacherAuth } from '../../context/TeacherAuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -40,18 +40,25 @@ export const TeacherLoginScreen: React.FC<TeacherLoginScreenProps> = ({ onBackTo
     return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   };
 
+  const isSubmittingRef = useRef(false);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (isLocked || isLoggingIn) return;
+    if (isLocked || isLoggingIn || isSubmittingRef.current) return;
 
     const trimmed = password.trim();
     if (!trimmed) return;
 
+    isSubmittingRef.current = true;
     sounds.playTap();
     setPassword('');
-    const success = await login(trimmed);
-    if (success) {
-      openDashboard();
+    try {
+      const success = await login(trimmed);
+      if (success) {
+        openDashboard();
+      }
+    } finally {
+      isSubmittingRef.current = false;
     }
   };
 
