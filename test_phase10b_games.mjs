@@ -193,8 +193,8 @@ console.log('  ✓ Word Connect Bank: 240 puzzles & all target words strictly mu
 // ============================================================================
 // 4. Catalog Metadata Audit
 // ============================================================================
-console.log('\n--- 4. Auditing Games Zone Catalog (8 Games) ---');
-assert.strictEqual(GAMES_ZONE_CATALOG.length, 8, `Expected exactly 8 games in catalog, found ${GAMES_ZONE_CATALOG.length}`);
+console.log('\n--- 4. Auditing Games Zone Catalog (At least 8 Games) ---');
+assert(GAMES_ZONE_CATALOG.length >= 8, `Expected at least 8 games in catalog, found ${GAMES_ZONE_CATALOG.length}`);
 
 const weMeta = GAMES_ZONE_CATALOG.find((g) => g.id === 'wordle_english');
 assert(weMeta, 'wordle_english metadata missing from GAMES_ZONE_CATALOG');

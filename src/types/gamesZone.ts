@@ -20,7 +20,8 @@ export type GamesZoneGameId =
   | 'grammar_basketball'
   | 'vocabulary_invaders'
   | 'wordle_english'
-  | 'word_connect';
+  | 'word_connect'
+  | 'memory_match';
 
 export type GamesZoneDifficulty = 'easy' | 'medium' | 'hard';
 
@@ -169,6 +170,39 @@ export interface WordConnectPuzzle {
   contentVersion?: number;
 }
 
+/**
+ * Memory Match Model (Phase 11):
+ * Interactive pair-matching memory game with:
+ * - Mode A: Word & Meaning (English word <-> Turkish meaning)
+ * - Mode B: Word & Definition (English word <-> English definition)
+ * - Mode C: Word & Picture (English word <-> Visual icon/illustration)
+ * 
+ * Separates game mechanics from content to support future Activity Creator.
+ */
+export type MemoryMatchMode = 'word_meaning' | 'word_definition' | 'word_picture';
+
+export interface MemoryMatchPair {
+  pairId: string;                  // Unique pair identifier, e.g. "p_g7_e_01_1"
+  leftText: string;                // English target word (e.g. "generous")
+  rightText: string;               // Turkish meaning, English definition, or picture label
+  mode: MemoryMatchMode;
+  grade: GradeId;
+  difficulty: GamesZoneDifficulty;
+  topic: string;                   // e.g. "Personality", "Wild Animals", "Kitchen"
+  imageRef?: string;               // Reusable offline vector asset key for mode 'word_picture'
+  explanation?: string;
+}
+
+export interface MemoryMatchSet {
+  id: string;                      // Unique set identifier, e.g. "mm_g7_e_01"
+  grade: GradeId;
+  difficulty: GamesZoneDifficulty;
+  mode: MemoryMatchMode;
+  topic: string;
+  pairs: MemoryMatchPair[];        // 4 pairs (Easy), 6 pairs (Medium), 8 pairs (Hard)
+  contentVersion?: number;
+}
+
 // ---------------------------------------------------------------------------
 // DATA BANK SCHEMAS
 // ---------------------------------------------------------------------------
@@ -181,6 +215,7 @@ export type GrammarBasketballBank = Record<GradeId, Record<GamesZoneDifficulty, 
 export type VocabularyInvadersBank = Record<GradeId, Record<GamesZoneDifficulty, VocabularyInvadersItem[]>>;
 export type WordleEnglishBank = Record<GradeId, Record<GamesZoneDifficulty, WordleEnglishItem[]>>;
 export type WordConnectBank = Record<GradeId, Record<GamesZoneDifficulty, WordConnectPuzzle[]>>;
+export type MemoryMatchBank = Record<GradeId, Record<GamesZoneDifficulty, MemoryMatchSet[]>>;
 
 // ---------------------------------------------------------------------------
 // SESSION & TELEMETRY SCHEMAS

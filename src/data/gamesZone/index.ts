@@ -19,6 +19,7 @@ import type {
   VocabularyInvadersItem,
   WordleEnglishItem,
   WordConnectPuzzle,
+  MemoryMatchSet,
 } from '../../types/gamesZone';
 
 import { WORD_NINJA_BANK } from './wordNinjaData.ts';
@@ -29,6 +30,7 @@ import { GRAMMAR_BASKETBALL_BANK } from './grammarBasketballData.ts';
 import { VOCABULARY_INVADERS_BANK } from './vocabularyInvadersData.ts';
 import { WORDLE_ENGLISH_BANK } from './wordleEnglishData.ts';
 import { WORD_CONNECT_BANK } from './wordConnectData.ts';
+import { MEMORY_MATCH_BANK } from './memoryMatchData.ts';
 
 export { WORD_NINJA_BANK } from './wordNinjaData.ts';
 export { GRAMMAR_RUNNER_BANK } from './grammarRunnerData.ts';
@@ -38,6 +40,7 @@ export { GRAMMAR_BASKETBALL_BANK } from './grammarBasketballData.ts';
 export { VOCABULARY_INVADERS_BANK } from './vocabularyInvadersData.ts';
 export { WORDLE_ENGLISH_BANK } from './wordleEnglishData.ts';
 export { WORD_CONNECT_BANK } from './wordConnectData.ts';
+export { MEMORY_MATCH_BANK } from './memoryMatchData.ts';
 
 export const GAMES_ZONE_CATALOG: GamesZoneGameMetadata[] = [
   {
@@ -220,6 +223,29 @@ export const GAMES_ZONE_CATALOG: GamesZoneGameMetadata[] = [
       ],
     },
   },
+  {
+    id: 'memory_match',
+    title: 'Memory Match',
+    tagline: 'Flip cards and match curriculum words with meanings, definitions, and pictures!',
+    category: 'vocabulary',
+    categoryLabel: 'Memory Arcade',
+    iconName: 'Layers',
+    accentColor: '#8B5CF6',
+    accentGradient: 'from-purple-500 to-indigo-600',
+    badgeColor: 'bg-purple-500/20 text-purple-300 border-purple-500/30',
+    isUnlocked: true,
+    howToPlay: {
+      objective: 'Flip face-down cards two at a time to discover matching curriculum pairs across Word & Meaning, Word & Definition, and Word & Picture modes.',
+      controls: 'Click or tap any face-down card to flip it over. When you find two matching cards, they remain revealed.',
+      smartboardTip: 'Students can step up to the smartboard and tap cards in pairs. Matched cards stay visible for the whole class to see.',
+      rules: [
+        'You can only flip two cards at a time.',
+        'If the two cards do not match, they will flip back after a brief pause.',
+        'Clear all matching pairs in as few moves as possible to earn maximum stars, XP, and Monster Coins!',
+        'Practice across Easy (4 pairs), Medium (6 pairs), and Hard (8 pairs) difficulty grids.',
+      ],
+    },
+  },
 ];
 
 export function getGameMetadata(gameId: GamesZoneGameId): GamesZoneGameMetadata | undefined {
@@ -248,6 +274,7 @@ export function getQuestionsForGame(
   | VocabularyInvadersItem
   | WordleEnglishItem
   | WordConnectPuzzle
+  | MemoryMatchSet
 )[] {
   let sourceBank: any[] = [];
 
@@ -275,6 +302,9 @@ export function getQuestionsForGame(
       break;
     case 'word_connect':
       sourceBank = WORD_CONNECT_BANK[gradeId]?.[difficulty] || [];
+      break;
+    case 'memory_match':
+      sourceBank = MEMORY_MATCH_BANK[gradeId]?.[difficulty] || [];
       break;
     default:
       sourceBank = [];

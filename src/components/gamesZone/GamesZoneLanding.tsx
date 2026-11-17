@@ -107,6 +107,14 @@ const GAME_CARNIVAL_THEMES: Record<string, {
     btnClass: 'btn-game-coral',
     categoryBg: 'bg-pink-100 text-pink-800 border-pink-300',
   },
+  memory_match: {
+    emoji: '🃏',
+    cardBorder: 'border-purple-200 hover:border-purple-400',
+    headerBg: 'from-purple-100 to-indigo-100',
+    headerBorder: 'border-purple-200',
+    btnClass: 'btn-game-purple',
+    categoryBg: 'bg-purple-100 text-purple-800 border-purple-300',
+  },
 };
 
 export const GamesZoneLanding: React.FC<GamesZoneLandingProps> = ({
@@ -250,7 +258,7 @@ export const GamesZoneLanding: React.FC<GamesZoneLandingProps> = ({
             <span>Interactive Game Pavilions</span>
           </h2>
           <span className="text-xs font-bold text-slate-500">
-            8 fast-paced game engines • 1,920 curriculum questions
+            9 fast-paced game engines • 2,160 curriculum questions
           </span>
         </div>
 

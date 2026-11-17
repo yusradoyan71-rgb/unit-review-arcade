@@ -17,6 +17,7 @@ import { GrammarBasketballGame } from './grammarBasketball/GrammarBasketballGame
 import { VocabularyInvadersGame } from './vocabularyInvaders/VocabularyInvadersGame';
 import { WordleEnglishGame } from './wordleEnglish/WordleEnglishGame';
 import { WordConnectGame } from './wordConnect/WordConnectGame';
+import { MemoryMatchGame } from './memoryMatch/MemoryMatchGame';
 import { GamesZoneService } from '../../services/gamesZoneService';
 import { useAuth } from '../../context/AuthContext';
 import { useGamification } from '../../context/GamificationContext';
@@ -252,6 +253,20 @@ export const GamesZoneContainer: React.FC<GamesZoneContainerProps> = ({
             {selectedGame?.id === 'word_connect' && (
               <WordConnectGame
                 key={`wc_${gameSessionKey}`}
+                gradeId={selectedGrade}
+                difficulty={currentDifficulty}
+                studentNumber={studentNumber}
+                studentClass={studentClass}
+                onComplete={handleGameComplete}
+                onPause={() => setIsPaused(true)}
+                isPaused={isPaused}
+                isMuted={isMuted}
+              />
+            )}
+
+            {selectedGame?.id === 'memory_match' && (
+              <MemoryMatchGame
+                key={`mm_${gameSessionKey}`}
                 gradeId={selectedGrade}
                 difficulty={currentDifficulty}
                 studentNumber={studentNumber}
