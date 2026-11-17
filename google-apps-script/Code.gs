@@ -1222,7 +1222,7 @@ function handleTeacherGetOverview(ss, payload) {
     if (!sNum) continue;
 
     var sClass = String(sRow[studentColMap["class"] - 1] || "").trim().toUpperCase();
-    if (sClass === "DEMO_ARCHIVE") continue; // Exclude archived demo fixtures from live classroom statistics
+    if (sClass === "DEMO_ARCHIVE" || /_demo$/.test(sNum)) continue; // Exclude archived demo fixtures from live classroom statistics
     var sGrade = String(sRow[studentColMap["grade"] - 1] || "").trim();
     var normGrade = (sGrade === "7" || sGrade === 7 || sGrade === "grade-7") ? "grade-7" : "grade-8";
     var lastLogin = sRow[studentColMap["last_login_at"] - 1];
@@ -1271,6 +1271,7 @@ function handleTeacherGetOverview(ss, payload) {
     var aRow = attemptData[j];
     var aStudentNum = String(aRow[attemptColMap["student_number"] - 1] || "").trim();
     var aClass = String(aRow[attemptColMap["class"] - 1] || "").trim().toUpperCase();
+    if (aClass === "DEMO_ARCHIVE" || /_demo$/.test(aStudentNum)) continue; // Exclude demo attempts from classroom KPIs
     var aUnitId = String(aRow[attemptColMap["unit_id"] - 1] || "").trim();
     var aUnitTitle = String(aRow[attemptColMap["unit_title"] - 1] || "").trim();
     var aGameType = String(aRow[attemptColMap["game_type"] - 1] || "").trim();
@@ -1482,7 +1483,7 @@ function handleTeacherGetRoster(ss, payload) {
     if (!sNum) continue;
 
     var sClass = String(sRow[studentColMap["class"] - 1] || "").trim().toUpperCase();
-    if (sClass === "DEMO_ARCHIVE") continue; // Exclude archived demo fixtures from live classroom statistics
+    if (sClass === "DEMO_ARCHIVE" || /_demo$/.test(sNum)) continue; // Exclude archived demo fixtures from live classroom statistics
     var sGrade = String(sRow[studentColMap["grade"] - 1] || "").trim();
     var normGrade = (sGrade === "7" || sGrade === 7 || sGrade === "grade-7") ? "grade-7" : "grade-8";
     var fullName = String(sRow[studentColMap["full_name"] - 1] || "");
@@ -1796,6 +1797,8 @@ function handleTeacherGetQuestionAnalytics(ss, payload) {
     var sClass = studentClassMap[sNum] || String(row[answerColMap["class"] - 1] || "").trim().toUpperCase();
     var sGrade = studentGradeMap[sNum] || null;
 
+    if (sClass === "DEMO_ARCHIVE" || /_demo$/.test(sNum)) continue; // Exclude demo responses from analytics
+
     if (filterClass && sClass !== filterClass) continue;
     if (filterGrade && sGrade && sGrade !== filterGrade) continue;
 
@@ -1914,6 +1917,86 @@ function handleTeacherGetQuestionAnalytics(ss, payload) {
 // ============================================================================
 
 var DEMO_STUDENT_NUMBERS = ["701", "702", "703", "704", "801", "802", "803", "804"];
+
+var DEMO_FIXTURES = {
+  "701": "Kerem Yılmaz",
+  "702": "Zeynep Kaya",
+  "703": "Can Demir",
+  "704": "Elif Şahin",
+  "801": "Barış Arslan",
+  "802": "Ayşe Çelik",
+  "803": "Murat Yıldız",
+  "804": "Selin Aydın"
+};
+
+/**
+ * Normalizes text for robust comparison across Turkish and English character sets.
+ */
+function normalizeNameForComparison(name) {
+  if (!name) return "";
+  return String(name)
+    .trim()
+    .toLowerCase()
+    .replace(/ı/g, "i").replace(/İ/g, "i")
+    .replace(/ş/g, "s").replace(/Ş/g, "s")
+    .replace(/ğ/g, "g").replace(/Ğ/g, "g")
+    .replace(/ü/g, "u").replace(/Ü/g, "u")
+    .replace(/ö/g, "o").replace(/Ö/g, "o")
+    .replace(/ç/g, "c").replace(/Ç/g, "c")
+    .replace(/\s+/g, " ");
+}
+
+/**
+ * Robustly verifies whether an account is truly one of the 8 demonstration fixtures.
+ * Requires matching both student number (or archived num ending in _demo) AND fixture name,
+ * OR having explicit DEMO_ARCHIVE class with matching base fixture number.
+ * Real student accounts (e.g. 701 - Ahmet Yılmaz) will NEVER match this.
+ */
+function isVerifiedDemoAccount(studentNumber, fullName, studentClass) {
+  var sNum = String(studentNumber || "").trim();
+  var baseNum = sNum.replace(/_demo$/, "");
+  var expectedName = DEMO_FIXTURES[baseNum];
+  if (!expectedName) return false;
+
+  var normActual = normalizeNameForComparison(fullName);
+  var normExpected = normalizeNameForComparison(expectedName);
+
+  if (sNum.endsWith("_demo") || String(studentClass || "").trim().toUpperCase() === "DEMO_ARCHIVE") {
+    return normActual === normExpected || normActual.indexOf(normExpected) !== -1;
+  }
+
+  return normActual === normExpected;
+}
+
+/**
+ * Relinks historical student numbers in secondary sheets during demo account archival
+ * so real students can reuse numbers 701-704/801-804 without inheriting historical records.
+ */
+function relinkDemoRecordsInSheet(ss, sheetName, numColName, oldNum, newNum, classColName, newClass) {
+  var sheet = getSheetRobust(ss, sheetName);
+  if (!sheet) return;
+  var data = sheet.getDataRange().getValues();
+  if (data.length <= 1) return;
+
+  var colMap = {};
+  for (var c = 0; c < data[0].length; c++) {
+    colMap[String(data[0][c]).trim()] = c + 1;
+  }
+
+  var numCol = colMap[numColName];
+  if (!numCol) return;
+  var classCol = classColName ? colMap[classColName] : null;
+
+  for (var r = 1; r < data.length; r++) {
+    var val = String(data[r][numCol - 1] || "").trim();
+    if (val === oldNum) {
+      sheet.getRange(r + 1, numCol).setValue(newNum);
+      if (classCol && newClass) {
+        sheet.getRange(r + 1, classCol).setValue(newClass);
+      }
+    }
+  }
+}
 
 /**
  * Invalidates all active session tokens for a student in the Sessions sheet.
@@ -2436,18 +2519,22 @@ function handleTeacherGetDemoAccountsPreview(ss, payload) {
   var demoList = [];
   for (var i = 1; i < sData.length; i++) {
     var num = String(sData[i][sCol["student_number"] - 1] || "").trim();
-    if (DEMO_STUDENT_NUMBERS.indexOf(num) !== -1) {
-      var cls = String(sData[i][sCol["class"] - 1] || "").trim();
-      var isAct = Boolean(sData[i][sCol["is_active"] - 1]);
+    var fName = String(sData[i][sCol["full_name"] - 1] || "");
+    var cls = String(sData[i][sCol["class"] - 1] || "").trim();
+    var isAct = Boolean(sData[i][sCol["is_active"] - 1]);
+
+    if (isVerifiedDemoAccount(num, fName, cls)) {
+      var baseNum = num.replace(/_demo$/, "");
+      var isArchived = cls === "DEMO_ARCHIVE" || num.endsWith("_demo") || !isAct;
       demoList.push({
-        studentNumber: num,
-        fullName: String(sData[i][sCol["full_name"] - 1] || ""),
+        studentNumber: baseNum,
+        fullName: fName,
         class: cls,
         grade: String(sData[i][sCol["grade"] - 1] || ""),
         isActive: isAct,
-        isArchived: cls === "DEMO_ARCHIVE" || !isAct,
-        attemptsCount: attemptCounts[num] || 0,
-        sessionsCount: sessionCounts[num] || 0
+        isArchived: isArchived,
+        attemptsCount: attemptCounts[num] || attemptCounts[baseNum] || 0,
+        sessionsCount: sessionCounts[num] || sessionCounts[baseNum] || 0
       });
     }
   }
@@ -2486,12 +2573,28 @@ function handleTeacherArchiveDemoAccounts(ss, payload) {
     var archivedCount = 0;
     for (var i = 1; i < studentData.length; i++) {
       var num = String(studentData[i][colMap["student_number"] - 1] || "").trim();
-      if (DEMO_STUDENT_NUMBERS.indexOf(num) !== -1) {
+      var fName = String(studentData[i][colMap["full_name"] - 1] || "");
+      var cls = String(studentData[i][colMap["class"] - 1] || "").trim();
+
+      if (isVerifiedDemoAccount(num, fName, cls)) {
         var rowIndex = i + 1;
         // Non-destructive archive: mark is_active = false and tag class as DEMO_ARCHIVE
         studentsSheet.getRange(rowIndex, colMap["is_active"]).setValue(false);
         studentsSheet.getRange(rowIndex, colMap["class"]).setValue("DEMO_ARCHIVE");
         invalidateStudentSessions(ss, num);
+
+        // Relink raw number to num + "_demo" so real students can reuse 701-704 / 801-804 without collision
+        if (!num.endsWith("_demo")) {
+          var archivedNum = num + "_demo";
+          studentsSheet.getRange(rowIndex, colMap["student_number"]).setValue(archivedNum);
+          relinkDemoRecordsInSheet(ss, CONFIG.SHEET_NAMES.ATTEMPTS, "student_number", num, archivedNum, "class", "DEMO_ARCHIVE");
+          relinkDemoRecordsInSheet(ss, CONFIG.SHEET_NAMES.ANSWERS, "student_number", num, archivedNum, "class", "DEMO_ARCHIVE");
+          relinkDemoRecordsInSheet(ss, CONFIG.SHEET_NAMES.SESSIONS, "student_number", num, archivedNum);
+          relinkDemoRecordsInSheet(ss, CONFIG.SHEET_NAMES.ACHIEVEMENTS, "student_number", num, archivedNum);
+          relinkDemoRecordsInSheet(ss, CONFIG.SHEET_NAMES.MONSTERS, "student_number", num, archivedNum);
+          relinkDemoRecordsInSheet(ss, CONFIG.SHEET_NAMES.COIN_TRANSACTIONS, "student_number", num, archivedNum);
+        }
+
         archivedCount++;
       }
     }

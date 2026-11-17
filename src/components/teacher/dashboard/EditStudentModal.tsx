@@ -253,3 +253,4 @@ export const EditStudentModal: React.FC<EditStudentModalProps> = ({
     </AnimatePresence>
   );
 };
+

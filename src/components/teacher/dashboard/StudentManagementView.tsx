@@ -33,6 +33,25 @@ import { DemoAccountArchiveModal } from './DemoAccountArchiveModal';
 import { StudentCredentialCardsModal } from './StudentCredentialCardsModal';
 import type { CredentialCardItem } from './StudentCredentialCardsModal';
 
+// Verification helper for initial demo fixture accounts
+const DEMO_FIXTURE_NAMES: Record<string, string> = {
+  '701': 'Kerem Yılmaz',
+  '702': 'Zeynep Kaya',
+  '703': 'Can Demir',
+  '704': 'Elif Şahin',
+  '801': 'Barış Arslan',
+  '802': 'Ayşe Çelik',
+  '803': 'Murat Yıldız',
+  '804': 'Selin Aydın',
+};
+
+function isDemoFixture(studentNumber: string, fullName: string): boolean {
+  const expected = DEMO_FIXTURE_NAMES[studentNumber];
+  if (!expected) return false;
+  const norm = (str: string) => str.toLowerCase().replace(/ı/g, 'i').replace(/İ/g, 'i').trim();
+  return norm(fullName) === norm(expected);
+}
+
 interface StudentManagementViewProps {
   roster: RosterStudent[];
   isLoading: boolean;
@@ -61,10 +80,9 @@ export const StudentManagementView: React.FC<StudentManagementViewProps> = ({
   // Print Cards Modal State
   const [printCards, setPrintCards] = useState<CredentialCardItem[] | null>(null);
 
-  // Check if any demo accounts (701-704, 801-804) are active
-  const demoNumbers = ['701', '702', '703', '704', '801', '802', '803', '804'];
+  // Check if any verified demo fixtures (701-704, 801-804 with demo names) are active
   const hasActiveDemoAccounts = roster.some(
-    (s) => demoNumbers.includes(s.studentNumber) && s.isActive && s.class !== 'DEMO_ARCHIVE'
+    (s) => isDemoFixture(s.studentNumber, s.fullName) && s.isActive && s.class !== 'DEMO_ARCHIVE'
   );
 
   // Filter roster
@@ -269,7 +287,7 @@ export const StudentManagementView: React.FC<StudentManagementViewProps> = ({
                 </tr>
               ) : (
                 filteredStudents.map((student) => {
-                  const isDemoAccount = demoNumbers.includes(student.studentNumber);
+                  const isDemoAccount = isDemoFixture(student.studentNumber, student.fullName);
                   return (
                     <tr key={student.studentNumber} className="hover:bg-slate-50/80 transition-colors">
                       {/* Student Number */}

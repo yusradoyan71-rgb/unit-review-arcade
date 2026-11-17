@@ -279,3 +279,4 @@ export const ResetPinModal: React.FC<ResetPinModalProps> = ({
     </AnimatePresence>
   );
 };
+

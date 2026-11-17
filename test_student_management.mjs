@@ -585,22 +585,46 @@ const archiveRes = postApi(ctx, {
 assert(archiveRes.success === true, 'Demo accounts archived');
 assert(archiveRes.archivedCount === 8, '8 demo accounts archived');
 
-// Verify that demo accounts are now deactivated and tagged DEMO_ARCHIVE
+// Verify that demo accounts are now deactivated, tagged DEMO_ARCHIVE, and relinked with _demo
 const updatedStudentsData = ctx.activeSpreadsheet.getSheetByName('Students').getDataRange().getValues();
-const s701Row = updatedStudentsData.find((r) => String(r[1]) === '701');
+const s701Row = updatedStudentsData.find((r) => String(r[1]) === '701' || String(r[1]) === '701_demo');
 assert(s701Row[4] === 'DEMO_ARCHIVE', 'Demo student 701 class set to DEMO_ARCHIVE');
 assert(s701Row[7] === false, 'Demo student 701 is_active set to false');
+assert(String(s701Row[1]) === '701_demo', 'Demo student 701 relinked to 701_demo to release number for real students');
 
-// 9d. Verify teacher_get_overview isolates archived demo data from active classes
+// 9d. Verify a real student can now claim student number 701 without collision
+const addReal701 = postApi(ctx, {
+  action: 'teacher_add_student',
+  teacherToken,
+  studentNumber: '701',
+  fullName: 'Ahmet Yılmaz',
+  class: '7A',
+});
+assert(addReal701.success === true, 'Real student 701 (Ahmet Yılmaz) enrolled without duplicate collision');
+
+// 9e. Verify that running demo archival again does NOT touch real student 701 (Ahmet Yılmaz)
+const archiveAgain = postApi(ctx, {
+  action: 'teacher_archive_demo_accounts',
+  teacherToken,
+  confirmed: true,
+});
+assert(archiveAgain.success === true, 'Repeated demo archival call succeeded');
+const postArchiveStudents = ctx.activeSpreadsheet.getSheetByName('Students').getDataRange().getValues();
+const real701Row = postArchiveStudents.find((r) => String(r[1]) === '701');
+assert(real701Row[2] === 'Ahmet Yılmaz', 'Real student 701 name unchanged');
+assert(real701Row[4] === '7A', 'Real student 701 remains in class 7A');
+assert(real701Row[7] === true, 'Real student 701 remains active (protected against demo archival)');
+
+// 9f. Verify teacher_get_overview isolates archived demo data from active classes
 const overviewRes = postApi(ctx, {
   action: 'teacher_get_overview',
   teacherToken,
 });
 assert(overviewRes.success === true, 'Overview KPI retrieved');
-// Total students should only count active students (105, 205, 711, 721, 811, 821 = 6 real students)
-assert(overviewRes.overview.totalStudents === 6, `Total active students reflects only real roster (got: ${overviewRes.overview.totalStudents})`);
+// Total students should only count active students (105, 205, 711, 721, 811, 821, 701 = 7 real students)
+assert(overviewRes.overview.totalStudents === 7, `Total active students reflects only real roster (got: ${overviewRes.overview.totalStudents})`);
 
-// 9e. Verify teacher_get_roster omits DEMO_ARCHIVE by default
+// 9g. Verify teacher_get_roster omits DEMO_ARCHIVE by default
 const rosterRes = postApi(ctx, {
   action: 'teacher_get_roster',
   teacherToken,
@@ -608,6 +632,7 @@ const rosterRes = postApi(ctx, {
 assert(rosterRes.success === true, 'Roster retrieved');
 assert(rosterRes.roster.every((s) => s.class !== 'DEMO_ARCHIVE'), 'DEMO_ARCHIVE omitted from default classroom roster');
 assert(rosterRes.roster.some((s) => s.studentNumber === '105'), 'Real student 105 present in classroom roster');
+assert(rosterRes.roster.some((s) => s.studentNumber === '701' && s.fullName === 'Ahmet Yılmaz'), 'Real student 701 present in classroom roster');
 
 console.log('\n--- 10. Frontend Demo Credentials Removal Verification ---');
 const loginModalSrc = fs.readFileSync('c:\\Users\\FATİH\\.gemini\\antigravity-ide\\scratch\\english-taboo-game\\unit-review-arcade\\src\\components\\auth\\StudentLoginModal.tsx', 'utf8');
