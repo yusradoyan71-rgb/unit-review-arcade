@@ -1,9 +1,10 @@
 /**
- * UNIT REVIEW ARCADE — STUDENT PROFILE MODAL (PHASE 5)
- * Version: 5.0.0
+ * UNIT REVIEW ARCADE — STUDENT PROFILE MODAL (PHASE 9C)
+ * Version: 9.3.0
  * 
- * Comprehensive, responsive view of the student's gamification journey:
- * Level, Total XP, Progress Bar, Stats, Achievements Shelf, and Recent Plays.
+ * Colorful Game World + Bright Creative Campus redesign.
+ * Redesigned as an Explorer Passport with stats, companion stamp,
+ * mastery links, achievement shelf, and recent adventure history.
  */
 
 import React, { useState } from 'react';
@@ -89,33 +90,33 @@ export const StudentProfileModal: React.FC = () => {
   const unlockedCount = achievements.filter((a) => Boolean(a.unlockedAt)).length;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/85 backdrop-blur-md overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-900/60 backdrop-blur-md overflow-y-auto">
       <motion.div
         initial={{ opacity: 0, scale: 0.95, y: 15 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 15 }}
-        className="w-full max-w-3xl rounded-3xl bg-slate-900 border border-indigo-500/30 p-5 sm:p-8 text-slate-100 shadow-2xl relative flex flex-col max-h-[92vh] overflow-hidden"
+        className="w-full max-w-3xl rounded-3xl bg-white border-4 border-sky-300 p-5 sm:p-8 text-slate-800 shadow-2xl relative flex flex-col max-h-[92vh] overflow-hidden"
       >
-        {/* Ambient Top Glow */}
-        <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none" />
+        {/* Soft Sunny Ambient Glow */}
+        <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-sky-200/50 rounded-full blur-3xl pointer-events-none" />
 
-        {/* Modal Header */}
-        <div className="flex items-center justify-between pb-4 border-b border-slate-800 shrink-0">
+        {/* Modal Header — Explorer Passport Top Bar */}
+        <div className="flex items-center justify-between pb-4 border-b-2 border-sky-100 shrink-0 relative z-10">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-slate-950 font-black text-lg shadow-lg shadow-cyan-500/25">
+            <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-sky-400 to-indigo-600 flex items-center justify-center text-white font-black text-xl shadow-md shadow-sky-400/30">
               {profile?.firstName?.charAt(0) || 'S'}
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="font-arcade text-lg sm:text-xl font-bold text-white tracking-wide">
-                  {profile?.displayName || 'Student Profile'}
+                <h2 className="font-bubble text-xl sm:text-2xl text-slate-900 tracking-wide">
+                  {profile?.displayName || 'Explorer Passport'}
                 </h2>
-                <span className="px-2 py-0.5 rounded-md bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 text-[11px] font-mono font-bold">
+                <span className="px-2.5 py-0.5 rounded-full bg-indigo-100 text-indigo-700 border border-indigo-200 text-xs font-mono font-bold">
                   Class {profile?.class || '—'}
                 </span>
               </div>
-              <p className="text-xs text-slate-400">
-                Grade {profile?.grade === 'grade-8' ? '8' : '7'} English Review Cadet
+              <p className="text-xs text-slate-500 font-medium">
+                Grade {profile?.grade === 'grade-8' ? '8' : '7'} English Explorer
               </p>
             </div>
           </div>
@@ -126,9 +127,9 @@ export const StudentProfileModal: React.FC = () => {
                 sounds.playTap();
                 refreshProfile();
               }}
-              title="Refresh Profile"
+              title="Refresh Passport"
               disabled={isLoadingProfile}
-              className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-all disabled:opacity-50"
+              className="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 transition-all disabled:opacity-50"
             >
               <RotateCw className={`w-4 h-4 ${isLoadingProfile ? 'animate-spin' : ''}`} />
             </button>
@@ -137,7 +138,7 @@ export const StudentProfileModal: React.FC = () => {
                 sounds.playTap();
                 closeModals();
               }}
-              className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-all"
+              className="p-2.5 rounded-xl bg-slate-100 hover:bg-rose-100 text-slate-500 hover:text-rose-600 transition-all"
             >
               <X className="w-4 h-4" />
             </button>
@@ -145,21 +146,21 @@ export const StudentProfileModal: React.FC = () => {
         </div>
 
         {/* Scrollable Content Body */}
-        <div className="flex-1 overflow-y-auto space-y-6 pt-4 pr-1">
+        <div className="flex-1 overflow-y-auto space-y-6 pt-4 pr-1 relative z-10">
           {profileError && (
-            <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2">
+            <div className="p-3.5 rounded-2xl bg-rose-50 border-2 border-rose-200 text-rose-700 text-xs font-medium flex items-center gap-2">
               <span>{profileError}</span>
             </div>
           )}
 
-          {/* Level & XP Hero Banner */}
-          <div className="p-5 rounded-2xl bg-gradient-to-r from-slate-950 to-indigo-950/40 border border-indigo-500/30 shadow-lg relative overflow-hidden">
+          {/* Level & XP Hero Passport Card */}
+          <div className="p-5 sm:p-6 rounded-3xl bg-gradient-to-br from-sky-50 via-indigo-50/60 to-purple-50 border-2 border-sky-200 shadow-sm relative overflow-hidden">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-2xl bg-slate-900/80 border border-indigo-500/30 flex items-center justify-center p-1 shrink-0 overflow-hidden shadow-inner">
+                <div className="w-18 h-18 rounded-2xl bg-white border-2 border-indigo-200 flex items-center justify-center p-1.5 shrink-0 overflow-hidden shadow-sm">
                   <MonsterAvatar
                     config={monsterConfig}
-                    size={58}
+                    size={64}
                     animate
                     stage={milestoneInfo.stage}
                     evolutionTier={milestoneInfo.evolutionTier}
@@ -167,24 +168,24 @@ export const StudentProfileModal: React.FC = () => {
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="px-3 py-1 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-500 text-slate-950 font-arcade text-sm font-black shadow-md shadow-amber-400/20">
+                    <span className="px-3 py-1 rounded-full bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-900 font-black text-xs shadow-sm uppercase tracking-wider">
                       LEVEL {profile?.level || 1}
                     </span>
-                    <span className="text-base sm:text-lg font-bold text-white tracking-wide">
+                    <span className="text-base sm:text-lg font-bold text-slate-900 tracking-wide">
                       {profile?.levelTitle || 'Novice Explorer'}
                     </span>
                   </div>
-                  <div className="flex flex-wrap items-center gap-2.5 mt-1.5 text-xs text-slate-400">
-                    <span>
-                      XP: <strong className="font-mono text-cyan-300 font-extrabold">{profile?.totalXp || 0}</strong>
+                  <div className="flex flex-wrap items-center gap-2.5 mt-2 text-xs text-slate-600">
+                    <span className="font-semibold">
+                      XP: <strong className="font-mono text-sky-700 font-black text-sm">{profile?.totalXp || 0}</strong>
                     </span>
                     <span>•</span>
-                    <span className="flex items-center gap-1 text-amber-300 font-bold">
-                      <Coins className="w-3.5 h-3.5 text-amber-400" />
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-100 border border-amber-300 text-amber-900 font-bold">
+                      <Coins className="w-3.5 h-3.5 text-amber-600" />
                       <span>{coinBalance} Coins</span>
                     </span>
                     <span>•</span>
-                    <span className="text-purple-300 font-medium">
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-purple-100 border border-purple-200 text-purple-800 font-bold">
                       {milestoneInfo.isEgg
                         ? milestoneInfo.stageName
                         : `Companion: ${monsterConfig.name} (${milestoneInfo.stageName})`}
@@ -193,16 +194,16 @@ export const StudentProfileModal: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 self-start sm:self-auto">
+              <div className="flex items-center gap-2 self-start sm:self-auto shrink-0">
                 <button
                   onClick={() => {
                     sounds.playNavigate();
                     closeModals();
                     navigateTo({ view: 'monster-world' });
                   }}
-                  className="px-3.5 py-2 rounded-xl bg-purple-500/15 hover:bg-purple-500/25 border border-purple-500/40 text-purple-300 hover:text-purple-200 text-xs font-bold flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95"
+                  className="btn-game-purple text-xs font-bold px-3.5 py-2.5 rounded-2xl flex items-center justify-center gap-1.5 shadow-sm hover:scale-105 active:scale-95 transition-transform"
                 >
-                  <Sparkles className="w-4 h-4 text-purple-400" />
+                  <Sparkles className="w-4 h-4" />
                   <span>Monster World</span>
                 </button>
 
@@ -211,31 +212,31 @@ export const StudentProfileModal: React.FC = () => {
                     sounds.playNavigate();
                     openLeaderboardModal(profile?.class);
                   }}
-                  className="px-3.5 py-2 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-amber-300 hover:text-amber-200 text-xs font-bold flex items-center justify-center gap-1.5 transition-all hover:scale-105 active:scale-95"
+                  className="btn-game-amber text-xs font-bold px-3.5 py-2.5 rounded-2xl flex items-center justify-center gap-1.5 shadow-sm hover:scale-105 active:scale-95 transition-transform"
                 >
-                  <Trophy className="w-4 h-4 text-amber-400" />
+                  <Trophy className="w-4 h-4" />
                   <span>Leaderboard</span>
                 </button>
               </div>
             </div>
 
             {/* XP Progress Bar */}
-            <div className="mt-4">
-              <div className="flex items-center justify-between text-xs font-mono font-medium text-slate-400 mb-1.5">
-                <span>Next Tier Progress</span>
-                <span className="text-cyan-400 font-bold">{profile?.progressPercent || 0}%</span>
+            <div className="mt-5">
+              <div className="flex items-center justify-between text-xs font-mono font-bold text-slate-600 mb-1.5">
+                <span>Next Milestone Progress</span>
+                <span className="text-sky-700 font-black">{profile?.progressPercent || 0}%</span>
               </div>
-              <div className="w-full h-3 rounded-full bg-slate-900 border border-slate-800 overflow-hidden p-0.5">
+              <div className="w-full h-3.5 rounded-full bg-white/90 border border-sky-200 overflow-hidden p-0.5 shadow-inner">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${profile?.progressPercent || 0}%` }}
                   transition={{ duration: 0.8, ease: 'easeOut' }}
-                  className="h-full rounded-full bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-500 shadow-md shadow-cyan-500/50"
+                  className="h-full rounded-full bg-gradient-to-r from-sky-400 via-indigo-500 to-purple-500 shadow-sm"
                 />
               </div>
-              <div className="flex items-center justify-between text-[11px] text-slate-500 mt-1 font-mono">
+              <div className="flex items-center justify-between text-[11px] text-slate-500 mt-1.5 font-mono font-medium">
                 <span>{profile?.minXp || 0} XP</span>
-                <span>{profile?.nextLevelXp ? `${profile.nextLevelXp} XP to Level ${(profile?.level || 1) + 1}` : 'Max Level Reached!'}</span>
+                <span className="text-indigo-600 font-bold">{profile?.nextLevelXp ? `${profile.nextLevelXp} XP to Level ${(profile?.level || 1) + 1}` : 'Max Level Reached!'}</span>
                 <span>{profile?.maxXp || 100} XP</span>
               </div>
             </div>
@@ -243,44 +244,44 @@ export const StudentProfileModal: React.FC = () => {
 
           {/* Quick Stats Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <div className="p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800 text-center">
-              <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block">
+            <div className="p-4 rounded-2xl bg-sky-50 border-2 border-sky-100 text-center shadow-sm">
+              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                 Completed
               </span>
-              <span className="font-mono text-2xl font-black text-cyan-400 mt-1 block">
+              <span className="font-mono text-2xl font-black text-sky-700 mt-1 block">
                 {profile?.stats?.activitiesCompleted || 0}
               </span>
-              <span className="text-[10px] text-slate-500">Activities</span>
+              <span className="text-[11px] text-slate-500 font-medium">Activities</span>
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800 text-center">
-              <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block">
+            <div className="p-4 rounded-2xl bg-indigo-50 border-2 border-indigo-100 text-center shadow-sm">
+              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                 Total Plays
               </span>
-              <span className="font-mono text-2xl font-black text-indigo-400 mt-1 block">
+              <span className="font-mono text-2xl font-black text-indigo-700 mt-1 block">
                 {profile?.stats?.totalAttempts || 0}
               </span>
-              <span className="text-[10px] text-slate-500">Attempts</span>
+              <span className="text-[11px] text-slate-500 font-medium">Attempts</span>
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800 text-center">
-              <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block">
+            <div className="p-4 rounded-2xl bg-purple-50 border-2 border-purple-100 text-center shadow-sm">
+              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                 Average
               </span>
-              <span className="font-mono text-2xl font-black text-purple-400 mt-1 block">
+              <span className="font-mono text-2xl font-black text-purple-700 mt-1 block">
                 {profile?.stats?.averageScore || 0}%
               </span>
-              <span className="text-[10px] text-slate-500">Accuracy</span>
+              <span className="text-[11px] text-slate-500 font-medium">Accuracy</span>
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800 text-center">
-              <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block">
+            <div className="p-4 rounded-2xl bg-amber-50 border-2 border-amber-100 text-center shadow-sm">
+              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                 Flawless
               </span>
-              <span className="font-mono text-2xl font-black text-amber-400 mt-1 block">
+              <span className="font-mono text-2xl font-black text-amber-700 mt-1 block">
                 {profile?.stats?.perfectScores || 0}
               </span>
-              <span className="text-[10px] text-slate-500">100% Scores</span>
+              <span className="text-[11px] text-slate-500 font-medium">100% Scores</span>
             </div>
           </div>
 
@@ -292,22 +293,22 @@ export const StudentProfileModal: React.FC = () => {
                 closeModals();
                 openMistakesModal();
               }}
-              className="p-3.5 rounded-2xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-left transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-between group"
+              className="p-4 rounded-2xl bg-rose-50 hover:bg-rose-100/70 border-2 border-rose-200 text-left transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-between group shadow-sm"
             >
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-rose-500/20 border border-rose-500/40 flex items-center justify-center text-rose-400">
+                <div className="w-10 h-10 rounded-xl bg-rose-200 text-rose-700 flex items-center justify-center">
                   <RotateCw className="w-5 h-5 group-hover:rotate-180 transition-transform duration-500" />
                 </div>
                 <div>
-                  <div className="font-arcade text-xs sm:text-sm font-bold text-white tracking-wide">
+                  <div className="font-bubble text-sm text-slate-900 tracking-wide">
                     MY MISTAKES
                   </div>
-                  <div className="text-[11px] text-slate-400">
+                  <div className="text-[11px] text-slate-500 font-medium">
                     Review and retry missed questions
                   </div>
                 </div>
               </div>
-              <span className="px-2 py-0.5 rounded-md bg-rose-500/20 text-rose-300 border border-rose-500/40 text-[11px] font-mono font-bold">
+              <span className="px-2.5 py-1 rounded-full bg-rose-200 text-rose-800 font-mono font-bold text-xs">
                 {uncorrectedMistakesCount}
               </span>
             </button>
@@ -318,22 +319,22 @@ export const StudentProfileModal: React.FC = () => {
                 closeModals();
                 openMasteryModal();
               }}
-              className="p-3.5 rounded-2xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-left transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-between group"
+              className="p-4 rounded-2xl bg-teal-50 hover:bg-teal-100/70 border-2 border-teal-200 text-left transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-between group shadow-sm"
             >
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400">
+                <div className="w-10 h-10 rounded-xl bg-teal-200 text-teal-700 flex items-center justify-center">
                   <Award className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 </div>
                 <div>
-                  <div className="font-arcade text-xs sm:text-sm font-bold text-white tracking-wide">
+                  <div className="font-bubble text-sm text-slate-900 tracking-wide">
                     TOPIC MASTERY
                   </div>
-                  <div className="text-[11px] text-slate-400">
+                  <div className="text-[11px] text-slate-500 font-medium">
                     Progress & skill breakdown by unit
                   </div>
                 </div>
               </div>
-              <span className="px-2 py-0.5 rounded-md bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 text-[11px] font-mono font-bold">
+              <span className="px-2.5 py-1 rounded-full bg-teal-200 text-teal-800 font-mono font-bold text-xs">
                 View
               </span>
             </button>
@@ -341,19 +342,19 @@ export const StudentProfileModal: React.FC = () => {
 
           {/* Achievements Badges Shelf */}
           <div>
-            <div className="flex items-center justify-between mb-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
               <div className="flex items-center gap-2">
-                <Award className="w-4 h-4 text-amber-400" />
-                <h3 className="font-arcade text-sm font-bold text-white tracking-wide">
+                <Award className="w-5 h-5 text-amber-500" />
+                <h3 className="font-bubble text-base text-slate-900 tracking-wide">
                   BADGES & ACHIEVEMENTS
                 </h3>
-                <span className="px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 text-xs font-mono font-bold">
+                <span className="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs font-mono font-bold">
                   {unlockedCount} / {achievements.length}
                 </span>
               </div>
 
               {/* Category Filter Pills */}
-              <div className="flex items-center gap-1 overflow-x-auto text-xs">
+              <div className="flex items-center gap-1.5 overflow-x-auto text-xs pb-1 sm:pb-0">
                 {(['all', 'starter', 'mastery', 'explorer', 'milestone'] as const).map((cat) => (
                   <button
                     key={cat}
@@ -361,10 +362,10 @@ export const StudentProfileModal: React.FC = () => {
                       sounds.playTap();
                       setActiveTab(cat);
                     }}
-                    className={`px-2.5 py-1 rounded-lg font-semibold capitalize transition-all ${
+                    className={`px-3 py-1 rounded-xl font-bold capitalize transition-all ${
                       activeTab === cat
                         ? 'bg-indigo-600 text-white shadow-sm'
-                        : 'bg-slate-950 text-slate-400 hover:text-slate-200'
+                        : 'bg-slate-100 hover:bg-slate-200 text-slate-600'
                     }`}
                   >
                     {cat}
@@ -382,17 +383,17 @@ export const StudentProfileModal: React.FC = () => {
                 return (
                   <div
                     key={badge.id}
-                    className={`p-3.5 rounded-2xl border transition-all flex items-start gap-3 ${
+                    className={`p-3.5 rounded-2xl border-2 transition-all flex items-start gap-3 ${
                       isUnlocked
-                        ? 'bg-slate-950/90 border-amber-500/40 shadow-sm shadow-amber-500/10'
-                        : 'bg-slate-950/40 border-slate-800/80 opacity-70'
+                        ? 'bg-amber-50/70 border-amber-200 shadow-sm'
+                        : 'bg-slate-50 border-slate-200/80 opacity-70'
                     }`}
                   >
                     <div
                       className={`w-11 h-11 rounded-2xl shrink-0 flex items-center justify-center ${
                         isUnlocked
-                          ? 'bg-gradient-to-tr from-amber-500 to-yellow-400 text-slate-950 shadow-md shadow-amber-500/30'
-                          : 'bg-slate-900 border border-slate-800 text-slate-600'
+                          ? 'bg-gradient-to-tr from-amber-400 to-yellow-300 text-slate-900 shadow-md shadow-amber-400/20'
+                          : 'bg-slate-200 text-slate-400'
                       }`}
                     >
                       {isUnlocked ? (
@@ -404,21 +405,21 @@ export const StudentProfileModal: React.FC = () => {
 
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between gap-1">
-                        <span className="font-bold text-xs text-white truncate block">
+                        <span className="font-bold text-xs text-slate-900 truncate block">
                           {badge.title}
                         </span>
                         {isUnlocked ? (
-                          <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-semibold flex items-center gap-0.5">
+                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 font-bold flex items-center gap-1">
                             <CheckCircle className="w-2.5 h-2.5" />
                             Unlocked
                           </span>
                         ) : (
-                          <span className="text-[10px] text-slate-500 font-mono">
+                          <span className="text-[10px] text-slate-500 font-mono font-medium">
                             {badge.progress !== undefined ? `${badge.progress}/${badge.target}` : 'Locked'}
                           </span>
                         )}
                       </div>
-                      <p className="text-[11px] text-slate-400 mt-0.5 line-clamp-2">
+                      <p className="text-[11px] text-slate-600 mt-0.5 line-clamp-2">
                         {badge.description}
                       </p>
                       {badge.unlockedAt && (
@@ -438,8 +439,8 @@ export const StudentProfileModal: React.FC = () => {
           {profile?.recentActivity && profile.recentActivity.length > 0 && (
             <div className="pt-2">
               <div className="flex items-center gap-2 mb-3">
-                <Clock className="w-4 h-4 text-cyan-400" />
-                <h3 className="font-arcade text-sm font-bold text-white tracking-wide">
+                <Clock className="w-4 h-4 text-sky-600" />
+                <h3 className="font-bubble text-base text-slate-900 tracking-wide">
                   RECENT ACTIVITY
                 </h3>
               </div>
@@ -448,20 +449,20 @@ export const StudentProfileModal: React.FC = () => {
                 {profile.recentActivity.map((item, idx) => (
                   <div
                     key={`${item.attemptId}-${idx}`}
-                    className="p-3 rounded-xl bg-slate-950/70 border border-slate-800/80 flex items-center justify-between text-xs"
+                    className="p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between text-xs"
                   >
                     <div className="flex items-center gap-2.5 truncate max-w-[65%]">
-                      <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-900 border border-slate-800 text-slate-400 uppercase">
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-sky-100 text-sky-700 uppercase">
                         {item.gameType?.replace('_', ' ')}
                       </span>
-                      <span className="font-medium text-slate-200 truncate">
+                      <span className="font-medium text-slate-800 truncate">
                         {item.activityTitle}
                       </span>
                     </div>
 
                     <div className="flex items-center gap-3 shrink-0 font-mono">
-                      <span className="text-purple-400 font-bold">{item.percentage}%</span>
-                      <span className="px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">
+                      <span className="text-purple-700 font-bold">{item.percentage}%</span>
+                      <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 font-bold">
                         +{item.xpEarned} XP
                       </span>
                     </div>

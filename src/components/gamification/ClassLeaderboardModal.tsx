@@ -1,10 +1,10 @@
 /**
- * UNIT REVIEW ARCADE — CLASS LEADERBOARD MODAL (PHASE 5)
- * Version: 5.0.0
+ * UNIT REVIEW ARCADE — CLASS LEADERBOARD MODAL (PHASE 9C)
+ * Version: 9.3.0
  * 
+ * Colorful Game World + Bright Creative Campus redesign.
  * Privacy-preserving, competitive class rankings across 7A, 7B, 8A, and 8B.
- * Highlights current student, celebrates top performers with podium accents,
- * and deterministic tie-breaking.
+ * Highlights current student with cheerful cyan accents and celebrates top performers with podium badges.
  */
 
 import React, { useMemo, useEffect } from 'react';
@@ -52,29 +52,29 @@ export const ClassLeaderboardModal: React.FC = () => {
   const entries = leaderboard?.entries || [];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/85 backdrop-blur-md overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-900/60 backdrop-blur-md overflow-y-auto">
       <motion.div
         initial={{ opacity: 0, scale: 0.95, y: 15 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 15 }}
-        className="w-full max-w-2xl rounded-3xl bg-slate-900 border border-amber-500/30 p-5 sm:p-8 text-slate-100 shadow-2xl relative flex flex-col max-h-[92vh] overflow-hidden"
+        className="w-full max-w-2xl rounded-3xl bg-white border-4 border-amber-300 p-5 sm:p-8 text-slate-800 shadow-2xl relative flex flex-col max-h-[92vh] overflow-hidden"
       >
-        {/* Ambient Top Glow */}
-        <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
+        {/* Soft Golden Ambient Glow */}
+        <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-amber-200/50 rounded-full blur-3xl pointer-events-none" />
 
         {/* Modal Header */}
-        <div className="flex items-center justify-between pb-4 border-b border-slate-800 shrink-0">
+        <div className="flex items-center justify-between pb-4 border-b-2 border-amber-100 shrink-0 relative z-10">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-500 to-yellow-400 flex items-center justify-center text-slate-950 shadow-lg shadow-amber-500/30">
+            <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-400 to-yellow-300 flex items-center justify-center text-slate-900 shadow-md shadow-amber-400/30">
               <Trophy className="w-6 h-6" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="font-arcade text-lg sm:text-xl font-bold text-white tracking-wide">
+                <h2 className="font-bubble text-xl sm:text-2xl text-slate-900 tracking-wide">
                   CLASS LEADERBOARDS
                 </h2>
               </div>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-500 font-medium">
                 Official English Arcade XP Rankings for Class {activeLeaderboardClass}
               </p>
             </div>
@@ -88,7 +88,7 @@ export const ClassLeaderboardModal: React.FC = () => {
               }}
               title="Refresh Leaderboard"
               disabled={isLoadingLeaderboard}
-              className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-all disabled:opacity-50"
+              className="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 transition-all disabled:opacity-50"
             >
               <RotateCw className={`w-4 h-4 ${isLoadingLeaderboard ? 'animate-spin' : ''}`} />
             </button>
@@ -97,7 +97,7 @@ export const ClassLeaderboardModal: React.FC = () => {
                 sounds.playTap();
                 closeModals();
               }}
-              className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-all"
+              className="p-2.5 rounded-xl bg-slate-100 hover:bg-rose-100 text-slate-500 hover:text-rose-600 transition-all"
             >
               <X className="w-4 h-4" />
             </button>
@@ -105,7 +105,7 @@ export const ClassLeaderboardModal: React.FC = () => {
         </div>
 
         {/* Class Selection Tabs */}
-        <div className="flex items-center gap-2 pt-4 pb-2 border-b border-slate-800/60 overflow-x-auto shrink-0">
+        <div className="flex items-center gap-2 pt-4 pb-2 border-b-2 border-amber-100 overflow-x-auto shrink-0 relative z-10">
           {availableClasses.map((cls) => {
             const isSelected = activeLeaderboardClass === cls;
             return (
@@ -115,10 +115,10 @@ export const ClassLeaderboardModal: React.FC = () => {
                   sounds.playTap();
                   selectLeaderboardClass(cls);
                 }}
-                className={`flex-1 min-w-[70px] py-2 rounded-xl text-xs sm:text-sm font-bold font-mono transition-all flex items-center justify-center gap-1.5 ${
+                className={`flex-1 min-w-[70px] py-2.5 rounded-xl text-xs sm:text-sm font-bold font-mono transition-all flex items-center justify-center gap-1.5 ${
                   isSelected
-                    ? 'bg-gradient-to-r from-amber-500 to-yellow-400 text-slate-950 shadow-md shadow-amber-500/20'
-                    : 'bg-slate-950/70 hover:bg-slate-800 text-slate-400 hover:text-slate-200 border border-slate-800'
+                    ? 'btn-game-amber text-slate-900 font-black shadow-md'
+                    : 'bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold border border-slate-200'
                 }`}
               >
                 <span>Class {cls}</span>
@@ -128,20 +128,20 @@ export const ClassLeaderboardModal: React.FC = () => {
         </div>
 
         {/* Scrollable Leaderboard Table */}
-        <div className="flex-1 overflow-y-auto pt-3 pr-1 space-y-2">
+        <div className="flex-1 overflow-y-auto pt-3 pr-1 space-y-2 relative z-10">
           {leaderboardError && (
-            <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs">
+            <div className="p-3.5 rounded-2xl bg-rose-50 border-2 border-rose-200 text-rose-700 text-xs font-medium">
               {leaderboardError}
             </div>
           )}
 
           {isLoadingLeaderboard && entries.length === 0 ? (
-            <div className="py-16 text-center text-slate-500 text-sm flex flex-col items-center gap-3">
-              <RotateCw className="w-6 h-6 animate-spin text-amber-400" />
+            <div className="py-16 text-center text-slate-400 text-sm flex flex-col items-center gap-3">
+              <RotateCw className="w-6 h-6 animate-spin text-amber-500" />
               <span>Fetching class rankings...</span>
             </div>
           ) : entries.length === 0 ? (
-            <div className="py-16 text-center text-slate-500 text-sm">
+            <div className="py-16 text-center text-slate-400 text-sm font-medium">
               No students recorded in this class yet.
             </div>
           ) : (
@@ -154,26 +154,30 @@ export const ClassLeaderboardModal: React.FC = () => {
               return (
                 <div
                   key={`${entry.rank}-${entry.displayName}`}
-                  className={`p-3.5 rounded-2xl border transition-all flex items-center justify-between gap-3 ${
+                  className={`p-3.5 rounded-2xl border-2 transition-all flex items-center justify-between gap-3 ${
                     isCurrent
-                      ? 'bg-cyan-950/40 border-cyan-500/60 shadow-md shadow-cyan-500/10 ring-1 ring-cyan-500/40'
+                      ? 'bg-cyan-50/80 border-cyan-400 shadow-sm ring-2 ring-cyan-200'
                       : isFirst
-                      ? 'bg-amber-950/20 border-amber-500/40 shadow-sm'
-                      : 'bg-slate-950/70 border-slate-800/80 hover:border-slate-700'
+                      ? 'bg-amber-50/80 border-amber-300 shadow-sm'
+                      : isSecond
+                      ? 'bg-slate-50 border-slate-200 shadow-sm'
+                      : isThird
+                      ? 'bg-orange-50/60 border-orange-200 shadow-sm'
+                      : 'bg-white border-slate-200 hover:bg-slate-50/80'
                   }`}
                 >
                   {/* Rank & Identity */}
                   <div className="flex items-center gap-3 min-w-0">
                     {/* Rank Badge */}
                     <div
-                      className={`w-9 h-9 rounded-xl flex items-center justify-center font-mono font-black text-sm shrink-0 ${
+                      className={`w-10 h-10 rounded-2xl flex items-center justify-center font-mono font-black text-sm shrink-0 ${
                         isFirst
-                          ? 'bg-gradient-to-tr from-amber-400 to-yellow-300 text-slate-950 shadow-md shadow-amber-400/30'
+                          ? 'bg-gradient-to-tr from-amber-400 to-yellow-300 text-slate-900 shadow-md shadow-amber-400/30'
                           : isSecond
-                          ? 'bg-gradient-to-tr from-slate-300 to-slate-100 text-slate-900 shadow-sm'
+                          ? 'bg-gradient-to-tr from-slate-200 to-slate-100 text-slate-700 border border-slate-300 shadow-sm'
                           : isThird
                           ? 'bg-gradient-to-tr from-amber-700 to-amber-600 text-amber-100 shadow-sm'
-                          : 'bg-slate-900 border border-slate-800 text-slate-400'
+                          : 'bg-slate-100 border border-slate-200 text-slate-500'
                       }`}
                     >
                       {isFirst ? (
@@ -188,23 +192,23 @@ export const ClassLeaderboardModal: React.FC = () => {
                       <div className="flex items-center gap-2">
                         <span
                           className={`font-bold text-sm truncate ${
-                            isCurrent ? 'text-cyan-300' : 'text-slate-100'
+                            isCurrent ? 'text-cyan-950 font-black' : 'text-slate-900'
                           }`}
                         >
                           {entry.displayName}
                         </span>
                         {isCurrent && (
-                          <span className="px-1.5 py-0.2 rounded text-[10px] font-mono font-extrabold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 uppercase tracking-wide">
+                          <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-black bg-cyan-200 text-cyan-800 border border-cyan-300 uppercase tracking-wide">
                             YOU
                           </span>
                         )}
                       </div>
-                      <div className="flex items-center gap-2 text-xs text-slate-400 mt-0.5">
-                        <span className="px-1.5 py-0.2 rounded bg-indigo-500/20 text-indigo-300 font-mono text-[10px] font-bold">
+                      <div className="flex items-center gap-2 text-xs text-slate-500 mt-0.5">
+                        <span className="px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 font-mono text-[10px] font-bold">
                           Lv. {entry.level}
                         </span>
-                        <span className="text-[11px] truncate">{entry.levelTitle}</span>
-                        <span className="text-[10px] text-slate-500 hidden sm:inline">
+                        <span className="text-[11px] font-medium truncate">{entry.levelTitle}</span>
+                        <span className="text-[10px] text-slate-400 hidden sm:inline">
                           • {entry.activitiesCompleted} completed
                         </span>
                       </div>
@@ -213,8 +217,8 @@ export const ClassLeaderboardModal: React.FC = () => {
 
                   {/* XP Total */}
                   <div className="text-right shrink-0">
-                    <span className="font-mono text-base sm:text-lg font-black text-amber-400 block">
-                      {entry.totalXp} <span className="text-xs font-semibold text-amber-300/80">XP</span>
+                    <span className="font-mono text-base sm:text-lg font-black text-amber-600 block">
+                      {entry.totalXp} <span className="text-xs font-bold text-amber-500">XP</span>
                     </span>
                   </div>
                 </div>
@@ -224,7 +228,7 @@ export const ClassLeaderboardModal: React.FC = () => {
         </div>
 
         {/* Footer Note */}
-        <div className="pt-3 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-slate-500 font-mono shrink-0">
+        <div className="pt-3 border-t-2 border-slate-100 flex items-center justify-between text-xs text-slate-400 font-mono font-medium shrink-0 relative z-10">
           <span>Ranked by verified curriculum XP</span>
           <span>Deterministic tie-breaking</span>
         </div>
