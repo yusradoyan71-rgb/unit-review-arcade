@@ -83,7 +83,12 @@ export const QuestionRetryModal: React.FC<QuestionRetryModalProps> = ({
 
     const mcQ = question as MultipleChoiceQuestion | undefined;
     const correctIdx = mcQ?.correctOptionIndex !== undefined ? mcQ.correctOptionIndex : -1;
-    const answeredCorrectly = idx === correctIdx || optText.trim().toLowerCase() === mistake.correctAnswer.trim().toLowerCase();
+    const rightText = (question as any)?.rightText;
+    const answeredCorrectly =
+      idx === correctIdx ||
+      optText.trim().toLowerCase() === mistake.correctAnswer.trim().toLowerCase() ||
+      mistake.correctAnswer.toLowerCase().endsWith(optText.trim().toLowerCase()) ||
+      (rightText && optText.trim().toLowerCase() === rightText.trim().toLowerCase());
 
     setIsCorrect(answeredCorrectly);
     setIsAnswered(true);
@@ -253,11 +258,22 @@ export const QuestionRetryModal: React.FC<QuestionRetryModalProps> = ({
         <div className="my-5 p-5 sm:p-6 rounded-2xl bg-slate-50 border-2 border-slate-200 relative z-10 shadow-xs">
           <div className="flex items-center gap-1.5 text-xs font-bold text-indigo-700 uppercase tracking-wider mb-2">
             <BookOpen className="w-4 h-4 text-indigo-600" />
-            <span>Question Prompt</span>
+            <span>{gameType === 'match_it' ? 'Match It! Vocabulary Pair' : 'Question Prompt'}</span>
           </div>
-          <h2 className="text-base sm:text-lg md:text-xl font-bold text-slate-900 leading-relaxed">
-            {mistake.questionPrompt}
-          </h2>
+          {gameType === 'match_it' ? (
+            <div>
+              <span className="text-xs text-slate-500 font-bold uppercase tracking-wider block mb-1.5">
+                Match the term with its correct definition:
+              </span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-purple-50 border-2 border-purple-200 text-purple-900 font-bubble text-lg sm:text-xl font-bold tracking-wide shadow-xs">
+                <span>{(question as any)?.leftText || mistake.questionPrompt.replace(/^Match:\s*/i, '')}</span>
+              </div>
+            </div>
+          ) : (
+            <h2 className="text-base sm:text-lg md:text-xl font-bold text-slate-900 leading-relaxed">
+              {mistake.questionPrompt}
+            </h2>
+          )}
         </div>
 
         {/* Interactive Engine Input */}
@@ -343,14 +359,23 @@ export const QuestionRetryModal: React.FC<QuestionRetryModalProps> = ({
               </button>
             </div>
           ) : (
-            /* 3. Multiple Choice */
+            /* 3. Multiple Choice & Vocabulary Matching */
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {mcOptions.map((opt, idx) => {
                 const isSelected = selectedIdx === idx;
+                const mcQ = question as MultipleChoiceQuestion | undefined;
+                const correctIdx = mcQ?.correctOptionIndex !== undefined ? mcQ.correctOptionIndex : -1;
+                const rightText = (question as any)?.rightText;
+                const isThisCorrect =
+                  idx === correctIdx ||
+                  opt.trim().toLowerCase() === mistake.correctAnswer.trim().toLowerCase() ||
+                  mistake.correctAnswer.toLowerCase().endsWith(opt.trim().toLowerCase()) ||
+                  (rightText && opt.trim().toLowerCase() === rightText.trim().toLowerCase());
+
                 let btnStyle = 'bg-white border-slate-200 text-slate-800 hover:border-indigo-300 hover:bg-indigo-50/20';
 
                 if (isAnswered) {
-                  if (opt.trim().toLowerCase() === mistake.correctAnswer.trim().toLowerCase()) {
+                  if (isThisCorrect) {
                     btnStyle = 'bg-emerald-50 border-emerald-400 text-emerald-950 ring-2 ring-emerald-200';
                   } else if (isSelected) {
                     btnStyle = 'bg-rose-50 border-rose-400 text-rose-950 ring-2 ring-rose-200';
@@ -367,10 +392,10 @@ export const QuestionRetryModal: React.FC<QuestionRetryModalProps> = ({
                     className={`p-4 rounded-2xl border-2 text-left font-bold text-xs sm:text-sm transition-all flex items-center justify-between gap-3 shadow-xs ${btnStyle}`}
                   >
                     <span>{opt}</span>
-                    {isAnswered && opt.trim().toLowerCase() === mistake.correctAnswer.trim().toLowerCase() && (
+                    {isAnswered && isThisCorrect && (
                       <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
                     )}
-                    {isAnswered && isSelected && !isCorrect && (
+                    {isAnswered && isSelected && !isThisCorrect && (
                       <XCircle className="w-5 h-5 text-rose-600 shrink-0" />
                     )}
                   </button>

@@ -9,7 +9,15 @@
  * 4. Pedagogical question and explanation enrichment
  */
 
-import type { ArcadeData, GradeId, AnyQuestion, GameType } from '../types/schema';
+import type { 
+  ArcadeData, 
+  GradeId, 
+  AnyQuestion, 
+  GameType,
+  MultipleChoiceQuestion,
+  SentenceBuilderQuestion,
+  TrueFalseQuestion 
+} from '../types/schema';
 import type { 
   StudentMistakeRecord, 
   StudentTopicMasteryOverview, 
@@ -117,7 +125,41 @@ export class PersonalizedLearningService {
   }
 
   /**
+   * Evaluates whether a question has valid, playable interactive properties.
+   */
+  public static isQuestionPlayable(q: AnyQuestion | null | undefined, gameType: GameType): boolean {
+    if (!q || !q.id || !q.prompt) return false;
+
+    if (gameType === 'sentence_builder') {
+      const sq = q as SentenceBuilderQuestion;
+      return Boolean(
+        typeof sq.correctSentence === 'string' &&
+        sq.correctSentence.trim().length > 0 &&
+        Array.isArray(sq.scrambledWords) &&
+        sq.scrambledWords.length > 0
+      );
+    }
+
+    if (gameType === 'true_false') {
+      const tfQ = q as TrueFalseQuestion;
+      return typeof tfQ.isTrue === 'boolean';
+    }
+
+    // Multiple Choice, Match It (converted to MCQ options), Reading Detective, Train Station
+    const mcQ = q as MultipleChoiceQuestion;
+    return Boolean(
+      Array.isArray(mcQ.options) &&
+      mcQ.options.length >= 2 &&
+      typeof mcQ.correctOptionIndex === 'number' &&
+      mcQ.correctOptionIndex >= 0 &&
+      mcQ.correctOptionIndex < mcQ.options.length
+    );
+  }
+
+  /**
    * Finds a question in curriculum data by questionId.
+   * Seamlessly resolves direct questions AND match pairs inside rounds/activities,
+   * converting match pairs into interactive 4-option review items with curriculum distractors.
    */
   public static findQuestionInCurriculum(
     data: ArcadeData,
@@ -125,47 +167,134 @@ export class PersonalizedLearningService {
     activityId?: string,
     unitId?: string
   ): { question: AnyQuestion; activityTitle: string; unitTitle: string; gameType: GameType; gradeId: GradeId } | null {
-    const grades: GradeId[] = ['grade-7', 'grade-8'];
+    if (!data || !questionId) return null;
+    const cleanId = questionId.replace(/^(left-|right-)/, '');
 
-    for (const gradeId of grades) {
-      const units = data.units[gradeId] || [];
-      for (const unit of units) {
-        if (unitId && unit.id !== unitId) continue;
+    // First attempt with filters (if provided), second attempt global across all units if not found
+    const searchPass = (
+      strictFilter: boolean
+    ): { question: AnyQuestion; activityTitle: string; unitTitle: string; gameType: GameType; gradeId: GradeId } | null => {
+      const grades: GradeId[] = ['grade-7', 'grade-8'];
 
-        for (const activity of unit.activities) {
-          if (activityId && activity.id !== activityId) continue;
+      for (const gradeId of grades) {
+        const units = data.units[gradeId] || [];
+        for (const unit of units) {
+          if (strictFilter && unitId && unit.id !== unitId) continue;
 
-          // Check direct questions
-          for (const q of activity.questions) {
-            if (q.id === questionId) {
-              return {
-                question: q,
-                activityTitle: activity.title,
-                unitTitle: unit.title,
-                gameType: activity.gameType,
-                gradeId,
+          for (const activity of unit.activities) {
+            if (strictFilter && activityId && activity.id !== activityId) continue;
+
+            // 1. Direct question match
+            for (const q of activity.questions) {
+              if (q.id === questionId || q.id === cleanId) {
+                return {
+                  question: q,
+                  activityTitle: activity.title,
+                  unitTitle: unit.title,
+                  gameType: activity.gameType,
+                  gradeId,
+                };
+              }
+
+              // 2. Check match pairs inside rounds
+              const matchQ = q as { 
+                rounds?: Array<{ pairs?: Array<{ id: string; left: string; right: string }> }>;
+                pairs?: Array<{ id: string; left: string; right: string }>;
               };
-            }
 
-            // Check match pairs inside rounds
-            const matchQ = q as { rounds?: Array<{ pairs?: Array<{ id: string; left: string; right: string }> }> };
-            if (matchQ.rounds) {
-              for (const round of matchQ.rounds) {
-                if (round.pairs) {
-                  for (const pair of round.pairs) {
-                    if (pair.id === questionId) {
-                      return {
-                        question: {
+              if (matchQ.rounds) {
+                for (const round of matchQ.rounds) {
+                  if (round.pairs) {
+                    for (const pair of round.pairs) {
+                      if (pair.id === questionId || pair.id === cleanId) {
+                        // Gather sibling distractors from same round
+                        const siblingDistractors = round.pairs
+                          .filter((p) => p.id !== pair.id && p.right && p.right.trim() !== pair.right.trim())
+                          .map((p) => p.right.trim());
+
+                        // If fewer than 3, supplement from other rounds in this activity
+                        if (siblingDistractors.length < 3) {
+                          for (const otherRound of matchQ.rounds) {
+                            if (otherRound !== round && otherRound.pairs) {
+                              for (const op of otherRound.pairs) {
+                                const rText = op.right ? op.right.trim() : '';
+                                if (rText && rText !== pair.right.trim() && !siblingDistractors.includes(rText)) {
+                                  siblingDistractors.push(rText);
+                                }
+                              }
+                            }
+                          }
+                        }
+
+                        // Build 4-option set (target + up to 3 distractors)
+                        const chosenDistractors = siblingDistractors.slice(0, 3);
+                        const rawOptions = [pair.right, ...chosenDistractors];
+                        const options = shuffleArrayWithSeed(rawOptions, pair.id);
+                        const correctOptionIndex = options.indexOf(pair.right);
+
+                        const convertedMatchQuestion: AnyQuestion = {
                           id: pair.id,
                           prompt: `Match: ${pair.left}`,
                           explanation: ExplanationService.formatMatchPairExplanation(pair),
-                        },
-                        activityTitle: activity.title,
-                        unitTitle: unit.title,
-                        gameType: activity.gameType,
-                        gradeId,
-                      };
+                          options,
+                          correctOptionIndex: correctOptionIndex >= 0 ? correctOptionIndex : 0,
+                          points: 10,
+                          difficulty: 'medium',
+                          ...({
+                            leftText: pair.left,
+                            rightText: pair.right,
+                            correctAnswer: pair.right,
+                          } as Record<string, unknown>),
+                        } as AnyQuestion;
+
+                        return {
+                          question: convertedMatchQuestion,
+                          activityTitle: activity.title,
+                          unitTitle: unit.title,
+                          gameType: 'match_it',
+                          gradeId,
+                        };
+                      }
                     }
+                  }
+                }
+              }
+
+              // 3. Check direct pairs array on match question
+              if (matchQ.pairs) {
+                for (const pair of matchQ.pairs) {
+                  if (pair.id === questionId || pair.id === cleanId) {
+                    const siblingDistractors = matchQ.pairs
+                      .filter((p) => p.id !== pair.id && p.right && p.right.trim() !== pair.right.trim())
+                      .map((p) => p.right.trim());
+
+                    const chosenDistractors = siblingDistractors.slice(0, 3);
+                    const rawOptions = [pair.right, ...chosenDistractors];
+                    const options = shuffleArrayWithSeed(rawOptions, pair.id);
+                    const correctOptionIndex = options.indexOf(pair.right);
+
+                    const convertedMatchQuestion: AnyQuestion = {
+                      id: pair.id,
+                      prompt: `Match: ${pair.left}`,
+                      explanation: ExplanationService.formatMatchPairExplanation(pair),
+                      options,
+                      correctOptionIndex: correctOptionIndex >= 0 ? correctOptionIndex : 0,
+                      points: 10,
+                      difficulty: 'medium',
+                      ...({
+                        leftText: pair.left,
+                        rightText: pair.right,
+                        correctAnswer: pair.right,
+                      } as Record<string, unknown>),
+                    } as AnyQuestion;
+
+                    return {
+                      question: convertedMatchQuestion,
+                      activityTitle: activity.title,
+                      unitTitle: unit.title,
+                      gameType: 'match_it',
+                      gradeId,
+                    };
                   }
                 }
               }
@@ -173,6 +302,16 @@ export class PersonalizedLearningService {
           }
         }
       }
+      return null;
+    };
+
+    // First attempt with unit/activity filter
+    const result = searchPass(Boolean(unitId || activityId));
+    if (result) return result;
+
+    // Fallback pass globally across all units if strict filter yielded no match
+    if (unitId || activityId) {
+      return searchPass(false);
     }
 
     return null;
@@ -227,24 +366,26 @@ export class PersonalizedLearningService {
     const addedQuestionIds = new Set<string>();
     const targetTopicsSet = new Set<string>();
 
-    // Priority 1: Add uncorrected mistakes
+    // Priority 1: Add uncorrected mistakes that are verified playable
     for (const mist of eligibleMistakes) {
       if (questions.length >= maxQuestions) break;
       const found = this.findQuestionInCurriculum(data, mist.questionId, mist.activityId, mist.unitId);
       if (found && !addedQuestionIds.has(found.question.id)) {
-        addedQuestionIds.add(found.question.id);
-        questions.push(found.question);
-        targetTopicsSet.add(found.activityTitle);
-        questionMetadata.push({
-          questionId: found.question.id,
-          unitId: mist.unitId,
-          unitTitle: found.unitTitle,
-          activityId: mist.activityId,
-          activityTitle: found.activityTitle,
-          gameType: found.gameType,
-          originalMistakeId: mist.mistakeId,
-          isFromMistake: true,
-        });
+        if (this.isQuestionPlayable(found.question, found.gameType)) {
+          addedQuestionIds.add(found.question.id);
+          questions.push(found.question);
+          targetTopicsSet.add(found.activityTitle);
+          questionMetadata.push({
+            questionId: found.question.id,
+            unitId: mist.unitId,
+            unitTitle: found.unitTitle,
+            activityId: mist.activityId,
+            activityTitle: found.activityTitle,
+            gameType: found.gameType,
+            originalMistakeId: mist.mistakeId,
+            isFromMistake: true,
+          });
+        }
       }
     }
 
@@ -261,10 +402,49 @@ export class PersonalizedLearningService {
 
           for (const q of act.questions) {
             if (questions.length >= maxQuestions) break;
-            if (addedQuestionIds.has(q.id)) continue;
 
-            // Only add clean multiple choice, true/false, or sentence builder for unified review
-            if (act.gameType === 'quiz_battle' || act.gameType === 'true_false' || act.gameType === 'sentence_builder') {
+            // Handle match_it activities by extracting individual pairs
+            const matchQ = q as { 
+              rounds?: Array<{ pairs?: Array<{ id: string; left: string; right: string }> }>;
+              pairs?: Array<{ id: string; left: string; right: string }>;
+            };
+            if (act.gameType === 'match_it' && (matchQ.rounds || matchQ.pairs)) {
+              const allPairs: Array<{ id: string; left: string; right: string }> = [];
+              if (matchQ.rounds) {
+                for (const r of matchQ.rounds) {
+                  if (r.pairs) allPairs.push(...r.pairs);
+                }
+              }
+              if (matchQ.pairs) {
+                allPairs.push(...matchQ.pairs);
+              }
+
+              for (const pair of allPairs) {
+                if (questions.length >= maxQuestions) break;
+                if (addedQuestionIds.has(pair.id)) continue;
+
+                const converted = this.findQuestionInCurriculum(data, pair.id, act.id, unit.id);
+                if (converted && this.isQuestionPlayable(converted.question, 'match_it')) {
+                  addedQuestionIds.add(converted.question.id);
+                  questions.push(converted.question);
+                  targetTopicsSet.add(act.title);
+                  questionMetadata.push({
+                    questionId: converted.question.id,
+                    unitId: unit.id,
+                    unitTitle: unit.title,
+                    activityId: act.id,
+                    activityTitle: act.title,
+                    gameType: 'match_it',
+                    isFromMistake: false,
+                  });
+                }
+              }
+              continue;
+            }
+
+            // Normal curriculum questions (MCQ, True/False, Sentence Builder, Reading Detective, Train Station)
+            if (addedQuestionIds.has(q.id)) continue;
+            if (this.isQuestionPlayable(q, act.gameType)) {
               addedQuestionIds.add(q.id);
               questions.push(q);
               targetTopicsSet.add(act.title);
@@ -386,4 +566,22 @@ function relevantUnitTitle(data: ArcadeData, gradeId: GradeId, unitId: string): 
   const units = data.units[gradeId] || [];
   const found = units.find((u) => u.id === unitId);
   return found ? `Unit ${found.unitNumber}: ${found.title}` : unitId;
+}
+
+/**
+ * Deterministically shuffles an array using a seed string.
+ * Ensures consistent option order across renders while shuffling distractors evenly.
+ */
+function shuffleArrayWithSeed<T>(array: T[], seedStr: string): T[] {
+  const arr = [...array];
+  let seed = 0;
+  for (let i = 0; i < seedStr.length; i++) {
+    seed = (seed * 31 + seedStr.charCodeAt(i)) >>> 0;
+  }
+  for (let i = arr.length - 1; i > 0; i--) {
+    seed = (seed * 9301 + 49297) % 233280;
+    const j = Math.floor((seed / 233280) * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
 }

@@ -138,12 +138,14 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
     const nextOrder = interactionCountRef.current + 1;
     interactionCountRef.current = nextOrder;
 
+    const matchedPair = currentRound?.pairs.find((p) => p.id === leftCard.id);
+
     recordAnswer({
       questionId: leftCard.id,
       questionOrder: nextOrder,
-      questionPrompt: `Round ${currentRoundIndex + 1}: ${currentRound?.title || 'Matching'}`,
+      questionPrompt: `Match: ${leftCard.text}`,
       studentResponse: `${leftCard.text} ➔ ${rightCard.text}`,
-      correctAnswer: `${leftCard.text} ➔ (paired)`,
+      correctAnswer: matchedPair ? `${leftCard.text} ➔ ${matchedPair.right}` : `${leftCard.text} ➔ (paired)`,
       isCorrect: isMatch,
     });
 

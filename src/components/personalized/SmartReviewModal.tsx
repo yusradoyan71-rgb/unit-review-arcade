@@ -29,7 +29,9 @@ import {
   Award,
   RotateCw,
   Trophy,
-  BookOpen
+  BookOpen,
+  AlertCircle,
+  Layers
 } from 'lucide-react';
 
 export const SmartReviewModal: React.FC = () => {
@@ -67,7 +69,26 @@ export const SmartReviewModal: React.FC = () => {
 
   const explanation = ExplanationService.getExplanation(currentQ, gameType).explanation;
 
-  // Handle Multiple Choice
+  // Question Engine & Option Validation
+  const isMCQ =
+    gameType === 'quiz_battle' ||
+    gameType === 'match_it' ||
+    gameType === 'reading_detective' ||
+    gameType === 'train_station' ||
+    Boolean((currentQ as MultipleChoiceQuestion)?.options);
+
+  const mcOptions = (currentQ as MultipleChoiceQuestion)?.options || [];
+  const isTF = gameType === 'true_false';
+  const isSentence = gameType === 'sentence_builder';
+  const sentenceQ = currentQ as SentenceBuilderQuestion | undefined;
+
+  const isUnrenderable =
+    !currentQ ||
+    (isMCQ && mcOptions.length === 0) ||
+    (isSentence && (!sentenceQ?.scrambledWords || sentenceQ.scrambledWords.length === 0)) ||
+    (isTF && typeof (currentQ as TrueFalseQuestion)?.isTrue !== 'boolean');
+
+  // Handle Multiple Choice & Match Options
   const handleSelectOption = async (idx: number) => {
     if (isAnswered) return;
     sounds.playTap();
@@ -95,6 +116,17 @@ export const SmartReviewModal: React.FC = () => {
       }
     } else {
       sounds.playBack();
+      if (currentMeta.isFromMistake) {
+        await retryMistakeQuestion(
+          currentQ.id,
+          currentMeta.activityId,
+          currentMeta.unitId,
+          false,
+          mcQ.options[idx],
+          mcQ.options[mcQ.correctOptionIndex],
+          mcQ.prompt
+        );
+      }
     }
   };
 
@@ -126,11 +158,21 @@ export const SmartReviewModal: React.FC = () => {
       }
     } else {
       sounds.playBack();
+      if (currentMeta.isFromMistake) {
+        await retryMistakeQuestion(
+          currentQ.id,
+          currentMeta.activityId,
+          currentMeta.unitId,
+          false,
+          boolVal ? 'True' : 'False',
+          tfQ.isTrue ? 'True' : 'False',
+          tfQ.prompt
+        );
+      }
     }
   };
 
   // Sentence Builder handlers
-  const sentenceQ = currentQ as SentenceBuilderQuestion | undefined;
   const handlePickWord = (w: string) => {
     if (isAnswered) return;
     sounds.playTap();
@@ -165,6 +207,59 @@ export const SmartReviewModal: React.FC = () => {
       }
     } else {
       sounds.playBack();
+      if (currentMeta.isFromMistake) {
+        await retryMistakeQuestion(
+          currentQ.id,
+          currentMeta.activityId,
+          currentMeta.unitId,
+          false,
+          selectedWords.join(' '),
+          sentenceQ.correctSentence,
+          sentenceQ.prompt
+        );
+      }
+    }
+  };
+
+  // Fallback Skip & Recovery actions to ensure session NEVER freezes
+  const handleSkipQuestion = () => {
+    sounds.playTap();
+    if (currentIndex + 1 < questions.length) {
+      setCurrentIndex((idx) => idx + 1);
+      setIsAnswered(false);
+      setIsCorrect(false);
+      setSelectedIdx(null);
+      setSelectedBool(null);
+      setSelectedWords([]);
+    } else {
+      sounds.playSuccess();
+      completeSmartReviewSession(
+        activeReviewSession.sessionId,
+        score,
+        questions.length,
+        correctedMistakeIds
+      );
+      setCurrentIndex(questions.length);
+    }
+  };
+
+  const handleMarkAsReviewed = async () => {
+    sounds.playSuccess();
+    setIsAnswered(true);
+    setIsCorrect(true);
+    setScore((s) => s + 1);
+
+    if (currentMeta.isFromMistake) {
+      setCorrectedMistakeIds((prev) => [...prev, currentQ.id]);
+      await retryMistakeQuestion(
+        currentQ.id,
+        currentMeta.activityId,
+        currentMeta.unitId,
+        true,
+        'Reviewed',
+        (currentQ as any)?.correctAnswer || 'Reviewed',
+        currentQ?.prompt || 'Question Review'
+      );
     }
   };
 
@@ -315,10 +410,17 @@ export const SmartReviewModal: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <span className="text-xs font-mono font-bold text-slate-500">
               Q <strong className="text-indigo-600 font-black">{currentIndex + 1}</strong> / {questions.length}
             </span>
+            <button
+              onClick={handleSkipQuestion}
+              title="Skip this question"
+              className="text-[11px] font-bold text-slate-400 hover:text-slate-600 px-2 py-1 rounded-lg hover:bg-slate-100 transition-colors"
+            >
+              Skip
+            </button>
             <button
               onClick={closeSmartReviewModal}
               className="p-2.5 rounded-xl bg-slate-100 text-slate-500 hover:text-rose-600 hover:bg-rose-50 transition-colors"
@@ -338,19 +440,66 @@ export const SmartReviewModal: React.FC = () => {
 
         {/* Question Prompt */}
         <div className="my-4 p-5 sm:p-6 rounded-2xl bg-slate-50 border-2 border-slate-200 relative z-10 shadow-xs">
-          {currentMeta.isFromMistake && (
-            <span className="px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800 border border-rose-200 text-[10px] font-mono font-bold mb-2 inline-block">
-              Targeting Previously Missed Question
-            </span>
+          <div className="flex flex-wrap items-center gap-2 mb-2">
+            {currentMeta.isFromMistake && (
+              <span className="px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800 border border-rose-200 text-[10px] font-mono font-bold">
+                Targeting Previously Missed Question
+              </span>
+            )}
+            {gameType === 'match_it' && (
+              <span className="px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-800 border border-purple-200 text-[10px] font-mono font-bold flex items-center gap-1">
+                <Layers className="w-3 h-3 text-purple-600" />
+                Vocabulary Match
+              </span>
+            )}
+          </div>
+
+          {gameType === 'match_it' ? (
+            <div>
+              <span className="text-xs text-slate-500 font-bold uppercase tracking-wider block mb-1.5">
+                Match the term with its correct definition:
+              </span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-purple-50 border-2 border-purple-200 text-purple-900 font-bubble text-lg sm:text-xl font-bold tracking-wide shadow-xs">
+                <span>{(currentQ as any)?.leftText || currentQ.prompt.replace(/^Match:\s*/i, '')}</span>
+              </div>
+            </div>
+          ) : (
+            <h2 className="text-base sm:text-lg font-bold text-slate-900 leading-relaxed">
+              {currentQ.prompt}
+            </h2>
           )}
-          <h2 className="text-base sm:text-lg font-bold text-slate-900 leading-relaxed">
-            {currentQ.prompt}
-          </h2>
         </div>
 
         {/* Interactive Engine Input */}
         <div className="mb-6 flex-1 relative z-10">
-          {gameType === 'sentence_builder' && sentenceQ ? (
+          {isUnrenderable ? (
+            /* Fallback Recovery Card — Student is NEVER blocked */
+            <div className="p-5 sm:p-6 rounded-2xl bg-amber-50 border-2 border-amber-200 text-slate-800 space-y-3.5 shadow-xs">
+              <div className="flex items-center gap-2.5 text-amber-800 font-bold text-sm">
+                <AlertCircle className="w-5 h-5 text-amber-600 shrink-0" />
+                <span>Review Item Details</span>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                {(currentQ as any)?.explanation || 'This review question does not require multiple choice interaction. Review the prompt and continue.'}
+              </p>
+              <div className="flex flex-wrap items-center gap-2.5 pt-2">
+                <button
+                  onClick={handleSkipQuestion}
+                  className="px-4 py-2.5 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-700 font-bold text-xs flex items-center gap-1.5 transition-colors shadow-xs"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                  <span>Skip Question</span>
+                </button>
+                <button
+                  onClick={handleMarkAsReviewed}
+                  className="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs flex items-center gap-1.5 transition-colors shadow-xs"
+                >
+                  <CheckCircle2 className="w-4 h-4" />
+                  <span>Mark as Reviewed & Continue</span>
+                </button>
+              </div>
+            </div>
+          ) : gameType === 'sentence_builder' && sentenceQ ? (
             <div className="space-y-4">
               <div className="min-h-[50px] p-3 rounded-2xl bg-slate-50 border-2 border-dashed border-indigo-300 flex flex-wrap gap-2">
                 {selectedWords.length === 0 ? (
@@ -421,10 +570,11 @@ export const SmartReviewModal: React.FC = () => {
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              {((currentQ as MultipleChoiceQuestion).options || []).map((opt, idx) => {
+              {mcOptions.map((opt, idx) => {
                 const mcQ = currentQ as MultipleChoiceQuestion;
                 const isSelected = selectedIdx === idx;
                 const isCorrectOption = idx === mcQ.correctOptionIndex;
+                const optionLetter = String.fromCharCode(65 + idx);
 
                 let btnStyle = 'bg-white border-slate-200 text-slate-800 hover:border-indigo-300 hover:bg-indigo-50/20';
                 if (isAnswered) {
@@ -442,11 +592,22 @@ export const SmartReviewModal: React.FC = () => {
                     key={idx}
                     disabled={isAnswered}
                     onClick={() => handleSelectOption(idx)}
-                    className={`p-4 rounded-2xl border-2 text-left font-bold text-xs sm:text-sm transition-all flex items-center justify-between gap-3 shadow-xs ${btnStyle}`}
+                    className={`p-4 rounded-2xl border-2 text-left font-bold text-xs sm:text-sm transition-all flex items-start justify-between gap-3 shadow-xs ${btnStyle}`}
                   >
-                    <span>{opt}</span>
-                    {isAnswered && isCorrectOption && <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />}
-                    {isAnswered && isSelected && !isCorrectOption && <XCircle className="w-4 h-4 text-rose-600 shrink-0" />}
+                    <div className="flex items-start gap-2.5">
+                      <span className={`w-5 h-5 rounded-lg flex items-center justify-center text-[10px] font-mono font-black shrink-0 mt-0.5 ${
+                        isAnswered && isCorrectOption
+                          ? 'bg-emerald-600 text-white'
+                          : isAnswered && isSelected
+                          ? 'bg-rose-600 text-white'
+                          : 'bg-slate-100 text-slate-600'
+                      }`}>
+                        {optionLetter}
+                      </span>
+                      <span className="leading-snug">{opt}</span>
+                    </div>
+                    {isAnswered && isCorrectOption && <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />}
+                    {isAnswered && isSelected && !isCorrectOption && <XCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />}
                   </button>
                 );
               })}
