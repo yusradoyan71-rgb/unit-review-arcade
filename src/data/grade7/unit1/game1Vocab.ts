@@ -4,7 +4,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   // 1-10: Social Media Actions & Verbs
   {
     id: 'g7-u1-v1',
-    prompt: 'Which verb means to send a photo or video from your device to a website or social media platform?',
+    prompt: 'To send files or photos to the internet, you _____ them.',
     options: ['Upload', 'Download', 'Delete', 'Scroll'],
     correctOptionIndex: 0,
     explanation: "'Upload' means transferring digital files from your personal device to an online platform or server.",
@@ -12,7 +12,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v2',
-    prompt: 'When you save an image or document from the internet directly onto your tablet, you _____ it.',
+    prompt: 'To save files from the internet onto your device, you _____ them.',
     options: ['upload', 'download', 'stream', 'browse'],
     correctOptionIndex: 1,
     explanation: "'Download' means copying or saving files from the internet onto your local device.",
@@ -20,7 +20,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v3',
-    prompt: 'When you slide your finger up or down on a touchscreen to view more posts on your feed, you...',
+    prompt: 'To move up and down on a touchscreen, you _____.',
     options: ['log out', 'download', 'scroll', 'subscribe'],
     correctOptionIndex: 2,
     explanation: "'Scroll' describes moving up or down through digital content on a screen.",
@@ -28,7 +28,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v4',
-    prompt: 'To move quickly from one photo to another by sliding your finger horizontally across the screen, you _____ left or right.',
+    prompt: 'To move sideways between photos by sliding your finger, you _____.',
     options: ['click', 'install', 'stream', 'swipe'],
     correctOptionIndex: 3,
     explanation: "'Swipe' means sliding your finger horizontally or vertically across a touchscreen.",
@@ -36,7 +36,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v5',
-    prompt: 'If you want to see all future updates and videos from a creator, you should click to _____ to their channel.',
+    prompt: 'To receive all future updates from a creator, you should _____.',
     options: ['subscribe', 'unfollow', 'browse', 'disconnect'],
     correctOptionIndex: 0,
     explanation: "'Subscribe' means signing up to receive regular updates from a channel or creator.",
@@ -44,7 +44,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v6',
-    prompt: 'You no longer want to see posts from an account you used to like. You should _____ that account.',
+    prompt: 'To stop seeing posts from an account, you should _____ it.',
     options: ['subscribe', 'unfollow', 'stream', 'upload'],
     correctOptionIndex: 1,
     explanation: "'Unfollow' means stopping the display of updates from an account in your social media feed.",
@@ -52,7 +52,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v7',
-    prompt: 'Listening to music or watching video content online in real time without downloading the whole file first is called...',
+    prompt: 'Playing music or video online in real time is called _____.',
     options: ['logging out', 'installing', 'streaming', 'deleting'],
     correctOptionIndex: 2,
     explanation: "'Streaming' means playing multimedia content continuously as it arrives from the internet.",
@@ -60,7 +60,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v8',
-    prompt: 'When you visit different web pages and look at random websites for pleasure, you _____ the web.',
+    prompt: 'When you casually visit different websites for fun, you _____.',
     options: ['swipe', 'upload', 'unfollow', 'browse'],
     correctOptionIndex: 3,
     explanation: "'Browse' means looking through web pages or online content in a casual way.",
@@ -68,7 +68,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v9',
-    prompt: 'Before accessing your personal social network account, you must enter your username and password to...',
+    prompt: 'Enter your username and password to _____ to your account.',
     options: ['log in', 'log out', 'download', 'swipe'],
     correctOptionIndex: 0,
     explanation: "'Log in' (or log on) means signing into a password-protected digital account.",
@@ -76,7 +76,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v10',
-    prompt: 'When you finish using a shared school computer, you should always _____ to keep your account safe.',
+    prompt: 'Always _____ after using a shared school computer.',
     options: ['scroll', 'log out', 'stream', 'trend'],
     correctOptionIndex: 1,
     explanation: "'Log out' ends your active session and prevents unauthorized access to your account.",
@@ -86,7 +86,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   // 11-18: Social Media Features & People
   {
     id: 'g7-u1-v11',
-    prompt: 'A word or phrase preceded by the symbol # used to categorize digital posts is called a...',
+    prompt: 'A word preceded by # used to label posts is a _____.',
     options: ['password', 'notification', 'hashtag', 'browser'],
     correctOptionIndex: 2,
     explanation: "A 'hashtag' uses the '#' symbol to label topics and make posts searchable.",
@@ -94,7 +94,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v12',
-    prompt: 'When a video or meme spreads extremely fast across the internet and millions of people watch it, it goes...',
+    prompt: 'When a video spreads rapidly to millions of people, it goes _____.',
     options: ['broken', 'offline', 'private', 'viral'],
     correctOptionIndex: 3,
     explanation: "'Go viral' describes digital content that spreads rapidly across social networks.",
@@ -102,7 +102,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v13',
-    prompt: 'A topic or topic discussion that is currently very popular and widely discussed online right now is...',
+    prompt: 'A topic that is widely discussed online right now is _____.',
     options: ['trending', 'disconnected', 'unfollowed', 'archived'],
     correctOptionIndex: 0,
     explanation: "'Trending' describes topics receiving a sudden surge of mentions and views online.",
@@ -110,7 +110,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v14',
-    prompt: 'A pop-up message or sound on your screen alerting you that someone sent a message or liked your post is a...',
+    prompt: 'An alert showing a new message on your screen is a _____.',
     options: ['download', 'notification', 'detox', 'profile'],
     correctOptionIndex: 1,
     explanation: "A 'notification' informs you about new activity, messages, or updates on an app.",
@@ -118,7 +118,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v15',
-    prompt: 'A person who produces digital videos, blogs, podcasts, or artwork for online audiences is a...',
+    prompt: 'A person who makes videos or podcasts online is a _____.',
     options: ['notification', 'search engine', 'content creator', 'network cable'],
     correctOptionIndex: 2,
     explanation: "A 'content creator' makes media such as videos, music, or posts for online audiences.",
@@ -126,7 +126,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v16',
-    prompt: 'A person with a massive social media following who can influence the buying decisions and opinions of others is an...',
+    prompt: 'A person with many followers who influences opinions is an _____.',
     options: ['adverb', 'algorithm', 'offline user', 'influencer'],
     correctOptionIndex: 3,
     explanation: "An 'influencer' has built a large online audience and influences opinions and trends.",
@@ -134,7 +134,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v17',
-    prompt: 'The digital summary showing your username, biography, photo, and preferences on a website is your...',
+    prompt: 'The page displaying your photo, name, and biography is your _____.',
     options: ['online profile', 'screen time', 'search engine', 'hashtag'],
     correctOptionIndex: 0,
     explanation: "An 'online profile' represents your digital identity and personal information on a platform.",
@@ -142,7 +142,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v18',
-    prompt: 'A person who follows another person’s social media account to receive their posts is a...',
+    prompt: 'A person who subscribes to your posts is a _____.',
     options: ['creator', 'follower', 'browser', 'streamer'],
     correctOptionIndex: 1,
     explanation: "A 'follower' subscribes to view updates posted by another user on social media.",
@@ -152,7 +152,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   // 19-24: Technology & Application Categories
   {
     id: 'g7-u1-v19',
-    prompt: 'Which type of application helps drivers and pedestrians find directions and see interactive digital road maps?',
+    prompt: 'Which app helps drivers find road routes on a digital map?',
     options: ['Music streaming app', 'Messaging app', 'Navigation app', 'Online banking app'],
     correctOptionIndex: 2,
     explanation: "'Navigation apps' (like Google Maps or Waze) provide turn-by-turn directions and route planning.",
@@ -160,7 +160,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v20',
-    prompt: 'Which type of application allows students to practise vocabulary, solve math problems, and study school subjects?',
+    prompt: 'Which app helps students practice vocabulary and school subjects?',
     options: ['Navigation app', 'Social networking app', 'Shopping app', 'Educational app'],
     correctOptionIndex: 3,
     explanation: "'Educational apps' provide structured digital learning activities and language practice.",
@@ -168,7 +168,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v21',
-    prompt: 'An app that counts your daily footsteps, tracks your running distance, and monitors sleep quality is a...',
+    prompt: 'An app that counts footsteps and tracks workouts is a _____.',
     options: ['health and fitness app', 'navigation app', 'messaging app', 'photo editing app'],
     correctOptionIndex: 0,
     explanation: "'Health and fitness apps' track physical activities, workouts, and wellness data.",
@@ -176,7 +176,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v22',
-    prompt: 'Which type of app is specifically designed to help people organize schedules, manage to-do lists, and work efficiently?',
+    prompt: 'An app designed to manage to-do lists and schedules is a _____.',
     options: ['Social networking app', 'Productivity app', 'Gaming app', 'Navigation app'],
     correctOptionIndex: 1,
     explanation: "'Productivity apps' help users manage tasks, calendars, notes, and work projects.",
@@ -184,7 +184,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v23',
-    prompt: 'An app that lets you search online encyclopedias, dictionaries, and factual articles is classified as a...',
+    prompt: 'An app for searching dictionaries and factual articles is a _____.',
     options: ['shopping app', 'fitness app', 'reference app', 'messaging app'],
     correctOptionIndex: 2,
     explanation: "'Reference apps' provide access to informational databases, dictionaries, and encyclopedias.",
@@ -192,7 +192,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v24',
-    prompt: 'Which app allows users to create digital drawings, paint on a touchscreen, and design graphic posters?',
+    prompt: 'An app used to create digital drawings and art is an _____.',
     options: ['Fitness app', 'Navigation app', 'Banking app', 'Art and design app'],
     correctOptionIndex: 3,
     explanation: "'Art and design apps' provide digital brushes, colors, and layout tools for digital art.",
@@ -202,7 +202,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   // 25-30: Digital Habits, Online Safety & Word Formation
   {
     id: 'g7-u1-v25',
-    prompt: 'The total amount of time a person spends looking at digital screens on phones, tablets, or computers each day is called...',
+    prompt: 'Total time spent looking at digital screens each day is _____.',
     options: ['screen time', 'digital detox', 'privacy setting', 'online profile'],
     correctOptionIndex: 0,
     explanation: "'Screen time' measures the duration of time spent viewing digital displays.",
@@ -210,7 +210,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v26',
-    prompt: 'Taking a planned break from smartphones, social networks, and digital devices for a weekend is called a...',
+    prompt: 'Taking a planned weekend break from digital devices is a _____.',
     options: ['screen habit', 'digital detox', 'software update', 'network setup'],
     correctOptionIndex: 1,
     explanation: "A 'digital detox' is a conscious period of stepping away from electronic screens to reduce stress.",
@@ -218,7 +218,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v27',
-    prompt: 'A computer system that tracks what videos you watch and automatically recommends similar posts on your feed is an...',
+    prompt: 'A system that recommends content based on your interests is an _____.',
     options: ['avatar', 'attachment', 'algorithm', 'adverb'],
     correctOptionIndex: 2,
     explanation: "An 'algorithm' processes user behavior and interaction data to recommend customized content.",
@@ -226,7 +226,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v28',
-    prompt: 'To protect your online safety, you should never share _____ such as your home address or bank details with strangers.',
+    prompt: 'Never share private details like passwords with strangers, which is _____.',
     options: ['video links', 'funny memes', 'public hashtags', 'personal information'],
     correctOptionIndex: 3,
     explanation: "'Personal information' includes sensitive private data that must be kept safe from strangers.",
@@ -234,7 +234,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v29',
-    prompt: "Choose the correct noun form: 'Good _____ between students and teachers is essential when studying online.' (communicate)",
+    prompt: "Good _____ between teachers and students is essential when studying online.",
     options: ['communication', 'communicative', 'communicator', 'communicating'],
     correctOptionIndex: 0,
     explanation: "The noun form of the verb 'communicate' is 'communication'.",
@@ -242,7 +242,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v30',
-    prompt: "Choose the correct noun form: 'After discussing the screen time rules, the family reached an important _____.' (decide)",
+    prompt: "After discussing screen time rules, the family reached an important _____.",
     options: ['decisiveness', 'decision', 'decidedly', 'deciding'],
     correctOptionIndex: 1,
     explanation: "The noun formed from the verb 'decide' is 'decision'.",

@@ -89,6 +89,7 @@ export interface BaseQuestion {
   explanation?: string;
   points?: number;
   difficulty?: 'easy' | 'medium' | 'challenging';
+  contentVersion?: number;
 }
 
 // Extensible questions for game engines

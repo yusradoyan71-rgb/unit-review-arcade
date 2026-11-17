@@ -55,6 +55,8 @@ export const QuestionRetryModal: React.FC<QuestionRetryModalProps> = ({
 
   const question = found?.question;
   const gameType = found?.gameType || mistake.gameType || 'quiz_battle';
+  const isCompatible = question ? PersonalizedLearningService.isMistakeCompatible(mistake, question) : true;
+  const isSuperseded = mistake.isSuperseded || !isCompatible;
 
   // Multiple Choice / True-False state
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
@@ -84,8 +86,10 @@ export const QuestionRetryModal: React.FC<QuestionRetryModalProps> = ({
     const mcQ = question as MultipleChoiceQuestion | undefined;
     const correctIdx = mcQ?.correctOptionIndex !== undefined ? mcQ.correctOptionIndex : -1;
     const rightText = (question as any)?.rightText;
+    const currentCorrectAnswer = (question as any)?.correctAnswer || (mcQ?.options && correctIdx >= 0 ? mcQ.options[correctIdx] : null);
     const answeredCorrectly =
       idx === correctIdx ||
+      (currentCorrectAnswer && optText.trim().toLowerCase() === currentCorrectAnswer.trim().toLowerCase()) ||
       optText.trim().toLowerCase() === mistake.correctAnswer.trim().toLowerCase() ||
       mistake.correctAnswer.toLowerCase().endsWith(optText.trim().toLowerCase()) ||
       (rightText && optText.trim().toLowerCase() === rightText.trim().toLowerCase());
@@ -256,6 +260,12 @@ export const QuestionRetryModal: React.FC<QuestionRetryModalProps> = ({
 
         {/* Question Prompt */}
         <div className="my-5 p-5 sm:p-6 rounded-2xl bg-slate-50 border-2 border-slate-200 relative z-10 shadow-xs">
+          {isSuperseded && (
+            <div className="mb-3 p-2.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-center gap-2">
+              <span className="px-2 py-0.5 rounded bg-amber-200 text-amber-900 font-bold text-[10px] uppercase">Curriculum Updated</span>
+              <span>This question was refined for clarity. You are practicing the updated version!</span>
+            </div>
+          )}
           <div className="flex items-center gap-1.5 text-xs font-bold text-indigo-700 uppercase tracking-wider mb-2">
             <BookOpen className="w-4 h-4 text-indigo-600" />
             <span>{gameType === 'match_it' ? 'Match It! Vocabulary Pair' : 'Question Prompt'}</span>
@@ -271,7 +281,7 @@ export const QuestionRetryModal: React.FC<QuestionRetryModalProps> = ({
             </div>
           ) : (
             <h2 className="text-base sm:text-lg md:text-xl font-bold text-slate-900 leading-relaxed">
-              {mistake.questionPrompt}
+              {question?.prompt || mistake.questionPrompt}
             </h2>
           )}
         </div>

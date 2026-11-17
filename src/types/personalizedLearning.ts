@@ -40,6 +40,8 @@ export interface StudentMistakeRecord {
   isCorrected: boolean;
   correctedAt: string | null;
   retryAttemptsCount: number;
+  contentVersion?: number;
+  isSuperseded?: boolean;
 }
 
 /**
@@ -125,6 +127,8 @@ export interface SmartReviewQuestionMeta {
   gameType: GameType;
   originalMistakeId?: string;
   isFromMistake: boolean;
+  contentVersion?: number;
+  isSuperseded?: boolean;
 }
 
 /**

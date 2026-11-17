@@ -58,6 +58,7 @@ export interface WordNinjaItem {
   correctWord: string;             // The target to slice
   distractorWords: string[];       // 2 to 4 distractors moving on screen
   explanation?: string;
+  contentVersion?: number;
 }
 
 /**
@@ -71,6 +72,7 @@ export interface GrammarRunnerItem {
   correctLaneIndex: 0 | 1 | 2;     // 0 = Left, 1 = Center, 2 = Right
   grammarTopic: string;            // e.g. "Present Simple / 3rd Person"
   explanation?: string;
+  contentVersion?: number;
 }
 
 /**
@@ -84,6 +86,7 @@ export interface WordFishingItem {
   targetWord: string;              // The correct fish
   distractorWords: string[];       // 3 to 5 swimming distractors
   explanation?: string;
+  contentVersion?: number;
 }
 
 /**
@@ -97,6 +100,7 @@ export interface SentenceTowerItem {
   alternativeSentences?: string[];
   themeOrTopic: string;
   explanation?: string;
+  contentVersion?: number;
 }
 
 // ---------------------------------------------------------------------------

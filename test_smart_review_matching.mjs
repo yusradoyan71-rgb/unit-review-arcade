@@ -544,6 +544,114 @@ for (const meta of g7Session.questionMetadata) {
 console.log('✅ Grade isolation tests passed!\n');
 
 // ============================================================================
+// TEST SUITE 8: Part A — Question History Compatibility & Versioning Guarantee
+// ============================================================================
+console.log('--- TEST SUITE 8: Part A — Question History Compatibility & Versioning Guarantee ---');
+
+localStorage.clear();
+
+// 1. Test isMistakeCompatible directly
+const mockQuestionV1 = {
+  id: 'q-compat-1',
+  prompt: 'Old prompt text?',
+  options: ['A', 'B', 'C', 'D'],
+  correctOptionIndex: 0,
+  correctAnswer: 'Option A',
+  contentVersion: 1,
+};
+
+const mockQuestionV2 = {
+  id: 'q-compat-1',
+  prompt: 'New rewritten prompt text?',
+  options: ['W', 'X', 'Y', 'Z'],
+  correctOptionIndex: 1,
+  correctAnswer: 'Option X',
+  contentVersion: 2,
+};
+
+const legacyMistakeV1 = {
+  mistakeId: 'm-legacy-1',
+  studentNumber: 'student-compat',
+  questionId: 'q-compat-1',
+  activityId: 'g8-u2-act1',
+  activityTitle: 'Vocabulary Quiz',
+  unitId: 'g8-u2',
+  unitTitle: 'What an Adventure!',
+  gradeId: 'grade-8',
+  gameType: 'quiz_battle',
+  questionPrompt: 'Old prompt text?',
+  studentResponse: 'Option B',
+  correctAnswer: 'Option A',
+  contentVersion: 1,
+  isCorrected: false,
+  timestamp: new Date().toISOString(),
+};
+
+// Check v1 with v1
+assertEq(PersonalizedLearningService.isMistakeCompatible(legacyMistakeV1, mockQuestionV1), true, 'Mistake v1 is compatible with Question v1');
+
+// Check v1 with v2
+assertEq(PersonalizedLearningService.isMistakeCompatible(legacyMistakeV1, mockQuestionV2), false, 'Mistake v1 is INCOMPATIBLE with Question v2 (superseded)');
+
+// 2. Test enrichMistakes marks isSuperseded correctly
+const testArcadeDataWithVersions = {
+  version: '1.7.0',
+  units: {
+    'grade-8': [
+      {
+        id: 'g8-u2',
+        gradeId: 'grade-8',
+        unitNumber: 2,
+        title: 'What an Adventure!',
+        activities: [
+          {
+            id: 'g8-u2-act1',
+            title: 'Vocabulary Quiz',
+            gameType: 'quiz_battle',
+            questions: [mockQuestionV2], // current curriculum has v2
+          },
+        ],
+      },
+    ],
+  },
+};
+
+const enriched = PersonalizedLearningService.enrichMistakes([legacyMistakeV1], testArcadeDataWithVersions);
+assertEq(enriched.length, 1, 'Enriched list has 1 mistake');
+assertEq(enriched[0].isSuperseded, true, 'enrichMistakes sets isSuperseded: true for v1 mistake against v2 question');
+assertEq(enriched[0].studentResponse, 'Option B', 'Historical studentResponse is preserved intact');
+assertEq(enriched[0].correctAnswer, 'Option A', 'Historical correctAnswer is preserved intact');
+
+// 3. Test generateSmartReviewSession skips superseded mistake from Priority 1
+PersonalizedLearningService.recordLocalMistake('student-compat', legacyMistakeV1);
+
+const sessionWithSuperseded = PersonalizedLearningService.generateSmartReviewSession(
+  testArcadeDataWithVersions,
+  'student-compat',
+  'grade-8',
+  'g8-u2',
+  10
+);
+
+// If q-compat-1 is drawn via Priority 2 (curriculum practice), isFromMistake must be false!
+const foundInSession = sessionWithSuperseded.questionMetadata.find((m) => m.questionId === 'q-compat-1');
+if (foundInSession) {
+  assertEq(foundInSession.isFromMistake, false, 'Superseded question in Smart Review session has isFromMistake: false');
+} else {
+  console.log('  ✓ Superseded question was safely omitted from Priority 1 queue');
+  totalChecks++;
+  passedChecks++;
+}
+
+// 4. Verify original mistake in localStorage was NEVER deleted or mutated
+const cachedAfter = PersonalizedLearningService.getCachedMistakes('student-compat');
+assertEq(cachedAfter.length, 1, 'Student historical mistake record was preserved intact in storage');
+assertEq(cachedAfter[0].mistakeId, 'm-legacy-1', 'Student mistake ID unchanged');
+assertEq(cachedAfter[0].studentResponse, 'Option B', 'Student response preserved');
+
+console.log('✅ Part A Question History Compatibility tests passed!\n');
+
+// ============================================================================
 // SUMMARY
 // ============================================================================
 console.log('======================================================');

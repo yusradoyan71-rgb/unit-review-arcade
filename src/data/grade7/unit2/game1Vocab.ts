@@ -4,7 +4,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   // 1-11: Natural Disasters and Extreme Weather Definitions
   {
     id: 'g7-u2-v01',
-    prompt: 'A sudden, violent shaking of the ground caused by movements within the earth’s crust is an...',
+    prompt: 'A sudden, violent shaking of the earth is an _____.',
     options: ['tornado', 'avalanche', 'earthquake', 'heatwave'],
     correctOptionIndex: 2,
     explanation: 'An earthquake is caused by seismic waves shaking the earth’s crust along tectonic faults.',
@@ -12,7 +12,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v02',
-    prompt: 'A massive wall of snow and ice rapidly sliding down a mountain slope is called an...',
+    prompt: 'A massive slide of snow down a mountain is an _____.',
     options: ['sandstorm', 'earthquake', 'tsunami', 'avalanche'],
     correctOptionIndex: 3,
     explanation: 'An avalanche occurs when unstable snow and ice break free on steep mountain terrain.',
@@ -20,7 +20,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v03',
-    prompt: 'A giant ocean wave usually triggered by an undersea earthquake or volcanic eruption is a...',
+    prompt: 'A giant ocean wave triggered by undersea tremors is a _____.',
     options: ['tsunami', 'tornado', 'flood', 'lightning'],
     correctOptionIndex: 0,
     explanation: 'A tsunami is a series of powerful oceanic waves caused by undersea seismic disturbances.',
@@ -28,7 +28,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v04',
-    prompt: 'A violently rotating column of air extending from a thunderstorm cloud down to the ground is a...',
+    prompt: 'A violent rotating funnel of stormy wind is a _____.',
     options: ['heatwave', 'tornado', 'volcano', 'blizzard'],
     correctOptionIndex: 1,
     explanation: 'A tornado is a rapidly spinning vortex of destructive wind formed during severe thunderstorms.',
@@ -36,7 +36,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v05',
-    prompt: 'When rivers overflow their banks after torrential rain and submerge streets and homes, this disaster is a...',
+    prompt: 'When rivers overflow dry land after heavy rain, it is a _____.',
     options: ['heatwave', 'sandstorm', 'flood', 'drought'],
     correctOptionIndex: 2,
     explanation: 'A flood happens when excessive rainfall causes water to overflow dry land and roadways.',
@@ -44,7 +44,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v06',
-    prompt: 'A prolonged period of abnormally hot and dry weather that can cause dehydration is a...',
+    prompt: 'A long period of abnormally hot, dry weather is a _____.',
     options: ['avalanche', 'thunderstorm', 'tornado', 'heatwave'],
     correctOptionIndex: 3,
     explanation: 'A heatwave is an extended period of dangerously high atmospheric temperatures.',
@@ -52,7 +52,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v07',
-    prompt: 'A sudden, blinding cloud of sand and dust blown across desert plains by gale-force winds is a...',
+    prompt: 'A blinding cloud of sand blown by strong wind is a _____.',
     options: ['sandstorm', 'tsunami', 'forest fire', 'earthquake'],
     correctOptionIndex: 0,
     explanation: 'A sandstorm (or dust storm) carries dense clouds of sand across arid landscapes.',
@@ -60,7 +60,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v08',
-    prompt: 'When molten lava, hot ash, and toxic gases explode out of a mountain fissure, it is a...',
+    prompt: 'When molten lava and ash explode from a mountain: _____.',
     options: ['tornado', 'volcanic eruption', 'flash flood', 'lightning strike'],
     correctOptionIndex: 1,
     explanation: 'A volcanic eruption releases magma, ash clouds, and lava from magma chambers deep underground.',
@@ -68,7 +68,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v09',
-    prompt: 'A powerful storm characterized by booming thunder, heavy rain, and vivid flashes of electrical...',
+    prompt: 'A thunderstorm brings heavy rain, booming thunder, and bright flashes of _____.',
     options: ['ice', 'lava', 'lightning', 'snow'],
     correctOptionIndex: 2,
     explanation: 'Lightning is an electrical discharge that produces brilliant light and booming thunder.',
@@ -76,7 +76,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v10',
-    prompt: 'An uncontrolled blaze that burns rapidly across dry woodlands and destroys wildlife habitats is a...',
+    prompt: 'A large fire burning rapidly across dry forests is a _____.',
     options: ['heatwave', 'flood', 'sandstorm', 'forest fire'],
     correctOptionIndex: 3,
     explanation: 'Forest fires (or wildfires) spread swiftly through dry trees, bushes, and grasslands.',
@@ -84,7 +84,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v11',
-    prompt: 'Which disaster specifically threatens coastal towns after an offshore earthquake, rather than mountain villages?',
+    prompt: 'Which disaster strikes coastal towns after an offshore earthquake?',
     options: ['Tsunami', 'Avalanche', 'Sandstorm', 'Forest fire'],
     correctOptionIndex: 0,
     explanation: 'Tsunamis specifically strike coastal regions following undersea tectonic shifts.',
@@ -94,7 +94,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   // 12-22: Disaster Verbs & Irregular Forms in Context
   {
     id: 'g7-u2-v12',
-    prompt: 'When the severe earthquake _____ the city yesterday, hundreds of brick buildings began to tremble.',
+    prompt: 'When the severe earthquake _____ the city, old buildings shook violently.',
     options: ['strike', 'struck', 'stricken', 'striking'],
     correctOptionIndex: 1,
     explanation: 'The irregular past simple of "strike" is "struck" (strike – struck – struck).',
@@ -102,7 +102,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v13',
-    prompt: 'The wooden floor _____ violently beneath their feet as the seismic shockwaves arrived.',
+    prompt: 'The wooden floor _____ under their feet during the earthquake tremor.',
     options: ['shaken', 'shaked', 'shook', 'shakes'],
     correctOptionIndex: 2,
     explanation: 'The past simple of the irregular verb "shake" is "shook" (shake – shook – shaken).',
@@ -110,7 +110,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v14',
-    prompt: 'Strong winds _____ the roof off the sports hall during the midnight hurricane.',
+    prompt: 'Fierce winds _____ the roof off the building during the storm.',
     options: ['blows', 'blowed', 'blown', 'blew'],
     correctOptionIndex: 3,
     explanation: 'The past simple form of "blow" is "blew" (blow – blew – blown).',
@@ -118,7 +118,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v15',
-    prompt: 'The forest fire _____ across the mountain ridge in less than three hours because of dry winds.',
+    prompt: 'The forest fire _____ across the mountain ridge in three hours.',
     options: ['spread', 'spreaded', 'spreadLine', 'sprode'],
     correctOptionIndex: 0,
     explanation: '"Spread" is irregular and keeps the same form in past simple: spread – spread – spread.',
@@ -126,7 +126,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v16',
-    prompt: 'The authorities ordered all residents to _____ the coastal zone immediately before the hurricane arrived.',
+    prompt: 'Residents were ordered to _____ the coastal zone before the storm.',
     options: ['damage', 'evacuate', 'injure', 'strike'],
     correctOptionIndex: 1,
     explanation: '"Evacuate" means to leave a dangerous area for a safer location.',
@@ -134,7 +134,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v17',
-    prompt: 'Because the walls were cracked by the tremor, the old warehouse began to _____ into rubble.',
+    prompt: 'Damaged by the tremor, the cracked warehouse began to _____ into rubble.',
     options: ['survive', 'rescue', 'collapse', 'put out'],
     correctOptionIndex: 2,
     explanation: '"Collapse" means to fall down suddenly because of structural weakness or force.',
@@ -142,7 +142,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v18',
-    prompt: 'Brave firefighters worked all night to _____ the raging blaze before it reached the wildlife sanctuary.',
+    prompt: 'Firefighters worked tirelessly through the night to _____ the blaze.',
     options: ['head towards', 'blow off', 'shake up', 'put out'],
     correctOptionIndex: 3,
     explanation: 'The phrasal verb "put out" means to extinguish a fire.',
@@ -150,7 +150,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v19',
-    prompt: 'A trained search and rescue team managed to _____ the stranded hikers from the snowy ledge.',
+    prompt: 'The rescue team managed to _____ the stranded hikers from danger.',
     options: ['rescue', 'damage', 'collapse', 'injure'],
     correctOptionIndex: 0,
     explanation: '"Rescue" means saving someone from a dangerous, life-threatening situation.',
@@ -158,7 +158,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v20',
-    prompt: 'Despite being lost in the freezing forest for two nights, the teenager managed to _____ without food.',
+    prompt: 'Lost in the forest, the hiker managed to _____ without food.',
     options: ['evacuate', 'survive', 'strike', 'spread'],
     correctOptionIndex: 1,
     explanation: '"Survive" means continuing to live after coming through a perilous ordeal.',
@@ -166,7 +166,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v21',
-    prompt: 'The weather forecast warned that a severe hail storm was _____ the northern villages.',
+    prompt: 'The weather forecast warned that a hail storm was _____ the town.',
     options: ['shaking off', 'putting out', 'heading towards', 'escaping from'],
     correctOptionIndex: 2,
     explanation: '"Heading towards" means moving in the direct path or direction of a place.',
@@ -174,7 +174,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v22',
-    prompt: 'Fortunately, nobody was seriously _____ when the large oak tree fell on the unoccupied car.',
+    prompt: 'Fortunately, nobody was _____ when the tree fell onto the car.',
     options: ['evacuated', 'rescued', 'survived', 'injured'],
     correctOptionIndex: 3,
     explanation: '"Injured" means physically hurt or harmed in an accident or disaster.',
@@ -184,7 +184,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   // 23-30: Distinguishing Contexts & Damage Terminology
   {
     id: 'g7-u2-v23',
-    prompt: 'Which emergency event produces toxic ash clouds that force commercial airplanes to divert their flight routes?',
+    prompt: 'Which disaster produces toxic ash clouds that block airplane flights?',
     options: ['Volcanic eruption', 'Heatwave', 'Avalanche', 'Flood'],
     correctOptionIndex: 0,
     explanation: 'Volcanic ash contains microscopic glass and rock particles that destroy jet engines.',
@@ -192,7 +192,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v24',
-    prompt: 'If you are caught outdoors on a mountain during a thunderstorm, you should stay away from tall trees to avoid...',
+    prompt: 'During a thunderstorm outdoors, avoid tall trees to prevent _____.',
     options: ['sandstorms', 'lightning strikes', 'lava flows', 'heatwaves'],
     correctOptionIndex: 1,
     explanation: 'Lightning naturally strikes the tallest objects in an open landscape.',
@@ -200,7 +200,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v25',
-    prompt: 'The earthquake caused extensive _____ to bridges and highways across the province.',
+    prompt: 'The severe tremor caused heavy _____ to roads and bridges.',
     options: ['shelter', 'rescue', 'damage', 'escape'],
     correctOptionIndex: 2,
     explanation: '"Damage" refers to physical harm that impairs the structure or usefulness of buildings and roads.',
@@ -208,7 +208,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v26',
-    prompt: 'During an earthquake indoors, safety experts advise you to "Drop, Cover, and Hold On" to avoid being hit by...',
+    prompt: 'During an indoor earthquake, protect your head from falling _____.',
     options: ['desert dust', 'rising ocean waves', 'mud avalanches', 'falling debris'],
     correctOptionIndex: 3,
     explanation: 'Falling objects, ceiling tiles, and debris cause the majority of earthquake injuries.',
@@ -216,7 +216,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v27',
-    prompt: 'The family heard the warning siren and managed to _____ from the house just seconds before the floodwaters entered.',
+    prompt: 'The family managed to _____ from the house before floodwaters entered.',
     options: ['escape', 'collapse', 'injure', 'strike'],
     correctOptionIndex: 0,
     explanation: '"Escape" means getting away safely from a dangerous, confined situation.',
@@ -224,7 +224,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v28',
-    prompt: 'A helicopter flew above the flooded valley to look for _____ clinging to their rooftops.',
+    prompt: 'A rescue helicopter searched the flooded area for _____ on rooftops.',
     options: ['avalanches', 'survivors', 'poachers', 'habitats'],
     correctOptionIndex: 1,
     explanation: '"Survivors" are people who remained alive after surviving a disaster.',
@@ -232,7 +232,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v29',
-    prompt: 'Which natural disaster involves the greatest risk of drowning and water contamination?',
+    prompt: 'Which natural disaster involves the greatest danger of drowning?',
     options: ['Sandstorm', 'Heatwave', 'Flood', 'Earthquake'],
     correctOptionIndex: 2,
     explanation: 'Floods involve massive volumes of water overflowing land, posing severe drowning risks.',
@@ -240,7 +240,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-v30',
-    prompt: 'The thunderous sound of the rockslide echoed across the valley as massive boulders _____ down the cliff.',
+    prompt: 'Huge boulders _____ down the steep cliff with a thunderous roar.',
     options: ['survived', 'evacuated', 'rescued', 'crashed'],
     correctOptionIndex: 3,
     explanation: '"Crashed" describes heavy objects hitting the ground with great noise and force.',

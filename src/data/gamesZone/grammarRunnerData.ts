@@ -1218,15 +1218,15 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
       },
       {
             "id": "gr_g7_h_21",
-            "sentencePrompt": "He ran as fast as he could, _____ he still missed the bus.",
+            "sentencePrompt": "_____ he ran fast, he missed the morning bus.",
             "laneOptions": [
-                  "because",
-                  "so",
-                  "although"
+                  "Although",
+                  "Because",
+                  "So"
             ],
-            "correctLaneIndex": 2,
-            "grammarTopic": "Conjunctions of Contrast",
-            "explanation": "'Although' shows an unexpected contrast or concession."
+            "correctLaneIndex": 0,
+            "grammarTopic": "Concessions (Although)",
+            "explanation": "'Although' introduces an unexpected contrast between running fast and missing the bus."
       },
       {
             "id": "gr_g7_h_22",

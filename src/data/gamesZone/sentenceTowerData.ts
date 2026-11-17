@@ -1385,56 +1385,56 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_h_11",
             "scrambledWords": [
-                  "working",
-                  "project",
-                  "this",
-                  "on",
-                  "have",
-                  "They",
-                  "together",
-                  "been"
+                  "We",
+                  "should",
+                  "protect",
+                  "wild",
+                  "animals",
+                  "and",
+                  "their",
+                  "habitats."
             ],
-            "correctSentence": "They have been working on this project together.",
-            "alternativeSentences": [
-                  "Together they have been working on this project."
-            ],
-            "themeOrTopic": "Present Perfect Continuous",
-            "explanation": "Adverbial modifier placement."
+            "correctSentence": "We should protect wild animals and their habitats.",
+            "themeOrTopic": "Giving Advice (Should)",
+            "explanation": "Subject + should + base verb + compound object phrase.",
+            "contentVersion": 2
       },
       {
             "id": "st_g7_h_12",
             "scrambledWords": [
-                  "as",
-                  "rings",
-                  "soon",
-                  "leave",
-                  "bell",
-                  "As",
+                  "When",
                   "the",
-                  "students"
+                  "school",
+                  "bell",
+                  "rings",
+                  "students",
+                  "leave",
+                  "quickly."
             ],
-            "correctSentence": "As soon as the bell rings students leave.",
+            "correctSentence": "When the school bell rings students leave quickly.",
             "alternativeSentences": [
-                  "Students leave as soon as the bell rings."
+                  "Students leave quickly when the school bell rings."
             ],
-            "themeOrTopic": "Time Clauses",
-            "explanation": "'As soon as' clause can come first or second."
+            "themeOrTopic": "Time Clauses (When)",
+            "explanation": "Time clause with when can come at beginning or end.",
+            "contentVersion": 2
       },
       {
             "id": "st_g7_h_13",
             "scrambledWords": [
-                  "the",
-                  "students",
-                  "late",
-                  "Neither",
-                  "the",
-                  "were",
-                  "nor",
-                  "teacher"
+                  "Why",
+                  "don't",
+                  "we",
+                  "organize",
+                  "a",
+                  "surprise",
+                  "birthday",
+                  "party?"
             ],
-            "correctSentence": "Neither the teacher nor the students were late.",
-            "themeOrTopic": "Correlative Conjunctions",
-            "explanation": "Neither... nor structure."
+            "correctSentence": "Why don't we organize a surprise birthday party?",
+            "themeOrTopic": "Making Suggestions",
+            "explanation": "Why don't we + base verb for celebratory suggestions.",
+            "contentVersion": 2
       },
       {
             "id": "st_g7_h_14",
@@ -1455,53 +1455,51 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_h_15",
             "scrambledWords": [
-                  "book",
-                  "return",
-                  "that",
-                  "would",
-                  "the",
-                  "she",
-                  "promised",
-                  "She"
+                  "I",
+                  "believe",
+                  "scientists",
+                  "will",
+                  "find",
+                  "water",
+                  "on",
+                  "Mars."
             ],
-            "correctSentence": "She promised that she would return the book.",
-            "themeOrTopic": "Reported Promises",
-            "explanation": "Subject + promised + noun clause with would."
+            "correctSentence": "I believe scientists will find water on Mars.",
+            "themeOrTopic": "Future Predictions with Will",
+            "explanation": "Expressing scientific predictions about planets with will.",
+            "contentVersion": 2
       },
       {
             "id": "st_g7_h_16",
             "scrambledWords": [
-                  "harder",
-                  "become",
-                  "better",
-                  "the",
-                  "The",
-                  "you",
-                  "you",
-                  "practice"
+                  "I",
+                  "prefer",
+                  "watching",
+                  "documentaries",
+                  "to",
+                  "funny",
+                  "sitcoms."
             ],
-            "correctSentence": "The harder you practice the better you become.",
-            "themeOrTopic": "Double Comparatives",
-            "explanation": "'The + comparative... the + comparative' pattern."
+            "correctSentence": "I prefer watching documentaries to funny sitcoms.",
+            "themeOrTopic": "Expressing Preferences (Prefer)",
+            "explanation": "Subject + prefer + gerund + to + noun/gerund.",
+            "contentVersion": 2
       },
       {
             "id": "st_g7_h_17",
             "scrambledWords": [
-                  "computer",
                   "Don't",
-                  "leaving",
-                  "before",
                   "forget",
                   "to",
+                  "turn",
                   "off",
-                  "turn"
+                  "the",
+                  "computer."
             ],
-            "correctSentence": "Don't forget to turn off computer before leaving.",
-            "alternativeSentences": [
-                  "Before leaving don't forget to turn off computer."
-            ],
-            "themeOrTopic": "Imperatives & Prepositions",
-            "explanation": "Time clause can be fronted."
+            "correctSentence": "Don't forget to turn off the computer.",
+            "themeOrTopic": "Imperatives & Reminders",
+            "explanation": "Negative imperative reminder: Don't forget to + verb.",
+            "contentVersion": 2
       },
       {
             "id": "st_g7_h_18",
@@ -1663,19 +1661,19 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_h_27",
             "scrambledWords": [
-                  "It",
+                  "The",
+                  "football",
+                  "match",
                   "was",
-                  "an",
-                  "fans",
                   "exciting",
-                  "such",
-                  "cheered",
-                  "that",
-                  "match"
+                  "so",
+                  "fans",
+                  "cheered."
             ],
-            "correctSentence": "It was such an exciting match that fans cheered.",
-            "themeOrTopic": "Such ... That Clause",
-            "explanation": "Such + an + adjective + noun + consequence clause."
+            "correctSentence": "The football match was exciting so fans cheered.",
+            "themeOrTopic": "Past Actions & Conjunctions",
+            "explanation": "Cause and effect with so connecting two simple past clauses.",
+            "contentVersion": 2
       },
       {
             "id": "st_g7_h_28",
@@ -1712,18 +1710,19 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_h_30",
             "scrambledWords": [
-                  "top",
-                  "to",
-                  "university",
-                  "at",
+                  "He",
                   "decided",
-                  "engineering",
+                  "to",
                   "study",
-                  "He"
+                  "science",
+                  "at",
+                  "a",
+                  "university."
             ],
-            "correctSentence": "He decided to study engineering at top university.",
-            "themeOrTopic": "Infinitives of Intent",
-            "explanation": "Subject + decided + to study + object + location."
+            "correctSentence": "He decided to study science at a university.",
+            "themeOrTopic": "Life Decisions (Biographies)",
+            "explanation": "Subject + decided + to-infinitive + noun + location phrase.",
+            "contentVersion": 2
       },
       {
             "id": "st_g7_h_31",
@@ -1748,37 +1747,38 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_h_32",
             "scrambledWords": [
-                  "near",
+                  "The",
                   "hotel",
                   "where",
-                  "stayed",
-                  "The",
                   "we",
-                  "beach",
-                  "was"
+                  "stayed",
+                  "was",
+                  "near",
+                  "the",
+                  "beach."
             ],
-            "correctSentence": "The hotel where we stayed was near beach.",
+            "correctSentence": "The hotel where we stayed was near the beach.",
             "themeOrTopic": "Relative Clauses (Where)",
-            "explanation": "Subject + where-clause + verb to be + prepositional location."
+            "explanation": "Subject + where-clause + verb to be + prepositional location with article.",
+            "contentVersion": 2
       },
       {
             "id": "st_g7_h_33",
             "scrambledWords": [
-                  "allowed",
+                  "People",
+                  "must",
                   "not",
-                  "were",
-                  "to",
-                  "without",
-                  "permission",
-                  "They",
-                  "enter"
+                  "cut",
+                  "down",
+                  "trees",
+                  "in",
+                  "green",
+                  "forests."
             ],
-            "correctSentence": "They were not allowed to enter without permission.",
-            "alternativeSentences": [
-                  "Without permission they were not allowed to enter."
-            ],
-            "themeOrTopic": "Passive Permission",
-            "explanation": "Condition phrase can be placed first."
+            "correctSentence": "People must not cut down trees in green forests.",
+            "themeOrTopic": "Protecting the Environment",
+            "explanation": "Obligation / prohibition: must not + base phrasal verb.",
+            "contentVersion": 2
       },
       {
             "id": "st_g7_h_34",
@@ -1799,21 +1799,22 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g7_h_35",
             "scrambledWords": [
+                  "Although",
                   "the",
-                  "plane",
-                  "the",
-                  "safely",
-                  "Despite",
-                  "landed",
-                  "heavy",
-                  "fog"
+                  "weather",
+                  "was",
+                  "cold",
+                  "we",
+                  "played",
+                  "outside."
             ],
-            "correctSentence": "Despite the heavy fog the plane landed safely.",
+            "correctSentence": "Although the weather was cold we played outside.",
             "alternativeSentences": [
-                  "The plane landed safely despite the heavy fog."
+                  "We played outside although the weather was cold."
             ],
-            "themeOrTopic": "Concessions (Despite)",
-            "explanation": "Despite phrase can precede or follow main clause."
+            "themeOrTopic": "Concessions with Although",
+            "explanation": "Although clause can precede or follow main clause.",
+            "contentVersion": 2
       },
       {
             "id": "st_g7_h_36",

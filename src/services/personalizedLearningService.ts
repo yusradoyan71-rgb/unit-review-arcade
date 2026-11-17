@@ -318,6 +318,47 @@ export class PersonalizedLearningService {
   }
 
   /**
+   * Checks whether a historical mistake record is compatible with the current version of the question.
+   * If a question was fundamentally replaced (bumped to contentVersion 2+ or divergent answer keys),
+   * this detects the version mismatch so Smart Review does not misrepresent the replaced question.
+   */
+  public static isMistakeCompatible(
+    mistake: StudentMistakeRecord,
+    question: AnyQuestion | null | undefined
+  ): boolean {
+    if (!question) return false;
+    const qVersion = (question as any).contentVersion || 1;
+    const mVersion = mistake.contentVersion || 1;
+
+    // Direct contentVersion match check
+    if (qVersion !== mVersion) {
+      return false;
+    }
+
+    // Divergent answer verification
+    if (mistake.correctAnswer) {
+      const qRight = (question as any).rightText || (question as any).correctAnswer || (question as any).correctWord;
+      if (qRight && typeof qRight === 'string') {
+        const mAns = mistake.correctAnswer.trim().toLowerCase();
+        const curAns = qRight.trim().toLowerCase();
+        // If answers are both non-empty and completely distinct without partial substring overlap
+        if (mAns && curAns && mAns !== curAns && !mAns.includes(curAns) && !curAns.includes(mAns)) {
+          // Check semantic word overlap for rephrased or formatted match definitions
+          const stopWords = new Set(['the', 'and', 'for', 'with', 'from', 'that', 'this', 'are', 'was', 'were', 'option']);
+          const mWords = mAns.replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter((w) => w.length > 2 && !stopWords.has(w));
+          const qWords = curAns.replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter((w) => w.length > 2 && !stopWords.has(w));
+          const hasCommonWord = mWords.some((w) => qWords.includes(w));
+          if (!hasCommonWord) {
+            return false;
+          }
+        }
+      }
+    }
+
+    return true;
+  }
+
+  /**
    * Enriches mistake records with verified curriculum titles and pedagogical explanations.
    */
   public static enrichMistakes(
@@ -332,11 +373,16 @@ export class PersonalizedLearningService {
         m.correctAnswer
       );
 
+      const isCompat = found ? this.isMistakeCompatible(m, found.question) : true;
+      const qVersion = found ? (found.question as any).contentVersion || 1 : m.contentVersion || 1;
+
       return {
         ...m,
         unitTitle: found?.unitTitle || m.unitTitle,
         activityTitle: found?.activityTitle || m.activityTitle,
         explanation: m.explanation || explanationRes.explanation,
+        contentVersion: m.contentVersion || qVersion,
+        isSuperseded: !isCompat,
       };
     });
   }
@@ -372,6 +418,11 @@ export class PersonalizedLearningService {
       const found = this.findQuestionInCurriculum(data, mist.questionId, mist.activityId, mist.unitId);
       if (found && !addedQuestionIds.has(found.question.id)) {
         if (this.isQuestionPlayable(found.question, found.gameType)) {
+          const isCompat = this.isMistakeCompatible(mist, found.question);
+          if (!isCompat) {
+            // Replaced / superseded question: do NOT masquerade as an uncorrected mistake!
+            continue;
+          }
           addedQuestionIds.add(found.question.id);
           questions.push(found.question);
           targetTopicsSet.add(found.activityTitle);
@@ -384,6 +435,8 @@ export class PersonalizedLearningService {
             gameType: found.gameType,
             originalMistakeId: mist.mistakeId,
             isFromMistake: true,
+            contentVersion: (found.question as any).contentVersion || 1,
+            isSuperseded: false,
           });
         }
       }
@@ -436,6 +489,8 @@ export class PersonalizedLearningService {
                     activityTitle: act.title,
                     gameType: 'match_it',
                     isFromMistake: false,
+                    contentVersion: (converted.question as any).contentVersion || 1,
+                    isSuperseded: false,
                   });
                 }
               }
@@ -456,6 +511,8 @@ export class PersonalizedLearningService {
                 activityTitle: act.title,
                 gameType: act.gameType,
                 isFromMistake: false,
+                contentVersion: (q as any).contentVersion || 1,
+                isSuperseded: false,
               });
             }
           }

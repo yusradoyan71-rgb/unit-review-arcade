@@ -289,6 +289,11 @@ export const MyMistakesModal: React.FC = () => {
                     <span className="px-2 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-500 text-[10px] font-medium">
                       {m.activityTitle || m.activityId}
                     </span>
+                    {m.isSuperseded && (
+                      <span className="px-2 py-0.5 rounded-md bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-bold">
+                        Updated in Curriculum
+                      </span>
+                    )}
                   </div>
 
                   <div className="flex items-center gap-2">

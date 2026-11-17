@@ -78,7 +78,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_e_06",
-            "cluePrompt": "Hook the small domestic pet that loves catching mice",
+            "cluePrompt": "Hook the small pet that purrs and hunts mice",
             "clueCategory": "Animals",
             "targetWord": "Cat",
             "distractorWords": [
@@ -150,7 +150,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_e_12",
-            "cluePrompt": "Hook the red fruit that grows on trees and is crunchy to bite",
+            "cluePrompt": "Hook the round crunchy fruit that grows on trees",
             "clueCategory": "Food",
             "targetWord": "Apple",
             "distractorWords": [
@@ -174,7 +174,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_e_14",
-            "cluePrompt": "Hook the round food laid by hens that people fry or boil for breakfast",
+            "cluePrompt": "Hook the oval food laid by hens for breakfast",
             "clueCategory": "Food",
             "targetWord": "Egg",
             "distractorWords": [
@@ -186,7 +186,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_e_15",
-            "cluePrompt": "Hook the school tool you use to write notes with pencil lead",
+            "cluePrompt": "Hook the wooden tool used to write and draw",
             "clueCategory": "School",
             "targetWord": "Pencil",
             "distractorWords": [
@@ -198,7 +198,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_e_16",
-            "cluePrompt": "Hook the rubber item you use to erase pencil mistakes",
+            "cluePrompt": "Hook the rubber item used to remove pencil marks",
             "clueCategory": "School",
             "targetWord": "Eraser",
             "distractorWords": [
@@ -234,7 +234,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_e_19",
-            "cluePrompt": "Hook the piece of furniture with a mattress where you sleep at night",
+            "cluePrompt": "Hook the comfortable furniture where you sleep at night",
             "clueCategory": "Home",
             "targetWord": "Bed",
             "distractorWords": [
@@ -294,7 +294,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_e_24",
-            "cluePrompt": "Hook the person who teaches lessons to students in a school",
+            "cluePrompt": "Hook the person who guides students in a classroom",
             "clueCategory": "Jobs",
             "targetWord": "Teacher",
             "distractorWords": [
@@ -342,7 +342,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_e_28",
-            "cluePrompt": "Hook the quiet building where you can borrow and read library books",
+            "cluePrompt": "Hook the quiet building where you borrow books",
             "clueCategory": "Places",
             "targetWord": "Library",
             "distractorWords": [
@@ -390,7 +390,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_e_32",
-            "cluePrompt": "Hook the large vehicle that carries many students together to school",
+            "cluePrompt": "Hook the yellow vehicle carrying students to school",
             "clueCategory": "Transport",
             "targetWord": "School bus",
             "distractorWords": [
@@ -402,7 +402,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_e_33",
-            "cluePrompt": "Hook the part of the body at the end of your arm with five fingers",
+            "cluePrompt": "Hook the body part at the arm end with fingers",
             "clueCategory": "Body",
             "targetWord": "Hand",
             "distractorWords": [
@@ -414,7 +414,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_e_34",
-            "cluePrompt": "Hook the organs on your face that allow you to see the world",
+            "cluePrompt": "Hook the organs on your face used to see",
             "clueCategory": "Body",
             "targetWord": "Eyes",
             "distractorWords": [
@@ -450,7 +450,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_e_37",
-            "cluePrompt": "Hook the bright star in the sky that warms our planet by day",
+            "cluePrompt": "Hook the bright star that warms the earth by day",
             "clueCategory": "Nature",
             "targetWord": "Sun",
             "distractorWords": [
@@ -500,7 +500,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
     medium: [
       {
             "id": "wf_g7_m_01",
-            "cluePrompt": "Hook the water sport where swimmers paddle through river rapids in an inflatable boat",
+            "cluePrompt": "Hook the river water sport using inflatable boats",
             "clueCategory": "Sports",
             "targetWord": "Rafting",
             "distractorWords": [
@@ -512,7 +512,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_m_02",
-            "cluePrompt": "Hook the racquet sport played by hitting a feathered shuttlecock over a net",
+            "cluePrompt": "Hook the racquet sport hitting a feathered shuttlecock",
             "clueCategory": "Sports",
             "targetWord": "Badminton",
             "distractorWords": [
@@ -524,7 +524,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_m_03",
-            "cluePrompt": "Hook the game with kings, queens, and knights played on a black-and-white board",
+            "cluePrompt": "Hook the board game with kings, queens, and knights",
             "clueCategory": "Games",
             "targetWord": "Chess",
             "distractorWords": [
@@ -548,7 +548,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_m_05",
-            "cluePrompt": "Hook the sport where riders catch ocean waves standing on a surfboard",
+            "cluePrompt": "Hook the ocean sport of riding large waves on water",
             "clueCategory": "Sports",
             "targetWord": "Surfing",
             "distractorWords": [
@@ -572,7 +572,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_m_07",
-            "cluePrompt": "Hook the feeling of energetic excitement about a fun event coming up",
+            "cluePrompt": "Hook the feeling of enthusiastic joy about an upcoming trip",
             "clueCategory": "Feelings",
             "targetWord": "Excited",
             "distractorWords": [
@@ -584,7 +584,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_m_08",
-            "cluePrompt": "Hook the personality trait of someone who always tells the truth and never lies",
+            "cluePrompt": "Hook the trait of someone who always speaks the truth",
             "clueCategory": "Personality",
             "targetWord": "Honest",
             "distractorWords": [
@@ -632,7 +632,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_m_12",
-            "cluePrompt": "Hook the feeling of boredom when an activity lacks any fun or interest",
+            "cluePrompt": "Hook the dull feeling when an activity lacks interest",
             "clueCategory": "Feelings",
             "targetWord": "Bored",
             "distractorWords": [
@@ -644,7 +644,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_m_13",
-            "cluePrompt": "Hook the bright flash of electricity seen in the sky during a thunderstorm",
+            "cluePrompt": "Hook the bright electrical flash in the stormy sky",
             "clueCategory": "Weather",
             "targetWord": "Lightning",
             "distractorWords": [
@@ -668,7 +668,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_m_15",
-            "cluePrompt": "Hook small balls of frozen ice that fall from the sky like rain",
+            "cluePrompt": "Hook small frozen ice balls falling from storm clouds",
             "clueCategory": "Weather",
             "targetWord": "Hail",
             "distractorWords": [
@@ -680,7 +680,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_m_16",
-            "cluePrompt": "Hook the thick cloud near the ground that makes it hard for drivers to see",
+            "cluePrompt": "Hook the thick low cloud that reduces road visibility",
             "clueCategory": "Weather",
             "targetWord": "Fog",
             "distractorWords": [
@@ -692,7 +692,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_m_17",
-            "cluePrompt": "Hook the colorful arch of seven colors appearing in the sky after rain",
+            "cluePrompt": "Hook the colorful arch of seven colors after rain",
             "clueCategory": "Nature",
             "targetWord": "Rainbow",
             "distractorWords": [
@@ -704,7 +704,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_m_18",
-            "cluePrompt": "Hook a large dry land with sand dunes where very little rain falls",
+            "cluePrompt": "Hook the dry sandy land with very little rain",
             "clueCategory": "Geography",
             "targetWord": "Desert",
             "distractorWords": [
@@ -728,7 +728,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_m_20",
-            "cluePrompt": "Hook a mountain that can erupt hot red lava and smoke from its top",
+            "cluePrompt": "Hook the mountain that erupts hot molten lava",
             "clueCategory": "Nature",
             "targetWord": "Volcano",
             "distractorWords": [
@@ -740,7 +740,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_m_21",
-            "cluePrompt": "Hook the official passport booklet you need when travelling to foreign countries",
+            "cluePrompt": "Hook the official travel document needed for foreign trips",
             "clueCategory": "Travel",
             "targetWord": "Passport",
             "distractorWords": [
@@ -752,7 +752,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_m_22",
-            "cluePrompt": "Hook the suitcases and travel bags you pack with clothes for a journey",
+            "cluePrompt": "Hook the bags and suitcases packed for a trip",
             "clueCategory": "Travel",
             "targetWord": "Luggage",
             "distractorWords": [
@@ -764,7 +764,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_m_23",
-            "cluePrompt": "Hook a small gift or item you buy on holiday to remember your trip",
+            "cluePrompt": "Hook a keepsake bought on holiday to remember places",
             "clueCategory": "Travel",
             "targetWord": "Souvenir",
             "distractorWords": [
@@ -776,7 +776,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_m_24",
-            "cluePrompt": "Hook the place with runways where passengers board airplanes",
+            "cluePrompt": "Hook the transport hub where passengers board airplanes",
             "clueCategory": "Travel",
             "targetWord": "Airport",
             "distractorWords": [
@@ -788,7 +788,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_m_25",
-            "cluePrompt": "Hook the unpleasant continuous pain felt inside your head",
+            "cluePrompt": "Hook the painful continuous ache felt inside the skull",
             "clueCategory": "Health",
             "targetWord": "Headache",
             "distractorWords": [
@@ -800,7 +800,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_m_26",
-            "cluePrompt": "Hook having a high body temperature when your body fights off an illness",
+            "cluePrompt": "Hook having an unusually high body temperature when sick",
             "clueCategory": "Health",
             "targetWord": "Fever",
             "distractorWords": [
@@ -824,7 +824,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_m_28",
-            "cluePrompt": "Hook a strip of cloth wrapped around a cut or sprained wrist to protect it",
+            "cluePrompt": "Hook the cloth strip wrapped around an injured joint",
             "clueCategory": "Health",
             "targetWord": "Bandage",
             "distractorWords": [
@@ -836,7 +836,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_m_29",
-            "cluePrompt": "Hook the note a doctor writes for the chemist telling what medicine you need",
+            "cluePrompt": "Hook the doctor's written order for pharmacy medicine",
             "clueCategory": "Health",
             "targetWord": "Prescription",
             "distractorWords": [
@@ -872,7 +872,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_m_32",
-            "cluePrompt": "Hook an ancient stone castle where kings and medieval knights once lived",
+            "cluePrompt": "Hook the ancient fortress where kings and knights lived",
             "clueCategory": "History",
             "targetWord": "Castle",
             "distractorWords": [
@@ -884,7 +884,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_m_33",
-            "cluePrompt": "Hook the musical event where a band plays live music on stage for an audience",
+            "cluePrompt": "Hook the live musical performance given on a stage",
             "clueCategory": "Entertainment",
             "targetWord": "Concert",
             "distractorWords": [
@@ -896,7 +896,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_m_34",
-            "cluePrompt": "Hook a short printed magazine or newspaper you read for entertainment and articles",
+            "cluePrompt": "Hook the weekly paper publication with colourful articles and photos",
             "clueCategory": "Media",
             "targetWord": "Magazine",
             "distractorWords": [
@@ -982,7 +982,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
     hard: [
       {
             "id": "wf_g7_h_01",
-            "cluePrompt": "Hook sorting plastic bottles, paper, and glass into recycling bins",
+            "cluePrompt": "Hook turning used bottles, paper, and glass into new items",
             "clueCategory": "Environment",
             "targetWord": "Recycling",
             "distractorWords": [
@@ -994,7 +994,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_h_02",
-            "cluePrompt": "Hook the natural home where an animal or plant lives in the wild",
+            "cluePrompt": "Hook the natural environment where an animal species lives",
             "clueCategory": "Nature",
             "targetWord": "Habitat",
             "distractorWords": [
@@ -1030,7 +1030,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_h_05",
-            "cluePrompt": "Hook clean electricity generated from sunlight using solar panels on roofs",
+            "cluePrompt": "Hook clean power produced from sunlight hitting roof panels",
             "clueCategory": "Science",
             "targetWord": "Solar energy",
             "distractorWords": [
@@ -1054,7 +1054,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_h_07",
-            "cluePrompt": "Hook the long tube instrument astronomers use to look at stars and planets",
+            "cluePrompt": "Hook the optical tube used to view distant planets",
             "clueCategory": "Science",
             "targetWord": "Telescope",
             "distractorWords": [
@@ -1078,7 +1078,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_h_09",
-            "cluePrompt": "Hook a practical science test conducted in a lab to discover new facts",
+            "cluePrompt": "Hook a practical scientific test conducted in a laboratory",
             "clueCategory": "Science",
             "targetWord": "Experiment",
             "distractorWords": [
@@ -1114,7 +1114,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_h_12",
-            "cluePrompt": "Hook sending your photos or homework from your device up to the internet",
+            "cluePrompt": "Hook sending files or images up to the web",
             "clueCategory": "Technology",
             "targetWord": "Upload",
             "distractorWords": [
@@ -1138,7 +1138,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_h_14",
-            "cluePrompt": "Hook the portable computer you can fold closed and carry in your bag",
+            "cluePrompt": "Hook the portable foldable computer used on a desk",
             "clueCategory": "Technology",
             "targetWord": "Laptop",
             "distractorWords": [
@@ -1150,7 +1150,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_h_15",
-            "cluePrompt": "Hook wireless internet connection that lets your phone surf the web at home",
+            "cluePrompt": "Hook wireless networking that connects devices to the internet",
             "clueCategory": "Technology",
             "targetWord": "Wi-Fi",
             "distractorWords": [
@@ -1162,7 +1162,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_h_16",
-            "cluePrompt": "Hook software like Chrome or Safari used to browse webpages on the internet",
+            "cluePrompt": "Hook the program used to open and view websites",
             "clueCategory": "Technology",
             "targetWord": "Web browser",
             "distractorWords": [
@@ -1174,7 +1174,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_h_17",
-            "cluePrompt": "Hook the carved stone or bronze monument created in the likeness of a person",
+            "cluePrompt": "Hook the carved sculpture of stone honouring a hero",
             "clueCategory": "Art",
             "targetWord": "Statue",
             "distractorWords": [
@@ -1186,7 +1186,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_h_18",
-            "cluePrompt": "Hook the book that tells the real-life story of a famous person's life",
+            "cluePrompt": "Hook the written account of a notable person's life",
             "clueCategory": "Reading",
             "targetWord": "Biography",
             "distractorWords": [
@@ -1198,7 +1198,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_h_19",
-            "cluePrompt": "Hook when a reporter asks a famous athlete or scientist questions for the news",
+            "cluePrompt": "Hook a meeting where questions are asked by journalists",
             "clueCategory": "Media",
             "targetWord": "Interview",
             "distractorWords": [
@@ -1234,7 +1234,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_h_22",
-            "cluePrompt": "Hook having confidence in your abilities and not doubting yourself",
+            "cluePrompt": "Hook the inner belief in your personal strength and skills",
             "clueCategory": "Mindset",
             "targetWord": "Confidence",
             "distractorWords": [
@@ -1246,7 +1246,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_h_23",
-            "cluePrompt": "Hook planting small green tree saplings in the soil to grow a forest",
+            "cluePrompt": "Hook putting young saplings in soil to restore woodlands",
             "clueCategory": "Nature",
             "targetWord": "Plant trees",
             "distractorWords": [
@@ -1294,7 +1294,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_h_27",
-            "cluePrompt": "Hook someone whose job is to put out fires and rescue trapped people",
+            "cluePrompt": "Hook the brave rescuer who puts out blazing flames",
             "clueCategory": "Jobs",
             "targetWord": "Firefighter",
             "distractorWords": [
@@ -1306,7 +1306,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_h_28",
-            "cluePrompt": "Hook the brave sport of climbing up natural rocky mountain cliffs with ropes",
+            "cluePrompt": "Hook the outdoor sport of ascending steep mountain cliffs",
             "clueCategory": "Sports",
             "targetWord": "Rock climbing",
             "distractorWords": [
@@ -1318,7 +1318,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_h_29",
-            "cluePrompt": "Hook the traditional skill of shooting arrows at a target with a bow",
+            "cluePrompt": "Hook the precision sport of shooting arrows with bows",
             "clueCategory": "Sports",
             "targetWord": "Archery",
             "distractorWords": [
@@ -1330,7 +1330,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_h_30",
-            "cluePrompt": "Hook sleeping outside in a tent under the night stars in the forest",
+            "cluePrompt": "Hook sleeping outdoors in tents surrounded by forest nature",
             "clueCategory": "Hobbies",
             "targetWord": "Camping",
             "distractorWords": [
@@ -1342,7 +1342,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_h_31",
-            "cluePrompt": "Hook the hard protective cap you strap on your head when riding a bicycle",
+            "cluePrompt": "Hook the hard protective gear worn on the head",
             "clueCategory": "Safety",
             "targetWord": "Helmet",
             "distractorWords": [
@@ -1378,7 +1378,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_h_34",
-            "cluePrompt": "Hook the warm clothing items you wear on your hands to keep fingers warm",
+            "cluePrompt": "Hook the warm hand coverings with individual finger slots",
             "clueCategory": "Clothes",
             "targetWord": "Gloves",
             "distractorWords": [
@@ -1414,7 +1414,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g7_h_37",
-            "cluePrompt": "Hook the gold, silver, or bronze award given to athletes on the sports podium",
+            "cluePrompt": "Hook the circular metal award given to tournament champions",
             "clueCategory": "Sports",
             "targetWord": "Medal",
             "distractorWords": [
