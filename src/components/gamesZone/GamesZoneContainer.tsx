@@ -135,7 +135,7 @@ export const GamesZoneContainer: React.FC<GamesZoneContainerProps> = ({
   };
 
   return (
-    <div className="w-full min-h-screen bg-slate-950">
+    <div className="w-full min-h-screen bg-game-sky">
       {!isPlaying ? (
         <GamesZoneLanding
           selectedGrade={selectedGrade}
