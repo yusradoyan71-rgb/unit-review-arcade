@@ -160,6 +160,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
         if (res.success && res.student && res.sessionToken) {
           sounds.playSuccess();
+          // Ensure clean session navigation: clear any stale navigation from previous user
+          try {
+            sessionStorage.removeItem('unit_review_arcade_nav_target_v1');
+          } catch {
+            // ignore
+          }
           const normalizedStudent = normalizeStudent(res.student);
           if (normalizedStudent.monster && normalizedStudent.studentNumber) {
             MonsterService.updateCachedMonster(normalizedStudent.studentNumber, normalizedStudent.monster);
@@ -200,15 +206,27 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const logout = useCallback(async () => {
     sounds.playBack();
     const token = sessionToken;
+    const currentStudentNumber = student?.studentNumber;
 
     // Immediately clean up client state
     sessionStorage.removeItem(SESSION_STORAGE_KEY);
+    try {
+      sessionStorage.removeItem('unit_review_arcade_nav_target_v1');
+      sessionStorage.removeItem('unit_review_arcade_cached_gamification_profile_v1');
+      if (currentStudentNumber) {
+        sessionStorage.removeItem(`ura_cached_gamification_profile_${currentStudentNumber}`);
+      }
+    } catch {
+      // ignore
+    }
+
     TrackingService.clearStoredAttempt();
     TrackingService.clearPendingAnswers();
     TrackingService.clearActiveAnswers();
     setStudent(null);
     setSessionToken(null);
     setAuthMode('classroom');
+    setIsLoginModalOpen(false);
 
     // Notify backend asynchronously
     if (token) {
@@ -218,7 +236,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         console.warn('Backend logout notification failed:', err);
       }
     }
-  }, [sessionToken]);
+  }, [sessionToken, student?.studentNumber]);
 
   // 4. Return to / enforce Classroom Mode
   const enterClassroomMode = useCallback(() => {

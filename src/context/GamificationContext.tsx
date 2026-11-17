@@ -6,7 +6,7 @@
  * badges shelf, and privacy-sanitized class leaderboards.
  */
 
-import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react';
 import { useAuth } from './AuthContext';
 import { ApiService } from '../services/apiService';
 import { MonsterService } from '../services/monsterService';
@@ -37,17 +37,27 @@ interface GamificationContextType {
 
 const GamificationContext = createContext<GamificationContextType | undefined>(undefined);
 
-const STORAGE_KEY_CACHED_PROFILE = 'unit_review_arcade_cached_gamification_profile_v1';
+const STORAGE_KEY_CACHED_PROFILE_PREFIX = 'ura_cached_gamification_profile_';
+const LEGACY_STORAGE_KEY_CACHED_PROFILE = 'unit_review_arcade_cached_gamification_profile_v1';
+
+const getProfileStorageKey = (studentNumber?: string): string | null => {
+  return studentNumber ? `${STORAGE_KEY_CACHED_PROFILE_PREFIX}${studentNumber}` : null;
+};
 
 export const GamificationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { authMode, student, sessionToken } = useAuth();
+  const currentStudentNumber = student?.studentNumber || null;
 
-  // Synchronously seed initial cached profile for instant, zero-flicker UI
+  // Synchronously seed initial cached profile for instant, zero-flicker UI strictly scoped to current student
   const [profile, setProfile] = useState<StudentGamificationProfile | null>(() => {
+    if (!currentStudentNumber) return null;
     try {
-      const stored = sessionStorage.getItem(STORAGE_KEY_CACHED_PROFILE);
-      if (stored) {
-        return JSON.parse(stored) as StudentGamificationProfile;
+      const key = getProfileStorageKey(currentStudentNumber);
+      if (key) {
+        const stored = sessionStorage.getItem(key);
+        if (stored) {
+          return JSON.parse(stored) as StudentGamificationProfile;
+        }
       }
     } catch {
       // ignore
@@ -75,15 +85,79 @@ export const GamificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
     }
   }, [student?.class]);
 
+  // Keep a ref of active session credentials to discard stale in-flight async requests
+  const activeSessionRef = useRef<{ sessionToken: string | null; studentNumber: string | null }>({
+    sessionToken,
+    studentNumber: currentStudentNumber,
+  });
+
+  useEffect(() => {
+    activeSessionRef.current = {
+      sessionToken,
+      studentNumber: currentStudentNumber,
+    };
+  }, [sessionToken, currentStudentNumber]);
+
+  // Account Switch & Logout Cleanup Guard:
+  // Reset modals, errors, and in-memory profile immediately when account changes or logs out
+  const prevStudentNumberRef = useRef<string | null>(currentStudentNumber);
+  useEffect(() => {
+    if (prevStudentNumberRef.current !== currentStudentNumber) {
+      prevStudentNumberRef.current = currentStudentNumber;
+
+      setIsProfileModalOpen(false);
+      setIsLeaderboardModalOpen(false);
+      setProfileError(null);
+      setLeaderboardError(null);
+      setLeaderboard(null);
+
+      // Clean legacy global cache key if present
+      try {
+        sessionStorage.removeItem(LEGACY_STORAGE_KEY_CACHED_PROFILE);
+      } catch {
+        // ignore
+      }
+
+      if (!currentStudentNumber || authMode !== 'student' || !sessionToken) {
+        setProfile(null);
+      } else {
+        const key = getProfileStorageKey(currentStudentNumber);
+        let cached: StudentGamificationProfile | null = null;
+        if (key) {
+          try {
+            const stored = sessionStorage.getItem(key);
+            if (stored) cached = JSON.parse(stored);
+          } catch {
+            // ignore
+          }
+        }
+        setProfile(cached);
+      }
+    }
+  }, [currentStudentNumber, authMode, sessionToken]);
+
   // Fetch full student profile from backend
   const refreshProfile = useCallback(async () => {
-    if (!sessionToken || authMode !== 'student') return;
+    if (!sessionToken || authMode !== 'student' || !currentStudentNumber) return;
+
+    const requestToken = sessionToken;
+    const requestStudentNum = currentStudentNumber;
 
     setIsLoadingProfile(true);
     setProfileError(null);
 
     try {
-      const res = await ApiService.getStudentProfile(sessionToken);
+      const res = await ApiService.getStudentProfile(requestToken);
+
+      // Guard against stale asynchronous response!
+      // If student logged out or switched while request was in-flight, discard!
+      if (
+        activeSessionRef.current.sessionToken !== requestToken ||
+        activeSessionRef.current.studentNumber !== requestStudentNum
+      ) {
+        return;
+      }
+
       if (res.success && res.profile) {
         const resolvedMonster = MonsterService.resolveMonster(
           res.profile.monster,
@@ -98,7 +172,10 @@ export const GamificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
         }
         setProfile(resolvedProfile);
         try {
-          sessionStorage.setItem(STORAGE_KEY_CACHED_PROFILE, JSON.stringify(resolvedProfile));
+          const key = getProfileStorageKey(requestStudentNum);
+          if (key) {
+            sessionStorage.setItem(key, JSON.stringify(resolvedProfile));
+          }
         } catch {
           // ignore
         }
@@ -106,51 +183,71 @@ export const GamificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
         setProfileError(res.error || 'Failed to load profile.');
       }
     } catch (err) {
-      setProfileError(err instanceof Error ? err.message : 'Server unreachable.');
+      if (
+        activeSessionRef.current.sessionToken === requestToken &&
+        activeSessionRef.current.studentNumber === requestStudentNum
+      ) {
+        setProfileError(err instanceof Error ? err.message : 'Server unreachable.');
+      }
     } finally {
-      setIsLoadingProfile(false);
+      if (
+        activeSessionRef.current.sessionToken === requestToken &&
+        activeSessionRef.current.studentNumber === requestStudentNum
+      ) {
+        setIsLoadingProfile(false);
+      }
     }
-  }, [sessionToken, authMode]);
+  }, [sessionToken, authMode, currentStudentNumber]);
 
   // Fetch class leaderboard from backend
   const refreshLeaderboard = useCallback(
     async (targetClass?: StudentClass) => {
       if (!sessionToken || authMode !== 'student') return;
 
+      const requestToken = sessionToken;
+      const requestStudentNum = currentStudentNumber;
       const cls = targetClass || activeLeaderboardClass;
       setIsLoadingLeaderboard(true);
       setLeaderboardError(null);
 
       try {
-        const res = await ApiService.getClassLeaderboard(sessionToken, cls);
+        const res = await ApiService.getClassLeaderboard(requestToken, cls);
+        if (
+          activeSessionRef.current.sessionToken !== requestToken ||
+          activeSessionRef.current.studentNumber !== requestStudentNum
+        ) {
+          return;
+        }
+
         if (res.success && res.leaderboard) {
           setLeaderboard(res.leaderboard);
         } else {
           setLeaderboardError(res.error || 'Failed to load leaderboard.');
         }
       } catch (err) {
-        setLeaderboardError(err instanceof Error ? err.message : 'Server unreachable.');
+        if (activeSessionRef.current.sessionToken === requestToken) {
+          setLeaderboardError(err instanceof Error ? err.message : 'Server unreachable.');
+        }
       } finally {
-        setIsLoadingLeaderboard(false);
+        if (activeSessionRef.current.sessionToken === requestToken) {
+          setIsLoadingLeaderboard(false);
+        }
       }
     },
-    [sessionToken, authMode, activeLeaderboardClass]
+    [sessionToken, authMode, activeLeaderboardClass, currentStudentNumber]
   );
 
   // Auto-fetch profile on initial login
   useEffect(() => {
-    if (authMode === 'student' && sessionToken) {
+    if (authMode === 'student' && sessionToken && currentStudentNumber) {
       refreshProfile();
     } else {
       setProfile(null);
       setLeaderboard(null);
-      try {
-        sessionStorage.removeItem(STORAGE_KEY_CACHED_PROFILE);
-      } catch {
-        // ignore
-      }
+      setIsProfileModalOpen(false);
+      setIsLeaderboardModalOpen(false);
     }
-  }, [authMode, sessionToken, refreshProfile]);
+  }, [authMode, sessionToken, currentStudentNumber, refreshProfile]);
 
   const openProfileModal = useCallback(() => {
     setIsProfileModalOpen(true);
@@ -190,7 +287,10 @@ export const GamificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
         MonsterService.updateCachedMonster(prev.studentNumber, monster);
       }
       try {
-        sessionStorage.setItem(STORAGE_KEY_CACHED_PROFILE, JSON.stringify(updated));
+        const key = getProfileStorageKey(prev.studentNumber);
+        if (key) {
+          sessionStorage.setItem(key, JSON.stringify(updated));
+        }
       } catch (err) {
         console.warn('Failed to cache updated profile monster:', err);
       }

@@ -120,7 +120,7 @@ export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
       const token = sessionTokenRef.current;
       if (token && attemptIdRef.current) {
         TrackingService.flushPendingAnswers(token, attemptIdRef.current);
-        TrackingService.flushPendingCompletions(token);
+        TrackingService.flushPendingCompletions(token, student?.studentNumber);
       }
     };
 
@@ -393,7 +393,7 @@ export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
     }
     setSyncStatus('syncing');
     const ok = await TrackingService.flushPendingAnswers(currentToken, attemptIdRef.current);
-    await TrackingService.flushPendingCompletions(currentToken);
+    await TrackingService.flushPendingCompletions(currentToken, student?.studentNumber);
     if (ok) {
       setSyncStatus('synced');
       setSyncError(null);
@@ -412,7 +412,7 @@ export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
       if (attemptIdRef.current) {
         setSyncStatus('syncing');
         await TrackingService.flushPendingAnswers(newToken, attemptIdRef.current);
-        await TrackingService.flushPendingCompletions(newToken);
+        await TrackingService.flushPendingCompletions(newToken, student?.studentNumber);
         setSyncStatus('synced');
         setSyncError(null);
       }

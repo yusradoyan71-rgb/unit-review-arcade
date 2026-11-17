@@ -225,6 +225,14 @@ export const TeacherAuthProvider: React.FC<{ children: ReactNode }> = ({ childre
     }
 
     sessionStorage.removeItem(TEACHER_SESSION_STORAGE_KEY);
+    try {
+      const navStored = sessionStorage.getItem('unit_review_arcade_nav_target_v1');
+      if (navStored && navStored.includes('teacher-panel')) {
+        sessionStorage.removeItem('unit_review_arcade_nav_target_v1');
+      }
+    } catch {
+      // ignore
+    }
     setTeacherSession(null);
     setIsDashboardOpen(false);
     clearAuthError();

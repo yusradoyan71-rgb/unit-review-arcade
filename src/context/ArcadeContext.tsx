@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import type { ArcadeData, GradeId, Unit, Activity, NavigationTarget } from '../types/schema';
 import { StorageService } from '../services/storageService';
 import { sounds } from '../services/soundEffects';
@@ -15,6 +15,7 @@ interface ArcadeContextType {
   navigation: NavigationTarget;
   navigateTo: (target: NavigationTarget) => void;
   goToHome: () => void;
+  resetNavigation: () => void;
   goToGrade: (gradeId: GradeId) => void;
   goToUnit: (gradeId: GradeId, unitId: string) => void;
   goToGame: (gradeId: GradeId, unitId: string, activityId: string) => void;
@@ -89,10 +90,37 @@ export const ArcadeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
   }, []);
 
-  // Strict Grade Navigation Guard:
+  const resetNavigation = useCallback(() => {
+    try {
+      sessionStorage.removeItem(NAVIGATION_STORAGE_KEY);
+    } catch {
+      // ignore
+    }
+    setNavigationState({ view: 'home' });
+    setToasts([]);
+  }, []);
+
+  // Strict Account & Session Isolation:
+  // When student switches or logs out, immediately reset navigation to 'home',
+  // clear lingering toasts, and purge session navigation storage.
+  const prevStudentNumberRef = useRef<string | null>(student?.studentNumber || null);
+  useEffect(() => {
+    const currentNumber = student?.studentNumber || null;
+    if (prevStudentNumberRef.current !== currentNumber) {
+      prevStudentNumberRef.current = currentNumber;
+      resetNavigation();
+    }
+  }, [student?.studentNumber, resetNavigation]);
+
+  // Strict Grade & Role Navigation Guard:
   // When an authenticated student is logged in, clamp any cross-grade navigation
+  // and disallow access to teacher panel.
   useEffect(() => {
     if (student) {
+      if (navigation.view === 'teacher-panel') {
+        setNavigation({ view: 'home' });
+        return;
+      }
       if (
         (navigation.view === 'unit-library' || navigation.view === 'unit-dashboard' || navigation.view === 'game-play') &&
         navigation.gradeId !== student.grade
@@ -153,7 +181,9 @@ export const ArcadeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     sounds.playNavigate();
     let sanitized = { ...target };
     if (student) {
-      if (sanitized.view === 'unit-library' && sanitized.gradeId !== student.grade) {
+      if (sanitized.view === 'teacher-panel') {
+        sanitized = { view: 'home' };
+      } else if (sanitized.view === 'unit-library' && sanitized.gradeId !== student.grade) {
         sanitized.gradeId = student.grade;
       } else if (
         (sanitized.view === 'unit-dashboard' || sanitized.view === 'game-play') &&
@@ -337,6 +367,7 @@ export const ArcadeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         navigation,
         navigateTo,
         goToHome,
+        resetNavigation,
         goToGrade,
         goToUnit,
         goToGame,

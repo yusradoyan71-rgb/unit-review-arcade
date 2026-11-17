@@ -196,7 +196,7 @@ export const HomeScreen: React.FC = () => {
             {/* Level XP Progress Bar */}
             <div className="mt-2 mb-2">
               <div className="flex justify-between items-center text-[10px] font-bold text-slate-400 mb-1">
-                <span>XP Progress</span>
+                <span>Level Progress</span>
                 <span className="text-indigo-300">{levelInfo.progressPercent}%</span>
               </div>
               <div className="h-2 w-full rounded-full bg-slate-800 border border-slate-700/60 overflow-hidden">
@@ -210,7 +210,7 @@ export const HomeScreen: React.FC = () => {
 
           <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between">
             <span className="text-xs font-bold text-amber-300 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-              Customize Companion & View Shop
+              {milestoneInfo.isEgg ? 'Visit Your Egg' : 'Customize Companion & View Shop'}
             </span>
             <div className="w-8 h-8 rounded-xl bg-amber-500/20 border border-amber-500/30 text-amber-300 flex items-center justify-center group-hover:bg-amber-500 group-hover:text-slate-950 transition-all">
               <ChevronRight className="w-4 h-4" />

@@ -314,16 +314,29 @@ export class TrackingService {
 
   /**
    * Flushes any queued attempt completions when connection is restored.
+   * STRICT ACCOUNT ISOLATION:
+   * Only flushes completions matching the target studentNumber.
+   * Never submits Student A's completions under Student B's session token!
    */
-  public static async flushPendingCompletions(sessionToken: string): Promise<number> {
+  public static async flushPendingCompletions(
+    sessionToken: string,
+    studentNumber?: string
+  ): Promise<number> {
     const apiUrl = ApiService.getApiUrl();
     if (!apiUrl || !sessionToken) return 0;
 
     const pending = this.getPendingCompletions();
     if (pending.length === 0) return 0;
 
+    const effectiveStudent = studentNumber || this.getActiveStudentNumber();
+    const studentPending = effectiveStudent
+      ? pending.filter((item) => item.studentNumber === effectiveStudent)
+      : [];
+
+    if (studentPending.length === 0) return 0;
+
     let flushed = 0;
-    for (const item of pending) {
+    for (const item of studentPending) {
       try {
         const res = await ApiService.postRequest<TrackingApiResponse>(apiUrl, {
           ...item.payload,

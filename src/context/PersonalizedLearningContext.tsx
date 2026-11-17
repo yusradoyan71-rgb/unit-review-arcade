@@ -8,7 +8,7 @@
  * - Smart Review session launch and evaluation
  */
 
-import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useAuth } from './AuthContext';
 import { useArcade } from './ArcadeContext';
 import { ApiService } from '../services/apiService';
@@ -80,6 +80,33 @@ export const PersonalizedLearningProvider: React.FC<{ children: React.ReactNode 
 
   const studentNumber = student?.studentNumber || '';
 
+  // Track active session credentials to discard stale in-flight requests from prior accounts
+  const activeSessionRef = useRef<{ sessionToken: string | null; studentNumber: string }>({
+    sessionToken,
+    studentNumber,
+  });
+
+  useEffect(() => {
+    activeSessionRef.current = { sessionToken, studentNumber };
+  }, [sessionToken, studentNumber]);
+
+  // Account Switch & Logout Cleanup Guard:
+  // Immediately close all modals and clear in-memory personalized data
+  const prevStudentNumberRef = useRef<string>(studentNumber);
+  useEffect(() => {
+    if (prevStudentNumberRef.current !== studentNumber) {
+      prevStudentNumberRef.current = studentNumber;
+
+      setIsMistakesModalOpen(false);
+      setIsMasteryModalOpen(false);
+      setIsSmartReviewModalOpen(false);
+      setActiveReviewSession(null);
+      setError(null);
+      setMistakes([]);
+      setMastery(null);
+    }
+  }, [studentNumber]);
+
   // Synchronize or load personalized learning data
   const refreshPersonalizedData = useCallback(async () => {
     if (!studentNumber) {
@@ -88,28 +115,31 @@ export const PersonalizedLearningProvider: React.FC<{ children: React.ReactNode 
       return;
     }
 
+    const requestToken = sessionToken;
+    const requestStudentNum = studentNumber;
+
     // 1. Immediately load fast cached data
-    const cachedMistakes = PersonalizedLearningService.getCachedMistakes(studentNumber);
+    const cachedMistakes = PersonalizedLearningService.getCachedMistakes(requestStudentNum);
     if (cachedMistakes.length > 0) {
       setMistakes(PersonalizedLearningService.enrichMistakes(cachedMistakes, data));
     }
 
-    const cachedMastery = PersonalizedLearningService.getCachedMastery(studentNumber);
+    const cachedMastery = PersonalizedLearningService.getCachedMastery(requestStudentNum);
     if (cachedMastery) {
       setMastery(cachedMastery);
     } else {
       setMastery(
         PersonalizedLearningService.generateOfflineBaselineMastery(
           data,
-          studentNumber,
-          student?.displayName || student?.firstName || `Student ${studentNumber}`,
+          requestStudentNum,
+          student?.displayName || student?.firstName || `Student ${requestStudentNum}`,
           student?.class || '8A'
         )
       );
     }
 
     // If no session token (or in classroom mode), client cache suffices
-    if (!sessionToken || authMode !== 'student') {
+    if (!requestToken || authMode !== 'student') {
       return;
     }
 
@@ -119,24 +149,37 @@ export const PersonalizedLearningProvider: React.FC<{ children: React.ReactNode 
     try {
       // 2. Fetch fresh mistakes and mastery in parallel
       const [mistakesRes, masteryRes] = await Promise.all([
-        ApiService.getStudentMistakes(sessionToken),
-        ApiService.getStudentMastery(sessionToken),
+        ApiService.getStudentMistakes(requestToken),
+        ApiService.getStudentMastery(requestToken),
       ]);
+
+      // Guard against stale response from previous session
+      if (
+        activeSessionRef.current.sessionToken !== requestToken ||
+        activeSessionRef.current.studentNumber !== requestStudentNum
+      ) {
+        return;
+      }
 
       if (mistakesRes.success && mistakesRes.mistakes) {
         const enriched = PersonalizedLearningService.enrichMistakes(mistakesRes.mistakes, data);
         setMistakes(enriched);
-        PersonalizedLearningService.saveCachedMistakes(studentNumber, enriched);
+        PersonalizedLearningService.saveCachedMistakes(requestStudentNum, enriched);
       }
 
       if (masteryRes.success && masteryRes.mastery) {
         setMastery(masteryRes.mastery);
-        PersonalizedLearningService.saveCachedMastery(studentNumber, masteryRes.mastery);
+        PersonalizedLearningService.saveCachedMastery(requestStudentNum, masteryRes.mastery);
       }
     } catch (err) {
       console.warn('Personalized learning fetch fallback to offline cache:', err);
     } finally {
-      setIsLoading(false);
+      if (
+        activeSessionRef.current.sessionToken === requestToken &&
+        activeSessionRef.current.studentNumber === requestStudentNum
+      ) {
+        setIsLoading(false);
+      }
     }
   }, [studentNumber, sessionToken, authMode, data, student]);
 
