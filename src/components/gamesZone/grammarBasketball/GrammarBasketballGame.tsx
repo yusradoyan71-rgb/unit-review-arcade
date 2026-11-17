@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Pause, Flame, Trophy, CheckCircle2, XCircle } from 'lucide-react';
+import { Pause, Flame, Trophy, CheckCircle2, XCircle, Target } from 'lucide-react';
 import type { GradeId } from '../../../types/schema';
 import type {
   GamesZoneDifficulty,
@@ -21,7 +21,30 @@ interface GrammarBasketballGameProps {
   isMuted: boolean;
 }
 
-type ShotQuality = 'swish' | 'bank' | 'rim_bounce' | 'airball';
+interface BallPhysics {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  radius: number;
+}
+
+// Fixed Court Geometry in 800x420 ViewBox
+const COURT_WIDTH = 800;
+const COURT_HEIGHT = 420;
+const FLOOR_Y = 385;
+const BALL_START_X = 170;
+const BALL_START_Y = 320;
+const BALL_RADIUS = 16;
+const GRAVITY = 0.44;
+
+// Hoop & Backboard geometry
+const BACKBOARD_X = 680;
+const BACKBOARD_TOP_Y = 95;
+const BACKBOARD_BOTTOM_Y = 225;
+const HOOP_RIM_Y = 190;
+const FRONT_RIM_X = 604;
+const BACK_RIM_X = 672;
 
 export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
   gradeId,
@@ -38,16 +61,28 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false);
 
-  // Court & Shooting State
+  // Court state
   const [isCourtActive, setIsCourtActive] = useState(false);
-  const [meterValue, setMeterValue] = useState(50); // 0 to 100
-  const [meterDirection, setMeterDirection] = useState<1 | -1>(1);
+  const [isAiming, setIsAiming] = useState(false);
+  const [dragCurrent, setDragCurrent] = useState<{ x: number; y: number } | null>(null);
+
+  // Keyboard / Accessible aim controls
+  const [aimAngle, setAimAngle] = useState(55); // degrees (optimal default arc)
+  const [aimPower, setAimPower] = useState(70); // percentage (optimal default power)
+
+  // 2D Ball Physics State
+  const [ball, setBall] = useState<BallPhysics>({
+    x: BALL_START_X,
+    y: BALL_START_Y,
+    vx: 0,
+    vy: 0,
+    radius: BALL_RADIUS,
+  });
   const [isBallInFlight, setIsBallInFlight] = useState(false);
-  const [ballProgress, setBallProgress] = useState(0); // 0 to 1
-  const [shotQuality, setShotQuality] = useState<ShotQuality | null>(null);
+  const [netSwishAnim, setNetSwishAnim] = useState(false);
   const [shotFeedback, setShotFeedback] = useState<string | null>(null);
 
-  // Performance telemetry
+  // Telemetry
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(1);
   const [lives, setLives] = useState(3);
@@ -57,9 +92,17 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
 
   const startTimeRef = useRef(Date.now());
   const animFrameRef = useRef<number | null>(null);
-  const meterSpeed = difficulty === 'hard' ? 1.6 : difficulty === 'medium' ? 1.2 : 0.9;
+  const svgRef = useRef<SVGSVGElement | null>(null);
 
-  // Initialize questions
+  // Shot collision tracking flags for currently active flight
+  const flightStateRef = useRef({
+    hitBackboard: false,
+    hitRim: false,
+    basketScored: false,
+    shotResolved: false,
+  });
+
+  // Load questions
   useEffect(() => {
     const pool = getQuestionsForGame('grammar_basketball', gradeId, difficulty, 10) as GrammarBasketballItem[];
     setQuestions(pool);
@@ -67,9 +110,10 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
     setSelectedOption(null);
     setIsAnswerSubmitted(false);
     setIsCourtActive(false);
+    setIsAiming(false);
+    setDragCurrent(null);
     setIsBallInFlight(false);
-    setBallProgress(0);
-    setShotQuality(null);
+    setNetSwishAnim(false);
     setShotFeedback(null);
     setScore(0);
     setStreak(1);
@@ -77,6 +121,13 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
     setCorrectCount(0);
     setIncorrectCount(0);
     setBasketsMade(0);
+    setBall({
+      x: BALL_START_X,
+      y: BALL_START_Y,
+      vx: 0,
+      vy: 0,
+      radius: BALL_RADIUS,
+    });
     startTimeRef.current = Date.now();
   }, [gradeId, difficulty]);
 
@@ -120,34 +171,7 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
     [questions.length, studentNumber, difficulty, studentClass, gradeId, onComplete]
   );
 
-  // Meter oscillation when Court is active & ball not yet released
-  useEffect(() => {
-    if (!isCourtActive || isBallInFlight || isPaused || shotQuality !== null) return;
-
-    let localVal = meterValue;
-    let localDir = meterDirection;
-
-    const loop = () => {
-      localVal += localDir * meterSpeed;
-      if (localVal >= 100) {
-        localVal = 100;
-        localDir = -1;
-      } else if (localVal <= 0) {
-        localVal = 0;
-        localDir = 1;
-      }
-      setMeterValue(localVal);
-      setMeterDirection(localDir);
-      animFrameRef.current = requestAnimationFrame(loop);
-    };
-
-    animFrameRef.current = requestAnimationFrame(loop);
-    return () => {
-      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
-    };
-  }, [isCourtActive, isBallInFlight, isPaused, shotQuality, meterSpeed, meterDirection, meterValue]);
-
-  // Advance to next question or end
+  // Advance to next question
   const advanceToNext = useCallback(
     (currentCorrect: number, currentIncorrect: number, currentScore: number) => {
       if (lives <= 0 || currentIndex + 1 >= questions.length) {
@@ -157,81 +181,232 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
         setSelectedOption(null);
         setIsAnswerSubmitted(false);
         setIsCourtActive(false);
+        setIsAiming(false);
+        setDragCurrent(null);
         setIsBallInFlight(false);
-        setBallProgress(0);
-        setShotQuality(null);
+        setNetSwishAnim(false);
         setShotFeedback(null);
-        setMeterValue(50);
+        setBall({
+          x: BALL_START_X,
+          y: BALL_START_Y,
+          vx: 0,
+          vy: 0,
+          radius: BALL_RADIUS,
+        });
+        flightStateRef.current = {
+          hitBackboard: false,
+          hitRim: false,
+          basketScored: false,
+          shotResolved: false,
+        };
       }
     },
     [currentIndex, questions.length, lives, finishGame]
   );
 
-  // Basketball shooting release handler
-  const handleReleaseShot = useCallback(() => {
-    if (!isCourtActive || isBallInFlight || shotQuality !== null) return;
+  // Calculate launch velocity vector from drag offset
+  const getVelocityFromDrag = useCallback((drag: { x: number; y: number }) => {
+    // Pull-back vector: from pointer to ball center
+    const dx = BALL_START_X - drag.x;
+    const dy = BALL_START_Y - drag.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    if (dist < 5) return { vx: 0, vy: 0 };
 
-    if (!isMuted) sounds.playTap();
-    setIsBallInFlight(true);
+    const angle = Math.atan2(dy, dx);
+    const clampedDist = Math.min(dist, 160);
+    // Speed factor scale: maps 0..160 pull to calibrated court velocity
+    const speed = clampedDist * 0.14;
+    return {
+      vx: Math.cos(angle) * speed,
+      vy: -Math.abs(Math.sin(angle) * speed), // Always launch upward/forward
+    };
+  }, []);
 
-    // Evaluate timing release (Sweet zone is 65% - 85%)
-    let quality: ShotQuality = 'rim_bounce';
-    let bonus = 0;
-    let feedback = '';
+  // Calculate launch velocity vector from Angle & Power sliders/keys
+  const getVelocityFromSliders = useCallback((angleDeg: number, powerPct: number) => {
+    const rad = (angleDeg * Math.PI) / 180;
+    // Map power 30..100% to calibrated court velocity
+    const speed = 10 + (powerPct / 100) * 9.5;
+    return {
+      vx: Math.cos(rad) * speed,
+      vy: -Math.sin(rad) * speed,
+    };
+  }, []);
 
-    if (meterValue >= 68 && meterValue <= 84) {
-      quality = 'swish';
-      bonus = 50 * streak;
-      feedback = `SWISH! CLEAN 3-POINTER! +${bonus} PTS 🏀🔥`;
-    } else if ((meterValue >= 50 && meterValue < 68) || (meterValue > 84 && meterValue <= 94)) {
-      quality = 'bank';
-      bonus = 25 * streak;
-      feedback = `BANK SHOT OFF GLASS! +${bonus} PTS! 🎯`;
-    } else {
-      quality = 'rim_bounce';
-      bonus = 0;
-      feedback = 'RIM BOUNCE! Good try — Grammar point awarded! 👏';
-    }
+  // Launch the physical shot
+  const launchShot = useCallback(
+    (vx: number, vy: number) => {
+      if (isBallInFlight || !isCourtActive) return;
 
-    setShotQuality(quality);
+      if (!isMuted) sounds.playTap();
+      setIsAiming(false);
+      setDragCurrent(null);
+      setIsBallInFlight(true);
+      flightStateRef.current = {
+        hitBackboard: false,
+        hitRim: false,
+        basketScored: false,
+        shotResolved: false,
+      };
 
-    // Animate ball arc
-    const startTime = performance.now();
-    const flightDuration = 750; // ms
+      setBall({
+        x: BALL_START_X,
+        y: BALL_START_Y,
+        vx,
+        vy,
+        radius: BALL_RADIUS,
+      });
+    },
+    [isBallInFlight, isCourtActive, isMuted]
+  );
 
-    const animateFlight = (now: number) => {
-      const elapsed = now - startTime;
-      const progress = Math.min(1, elapsed / flightDuration);
-      setBallProgress(progress);
+  // 2D Physics Step Engine (Runs while isBallInFlight is true)
+  useEffect(() => {
+    if (!isBallInFlight || isPaused) return;
 
-      if (progress < 1) {
-        requestAnimationFrame(animateFlight);
-      } else {
-        // Ball reached hoop
-        setIsBallInFlight(false);
-        if (quality === 'swish' || quality === 'bank') {
-          if (!isMuted) sounds.playSuccess();
-          setBasketsMade((b) => b + 1);
-        } else {
+    const tick = () => {
+      setBall((prev) => {
+        let { x, y, vx, vy, radius } = prev;
+        const flight = flightStateRef.current;
+
+        // Apply Gravity
+        vy += GRAVITY;
+
+        // Update Position
+        const nextX = x + vx;
+        const nextY = y + vy;
+
+        // 1. BACKBOARD COLLISION
+        // Backboard is a vertical board around x=BACKBOARD_X between BACKBOARD_TOP_Y and BACKBOARD_BOTTOM_Y
+        if (
+          nextX + radius >= BACKBOARD_X &&
+          x + radius < BACKBOARD_X + 16 &&
+          nextY >= BACKBOARD_TOP_Y &&
+          nextY <= BACKBOARD_BOTTOM_Y
+        ) {
+          vx = -Math.abs(vx) * 0.65; // Elastic bounce to the left
+          flight.hitBackboard = true;
           if (!isMuted) sounds.playTap();
         }
-        setShotFeedback(feedback);
-        const newScore = score + bonus;
-        setScore(newScore);
 
-        setTimeout(() => {
-          advanceToNext(correctCount, incorrectCount, newScore);
-        }, 1300);
-      }
+        // 2. RIM COLLISIONS (Front Rim & Back Rim)
+        // Front Rim point: (FRONT_RIM_X, HOOP_RIM_Y)
+        const dFront = Math.hypot(nextX - FRONT_RIM_X, nextY - HOOP_RIM_Y);
+        if (dFront < radius + 4) {
+          // Bounce off front rim
+          const nx = (nextX - FRONT_RIM_X) / dFront;
+          const ny = (nextY - HOOP_RIM_Y) / dFront;
+          const dot = vx * nx + vy * ny;
+          vx = (vx - 1.6 * dot * nx) * 0.6;
+          vy = (vy - 1.6 * dot * ny) * 0.6;
+          flight.hitRim = true;
+          if (!isMuted) sounds.playTap();
+        }
+
+        // Back Rim point: (BACK_RIM_X, HOOP_RIM_Y)
+        const dBack = Math.hypot(nextX - BACK_RIM_X, nextY - HOOP_RIM_Y);
+        if (dBack < radius + 4) {
+          const nx = (nextX - BACK_RIM_X) / dBack;
+          const ny = (nextY - HOOP_RIM_Y) / dBack;
+          const dot = vx * nx + vy * ny;
+          vx = (vx - 1.6 * dot * nx) * 0.6;
+          vy = (vy - 1.6 * dot * ny) * 0.6;
+          flight.hitRim = true;
+          if (!isMuted) sounds.playTap();
+        }
+
+        // 3. HOOP SCORING CYLINDER
+        // Ball passes downward through hoop between FRONT_RIM_X and BACK_RIM_X
+        if (
+          !flight.basketScored &&
+          vy > 0 &&
+          y <= HOOP_RIM_Y &&
+          nextY >= HOOP_RIM_Y &&
+          nextX > FRONT_RIM_X + 6 &&
+          nextX < BACK_RIM_X - 6
+        ) {
+          flight.basketScored = true;
+          setNetSwishAnim(true);
+
+          // Dampen ball downward velocity through net
+          vx *= 0.25;
+          vy *= 0.55;
+
+          let bonus = 50 * streak;
+          let feedbackMsg = `SWISH! CLEAN 3-POINTER! +${bonus} PTS 🏀🔥`;
+
+          if (flight.hitBackboard) {
+            bonus = 30 * streak;
+            feedbackMsg = `BANK SHOT OFF GLASS! +${bonus} PTS! 🎯`;
+          } else if (flight.hitRim) {
+            bonus = 25 * streak;
+            feedbackMsg = `RATTLE IN! GREAT FINISH! +${bonus} PTS! 👏`;
+          }
+
+          if (!isMuted) sounds.playSuccess();
+          setBasketsMade((b) => b + 1);
+          setShotFeedback(feedbackMsg);
+          setScore((s) => s + bonus);
+        }
+
+        // 4. FLOOR BOUNCE & SHOT RESOLUTION
+        if (nextY + radius >= FLOOR_Y) {
+          y = FLOOR_Y - radius;
+          vy = -Math.abs(vy) * 0.45; // Floor bounce
+          vx *= 0.7;
+
+          if (!flight.shotResolved) {
+            flight.shotResolved = true;
+
+            if (!flight.basketScored) {
+              // Missed shot
+              const missFeedback = flight.hitRim
+                ? 'RIM OUT! Nice aim — Grammar point awarded! 🏀'
+                : flight.hitBackboard
+                ? 'OFF THE BACKBOARD! Good attempt — Grammar point awarded! 🎯'
+                : 'AIRBALL! Grammar point awarded! Try more arc next shot! 👏';
+
+              if (!isMuted) sounds.playTap();
+              setShotFeedback(missFeedback);
+            }
+
+            // Conclude flight and advance
+            setTimeout(() => {
+              setIsBallInFlight(false);
+              advanceToNext(correctCount, incorrectCount, score);
+            }, 1400);
+          }
+        } else {
+          x = nextX;
+          y = nextY;
+        }
+
+        // Out-of-bounds safety check
+        if ((x > COURT_WIDTH + 80 || x < -60 || y > COURT_HEIGHT + 60) && !flight.shotResolved) {
+          flight.shotResolved = true;
+          if (!flight.basketScored) {
+            setShotFeedback('MISSED SHOT! Grammar point awarded! 👏');
+          }
+          setTimeout(() => {
+            setIsBallInFlight(false);
+            advanceToNext(correctCount, incorrectCount, score);
+          }, 1100);
+        }
+
+        return { x, y, vx, vy, radius };
+      });
+
+      animFrameRef.current = requestAnimationFrame(tick);
     };
 
-    requestAnimationFrame(animateFlight);
+    animFrameRef.current = requestAnimationFrame(tick);
+    return () => {
+      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+    };
   }, [
-    isCourtActive,
     isBallInFlight,
-    shotQuality,
+    isPaused,
     isMuted,
-    meterValue,
     streak,
     score,
     correctCount,
@@ -239,7 +414,7 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
     advanceToNext,
   ]);
 
-  // Option selection
+  // Answer option selection
   const handleSelectOption = (idx: number) => {
     if (isAnswerSubmitted || isCourtActive) return;
 
@@ -260,7 +435,7 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
       setCorrectCount(nextCorrect);
       setStreak((s) => Math.min(5, s + 1));
 
-      // Unlock Shooting Court
+      // Unlock Interactive Shooting Court
       setTimeout(() => {
         setIsCourtActive(true);
       }, 700);
@@ -272,17 +447,16 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
       const nextLives = lives - 1;
       setLives(nextLives);
 
-      // Show airball / blocked feedback then advance
-      setShotQuality('airball');
-      setShotFeedback(`Missed Shot! Correct: "${currentQ.options[currentQ.correctOptionIndex]}"`);
+      // Show error feedback with pedagogical explanation
+      setShotFeedback(`Incorrect Answer! Correct: "${currentQ.options[currentQ.correctOptionIndex]}"`);
 
       setTimeout(() => {
         advanceToNext(correctCount, nextIncorrect, score);
-      }, 2000);
+      }, 2200);
     }
   };
 
-  // Keyboard shortcut controls: 1-4 for options, Space for shoot
+  // Keyboard navigation & shooting
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (isPaused) return;
@@ -292,47 +466,144 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
         else if (e.key === '2') handleSelectOption(1);
         else if (e.key === '3') handleSelectOption(2);
         else if (e.key === '4') handleSelectOption(3);
-      } else if (isCourtActive && !isBallInFlight && shotQuality === null) {
-        if (e.key === ' ' || e.key === 'Enter') {
+      } else if (isCourtActive && !isBallInFlight) {
+        if (e.key === 'ArrowUp') {
           e.preventDefault();
-          handleReleaseShot();
+          setAimAngle((a) => Math.min(80, a + 2));
+        } else if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          setAimAngle((a) => Math.max(25, a - 2));
+        } else if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          setAimPower((p) => Math.min(100, p + 2));
+        } else if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          setAimPower((p) => Math.max(30, p - 2));
+        } else if (e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault();
+          const { vx, vy } = getVelocityFromSliders(aimAngle, aimPower);
+          launchShot(vx, vy);
         }
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isPaused, isCourtActive, isAnswerSubmitted, isBallInFlight, shotQuality, handleReleaseShot]);
+  }, [
+    isPaused,
+    isCourtActive,
+    isAnswerSubmitted,
+    isBallInFlight,
+    aimAngle,
+    aimPower,
+    getVelocityFromSliders,
+    launchShot,
+  ]);
+
+  // Pointer Drag Handlers (Mouse & Touch for smartboards)
+  const handlePointerDown = (e: React.PointerEvent) => {
+    if (!isCourtActive || isBallInFlight) return;
+
+    // Get SVG coordinates
+    if (!svgRef.current) return;
+    const pt = svgRef.current.createSVGPoint();
+    pt.x = e.clientX;
+    pt.y = e.clientY;
+    const svgP = pt.matrixTransform(svgRef.current.getScreenCTM()?.inverse());
+
+    // Check if pointer is near the ball (within 60px radius)
+    const distToBall = Math.hypot(svgP.x - BALL_START_X, svgP.y - BALL_START_Y);
+    if (distToBall <= 70) {
+      setIsAiming(true);
+      setDragCurrent({ x: svgP.x, y: svgP.y });
+      (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
+    }
+  };
+
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (!isAiming || !svgRef.current) return;
+    const pt = svgRef.current.createSVGPoint();
+    pt.x = e.clientX;
+    pt.y = e.clientY;
+    const svgP = pt.matrixTransform(svgRef.current.getScreenCTM()?.inverse());
+    setDragCurrent({ x: svgP.x, y: svgP.y });
+  };
+
+  const handlePointerUp = () => {
+    if (!isAiming) return;
+    setIsAiming(false);
+
+    if (dragCurrent) {
+      const { vx, vy } = getVelocityFromDrag(dragCurrent);
+      if (Math.hypot(vx, vy) > 5) {
+        launchShot(vx, vy);
+      }
+    }
+    setDragCurrent(null);
+  };
+
+  // Trajectory Preview Points Calculator (simulates 26 physics steps)
+  const previewPoints = React.useMemo(() => {
+    if (!isCourtActive || isBallInFlight) return [];
+
+    let launchVx = 0;
+    let launchVy = 0;
+
+    if (isAiming && dragCurrent) {
+      const v = getVelocityFromDrag(dragCurrent);
+      launchVx = v.vx;
+      launchVy = v.vy;
+    } else {
+      const v = getVelocityFromSliders(aimAngle, aimPower);
+      launchVx = v.vx;
+      launchVy = v.vy;
+    }
+
+    if (Math.hypot(launchVx, launchVy) < 4) return [];
+
+    const pts: { x: number; y: number }[] = [];
+    let px = BALL_START_X;
+    let py = BALL_START_Y;
+    let pvx = launchVx;
+    let pvy = launchVy;
+
+    for (let step = 0; step < 26; step++) {
+      pvy += GRAVITY;
+      px += pvx;
+      py += pvy;
+      if (py >= FLOOR_Y || px >= BACKBOARD_X) {
+        pts.push({ x: px, y: py });
+        break;
+      }
+      pts.push({ x: px, y: py });
+    }
+
+    return pts;
+  }, [
+    isCourtActive,
+    isBallInFlight,
+    isAiming,
+    dragCurrent,
+    aimAngle,
+    aimPower,
+    getVelocityFromDrag,
+    getVelocityFromSliders,
+  ]);
 
   const currentQ = questions[currentIndex];
   if (!currentQ) return null;
 
-  // Ball trajectory coordinates (from shooter hand [bottom center] to hoop [top right])
-  // Start: x=250, y=360. Apex: x=340, y=100. Target (Hoop): x=450, y=180
-  const t = ballProgress;
-  const startX = 260;
-  const startY = 360;
-  const apexX = 350;
-  const apexY = 110;
-  const targetX = 455;
-  const targetY = 195;
-
-  // Quadratic Bézier curve formula: B(t) = (1-t)^2 P0 + 2(1-t)t P1 + t^2 P2
-  const ballX = (1 - t) * (1 - t) * startX + 2 * (1 - t) * t * apexX + t * t * targetX;
-  const ballY = (1 - t) * (1 - t) * startY + 2 * (1 - t) * t * apexY + t * t * targetY;
-  const ballScale = 1 - t * 0.35; // Slight perspective shrinking as ball approaches hoop
-
   return (
-    <div className="relative w-full min-h-[620px] max-w-4xl mx-auto bg-gradient-to-b from-amber-950 via-slate-900 to-slate-950 rounded-3xl border-2 border-orange-500/40 overflow-hidden flex flex-col select-none shadow-2xl">
+    <div className="relative w-full max-w-4xl mx-auto bg-gradient-to-b from-amber-50 via-sky-50 to-amber-100 rounded-3xl border-3 border-amber-300 shadow-2xl overflow-hidden flex flex-col select-none">
       
-      {/* Top HUD Bar */}
-      <div className="bg-slate-900/90 backdrop-blur-md px-6 py-3.5 border-b border-orange-500/30 flex items-center justify-between text-white z-20">
+      {/* Top Header & HUD */}
+      <div className="bg-white/95 backdrop-blur-md px-6 py-3 border-b-2 border-amber-200 flex items-center justify-between z-20">
         
-        {/* Left: Question Counter & Lives */}
+        {/* Left: Round & Lives */}
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-1.5 bg-orange-950/80 px-3 py-1.5 rounded-xl border border-orange-500/40">
+          <div className="flex items-center gap-1.5 bg-amber-100 px-3 py-1.5 rounded-xl border border-amber-300">
             <span className="text-xl">🏀</span>
-            <span className="font-mono font-black text-amber-300 text-sm">
+            <span className="font-mono font-black text-amber-900 text-sm">
               {currentIndex + 1} / {questions.length}
             </span>
           </div>
@@ -352,24 +623,25 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
         </div>
 
         {/* Center: Topic Badge */}
-        <div className="hidden sm:flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-800/80 border border-slate-700 text-xs font-bold text-amber-400">
+        <div className="hidden sm:flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-100 border border-amber-300 text-xs font-black text-amber-900">
+          <Target className="w-3.5 h-3.5 text-orange-600" />
           <span>{currentQ.grammarTopic}</span>
         </div>
 
         {/* Right: Score, Baskets, Streak, Controls */}
-        <div className="flex items-center gap-4">
-          <div className="hidden sm:flex items-center gap-1 text-orange-300 font-mono text-xs font-bold bg-slate-800/80 px-2.5 py-1 rounded-lg border border-slate-700">
-            <span>Swishes:</span>
-            <strong className="text-white">{basketsMade}</strong>
+        <div className="flex items-center gap-3">
+          <div className="hidden sm:flex items-center gap-1.5 bg-orange-100 px-2.5 py-1 rounded-xl border border-orange-300 text-orange-900 font-mono text-xs font-bold">
+            <span>Baskets:</span>
+            <strong className="text-orange-950 font-black">{basketsMade}</strong>
           </div>
 
-          <div className="flex items-center gap-1 text-amber-400 font-mono font-black text-sm">
-            <Trophy className="w-4 h-4 text-amber-400" />
+          <div className="flex items-center gap-1 text-amber-900 font-mono font-black text-sm bg-amber-100/80 px-2.5 py-1 rounded-xl border border-amber-300">
+            <Trophy className="w-4 h-4 text-amber-600" />
             <span>{score}</span>
           </div>
 
           {streak > 1 && (
-            <div className="flex items-center gap-1 bg-gradient-to-r from-orange-500 to-amber-500 text-slate-950 font-black text-xs px-2.5 py-1 rounded-full animate-pulse shadow-sm">
+            <div className="flex items-center gap-1 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-black text-xs px-2.5 py-1 rounded-full animate-bounce shadow-sm">
               <Flame className="w-3.5 h-3.5 fill-current" />
               <span>x{streak}</span>
             </div>
@@ -378,7 +650,7 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
           <button
             type="button"
             onClick={onPause}
-            className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
+            className="p-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors border border-slate-300"
             title="Pause Game"
           >
             <Pause className="w-4 h-4" />
@@ -387,195 +659,286 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
 
       </div>
 
-      {/* Main Play Area */}
-      <div className="relative flex-1 p-4 md:p-6 flex flex-col justify-between overflow-hidden">
-        
-        {/* Court Backdrop Vector Graphics (Hardwood court & glowing stadium lights) */}
-        <div className="absolute inset-0 pointer-events-none opacity-25">
-          {/* Hardwood lines */}
-          <div className="w-full h-full bg-[radial-gradient(#ea580c_1px,transparent_1px)] [background-size:24px_24px]" />
-          {/* Key / Free throw circle */}
-          <div className="absolute right-[-40px] top-[140px] w-72 h-72 border-4 border-orange-400/40 rounded-full" />
-          <div className="absolute right-0 top-[180px] w-48 h-52 border-4 border-orange-400/30" />
+      {/* Question Card Header (Always Clear and Readable) */}
+      <div className="p-4 md:px-6 bg-white border-b-2 border-amber-200 z-10 space-y-3">
+        <div className="flex items-center justify-between text-xs font-black uppercase tracking-wider text-amber-800">
+          <span>Grammar Free-Throw • Select the correct English option</span>
+          <span className="font-mono text-slate-500">Correct Answer: +100 Base Score</span>
         </div>
 
-        {/* PHASE 1: Grammar Question Card */}
-        <div className="relative z-10 space-y-4">
-          
-          <div className="bg-slate-900/90 border-2 border-orange-400/40 rounded-2xl p-5 shadow-lg backdrop-blur-sm">
-            <div className="flex items-center justify-between text-xs font-extrabold text-orange-400 uppercase tracking-wider mb-2">
-              <span>Grammar Challenge • Choose the right answer</span>
-              <span className="font-mono text-slate-400">Score value: +100 XP</span>
-            </div>
+        <p className="text-base sm:text-lg md:text-xl font-black text-slate-900 leading-snug">
+          {currentQ.prompt}
+        </p>
 
-            <p className="text-lg sm:text-xl md:text-2xl font-black text-white leading-relaxed tracking-wide">
-              {currentQ.prompt}
-            </p>
-          </div>
+        {/* 4 Interactive Answer Options */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          {currentQ.options.map((opt, idx) => {
+            const isSelected = selectedOption === idx;
+            const isCorrectOpt = idx === currentQ.correctOptionIndex;
+            let btnClass = 'bg-slate-50 border-slate-200 text-slate-800 hover:border-amber-400 hover:bg-amber-50/50';
 
-          {/* Answer Options Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {currentQ.options.map((opt, idx) => {
-              const isSelected = selectedOption === idx;
-              const isCorrectOpt = idx === currentQ.correctOptionIndex;
-              let btnClass = 'bg-slate-800/90 border-slate-700 text-slate-200 hover:border-orange-400 hover:bg-slate-800';
-
-              if (isAnswerSubmitted) {
-                if (isCorrectOpt) {
-                  btnClass = 'bg-emerald-600/90 border-emerald-400 text-white shadow-lg shadow-emerald-900/50 scale-[1.01]';
-                } else if (isSelected && !isCorrectOpt) {
-                  btnClass = 'bg-rose-600/90 border-rose-400 text-white shadow-lg shadow-rose-900/50';
-                } else {
-                  btnClass = 'bg-slate-900/50 border-slate-800 text-slate-500 opacity-60';
-                }
+            if (isAnswerSubmitted) {
+              if (isCorrectOpt) {
+                btnClass = 'bg-emerald-100 border-emerald-500 text-emerald-950 shadow-md font-black scale-[1.01]';
+              } else if (isSelected && !isCorrectOpt) {
+                btnClass = 'bg-rose-100 border-rose-500 text-rose-950 shadow-md font-black';
+              } else {
+                btnClass = 'bg-slate-100 border-slate-200 text-slate-400 opacity-50';
               }
+            }
 
-              return (
-                <button
-                  key={idx}
-                  type="button"
-                  disabled={isAnswerSubmitted}
-                  onClick={() => handleSelectOption(idx)}
-                  className={`p-4 rounded-2xl border-2 text-left font-bold text-base transition-all flex items-center justify-between group active:scale-[0.98] ${btnClass}`}
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="w-7 h-7 rounded-xl bg-black/30 flex items-center justify-center font-mono text-xs font-black text-amber-300">
-                      {idx + 1}
-                    </span>
-                    <span>{opt}</span>
-                  </div>
-
-                  {isAnswerSubmitted && isCorrectOpt && (
-                    <CheckCircle2 className="w-5 h-5 text-emerald-300 animate-bounce" />
-                  )}
-                  {isAnswerSubmitted && isSelected && !isCorrectOpt && (
-                    <XCircle className="w-5 h-5 text-rose-300" />
-                  )}
-                </button>
-              );
-            })}
-          </div>
-
-        </div>
-
-        {/* PHASE 2: Interactive Basketball Court View */}
-        <div className="relative z-10 flex-1 min-h-[260px] mt-4 rounded-2xl bg-gradient-to-t from-amber-950/80 via-slate-900/60 to-transparent border border-orange-500/20 p-4 flex flex-col justify-end overflow-hidden">
-          
-          {/* Backboard & Hoop Graphics (Top Right) */}
-          <div className="absolute right-8 top-6 z-10 flex flex-col items-center">
-            {/* Glass Backboard */}
-            <div className="w-28 h-20 bg-white/10 backdrop-blur-md border-4 border-orange-400 rounded-lg shadow-2xl relative flex items-center justify-center">
-              {/* Target Square on Backboard */}
-              <div className="w-12 h-9 border-2 border-orange-500 rounded-sm" />
-              {/* Backboard Mount */}
-              <div className="absolute right-[-14px] top-1/2 -translate-y-1/2 w-4 h-3 bg-slate-700" />
-            </div>
-
-            {/* Hoop Rim & Net */}
-            <div className="relative -mt-1 flex flex-col items-center">
-              {/* Orange Rim */}
-              <div className="w-16 h-3 bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 rounded-full border border-orange-300 shadow-md" />
-              {/* White Mesh Net */}
-              <svg width="44" height="32" viewBox="0 0 44 32" className="opacity-90">
-                <path
-                  d="M 6 0 L 14 30 L 30 30 L 38 0 Z"
-                  fill="none"
-                  stroke="#ffffff"
-                  strokeWidth="1.5"
-                  strokeDasharray="3 3"
-                />
-                <line x1="12" y1="0" x2="22" y2="30" stroke="#ffffff" strokeWidth="1" />
-                <line x1="32" y1="0" x2="22" y2="30" stroke="#ffffff" strokeWidth="1" />
-                <line x1="10" y1="14" x2="34" y2="14" stroke="#ffffff" strokeWidth="1" />
-              </svg>
-            </div>
-          </div>
-
-          {/* Animated Basketball */}
-          {isCourtActive && (
-            <div
-              className="absolute z-20 transition-all pointer-events-none"
-              style={{
-                left: `${ballX}px`,
-                top: `${ballY}px`,
-                transform: `scale(${ballScale})`,
-              }}
-            >
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-orange-400 via-orange-600 to-amber-800 border-2 border-orange-300 shadow-2xl flex items-center justify-center relative overflow-hidden animate-spin">
-                {/* Basketball Ribs */}
-                <div className="absolute inset-0 border-t-2 border-b-2 border-black/40 rounded-full" />
-                <div className="absolute inset-0 border-l-2 border-r-2 border-black/40 rounded-full" />
-                <div className="w-full h-[2px] bg-black/40" />
-              </div>
-            </div>
-          )}
-
-          {/* Shot Feedback Banner */}
-          {shotFeedback && (
-            <div className="absolute inset-x-4 top-1/3 -translate-y-1/2 z-30 flex flex-col items-center justify-center">
-              <div className="px-6 py-3.5 rounded-2xl bg-slate-900/95 border-2 border-amber-400 shadow-2xl text-center backdrop-blur-md animate-bounce">
-                <p className="text-lg md:text-xl font-black text-amber-300 font-display">
-                  {shotFeedback}
-                </p>
-                {currentQ.explanation && (
-                  <p className="text-xs text-slate-300 font-medium mt-1 max-w-md mx-auto">
-                    {currentQ.explanation}
-                  </p>
-                )}
-              </div>
-            </div>
-          )}
-
-          {/* SHOT METER & RELEASE TRIGGER (Visible when Court is active and ball not in flight) */}
-          {isCourtActive && !isBallInFlight && shotQuality === null && (
-            <div className="relative z-20 bg-slate-900/90 p-4 rounded-2xl border-2 border-orange-400 shadow-xl flex flex-col items-center space-y-3">
-              
-              <div className="flex items-center justify-between w-full text-xs font-black text-amber-300">
-                <span className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
-                  SHOT METER • RELEASE IN GREEN ZONE!
-                </span>
-                <span className="font-mono text-slate-400">Sweet Spot: 70-80%</span>
-              </div>
-
-              {/* Oscillating Bar */}
-              <div className="w-full h-7 bg-slate-800 rounded-full border-2 border-slate-700 relative overflow-hidden flex items-center">
-                {/* Green Sweet Spot Zone */}
-                <div className="absolute left-[68%] w-[16%] h-full bg-emerald-500/80 border-x-2 border-emerald-300 flex items-center justify-center text-[10px] font-black text-white">
-                  SWISH
-                </div>
-                {/* Yellow Bank Zone Left */}
-                <div className="absolute left-[50%] w-[18%] h-full bg-amber-500/40" />
-                {/* Yellow Bank Zone Right */}
-                <div className="absolute left-[84%] w-[10%] h-full bg-amber-500/40" />
-
-                {/* Moving Indicator Arrow */}
-                <div
-                  className="absolute top-0 bottom-0 w-2.5 bg-white border-x border-orange-600 rounded-full shadow-lg transition-transform duration-75"
-                  style={{ left: `${meterValue}%` }}
-                />
-              </div>
-
-              {/* Big Tap / Click Trigger Button */}
+            return (
               <button
+                key={idx}
                 type="button"
-                onClick={handleReleaseShot}
-                className="w-full py-3.5 rounded-xl bg-gradient-to-r from-orange-500 via-amber-500 to-orange-500 hover:from-orange-600 hover:to-amber-600 text-slate-950 font-black text-base uppercase tracking-wider shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2"
+                disabled={isAnswerSubmitted}
+                onClick={() => handleSelectOption(idx)}
+                className={`py-2.5 px-3.5 rounded-xl border-2 text-left font-bold text-sm transition-all flex items-center justify-between group active:scale-[0.98] ${btnClass}`}
               >
-                <span>🏀 RELEASE SHOT NOW! (SPACE / TAP)</span>
+                <div className="flex items-center gap-2.5">
+                  <span className="w-6 h-6 rounded-lg bg-amber-200/80 flex items-center justify-center font-mono text-xs font-black text-amber-900">
+                    {idx + 1}
+                  </span>
+                  <span>{opt}</span>
+                </div>
+
+                {isAnswerSubmitted && isCorrectOpt && (
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 animate-bounce" />
+                )}
+                {isAnswerSubmitted && isSelected && !isCorrectOpt && (
+                  <XCircle className="w-4 h-4 text-rose-600" />
+                )}
               </button>
-
-            </div>
-          )}
-
-          {/* Idle Prompt before answer */}
-          {!isCourtActive && !isAnswerSubmitted && (
-            <div className="flex items-center justify-center text-xs font-bold text-slate-400 py-3">
-              <span>Select the correct grammar option above to step onto the court!</span>
-            </div>
-          )}
-
+            );
+          })}
         </div>
+      </div>
+
+      {/* INTERACTIVE 2D BASKETBALL COURT (Real Projectile Physics) */}
+      <div className="relative flex-1 min-h-[360px] bg-gradient-to-b from-sky-100 via-amber-50 to-orange-100 overflow-hidden flex flex-col justify-between">
+        
+        {/* SVG Physics Viewport */}
+        <svg
+          ref={svgRef}
+          viewBox={`0 0 ${COURT_WIDTH} ${COURT_HEIGHT}`}
+          className="w-full h-full cursor-crosshair touch-none"
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
+        >
+          {/* Defs for gradients & shadow filters */}
+          <defs>
+            <radialGradient id="ballGrad" cx="35%" cy="35%" r="65%">
+              <stop offset="0%" stopColor="#fb923c" />
+              <stop offset="50%" stopColor="#ea580c" />
+              <stop offset="100%" stopColor="#9a3412" />
+            </radialGradient>
+            <linearGradient id="backboardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.85" />
+              <stop offset="100%" stopColor="#e2e8f0" stopOpacity="0.7" />
+            </linearGradient>
+            <linearGradient id="woodFloor" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#fbbf24" />
+              <stop offset="100%" stopColor="#d97706" />
+            </linearGradient>
+          </defs>
+
+          {/* Hardwood Court Floor */}
+          <rect x="0" y={FLOOR_Y} width={COURT_WIDTH} height={COURT_HEIGHT - FLOOR_Y} fill="url(#woodFloor)" />
+          <line x1="0" y1={FLOOR_Y} x2={COURT_WIDTH} y2={FLOOR_Y} stroke="#b45309" strokeWidth="4" />
+          
+          {/* Court lines */}
+          <ellipse cx="640" cy={FLOOR_Y} rx="90" ry="25" fill="none" stroke="#ffffff" strokeWidth="3" opacity="0.7" />
+          <line x1="450" y1={FLOOR_Y} x2="450" y2={COURT_HEIGHT} stroke="#ffffff" strokeWidth="3" opacity="0.6" />
+
+          {/* Backboard Pole & Support Structure */}
+          <rect x="710" y="80" width="16" height={FLOOR_Y - 80} fill="#64748b" />
+          <line x1="680" y1="160" x2="710" y2="140" stroke="#475569" strokeWidth="6" />
+
+          {/* Glass Backboard */}
+          <rect
+            x={BACKBOARD_X}
+            y={BACKBOARD_TOP_Y}
+            width="12"
+            height={BACKBOARD_BOTTOM_Y - BACKBOARD_TOP_Y}
+            rx="3"
+            fill="url(#backboardGrad)"
+            stroke="#ea580c"
+            strokeWidth="3"
+          />
+          {/* Backboard Target Square */}
+          <rect
+            x={BACKBOARD_X - 2}
+            y="145"
+            width="4"
+            height="50"
+            fill="#ea580c"
+          />
+
+          {/* Net (Ripples when basket made) */}
+          <g className={netSwishAnim ? 'animate-pulse' : ''}>
+            <polygon
+              points={`${FRONT_RIM_X + 4},${HOOP_RIM_Y + 2} ${FRONT_RIM_X + 16},${HOOP_RIM_Y + 48} ${BACK_RIM_X - 16},${HOOP_RIM_Y + 48} ${BACK_RIM_X - 4},${HOOP_RIM_Y + 2}`}
+              fill="#ffffff"
+              fillOpacity="0.55"
+              stroke="#ffffff"
+              strokeWidth="2"
+              strokeDasharray="4 3"
+            />
+            <line x1={FRONT_RIM_X + 18} y1={HOOP_RIM_Y + 2} x2={BACK_RIM_X - 20} y2={HOOP_RIM_Y + 48} stroke="#cbd5e1" strokeWidth="1.5" />
+            <line x1={BACK_RIM_X - 18} y1={HOOP_RIM_Y + 2} x2={FRONT_RIM_X + 20} y2={HOOP_RIM_Y + 48} stroke="#cbd5e1" strokeWidth="1.5" />
+          </g>
+
+          {/* Basketball Hoop Rim (Front & Back) */}
+          <line
+            x1={FRONT_RIM_X}
+            y1={HOOP_RIM_Y}
+            x2={BACK_RIM_X}
+            y2={HOOP_RIM_Y}
+            stroke="#ea580c"
+            strokeWidth="7"
+            strokeLinecap="round"
+          />
+          {/* Metal Net Hooks on Rim */}
+          <circle cx={FRONT_RIM_X} cy={HOOP_RIM_Y} r="4" fill="#c2410c" />
+          <circle cx={BACK_RIM_X} cy={HOOP_RIM_Y} r="4" fill="#c2410c" />
+
+          {/* TRAJECTORY PREVIEW DOTS (Drawn while aiming) */}
+          {previewPoints.map((pt, i) => (
+            <circle
+              key={i}
+              cx={pt.x}
+              cy={pt.y}
+              r={i % 2 === 0 ? 3.5 : 2}
+              fill="#f97316"
+              opacity={Math.max(0.2, 1 - i / previewPoints.length)}
+            />
+          ))}
+
+          {/* Slingshot Pull Vector Line */}
+          {isAiming && dragCurrent && (
+            <line
+              x1={BALL_START_X}
+              y1={BALL_START_Y}
+              x2={dragCurrent.x}
+              y2={dragCurrent.y}
+              stroke="#ea580c"
+              strokeWidth="3"
+              strokeDasharray="4 4"
+            />
+          )}
+
+          {/* THE BASKETBALL (Interactive draggable or physics-simulated) */}
+          <g transform={`translate(${ball.x}, ${ball.y})`}>
+            {/* Ball Shadow on Floor */}
+            {isBallInFlight && (
+              <ellipse
+                cx="0"
+                cy={FLOOR_Y - ball.y}
+                rx={Math.max(4, BALL_RADIUS * (1 - (FLOOR_Y - ball.y) / 400))}
+                ry={Math.max(2, (BALL_RADIUS / 2) * (1 - (FLOOR_Y - ball.y) / 400))}
+                fill="#000000"
+                opacity="0.25"
+              />
+            )}
+
+            {/* Ball Sphere */}
+            <circle cx="0" cy="0" r={ball.radius} fill="url(#ballGrad)" stroke="#7c2d12" strokeWidth="1.5" />
+            {/* Ball Ribs */}
+            <path d={`M ${-ball.radius} 0 Q 0 ${-ball.radius * 0.45} ${ball.radius} 0`} fill="none" stroke="#7c2d12" strokeWidth="1.2" />
+            <path d={`M ${-ball.radius} 0 Q 0 ${ball.radius * 0.45} ${ball.radius} 0`} fill="none" stroke="#7c2d12" strokeWidth="1.2" />
+            <line x1="0" y1={-ball.radius} x2="0" y2={ball.radius} stroke="#7c2d12" strokeWidth="1.2" />
+
+            {/* Glowing Target Ring on Ball when ready to shoot */}
+            {isCourtActive && !isBallInFlight && !isAiming && (
+              <circle cx="0" cy="0" r={ball.radius + 6} fill="none" stroke="#f97316" strokeWidth="2.5" strokeDasharray="5 3" className="animate-spin" />
+            )}
+          </g>
+
+          {/* Aim Prompt Over Ball */}
+          {isCourtActive && !isBallInFlight && !isAiming && (
+            <text x={BALL_START_X} y={BALL_START_Y - 28} textAnchor="middle" fill="#9a3412" fontSize="11" fontWeight="900">
+              DRAG BALL TO AIM ➔
+            </text>
+          )}
+        </svg>
+
+        {/* FEEDBACK OVERLAY BANNER */}
+        {shotFeedback && (
+          <div className="absolute inset-x-4 top-1/4 -translate-y-1/2 z-30 flex flex-col items-center justify-center">
+            <div className="px-6 py-3.5 rounded-2xl bg-white/95 border-2 border-orange-400 shadow-2xl text-center backdrop-blur-md animate-bounce max-w-md">
+              <p className="text-base sm:text-lg font-black text-amber-900 font-display">
+                {shotFeedback}
+              </p>
+              {currentQ.explanation && !isCourtActive && (
+                <p className="text-xs text-slate-600 font-medium mt-1">
+                  {currentQ.explanation}
+                </p>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* BOTTOM ACCESSIBLE KEYBOARD / SMARTBOARD SHOOTING CONSOLE */}
+        {isCourtActive && !isBallInFlight && (
+          <div className="p-3 bg-white/90 border-t-2 border-amber-200 flex flex-wrap items-center justify-between gap-3 z-10 backdrop-blur-sm">
+            
+            {/* Angle & Power Controls (Keyboard / Touch friendly) */}
+            <div className="flex items-center gap-4 text-xs font-bold text-slate-700">
+              <div className="flex items-center gap-1.5">
+                <span className="text-amber-900 font-black">Angle:</span>
+                <button
+                  type="button"
+                  onClick={() => setAimAngle((a) => Math.max(25, a - 3))}
+                  className="w-6 h-6 rounded-lg bg-amber-100 hover:bg-amber-200 border border-amber-300 font-black flex items-center justify-center"
+                >
+                  -
+                </button>
+                <span className="font-mono font-black text-slate-900 w-8 text-center">{aimAngle}°</span>
+                <button
+                  type="button"
+                  onClick={() => setAimAngle((a) => Math.min(80, a + 3))}
+                  className="w-6 h-6 rounded-lg bg-amber-100 hover:bg-amber-200 border border-amber-300 font-black flex items-center justify-center"
+                >
+                  +
+                </button>
+              </div>
+
+              <div className="flex items-center gap-1.5">
+                <span className="text-amber-900 font-black">Power:</span>
+                <button
+                  type="button"
+                  onClick={() => setAimPower((p) => Math.max(30, p - 4))}
+                  className="w-6 h-6 rounded-lg bg-amber-100 hover:bg-amber-200 border border-amber-300 font-black flex items-center justify-center"
+                >
+                  -
+                </button>
+                <span className="font-mono font-black text-slate-900 w-9 text-center">{aimPower}%</span>
+                <button
+                  type="button"
+                  onClick={() => setAimPower((p) => Math.min(100, p + 4))}
+                  className="w-6 h-6 rounded-lg bg-amber-100 hover:bg-amber-200 border border-amber-300 font-black flex items-center justify-center"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            {/* Big Launch Button */}
+            <button
+              type="button"
+              onClick={() => {
+                const { vx, vy } = getVelocityFromSliders(aimAngle, aimPower);
+                launchShot(vx, vy);
+              }}
+              className="px-6 py-2 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-black text-xs uppercase tracking-wider shadow-md active:scale-95 transition-all flex items-center gap-2"
+            >
+              <span>🏀 SHOOT BALL (SPACE / TAP)</span>
+            </button>
+
+          </div>
+        )}
 
       </div>
 
