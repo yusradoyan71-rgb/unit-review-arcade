@@ -18,7 +18,9 @@ export type GamesZoneGameId =
   | 'word_fishing'
   | 'sentence_tower'
   | 'grammar_basketball'
-  | 'vocabulary_invaders';
+  | 'vocabulary_invaders'
+  | 'wordle_english'
+  | 'word_connect';
 
 export type GamesZoneDifficulty = 'easy' | 'medium' | 'hard';
 
@@ -133,6 +135,40 @@ export interface VocabularyInvadersItem {
   contentVersion?: number;
 }
 
+/**
+ * Wordle English Item:
+ * 6-attempt interactive word guessing with colored tile feedback
+ */
+export interface WordleEnglishItem {
+  id: string;
+  word: string;                    // Target word in uppercase (4, 5, or 6 letters)
+  clue: string;                    // Contextual English clue or definition prompt
+  turkishMeaning: string;          // Turkish translation / definition
+  exampleSentence: string;         // Example sentence using target word
+  category: string;                // e.g. "Feelings", "Sports", "Nature"
+  explanation?: string;            // Pedagogical feedback explanation
+  contentVersion?: number;
+}
+
+/**
+ * Word Connect Puzzle:
+ * Circular letter wheel with drag/tap connections to fill word slots
+ */
+export interface WordConnectTargetWord {
+  word: string;                    // Target word in uppercase
+  turkishMeaning: string;          // Turkish translation / definition
+}
+
+export interface WordConnectPuzzle {
+  id: string;
+  availableLetters: string[];      // Letters on circular wheel in uppercase
+  targetWords: WordConnectTargetWord[]; // Words strictly formable from availableLetters
+  category: string;                // e.g. "Friendship", "Kitchen", "Wild Animals"
+  theme: string;                   // Visual / pedagogical theme
+  explanation?: string;
+  contentVersion?: number;
+}
+
 // ---------------------------------------------------------------------------
 // DATA BANK SCHEMAS
 // ---------------------------------------------------------------------------
@@ -143,6 +179,8 @@ export type WordFishingBank = Record<GradeId, Record<GamesZoneDifficulty, WordFi
 export type SentenceTowerBank = Record<GradeId, Record<GamesZoneDifficulty, SentenceTowerItem[]>>;
 export type GrammarBasketballBank = Record<GradeId, Record<GamesZoneDifficulty, GrammarBasketballItem[]>>;
 export type VocabularyInvadersBank = Record<GradeId, Record<GamesZoneDifficulty, VocabularyInvadersItem[]>>;
+export type WordleEnglishBank = Record<GradeId, Record<GamesZoneDifficulty, WordleEnglishItem[]>>;
+export type WordConnectBank = Record<GradeId, Record<GamesZoneDifficulty, WordConnectPuzzle[]>>;
 
 // ---------------------------------------------------------------------------
 // SESSION & TELEMETRY SCHEMAS

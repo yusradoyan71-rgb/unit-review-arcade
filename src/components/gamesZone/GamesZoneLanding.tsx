@@ -91,6 +91,22 @@ const GAME_CARNIVAL_THEMES: Record<string, {
     btnClass: 'btn-game-purple',
     categoryBg: 'bg-violet-100 text-violet-800 border-violet-300',
   },
+  wordle_english: {
+    emoji: '🟩',
+    cardBorder: 'border-emerald-200 hover:border-emerald-400',
+    headerBg: 'from-emerald-100 to-green-100',
+    headerBorder: 'border-emerald-200',
+    btnClass: 'btn-game-emerald',
+    categoryBg: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+  },
+  word_connect: {
+    emoji: '🎡',
+    cardBorder: 'border-pink-200 hover:border-pink-400',
+    headerBg: 'from-pink-100 to-rose-100',
+    headerBorder: 'border-pink-200',
+    btnClass: 'btn-game-coral',
+    categoryBg: 'bg-pink-100 text-pink-800 border-pink-300',
+  },
 };
 
 export const GamesZoneLanding: React.FC<GamesZoneLandingProps> = ({
@@ -234,7 +250,7 @@ export const GamesZoneLanding: React.FC<GamesZoneLandingProps> = ({
             <span>Interactive Game Pavilions</span>
           </h2>
           <span className="text-xs font-bold text-slate-500">
-            6 fast-paced game engines • 1,440 curriculum questions
+            8 fast-paced game engines • 1,920 curriculum questions
           </span>
         </div>
 

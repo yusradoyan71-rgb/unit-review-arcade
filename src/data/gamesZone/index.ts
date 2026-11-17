@@ -17,6 +17,8 @@ import type {
   SentenceTowerItem,
   GrammarBasketballItem,
   VocabularyInvadersItem,
+  WordleEnglishItem,
+  WordConnectPuzzle,
 } from '../../types/gamesZone';
 
 import { WORD_NINJA_BANK } from './wordNinjaData.ts';
@@ -25,6 +27,8 @@ import { WORD_FISHING_BANK } from './wordFishingData.ts';
 import { SENTENCE_TOWER_BANK } from './sentenceTowerData.ts';
 import { GRAMMAR_BASKETBALL_BANK } from './grammarBasketballData.ts';
 import { VOCABULARY_INVADERS_BANK } from './vocabularyInvadersData.ts';
+import { WORDLE_ENGLISH_BANK } from './wordleEnglishData.ts';
+import { WORD_CONNECT_BANK } from './wordConnectData.ts';
 
 export { WORD_NINJA_BANK } from './wordNinjaData.ts';
 export { GRAMMAR_RUNNER_BANK } from './grammarRunnerData.ts';
@@ -32,6 +36,8 @@ export { WORD_FISHING_BANK } from './wordFishingData.ts';
 export { SENTENCE_TOWER_BANK } from './sentenceTowerData.ts';
 export { GRAMMAR_BASKETBALL_BANK } from './grammarBasketballData.ts';
 export { VOCABULARY_INVADERS_BANK } from './vocabularyInvadersData.ts';
+export { WORDLE_ENGLISH_BANK } from './wordleEnglishData.ts';
+export { WORD_CONNECT_BANK } from './wordConnectData.ts';
 
 export const GAMES_ZONE_CATALOG: GamesZoneGameMetadata[] = [
   {
@@ -168,6 +174,52 @@ export const GAMES_ZONE_CATALOG: GamesZoneGameMetadata[] = [
       ],
     },
   },
+  {
+    id: 'wordle_english',
+    title: 'Wordle English',
+    tagline: 'Guess the secret English word in 6 tries with color-coded clues!',
+    category: 'vocabulary',
+    categoryLabel: 'Word Detective',
+    iconName: 'Sparkles',
+    accentColor: '#10B981',
+    accentGradient: 'from-emerald-500 to-green-600',
+    badgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
+    isUnlocked: true,
+    howToPlay: {
+      objective: 'Guess the hidden English word in 6 attempts. Green means correct letter & position, yellow means right letter wrong position, gray means not in word.',
+      controls: 'Type using your physical keyboard or tap letters on the virtual on-screen keyboard. Press Enter to submit a guess.',
+      smartboardTip: 'Tap the on-screen letter tiles and tap the 💡 Clue button if your class needs a vocabulary hint.',
+      rules: [
+        'Each guess must be a valid English word matching the target length (4, 5, or 6 letters).',
+        'Tile colors change after each submit: Green (exact), Yellow (present), Gray (absent).',
+        'Tap the Clue button to reveal the Turkish meaning or contextual hint.',
+        'After solving or completing your attempts, review the full Turkish definition and example sentence!',
+      ],
+    },
+  },
+  {
+    id: 'word_connect',
+    title: 'Word Connect',
+    tagline: 'Swipe and connect circular letters to discover hidden curriculum words!',
+    category: 'vocabulary',
+    categoryLabel: 'Letter Wheel',
+    iconName: 'Compass',
+    accentColor: '#EC4899',
+    accentGradient: 'from-pink-500 to-rose-600',
+    badgeColor: 'bg-pink-500/20 text-pink-300 border-pink-500/30',
+    isUnlocked: true,
+    howToPlay: {
+      objective: 'Connect the letter tiles on the circle in order to form all hidden target words and fill the slots.',
+      controls: 'Drag continuous lines across letters or tap them one by one. Use the Submit button or release to check.',
+      smartboardTip: 'On smartboards, you can simply tap the letter circles in order, then tap the checkmark (✓) button.',
+      rules: [
+        'Find all target words to clear the puzzle and unlock bonus combo points.',
+        'Use the Shuffle button to rearrange the letter wheel when you are stuck.',
+        'Use the Hint button to reveal an unsolved letter in the crossword slots.',
+        'Complete all puzzles in the run to earn maximum XP and monster coins!',
+      ],
+    },
+  },
 ];
 
 export function getGameMetadata(gameId: GamesZoneGameId): GamesZoneGameMetadata | undefined {
@@ -187,7 +239,16 @@ export function getQuestionsForGame(
   gradeId: GradeId,
   difficulty: GamesZoneDifficulty,
   count: number = 10
-): (WordNinjaItem | GrammarRunnerItem | WordFishingItem | SentenceTowerItem | GrammarBasketballItem | VocabularyInvadersItem)[] {
+): (
+  | WordNinjaItem
+  | GrammarRunnerItem
+  | WordFishingItem
+  | SentenceTowerItem
+  | GrammarBasketballItem
+  | VocabularyInvadersItem
+  | WordleEnglishItem
+  | WordConnectPuzzle
+)[] {
   let sourceBank: any[] = [];
 
   switch (gameId) {
@@ -208,6 +269,12 @@ export function getQuestionsForGame(
       break;
     case 'vocabulary_invaders':
       sourceBank = VOCABULARY_INVADERS_BANK[gradeId]?.[difficulty] || [];
+      break;
+    case 'wordle_english':
+      sourceBank = WORDLE_ENGLISH_BANK[gradeId]?.[difficulty] || [];
+      break;
+    case 'word_connect':
+      sourceBank = WORD_CONNECT_BANK[gradeId]?.[difficulty] || [];
       break;
     default:
       sourceBank = [];
