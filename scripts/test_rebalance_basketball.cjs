@@ -36,3 +36,4 @@ patterns.forEach((pat, idx) => {
   }
   console.log(`Pattern ${idx + 1}: len=${pat.length}, counts=${JSON.stringify(counts)}, maxRun=${maxRun}`);
 });
+
