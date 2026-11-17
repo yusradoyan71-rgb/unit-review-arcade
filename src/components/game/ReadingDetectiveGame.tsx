@@ -139,10 +139,10 @@ export const ReadingDetectiveGame: React.FC<ReadingDetectiveGameProps> = ({ acti
 
   if (!currentQ || questions.length === 0) {
     return (
-      <div className="max-w-2xl mx-auto my-12 p-8 text-center bg-slate-900 rounded-3xl border border-slate-800">
-        <BookOpen className="w-12 h-12 text-slate-500 mx-auto mb-4" />
-        <h3 className="text-xl font-bold text-white mb-2">No Reading Passages Configured</h3>
-        <button onClick={onExit} className="px-6 py-2.5 rounded-xl bg-indigo-600 text-white font-semibold text-sm">
+      <div className="max-w-2xl mx-auto my-12 p-8 text-center bg-white rounded-3xl border-2 border-cyan-100 shadow-xl">
+        <BookOpen className="w-12 h-12 text-cyan-500 mx-auto mb-4" />
+        <h3 className="text-xl font-bold text-slate-900 mb-2 font-arcade">No Reading Passages Configured</h3>
+        <button onClick={onExit} className="px-6 py-2.5 rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white font-bold text-sm shadow-md shadow-sky-500/20">
           Return to Unit
         </button>
       </div>
@@ -157,10 +157,10 @@ export const ReadingDetectiveGame: React.FC<ReadingDetectiveGameProps> = ({ acti
       <ClassroomScoreboard />
 
       {/* Top Bar */}
-      <div className="flex items-center justify-between gap-4 mb-3 pb-2 border-b border-slate-800">
+      <div className="flex items-center justify-between gap-4 mb-3 pb-2 border-b border-sky-100">
         <button
           onClick={onExit}
-          className="px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white text-xs font-semibold flex items-center gap-1.5 transition-all"
+          className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 hover:text-slate-900 text-xs font-semibold flex items-center gap-1.5 transition-all shadow-xs"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Exit to Unit</span>
@@ -168,10 +168,10 @@ export const ReadingDetectiveGame: React.FC<ReadingDetectiveGameProps> = ({ acti
 
         {/* Passage & Question Counter */}
         <div className="flex items-center gap-2">
-          <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-lg bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
+          <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-lg bg-cyan-50 text-cyan-800 border border-cyan-200">
             Passage {passageNumber} of 5
           </span>
-          <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-lg bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+          <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-800 border border-indigo-200">
             Question {questionNumberInPassage} of {questionsPerPassage} ({currentIndex + 1}/25)
           </span>
         </div>
@@ -181,28 +181,28 @@ export const ReadingDetectiveGame: React.FC<ReadingDetectiveGameProps> = ({ acti
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 flex-1 items-stretch my-auto">
         
         {/* Left Column: Passage Display (5 cols) */}
-        <div className="lg:col-span-5 p-6 rounded-3xl bg-slate-900/90 border border-cyan-500/30 shadow-xl flex flex-col justify-between overflow-hidden">
+        <div className="lg:col-span-5 p-6 rounded-3xl bg-white border-2 border-cyan-100 shadow-xl flex flex-col justify-between overflow-hidden">
           <div>
-            <div className="flex items-center justify-between gap-2 mb-3 pb-2 border-b border-slate-800">
-              <span className="text-xs font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-1.5">
-                <FileText className="w-4 h-4" />
+            <div className="flex items-center justify-between gap-2 mb-3 pb-2 border-b border-slate-100">
+              <span className="text-xs font-bold uppercase tracking-wider text-cyan-700 flex items-center gap-1.5">
+                <FileText className="w-4 h-4 text-cyan-600" />
                 <span>Reading Passage {passageNumber}</span>
               </span>
-              <span className="text-xs font-mono text-slate-500">
+              <span className="text-xs font-mono text-slate-400">
                 Word Count: ~125
               </span>
             </div>
 
-            <h3 className="font-arcade text-xl sm:text-2xl font-bold text-white mb-3 tracking-tight">
+            <h3 className="font-arcade text-xl sm:text-2xl font-bold text-slate-900 mb-3 tracking-tight">
               {currentQ.passageTitle}
             </h3>
 
-            <div className="text-slate-300 text-sm sm:text-base leading-relaxed space-y-3 font-normal max-h-[460px] overflow-y-auto pr-2">
+            <div className="text-slate-700 text-sm sm:text-base leading-relaxed space-y-3 font-normal max-h-[460px] overflow-y-auto pr-2">
               <p>{currentQ.passageText}</p>
             </div>
           </div>
 
-          <div className="pt-3 border-t border-slate-800/80 text-xs text-slate-500 flex items-center justify-between">
+          <div className="pt-3 border-t border-slate-100 text-xs text-slate-500 flex items-center justify-between">
             <span>Text analysis in English</span>
             <span>CEFR A2-B1 Level</span>
           </div>
@@ -217,11 +217,11 @@ export const ReadingDetectiveGame: React.FC<ReadingDetectiveGameProps> = ({ acti
             className="flex-1 flex flex-col justify-between space-y-4"
           >
             {/* Prompt Card */}
-            <div className="p-6 rounded-3xl bg-slate-900/90 border border-indigo-500/30 shadow-xl backdrop-blur-xl">
-              <span className="text-xs font-bold uppercase tracking-wider text-indigo-400 block mb-2">
+            <div className="p-6 rounded-3xl bg-white border-2 border-indigo-100 shadow-xl">
+              <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 block mb-2">
                 Comprehension Question:
               </span>
-              <h2 className="font-arcade text-xl sm:text-2xl font-bold text-white leading-snug">
+              <h2 className="font-arcade text-xl sm:text-2xl font-bold text-slate-900 leading-snug">
                 {currentQ.prompt}
               </h2>
             </div>
@@ -232,15 +232,15 @@ export const ReadingDetectiveGame: React.FC<ReadingDetectiveGameProps> = ({ acti
                 const isCorrect = idx === currentQ.correctOptionIndex;
                 const isSelected = selectedOption === idx;
 
-                let btnStyle = 'bg-slate-900/80 border-slate-800 text-slate-200 hover:border-slate-700 hover:bg-slate-850';
+                let btnStyle = 'bg-white border-2 border-slate-200 text-slate-800 hover:border-indigo-300 hover:bg-indigo-50/50 shadow-xs';
 
                 if (isAnswered) {
                   if (isCorrect) {
-                    btnStyle = 'bg-emerald-500/20 border-emerald-400 text-emerald-200 ring-2 ring-emerald-400';
+                    btnStyle = 'bg-emerald-50 border-2 border-emerald-500 text-emerald-950 ring-2 ring-emerald-400';
                   } else if (isSelected) {
-                    btnStyle = 'bg-rose-500/20 border-rose-500 text-rose-200 ring-2 ring-rose-500';
+                    btnStyle = 'bg-rose-50 border-2 border-rose-400 text-rose-950 ring-2 ring-rose-400';
                   } else {
-                    btnStyle = 'bg-slate-950/40 border-slate-900 text-slate-500 opacity-50';
+                    btnStyle = 'bg-slate-50 border-slate-200 text-slate-400 opacity-50';
                   }
                 }
 
@@ -249,22 +249,22 @@ export const ReadingDetectiveGame: React.FC<ReadingDetectiveGameProps> = ({ acti
                     key={idx}
                     disabled={isAnswered}
                     onClick={() => handleSelectOption(idx)}
-                    className={`w-full p-3.5 sm:p-4 rounded-2xl border-2 text-left text-sm sm:text-base font-medium transition-all flex items-center gap-3.5 ${btnStyle}`}
+                    className={`w-full p-3.5 sm:p-4 rounded-2xl border-2 text-left text-sm sm:text-base font-semibold transition-all flex items-center gap-3.5 ${btnStyle}`}
                   >
                     <div
                       className={`w-8 h-8 rounded-xl font-arcade font-bold text-sm flex items-center justify-center shrink-0 border ${
                         isAnswered && isCorrect
-                          ? 'bg-emerald-500 text-slate-950 border-emerald-400'
+                          ? 'bg-emerald-500 text-white border-emerald-400'
                           : isAnswered && isSelected
                           ? 'bg-rose-500 text-white border-rose-400'
-                          : 'bg-slate-800 border-slate-700 text-indigo-300'
+                          : 'bg-slate-100 border-slate-200 text-slate-700'
                       }`}
                     >
                       {OPTION_LETTERS[idx]}
                     </div>
                     <span className="flex-1 leading-snug">{opt}</span>
-                    {isAnswered && isCorrect && <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />}
-                    {isAnswered && isSelected && !isCorrect && <XCircle className="w-5 h-5 text-rose-400 shrink-0" />}
+                    {isAnswered && isCorrect && <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />}
+                    {isAnswered && isSelected && !isCorrect && <XCircle className="w-5 h-5 text-rose-500 shrink-0" />}
                   </button>
                 );
               })}
@@ -276,16 +276,16 @@ export const ReadingDetectiveGame: React.FC<ReadingDetectiveGameProps> = ({ acti
                 {!isAnswered && activity.settings.allowRevealAnswer && (
                   <button
                     onClick={handleRevealAnswer}
-                    className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-400 hover:text-amber-300 text-xs font-semibold flex items-center gap-1.5 transition-all"
+                    className="px-4 py-2 rounded-xl bg-white hover:bg-amber-50 border border-amber-200 text-amber-700 text-xs font-bold flex items-center gap-1.5 transition-all shadow-xs"
                   >
-                    <Eye className="w-3.5 h-3.5" />
+                    <Eye className="w-3.5 h-3.5 text-amber-600" />
                     <span>Reveal Answer</span>
                   </button>
                 )}
 
                 {isAnswered && currentQ.explanation && (
-                  <div className="p-3 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-xs text-indigo-300">
-                    <span className="font-bold uppercase text-indigo-400 block text-xs mb-0.5">Explanation:</span>
+                  <div className="p-3 rounded-2xl bg-indigo-50 border border-indigo-200 text-xs text-indigo-900">
+                    <span className="font-bold uppercase text-indigo-700 block text-xs mb-0.5">Explanation:</span>
                     {currentQ.explanation}
                   </div>
                 )}
@@ -294,7 +294,7 @@ export const ReadingDetectiveGame: React.FC<ReadingDetectiveGameProps> = ({ acti
               {isAnswered && (
                 <button
                   onClick={handleNextQuestion}
-                  className="w-full sm:w-auto px-6 py-3 rounded-2xl bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-cyan-600/30 flex items-center justify-center gap-2 hover:scale-105 active:scale-95 transition-all"
+                  className="w-full sm:w-auto px-6 py-3 rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white font-bold text-sm shadow-lg shadow-sky-500/20 flex items-center justify-center gap-2 hover:scale-105 active:scale-95 transition-all"
                 >
                   <span>{currentIndex + 1 < questions.length ? 'Next Question' : 'View Results'}</span>
                   <ChevronRight className="w-4 h-4" />

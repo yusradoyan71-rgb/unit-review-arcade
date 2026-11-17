@@ -31,19 +31,19 @@ export const GameContainer: React.FC = () => {
     const studentGradeLabel = student.grade === 'grade-7' ? 'Grade 7' : 'Grade 8';
     const contentGradeLabel = student.grade === 'grade-7' ? 'Grade 8' : 'Grade 7';
     return (
-      <div className="max-w-xl mx-auto my-16 p-8 rounded-3xl bg-slate-900 border border-rose-500/40 text-center shadow-2xl">
-        <div className="w-16 h-16 rounded-2xl bg-rose-500/20 text-rose-400 border border-rose-500/30 flex items-center justify-center mx-auto mb-4">
+      <div className="max-w-xl mx-auto my-16 p-8 rounded-3xl bg-white border-2 border-rose-200 text-center shadow-xl shadow-rose-500/5">
+        <div className="w-16 h-16 rounded-2xl bg-rose-50 text-rose-500 border border-rose-200 flex items-center justify-center mx-auto mb-4 shadow-sm">
           <ShieldAlert className="w-8 h-8" />
         </div>
-        <h3 className="font-arcade text-2xl font-bold text-white mb-2">Access Restricted</h3>
-        <p className="text-slate-300 text-sm mb-6 leading-relaxed">
-          This unit activity belongs to <span className="font-semibold text-rose-300">{contentGradeLabel}</span>. 
-          You are authenticated as a <span className="font-semibold text-indigo-300">{studentGradeLabel}</span> student 
+        <h3 className="font-arcade text-2xl font-bold text-slate-900 mb-2">Access Restricted</h3>
+        <p className="text-slate-600 text-sm mb-6 leading-relaxed">
+          This unit activity belongs to <span className="font-bold text-rose-600">{contentGradeLabel}</span>. 
+          You are authenticated as a <span className="font-bold text-sky-600">{studentGradeLabel}</span> student 
           (Class {student.class}) and only have access to {studentGradeLabel} curriculum.
         </p>
         <button
           onClick={() => goToGrade(student.grade)}
-          className="px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-semibold text-sm shadow-lg shadow-indigo-600/30 transition-all hover:scale-105 active:scale-95"
+          className="px-6 py-3 rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white font-bold text-sm shadow-md shadow-sky-500/20 transition-all hover:scale-105 active:scale-95"
         >
           Return to My {studentGradeLabel} Activities
         </button>
@@ -53,16 +53,18 @@ export const GameContainer: React.FC = () => {
 
   if (!activeActivity || !activeUnit || !activeGradeId) {
     return (
-      <div className="max-w-xl mx-auto my-16 p-8 rounded-3xl bg-slate-900 border border-slate-800 text-center">
-        <Gamepad2 className="w-12 h-12 text-slate-500 mx-auto mb-4" />
-        <h3 className="text-xl font-bold text-white mb-2">Activity Not Found</h3>
-        <p className="text-slate-400 text-sm mb-6">
+      <div className="max-w-xl mx-auto my-16 p-8 rounded-3xl bg-white border-2 border-sky-100 text-center shadow-xl shadow-sky-500/5">
+        <div className="w-16 h-16 rounded-2xl bg-sky-50 text-sky-500 border border-sky-200 flex items-center justify-center mx-auto mb-4">
+          <Gamepad2 className="w-8 h-8" />
+        </div>
+        <h3 className="text-xl font-bold text-slate-900 mb-2 font-arcade">Activity Not Found</h3>
+        <p className="text-slate-600 text-sm mb-6">
           The requested game activity could not be loaded or was removed.
         </p>
         {activeGradeId && activeUnit && (
           <button
             onClick={() => goToUnit(activeGradeId, activeUnit.id)}
-            className="px-6 py-2.5 rounded-xl bg-indigo-600 text-white font-semibold text-sm"
+            className="px-6 py-2.5 rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white font-bold text-sm shadow-md shadow-sky-500/20"
           >
             Return to Unit
           </button>

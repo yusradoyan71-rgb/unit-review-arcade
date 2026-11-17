@@ -78,11 +78,11 @@ export const ClassroomHeader: React.FC = () => {
                 <>
                   <button
                     onClick={() => goToGrade(student ? student.grade : navigation.gradeId)}
-                    className="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors flex items-center gap-1.5"
+                    className="px-2.5 py-1 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-900 border border-sky-200 transition-colors flex items-center gap-1.5 font-semibold text-xs"
                   >
-                    <GraduationCap className="w-4 h-4 text-cyan-400" />
+                    <GraduationCap className="w-4 h-4 text-sky-600" />
                     <span>{getGradeTitle(student ? student.grade : navigation.gradeId)}</span>
-                    <span className="text-xs px-1.5 py-0.2 rounded-full bg-slate-800 text-slate-400">
+                    <span className="text-[11px] px-1.5 py-0.2 rounded-full bg-sky-100 text-sky-700 font-bold">
                       {data.units[student ? student.grade : navigation.gradeId]?.length || 0}
                     </span>
                   </button>
@@ -92,8 +92,8 @@ export const ClassroomHeader: React.FC = () => {
               {/* Unit Breadcrumb */}
               {navigation.view === 'unit-dashboard' && activeUnit && (
                 <>
-                  <ChevronRight className="w-4 h-4 text-slate-500 shrink-0" />
-                  <span className="px-2.5 py-1 rounded-lg bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 font-semibold truncate max-w-[180px] sm:max-w-xs">
+                  <ChevronRight className="w-4 h-4 text-slate-400 shrink-0" />
+                  <span className="px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-700 border border-indigo-200 font-semibold text-xs truncate max-w-[180px] sm:max-w-xs">
                     Unit {activeUnit.unitNumber}: {activeUnit.title}
                   </span>
                 </>
@@ -102,15 +102,15 @@ export const ClassroomHeader: React.FC = () => {
               {/* Game Play Breadcrumbs */}
               {navigation.view === 'game-play' && activeUnit && (
                 <>
-                  <ChevronRight className="w-4 h-4 text-slate-500 shrink-0" />
+                  <ChevronRight className="w-4 h-4 text-slate-400 shrink-0" />
                   <button
                     onClick={() => goToUnit(navigation.gradeId, navigation.unitId)}
-                    className="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors font-medium truncate max-w-[120px] sm:max-w-xs"
+                    className="px-2.5 py-1 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-900 border border-sky-200 transition-colors font-medium text-xs truncate max-w-[120px] sm:max-w-xs"
                   >
                     Unit {activeUnit.unitNumber}
                   </button>
-                  <ChevronRight className="w-4 h-4 text-slate-500 shrink-0" />
-                  <span className="px-2.5 py-1 rounded-lg bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 font-bold truncate max-w-[160px] sm:max-w-xs">
+                  <ChevronRight className="w-4 h-4 text-slate-400 shrink-0" />
+                  <span className="px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-700 border border-indigo-200 font-bold text-xs truncate max-w-[160px] sm:max-w-xs">
                     {activeActivity?.title || 'Game'}
                   </span>
                 </>
@@ -118,24 +118,24 @@ export const ClassroomHeader: React.FC = () => {
 
               {/* Games Zone Breadcrumb */}
               {navigation.view === 'games-zone' && (
-                <span className="px-2.5 py-1 rounded-lg bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 font-semibold flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+                <span className="px-2.5 py-1 rounded-lg bg-rose-50 text-rose-700 border border-rose-200 font-semibold text-xs flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-rose-500" />
                   Games Zone
                 </span>
               )}
 
               {/* Monster World Breadcrumb */}
               {navigation.view === 'monster-world' && (
-                <span className="px-2.5 py-1 rounded-lg bg-amber-500/15 text-amber-300 border border-amber-500/30 font-semibold flex items-center gap-1.5">
-                  <Coins className="w-3.5 h-3.5 text-amber-400" />
+                <span className="px-2.5 py-1 rounded-lg bg-amber-50 text-amber-800 border border-amber-200 font-semibold text-xs flex items-center gap-1.5">
+                  <Coins className="w-3.5 h-3.5 text-amber-500" />
                   Monster World
                 </span>
               )}
 
               {/* Teacher Panel Breadcrumb */}
               {navigation.view === 'teacher-panel' && (
-                <span className="px-2.5 py-1 rounded-lg bg-amber-500/10 text-amber-300 border border-amber-500/20 font-semibold flex items-center gap-1.5">
-                  <Settings className="w-3.5 h-3.5" />
+                <span className="px-2.5 py-1 rounded-lg bg-teal-50 text-teal-800 border border-teal-200 font-semibold text-xs flex items-center gap-1.5">
+                  <Settings className="w-3.5 h-3.5 text-teal-600" />
                   Teacher Panel
                 </span>
               )}

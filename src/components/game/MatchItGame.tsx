@@ -304,11 +304,11 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
 
   if (!currentRound || totalRounds === 0) {
     return (
-      <div className="max-w-2xl mx-auto my-12 p-8 text-center bg-slate-900 rounded-3xl border border-slate-800">
-        <Layers className="w-12 h-12 text-slate-500 mx-auto mb-4" />
-        <h3 className="text-xl font-bold text-white mb-2">No Matching Rounds Configured</h3>
-        <p className="text-slate-400 text-sm mb-6">This matching activity does not have any pairs.</p>
-        <button onClick={onExit} className="px-6 py-2.5 rounded-xl bg-indigo-600 text-white font-semibold text-sm">
+      <div className="max-w-2xl mx-auto my-12 p-8 text-center bg-white rounded-3xl border-2 border-purple-100 shadow-xl">
+        <Layers className="w-12 h-12 text-purple-400 mx-auto mb-4" />
+        <h3 className="text-xl font-bold text-slate-900 mb-2 font-arcade">No Matching Rounds Configured</h3>
+        <p className="text-slate-600 text-sm mb-6">This matching activity does not have any pairs.</p>
+        <button onClick={onExit} className="px-6 py-2.5 rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white font-bold text-sm shadow-md shadow-sky-500/20">
           Return to Unit
         </button>
       </div>
@@ -321,10 +321,10 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
       <ClassroomScoreboard />
 
       {/* Header bar */}
-      <div className="flex items-center justify-between gap-4 mb-4 pb-3 border-b border-slate-800">
+      <div className="flex items-center justify-between gap-4 mb-4 pb-3 border-b border-sky-100">
         <button
           onClick={onExit}
-          className="px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white text-xs font-semibold flex items-center gap-1.5 transition-all"
+          className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 hover:text-slate-900 text-xs font-semibold flex items-center gap-1.5 transition-all shadow-xs"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Exit to Unit</span>
@@ -332,28 +332,28 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
 
         {/* Round Counter */}
         <div className="flex items-center gap-2">
-          <span className="font-arcade text-sm font-bold text-slate-400 uppercase tracking-wider">
+          <span className="font-arcade text-sm font-bold text-slate-500 uppercase tracking-wider">
             Match It!
           </span>
-          <span className="font-mono text-base font-extrabold px-3 py-0.5 rounded-lg bg-purple-500/20 text-purple-300 border border-purple-500/30">
+          <span className="font-mono text-base font-extrabold px-3 py-0.5 rounded-lg bg-purple-50 text-purple-800 border border-purple-200">
             Round {currentRoundIndex + 1} of {totalRounds}
           </span>
         </div>
 
         {/* Matches Completed Counter */}
-        <div className="text-xs font-mono font-bold text-slate-400">
-          Matched: <span className="text-emerald-400">{matchedPairIds.length}</span> / {currentRound.pairs.length}
+        <div className="text-xs font-mono font-bold text-slate-600">
+          Matched: <span className="text-emerald-600 font-extrabold">{matchedPairIds.length}</span> / {currentRound.pairs.length}
         </div>
       </div>
 
       {/* Round Title Banner */}
-      <div className="mb-4 p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
+      <div className="mb-4 p-4 rounded-3xl bg-white border-2 border-purple-100 shadow-sm flex items-center justify-between">
         <div>
-          <span className="text-xs font-bold uppercase tracking-wider text-purple-400 flex items-center gap-1.5">
+          <span className="text-xs font-bold uppercase tracking-wider text-purple-600 flex items-center gap-1.5">
             <Sparkles className="w-3.5 h-3.5" />
             <span>{currentRound.title}</span>
           </span>
-          <p className="text-slate-400 text-xs mt-0.5">
+          <p className="text-slate-600 text-xs mt-0.5">
             Tap a card on the left, then tap its matching pair on the right.
           </p>
         </div>
@@ -363,7 +363,7 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
             onClick={handleNextRound}
-            className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-bold text-sm flex items-center gap-2 shadow-lg shadow-emerald-500/30 hover:scale-105 active:scale-95 transition-all"
+            className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-bold text-sm flex items-center gap-2 shadow-lg shadow-purple-500/30 hover:scale-105 active:scale-95 transition-all"
           >
             <span>{currentRoundIndex + 1 < totalRounds ? 'Next Round' : 'View Results'}</span>
             <ChevronRight className="w-4 h-4" />
@@ -375,7 +375,7 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-auto py-2">
         {/* Column 1: Left Cards */}
         <div className="space-y-3">
-          <span className="text-xs font-bold uppercase text-slate-400 tracking-wider block px-1">
+          <span className="text-xs font-bold uppercase text-slate-500 tracking-wider block px-1">
             Column A (Terms & Styles)
           </span>
           {leftCards.map((card) => {
@@ -389,18 +389,18 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
                 layout
                 disabled={isMatched}
                 onClick={() => handleCardClick(card)}
-                className={`w-full p-4 rounded-2xl border-2 text-left font-semibold text-base sm:text-lg transition-all flex items-center justify-between ${
+                className={`w-full p-4 rounded-2xl border-2 text-left font-semibold text-base sm:text-lg transition-all flex items-center justify-between shadow-xs ${
                   isMatched
-                    ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-300 opacity-60'
+                    ? 'bg-emerald-50 border-emerald-300 text-emerald-800 opacity-60'
                     : isMismatched
-                    ? 'bg-rose-500/25 border-rose-500 text-rose-200'
+                    ? 'bg-rose-50 border-rose-400 text-rose-950'
                     : isSelected
-                    ? 'bg-purple-600/30 border-purple-400 text-purple-200 shadow-lg shadow-purple-500/20 ring-2 ring-purple-400'
-                    : 'bg-slate-900/90 border-slate-800 text-slate-100 hover:border-slate-700 hover:bg-slate-850'
+                    ? 'bg-purple-50 border-purple-500 text-purple-950 shadow-md ring-2 ring-purple-400'
+                    : 'bg-white border-slate-200 text-slate-800 hover:border-purple-300 hover:bg-purple-50/50'
                 }`}
               >
                 <span>{card.text}</span>
-                {isMatched && <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />}
+                {isMatched && <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />}
               </motion.button>
             );
           })}
@@ -408,7 +408,7 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
 
         {/* Column 2: Right Cards */}
         <div className="space-y-3">
-          <span className="text-xs font-bold uppercase text-slate-400 tracking-wider block px-1">
+          <span className="text-xs font-bold uppercase text-slate-500 tracking-wider block px-1">
             Column B (Descriptions & Meanings)
           </span>
           {rightCards.map((card) => {
@@ -422,18 +422,18 @@ export const MatchItGame: React.FC<MatchItGameProps> = ({ activity, onExit }) =>
                 layout
                 disabled={isMatched}
                 onClick={() => handleCardClick(card)}
-                className={`w-full p-4 rounded-2xl border-2 text-left font-normal text-sm sm:text-base leading-snug transition-all flex items-center justify-between ${
+                className={`w-full p-4 rounded-2xl border-2 text-left font-normal text-sm sm:text-base leading-snug transition-all flex items-center justify-between shadow-xs ${
                   isMatched
-                    ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-300 opacity-60'
+                    ? 'bg-emerald-50 border-emerald-300 text-emerald-800 opacity-60'
                     : isMismatched
-                    ? 'bg-rose-500/25 border-rose-500 text-rose-200'
+                    ? 'bg-rose-50 border-rose-400 text-rose-950'
                     : isSelected
-                    ? 'bg-purple-600/30 border-purple-400 text-purple-200 shadow-lg shadow-purple-500/20 ring-2 ring-purple-400'
-                    : 'bg-slate-900/90 border-slate-800 text-slate-200 hover:border-slate-700 hover:bg-slate-850'
+                    ? 'bg-purple-50 border-purple-500 text-purple-950 shadow-md ring-2 ring-purple-400'
+                    : 'bg-white border-slate-200 text-slate-800 hover:border-purple-300 hover:bg-purple-50/50'
                 }`}
               >
                 <span>{card.text}</span>
-                {isMatched && <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />}
+                {isMatched && <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />}
               </motion.button>
             );
           })}

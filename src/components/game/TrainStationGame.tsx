@@ -151,11 +151,11 @@ export const TrainStationGame: React.FC<TrainStationGameProps> = ({ activity, on
 
   if (!currentQ || questions.length === 0) {
     return (
-      <div className="max-w-2xl mx-auto my-12 p-8 text-center bg-slate-900 rounded-3xl border border-slate-800">
+      <div className="max-w-2xl mx-auto my-12 p-8 text-center bg-white rounded-3xl border-2 border-amber-100 shadow-xl">
         <Train className="w-12 h-12 text-amber-500 mx-auto mb-4" />
-        <h3 className="text-xl font-bold text-white mb-2">No Train Station Questions Available</h3>
-        <p className="text-slate-400 text-sm mb-6">The activity schedule could not be loaded.</p>
-        <button onClick={onExit} className="px-6 py-2.5 rounded-xl bg-indigo-600 text-white font-semibold text-sm">
+        <h3 className="text-xl font-bold text-slate-900 mb-2 font-arcade">No Train Station Questions Available</h3>
+        <p className="text-slate-600 text-sm mb-6">The activity schedule could not be loaded.</p>
+        <button onClick={onExit} className="px-6 py-2.5 rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white font-bold text-sm shadow-md shadow-sky-500/20">
           Return to Unit
         </button>
       </div>
@@ -208,10 +208,10 @@ export const TrainStationGame: React.FC<TrainStationGameProps> = ({ activity, on
       <ClassroomScoreboard />
 
       {/* Navigation & Status Header */}
-      <div className="flex flex-wrap items-center justify-between gap-3 mb-3 pb-2 border-b border-slate-800">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-3 pb-2 border-b border-sky-100">
         <button
           onClick={onExit}
-          className="px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white text-xs font-semibold flex items-center gap-1.5 transition-all"
+          className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 hover:text-slate-900 text-xs font-semibold flex items-center gap-1.5 transition-all shadow-xs"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Exit to Unit</span>
@@ -219,14 +219,14 @@ export const TrainStationGame: React.FC<TrainStationGameProps> = ({ activity, on
 
         {/* Round Pill & Question Progress */}
         <div className="flex items-center gap-2">
-          <span className="font-mono text-xs font-bold px-3 py-1 rounded-lg bg-amber-500/15 text-amber-300 border border-amber-500/30 flex items-center gap-1.5">
-            <Train className="w-3.5 h-3.5 text-amber-400" />
+          <span className="font-mono text-xs font-bold px-3 py-1 rounded-lg bg-amber-50 text-amber-800 border border-amber-200 flex items-center gap-1.5">
+            <Train className="w-3.5 h-3.5 text-amber-600" />
             <span>{currentRoundTitle}</span>
           </span>
-          <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-lg bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+          <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-lg bg-sky-50 text-sky-800 border border-sky-200">
             Question {questionNumberInRound} of {questionsPerRound} ({currentIndex + 1}/25)
           </span>
-          <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+          <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200">
             Score: {score}
           </span>
         </div>
@@ -366,9 +366,9 @@ export const TrainStationGame: React.FC<TrainStationGameProps> = ({ activity, on
             >
               {/* Dialogue Box (when question features conversation) */}
               {currentQ.dialogue && currentQ.dialogue.length > 0 && (
-                <div className="p-3.5 sm:p-4 rounded-2xl bg-slate-900/90 border border-amber-500/30 shadow-lg space-y-2">
-                  <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400">
-                    <MessageSquare className="w-4 h-4" />
+                <div className="p-3.5 sm:p-4 rounded-2xl bg-white border-2 border-amber-100 shadow-sm space-y-2">
+                  <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-700">
+                    <MessageSquare className="w-4 h-4 text-amber-500" />
                     <span>Station Conversation:</span>
                   </div>
                   <div className="space-y-2 text-xs sm:text-sm">
@@ -377,13 +377,13 @@ export const TrainStationGame: React.FC<TrainStationGameProps> = ({ activity, on
                         key={dIdx}
                         className={`p-2.5 rounded-xl border flex items-start gap-2.5 ${
                           line.speaker === 'Passenger'
-                            ? 'bg-slate-800/80 border-slate-700 text-slate-100'
+                            ? 'bg-slate-50 border-slate-200 text-slate-800'
                             : line.speaker === 'Station Announcement'
-                            ? 'bg-amber-500/10 border-amber-500/30 text-amber-200'
-                            : 'bg-indigo-950/60 border-indigo-500/30 text-indigo-100'
+                            ? 'bg-amber-50 border-amber-200 text-amber-900'
+                            : 'bg-sky-50 border-sky-200 text-sky-900'
                         }`}
                       >
-                        <span className="font-bold shrink-0 text-amber-300 font-mono">
+                        <span className="font-bold shrink-0 text-amber-800 font-mono">
                           {line.speaker}:
                         </span>
                         <span className="italic leading-relaxed">{line.text}</span>
@@ -394,17 +394,17 @@ export const TrainStationGame: React.FC<TrainStationGameProps> = ({ activity, on
               )}
 
               {/* Question Prompt Card */}
-              <div className="p-4 sm:p-5 rounded-3xl bg-slate-900/90 border border-indigo-500/30 shadow-xl backdrop-blur-xl">
+              <div className="p-4 sm:p-5 rounded-3xl bg-white border-2 border-indigo-100 shadow-xl">
                 <div className="flex items-center justify-between gap-2 mb-2">
-                  <span className="text-xs font-bold uppercase tracking-wider text-indigo-400 flex items-center gap-1.5">
+                  <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 flex items-center gap-1.5">
                     <HelpCircle className="w-4 h-4" />
                     <span>Station Challenge • {currentRoundTitle}</span>
                   </span>
-                  <span className="text-xs font-mono text-slate-400">
-                    Difficulty: <span className="capitalize text-indigo-300">{currentQ.difficulty || 'medium'}</span>
+                  <span className="text-xs font-mono text-slate-500">
+                    Difficulty: <span className="capitalize font-bold text-indigo-600">{currentQ.difficulty || 'medium'}</span>
                   </span>
                 </div>
-                <h2 className="font-arcade text-lg sm:text-xl font-bold text-white leading-snug">
+                <h2 className="font-arcade text-lg sm:text-xl font-bold text-slate-900 leading-snug">
                   {currentQ.prompt}
                 </h2>
               </div>
@@ -416,16 +416,16 @@ export const TrainStationGame: React.FC<TrainStationGameProps> = ({ activity, on
                   const isSelected = selectedOption === idx;
 
                   let btnStyle =
-                    'bg-slate-900/80 border-slate-800 text-slate-200 hover:border-amber-400 hover:bg-slate-850';
+                    'bg-white border-2 border-slate-200 text-slate-800 hover:border-amber-400 hover:bg-amber-50/50 shadow-xs';
 
                   if (isAnswered) {
                     if (isCorrect) {
                       btnStyle =
-                        'bg-emerald-500/20 border-emerald-400 text-emerald-200 ring-2 ring-emerald-400 shadow-lg shadow-emerald-500/20';
+                        'bg-emerald-50 border-2 border-emerald-500 text-emerald-950 ring-2 ring-emerald-400 shadow-md';
                     } else if (isSelected) {
-                      btnStyle = 'bg-rose-500/20 border-rose-500 text-rose-200 ring-2 ring-rose-500';
+                      btnStyle = 'bg-rose-50 border-2 border-rose-400 text-rose-950 ring-2 ring-rose-400';
                     } else {
-                      btnStyle = 'bg-slate-950/40 border-slate-900 text-slate-500 opacity-40';
+                      btnStyle = 'bg-slate-50 border-slate-200 text-slate-400 opacity-40';
                     }
                   }
 
@@ -434,25 +434,25 @@ export const TrainStationGame: React.FC<TrainStationGameProps> = ({ activity, on
                       key={idx}
                       disabled={isAnswered}
                       onClick={() => handleSelectOption(idx)}
-                      className={`w-full p-3 sm:p-3.5 rounded-2xl border-2 text-left text-xs sm:text-sm font-medium transition-all flex items-center gap-3 active:scale-[0.99] ${btnStyle}`}
+                      className={`w-full p-3 sm:p-3.5 rounded-2xl border-2 text-left text-xs sm:text-sm font-semibold transition-all flex items-center gap-3 active:scale-[0.99] ${btnStyle}`}
                     >
                       <div
                         className={`w-7 h-7 rounded-xl font-arcade font-bold text-xs flex items-center justify-center shrink-0 border ${
                           isAnswered && isCorrect
-                            ? 'bg-emerald-500 text-slate-950 border-emerald-400'
+                            ? 'bg-emerald-500 text-white border-emerald-400'
                             : isAnswered && isSelected
                             ? 'bg-rose-500 text-white border-rose-400'
-                            : 'bg-slate-800 border-slate-700 text-amber-300'
+                            : 'bg-slate-100 border-slate-200 text-slate-700'
                         }`}
                       >
                         {OPTION_LETTERS[idx]}
                       </div>
                       <span className="flex-1 leading-snug">{opt}</span>
                       {isAnswered && isCorrect && (
-                        <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+                        <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
                       )}
                       {isAnswered && isSelected && !isCorrect && (
-                        <XCircle className="w-5 h-5 text-rose-400 shrink-0" />
+                        <XCircle className="w-5 h-5 text-rose-500 shrink-0" />
                       )}
                     </button>
                   );
@@ -465,16 +465,16 @@ export const TrainStationGame: React.FC<TrainStationGameProps> = ({ activity, on
                   {!isAnswered && activity.settings.allowRevealAnswer && (
                     <button
                       onClick={handleRevealAnswer}
-                      className="px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-400 hover:text-amber-300 text-xs font-semibold flex items-center gap-1.5 transition-all"
+                      className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-amber-50 border border-amber-200 text-amber-700 text-xs font-bold flex items-center gap-1.5 transition-all shadow-xs"
                     >
-                      <Eye className="w-3.5 h-3.5" />
+                      <Eye className="w-3.5 h-3.5 text-amber-600" />
                       <span>Reveal Answer</span>
                     </button>
                   )}
 
                   {isAnswered && currentQ.explanation && (
-                    <div className="p-3 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-200">
-                      <span className="font-bold uppercase text-amber-400 block text-[11px] mb-0.5">
+                    <div className="p-3 rounded-2xl bg-amber-50 border border-amber-200 text-xs text-amber-900">
+                      <span className="font-bold uppercase text-amber-700 block text-[11px] mb-0.5">
                         Station Explanation:
                       </span>
                       {currentQ.explanation}
@@ -485,7 +485,7 @@ export const TrainStationGame: React.FC<TrainStationGameProps> = ({ activity, on
                 {isAnswered && (
                   <button
                     onClick={handleNextQuestion}
-                    className="w-full sm:w-auto px-6 py-3 rounded-2xl bg-gradient-to-r from-amber-600 to-indigo-600 hover:from-amber-500 hover:to-indigo-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-amber-600/30 flex items-center justify-center gap-2 hover:scale-105 active:scale-95 transition-all shrink-0"
+                    className="w-full sm:w-auto px-6 py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-indigo-600 hover:from-amber-600 hover:to-indigo-700 text-white font-bold text-xs sm:text-sm shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2 hover:scale-105 active:scale-95 transition-all shrink-0"
                   >
                     <span>{currentIndex + 1 < questions.length ? 'Next Question' : 'View Results'}</span>
                     <ChevronRight className="w-4 h-4" />

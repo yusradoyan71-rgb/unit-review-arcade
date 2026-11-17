@@ -192,11 +192,11 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ activi
 
   if (!currentSentence || sentences.length === 0) {
     return (
-      <div className="max-w-2xl mx-auto my-12 p-8 text-center bg-slate-900 rounded-3xl border border-slate-800">
-        <AlignLeft className="w-12 h-12 text-slate-500 mx-auto mb-4" />
-        <h3 className="text-xl font-bold text-white mb-2">No Sentences in This Activity</h3>
-        <p className="text-slate-400 text-sm mb-6">This activity collection does not have any sentences configured.</p>
-        <button onClick={onExit} className="px-6 py-2.5 rounded-xl bg-indigo-600 text-white font-semibold text-sm">
+      <div className="max-w-2xl mx-auto my-12 p-8 text-center bg-white rounded-3xl border-2 border-amber-100 shadow-xl">
+        <AlignLeft className="w-12 h-12 text-amber-500 mx-auto mb-4" />
+        <h3 className="text-xl font-bold text-slate-900 mb-2 font-arcade">No Sentences in This Activity</h3>
+        <p className="text-slate-600 text-sm mb-6">This activity collection does not have any sentences configured.</p>
+        <button onClick={onExit} className="px-6 py-2.5 rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white font-bold text-sm shadow-md shadow-sky-500/20">
           Return to Unit
         </button>
       </div>
@@ -209,10 +209,10 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ activi
       <ClassroomScoreboard />
 
       {/* Top Bar */}
-      <div className="flex items-center justify-between gap-4 mb-4 pb-3 border-b border-slate-800">
+      <div className="flex items-center justify-between gap-4 mb-4 pb-3 border-b border-sky-100">
         <button
           onClick={onExit}
-          className="px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white text-xs font-semibold flex items-center gap-1.5 transition-all"
+          className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 hover:text-slate-900 text-xs font-semibold flex items-center gap-1.5 transition-all shadow-xs"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Exit to Unit</span>
@@ -220,28 +220,28 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ activi
 
         {/* Progress Counter */}
         <div className="flex items-center gap-2">
-          <span className="font-arcade text-sm font-bold text-slate-400 uppercase tracking-wider">
+          <span className="font-arcade text-sm font-bold text-slate-500 uppercase tracking-wider">
             Sentence
           </span>
-          <span className="font-mono text-base font-extrabold px-3 py-0.5 rounded-lg bg-amber-500/20 text-amber-300 border border-amber-500/30">
+          <span className="font-mono text-base font-extrabold px-3 py-0.5 rounded-lg bg-amber-50 text-amber-800 border border-amber-200">
             {currentIndex + 1} / {sentences.length}
           </span>
         </div>
 
         {/* Score Counter */}
-        <div className="text-xs font-mono font-bold text-slate-400">
-          Correct: <span className="text-emerald-400">{score}</span> / {sentences.length}
+        <div className="text-xs font-mono font-bold text-slate-600">
+          Correct: <span className="text-emerald-600 font-extrabold">{score}</span> / {sentences.length}
         </div>
       </div>
 
       {/* Sentence Prompt Banner */}
-      <div className="mb-6 p-5 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
+      <div className="mb-6 p-5 rounded-3xl bg-white border-2 border-amber-100 shadow-sm flex items-center justify-between">
         <div>
-          <span className="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5" />
+          <span className="text-xs font-bold uppercase tracking-wider text-amber-700 flex items-center gap-1.5">
+            <Sparkles className="w-3.5 h-3.5 text-amber-500" />
             <span>Target Concept: {currentSentence.prompt}</span>
           </span>
-          <p className="text-slate-300 text-sm sm:text-base font-medium mt-1">
+          <p className="text-slate-700 text-sm sm:text-base font-medium mt-1">
             Tap the word tiles below in the correct order to construct the sentence.
           </p>
         </div>
@@ -249,7 +249,7 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ activi
         <button
           onClick={handleReset}
           disabled={selectedTiles.length === 0 || isAnswerChecked}
-          className="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-30 disabled:pointer-events-none text-slate-300 hover:text-white text-xs font-semibold flex items-center gap-1.5 transition-all"
+          className="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 disabled:opacity-30 disabled:pointer-events-none text-slate-700 text-xs font-bold flex items-center gap-1.5 transition-all shadow-xs"
         >
           <RotateCcw className="w-3.5 h-3.5" />
           <span>Reset Tiles</span>
@@ -257,9 +257,9 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ activi
       </div>
 
       {/* Sentence Assembly Drop Area */}
-      <div className="mb-6 p-6 sm:p-8 rounded-3xl bg-slate-900/95 border-2 border-dashed border-indigo-500/40 min-h-[140px] flex flex-wrap items-center gap-2.5 shadow-inner">
+      <div className="mb-6 p-6 sm:p-8 rounded-3xl bg-white/95 border-2 border-dashed border-indigo-200 min-h-[140px] flex flex-wrap items-center gap-2.5 shadow-sm">
         {selectedTiles.length === 0 ? (
-          <span className="text-slate-500 text-sm sm:text-base italic mx-auto">
+          <span className="text-slate-400 text-sm sm:text-base italic mx-auto">
             Tap words from the word bank below to place them here...
           </span>
         ) : (
@@ -280,8 +280,8 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ activi
       </div>
 
       {/* Scrambled Word Bank */}
-      <div className="mb-6 p-6 rounded-3xl bg-slate-950/60 border border-slate-800/80">
-        <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-3">
+      <div className="mb-6 p-6 rounded-3xl bg-sky-50/70 border-2 border-sky-100 shadow-sm">
+        <span className="text-xs font-bold uppercase tracking-wider text-slate-600 block mb-3">
           Word Bank:
         </span>
         <div className="flex flex-wrap gap-2.5 min-h-[80px] items-center">
@@ -290,35 +290,35 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ activi
               key={tile.id}
               layout
               onClick={() => handleSelectWord(tile)}
-              className="px-4 py-2.5 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-100 hover:text-white font-bold text-base sm:text-lg border border-slate-700 hover:border-indigo-400 shadow transition-all hover:scale-105 active:scale-95"
+              className="px-4 py-2.5 rounded-2xl bg-white hover:bg-sky-50 text-slate-800 font-bold text-base sm:text-lg border-2 border-slate-200 hover:border-sky-300 shadow-xs transition-all hover:scale-105 active:scale-95"
             >
               {tile.word}
             </motion.button>
           ))}
           {bankTiles.length === 0 && (
-            <span className="text-slate-500 text-xs italic">All words placed. Ready to check!</span>
+            <span className="text-slate-400 text-xs italic">All words placed. Ready to check!</span>
           )}
         </div>
       </div>
 
       {/* Feedback & Actions */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-auto pt-4 border-t border-slate-800">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-auto pt-4 border-t border-sky-100">
         <div className="flex items-center gap-3">
           {!isAnswerChecked && (
             <>
               <button
                 onClick={handleCheckAnswer}
                 disabled={selectedTiles.length === 0}
-                className="px-6 py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 disabled:opacity-40 text-slate-950 font-bold text-base shadow-lg shadow-amber-500/20 hover:scale-105 active:scale-95 transition-all"
+                className="px-6 py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 disabled:opacity-40 text-white font-bold text-base shadow-lg shadow-amber-500/20 hover:scale-105 active:scale-95 transition-all"
               >
                 Check Answer
               </button>
 
               <button
                 onClick={handleReveal}
-                className="px-4 py-3 rounded-2xl bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-amber-300 text-sm font-semibold flex items-center gap-2 border border-slate-800 transition-all"
+                className="px-4 py-3 rounded-2xl bg-white hover:bg-amber-50 text-amber-700 text-sm font-bold flex items-center gap-2 border border-amber-200 shadow-xs transition-all"
               >
-                <Eye className="w-4 h-4" />
+                <Eye className="w-4 h-4 text-amber-600" />
                 <span>Reveal</span>
               </button>
             </>
@@ -327,22 +327,22 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ activi
           {isAnswerChecked && (
             <div className="flex items-center gap-2 text-sm sm:text-base font-bold">
               {isCorrect ? (
-                <div className="flex items-center gap-2 text-emerald-400">
-                  <CheckCircle2 className="w-6 h-6" />
+                <div className="flex items-center gap-2 text-emerald-600">
+                  <CheckCircle2 className="w-6 h-6 text-emerald-500" />
                   <span>Correct! Well done!</span>
                 </div>
               ) : (
                 <div className="flex flex-col">
-                  <div className="flex items-center gap-2 text-rose-400">
-                    <XCircle className="w-6 h-6" />
+                  <div className="flex items-center gap-2 text-rose-600">
+                    <XCircle className="w-6 h-6 text-rose-500" />
                     <span>Not quite right.</span>
                   </div>
-                  <span className="text-xs text-slate-300 mt-1">
-                    Correct sentence: <strong className="text-emerald-300 font-mono">{currentSentence.correctSentence}</strong>
+                  <span className="text-xs text-slate-700 mt-1">
+                    Correct sentence: <strong className="text-emerald-700 font-mono">{currentSentence.correctSentence}</strong>
                   </span>
                   {currentSentence.explanation && (
-                    <div className="mt-2 p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-200">
-                      <span className="font-bold text-amber-400 block text-[10px] uppercase tracking-wide">Explanation:</span>
+                    <div className="mt-2 p-2.5 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900">
+                      <span className="font-bold text-amber-700 block text-[10px] uppercase tracking-wide">Explanation:</span>
                       {currentSentence.explanation}
                     </div>
                   )}
@@ -352,10 +352,11 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ activi
           )}
         </div>
 
+        {/* Next Question / View Results Button */}
         {isAnswerChecked && (
           <button
             onClick={handleNext}
-            className="w-full sm:w-auto px-6 py-3 rounded-2xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-bold text-base shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2 hover:scale-105 active:scale-95 transition-all"
+            className="w-full sm:w-auto px-6 py-3 rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white font-bold text-base shadow-lg shadow-sky-500/20 flex items-center justify-center gap-2 hover:scale-105 active:scale-95 transition-all"
           >
             <span>{currentIndex + 1 < sentences.length ? 'Next Sentence' : 'View Results'}</span>
             <ChevronRight className="w-5 h-5" />

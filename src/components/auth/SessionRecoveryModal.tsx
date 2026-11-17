@@ -80,27 +80,27 @@ export const SessionRecoveryModal: React.FC<SessionRecoveryModalProps> = ({
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 15 }}
-          className="w-full max-w-sm rounded-3xl bg-slate-900 border-2 border-amber-500/40 p-6 sm:p-8 text-center shadow-2xl relative overflow-hidden"
+          className="w-full max-w-sm rounded-3xl bg-white border-2 border-amber-200 p-6 sm:p-8 text-center shadow-2xl relative overflow-hidden"
         >
-          <div className="mx-auto w-16 h-16 rounded-2xl bg-amber-500/15 border border-amber-500/30 text-amber-400 flex items-center justify-center mb-4">
+          <div className="mx-auto w-16 h-16 rounded-2xl bg-amber-50 border-2 border-amber-200 text-amber-600 flex items-center justify-center mb-4 shadow-sm">
             <KeyRound className="w-8 h-8" />
           </div>
 
-          <h3 className="font-arcade text-xl font-bold text-white mb-1">
+          <h3 className="font-arcade text-xl font-bold text-slate-900 mb-1">
             Session Expired
           </h3>
-          <p className="text-slate-400 text-xs mb-4">
-            Enter your 4-digit PIN for student <strong className="text-amber-400">#{studentNumber}</strong> {studentName ? `(${studentName})` : ''} to save your progress.
+          <p className="text-slate-600 text-xs mb-4">
+            Enter your 4-digit PIN for student <strong className="text-amber-600 font-bold">#{studentNumber}</strong> {studentName ? `(${studentName})` : ''} to save your progress.
           </p>
 
           {error && (
-            <div className="mb-4 p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2 text-left">
-              <AlertCircle className="w-4 h-4 shrink-0 text-rose-400" />
+            <div className="mb-4 p-2.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center gap-2 text-left">
+              <AlertCircle className="w-4 h-4 shrink-0 text-rose-500" />
               <span>{error}</span>
             </div>
           )}
@@ -111,10 +111,10 @@ export const SessionRecoveryModal: React.FC<SessionRecoveryModalProps> = ({
               {[0, 1, 2, 3].map((idx) => (
                 <div
                   key={idx}
-                  className={`w-12 h-12 rounded-xl flex items-center justify-center font-mono text-2xl font-bold border transition-all ${
+                  className={`w-12 h-12 rounded-xl flex items-center justify-center font-mono text-2xl font-bold border-2 transition-all ${
                     idx < pin.length
-                      ? 'bg-amber-500/20 border-amber-400 text-amber-300 shadow-lg shadow-amber-500/10'
-                      : 'bg-slate-950 border-slate-800 text-slate-600'
+                      ? 'bg-amber-100 border-amber-400 text-amber-800 shadow-sm'
+                      : 'bg-slate-50 border-slate-200 text-slate-300'
                   }`}
                 >
                   {idx < pin.length ? '●' : '—'}
@@ -129,7 +129,7 @@ export const SessionRecoveryModal: React.FC<SessionRecoveryModalProps> = ({
                   key={digit}
                   type="button"
                   onClick={() => handlePinDigit(digit)}
-                  className="py-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 active:bg-slate-600 text-white font-mono font-bold text-lg border border-slate-700/60 transition-all hover:scale-105 active:scale-95"
+                  className="py-3 rounded-xl bg-slate-50 hover:bg-amber-50 active:bg-amber-100 text-slate-800 font-mono font-bold text-lg border border-slate-200 transition-all hover:scale-105 active:scale-95 shadow-xs"
                 >
                   {digit}
                 </button>
@@ -137,21 +137,21 @@ export const SessionRecoveryModal: React.FC<SessionRecoveryModalProps> = ({
               <button
                 type="button"
                 onClick={handleBackspace}
-                className="py-3 rounded-xl bg-slate-800/50 hover:bg-slate-700 text-slate-400 hover:text-white font-mono font-semibold text-xs border border-slate-700/40"
+                className="py-3 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-600 font-mono font-semibold text-xs border border-slate-200 shadow-xs"
               >
                 ⌫
               </button>
               <button
                 type="button"
                 onClick={() => handlePinDigit('0')}
-                className="py-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 active:bg-slate-600 text-white font-mono font-bold text-lg border border-slate-700/60"
+                className="py-3 rounded-xl bg-slate-50 hover:bg-amber-50 active:bg-amber-100 text-slate-800 font-mono font-bold text-lg border border-slate-200 shadow-xs"
               >
                 0
               </button>
               <button
                 type="submit"
                 disabled={pin.length !== 4 || isLoading}
-                className="py-3 rounded-xl bg-amber-600 hover:bg-amber-500 active:bg-amber-700 disabled:opacity-40 disabled:pointer-events-none text-white font-mono font-bold text-xs shadow-md shadow-amber-600/30"
+                className="py-3 rounded-xl bg-amber-500 hover:bg-amber-600 active:bg-amber-700 disabled:opacity-40 disabled:pointer-events-none text-white font-mono font-bold text-xs shadow-md shadow-amber-500/20 active:scale-95 transition-all"
               >
                 {isLoading ? <Loader2 className="w-4 h-4 animate-spin mx-auto" /> : 'OK'}
               </button>
@@ -161,7 +161,7 @@ export const SessionRecoveryModal: React.FC<SessionRecoveryModalProps> = ({
               <button
                 type="button"
                 onClick={onCancel}
-                className="text-xs text-slate-500 hover:text-slate-300 transition-colors flex items-center justify-center gap-1.5 mx-auto"
+                className="text-xs text-slate-500 hover:text-slate-800 transition-colors flex items-center justify-center gap-1.5 mx-auto font-medium"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
                 <span>Exit without saving</span>

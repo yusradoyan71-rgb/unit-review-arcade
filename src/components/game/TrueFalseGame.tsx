@@ -100,9 +100,9 @@ export const TrueFalseGame: React.FC<TrueFalseGameProps> = ({ activity, onExit }
 
   if (!currentStatement || statements.length === 0) {
     return (
-      <div className="max-w-2xl mx-auto my-12 p-8 text-center bg-slate-900 rounded-3xl border border-slate-800">
-        <h3 className="text-xl font-bold text-white mb-2">No Statements Configured</h3>
-        <button onClick={onExit} className="px-6 py-2.5 rounded-xl bg-indigo-600 text-white font-semibold text-sm">
+      <div className="max-w-2xl mx-auto my-12 p-8 text-center bg-white rounded-3xl border-2 border-sky-100 shadow-xl">
+        <h3 className="text-xl font-bold text-slate-900 mb-2 font-arcade">No Statements Configured</h3>
+        <button onClick={onExit} className="px-6 py-2.5 rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white font-bold text-sm shadow-md shadow-sky-500/20">
           Return to Unit
         </button>
       </div>
@@ -115,10 +115,10 @@ export const TrueFalseGame: React.FC<TrueFalseGameProps> = ({ activity, onExit }
       <ClassroomScoreboard />
 
       {/* Top Bar */}
-      <div className="flex items-center justify-between gap-4 mb-4 pb-3 border-b border-slate-800">
+      <div className="flex items-center justify-between gap-4 mb-4 pb-3 border-b border-sky-100">
         <button
           onClick={onExit}
-          className="px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white text-xs font-semibold flex items-center gap-1.5 transition-all"
+          className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 hover:text-slate-900 text-xs font-semibold flex items-center gap-1.5 transition-all shadow-xs"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Exit to Unit</span>
@@ -126,10 +126,10 @@ export const TrueFalseGame: React.FC<TrueFalseGameProps> = ({ activity, onExit }
 
         {/* Progress Counter */}
         <div className="flex items-center gap-2">
-          <span className="font-arcade text-sm font-bold text-slate-400 uppercase tracking-wider">
+          <span className="font-arcade text-sm font-bold text-slate-500 uppercase tracking-wider">
             Statement
           </span>
-          <span className="font-mono text-base font-extrabold px-3 py-0.5 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+          <span className="font-mono text-base font-extrabold px-3 py-0.5 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200">
             {currentIndex + 1} / {statements.length}
           </span>
         </div>
@@ -142,13 +142,13 @@ export const TrueFalseGame: React.FC<TrueFalseGameProps> = ({ activity, onExit }
         animate={{ opacity: 1, y: 0 }}
         className="flex-1 flex flex-col justify-between"
       >
-        <div className="mb-8 p-6 sm:p-10 rounded-3xl bg-slate-900/90 border-2 border-emerald-500/30 shadow-2xl backdrop-blur-xl relative overflow-hidden text-center my-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-bold uppercase tracking-wider mb-6">
-            <Sparkles className="w-3.5 h-3.5" />
+        <div className="mb-8 p-6 sm:p-10 rounded-3xl bg-white border-2 border-emerald-100 shadow-xl relative overflow-hidden text-center my-auto">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-6">
+            <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
             <span>Fact or Fiction Challenge</span>
           </div>
 
-          <h2 className="font-arcade text-2xl sm:text-3xl md:text-4xl font-extrabold text-white leading-relaxed max-w-3xl mx-auto">
+          <h2 className="font-arcade text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 leading-relaxed max-w-3xl mx-auto">
             "{currentStatement.prompt}"
           </h2>
         </div>
@@ -162,14 +162,14 @@ export const TrueFalseGame: React.FC<TrueFalseGameProps> = ({ activity, onExit }
             className={`p-8 rounded-3xl border-4 text-center font-arcade font-black text-3xl sm:text-4xl transition-all flex flex-col items-center justify-center gap-3 ${
               isAnswered
                 ? currentStatement.isTrue
-                  ? 'bg-emerald-500/30 border-emerald-400 text-emerald-200 ring-4 ring-emerald-400'
+                  ? 'bg-emerald-500 border-emerald-400 text-white ring-4 ring-emerald-400'
                   : selectedAnswer === true
-                  ? 'bg-rose-500/30 border-rose-500 text-rose-200'
-                  : 'bg-slate-950/40 border-slate-900 text-slate-600 opacity-40'
-                : 'bg-emerald-600/20 hover:bg-emerald-600/30 border-emerald-500/50 hover:border-emerald-400 text-emerald-300 hover:scale-105 active:scale-95 shadow-xl shadow-emerald-600/10'
+                  ? 'bg-rose-500 border-rose-400 text-white'
+                  : 'bg-slate-100 border-slate-200 text-slate-400 opacity-40'
+                : 'bg-emerald-500 hover:bg-emerald-600 border-emerald-400 text-white hover:scale-105 active:scale-95 shadow-xl shadow-emerald-500/20'
             }`}
           >
-            <div className="w-16 h-16 rounded-2xl bg-emerald-500 text-slate-950 flex items-center justify-center shadow-lg">
+            <div className="w-16 h-16 rounded-2xl bg-white/20 text-white flex items-center justify-center shadow-md">
               <Check className="w-10 h-10 stroke-[3]" />
             </div>
             <span>TRUE</span>
@@ -182,14 +182,14 @@ export const TrueFalseGame: React.FC<TrueFalseGameProps> = ({ activity, onExit }
             className={`p-8 rounded-3xl border-4 text-center font-arcade font-black text-3xl sm:text-4xl transition-all flex flex-col items-center justify-center gap-3 ${
               isAnswered
                 ? !currentStatement.isTrue
-                  ? 'bg-emerald-500/30 border-emerald-400 text-emerald-200 ring-4 ring-emerald-400'
+                  ? 'bg-emerald-500 border-emerald-400 text-white ring-4 ring-emerald-400'
                   : selectedAnswer === false
-                  ? 'bg-rose-500/30 border-rose-500 text-rose-200'
-                  : 'bg-slate-950/40 border-slate-900 text-slate-600 opacity-40'
-                : 'bg-rose-600/20 hover:bg-rose-600/30 border-rose-500/50 hover:border-rose-400 text-rose-300 hover:scale-105 active:scale-95 shadow-xl shadow-rose-600/10'
+                  ? 'bg-rose-500 border-rose-400 text-white'
+                  : 'bg-slate-100 border-slate-200 text-slate-400 opacity-40'
+                : 'bg-rose-500 hover:bg-rose-600 border-rose-400 text-white hover:scale-105 active:scale-95 shadow-xl shadow-rose-500/20'
             }`}
           >
-            <div className="w-16 h-16 rounded-2xl bg-rose-500 text-white flex items-center justify-center shadow-lg">
+            <div className="w-16 h-16 rounded-2xl bg-white/20 text-white flex items-center justify-center shadow-md">
               <X className="w-10 h-10 stroke-[3]" />
             </div>
             <span>FALSE</span>
@@ -197,11 +197,11 @@ export const TrueFalseGame: React.FC<TrueFalseGameProps> = ({ activity, onExit }
         </div>
 
         {/* Explanation & Next */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-800">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-sky-100">
           <div className="flex-1">
             {isAnswered && (
-              <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 text-slate-300 text-sm">
-                <span className="font-bold uppercase tracking-wider block text-emerald-400 text-xs mb-1">
+              <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-950 text-sm">
+                <span className="font-bold uppercase tracking-wider block text-emerald-700 text-xs mb-1">
                   {currentStatement.isTrue === selectedAnswer ? '✓ Correct!' : '✗ Incorrect!'}
                 </span>
                 {currentStatement.explanation}
@@ -212,7 +212,7 @@ export const TrueFalseGame: React.FC<TrueFalseGameProps> = ({ activity, onExit }
           {isAnswered && (
             <button
               onClick={handleNext}
-              className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-black text-lg shadow-lg shadow-emerald-500/30 flex items-center justify-center gap-2 hover:scale-105 active:scale-95 transition-all"
+              className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold text-lg shadow-lg shadow-emerald-500/30 flex items-center justify-center gap-2 hover:scale-105 active:scale-95 transition-all"
             >
               <span>{currentIndex + 1 < statements.length ? 'Next Statement' : 'View Results'}</span>
               <ChevronRight className="w-5 h-5" />
