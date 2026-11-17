@@ -272,3 +272,4 @@ console.log('\n--- 6. UI Regression Checks: Home Screen Monster World Card ---')
 console.log('\n================================================================');
 console.log('🎉 ALL CROSS-ACCOUNT UI STATE & ISOLATION CHECKS PASSED (6/6)!');
 console.log('================================================================\n');
+

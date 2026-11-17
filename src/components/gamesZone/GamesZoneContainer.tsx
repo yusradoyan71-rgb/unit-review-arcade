@@ -14,6 +14,10 @@ import { GrammarRunnerGame } from './grammarRunner/GrammarRunnerGame';
 import { WordFishingGame } from './wordFishing/WordFishingGame';
 import { SentenceTowerGame } from './sentenceTower/SentenceTowerGame';
 import { GamesZoneService } from '../../services/gamesZoneService';
+import { useAuth } from '../../context/AuthContext';
+import { useGamification } from '../../context/GamificationContext';
+import { ApiService } from '../../services/apiService';
+import { CoinService } from '../../services/coinService';
 
 interface GamesZoneContainerProps {
   selectedGrade: GradeId;
@@ -30,6 +34,9 @@ export const GamesZoneContainer: React.FC<GamesZoneContainerProps> = ({
   studentNumber = 'guest',
   studentClass,
 }) => {
+  const { sessionToken, updateStudent } = useAuth();
+  const { refreshProfile } = useGamification();
+
   const [selectedGame, setSelectedGame] = useState<GamesZoneGameMetadata | null>(null);
   const [isDiffModalOpen, setIsDiffModalOpen] = useState(false);
   const [currentDifficulty, setCurrentDifficulty] = useState<GamesZoneDifficulty>('easy');
@@ -69,6 +76,48 @@ export const GamesZoneContainer: React.FC<GamesZoneContainerProps> = ({
     setIsResultsOpen(true);
     setIsPlaying(false);
     setIsPaused(false);
+
+    // If authenticated student, award Games Zone coins server-side
+    if (studentNumber && studentNumber !== 'guest' && sessionToken && selectedGame) {
+      const attemptId = record.attemptId || `gz_${record.gameId}_${Date.now()}`;
+      ApiService.recordGamesZoneCoins({
+        sessionToken,
+        gameId: record.gameId,
+        difficulty: record.difficulty,
+        accuracyPercentage: record.accuracyPercentage,
+        correctAnswers: record.correctAnswers,
+        attemptId,
+      })
+        .then((res) => {
+          if (res.success) {
+            setLastAttempt((prev) => (prev ? { ...prev, coinsEarned: res.coinsEarned } : prev));
+            if (typeof res.totalCoins === 'number') {
+              updateStudent?.({ totalCoins: res.totalCoins });
+              CoinService.setBalance(studentNumber, res.totalCoins);
+            }
+            try {
+              refreshProfile?.();
+            } catch {
+              // ignore
+            }
+          }
+        })
+        .catch(() => {
+          // Offline fallback
+          const fallback = CoinService.calculateGamesZoneCoins(
+            studentNumber,
+            record.difficulty,
+            record.accuracyPercentage
+          );
+          if (fallback.coinsEarned > 0) {
+            setLastAttempt((prev) => (prev ? { ...prev, coinsEarned: fallback.coinsEarned } : prev));
+            const currentBal = CoinService.getBalance(studentNumber);
+            const newBal = currentBal + fallback.coinsEarned;
+            CoinService.setBalance(studentNumber, newBal);
+            updateStudent?.({ totalCoins: newBal });
+          }
+        });
+    }
   };
 
   const handleRestart = () => {

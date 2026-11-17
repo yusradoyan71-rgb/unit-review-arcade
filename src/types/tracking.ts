@@ -88,6 +88,22 @@ export interface CompleteAttemptSummary {
   completedAt?: string;
 }
 
+export interface AttemptCoinsBreakdown {
+  firstCompletion?: number;
+  highAccuracy?: number;
+  perfectScore?: number;
+  dailyFirst?: number;
+  levelUp?: number;
+  replay?: number;
+}
+
+export interface AttemptCoinsResult {
+  coinsEarned: number;
+  totalCoins: number;
+  breakdown?: AttemptCoinsBreakdown;
+  message?: string;
+}
+
 /**
  * API Request & Response interfaces for Google Apps Script
  */
@@ -99,6 +115,7 @@ export interface TrackingApiResponse<T = unknown> {
   attemptId?: string;
   attemptNumber?: number;
   gamification?: AttemptGamificationResult;
+  coins?: AttemptCoinsResult;
   data?: T;
 }
 

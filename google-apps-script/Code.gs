@@ -2797,16 +2797,16 @@ function handleCompleteAttempt(ss, payload) {
 
   // Calculate Monster Coins (Phase 8A)
   var firstCompletionCoins = isFirstCompletion ? 5 : 0;
-  var highAccuracyCoins = percentage >= 90 ? 3 : 0;
-  var perfectScoreCoins = percentage >= 100 ? 5 : 0;
+  var highAccuracyCoins = (isFirstCompletion && percentage >= 90) ? 3 : 0;
+  var perfectScoreCoins = (isFirstCompletion && percentage >= 100) ? 5 : 0;
 
   // Daily First Activity bonus (+5 coins)
-  var compDateStr = String(payload.completedAt || now);
-  var todayPrefix = compDateStr.substring(0, 10);
+  var compDateStr = payload.completedAt || now;
+  var todayPrefix = toIsoDatePrefix(compDateStr);
   var priorTodayAttempts = 0;
   for (var t = 0; t < priorCompletedAttempts.length; t++) {
-    var ca = String(priorCompletedAttempts[t].completedAt || "");
-    if (ca.substring(0, 10) === todayPrefix) {
+    var ca = priorCompletedAttempts[t].completedAt;
+    if (toIsoDatePrefix(ca) === todayPrefix) {
       priorTodayAttempts++;
     }
   }
@@ -2837,7 +2837,7 @@ function handleCompleteAttempt(ss, payload) {
         for (var k = 1; k < txData.length; k++) {
           if (String(txData[k][sCol] || "").trim() === String(studentNumber).trim() &&
               String(txData[k][rCol] || "").trim() === "replay_practice" &&
-              String(txData[k][cCol] || "").substring(0, 10) === todayPrefix) {
+              toIsoDatePrefix(txData[k][cCol]) === todayPrefix) {
             todayPracticeCoins += Number(txData[k][aCol] || 0);
           }
         }
@@ -6127,6 +6127,31 @@ function saveStudentMonsterConfig(ss, studentNumber, studentClass, monsterConfig
 }
 
 /**
+ * Normalizes a Date object, ISO string, or timestamp into YYYY-MM-DD prefix.
+ */
+function toIsoDatePrefix(val) {
+  if (!val) return "";
+  if (val instanceof Date) {
+    var y = val.getFullYear();
+    var m = ("0" + (val.getMonth() + 1)).slice(-2);
+    var d = ("0" + val.getDate()).slice(-2);
+    return y + "-" + m + "-" + d;
+  }
+  var s = String(val).trim();
+  if (s.length >= 10 && s.charAt(4) === "-" && s.charAt(7) === "-") {
+    return s.substring(0, 10);
+  }
+  var parsed = new Date(s);
+  if (!isNaN(parsed.getTime())) {
+    var y2 = parsed.getFullYear();
+    var m2 = ("0" + (parsed.getMonth() + 1)).slice(-2);
+    var d2 = ("0" + parsed.getDate()).slice(-2);
+    return y2 + "-" + m2 + "-" + d2;
+  }
+  return s.substring(0, 10);
+}
+
+/**
  * Reads student's current Monster Coin balance.
  * Server authoritative, never negative.
  */
@@ -6156,6 +6181,7 @@ function getStudentCoinBalance(ss, studentNumber) {
 
 /**
  * Records a coin transaction and returns the new balance.
+ * Enforces idempotency when sourceId is supplied.
  */
 function recordCoinTransaction(ss, studentNumber, studentClass, amount, reason, sourceId, timestamp) {
   if (!ss || !studentNumber || amount === 0) {
@@ -6166,12 +6192,35 @@ function recordCoinTransaction(ss, studentNumber, studentClass, amount, reason, 
     };
   }
 
+  var txSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.COIN_TRANSACTIONS);
   var currentBalance = getStudentCoinBalance(ss, studentNumber);
+
+  // Idempotency: avoid duplicate award if transaction with this sourceId already exists
+  if (txSheet && sourceId) {
+    var data = txSheet.getDataRange().getValues();
+    if (data.length > 1) {
+      var colMap = getSheetColumnMap(txSheet, CONFIG.COIN_TRANSACTION_HEADERS);
+      var sCol = colMap["student_number"] - 1;
+      var srcCol = colMap["source_id"] - 1;
+      var idCol = colMap["transaction_id"] - 1;
+      for (var i = 1; i < data.length; i++) {
+        if (String(data[i][sCol] || "").trim() === String(studentNumber).trim() &&
+            String(data[i][srcCol] || "").trim() === String(sourceId).trim()) {
+          return {
+            transactionId: String(data[i][idCol] || ""),
+            balanceAfter: currentBalance,
+            amount: 0,
+            alreadyProcessed: true
+          };
+        }
+      }
+    }
+  }
+
   var balanceAfter = Math.max(0, currentBalance + amount);
   var txId = "ctx_" + Utilities.getUuid().substring(0, 8);
   var txTime = timestamp || new Date().toISOString();
 
-  var txSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.COIN_TRANSACTIONS);
   if (txSheet) {
     if (txSheet.getLastRow() === 0) {
       txSheet.appendRow(CONFIG.COIN_TRANSACTION_HEADERS);
@@ -6444,8 +6493,32 @@ function handleStudentRecordGamesZoneCoins(ss, payload) {
   var earned = baseCoins + bonusCoins;
 
   // Daily Games Zone Cap (25 coins max per calendar day)
-  var todayStr = new Date().toISOString().substring(0, 10);
+  var todayStr = toIsoDatePrefix(new Date());
   var txSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.COIN_TRANSACTIONS);
+  var attemptId = String(payload.attemptId || "").trim();
+
+  // Idempotency: check if attemptId was already recorded for this student
+  if (attemptId && txSheet) {
+    var existingData = txSheet.getDataRange().getValues();
+    if (existingData.length > 1) {
+      var checkColMap = getSheetColumnMap(txSheet, CONFIG.COIN_TRANSACTION_HEADERS);
+      var chkSCol = checkColMap["student_number"] - 1;
+      var chkSrcCol = checkColMap["source_id"] - 1;
+      for (var c = 1; c < existingData.length; c++) {
+        if (String(existingData[c][chkSCol] || "").trim() === auth.studentNumber &&
+            String(existingData[c][chkSrcCol] || "").trim() === attemptId) {
+          return createJsonResponse({
+            success: true,
+            coinsEarned: 0,
+            isCapped: false,
+            totalCoins: getStudentCoinBalance(ss, auth.studentNumber),
+            message: "Attempt already recorded."
+          });
+        }
+      }
+    }
+  }
+
   var todayGzEarned = 0;
   if (txSheet) {
     var data = txSheet.getDataRange().getValues();
@@ -6453,8 +6526,8 @@ function handleStudentRecordGamesZoneCoins(ss, payload) {
     for (var i = 1; i < data.length; i++) {
       var sNum = String(data[i][colMap["student_number"] - 1] || "").trim();
       var rsn = String(data[i][colMap["reason"] - 1] || "").trim();
-      var cAt = String(data[i][colMap["created_at"] - 1] || "");
-      if (sNum === auth.studentNumber && rsn === "games_zone_completion" && cAt.substring(0, 10) === todayStr) {
+      var cAt = data[i][colMap["created_at"] - 1];
+      if (sNum === auth.studentNumber && rsn === "games_zone_completion" && toIsoDatePrefix(cAt) === todayStr) {
         todayGzEarned += Number(data[i][colMap["amount"] - 1] || 0);
       }
     }
@@ -6464,13 +6537,15 @@ function handleStudentRecordGamesZoneCoins(ss, payload) {
   var awarded = Math.min(earned, available);
   var isCapped = awarded < earned;
 
+  var sourceId = attemptId || ("gz_" + gameId + "_" + difficulty + "_" + Utilities.getUuid().substring(0, 6));
+
   var txResult = recordCoinTransaction(
     ss,
     auth.studentNumber,
     auth.class,
     awarded,
     "games_zone_completion",
-    "gz_" + gameId + "_" + difficulty + "_" + Utilities.getUuid().substring(0, 6)
+    sourceId
   );
 
   return createJsonResponse({

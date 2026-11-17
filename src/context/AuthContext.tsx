@@ -13,6 +13,7 @@ import { getGradeForClass } from '../types/auth';
 import { ApiService } from '../services/apiService';
 import { TrackingService } from '../services/trackingService';
 import { MonsterService } from '../services/monsterService';
+import { CoinService } from '../services/coinService';
 import { sounds } from '../services/soundEffects';
 
 interface AuthContextType {
@@ -44,12 +45,22 @@ const normalizeStudent = (raw: StudentProfile): StudentProfile => {
   const grade = getGradeForClass(studentClass);
   const studentNumber = String(raw.studentNumber || '').trim();
   const monster = MonsterService.resolveMonster(raw.monster, studentNumber);
+  let totalCoins: number;
+  if (typeof raw.totalCoins === 'number') {
+    totalCoins = raw.totalCoins;
+    if (studentNumber) {
+      CoinService.setBalance(studentNumber, totalCoins);
+    }
+  } else {
+    totalCoins = CoinService.getBalance(studentNumber);
+  }
   return {
     ...raw,
     studentNumber,
     class: studentClass,
     grade: grade,
     monster,
+    totalCoins,
   };
 };
 

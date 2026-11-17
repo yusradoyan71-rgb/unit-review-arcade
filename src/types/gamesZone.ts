@@ -126,6 +126,7 @@ export interface GamesZoneAttemptRecord {
   incorrectAnswers: number;
   accuracyPercentage: number;
   xpEarned: number;
+  coinsEarned?: number;
   durationSeconds: number;
   completedAt: string;
 }

@@ -7,6 +7,7 @@ import {
   CheckCircle2,
   Clock,
   Zap,
+  Coins,
 } from 'lucide-react';
 import type { GamesZoneAttemptRecord } from '../../types/gamesZone';
 
@@ -122,6 +123,26 @@ export const GamesZoneResultsModal: React.FC<GamesZoneResultsModalProps> = ({
             +{attempt.xpEarned} XP
           </span>
         </div>
+
+        {/* Monster Coins Award Pill */}
+        {attempt.coinsEarned !== undefined && (
+          <div className="p-3.5 rounded-2xl bg-gradient-to-r from-amber-950/60 to-yellow-950/50 border border-amber-600/40 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="p-1.5 rounded-lg bg-amber-500/20 text-amber-400">
+                <Coins className="w-4 h-4 fill-current" />
+              </div>
+              <div className="text-left">
+                <span className="text-xs font-bold text-amber-200 block">Monster Coins</span>
+                <span className="text-[10px] text-slate-400">
+                  {attempt.coinsEarned > 0 ? 'Added to wallet' : 'Daily cap (25) reached'}
+                </span>
+              </div>
+            </div>
+            <span className="text-lg font-black text-amber-400">
+              +{attempt.coinsEarned} Coins
+            </span>
+          </div>
+        )}
 
         {/* Actions */}
         <div className="space-y-2.5">

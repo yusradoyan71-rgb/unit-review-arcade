@@ -12,6 +12,7 @@
 
 import { ApiService } from './apiService';
 import { calculateAttemptXp } from '../utils/gamification';
+import { CoinService } from './coinService';
 import type {
   StartAttemptMetadata,
   QuestionAnswerRecord,
@@ -555,6 +556,23 @@ export class TrackingService {
         isFirstCompletion: true,
         attemptNumber: 1,
       });
+
+      const fallbackCoins = studentNumber
+        ? CoinService.calculateAttemptCoins({
+            studentNumber,
+            percentage,
+            isFirstCompletion: true,
+            previousBestPercentage: 0,
+            isLevelUp: false,
+          })
+        : { totalCoins: 0, breakdown: { firstCompletion: 0, highAccuracy: 0, perfectScore: 0, dailyFirst: 0, levelUp: 0, replay: 0 } };
+
+      const currentBalance = studentNumber ? CoinService.getBalance(studentNumber) : 0;
+      const newTotalCoins = currentBalance + fallbackCoins.totalCoins;
+      if (studentNumber && fallbackCoins.totalCoins > 0) {
+        CoinService.setBalance(studentNumber, newTotalCoins);
+      }
+
       return {
         success: false,
         error: err instanceof Error ? err.message : 'Network error during completion sync. Saved locally.',
@@ -571,6 +589,12 @@ export class TrackingService {
           levelTitle: 'Novice Explorer',
           unlockedAchievements: [],
           replayNotice: 'Offline Mode: XP saved locally; will sync when reconnected.',
+        },
+        coins: {
+          coinsEarned: fallbackCoins.totalCoins,
+          totalCoins: newTotalCoins,
+          breakdown: fallbackCoins.breakdown,
+          message: 'Offline Mode: Coins saved locally; will sync when reconnected.',
         },
       };
     }

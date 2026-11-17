@@ -500,6 +500,44 @@ export class ApiService {
   }
 
   /**
+   * Records Games Zone coins earned directly with the backend.
+   */
+  public static async recordGamesZoneCoins(params: {
+    sessionToken: string;
+    gameId: string;
+    difficulty: string;
+    accuracyPercentage: number;
+    correctAnswers: number;
+    attemptId?: string;
+  }): Promise<{
+    success: boolean;
+    coinsEarned: number;
+    totalCoins: number;
+    isCapped: boolean;
+    error?: string;
+  }> {
+    const apiUrl = this.getApiUrl();
+    if (!apiUrl || !params.sessionToken) {
+      return { success: false, coinsEarned: 0, totalCoins: 0, isCapped: false, error: 'Offline' };
+    }
+    try {
+      return await this.postRequest(apiUrl, {
+        action: 'student_record_games_zone_coins',
+        ...params,
+      });
+    } catch (err) {
+      console.warn('[ApiService] Failed to record Games Zone coins:', err);
+      return {
+        success: false,
+        coinsEarned: 0,
+        totalCoins: 0,
+        isCapped: false,
+        error: err instanceof Error ? err.message : 'Network error',
+      };
+    }
+  }
+
+  /**
    * Generic POST method for custom actions.
    */
   public static async post<T>(payload: unknown): Promise<T> {

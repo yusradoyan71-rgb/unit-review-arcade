@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { Trophy, RotateCcw, ArrowLeft, Sparkles, Award, Zap } from 'lucide-react';
+import { Trophy, RotateCcw, ArrowLeft, Sparkles, Award, Zap, Coins } from 'lucide-react';
 import { sounds } from '../../services/soundEffects';
 import { useGameTracking } from '../../context/GameTrackingContext';
 
@@ -24,7 +24,7 @@ export const GameResultsModal: React.FC<GameResultsModalProps> = ({
   accuracyPercentage,
   scoreLabel,
 }) => {
-  const { lastGamification } = useGameTracking();
+  const { lastGamification, lastCoins } = useGameTracking();
   const rawPercentage = accuracyPercentage !== undefined
     ? accuracyPercentage
     : (totalQuestions > 0 ? (score / totalQuestions) * 100 : 0);
@@ -110,6 +110,31 @@ export const GameResultsModal: React.FC<GameResultsModalProps> = ({
                 </span>
               </div>
             </div>
+
+            {/* Monster Coins Earned Card */}
+            {lastCoins && lastCoins.coinsEarned > 0 && (
+              <div className="p-3.5 rounded-2xl bg-slate-950 border border-amber-500/40 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
+                    <Coins className="w-4 h-4" />
+                  </div>
+                  <div className="text-left">
+                    <span className="text-[11px] font-semibold text-amber-400 block">MONSTER COINS</span>
+                    <span className="text-xs text-slate-300 font-medium">
+                      {lastCoins.message || 'Reward for Activity Completion'}
+                    </span>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <span className="font-mono text-xl font-black text-amber-400">
+                    +{lastCoins.coinsEarned} <span className="text-xs font-bold">Coins</span>
+                  </span>
+                  <span className="text-[10px] text-slate-400 block">
+                    Total: {lastCoins.totalCoins}
+                  </span>
+                </div>
+              </div>
+            )}
 
             {/* Level Up Celebratory Announcement */}
             {lastGamification.isLevelUp && (

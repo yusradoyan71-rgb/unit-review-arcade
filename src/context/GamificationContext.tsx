@@ -249,6 +249,32 @@ export const GamificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
     }
   }, [authMode, sessionToken, currentStudentNumber, refreshProfile]);
 
+  // Keep profile in sync with updated student properties (e.g., totalCoins)
+  useEffect(() => {
+    if (!profile || !student) return;
+    if (student.studentNumber !== profile.studentNumber) return;
+
+    let changed = false;
+    const updated = { ...profile };
+
+    if (student.totalCoins !== undefined && updated.totalCoins !== student.totalCoins) {
+      updated.totalCoins = student.totalCoins;
+      changed = true;
+    }
+
+    if (changed) {
+      setProfile(updated);
+      const key = getProfileStorageKey(student.studentNumber);
+      if (key) {
+        try {
+          sessionStorage.setItem(key, JSON.stringify(updated));
+        } catch {
+          // ignore
+        }
+      }
+    }
+  }, [student?.totalCoins, student?.studentNumber, profile]);
+
   const openProfileModal = useCallback(() => {
     setIsProfileModalOpen(true);
     setIsLeaderboardModalOpen(false);

@@ -9,9 +9,11 @@
 
 import React, { createContext, useContext, useEffect, useRef, useState, useCallback } from 'react';
 import { useAuth } from './AuthContext';
+import { useGamification } from './GamificationContext';
 import { TrackingService } from '../services/trackingService';
+import { CoinService } from '../services/coinService';
 import type { Activity, Unit, GradeId } from '../types/schema';
-import type { QuestionAnswerRecord, CompleteAttemptSummary, GameResumeCheckpoint } from '../types/tracking';
+import type { QuestionAnswerRecord, CompleteAttemptSummary, GameResumeCheckpoint, AttemptCoinsResult } from '../types/tracking';
 import type { AttemptGamificationResult } from '../types/gamification';
 import { SessionRecoveryModal } from '../components/auth/SessionRecoveryModal';
 
@@ -38,8 +40,9 @@ interface GameTrackingContextType {
   saveCheckpoint: (updates: Partial<GameResumeCheckpoint>) => void;
   clearCheckpoint: () => void;
 
-  // Gamification (Phase 5)
+  // Gamification (Phase 5) & Monster Coins (Phase 8A)
   lastGamification: AttemptGamificationResult | null;
+  lastCoins: AttemptCoinsResult | null;
 
   // Tracking handlers
   recordAnswer: (params: RecordAnswerParams) => void;
@@ -74,7 +77,8 @@ export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
   children,
   onRestartAttempt,
 }) => {
-  const { authMode, sessionToken, student, updateSessionToken } = useAuth();
+  const { authMode, sessionToken, student, updateSessionToken, updateStudent } = useAuth();
+  const { refreshProfile } = useGamification();
   
   // Strict Grade Check: authenticated student must match the grade of the activity
   const isGradeMismatch = Boolean(
@@ -93,6 +97,7 @@ export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
   const [isOnline, setIsOnline] = useState<boolean>(typeof navigator !== 'undefined' ? navigator.onLine : true);
   const [isSessionRecoveryOpen, setIsSessionRecoveryOpen] = useState<boolean>(false);
   const [lastGamification, setLastGamification] = useState<AttemptGamificationResult | null>(null);
+  const [lastCoins, setLastCoins] = useState<AttemptCoinsResult | null>(null);
 
   // In-memory telemetry cache
   const answersRef = useRef<QuestionAnswerRecord[]>([]);
@@ -344,6 +349,24 @@ export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
         setLastGamification(res.gamification);
       }
 
+      if (res.coins) {
+        setLastCoins(res.coins);
+        // Immediately synchronize student profile and local CoinService balance
+        if (typeof res.coins.totalCoins === 'number') {
+          updateStudent?.({ totalCoins: res.coins.totalCoins });
+          if (student?.studentNumber) {
+            CoinService.setBalance(student.studentNumber, res.coins.totalCoins);
+          }
+        }
+      }
+
+      // Background refresh gamification profile to sync recent activity & leaderboards
+      try {
+        refreshProfile?.();
+      } catch {
+        // ignore
+      }
+
       if (res.success) {
         setSyncStatus('synced');
         setSyncError(null);
@@ -380,6 +403,7 @@ export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
   // 8. Restart game (Play Again)
   const restartGame = useCallback(() => {
     clearCheckpoint();
+    setLastCoins(null);
     if (onRestartAttempt) {
       onRestartAttempt();
     }
@@ -433,6 +457,7 @@ export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
         saveCheckpoint,
         clearCheckpoint,
         lastGamification,
+        lastCoins,
         recordAnswer,
         completeGame,
         abandonGame,
@@ -477,6 +502,7 @@ export const useGameTracking = () => {
       saveCheckpoint: () => {},
       clearCheckpoint: () => {},
       lastGamification: null,
+      lastCoins: null,
       recordAnswer: () => {},
       completeGame: async () => {},
       abandonGame: async () => {},
