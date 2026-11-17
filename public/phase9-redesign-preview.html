@@ -1,0 +1,2086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit Review Arcade — Phase 9 Bright Game World & Campus Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(180deg, #dbeafe 0%, #ede9fe 35%, #e0f2fe 70%, #f0fdf4 100%);
+      min-height: 100vh;
+      color: #0f172a;
+    }
+    .font-display {
+      font-family: 'Fredoka', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Keyframe Animations */
+    @keyframes floatGentle {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(1deg); }
+    }
+    @keyframes driftCloud {
+      0% { transform: translateX(-5%); }
+      50% { transform: translateX(5%); }
+      100% { transform: translateX(-5%); }
+    }
+    @keyframes pulseSoft {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    @keyframes bounceBadge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    @keyframes spinSparkle {
+      0% { transform: rotate(0deg) scale(0.9); }
+      50% { transform: rotate(180deg) scale(1.1); }
+      100% { transform: rotate(360deg) scale(0.9); }
+    }
+
+    .anim-float { animation: floatGentle 4s ease-in-out infinite; }
+    .anim-float-delayed { animation: floatGentle 4.5s ease-in-out 1.5s infinite; }
+    .anim-cloud { animation: driftCloud 18s ease-in-out infinite; }
+    .anim-pulse { animation: pulseSoft 2.5s ease-in-out infinite; }
+    .anim-badge { animation: bounceBadge 2.2s ease-in-out infinite; }
+    .anim-sparkle { animation: spinSparkle 6s linear infinite; }
+
+    /* Tactile 3D Buttons (Chunky Game World Aesthetic) */
+    .btn-game-primary {
+      background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
+      color: #ffffff;
+      border-bottom: 4px solid #075985;
+      transition: all 0.12s ease;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+    }
+    .btn-game-primary:hover {
+      background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(2, 132, 199, 0.4);
+    }
+    .btn-game-primary:active {
+      transform: translateY(3px);
+      border-bottom-width: 1px;
+      box-shadow: 0 2px 4px rgba(2, 132, 199, 0.2);
+    }
+
+    .btn-game-coral {
+      background: linear-gradient(180deg, #f43f5e 0%, #e11d48 100%);
+      color: #ffffff;
+      border-bottom: 4px solid #be123c;
+      transition: all 0.12s ease;
+      box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
+    }
+    .btn-game-coral:hover {
+      background: linear-gradient(180deg, #fb7185 0%, #f43f5e 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(244, 63, 94, 0.4);
+    }
+    .btn-game-coral:active {
+      transform: translateY(3px);
+      border-bottom-width: 1px;
+    }
+
+    .btn-game-emerald {
+      background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+      color: #ffffff;
+      border-bottom: 4px solid #047857;
+      transition: all 0.12s ease;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+    .btn-game-emerald:hover {
+      background: linear-gradient(180deg, #34d399 0%, #10b981 100%);
+      transform: translateY(-2px);
+    }
+    .btn-game-emerald:active {
+      transform: translateY(3px);
+      border-bottom-width: 1px;
+    }
+
+    .btn-game-amber {
+      background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+      color: #ffffff;
+      border-bottom: 4px solid #b45309;
+      transition: all 0.12s ease;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    }
+    .btn-game-amber:hover {
+      background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 100%);
+      transform: translateY(-2px);
+    }
+    .btn-game-amber:active {
+      transform: translateY(3px);
+      border-bottom-width: 1px;
+    }
+
+    .btn-game-purple {
+      background: linear-gradient(180deg, #8b5cf6 0%, #7c3aed 100%);
+      color: #ffffff;
+      border-bottom: 4px solid #6d28d9;
+      transition: all 0.12s ease;
+      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+    }
+    .btn-game-purple:hover {
+      background: linear-gradient(180deg, #a78bfa 0%, #8b5cf6 100%);
+      transform: translateY(-2px);
+    }
+    .btn-game-purple:active {
+      transform: translateY(3px);
+      border-bottom-width: 1px;
+    }
+
+    /* Island Card Container */
+    .card-island {
+      background: #ffffff;
+      border: 3px solid #e2e8f0;
+      border-radius: 28px;
+      box-shadow: 0 12px 30px -8px rgba(14, 165, 233, 0.12), 0 4px 12px rgba(0, 0, 0, 0.04);
+      transition: all 0.22s ease;
+    }
+    .card-island:hover {
+      transform: translateY(-4px);
+      border-color: #38bdf8;
+      box-shadow: 0 20px 35px -10px rgba(14, 165, 233, 0.22), 0 8px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Device frame simulation */
+    .device-desktop { max-width: 100%; width: 100%; }
+    .device-tablet { max-width: 820px; margin: 0 auto; border-radius: 40px; box-shadow: 0 25px 60px rgba(14, 165, 233, 0.25), 0 0 0 14px #ffffff; background: #f8fafc; overflow: hidden; }
+    .device-mobile { max-width: 412px; margin: 0 auto; border-radius: 44px; box-shadow: 0 25px 60px rgba(14, 165, 233, 0.25), 0 0 0 14px #ffffff; background: #f8fafc; overflow: hidden; }
+
+    /* Custom scrollbars */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #e2e8f0; }
+    ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 6px; }
+    ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+  </style>
+</head>
+<body class="selection:bg-cyan-500 selection:text-white relative overflow-x-hidden">
+
+  <!-- ========================================================================= -->
+  <!-- BACKGROUND DECORATIONS: FLOATING CLOUDS, SUN, FLYING BIRDS                -->
+  <!-- ========================================================================= -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <!-- Gentle Sun Orb -->
+    <div class="absolute -top-16 -right-16 w-80 h-80 rounded-full bg-gradient-to-tr from-amber-300 via-yellow-200 to-amber-100 opacity-60 blur-2xl"></div>
+    <div class="absolute top-8 right-12 w-24 h-24 rounded-full bg-gradient-to-br from-amber-400 to-yellow-300 shadow-xl shadow-amber-300/50 anim-pulse opacity-80 flex items-center justify-center text-3xl">
+      ☀️
+    </div>
+
+    <!-- Floating Cloud 1 -->
+    <div class="absolute top-20 left-12 opacity-80 anim-cloud">
+      <svg width="180" height="90" viewBox="0 0 180 90" fill="#ffffff">
+        <path d="M 20 60 A 25 25 0 0 1 65 50 A 35 35 0 0 1 125 45 A 25 25 0 0 1 160 60 A 15 15 0 0 1 145 80 L 35 80 A 15 15 0 0 1 20 60 Z" filter="drop-shadow(0 8px 16px rgba(14,165,233,0.08))" />
+      </svg>
+    </div>
+
+    <!-- Floating Cloud 2 -->
+    <div class="absolute top-48 right-1/4 opacity-75 anim-cloud" style="animation-delay: -6s;">
+      <svg width="220" height="110" viewBox="0 0 220 110" fill="#ffffff">
+        <path d="M 30 75 A 30 30 0 0 1 85 60 A 45 45 0 0 1 160 55 A 30 30 0 0 1 200 75 A 20 20 0 0 1 180 100 L 45 100 A 20 20 0 0 1 30 75 Z" filter="drop-shadow(0 10px 20px rgba(14,165,233,0.08))" />
+      </svg>
+    </div>
+
+    <!-- Hot Air Balloon SVG Floating in Distance -->
+    <div class="absolute top-36 right-20 anim-float-delayed opacity-85 hidden lg:block">
+      <svg width="60" height="80" viewBox="0 0 60 80">
+        <path d="M 30 5 C 10 5, 5 25, 18 45 L 25 58 L 35 58 L 42 45 C 55 25, 50 5, 30 5 Z" fill="#f43f5e" />
+        <path d="M 22 8 C 15 18, 15 35, 25 54 L 30 54 L 27 8 Z" fill="#fbbf24" />
+        <path d="M 38 8 C 45 18, 45 35, 35 54 L 30 54 L 33 8 Z" fill="#38bdf8" />
+        <!-- Basket -->
+        <rect x="26" y="66" width="8" height="7" rx="1.5" fill="#78350f" />
+        <line x1="26" y1="58" x2="27" y2="66" stroke="#475569" stroke-width="0.8" />
+        <line x1="34" y1="58" x2="33" y2="66" stroke="#475569" stroke-width="0.8" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- EXTERNAL DESIGN PREVIEW TOOLBAR (OUTSIDE SIMULATED APP SCOPE)              -->
+  <!-- ========================================================================= -->
+  <header class="sticky top-0 z-50 bg-slate-900/95 text-white backdrop-blur-md border-b-2 border-slate-700 px-4 py-2.5 shadow-xl">
+    <div class="max-w-[1700px] mx-auto flex flex-wrap items-center justify-between gap-3">
+      
+      <!-- Reviewer Title & Role Separation Badge -->
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-400 via-indigo-500 to-emerald-400 p-0.5 shadow-md flex items-center justify-center text-xl flex-shrink-0">
+          🛠️
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-xs sm:text-sm font-black tracking-wide text-white font-mono uppercase">
+              DESIGN PREVIEW CONTROLS
+            </h1>
+            <span class="px-2 py-0.5 text-[10px] font-mono font-bold uppercase rounded-md bg-sky-500/20 text-sky-300 border border-sky-400/30">
+              Outside Simulated App Scope
+            </span>
+          </div>
+          <p class="text-[11px] text-slate-400 font-medium">
+            Role-Separated Navigation • Public Welcome Gate, Student Adventure &amp; Teacher Portal
+          </p>
+        </div>
+      </div>
+
+      <!-- Quick Toggles: Grade Mode & Device Simulation -->
+      <div class="flex flex-wrap items-center gap-2.5">
+        
+        <!-- Grade Mode Selector -->
+        <div class="flex items-center bg-slate-800 p-1 rounded-xl border border-slate-700 shadow-inner">
+          <span class="text-[11px] font-bold text-slate-300 px-2">Realm:</span>
+          <button id="btn-grade-8" onclick="setGradeMode('grade-8')" class="px-2.5 py-1 rounded-lg text-xs font-black transition-all bg-sky-600 text-white shadow-sm">
+            Grade 8 (Travel &amp; City)
+          </button>
+          <button id="btn-grade-7" onclick="setGradeMode('grade-7')" class="px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white">
+            Grade 7 (Digital &amp; Nature)
+          </button>
+        </div>
+
+        <!-- Responsive Device View Toggle -->
+        <div class="flex items-center bg-slate-800 p-1 rounded-xl border border-slate-700 shadow-inner">
+          <span class="text-[11px] font-bold text-slate-300 px-2">View:</span>
+          <button id="btn-dev-desktop" onclick="setDeviceFrame('desktop')" class="px-2.5 py-1 rounded-lg text-xs font-black transition-all bg-sky-600 text-white shadow-sm">
+            🖥️ Desktop
+          </button>
+          <button id="btn-dev-tablet" onclick="setDeviceFrame('tablet')" class="px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white">
+            📱 Tablet
+          </button>
+          <button id="btn-dev-mobile" onclick="setDeviceFrame('mobile')" class="px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white">
+            📲 Phone
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Strictly Separated Flows for Design Demonstration -->
+    <div class="max-w-[1700px] mx-auto mt-2 pt-2 border-t border-slate-800 flex flex-wrap items-center gap-2 sm:gap-3 text-xs">
+      
+      <!-- 1. PUBLIC ENTRY FLOW -->
+      <div class="flex items-center gap-1.5 bg-slate-800/90 p-1 rounded-xl border border-amber-500/30">
+        <span class="text-[10px] font-mono font-bold text-amber-300 uppercase tracking-wider px-2">ENTRY:</span>
+        <button onclick="switchScreen('screen-welcome')" id="nav-screen-welcome" class="nav-tab-btn px-2.5 py-1 rounded-lg text-xs font-black transition-all bg-sky-600 text-white shadow-sm">
+          👋 Welcome Screen (Initial)
+        </button>
+      </div>
+
+      <!-- 2. STUDENT FLOW (STRICTLY ISOLATED) -->
+      <div class="flex items-center gap-1 bg-slate-800/90 p-1 rounded-xl border border-sky-500/30 overflow-x-auto no-scrollbar">
+        <span class="text-[10px] font-mono font-bold text-sky-300 uppercase tracking-wider px-2 flex-shrink-0">STUDENT FLOW:</span>
+        <button onclick="switchScreen('screen-student-login')" id="nav-screen-student-login" class="nav-tab-btn px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white bg-slate-700/60 whitespace-nowrap">
+          🔑 Student Login
+        </button>
+        <button onclick="switchScreen('screen-dashboard')" id="nav-screen-dashboard" class="nav-tab-btn px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white bg-slate-700/60 whitespace-nowrap">
+          🏰 1. Home
+        </button>
+        <button onclick="switchScreen('screen-units')" id="nav-screen-units" class="nav-tab-btn px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white bg-slate-700/60 whitespace-nowrap">
+          🗺️ 2. Units
+        </button>
+        <button onclick="switchScreen('screen-activities')" id="nav-screen-activities" class="nav-tab-btn px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white bg-slate-700/60 whitespace-nowrap">
+          🎯 3. Activities
+        </button>
+        <button onclick="switchScreen('screen-gameszone')" id="nav-screen-gameszone" class="nav-tab-btn px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white bg-slate-700/60 whitespace-nowrap">
+          🎪 4. Games Zone
+        </button>
+        <button onclick="switchScreen('screen-monster')" id="nav-screen-monster" class="nav-tab-btn px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white bg-slate-700/60 whitespace-nowrap">
+          🐣 5. Monster World
+        </button>
+        <button onclick="switchScreen('screen-profile')" id="nav-screen-profile" class="nav-tab-btn px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white bg-slate-700/60 whitespace-nowrap">
+          🎖️ 6. Passport
+        </button>
+        <button onclick="switchScreen('screen-results')" id="nav-screen-results" class="nav-tab-btn px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white bg-slate-700/60 whitespace-nowrap">
+          🎉 7. Victory
+        </button>
+      </div>
+
+      <!-- 3. TEACHER FLOW (STRICTLY ISOLATED) -->
+      <div class="flex items-center gap-1 bg-slate-800/90 p-1 rounded-xl border border-indigo-500/30">
+        <span class="text-[10px] font-mono font-bold text-indigo-300 uppercase tracking-wider px-2">TEACHER FLOW:</span>
+        <button onclick="switchScreen('screen-teacher-login')" id="nav-screen-teacher-login" class="nav-tab-btn px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white bg-slate-700/60 whitespace-nowrap">
+          🔐 Teacher Login
+        </button>
+        <button onclick="switchScreen('screen-teacher')" id="nav-screen-teacher" class="nav-tab-btn px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white bg-slate-700/60 whitespace-nowrap">
+          📊 Teacher Analytics
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- MAIN WORKSPACE: THE BRIGHT GAME WORLD CANVAS                             -->
+  <!-- ========================================================================= -->
+  <main class="relative z-10 flex-1 p-3 sm:p-6 flex flex-col items-center justify-start overflow-y-auto">
+    
+    <div id="device-wrapper" class="device-desktop transition-all duration-300 w-full">
+
+      <!-- =================================================================== -->
+      <!-- 0. PUBLIC WELCOME SCREEN: ROLE SELECTION ENTRANCE (INITIAL SCREEN)   -->
+      <!-- =================================================================== -->
+      <section id="screen-welcome" class="screen-view w-full max-w-5xl mx-auto py-4 sm:py-8 space-y-6">
+        
+        <!-- Welcome Hero Island Card -->
+        <div class="card-island p-6 sm:p-10 text-center relative overflow-hidden bg-gradient-to-b from-white via-sky-50/40 to-white">
+          <div class="absolute -top-16 -left-16 w-52 h-52 rounded-full bg-sky-200/40 blur-2xl pointer-events-none"></div>
+          <div class="absolute -bottom-16 -right-16 w-52 h-52 rounded-full bg-amber-200/40 blur-2xl pointer-events-none"></div>
+
+          <!-- Illustrated Mascot & School Crest -->
+          <div class="inline-flex items-center justify-center gap-3 mb-4 relative z-10">
+            <div class="w-16 h-16 rounded-3xl bg-gradient-to-tr from-sky-400 via-turquoise-400 to-emerald-400 p-1 shadow-lg shadow-sky-400/30 flex items-center justify-center text-3xl anim-float">
+              🏰
+            </div>
+            <div class="w-14 h-14 rounded-3xl bg-gradient-to-tr from-purple-400 to-amber-300 p-1 shadow-md flex items-center justify-center text-2xl anim-float-delayed">
+              🐣
+            </div>
+          </div>
+
+          <div class="max-w-2xl mx-auto space-y-3 relative z-10">
+            <span class="px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-sky-100 text-sky-800 border border-sky-300 inline-block">
+              English Learning Arcade • Grades 7 &amp; 8
+            </span>
+            <h2 class="text-3xl sm:text-5xl font-black font-display text-slate-900 tracking-tight leading-tight">
+              Welcome to Campus Gate
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-600 font-medium max-w-xl mx-auto">
+              Please choose your portal below. Students and teachers access completely isolated learning and reporting experiences.
+            </p>
+          </div>
+
+          <!-- Two Large Interactive Portal Choices -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 max-w-4xl mx-auto text-left relative z-10">
+            
+            <!-- Choice A: Student Adventure Login -->
+            <div class="p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-sky-50/80 to-white border-2 border-sky-300 shadow-xl shadow-sky-200/40 hover:border-sky-500 transition-all flex flex-col justify-between group">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <div class="w-14 h-14 rounded-2xl bg-sky-500 text-white flex items-center justify-center text-3xl shadow-md shadow-sky-500/30 group-hover:scale-105 transition-transform">
+                    🎮
+                  </div>
+                  <span class="px-3 py-1 rounded-xl text-xs font-black uppercase bg-emerald-100 text-emerald-800 border border-emerald-300">
+                    Students
+                  </span>
+                </div>
+
+                <h3 class="text-2xl font-black font-display text-slate-900 mb-2 group-hover:text-sky-600 transition-colors">
+                  Student Adventure
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-600 font-medium mb-6 leading-relaxed">
+                  Log in with your Class, Student Number, and PIN to conquer unit worlds, level up your monster, and collect Monster Coins.
+                </p>
+
+                <!-- Student Feature Bullets -->
+                <ul class="space-y-2.5 text-xs text-slate-700 font-semibold mb-8">
+                  <li class="flex items-center gap-2">
+                    <span class="text-base text-sky-600">🗺️</span>
+                    <span>Curriculum Quests &amp; Milestone Challenges</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <span class="text-base text-purple-600">🐣</span>
+                    <span>Hatch, Name &amp; Evolve Companion Monster</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <span class="text-base text-amber-600">🪙</span>
+                    <span>Games Zone Carnival Coins &amp; Boutique Accessories</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <span class="text-base text-emerald-600">🛡️</span>
+                    <span>Strict Grade 7 &amp; Grade 8 Isolation</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <button onclick="switchScreen('screen-student-login')" class="w-full py-4 rounded-2xl btn-game-primary font-black text-sm tracking-wide shadow-md flex items-center justify-center gap-2">
+                  <span>ENTER STUDENT PORTAL</span>
+                  <span>➔</span>
+                </button>
+                <p class="text-center text-[11px] text-slate-400 font-medium mt-3">
+                  Quick PIN Login • Touchscreen &amp; Smartboard Ready
+                </p>
+              </div>
+            </div>
+
+            <!-- Choice B: Teacher & Faculty Login -->
+            <div class="p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-indigo-50/80 to-white border-2 border-indigo-200 shadow-xl shadow-indigo-200/40 hover:border-indigo-400 transition-all flex flex-col justify-between group">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <div class="w-14 h-14 rounded-2xl bg-indigo-600 text-white flex items-center justify-center text-3xl shadow-md shadow-indigo-600/30 group-hover:scale-105 transition-transform">
+                    👩‍🏫
+                  </div>
+                  <span class="px-3 py-1 rounded-xl text-xs font-black uppercase bg-indigo-100 text-indigo-800 border border-indigo-300">
+                    Faculty Only
+                  </span>
+                </div>
+
+                <h3 class="text-2xl font-black font-display text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors">
+                  Teacher Portal
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-600 font-medium mb-6 leading-relaxed">
+                  Authorized educator workspace for classroom accuracy telemetry, student diagnostic review, and gradebook exports.
+                </p>
+
+                <!-- Teacher Feature Bullets -->
+                <ul class="space-y-2.5 text-xs text-slate-700 font-semibold mb-8">
+                  <li class="flex items-center gap-2">
+                    <span class="text-base text-indigo-600">📊</span>
+                    <span>Live Cohort Accuracy &amp; Telemetry Analytics</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <span class="text-base text-blue-600">📋</span>
+                    <span>Class 8A, 8B, 7A, 7B Student Progress Directory</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <span class="text-base text-rose-600">🎯</span>
+                    <span>Diagnostic Review of Common Student Mistakes</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <span class="text-base text-emerald-600">📁</span>
+                    <span>Instant CSV Gradebook &amp; Mastery Export</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <button onclick="switchScreen('screen-teacher-login')" class="w-full py-4 rounded-2xl btn-game-purple font-black text-sm tracking-wide shadow-md flex items-center justify-center gap-2">
+                  <span>ENTER TEACHER PORTAL</span>
+                  <span>➔</span>
+                </button>
+                <p class="text-center text-[11px] text-slate-400 font-medium mt-3">
+                  Staff credentials required • Fully separated system
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Classroom Smartboard Banner -->
+          <div class="mt-8 pt-6 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500 max-w-4xl mx-auto">
+            <div class="flex items-center gap-2">
+              <span class="text-base">📺</span>
+              <span><strong>Classroom Smartboard Ready:</strong> Large 48px+ touch targets for interactive classroom displays.</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-base">🔒</span>
+              <span><strong>Role Separation:</strong> Zero student access to teacher controls or data.</span>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- 1. STUDENT HOME: THE ADVENTURE ISLAND HUB                          -->
+      <!-- =================================================================== -->
+      <section id="screen-dashboard" class="screen-view hidden w-full max-w-6xl mx-auto space-y-6">
+        
+        <!-- FLOATING CAMPUS SKY HEADER (STUDENT ADVENTURE BAR) -->
+        <div class="card-island p-4 sm:p-5 relative overflow-hidden space-y-4">
+          <div class="absolute -right-10 -bottom-10 w-44 h-44 rounded-full bg-sky-100/50 pointer-events-none"></div>
+
+          <!-- Top Row: Student Profile & Gamification Stats -->
+          <div class="flex flex-wrap items-center justify-between gap-4 relative z-10">
+            <!-- Student Profile & Companion -->
+            <div class="flex items-center gap-3.5">
+              <div class="relative w-16 h-16 rounded-3xl bg-gradient-to-tr from-sky-300 via-turquoise-200 to-amber-200 p-1 shadow-md shadow-sky-400/20 cursor-pointer flex-shrink-0" onclick="switchScreen('screen-profile')">
+                <div class="w-full h-full bg-white rounded-[20px] flex items-center justify-center overflow-hidden border-2 border-white">
+                  <!-- Companion Sprout Vector -->
+                  <svg viewBox="0 0 100 100" class="w-13 h-13 anim-float">
+                    <ellipse cx="50" cy="56" rx="34" ry="28" fill="#8b5cf6" />
+                    <ellipse cx="50" cy="56" rx="26" ry="20" fill="#a78bfa" opacity="0.6" />
+                    <!-- Glasses -->
+                    <circle cx="40" cy="50" r="9" stroke="#f59e0b" stroke-width="2.5" fill="rgba(255,255,255,0.4)" />
+                    <circle cx="60" cy="50" r="9" stroke="#f59e0b" stroke-width="2.5" fill="rgba(255,255,255,0.4)" />
+                    <line x1="49" y1="50" x2="51" y2="50" stroke="#f59e0b" stroke-width="2.5" />
+                    <!-- Eyes -->
+                    <circle cx="40" cy="50" r="3.5" fill="#1e1b4b" />
+                    <circle cx="60" cy="50" r="3.5" fill="#1e1b4b" />
+                    <!-- Happy Smile -->
+                    <path d="M 42 63 Q 50 71 58 63" stroke="#1e1b4b" stroke-width="2.5" fill="none" stroke-linecap="round" />
+                    <!-- Little Cap -->
+                    <polygon points="50,18 38,34 62,34" fill="#0ea5e9" />
+                    <circle cx="50" cy="16" r="3" fill="#f59e0b" />
+                  </svg>
+                </div>
+                <span class="absolute -bottom-1 -right-1 px-2 py-0.5 bg-amber-400 text-amber-950 text-[10px] font-black rounded-lg shadow-sm border border-white">
+                  Lv.18
+                </span>
+              </div>
+
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-lg sm:text-xl font-black font-display text-slate-900">
+                    Alex Martinez
+                  </h3>
+                  <span class="px-2.5 py-0.5 rounded-full text-[11px] font-black uppercase bg-sky-100 text-sky-800 border border-sky-300">
+                    Grade 8 • Class 8A
+                  </span>
+                </div>
+                <div class="flex items-center gap-2 text-xs text-slate-500 font-semibold mt-0.5">
+                  <span>Companion: <strong class="text-purple-600">Sprout</strong></span>
+                  <span>•</span>
+                  <span class="text-amber-600 font-bold">Stage 2 Adventurer Form</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bright Gamification Stats Bar -->
+            <div class="flex flex-wrap items-center gap-3">
+              
+              <!-- XP & Unlimited Level Progress -->
+              <div class="bg-sky-50/80 px-4 py-2.5 rounded-2xl border-2 border-sky-200 flex flex-col justify-center min-w-[170px] shadow-sm">
+                <div class="flex items-center justify-between text-xs font-black mb-1">
+                  <span class="text-sky-900">Level 18 Grandmaster</span>
+                  <span class="font-mono text-sky-600">16,420 XP</span>
+                </div>
+                <div class="w-full h-2.5 rounded-full bg-sky-200 overflow-hidden">
+                  <div class="h-full bg-gradient-to-r from-sky-500 via-cyan-400 to-emerald-400 rounded-full" style="width: 72%"></div>
+                </div>
+              </div>
+
+              <!-- Monster Coins Wallet Card -->
+              <div class="bg-amber-50 px-4 py-2.5 rounded-2xl border-2 border-amber-200 flex items-center gap-2.5 shadow-sm">
+                <span class="text-2xl anim-badge">🪙</span>
+                <div>
+                  <span class="text-[10px] font-extrabold text-amber-700 uppercase tracking-wider block">Monster Coins</span>
+                  <span class="font-mono text-base font-black text-amber-900 leading-none">148 Coins</span>
+                </div>
+              </div>
+
+              <!-- Learning Streak Card -->
+              <div class="bg-rose-50 px-3.5 py-2.5 rounded-2xl border-2 border-rose-200 flex items-center gap-2 shadow-sm">
+                <span class="text-xl">🔥</span>
+                <div>
+                  <span class="text-[10px] font-extrabold text-rose-700 uppercase tracking-wider block">Streak</span>
+                  <span class="font-mono text-sm font-black text-rose-900 leading-none">5 Days</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Bottom Row: In-App Student Navigation & Secure Logout (Zero Teacher Links) -->
+          <div class="pt-3 border-t border-sky-100 flex flex-wrap items-center justify-between gap-2.5 relative z-10">
+            <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
+              <button onclick="switchScreen('screen-dashboard')" class="px-3.5 py-1.5 rounded-xl bg-sky-600 text-white font-black text-xs shadow-sm flex items-center gap-1.5 whitespace-nowrap">
+                <span>🏰</span> Adventure Home
+              </button>
+              <button onclick="switchScreen('screen-units')" class="px-3.5 py-1.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-900 font-bold text-xs border border-sky-200 flex items-center gap-1.5 whitespace-nowrap">
+                <span>🗺️</span> Unit Worlds
+              </button>
+              <button onclick="switchScreen('screen-activities')" class="px-3.5 py-1.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-900 font-bold text-xs border border-sky-200 flex items-center gap-1.5 whitespace-nowrap">
+                <span>🎯</span> Quests
+              </button>
+              <button onclick="switchScreen('screen-gameszone')" class="px-3.5 py-1.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-900 font-bold text-xs border border-sky-200 flex items-center gap-1.5 whitespace-nowrap">
+                <span>🎪</span> Games Zone
+              </button>
+              <button onclick="switchScreen('screen-monster')" class="px-3.5 py-1.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-900 font-bold text-xs border border-sky-200 flex items-center gap-1.5 whitespace-nowrap">
+                <span>🐣</span> Monster World
+              </button>
+              <button onclick="switchScreen('screen-profile')" class="px-3.5 py-1.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-900 font-bold text-xs border border-sky-200 flex items-center gap-1.5 whitespace-nowrap">
+                <span>🎖️</span> Explorer Passport
+              </button>
+            </div>
+
+            <!-- Student Logout Button (Safe Return to Welcome Gate) -->
+            <button onclick="switchScreen('screen-welcome')" class="px-3.5 py-1.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 font-black text-xs flex items-center gap-1.5 border border-rose-200 transition-colors shadow-sm whitespace-nowrap" title="Sign out of student account">
+              <span>🚪</span> Log Out
+            </button>
+          </div>
+
+        </div>
+
+        <!-- SUNNY DAILY QUEST BANNER -->
+        <div class="p-4 sm:p-5 rounded-3xl bg-gradient-to-r from-amber-100 via-yellow-100 to-sky-100 border-2 border-amber-200 shadow-md flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-3.5">
+            <div class="w-12 h-12 rounded-2xl bg-amber-400/30 flex items-center justify-center text-3xl flex-shrink-0">
+              🎁
+            </div>
+            <div>
+              <h4 class="text-base font-black font-display text-amber-950">Daily First Activity Bonus Waiting!</h4>
+              <p class="text-xs text-amber-900 font-medium">Complete any curriculum challenge today to claim <strong class="text-amber-700">+5 Monster Coins</strong> and <strong class="text-sky-700">+20 Bonus XP</strong>.</p>
+            </div>
+          </div>
+          <button onclick="switchScreen('screen-activities')" class="px-5 py-2.5 rounded-2xl btn-game-amber text-xs font-black tracking-wide">
+            CLAIM IN QUEST ➔
+          </button>
+        </div>
+
+        <!-- THREE CORE ADVENTURE ISLANDS (CURRICULUM, GAMES ZONE, MONSTER WORLD) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Destination 1: Curriculum Adventure Island -->
+          <div onclick="switchScreen('screen-units')" class="card-island p-6 cursor-pointer relative overflow-hidden group flex flex-col justify-between">
+            <div>
+              <div class="w-full h-36 rounded-2xl bg-gradient-to-b from-sky-100 to-emerald-100 border-2 border-sky-200 flex items-center justify-center relative overflow-hidden mb-4 shadow-inner">
+                <!-- Floating Island Illustration -->
+                <svg viewBox="0 0 200 120" class="w-full h-full">
+                  <!-- Island Body -->
+                  <path d="M 30 75 Q 100 115 170 75 Q 140 105 100 108 Q 60 105 30 75 Z" fill="#92400e" />
+                  <path d="M 25 70 Q 100 105 175 70 Q 180 55 160 55 Q 100 45 40 55 Q 20 55 25 70 Z" fill="#22c55e" />
+                  <!-- Stone Tower Castle -->
+                  <rect x="85" y="25" width="30" height="38" rx="4" fill="#cbd5e1" stroke="#64748b" stroke-width="2" />
+                  <polygon points="100,8 78,28 122,28" fill="#f43f5e" />
+                  <rect x="95" y="44" width="10" height="18" rx="5" fill="#475569" />
+                  <!-- Trees -->
+                  <circle cx="55" cy="52" r="12" fill="#16a34a" />
+                  <rect x="53" y="60" width="4" height="12" fill="#78350f" />
+                  <circle cx="145" cy="54" r="10" fill="#15803d" />
+                  <rect x="143" y="62" width="4" height="10" fill="#78350f" />
+                </svg>
+                <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-lg text-[10px] font-black uppercase bg-white/90 text-sky-800 border border-sky-200 shadow-sm">
+                  Core Adventure
+                </span>
+              </div>
+
+              <h3 class="text-xl font-black font-display text-slate-900 group-hover:text-sky-600 transition-colors">
+                Curriculum Map
+              </h3>
+              <p class="text-xs text-slate-600 font-medium mb-4 leading-relaxed">
+                Explore Grade 8 units, solve vocabulary and grammar quests, and earn stars.
+              </p>
+
+              <!-- Progress Bar -->
+              <div class="space-y-1.5 p-3 rounded-2xl bg-sky-50 border border-sky-100 mb-4">
+                <div class="flex justify-between text-xs font-black">
+                  <span class="text-sky-900">Unit 2: Teen Life & Travel</span>
+                  <span class="text-sky-600">62% Done</span>
+                </div>
+                <div class="w-full h-2.5 rounded-full bg-sky-200 overflow-hidden">
+                  <div class="h-full bg-gradient-to-r from-sky-500 to-emerald-400 rounded-full" style="width: 62%"></div>
+                </div>
+              </div>
+            </div>
+
+            <button class="w-full py-3 rounded-2xl btn-game-primary font-black text-xs">
+              CONTINUE UNIT 2 ➔
+            </button>
+          </div>
+
+          <!-- Destination 2: Games Zone Carnival -->
+          <div onclick="switchScreen('screen-gameszone')" class="card-island p-6 cursor-pointer relative overflow-hidden group flex flex-col justify-between">
+            <div>
+              <div class="w-full h-36 rounded-2xl bg-gradient-to-b from-rose-100 to-amber-100 border-2 border-rose-200 flex items-center justify-center relative overflow-hidden mb-4 shadow-inner">
+                <!-- Carnival Wonder Park Illustration -->
+                <svg viewBox="0 0 200 120" class="w-full h-full">
+                  <!-- Ground -->
+                  <ellipse cx="100" cy="100" rx="80" ry="20" fill="#fde047" />
+                  <!-- Circus Tent -->
+                  <polygon points="100,20 60,70 140,70" fill="#f43f5e" />
+                  <polygon points="100,20 80,70 120,70" fill="#ffffff" />
+                  <rect x="62" y="70" width="76" height="25" fill="#f43f5e" />
+                  <!-- Flags -->
+                  <polygon points="100,12 100,20 112,16" fill="#f59e0b" />
+                  <!-- Arcade Tokens Floating -->
+                  <circle cx="45" cy="40" r="12" fill="#fbbf24" stroke="#d97706" stroke-width="2" />
+                  <text x="41" y="44" font-size="10" font-weight="bold" fill="#78350f">🪙</text>
+                  <circle cx="155" cy="35" r="10" fill="#38bdf8" stroke="#0284c7" stroke-width="2" />
+                  <text x="151" y="39" font-size="9" font-weight="bold" fill="#075985">⭐</text>
+                </svg>
+                <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-lg text-[10px] font-black uppercase bg-white/90 text-rose-800 border border-rose-200 shadow-sm">
+                  Arcade Carnival
+                </span>
+              </div>
+
+              <h3 class="text-xl font-black font-display text-slate-900 group-hover:text-rose-600 transition-colors">
+                Games Zone
+              </h3>
+              <p class="text-xs text-slate-600 font-medium mb-4 leading-relaxed">
+                Word Ninja, Grammar Runner, and Sentence Tower arcade cabinets!
+              </p>
+
+              <!-- Daily Cap Progress -->
+              <div class="space-y-1.5 p-3 rounded-2xl bg-rose-50 border border-rose-100 mb-4">
+                <div class="flex justify-between text-xs font-black">
+                  <span class="text-rose-900">Daily Coin Bounty</span>
+                  <span class="text-rose-600">14 / 25 🪙</span>
+                </div>
+                <div class="w-full h-2.5 rounded-full bg-rose-200 overflow-hidden">
+                  <div class="h-full bg-gradient-to-r from-rose-500 to-amber-400 rounded-full" style="width: 56%"></div>
+                </div>
+              </div>
+            </div>
+
+            <button class="w-full py-3 rounded-2xl btn-game-coral font-black text-xs">
+              PLAY CARNIVAL GAMES ➔
+            </button>
+          </div>
+
+          <!-- Destination 3: Monster Sanctuary & Boutique -->
+          <div onclick="switchScreen('screen-monster')" class="card-island p-6 cursor-pointer relative overflow-hidden group flex flex-col justify-between">
+            <div>
+              <div class="w-full h-36 rounded-2xl bg-gradient-to-b from-purple-100 to-pink-100 border-2 border-purple-200 flex items-center justify-center relative overflow-hidden mb-4 shadow-inner">
+                <!-- Monster Garden Illustration -->
+                <svg viewBox="0 0 200 120" class="w-full h-full">
+                  <!-- Sunny grassy knoll -->
+                  <path d="M 20 85 Q 100 65 180 85 L 180 120 L 20 120 Z" fill="#86efac" />
+                  <!-- Treehouse / Boutique -->
+                  <rect x="75" y="35" width="50" height="40" rx="6" fill="#fcd34d" stroke="#b45309" stroke-width="2" />
+                  <polygon points="100,16 65,38 135,38" fill="#a855f7" />
+                  <!-- Cute Monster Peeking Out -->
+                  <circle cx="100" cy="55" r="12" fill="#8b5cf6" />
+                  <circle cx="96" cy="52" r="2.5" fill="#ffffff" />
+                  <circle cx="104" cy="52" r="2.5" fill="#ffffff" />
+                  <circle cx="96" cy="52" r="1.2" fill="#000000" />
+                  <circle cx="104" cy="52" r="1.2" fill="#000000" />
+                  <path d="M 97 59 Q 100 62 103 59" stroke="#000000" stroke-width="1.2" fill="none" />
+                </svg>
+                <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-lg text-[10px] font-black uppercase bg-white/90 text-purple-800 border border-purple-200 shadow-sm">
+                  Sanctuary & Shop
+                </span>
+              </div>
+
+              <h3 class="text-xl font-black font-display text-slate-900 group-hover:text-purple-600 transition-colors">
+                Monster World
+              </h3>
+              <p class="text-xs text-slate-600 font-medium mb-4 leading-relaxed">
+                Care for Sprout, unlock evolution stages, and shop for stylish wardrobe accessories.
+              </p>
+
+              <!-- Evolution Progress -->
+              <div class="space-y-1.5 p-3 rounded-2xl bg-purple-50 border border-purple-100 mb-4">
+                <div class="flex justify-between text-xs font-black">
+                  <span class="text-purple-900">Stage 2: Adventurer</span>
+                  <span class="text-purple-600">1,840 / 3,000 XP</span>
+                </div>
+                <div class="w-full h-2.5 rounded-full bg-purple-200 overflow-hidden">
+                  <div class="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full" style="width: 61%"></div>
+                </div>
+              </div>
+            </div>
+
+            <button class="w-full py-3 rounded-2xl btn-game-purple font-black text-xs">
+              VISIT SPROUT & SHOP ➔
+            </button>
+          </div>
+
+        </div>
+
+        <!-- LOWER CAMPUS BOARDWALK (MISTAKES & HONOR ROLL) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          
+          <div class="card-island p-4 sm:p-5 flex items-center justify-between">
+            <div class="flex items-center gap-3.5">
+              <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-2xl flex-shrink-0">
+                🎯
+              </div>
+              <div>
+                <h4 class="text-sm font-black font-display text-slate-900">Smart Review Station</h4>
+                <p class="text-xs text-slate-600 font-medium">3 mistakes from Unit 2 ready to review for bonus XP.</p>
+              </div>
+            </div>
+            <button class="px-4 py-2 rounded-xl btn-game-coral text-xs font-black">
+              Review (+15 XP)
+            </button>
+          </div>
+
+          <div class="card-island p-4 sm:p-5 flex items-center justify-between">
+            <div class="flex items-center gap-3.5">
+              <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl flex-shrink-0">
+                🏆
+              </div>
+              <div>
+                <h4 class="text-sm font-black font-display text-slate-900">Class 8A Honor Roll</h4>
+                <p class="text-xs text-slate-600 font-medium">Ranked <strong>#2 of 28</strong> students this week!</p>
+              </div>
+            </div>
+            <button onclick="switchScreen('screen-profile')" class="px-4 py-2 rounded-xl btn-game-amber text-xs font-black">
+              Standings ➔
+            </button>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- 2. UNIT WORLDS: THEMED FLOATING ISLANDS MAP                        -->
+      <!-- =================================================================== -->
+      <section id="screen-units" class="screen-view hidden w-full max-w-6xl mx-auto space-y-6">
+        
+        <!-- Header & Strict Grade Isolation -->
+        <div class="card-island p-6 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <button onclick="switchScreen('screen-dashboard')" class="text-xs font-bold text-sky-600 hover:text-sky-800 flex items-center gap-1">
+                ➔ Back to Campus
+              </button>
+              <span class="text-slate-300">/</span>
+              <span class="text-xs font-bold text-slate-500">Grade 8 Realm</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-black font-display text-slate-900">
+              The Archipelago of Units
+            </h2>
+            <p class="text-xs text-slate-600 font-medium">Travel across floating island units to complete curriculum milestones.</p>
+          </div>
+
+          <!-- Strict Grade Shield & Student Actions -->
+          <div class="flex flex-wrap items-center gap-3">
+            <div class="flex items-center gap-2.5 px-4 py-2 rounded-2xl bg-sky-50 border-2 border-sky-200">
+              <span class="text-xl">🛡️</span>
+              <div>
+                <span class="text-xs font-black text-sky-900 block">Grade 8 Realm Enforced</span>
+                <span class="text-[10px] text-sky-600 font-semibold">Classes 8A &amp; 8B • Grade 7 securely isolated</span>
+              </div>
+            </div>
+            <button onclick="switchScreen('screen-welcome')" class="px-3.5 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold text-xs flex items-center gap-1.5 border border-rose-200 transition-colors shadow-sm" title="Log out">
+              <span>🚪</span> Log Out
+            </button>
+          </div>
+        </div>
+
+        <!-- The Island Map (Winding stepping stone path connects cards) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- Island 1: Friendship Cove (Completed 100%) -->
+          <div class="card-island p-6 flex flex-col justify-between border-emerald-200 hover:border-emerald-400">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-3 py-1 rounded-xl text-xs font-black uppercase bg-emerald-100 text-emerald-800 border border-emerald-300">
+                  UNIT 1 • MASTERED
+                </span>
+                <span class="text-amber-500 font-black text-sm">⭐⭐⭐ 100%</span>
+              </div>
+
+              <!-- Island Header Graphic -->
+              <div class="w-full h-32 rounded-2xl bg-gradient-to-tr from-emerald-100 to-sky-100 border border-emerald-200 flex items-center justify-center text-5xl mb-4 shadow-inner">
+                🏝️
+              </div>
+
+              <h3 class="text-xl font-black font-display text-slate-900 mb-1">
+                Friendship Cove
+              </h3>
+              <p class="text-xs text-slate-600 font-medium mb-4">
+                Personal qualities, invitations, accepting and refusing politely with peers.
+              </p>
+
+              <div class="p-3 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs font-bold text-emerald-900 flex justify-between items-center mb-4">
+                <span>8 / 8 Activities Mastered</span>
+                <span class="text-emerald-600">✓ Completed</span>
+              </div>
+            </div>
+
+            <button onclick="switchScreen('screen-activities')" class="w-full py-2.5 rounded-xl btn-game-emerald text-xs font-black">
+              REVIEW COVE ➔
+            </button>
+          </div>
+
+          <!-- Island 2: Teen Life & Travel (Current In-Progress) -->
+          <div class="card-island p-6 flex flex-col justify-between border-2 border-sky-400 ring-4 ring-sky-100 shadow-xl">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-3 py-1 rounded-xl text-xs font-black uppercase bg-sky-600 text-white shadow-sm">
+                  UNIT 2 • CURRENT EXPEDITION
+                </span>
+                <span class="text-amber-500 font-black text-sm">⭐⭐ 62%</span>
+              </div>
+
+              <!-- Island Header Graphic -->
+              <div class="w-full h-32 rounded-2xl bg-gradient-to-tr from-sky-200 to-indigo-100 border-2 border-sky-300 flex items-center justify-center text-5xl mb-4 shadow-inner">
+                ✈️
+              </div>
+
+              <h3 class="text-xl font-black font-display text-slate-900 mb-1">
+                Teen Life & Travel
+              </h3>
+              <p class="text-xs text-slate-600 font-medium mb-4">
+                Daily routines, airport vocabulary, simple past vs past continuous narration.
+              </p>
+
+              <div class="space-y-1.5 p-3 rounded-2xl bg-sky-50 border border-sky-200 mb-4">
+                <div class="flex justify-between text-xs font-black">
+                  <span class="text-sky-900">Progress: 5 of 8 completed</span>
+                  <span class="text-sky-600 font-mono">62%</span>
+                </div>
+                <div class="w-full h-2.5 rounded-full bg-sky-200 overflow-hidden">
+                  <div class="h-full bg-gradient-to-r from-sky-500 to-blue-600 rounded-full" style="width: 62%"></div>
+                </div>
+              </div>
+            </div>
+
+            <button onclick="switchScreen('screen-activities')" class="w-full py-3 rounded-xl btn-game-primary text-xs font-black">
+              CONTINUE QUESTS ➔
+            </button>
+          </div>
+
+          <!-- Island 3: Culinary City & Kitchen (Started) -->
+          <div class="card-island p-6 flex flex-col justify-between border-amber-200">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-3 py-1 rounded-xl text-xs font-black uppercase bg-amber-100 text-amber-800 border border-amber-300">
+                  UNIT 3
+                </span>
+                <span class="text-amber-500 font-black text-sm">⭐ 15%</span>
+              </div>
+
+              <!-- Island Header Graphic -->
+              <div class="w-full h-32 rounded-2xl bg-gradient-to-tr from-amber-100 to-orange-100 border border-amber-200 flex items-center justify-center text-5xl mb-4 shadow-inner">
+                🍳
+              </div>
+
+              <h3 class="text-xl font-black font-display text-slate-900 mb-1">
+                In the Kitchen & City
+              </h3>
+              <p class="text-xs text-slate-600 font-medium mb-4">
+                Cooking instructions, recipes sequence words, asking for and giving directions.
+              </p>
+
+              <div class="space-y-1.5 p-3 rounded-2xl bg-amber-50 border border-amber-200 mb-4">
+                <div class="flex justify-between text-xs font-black">
+                  <span class="text-amber-900">Progress: 1 of 8 completed</span>
+                  <span class="text-amber-600 font-mono">15%</span>
+                </div>
+                <div class="w-full h-2.5 rounded-full bg-amber-200 overflow-hidden">
+                  <div class="h-full bg-amber-500 rounded-full" style="width: 15%"></div>
+                </div>
+              </div>
+            </div>
+
+            <button onclick="switchScreen('screen-activities')" class="w-full py-2.5 rounded-xl btn-game-amber text-xs font-black">
+              EXPLORE UNIT 3 ➔
+            </button>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- 3. ACTIVITY QUEST: TRAIL OF MINI-GAMES                             -->
+      <!-- =================================================================== -->
+      <section id="screen-activities" class="screen-view hidden w-full max-w-6xl mx-auto space-y-6">
+        
+        <!-- Unit Breadcrumb & Progress Banner -->
+        <div class="card-island p-6 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <button onclick="switchScreen('screen-units')" class="text-xs font-bold text-sky-600 hover:text-sky-800 flex items-center gap-1">
+                ➔ Back to Islands Map
+              </button>
+              <span class="text-slate-300">/</span>
+              <span class="text-xs font-bold text-slate-500">Unit 2: Teen Life & Travel</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-black font-display text-slate-900">
+              The Trail of Travel Quests
+            </h2>
+            <p class="text-xs text-slate-600 font-medium">Complete each game station to earn up to 18 Monster Coins!</p>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <div class="bg-sky-50 px-4 py-2 rounded-2xl border-2 border-sky-200 text-xs font-black text-sky-900">
+              Unit Mastery: <span class="text-sky-600 font-mono text-sm">5 / 8 Completed</span>
+            </div>
+            <button onclick="switchScreen('screen-welcome')" class="px-3.5 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold text-xs flex items-center gap-1 border border-rose-200 transition-colors shadow-sm">
+              <span>🚪</span> Log Out
+            </button>
+          </div>
+        </div>
+
+        <!-- Activity Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          
+          <!-- Node 1: Completed 100% -->
+          <div class="card-island p-5 border-emerald-200 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-0.5 rounded-lg text-[10px] font-black uppercase bg-emerald-100 text-emerald-800 border border-emerald-300">
+                  Quest 1 • Quiz Battle
+                </span>
+                <span class="text-amber-500 font-black text-xs">⭐⭐⭐ 100%</span>
+              </div>
+
+              <h4 class="text-base font-black font-display text-slate-900 mb-1">Travel Vocabulary Quest</h4>
+              <p class="text-xs text-slate-600 font-medium mb-4">10 questions • Luggage, departure, ticket booth, passport.</p>
+
+              <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-between text-xs font-bold text-emerald-900 mb-4">
+                <span>Awarded: <strong class="text-amber-600">+18 🪙</strong></span>
+                <span class="text-emerald-600">+125 XP</span>
+              </div>
+            </div>
+
+            <button onclick="switchScreen('screen-results')" class="w-full py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs border border-slate-300">
+              Practice Replay (+2 🪙)
+            </button>
+          </div>
+
+          <!-- Node 2: Completed 90% -->
+          <div class="card-island p-5 border-sky-200 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-0.5 rounded-lg text-[10px] font-black uppercase bg-sky-100 text-sky-800 border border-sky-300">
+                  Quest 2 • Match It
+                </span>
+                <span class="text-amber-500 font-black text-xs">⭐⭐ 90%</span>
+              </div>
+
+              <h4 class="text-base font-black font-display text-slate-900 mb-1">Match the Journey</h4>
+              <p class="text-xs text-slate-600 font-medium mb-4">6 pairs • Rapid visual association of airport terms.</p>
+
+              <div class="p-2.5 rounded-xl bg-sky-50 border border-sky-100 flex items-center justify-between text-xs font-bold text-sky-900 mb-4">
+                <span>Best: 90%</span>
+                <span class="text-amber-600">+2 Replay Coins</span>
+              </div>
+            </div>
+
+            <button onclick="switchScreen('screen-results')" class="w-full py-2 rounded-xl bg-sky-100 hover:bg-sky-200 text-sky-800 font-bold text-xs border border-sky-300">
+              Aim for 100% (+2 🪙)
+            </button>
+          </div>
+
+          <!-- Node 3: Current Recommended Challenge -->
+          <div class="card-island p-5 border-2 border-coral-400 border-rose-300 ring-4 ring-rose-100 flex flex-col justify-between shadow-lg">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-0.5 rounded-lg text-[10px] font-black uppercase bg-rose-500 text-white shadow-sm">
+                  NEXT RECOMMENDED QUEST
+                </span>
+                <span class="text-amber-500 font-black text-xs">NEW ⭐⭐⭐</span>
+              </div>
+
+              <h4 class="text-base font-black font-display text-slate-900 mb-1">Travel Grammar Challenge</h4>
+              <p class="text-xs text-slate-600 font-medium mb-4">10 questions • Simple Past vs Past Continuous grammar battle.</p>
+
+              <div class="p-2.5 rounded-xl bg-rose-50 border border-rose-200 flex items-center justify-between text-xs font-black text-rose-900 mb-4">
+                <span>Earn up to +18 Monster Coins 🪙</span>
+                <span class="text-sky-600">+125 XP</span>
+              </div>
+            </div>
+
+            <button onclick="switchScreen('screen-results')" class="w-full py-3 rounded-xl btn-game-coral font-black text-xs tracking-wide">
+              START QUEST NOW 🚀
+            </button>
+          </div>
+
+          <!-- Node 4: Sentence Builder -->
+          <div class="card-island p-5 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-0.5 rounded-lg text-[10px] font-black uppercase bg-slate-100 text-slate-700">
+                  Quest 4 • Sentence Builder
+                </span>
+                <span class="text-slate-400 font-bold text-xs">Unplayed</span>
+              </div>
+
+              <h4 class="text-base font-black font-display text-slate-900 mb-1">Build the Travel Story</h4>
+              <p class="text-xs text-slate-600 font-medium mb-4">8 puzzles • Drag & drop grammar connectors into sequence.</p>
+
+              <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between text-xs font-bold text-slate-700 mb-4">
+                <span class="text-amber-700">+18 🪙 First Clear</span>
+                <span class="text-sky-600">+125 XP</span>
+              </div>
+            </div>
+
+            <button onclick="switchScreen('screen-results')" class="w-full py-2.5 rounded-xl btn-game-primary text-xs font-bold">
+              Start Quest
+            </button>
+          </div>
+
+          <!-- Node 5: Train Station Dialogue -->
+          <div class="card-island p-5 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-0.5 rounded-lg text-[10px] font-black uppercase bg-slate-100 text-slate-700">
+                  Quest 5 • Dialogue Simulation
+                </span>
+                <span class="text-slate-400 font-bold text-xs">Unplayed</span>
+              </div>
+
+              <h4 class="text-base font-black font-display text-slate-900 mb-1">At the Train Station</h4>
+              <p class="text-xs text-slate-600 font-medium mb-4">8 exchanges • Ordering platform tickets and asking schedules.</p>
+
+              <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between text-xs font-bold text-slate-700 mb-4">
+                <span class="text-amber-700">+18 🪙 First Clear</span>
+                <span class="text-sky-600">+125 XP</span>
+              </div>
+            </div>
+
+            <button onclick="switchScreen('screen-results')" class="w-full py-2.5 rounded-xl btn-game-primary text-xs font-bold">
+              Start Quest
+            </button>
+          </div>
+
+          <!-- Node 6: Boss Challenge -->
+          <div class="card-island p-5 bg-slate-50/70 border-slate-200 flex flex-col justify-between opacity-80">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-0.5 rounded-lg text-[10px] font-black uppercase bg-amber-100 text-amber-800 border border-amber-300">
+                  Unit Boss Treasure
+                </span>
+                <span class="text-slate-500 font-bold text-xs">🔒 at 6/8 Mastered</span>
+              </div>
+
+              <h4 class="text-base font-black font-display text-slate-600 mb-1">Ultimate Travel Adventure</h4>
+              <p class="text-xs text-slate-500 mb-4">12 questions • Comprehensive unit mastery boss battle.</p>
+
+              <div class="p-2.5 rounded-xl bg-white border border-slate-200 flex items-center justify-between text-xs font-bold text-slate-500 mb-4">
+                <span class="text-amber-600">+25 🪙 Boss Bounty</span>
+                <span class="text-purple-600">+200 XP</span>
+              </div>
+            </div>
+
+            <button disabled class="w-full py-2.5 rounded-xl bg-slate-200 text-slate-400 font-bold text-xs cursor-not-allowed">
+              Complete 1 more quest to unlock
+            </button>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- 4. GAMES ZONE: BRIGHT WONDER PARK CARNIVAL                         -->
+      <!-- =================================================================== -->
+      <section id="screen-gameszone" class="screen-view hidden w-full max-w-6xl mx-auto space-y-6">
+        
+        <!-- Bright Carnival Bunting Header -->
+        <div class="card-island p-6 bg-gradient-to-r from-rose-50 via-amber-50 to-sky-50 border-2 border-rose-200 flex flex-wrap items-center justify-between gap-4">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2 mb-1">
+              <button onclick="switchScreen('screen-dashboard')" class="text-xs font-bold text-rose-700 hover:text-rose-900 flex items-center gap-1">
+                ➔ Back to Campus
+              </button>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <span class="text-3xl anim-badge">🎪</span>
+              <h2 class="text-2xl sm:text-3xl font-black font-display text-slate-900">
+                GAMES ZONE WONDER PARK
+              </h2>
+            </div>
+            <p class="text-xs text-slate-600 font-medium">
+              Bright, fast-paced educational mini-games • Train grammar reflexes &amp; collect daily coins!
+            </p>
+          </div>
+
+          <!-- Daily Games Zone Coin Cap Meter & Student Logout -->
+          <div class="flex flex-wrap items-center gap-3">
+            <div class="bg-white p-4 rounded-2xl border-2 border-amber-200 shadow-sm min-w-[240px]">
+              <div class="flex items-center justify-between text-xs font-black mb-1.5">
+                <span class="text-amber-900">Daily Carnival Bounty</span>
+                <span class="font-mono text-amber-600 text-sm">14 / 25 🪙</span>
+              </div>
+              <div class="w-full h-3 rounded-full bg-amber-100 overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-amber-400 to-rose-400 rounded-full" style="width: 56%"></div>
+              </div>
+              <span class="text-[10px] text-slate-500 font-semibold mt-1 block">11 coins remaining today</span>
+            </div>
+            <button onclick="switchScreen('screen-welcome')" class="px-3.5 py-2 rounded-xl bg-white hover:bg-rose-50 text-rose-700 font-bold text-xs flex items-center gap-1.5 border border-rose-200 transition-colors shadow-sm" title="Log out">
+              <span>🚪</span> Log Out
+            </button>
+          </div>
+        </div>
+
+        <!-- 4 Carnival Pavilions Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          
+          <!-- Game 1: Word Ninja Dojo -->
+          <div class="card-island p-5 flex flex-col justify-between border-emerald-200">
+            <div>
+              <div class="w-full h-32 rounded-2xl bg-gradient-to-tr from-emerald-100 to-teal-100 border-2 border-emerald-200 flex items-center justify-center text-5xl mb-3 shadow-inner">
+                🍉
+              </div>
+              <h4 class="text-base font-black font-display text-slate-900 mb-1">Word Ninja</h4>
+              <p class="text-xs text-slate-600 font-medium mb-3">Slice falling fruit labeled with correct parts of speech!</p>
+
+              <div class="text-xs font-mono bg-emerald-50 p-2.5 rounded-xl border border-emerald-100 space-y-1 mb-4">
+                <div class="flex justify-between text-emerald-950"><span>Best:</span><strong class="text-emerald-700">3,450 pts</strong></div>
+                <div class="flex justify-between text-emerald-950"><span>Reward:</span><span class="text-amber-700 font-bold">+3 to +6 🪙</span></div>
+              </div>
+            </div>
+
+            <button onclick="switchScreen('screen-results')" class="w-full py-2.5 rounded-xl btn-game-emerald text-xs font-black">
+              PLAY WORD NINJA ➔
+            </button>
+          </div>
+
+          <!-- Game 2: Grammar Runner -->
+          <div class="card-island p-5 flex flex-col justify-between border-rose-200">
+            <div>
+              <div class="w-full h-32 rounded-2xl bg-gradient-to-tr from-rose-100 to-amber-100 border-2 border-rose-200 flex items-center justify-center text-5xl mb-3 shadow-inner">
+                🏃
+              </div>
+              <h4 class="text-base font-black font-display text-slate-900 mb-1">Grammar Runner</h4>
+              <p class="text-xs text-slate-600 font-medium mb-3">Sprint along rainbow tracks avoiding incorrect verb tenses!</p>
+
+              <div class="text-xs font-mono bg-rose-50 p-2.5 rounded-xl border border-rose-100 space-y-1 mb-4">
+                <div class="flex justify-between text-rose-950"><span>Best:</span><strong class="text-rose-700">1,820 pts</strong></div>
+                <div class="flex justify-between text-rose-950"><span>Reward:</span><span class="text-amber-700 font-bold">+3 to +6 🪙</span></div>
+              </div>
+            </div>
+
+            <button onclick="switchScreen('screen-results')" class="w-full py-2.5 rounded-xl btn-game-coral text-xs font-black">
+              PLAY RUNNER ➔
+            </button>
+          </div>
+
+          <!-- Game 3: Word Fishing -->
+          <div class="card-island p-5 flex flex-col justify-between border-sky-200">
+            <div>
+              <div class="w-full h-32 rounded-2xl bg-gradient-to-tr from-sky-100 to-cyan-100 border-2 border-sky-200 flex items-center justify-center text-5xl mb-3 shadow-inner">
+                🎣
+              </div>
+              <h4 class="text-base font-black font-display text-slate-900 mb-1">Word Fishing</h4>
+              <p class="text-xs text-slate-600 font-medium mb-3">Cast your reel and catch matching synonyms from the pond!</p>
+
+              <div class="text-xs font-mono bg-sky-50 p-2.5 rounded-xl border border-sky-100 space-y-1 mb-4">
+                <div class="flex justify-between text-sky-950"><span>Best:</span><strong class="text-sky-700">2,100 pts</strong></div>
+                <div class="flex justify-between text-sky-950"><span>Reward:</span><span class="text-amber-700 font-bold">+3 to +6 🪙</span></div>
+              </div>
+            </div>
+
+            <button onclick="switchScreen('screen-results')" class="w-full py-2.5 rounded-xl btn-game-primary text-xs font-black">
+              PLAY FISHING ➔
+            </button>
+          </div>
+
+          <!-- Game 4: Sentence Tower -->
+          <div class="card-island p-5 flex flex-col justify-between border-purple-200">
+            <div>
+              <div class="w-full h-32 rounded-2xl bg-gradient-to-tr from-purple-100 to-pink-100 border-2 border-purple-200 flex items-center justify-center text-5xl mb-3 shadow-inner">
+                🏗️
+              </div>
+              <h4 class="text-base font-black font-display text-slate-900 mb-1">Sentence Tower</h4>
+              <p class="text-xs text-slate-600 font-medium mb-3">Stack wooden grammar blocks in correct English syntax!</p>
+
+              <div class="text-xs font-mono bg-purple-50 p-2.5 rounded-xl border border-purple-100 space-y-1 mb-4">
+                <div class="flex justify-between text-purple-950"><span>Best:</span><strong class="text-purple-700">4,200 pts</strong></div>
+                <div class="flex justify-between text-purple-950"><span>Reward:</span><span class="text-amber-700 font-bold">+3 to +6 🪙</span></div>
+              </div>
+            </div>
+
+            <button onclick="switchScreen('screen-results')" class="w-full py-2.5 rounded-xl btn-game-purple text-xs font-black">
+              PLAY TOWER ➔
+            </button>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- 5. MONSTER WORLD: SUNNY SANCTUARY & WARDROBE BOUTIQUE              -->
+      <!-- =================================================================== -->
+      <section id="screen-monster" class="screen-view hidden w-full max-w-6xl mx-auto space-y-6">
+        
+        <!-- Monster Sanctuary Top Navigation Bar -->
+        <div class="card-island p-4 sm:p-5 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <button onclick="switchScreen('screen-dashboard')" class="text-xs font-bold text-purple-700 hover:text-purple-900 flex items-center gap-1">
+                ➔ Back to Campus
+              </button>
+              <span class="text-slate-300">/</span>
+              <span class="text-xs font-bold text-slate-500">Sanctuary &amp; Wardrobe</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-black font-display text-slate-900">Monster Sanctuary &amp; Boutique</h2>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="switchScreen('screen-dashboard')" class="px-3.5 py-1.5 rounded-xl bg-purple-50 hover:bg-purple-100 text-purple-700 font-black text-xs border border-purple-200">
+              Campus Home
+            </button>
+            <button onclick="switchScreen('screen-welcome')" class="px-3.5 py-1.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold text-xs flex items-center gap-1 border border-rose-200">
+              <span>🚪</span> Log Out
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          
+          <!-- Left: Monster Sanctuary Hero Stage -->
+          <div class="lg:col-span-5 space-y-6">
+            
+            <div class="card-island p-6 text-center border-purple-200 relative overflow-hidden">
+              <div class="flex items-center justify-between text-xs font-black mb-3">
+                <span class="px-3 py-1 rounded-xl bg-purple-100 text-purple-800 border border-purple-300">
+                  STAGE 2 • ADVENTURER FORM
+                </span>
+                <span class="font-mono text-amber-700 font-black">🪙 148 Coins</span>
+              </div>
+
+              <!-- Sunny Grassy Mound & Companion Vector -->
+              <div class="w-48 h-48 mx-auto my-3 anim-float relative flex items-center justify-center">
+                <!-- SVG Vector of Companion Sprout -->
+                <svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-[0_12px_24px_rgba(139,92,246,0.25)]">
+                  <!-- Grassy Pad -->
+                  <ellipse cx="60" cy="100" rx="45" ry="14" fill="#86efac" />
+                  <!-- Cape -->
+                  <path d="M 28 65 Q 18 95 38 95 Q 48 80 38 62 Z" fill="#f43f5e" />
+                  <path d="M 92 65 Q 102 95 82 95 Q 72 80 82 62 Z" fill="#f43f5e" />
+                  <!-- Body -->
+                  <ellipse cx="60" cy="62" rx="40" ry="34" fill="#8b5cf6" />
+                  <ellipse cx="60" cy="62" rx="30" ry="24" fill="#a78bfa" opacity="0.6" />
+                  <!-- Scholar Frames -->
+                  <circle cx="46" cy="54" r="11" stroke="#f59e0b" stroke-width="2.8" fill="rgba(255,255,255,0.4)" />
+                  <circle cx="74" cy="54" r="11" stroke="#f59e0b" stroke-width="2.8" fill="rgba(255,255,255,0.4)" />
+                  <line x1="57" y1="54" x2="63" y2="54" stroke="#f59e0b" stroke-width="2.8" />
+                  <!-- Pupils -->
+                  <circle cx="47" cy="54" r="4" fill="#1e1b4b" />
+                  <circle cx="73" cy="54" r="4" fill="#1e1b4b" />
+                  <!-- Big Smile -->
+                  <path d="M 48 72 Q 60 84 72 72" stroke="#1e1b4b" stroke-width="3" fill="none" stroke-linecap="round" />
+                  <!-- Rosy Cheeks -->
+                  <circle cx="34" cy="68" r="5" fill="#f472b6" opacity="0.6" />
+                  <circle cx="86" cy="68" r="5" fill="#f472b6" opacity="0.6" />
+                  <!-- Cap -->
+                  <polygon points="60,20 44,40 76,40" fill="#0ea5e9" />
+                  <circle cx="60" cy="18" r="3.5" fill="#f59e0b" />
+                </svg>
+              </div>
+
+              <div class="space-y-1">
+                <div class="flex items-center justify-center gap-1.5">
+                  <h3 class="text-2xl font-black font-display text-slate-900">Sprout</h3>
+                  <button class="text-xs text-slate-400 hover:text-sky-600" title="Rename">✏️</button>
+                </div>
+                <p class="text-xs text-purple-700 font-semibold">Equipped: Scholar Frames & Adventurer Cap</p>
+              </div>
+
+              <!-- Next Evolution XP Progress -->
+              <div class="mt-4 pt-4 border-t border-slate-100 text-left space-y-1.5">
+                <div class="flex justify-between text-xs font-black">
+                  <span class="text-slate-700">Next Evolution: Stage 3 Champion Titan</span>
+                  <span class="font-mono text-purple-700">1,840 / 3,000 XP</span>
+                </div>
+                <div class="w-full h-3 rounded-full bg-purple-100 overflow-hidden">
+                  <div class="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full" style="width: 61%"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Evolution Roadmap (Approved Phase 8B Milestones) -->
+            <div class="card-island p-5 border-slate-200 space-y-3">
+              <h4 class="text-xs font-extrabold uppercase text-slate-500 tracking-wider">Evolution Roadmap</h4>
+
+              <div class="space-y-2 text-xs">
+                <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 text-slate-600 font-bold">
+                  <span class="flex items-center gap-2"><span>🥚</span> Egg Stage (0–499 XP)</span>
+                  <span class="text-emerald-600">✓ Unlocked</span>
+                </div>
+                <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 text-slate-600 font-bold">
+                  <span class="flex items-center gap-2"><span>🐣</span> Hatchling Pal (500–1,499 XP)</span>
+                  <span class="text-emerald-600">✓ Unlocked</span>
+                </div>
+                <div class="flex items-center justify-between p-2.5 rounded-xl bg-purple-100 text-purple-900 font-black border border-purple-300">
+                  <span class="flex items-center gap-2"><span>👾</span> Adventurer Form (1,500–2,999 XP)</span>
+                  <span class="text-purple-700">★ CURRENT</span>
+                </div>
+                <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 text-slate-400">
+                  <span class="flex items-center gap-2"><span>🛡️</span> Champion Titan (3,000–5,999 XP)</span>
+                  <span>🔒 at 3,000 XP</span>
+                </div>
+                <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 text-slate-400">
+                  <span class="flex items-center gap-2"><span>🌌</span> Cosmic Apex Legend (6,000+ XP)</span>
+                  <span>🔒 at 6,000 XP</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right: Wardrobe Boutique Shop -->
+          <div class="lg:col-span-7 space-y-6">
+            
+            <div class="card-island p-6 border-slate-200 space-y-5">
+              
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-100">
+                <div>
+                  <h3 class="text-xl font-black font-display text-slate-900">Wardrobe Boutique</h3>
+                  <p class="text-xs text-slate-500 font-medium">Equip your companion • Unlocked at 750+ XP</p>
+                </div>
+                <div class="flex items-center gap-2 bg-amber-50 px-3.5 py-1.5 rounded-2xl border-2 border-amber-200">
+                  <span class="text-base">🪙</span>
+                  <span class="font-mono text-sm font-black text-amber-900">148 Coins Available</span>
+                </div>
+              </div>
+
+              <!-- Category Tabs -->
+              <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
+                <button class="px-4 py-1.5 rounded-xl bg-purple-600 text-white font-black text-xs shadow-sm">All</button>
+                <button class="px-4 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs border border-slate-200">Hats</button>
+                <button class="px-4 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs border border-slate-200">Glasses</button>
+                <button class="px-4 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs border border-slate-200">Clothes</button>
+                <button class="px-4 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs border border-slate-200">Badges</button>
+              </div>
+
+              <!-- Shop Items Grid -->
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                
+                <!-- Item 1: Scholar Frames (Equipped) -->
+                <div class="p-4 rounded-2xl bg-purple-50 border-2 border-purple-400 text-center relative">
+                  <span class="absolute top-2 right-2 px-1.5 py-0.5 rounded-md text-[9px] font-black bg-purple-600 text-white">
+                    EQUIPPED
+                  </span>
+                  <div class="text-4xl my-2">👓</div>
+                  <h5 class="text-xs font-black text-purple-950">Scholar Frames</h5>
+                  <span class="text-[10px] text-slate-500 block mb-2">Round gold wire rims</span>
+                  <button class="w-full py-1.5 rounded-xl bg-white hover:bg-slate-50 font-bold text-[11px] text-purple-700 border border-purple-300 shadow-sm">
+                    Unequip
+                  </button>
+                </div>
+
+                <!-- Item 2: Party Hat (Owned) -->
+                <div class="p-4 rounded-2xl bg-white border-2 border-emerald-300 text-center relative">
+                  <span class="absolute top-2 right-2 px-1.5 py-0.5 rounded-md text-[9px] font-black bg-emerald-100 text-emerald-800">
+                    OWNED
+                  </span>
+                  <div class="text-4xl my-2">🥳</div>
+                  <h5 class="text-xs font-black text-slate-900">Party Cone</h5>
+                  <span class="text-[10px] text-slate-500 block mb-2">Festive confetti cone</span>
+                  <button class="w-full py-1.5 rounded-xl btn-game-purple font-black text-[11px]">
+                    Equip
+                  </button>
+                </div>
+
+                <!-- Item 3: Dapper Bowtie (Buyable) -->
+                <div class="p-4 rounded-2xl bg-white border-2 border-slate-200 text-center relative">
+                  <div class="text-4xl my-2">🎀</div>
+                  <h5 class="text-xs font-black text-slate-900">Dapper Bowtie</h5>
+                  <span class="text-[10px] text-slate-500 block mb-2">Classic red silk bow</span>
+                  <button class="w-full py-1.5 rounded-xl btn-game-amber font-black text-[11px]">
+                    Buy (60 🪙)
+                  </button>
+                </div>
+
+                <!-- Item 4: Cozy Scarf -->
+                <div class="p-4 rounded-2xl bg-white border-2 border-slate-200 text-center relative">
+                  <div class="text-4xl my-2">🧣</div>
+                  <h5 class="text-xs font-black text-slate-900">Winter Scarf</h5>
+                  <span class="text-[10px] text-slate-500 block mb-2">Warm knitted wool</span>
+                  <button class="w-full py-1.5 rounded-xl btn-game-amber font-black text-[11px]">
+                    Buy (75 🪙)
+                  </button>
+                </div>
+
+                <!-- Item 5: Aviator Shades -->
+                <div class="p-4 rounded-2xl bg-white border-2 border-slate-200 text-center relative">
+                  <div class="text-4xl my-2">🕶️</div>
+                  <h5 class="text-xs font-black text-slate-900">Aviator Shades</h5>
+                  <span class="text-[10px] text-slate-500 block mb-2">Cool pilot dark lenses</span>
+                  <button class="w-full py-1.5 rounded-xl btn-game-amber font-black text-[11px]">
+                    Buy (90 🪙)
+                  </button>
+                </div>
+
+                <!-- Item 6: Royal Crown (Locked) -->
+                <div class="p-4 rounded-2xl bg-slate-50 border-2 border-slate-200 text-center relative opacity-70">
+                  <span class="absolute top-2 right-2 text-xs">🔒</span>
+                  <div class="text-4xl my-2">👑</div>
+                  <h5 class="text-xs font-black text-slate-500">Royal Crown</h5>
+                  <span class="text-[10px] text-slate-400 block mb-2">Titan Champion only</span>
+                  <button disabled class="w-full py-1.5 rounded-xl bg-slate-200 text-slate-400 font-bold text-[11px] cursor-not-allowed">
+                    Stage 3 Only
+                  </button>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- 6. STUDENT PROFILE: EXPLORER PASSPORT & TROPHY SHELF               -->
+      <!-- =================================================================== -->
+      <section id="screen-profile" class="screen-view hidden w-full max-w-5xl mx-auto space-y-6">
+        
+        <div class="card-island p-6 sm:p-8 space-y-6">
+          
+          <!-- Top Passport Header -->
+          <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-200">
+            <div class="flex items-center gap-4">
+              <div class="w-20 h-20 rounded-3xl bg-gradient-to-tr from-sky-400 via-purple-300 to-amber-200 p-1 shadow-lg shadow-sky-300/30">
+                <div class="w-full h-full bg-white rounded-[20px] flex items-center justify-center text-4xl">
+                  👾
+                </div>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h2 class="text-2xl font-black font-display text-slate-900">Alex Martinez</h2>
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-black bg-amber-100 text-amber-800 border border-amber-300">
+                    Rank #2 in 8A
+                  </span>
+                </div>
+                <p class="text-xs text-slate-500 font-mono mt-1">
+                  Student #801 • Class 8A (Grade 8) • Explorer Passport Verified
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button onclick="switchScreen('screen-dashboard')" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs border border-slate-300">
+                Back to Home
+              </button>
+              <button onclick="switchScreen('screen-welcome')" class="px-3.5 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold text-xs flex items-center gap-1 border border-rose-200">
+                <span>🚪</span> Log Out
+              </button>
+            </div>
+          </div>
+
+          <!-- Stats 4-Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div class="p-4 rounded-2xl bg-sky-50 border-2 border-sky-200 text-center">
+              <span class="text-[10px] font-black text-sky-800 uppercase tracking-wider block">Total XP</span>
+              <span class="font-mono text-2xl font-black text-sky-950">16,420</span>
+            </div>
+            <div class="p-4 rounded-2xl bg-amber-50 border-2 border-amber-200 text-center">
+              <span class="text-[10px] font-black text-amber-800 uppercase tracking-wider block">Monster Coins</span>
+              <span class="font-mono text-2xl font-black text-amber-950">148 🪙</span>
+            </div>
+            <div class="p-4 rounded-2xl bg-emerald-50 border-2 border-emerald-200 text-center">
+              <span class="text-[10px] font-black text-emerald-800 uppercase tracking-wider block">Quests Mastered</span>
+              <span class="font-mono text-2xl font-black text-emerald-950">34</span>
+            </div>
+            <div class="p-4 rounded-2xl bg-purple-50 border-2 border-purple-200 text-center">
+              <span class="text-[10px] font-black text-purple-800 uppercase tracking-wider block">Accuracy</span>
+              <span class="font-mono text-2xl font-black text-purple-950">94.2%</span>
+            </div>
+          </div>
+
+          <!-- Achievement Shelf -->
+          <div class="space-y-3">
+            <h4 class="text-sm font-black font-display text-slate-900 flex items-center justify-between">
+              <span>🏆 Trophy Shelf (6 Unlocked)</span>
+              <span class="text-xs text-sky-600 font-bold">12 Total in Grade 8</span>
+            </h4>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+              <div class="p-3.5 rounded-2xl bg-amber-50 border-2 border-amber-200 text-center space-y-1">
+                <div class="text-2xl">🌟</div>
+                <div class="text-[11px] font-black text-amber-950">Flawless 100%</div>
+                <div class="text-[9px] text-amber-700">10 perfect quizzes</div>
+              </div>
+              <div class="p-3.5 rounded-2xl bg-purple-50 border-2 border-purple-200 text-center space-y-1">
+                <div class="text-2xl">⚡</div>
+                <div class="text-[11px] font-black text-purple-950">Speed Runner</div>
+                <div class="text-[9px] text-purple-700">Sub-30s clear</div>
+              </div>
+              <div class="p-3.5 rounded-2xl bg-sky-50 border-2 border-sky-200 text-center space-y-1">
+                <div class="text-2xl">📖</div>
+                <div class="text-[11px] font-black text-sky-950">Vocab Master</div>
+                <div class="text-[9px] text-sky-700">100 unique words</div>
+              </div>
+              <div class="p-3.5 rounded-2xl bg-rose-50 border-2 border-rose-200 text-center space-y-1">
+                <div class="text-2xl">🔥</div>
+                <div class="text-[11px] font-black text-rose-950">5-Day Streak</div>
+                <div class="text-[9px] text-rose-700">Daily learning</div>
+              </div>
+              <div class="p-3.5 rounded-2xl bg-emerald-50 border-2 border-emerald-200 text-center space-y-1">
+                <div class="text-2xl">🎩</div>
+                <div class="text-[11px] font-black text-emerald-950">Stylist</div>
+                <div class="text-[9px] text-emerald-700">Customized monster</div>
+              </div>
+              <div class="p-3.5 rounded-2xl bg-slate-50 border-2 border-slate-200 text-center space-y-1 opacity-60">
+                <div class="text-2xl">🔒</div>
+                <div class="text-[11px] font-bold text-slate-500">Titan Champion</div>
+                <div class="text-[9px] text-slate-400">Reach 3,000 XP</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Skill Mastery Bars -->
+          <div class="space-y-3 pt-3 border-t border-slate-200">
+            <h4 class="text-sm font-black font-display text-slate-900">Curriculum Skill Breakdown</h4>
+            
+            <div class="space-y-2.5">
+              <div>
+                <div class="flex justify-between text-xs font-bold text-slate-700 mb-1">
+                  <span>Travel & Airport Vocabulary</span>
+                  <span class="text-emerald-700 font-black">96%</span>
+                </div>
+                <div class="w-full h-2.5 rounded-full bg-slate-100 overflow-hidden">
+                  <div class="h-full bg-emerald-500 rounded-full" style="width: 96%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs font-bold text-slate-700 mb-1">
+                  <span>Past Continuous vs Simple Past</span>
+                  <span class="text-sky-700 font-black">88%</span>
+                </div>
+                <div class="w-full h-2.5 rounded-full bg-slate-100 overflow-hidden">
+                  <div class="h-full bg-sky-500 rounded-full" style="width: 88%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- 7. GAME RESULTS: SUNNY CELEBRATORY REWARDS                         -->
+      <!-- =================================================================== -->
+      <section id="screen-results" class="screen-view hidden w-full max-w-lg mx-auto py-6">
+        
+        <div class="card-island p-6 sm:p-8 text-center space-y-6 border-amber-300 relative overflow-hidden shadow-2xl">
+          
+          <!-- Victory Mascot Badge -->
+          <div class="relative mx-auto w-24 h-24 rounded-3xl bg-gradient-to-tr from-amber-300 to-yellow-200 p-1 shadow-lg shadow-amber-300/40">
+            <div class="w-full h-full rounded-[20px] bg-white flex items-center justify-center text-5xl anim-badge">
+              👑
+            </div>
+            <span class="absolute -top-2 -right-2 px-2.5 py-0.5 rounded-full bg-amber-500 text-white font-black text-[10px] uppercase shadow">
+              PERFECT 100%!
+            </span>
+          </div>
+
+          <div>
+            <h2 class="text-3xl font-black font-display text-slate-900">Quest Cleared!</h2>
+            <p class="text-xs text-slate-600 font-medium mt-1">Travel Grammar Challenge • Grade 8 Unit 2</p>
+          </div>
+
+          <!-- Score & Time Grid -->
+          <div class="grid grid-cols-2 gap-3">
+            <div class="p-3.5 rounded-2xl bg-emerald-50 border-2 border-emerald-200">
+              <span class="text-[10px] font-black text-emerald-800 uppercase block">Correct</span>
+              <span class="font-mono text-2xl font-black text-emerald-950 mt-0.5 block">10 / 10</span>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-sky-50 border-2 border-sky-200">
+              <span class="text-[10px] font-black text-sky-800 uppercase block">Time</span>
+              <span class="font-mono text-2xl font-black text-sky-950 mt-0.5 block">38s</span>
+            </div>
+          </div>
+
+          <!-- Stacked Rewards -->
+          <div class="space-y-3 text-left">
+            
+            <!-- XP Reward -->
+            <div class="p-3.5 rounded-2xl bg-sky-50 border-2 border-sky-200 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-sky-200 text-sky-800 flex items-center justify-center text-xl">
+                  ⚡
+                </div>
+                <div>
+                  <span class="text-[10px] font-black text-sky-800 uppercase block">XP Awarded</span>
+                  <span class="text-xs text-slate-600 font-medium">Base 20 + Accuracy 80 + Perfect 25</span>
+                </div>
+              </div>
+              <span class="font-mono text-xl font-black text-sky-700">+125 XP</span>
+            </div>
+
+            <!-- Monster Coins Awarded (Phase 8A Verified) -->
+            <div class="p-3.5 rounded-2xl bg-amber-50 border-2 border-amber-300 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-amber-200 text-amber-800 flex items-center justify-center text-xl">
+                  🪙
+                </div>
+                <div>
+                  <span class="text-[10px] font-black text-amber-800 uppercase block">Monster Coins</span>
+                  <span class="text-[11px] text-slate-600 font-medium">First +5, 90%+ bonus +3, perfect +5, daily +5</span>
+                </div>
+              </div>
+              <div class="text-right">
+                <span class="font-mono text-xl font-black text-amber-700">+18 Coins</span>
+                <span class="text-[10px] text-slate-500 font-bold block">Wallet: 148 🪙</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Actions -->
+          <div class="space-y-2.5 pt-2">
+            <button onclick="switchScreen('screen-activities')" class="w-full py-3.5 rounded-2xl btn-game-coral font-black text-sm tracking-wide">
+              NEXT QUEST ➔
+            </button>
+            <button onclick="switchScreen('screen-dashboard')" class="w-full py-3 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs border border-slate-300">
+              Return to Island Home
+            </button>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- 8. STUDENT LOGIN SCREEN (STRICTLY STUDENT-FACING, NO TEACHER LINKS)-->
+      <!-- =================================================================== -->
+      <section id="screen-student-login" class="screen-view hidden w-full max-w-4xl mx-auto py-6">
+        
+        <div class="card-island p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+          
+          <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-200">
+            <button onclick="switchScreen('screen-welcome')" class="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs flex items-center gap-1.5 border border-slate-300 shadow-sm transition-all">
+              <span>←</span> Back to Public Welcome
+            </button>
+            <span class="px-3 py-1 rounded-full text-xs font-black uppercase bg-sky-100 text-sky-800 border border-sky-300">
+              Student Adventure Gate
+            </span>
+          </div>
+
+          <div class="text-center max-w-md mx-auto space-y-2 mb-8">
+            <div class="w-16 h-16 mx-auto rounded-3xl bg-sky-100 text-sky-600 border-2 border-sky-300 flex items-center justify-center text-3xl shadow-sm">
+              🎮
+            </div>
+            <h2 class="text-3xl font-black font-display text-slate-900">Student Sign In</h2>
+            <p class="text-xs text-slate-600 font-medium">Select your class and enter your student number &amp; PIN to launch your quests.</p>
+          </div>
+
+          <!-- Class Selection Flags -->
+          <div class="max-w-md mx-auto space-y-5">
+            <div>
+              <label class="block text-xs font-black uppercase text-slate-500 tracking-wider mb-2 text-center">
+                1. Select Your Class
+              </label>
+              <div class="grid grid-cols-4 gap-2.5">
+                <button class="py-2.5 rounded-2xl bg-sky-600 text-white font-black text-sm shadow-sm border-b-2 border-sky-800">8A</button>
+                <button class="py-2.5 rounded-2xl bg-sky-50 hover:bg-sky-100 text-sky-900 font-black text-sm border-2 border-sky-200">8B</button>
+                <button class="py-2.5 rounded-2xl bg-emerald-50 hover:bg-emerald-100 text-emerald-900 font-black text-sm border-2 border-emerald-200">7A</button>
+                <button class="py-2.5 rounded-2xl bg-emerald-50 hover:bg-emerald-100 text-emerald-900 font-black text-sm border-2 border-emerald-200">7B</button>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-black uppercase text-slate-500 tracking-wider mb-2 text-center">
+                2. Student Number
+              </label>
+              <input type="text" value="801" class="w-full py-3.5 px-4 rounded-2xl bg-slate-50 border-2 border-sky-200 font-mono text-center text-xl font-black text-slate-900 focus:outline-none focus:border-sky-500" readonly>
+            </div>
+
+            <!-- PIN Pad -->
+            <div>
+              <label class="block text-xs font-black uppercase text-slate-500 tracking-wider mb-2 text-center">
+                3. Security PIN
+              </label>
+              
+              <!-- 4-Dot Secret Display -->
+              <div class="flex items-center justify-center gap-4 py-3 bg-slate-50 rounded-2xl border-2 border-slate-200 mb-4">
+                <div class="w-4 h-4 rounded-full bg-sky-600 shadow-sm"></div>
+                <div class="w-4 h-4 rounded-full bg-sky-600 shadow-sm"></div>
+                <div class="w-4 h-4 rounded-full bg-sky-600 shadow-sm"></div>
+                <div class="w-4 h-4 rounded-full bg-sky-600 shadow-sm"></div>
+              </div>
+
+              <!-- Friendly Number Pad -->
+              <div class="grid grid-cols-3 gap-2.5 max-w-xs mx-auto">
+                <button class="py-3.5 rounded-2xl bg-white hover:bg-sky-50 border-2 border-slate-200 font-mono text-xl font-black text-slate-800 shadow-sm active:translate-y-1">1</button>
+                <button class="py-3.5 rounded-2xl bg-white hover:bg-sky-50 border-2 border-slate-200 font-mono text-xl font-black text-slate-800 shadow-sm active:translate-y-1">2</button>
+                <button class="py-3.5 rounded-2xl bg-white hover:bg-sky-50 border-2 border-slate-200 font-mono text-xl font-black text-slate-800 shadow-sm active:translate-y-1">3</button>
+                <button class="py-3.5 rounded-2xl bg-white hover:bg-sky-50 border-2 border-slate-200 font-mono text-xl font-black text-slate-800 shadow-sm active:translate-y-1">4</button>
+                <button class="py-3.5 rounded-2xl bg-white hover:bg-sky-50 border-2 border-slate-200 font-mono text-xl font-black text-slate-800 shadow-sm active:translate-y-1">5</button>
+                <button class="py-3.5 rounded-2xl bg-white hover:bg-sky-50 border-2 border-slate-200 font-mono text-xl font-black text-slate-800 shadow-sm active:translate-y-1">6</button>
+                <button class="py-3.5 rounded-2xl bg-white hover:bg-sky-50 border-2 border-slate-200 font-mono text-xl font-black text-slate-800 shadow-sm active:translate-y-1">7</button>
+                <button class="py-3.5 rounded-2xl bg-white hover:bg-sky-50 border-2 border-slate-200 font-mono text-xl font-black text-slate-800 shadow-sm active:translate-y-1">8</button>
+                <button class="py-3.5 rounded-2xl bg-white hover:bg-sky-50 border-2 border-slate-200 font-mono text-xl font-black text-slate-800 shadow-sm active:translate-y-1">9</button>
+                <button class="py-3.5 rounded-2xl bg-rose-50 hover:bg-rose-100 border-2 border-rose-200 font-bold text-rose-700 text-xs shadow-sm">Clear</button>
+                <button class="py-3.5 rounded-2xl bg-white hover:bg-sky-50 border-2 border-slate-200 font-mono text-xl font-black text-slate-800 shadow-sm active:translate-y-1">0</button>
+                <button onclick="switchScreen('screen-dashboard')" class="py-3.5 rounded-2xl btn-game-primary font-black text-sm">GO ➔</button>
+              </div>
+            </div>
+
+            <!-- Smartboard / Terminal Info (Strictly Student Isolated) -->
+            <div class="pt-4 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+              <span class="font-bold text-sky-700">
+                📺 Classroom Smartboard Terminal Ready
+              </span>
+              <span class="text-slate-400 font-medium">
+                Student Account 801 (Alex M.)
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- 8B. TEACHER LOGIN SCREEN (STRICTLY TEACHER-FACING, NO STUDENT LINK) -->
+      <!-- =================================================================== -->
+      <section id="screen-teacher-login" class="screen-view hidden w-full max-w-xl mx-auto py-8">
+        
+        <div class="card-island p-8 sm:p-10 shadow-2xl relative overflow-hidden border-indigo-200 bg-white">
+          
+          <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-200">
+            <button onclick="switchScreen('screen-welcome')" class="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs flex items-center gap-1.5 border border-slate-300 shadow-sm transition-all">
+              <span>←</span> Back to Public Welcome
+            </button>
+            <span class="px-3 py-1 rounded-full text-xs font-black uppercase bg-indigo-100 text-indigo-800 border border-indigo-300">
+              Staff Portal
+            </span>
+          </div>
+
+          <div class="text-center space-y-2 mb-8">
+            <div class="w-16 h-16 mx-auto rounded-3xl bg-indigo-100 text-indigo-700 border-2 border-indigo-300 flex items-center justify-center text-3xl shadow-sm">
+              👩‍🏫
+            </div>
+            <h2 class="text-3xl font-black font-display text-slate-900">Educator Verification</h2>
+            <p class="text-xs text-slate-600 font-medium">Access Middle School English telemetry, accuracy rates, and cohort rosters.</p>
+          </div>
+
+          <div class="space-y-4 max-w-md mx-auto">
+            <div>
+              <label class="block text-xs font-black uppercase text-slate-600 tracking-wider mb-1.5">
+                Faculty Email / Staff ID
+              </label>
+              <input type="text" value="sarah.robinson@lincoln.edu" class="w-full py-3 px-4 rounded-xl bg-slate-50 border-2 border-slate-300 font-medium text-slate-900 text-sm focus:outline-none focus:border-indigo-500">
+            </div>
+
+            <div>
+              <label class="block text-xs font-black uppercase text-slate-600 tracking-wider mb-1.5">
+                Staff Passcode
+              </label>
+              <input type="password" value="••••••••••••" class="w-full py-3 px-4 rounded-xl bg-slate-50 border-2 border-slate-300 font-medium text-slate-900 text-sm focus:outline-none focus:border-indigo-500">
+            </div>
+
+            <div>
+              <label class="block text-xs font-black uppercase text-slate-600 tracking-wider mb-1.5">
+                Assigned Department / Cohort
+              </label>
+              <div class="p-3 rounded-xl bg-indigo-50/80 border border-indigo-200 text-xs font-bold text-indigo-950 flex items-center justify-between">
+                <span>Middle School English (Classes 7A, 7B, 8A, 8B)</span>
+                <span class="text-emerald-700 font-black">Authorized</span>
+              </div>
+            </div>
+
+            <div class="pt-3">
+              <button onclick="switchScreen('screen-teacher')" class="w-full py-3.5 rounded-2xl btn-game-purple font-black text-sm tracking-wide shadow-md flex items-center justify-center gap-2">
+                <span>ENTER EDUCATOR DASHBOARD</span>
+                <span>➔</span>
+              </button>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-[11px] text-amber-900 font-medium flex items-start gap-2.5 mt-4">
+              <span class="text-base flex-shrink-0">🔒</span>
+              <span><strong>Restricted Faculty Access:</strong> This portal is protected. Student activity and gameplay interfaces are completely detached from teacher reporting.</span>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- 9. TEACHER DASHBOARD: BRIGHT ORGANIZED ANALYTICS                   -->
+      <!-- =================================================================== -->
+      <section id="screen-teacher" class="screen-view hidden w-full max-w-6xl mx-auto space-y-6">
+        
+        <!-- Teacher Header with Dedicated Sign Out Button -->
+        <div class="card-island p-6 flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-3.5">
+            <div class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-700 border-2 border-blue-200 flex items-center justify-center text-2xl">
+              👩‍🏫
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h2 class="text-2xl font-black font-display text-slate-900">Educator Learning Portal</h2>
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-black bg-blue-100 text-blue-800 border border-blue-200">
+                  Staff Verified
+                </span>
+              </div>
+              <p class="text-xs text-slate-600 font-medium">Middle School English Department • Cohort Telemetry</p>
+            </div>
+          </div>
+
+          <!-- Cohort Selector & Educator Sign Out -->
+          <div class="flex flex-wrap items-center gap-3">
+            <div class="flex items-center gap-1.5 bg-slate-50 p-1.5 rounded-2xl border-2 border-slate-200">
+              <span class="text-xs font-bold text-slate-600 px-2">Class:</span>
+              <button class="px-3 py-1 rounded-xl bg-blue-600 text-white font-black text-xs shadow-sm">All Classes</button>
+              <button class="px-3 py-1 rounded-xl text-slate-700 hover:bg-slate-200 font-bold text-xs">8A (28)</button>
+              <button class="px-3 py-1 rounded-xl text-slate-700 hover:bg-slate-200 font-bold text-xs">8B (28)</button>
+              <button class="px-3 py-1 rounded-xl text-slate-700 hover:bg-slate-200 font-bold text-xs">7A (30)</button>
+              <button class="px-3 py-1 rounded-xl text-slate-700 hover:bg-slate-200 font-bold text-xs">7B (29)</button>
+            </div>
+
+            <!-- Teacher Sign Out Button (Returns to Welcome Gate) -->
+            <button onclick="switchScreen('screen-welcome')" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-rose-50 text-slate-700 hover:text-rose-700 font-bold text-xs flex items-center gap-1.5 border border-slate-300 transition-colors shadow-sm">
+              <span>🚪</span> Educator Sign Out
+            </button>
+          </div>
+        </div>
+
+        <!-- 4 KPI Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="card-island p-4 border-blue-200 bg-blue-50/40">
+            <span class="text-[11px] font-black text-blue-800 uppercase tracking-wider">Active Students</span>
+            <span class="font-mono text-3xl font-black text-slate-900 block mt-1">115 <span class="text-xs text-emerald-600 font-bold">100% Active</span></span>
+          </div>
+          <div class="card-island p-4 border-emerald-200 bg-emerald-50/40">
+            <span class="text-[11px] font-black text-emerald-800 uppercase tracking-wider">Cohort Accuracy</span>
+            <span class="font-mono text-3xl font-black text-emerald-950 block mt-1">87.4% <span class="text-xs text-emerald-600 font-bold">+3.1%</span></span>
+          </div>
+          <div class="card-island p-4 border-sky-200 bg-sky-50/40">
+            <span class="text-[11px] font-black text-sky-800 uppercase tracking-wider">Quizzes Completed</span>
+            <span class="font-mono text-3xl font-black text-slate-900 block mt-1">1,482</span>
+          </div>
+          <div class="card-island p-4 border-amber-200 bg-amber-50/40">
+            <span class="text-[11px] font-black text-amber-800 uppercase tracking-wider">Attention Needed</span>
+            <span class="font-mono text-3xl font-black text-amber-950 block mt-1">3 <span class="text-xs text-slate-600 font-normal">Past Cont.</span></span>
+          </div>
+        </div>
+
+        <!-- Student Progress Table -->
+        <div class="card-island rounded-3xl overflow-hidden">
+          <div class="p-4 sm:p-5 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3 bg-slate-50">
+            <h3 class="text-base font-black font-display text-slate-900">Student Progress Directory</h3>
+            
+            <div class="flex items-center gap-2">
+              <input type="text" placeholder="Search student name or #..." class="py-1.5 px-3 rounded-xl bg-white border border-slate-300 text-xs">
+              <button class="px-3 py-1.5 rounded-xl bg-white hover:bg-slate-100 text-slate-700 font-bold text-xs border border-slate-300 shadow-sm">
+                Export CSV
+              </button>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-100 text-slate-600 font-mono text-[10px] uppercase">
+                <tr>
+                  <th class="p-3.5">Student</th>
+                  <th class="p-3.5">Class</th>
+                  <th class="p-3.5">Grade</th>
+                  <th class="p-3.5">Total XP</th>
+                  <th class="p-3.5">Level</th>
+                  <th class="p-3.5">Coins</th>
+                  <th class="p-3.5">Completed</th>
+                  <th class="p-3.5">Accuracy</th>
+                  <th class="p-3.5 text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 font-medium">
+                <tr class="hover:bg-sky-50/50">
+                  <td class="p-3.5 font-bold text-slate-900 flex items-center gap-2">
+                    <span>👾</span> Alex Martinez (#801)
+                  </td>
+                  <td class="p-3.5 font-bold">8A</td>
+                  <td class="p-3.5"><span class="px-2 py-0.5 rounded-full bg-sky-100 text-sky-800 font-black">Grade 8</span></td>
+                  <td class="p-3.5 font-mono text-sky-700 font-bold">16,420</td>
+                  <td class="p-3.5 font-black">Lv. 18</td>
+                  <td class="p-3.5 font-mono text-amber-700 font-bold">148 🪙</td>
+                  <td class="p-3.5">34</td>
+                  <td class="p-3.5 text-emerald-700 font-black">94.2%</td>
+                  <td class="p-3.5 text-right"><button class="text-blue-600 hover:underline font-bold">Review Mistakes</button></td>
+                </tr>
+
+                <tr class="hover:bg-sky-50/50">
+                  <td class="p-3.5 font-bold text-slate-900 flex items-center gap-2">
+                    <span>🐣</span> Liam Demir (#701)
+                  </td>
+                  <td class="p-3.5 font-bold">7A</td>
+                  <td class="p-3.5"><span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-black">Grade 7</span></td>
+                  <td class="p-3.5 font-mono text-sky-700 font-bold">8,210</td>
+                  <td class="p-3.5 font-black">Lv. 11</td>
+                  <td class="p-3.5 font-mono text-amber-700 font-bold">82 🪙</td>
+                  <td class="p-3.5">18</td>
+                  <td class="p-3.5 text-emerald-700 font-black">91.0%</td>
+                  <td class="p-3.5 text-right"><button class="text-blue-600 hover:underline font-bold">Review Mistakes</button></td>
+                </tr>
+
+                <tr class="hover:bg-sky-50/50">
+                  <td class="p-3.5 font-bold text-slate-900 flex items-center gap-2">
+                    <span>🥚</span> Zeynep Kaya (#802)
+                  </td>
+                  <td class="p-3.5 font-bold">8A</td>
+                  <td class="p-3.5"><span class="px-2 py-0.5 rounded-full bg-sky-100 text-sky-800 font-black">Grade 8</span></td>
+                  <td class="p-3.5 font-mono text-sky-700 font-bold">14,800</td>
+                  <td class="p-3.5 font-black">Lv. 16</td>
+                  <td class="p-3.5 font-mono text-amber-700 font-bold">120 🪙</td>
+                  <td class="p-3.5">29</td>
+                  <td class="p-3.5 text-emerald-700 font-black">89.5%</td>
+                  <td class="p-3.5 text-right"><button class="text-blue-600 hover:underline font-bold">Review Mistakes</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- FOOTER                                                                    -->
+  <!-- ========================================================================= -->
+  <footer class="bg-white/80 border-t border-sky-100 py-4 px-6 text-center text-xs text-slate-500 font-medium">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <span>Unit Review Arcade • Phase 9 Bright Game World & Creative Campus • Pure Visual Showcase</span>
+      <span class="font-mono text-sky-700 font-bold">Design Preview Only • No live database or backend files modified</span>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT CONTROLLERS                                                    -->
+  <!-- ========================================================================= -->
+  <script>
+    // Screen switcher
+    function switchScreen(screenId) {
+      document.querySelectorAll('.screen-view').forEach(el => el.classList.add('hidden'));
+      const target = document.getElementById(screenId);
+      if (target) {
+        target.classList.remove('hidden');
+      }
+
+      // Update active nav button in external preview toolbar
+      document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+        btn.classList.remove('bg-sky-600', 'font-black', 'text-white', 'shadow-sm');
+        btn.classList.add('text-slate-300', 'font-bold', 'bg-slate-700/60');
+      });
+      const activeBtn = document.getElementById('nav-' + screenId);
+      if (activeBtn) {
+        activeBtn.classList.remove('text-slate-300', 'font-bold', 'bg-slate-700/60');
+        activeBtn.classList.add('bg-sky-600', 'font-black', 'text-white', 'shadow-sm');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Device frame switcher
+    function setDeviceFrame(frame) {
+      const wrapper = document.getElementById('device-wrapper');
+      const btnDesk = document.getElementById('btn-dev-desktop');
+      const btnTab = document.getElementById('btn-dev-tablet');
+      const btnMob = document.getElementById('btn-dev-mobile');
+
+      wrapper.classList.remove('device-desktop', 'device-tablet', 'device-mobile');
+      [btnDesk, btnTab, btnMob].forEach(b => {
+        b.classList.remove('bg-sky-600', 'text-white', 'shadow-sm');
+        b.classList.add('text-sky-700');
+      });
+
+      if (frame === 'desktop') {
+        wrapper.classList.add('device-desktop');
+        btnDesk.classList.add('bg-sky-600', 'text-white', 'shadow-sm');
+        btnDesk.classList.remove('text-sky-700');
+      } else if (frame === 'tablet') {
+        wrapper.classList.add('device-tablet');
+        btnTab.classList.add('bg-sky-600', 'text-white', 'shadow-sm');
+        btnTab.classList.remove('text-sky-700');
+      } else if (frame === 'mobile') {
+        wrapper.classList.add('device-mobile');
+        btnMob.classList.add('bg-sky-600', 'text-white', 'shadow-sm');
+        btnMob.classList.remove('text-sky-700');
+      }
+    }
+
+    // Grade Mode Toggle (Simulate Grade 7 vs Grade 8 Theme & Isolation)
+    function setGradeMode(grade) {
+      const btn8 = document.getElementById('btn-grade-8');
+      const btn7 = document.getElementById('btn-grade-7');
+
+      if (grade === 'grade-8') {
+        btn8.classList.add('bg-sky-600', 'text-white', 'shadow-sm');
+        btn8.classList.remove('text-sky-700');
+        btn7.classList.remove('bg-emerald-600', 'text-white', 'shadow-sm');
+        btn7.classList.add('text-sky-700');
+      } else {
+        btn7.classList.add('bg-emerald-600', 'text-white', 'shadow-sm');
+        btn7.classList.remove('text-sky-700');
+        btn8.classList.remove('bg-sky-600', 'text-white', 'shadow-sm');
+        btn8.classList.add('text-sky-700');
+      }
+    }
+  </script>
+</body>
+</html>

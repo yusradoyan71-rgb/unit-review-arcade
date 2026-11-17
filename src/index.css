@@ -3,23 +3,162 @@
 @layer base {
   :root {
     --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
-    --font-display: 'Outfit', system-ui, sans-serif;
+    --font-display: 'Fredoka', 'Outfit', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
   }
 
   body {
     font-family: var(--font-sans);
-    background-color: #080c18;
-    color: #f1f5f9;
+    background-color: #f8fafc;
+    color: #0f172a;
     user-select: none;
     -webkit-user-select: none;
     -webkit-tap-highlight-color: transparent;
   }
 
-  h1, h2, h3, h4, .font-arcade {
+  h1, h2, h3, h4, .font-arcade, .font-display {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
   }
+}
+
+/* ========================================================================= */
+/* PHASE 9 — COLORFUL GAME WORLD & CREATIVE CAMPUS DESIGN TOKENS             */
+/* ========================================================================= */
+
+/* Sunny Sky Ambient Background */
+.bg-game-sky {
+  background: linear-gradient(180deg, #dbeafe 0%, #ede9fe 35%, #e0f2fe 70%, #f0fdf4 100%);
+  min-height: 100vh;
+}
+
+/* Keyframe Animations */
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+@keyframes driftCloud {
+  0% { transform: translateX(-5%); }
+  50% { transform: translateX(5%); }
+  100% { transform: translateX(-5%); }
+}
+@keyframes pulseSoft {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+@keyframes bounceBadge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+@keyframes spinSparkle {
+  0% { transform: rotate(0deg) scale(0.9); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(0.9); }
+}
+
+.anim-float { animation: floatGentle 4s ease-in-out infinite; }
+.anim-float-delayed { animation: floatGentle 4.5s ease-in-out 1.5s infinite; }
+.anim-cloud { animation: driftCloud 18s ease-in-out infinite; }
+.anim-pulse { animation: pulseSoft 2.5s ease-in-out infinite; }
+.anim-badge { animation: bounceBadge 2.2s ease-in-out infinite; }
+.anim-sparkle { animation: spinSparkle 6s linear infinite; }
+
+/* Tactile 3D Buttons (Chunky Game World Aesthetic) */
+.btn-game-primary {
+  background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  border-bottom: 4px solid #075985;
+  transition: all 0.12s ease;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+}
+.btn-game-primary:hover {
+  background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(2, 132, 199, 0.4);
+}
+.btn-game-primary:active {
+  transform: translateY(3px);
+  border-bottom-width: 1px;
+  box-shadow: 0 2px 4px rgba(2, 132, 199, 0.2);
+}
+
+.btn-game-coral {
+  background: linear-gradient(180deg, #f43f5e 0%, #e11d48 100%);
+  color: #ffffff;
+  border-bottom: 4px solid #be123c;
+  transition: all 0.12s ease;
+  box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
+}
+.btn-game-coral:hover {
+  background: linear-gradient(180deg, #fb7185 0%, #f43f5e 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(244, 63, 94, 0.4);
+}
+.btn-game-coral:active {
+  transform: translateY(3px);
+  border-bottom-width: 1px;
+}
+
+.btn-game-emerald {
+  background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border-bottom: 4px solid #047857;
+  transition: all 0.12s ease;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+.btn-game-emerald:hover {
+  background: linear-gradient(180deg, #34d399 0%, #10b981 100%);
+  transform: translateY(-2px);
+}
+.btn-game-emerald:active {
+  transform: translateY(3px);
+  border-bottom-width: 1px;
+}
+
+.btn-game-amber {
+  background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+  color: #ffffff;
+  border-bottom: 4px solid #b45309;
+  transition: all 0.12s ease;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+.btn-game-amber:hover {
+  background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 100%);
+  transform: translateY(-2px);
+}
+.btn-game-amber:active {
+  transform: translateY(3px);
+  border-bottom-width: 1px;
+}
+
+.btn-game-purple {
+  background: linear-gradient(180deg, #8b5cf6 0%, #7c3aed 100%);
+  color: #ffffff;
+  border-bottom: 4px solid #6d28d9;
+  transition: all 0.12s ease;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+.btn-game-purple:hover {
+  background: linear-gradient(180deg, #a78bfa 0%, #8b5cf6 100%);
+  transform: translateY(-2px);
+}
+.btn-game-purple:active {
+  transform: translateY(3px);
+  border-bottom-width: 1px;
+}
+
+/* Island Card Container */
+.card-island {
+  background: #ffffff;
+  border: 3px solid #e2e8f0;
+  border-radius: 28px;
+  box-shadow: 0 12px 30px -8px rgba(14, 165, 233, 0.12), 0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: all 0.22s ease;
+}
+.card-island:hover {
+  transform: translateY(-4px);
+  border-color: #38bdf8;
+  box-shadow: 0 20px 35px -10px rgba(14, 165, 233, 0.22), 0 8px 16px rgba(0, 0, 0, 0.06);
 }
 
 /* Smartboard 16:9 safe zone container helper */

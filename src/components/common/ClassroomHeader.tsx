@@ -3,7 +3,6 @@ import { useArcade } from '../../context/ArcadeContext';
 import { useAuth } from '../../context/AuthContext';
 import { useGamification } from '../../context/GamificationContext';
 import { usePersonalizedLearning } from '../../context/PersonalizedLearningContext';
-import { useTeacherAuth } from '../../context/TeacherAuthContext';
 import { sounds } from '../../services/soundEffects';
 import { StudentProfileBadge } from '../auth/StudentProfileBadge';
 import { 
@@ -15,8 +14,6 @@ import {
   VolumeX, 
   Settings, 
   GraduationCap,
-  ShieldCheck,
-  Layers,
   Trophy,
   RotateCw,
   Award,
@@ -32,7 +29,6 @@ export const ClassroomHeader: React.FC = () => {
     goToHome, 
     goToGrade, 
     goToUnit,
-    openTeacherPanel, 
     isFullscreen, 
     toggleFullscreen, 
     isMuted, 
@@ -42,7 +38,6 @@ export const ClassroomHeader: React.FC = () => {
     data
   } = useArcade();
 
-  const { openDashboard, isAuthenticated: isTeacherAuthenticated } = useTeacherAuth();
   const { authMode, student } = useAuth();
   const { openLeaderboardModal } = useGamification();
   const { openMistakesModal, openMasteryModal, uncorrectedMistakesCount } = usePersonalizedLearning();
@@ -55,7 +50,7 @@ export const ClassroomHeader: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-slate-950/80 backdrop-blur-xl border-b border-slate-800/80 px-4 md:px-8 py-3.5 transition-all">
+    <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b-2 border-sky-100 px-4 md:px-8 py-2.5 transition-all text-slate-800 shadow-sm">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
         
         {/* Left: Brand & Smart Breadcrumbs */}
@@ -63,12 +58,12 @@ export const ClassroomHeader: React.FC = () => {
           <button
             onClick={goToHome}
             title="Return to Homepage"
-            className="flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 border border-indigo-500/30 text-indigo-300 font-semibold transition-all hover:scale-105 active:scale-95 group"
+            className="flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-sky-50 hover:bg-sky-100 border border-sky-200 text-sky-950 font-semibold transition-all hover:scale-105 active:scale-95 group"
           >
-            <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white shadow-md shadow-indigo-600/40 group-hover:rotate-6 transition-transform">
+            <div className="w-8 h-8 rounded-lg bg-sky-600 flex items-center justify-center text-white shadow-md shadow-sky-600/30 group-hover:rotate-6 transition-transform">
               <Gamepad2 className="w-5 h-5" />
             </div>
-            <span className="font-arcade font-bold text-lg tracking-tight hidden sm:inline text-white">
+            <span className="font-arcade font-bold text-lg tracking-tight hidden sm:inline text-sky-950">
               UNIT REVIEW ARCADE
             </span>
           </button>
@@ -76,7 +71,7 @@ export const ClassroomHeader: React.FC = () => {
           {/* Breadcrumb Path */}
           {!isHome && (
             <div className="flex items-center gap-2 text-sm font-medium">
-              <ChevronRight className="w-4 h-4 text-slate-500 shrink-0" />
+              <ChevronRight className="w-4 h-4 text-slate-400 shrink-0" />
 
               {/* Grade Breadcrumb */}
               {(navigation.view === 'unit-library' || navigation.view === 'unit-dashboard' || navigation.view === 'game-play') && (
@@ -210,13 +205,13 @@ export const ClassroomHeader: React.FC = () => {
             }}
             title="Open Games Zone"
             aria-label="Open Games Zone"
-            className={`px-3 py-1.5 rounded-xl border transition-all flex items-center gap-1.5 text-xs font-bold hover:scale-105 active:scale-95 ${
+            className={`px-3 py-1.5 rounded-xl border transition-all flex items-center gap-1.5 text-xs font-bold ${
               navigation.view === 'games-zone'
-                ? 'bg-indigo-600 text-white border-indigo-400 shadow-md shadow-indigo-600/30'
-                : 'bg-indigo-500/15 hover:bg-indigo-500/25 border-indigo-500/30 text-indigo-300 hover:text-white'
+                ? 'bg-rose-600 text-white border-rose-700 shadow-sm'
+                : 'bg-rose-50 hover:bg-rose-100 border-rose-200 text-rose-700'
             }`}
           >
-            <Sparkles className="w-4 h-4 text-indigo-400" />
+            <Sparkles className="w-4 h-4 text-rose-500" />
             <span className="hidden sm:inline">Games Zone</span>
           </button>
 
@@ -228,13 +223,13 @@ export const ClassroomHeader: React.FC = () => {
             }}
             title="Monster World & Customizer"
             aria-label="Monster World"
-            className={`px-3 py-1.5 rounded-xl border transition-all flex items-center gap-1.5 text-xs font-bold hover:scale-105 active:scale-95 ${
+            className={`px-3 py-1.5 rounded-xl border transition-all flex items-center gap-1.5 text-xs font-bold ${
               navigation.view === 'monster-world'
-                ? 'bg-amber-600 text-white border-amber-400 shadow-md shadow-amber-600/30'
-                : 'bg-amber-500/15 hover:bg-amber-500/25 border-amber-500/30 text-amber-300 hover:text-white'
+                ? 'bg-amber-600 text-white border-amber-700 shadow-sm'
+                : 'bg-amber-50 hover:bg-amber-100 border-amber-200 text-amber-900'
             }`}
           >
-            <Coins className="w-4 h-4 text-amber-400" />
+            <Coins className="w-4 h-4 text-amber-500" />
             <span className="font-extrabold">{student?.totalCoins ?? CoinService.getBalance(student?.studentNumber || '')}</span>
           </button>
 
@@ -245,8 +240,8 @@ export const ClassroomHeader: React.FC = () => {
             aria-label={isMuted ? 'Unmute Sound Effects' : 'Mute Sound Effects'}
             className={`p-2.5 rounded-xl border transition-all ${
               isMuted
-                ? 'bg-slate-900 border-slate-800 text-slate-500 hover:text-slate-300'
-                : 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20'
+                ? 'bg-slate-100 border-slate-200 text-slate-400 hover:text-slate-600'
+                : 'bg-emerald-50 border-emerald-200 text-emerald-700 hover:bg-emerald-100'
             }`}
           >
             {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
@@ -259,35 +254,11 @@ export const ClassroomHeader: React.FC = () => {
             aria-label={isFullscreen ? 'Exit Fullscreen' : 'Enter Smartboard Fullscreen'}
             className={`p-2.5 rounded-xl border transition-all ${
               isFullscreen
-                ? 'bg-cyan-500/20 border-cyan-500/40 text-cyan-300'
-                : 'bg-slate-900 border-slate-800 text-slate-300 hover:text-white hover:bg-slate-800'
+                ? 'bg-sky-500/20 border-sky-400 text-sky-700'
+                : 'bg-white border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-50'
             }`}
           >
             {isFullscreen ? <Minimize className="w-5 h-5" /> : <Maximize className="w-5 h-5" />}
-          </button>
-
-          {/* Distinct Entry Point 1: Teacher Monitoring Dashboard */}
-          <button
-            onClick={openDashboard}
-            title={isTeacherAuthenticated ? 'Open Teacher Monitoring Dashboard' : 'Teacher Dashboard Login'}
-            className="px-3 py-2 rounded-xl text-xs sm:text-sm font-medium border flex items-center gap-2 bg-indigo-600/15 hover:bg-indigo-600/25 border-indigo-500/30 text-indigo-300 transition-all hover:scale-105 active:scale-95"
-          >
-            <ShieldCheck className="w-4 h-4 text-indigo-400" />
-            <span className="hidden md:inline">Teacher Dashboard</span>
-          </button>
-
-          {/* Distinct Entry Point 2: Preserved Local Content Editor */}
-          <button
-            onClick={() => openTeacherPanel('units')}
-            title="Local Content & Curriculum Editor"
-            className={`px-3 py-2 rounded-xl text-xs sm:text-sm font-medium border flex items-center gap-2 transition-all ${
-              navigation.view === 'teacher-panel'
-                ? 'bg-amber-500/20 text-amber-300 border-amber-500/50 shadow-md shadow-amber-500/10'
-                : 'bg-slate-900/90 text-slate-400 border-slate-800 hover:text-amber-300 hover:border-amber-500/30 hover:bg-slate-800'
-            }`}
-          >
-            <Layers className="w-4 h-4" />
-            <span className="hidden lg:inline">Content Editor</span>
           </button>
         </div>
 

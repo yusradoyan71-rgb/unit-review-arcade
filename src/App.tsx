@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArcadeProvider, useArcade } from './context/ArcadeContext';
 import { AuthProvider } from './context/AuthContext';
 import { TeacherAuthProvider, useTeacherAuth } from './context/TeacherAuthContext';
@@ -6,6 +6,9 @@ import { GamificationProvider } from './context/GamificationContext';
 import { PersonalizedLearningProvider } from './context/PersonalizedLearningContext';
 import { ClassroomHeader } from './components/common/ClassroomHeader';
 import { ToastContainer } from './components/common/ToastContainer';
+import { PublicWelcomeScreen } from './components/welcome/PublicWelcomeScreen';
+import { StudentLoginScreen } from './components/auth/StudentLoginScreen';
+import { TeacherLoginScreen } from './components/teacher/TeacherLoginScreen';
 import { StudentLoginModal } from './components/auth/StudentLoginModal';
 import { StudentProfileModal } from './components/gamification/StudentProfileModal';
 import { ClassLeaderboardModal } from './components/gamification/ClassLeaderboardModal';
@@ -29,6 +32,16 @@ const MainView: React.FC = () => {
   const { isDashboardOpen } = useTeacherAuth();
   const { student } = useAuth();
 
+  const [unauthView, setUnauthView] = useState<'welcome' | 'student-login' | 'teacher-login'>('welcome');
+  const [isGuestMode, setIsGuestMode] = useState<boolean>(false);
+
+  // If student logs out, reset view to public welcome screen and disable guest mode
+  useEffect(() => {
+    if (!student && !isGuestMode) {
+      setUnauthView('welcome');
+    }
+  }, [student, isGuestMode]);
+
   const isTeacherPanelOpen = navigation.view === 'teacher-panel';
 
   // Dedicated, standalone Teacher Monitoring Cockpit view
@@ -43,8 +56,45 @@ const MainView: React.FC = () => {
     );
   }
 
+  // Unauthenticated Entry Flow: Public Welcome -> Student Login / Teacher Login
+  if (!student && !isGuestMode) {
+    if (unauthView === 'student-login') {
+      return (
+        <div className="min-h-screen bg-game-sky text-slate-900 flex flex-col font-sans selection:bg-cyan-500 selection:text-white">
+          <StudentLoginScreen
+            onBackToWelcome={() => setUnauthView('welcome')}
+            onEnterGuestMode={() => setIsGuestMode(true)}
+          />
+          <ToastContainer />
+        </div>
+      );
+    }
+
+    if (unauthView === 'teacher-login') {
+      return (
+        <div className="min-h-screen bg-game-sky text-slate-900 flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
+          <TeacherLoginScreen
+            onBackToWelcome={() => setUnauthView('welcome')}
+          />
+          <ToastContainer />
+        </div>
+      );
+    }
+
+    // Default: Public Welcome Screen
+    return (
+      <div className="min-h-screen bg-game-sky text-slate-900 flex flex-col font-sans selection:bg-cyan-500 selection:text-white">
+        <PublicWelcomeScreen
+          onSelectStudent={() => setUnauthView('student-login')}
+          onSelectTeacher={() => setUnauthView('teacher-login')}
+        />
+        <ToastContainer />
+      </div>
+    );
+  }
+
   return (
-    <div className="relative min-h-screen bg-[#080c18] bg-arcade-grid bg-radial-vignette text-slate-100 flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
+    <div className="relative min-h-screen bg-game-sky text-slate-800 flex flex-col font-sans selection:bg-cyan-500 selection:text-white">
       {/* Smartboard Sticky Header */}
       <ClassroomHeader />
 
