@@ -10,6 +10,7 @@ import { getQuestionsForGame } from '../../../data/gamesZone';
 import { GamesZoneService } from '../../../services/gamesZoneService';
 import { sounds } from '../../../services/soundEffects';
 import { lineIntersectsBox } from './slicingPhysics';
+import { fisherYatesShuffle } from '../../../utils/shuffle';
 
 interface WordNinjaGameProps {
   gradeId: GradeId;
@@ -83,12 +84,12 @@ export const WordNinjaGame: React.FC<WordNinjaGameProps> = ({
       ...q.distractorWords.map((w) => ({ word: w, isCorrect: false })),
     ];
 
-    // Shuffle targets randomly
-    allWords.sort(() => Math.random() - 0.5);
+    // Shuffle targets randomly using unbiased Fisher-Yates algorithm
+    const shuffledWords = fisherYatesShuffle(allWords);
 
     const speedMultiplier = difficulty === 'hard' ? 0.35 : difficulty === 'medium' ? 0.25 : 0.15;
 
-    const targets: FloatingTarget[] = allWords.map((item, idx) => {
+    const targets: FloatingTarget[] = shuffledWords.map((item, idx) => {
       const angle = (idx / allWords.length) * Math.PI * 2;
       return {
         id: `target_${idx}_${Date.now()}`,

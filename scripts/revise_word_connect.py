@@ -30,3 +30,4 @@ bank = json.loads(json_str)
 # 16. wc_g8_h_30 (D,A,M,A,G,E -> MAD)
 
 print("Puzzles loaded successfully.")
+

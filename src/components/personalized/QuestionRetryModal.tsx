@@ -7,13 +7,14 @@
  * missed question with instant pedagogical feedback and correction tracking.
  */
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useArcade } from '../../context/ArcadeContext';
 import { usePersonalizedLearning } from '../../context/PersonalizedLearningContext';
 import { sounds } from '../../services/soundEffects';
 import { ExplanationService } from '../../services/explanationService';
 import { PersonalizedLearningService } from '../../services/personalizedLearningService';
+import { shuffleQuestionOptions } from '../../utils/shuffle';
 import type { StudentMistakeRecord } from '../../types/personalizedLearning';
 import type { 
   MultipleChoiceQuestion, 
@@ -53,7 +54,13 @@ export const QuestionRetryModal: React.FC<QuestionRetryModalProps> = ({
     mistake.unitId
   );
 
-  const question = found?.question;
+  const rawQuestion = found?.question;
+  const question = useMemo(() => {
+    if (rawQuestion && Array.isArray((rawQuestion as any).options) && typeof (rawQuestion as any).correctOptionIndex === 'number') {
+      return shuffleQuestionOptions(rawQuestion as MultipleChoiceQuestion);
+    }
+    return rawQuestion;
+  }, [rawQuestion]);
   const gameType = found?.gameType || mistake.gameType || 'quiz_battle';
   const isCompatible = question ? PersonalizedLearningService.isMistakeCompatible(mistake, question) : true;
   const isSuperseded = mistake.isSuperseded || !isCompatible;

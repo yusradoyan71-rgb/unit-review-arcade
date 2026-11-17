@@ -282,3 +282,4 @@ writeBank('./src/data/gamesZone/grammarRunnerData.ts', 'GRAMMAR_RUNNER_BANK', 'G
 writeBank('./src/data/gamesZone/sentenceTowerData.ts', 'SENTENCE_TOWER_BANK', 'SentenceTowerBank', SENTENCE_TOWER_BANK);
 writeBank('./src/data/gamesZone/wordleEnglishData.ts', 'WORDLE_ENGLISH_BANK', 'WordleEnglishBank', WORDLE_ENGLISH_BANK);
 writeBank('./src/data/gamesZone/wordFishingData.ts', 'WORD_FISHING_BANK', 'WordFishingBank', WORD_FISHING_BANK);
+

@@ -12,3 +12,4 @@ for grade in bank:
             for tw in p['targetWords']:
                 if tw['word'] in target_words_to_check:
                     print(f"{p['id']} ({grade} {diff}) - {tw['word']}: available {p['availableLetters']}")
+

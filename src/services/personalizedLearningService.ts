@@ -26,6 +26,7 @@ import type {
   UnitTopicMastery
 } from '../types/personalizedLearning';
 import { ExplanationService } from './explanationService.ts';
+import { shuffleQuestionOptions } from '../utils/shuffle.ts';
 
 const STORAGE_MISTAKES_PREFIX = 'ura_mistakes_';
 const STORAGE_MASTERY_PREFIX = 'ura_mastery_';
@@ -425,7 +426,10 @@ export class PersonalizedLearningService {
             continue;
           }
           addedQuestionIds.add(found.question.id);
-          questions.push(found.question);
+          const qToAdd = Array.isArray((found.question as any).options)
+            ? shuffleQuestionOptions(found.question as MultipleChoiceQuestion)
+            : found.question;
+          questions.push(qToAdd);
           targetTopicsSet.add(found.activityTitle);
           questionMetadata.push({
             questionId: found.question.id,
@@ -502,7 +506,10 @@ export class PersonalizedLearningService {
             if (addedQuestionIds.has(q.id)) continue;
             if (this.isQuestionPlayable(q, act.gameType)) {
               addedQuestionIds.add(q.id);
-              questions.push(q);
+              const qToAdd = Array.isArray((q as any).options)
+                ? shuffleQuestionOptions(q as MultipleChoiceQuestion)
+                : q;
+              questions.push(qToAdd);
               targetTopicsSet.add(act.title);
               questionMetadata.push({
                 questionId: q.id,

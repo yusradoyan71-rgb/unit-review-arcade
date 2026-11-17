@@ -9,6 +9,7 @@ import type {
 import { getQuestionsForGame } from '../../../data/gamesZone';
 import { GamesZoneService } from '../../../services/gamesZoneService';
 import { sounds } from '../../../services/soundEffects';
+import { fisherYatesShuffle } from '../../../utils/shuffle';
 
 interface WordFishingGameProps {
   gradeId: GradeId;
@@ -92,11 +93,12 @@ export const WordFishingGame: React.FC<WordFishingGameProps> = ({
       ...q.distractorWords.map((w) => ({ word: w, isTarget: false })),
     ];
 
-    allFishData.sort(() => Math.random() - 0.5);
+    // Shuffle fish targets using unbiased Fisher-Yates algorithm
+    const shuffledFish = fisherYatesShuffle(allFishData);
 
     const baseSpeed = difficulty === 'hard' ? 0.35 : difficulty === 'medium' ? 0.25 : 0.16;
 
-    const fishes: SwimmingFish[] = allFishData.map((item, idx) => {
+    const fishes: SwimmingFish[] = shuffledFish.map((item, idx) => {
       const direction: 1 | -1 = idx % 2 === 0 ? 1 : -1;
       const initialX = direction === 1 ? -10 - idx * 15 : 110 + idx * 15;
       const layerY = 25 + (idx % 4) * 16 + (Math.random() - 0.5) * 6;

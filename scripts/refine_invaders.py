@@ -84,3 +84,4 @@ with open('src/data/gamesZone/vocabularyInvadersData.ts', 'w', encoding='utf-8')
     f.write(out_text)
 
 print("Saved vocabularyInvadersData.ts.")
+

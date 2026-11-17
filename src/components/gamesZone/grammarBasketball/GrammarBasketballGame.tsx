@@ -7,6 +7,7 @@ import type {
   GrammarBasketballItem,
 } from '../../../types/gamesZone';
 import { getQuestionsForGame } from '../../../data/gamesZone';
+import { shuffleQuestionOptions } from '../../../utils/shuffle';
 import { GamesZoneService } from '../../../services/gamesZoneService';
 import { sounds } from '../../../services/soundEffects';
 
@@ -105,7 +106,8 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
   // Load questions
   useEffect(() => {
     const pool = getQuestionsForGame('grammar_basketball', gradeId, difficulty, 10) as GrammarBasketballItem[];
-    setQuestions(pool);
+    const randomized = pool.map((q) => shuffleQuestionOptions(q));
+    setQuestions(randomized);
     setCurrentIndex(0);
     setSelectedOption(null);
     setIsAnswerSubmitted(false);

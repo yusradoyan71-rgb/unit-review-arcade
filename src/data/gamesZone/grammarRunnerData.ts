@@ -977,11 +977,11 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
         "id": "gr_g7_h_01",
         "sentencePrompt": "While I _____ my homework, the power went out.",
         "laneOptions": [
-          "was doing",
+          "am doing",
           "did",
-          "am doing"
+          "was doing"
         ],
-        "correctLaneIndex": 0,
+        "correctLaneIndex": 2,
         "grammarTopic": "Past Continuous with While",
         "explanation": "'While' is followed by a continuous action in progress."
       },
@@ -2427,11 +2427,11 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
         "id": "gr_g8_h_01",
         "sentencePrompt": "I prefer _____ rafting to canoeing because it is more thrilling.",
         "laneOptions": [
-          "going",
+          "to go",
           "go",
-          "to go"
+          "going"
         ],
-        "correctLaneIndex": 0,
+        "correctLaneIndex": 2,
         "grammarTopic": "Prefer + V-ing",
         "explanation": "We use the -ing form of the verb after \"prefer\".",
         "contentVersion": 2
@@ -2441,10 +2441,10 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
         "sentencePrompt": "He prefers reading mystery books _____ watching television.",
         "laneOptions": [
           "than",
-          "to",
-          "from"
+          "from",
+          "to"
         ],
-        "correctLaneIndex": 1,
+        "correctLaneIndex": 2,
         "grammarTopic": "Prefer X to Y",
         "explanation": "The preposition used with \"prefer\" when comparing two things is \"to\".",
         "contentVersion": 2
@@ -2453,11 +2453,11 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
         "id": "gr_g8_h_03",
         "sentencePrompt": "I would rather _____ at home tonight than go out in the rain.",
         "laneOptions": [
-          "stay",
+          "to stay",
           "staying",
-          "to stay"
+          "stay"
         ],
-        "correctLaneIndex": 0,
+        "correctLaneIndex": 2,
         "grammarTopic": "Would rather + Bare Verb",
         "explanation": "Use the base verb after 'would rather' (would rather travel).",
         "contentVersion": 3
