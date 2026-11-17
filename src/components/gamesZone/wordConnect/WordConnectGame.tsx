@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { Pause, Shuffle, Lightbulb, Check, X, Trophy, Sparkles, ArrowRight, CheckCircle2 } from 'lucide-react';
 import type { GradeId } from '../../../types/schema';
 import type {
@@ -9,6 +9,7 @@ import type {
 import { getQuestionsForGame } from '../../../data/gamesZone';
 import { GamesZoneService } from '../../../services/gamesZoneService';
 import { sounds } from '../../../services/soundEffects';
+import { WordConnectSelectionEngine } from './wordConnectEngine.ts';
 
 interface WordConnectGameProps {
   gradeId: GradeId;
@@ -54,9 +55,16 @@ export const WordConnectGame: React.FC<WordConnectGameProps> = ({
   const [revealedHints, setRevealedHints] = useState<Record<string, Set<number>>>({});
   const [hintsRemaining, setHintsRemaining] = useState(3);
 
+  // Synchronous selection engine reference to prevent stale closure duplicates
+  const engineRef = useRef<WordConnectSelectionEngine>(new WordConnectSelectionEngine([]));
+
   // Drag interaction state
   const [isDragging, setIsDragging] = useState(false);
   const [dragPointer, setDragPointer] = useState<{ x: number; y: number } | null>(null);
+  const isPointerDownRef = useRef(false);
+  const hasDraggedRef = useRef(false);
+  const pointerStartPosRef = useRef<{ x: number; y: number } | null>(null);
+  const justFinishedDragRef = useRef(false);
   const wheelRef = useRef<HTMLDivElement>(null);
 
   // Feedback & score
@@ -78,7 +86,9 @@ export const WordConnectGame: React.FC<WordConnectGameProps> = ({
   // Initialize/reset active puzzle letters and solved state
   useEffect(() => {
     if (currentPuzzle) {
-      setShuffledLetters([...currentPuzzle.availableLetters]);
+      const letters = [...currentPuzzle.availableLetters];
+      setShuffledLetters(letters);
+      engineRef.current.setLetters(letters);
       setSelectedIndices([]);
       setSolvedWordSet(new Set());
       setRevealedHints({});
@@ -87,7 +97,7 @@ export const WordConnectGame: React.FC<WordConnectGameProps> = ({
   }, [currentPuzzle]);
 
   // Compute circular coordinates for current letters
-  const letterCoords: LetterCoord[] = React.useMemo(() => {
+  const letterCoords: LetterCoord[] = useMemo(() => {
     const n = shuffledLetters.length;
     if (n === 0) return [];
     return shuffledLetters.map((letter, idx) => {
@@ -101,8 +111,8 @@ export const WordConnectGame: React.FC<WordConnectGameProps> = ({
     });
   }, [shuffledLetters]);
 
-  // Currently formed word from selected indices
-  const currentFormedWord = selectedIndices.map((i) => shuffledLetters[i]).join('');
+  // Currently formed word string
+  const currentFormedWord = selectedIndices.map((i) => shuffledLetters[i] || '').join('');
 
   // Finish whole game session
   const finishSession = useCallback(
@@ -146,9 +156,9 @@ export const WordConnectGame: React.FC<WordConnectGameProps> = ({
 
   // Submit currently selected letters
   const handleSubmitWord = useCallback(() => {
-    if (selectedIndices.length === 0 || !currentPuzzle) return;
+    const candidate = engineRef.current.getFormedWord().toUpperCase();
+    if (!candidate || !currentPuzzle) return;
 
-    const candidate = currentFormedWord.toUpperCase();
     const isTarget = currentPuzzle.targetWords.some((tw) => tw.word.toUpperCase() === candidate);
 
     if (isTarget) {
@@ -182,64 +192,118 @@ export const WordConnectGame: React.FC<WordConnectGameProps> = ({
       setTimeout(() => setShakePreview(false), 500);
     }
 
+    engineRef.current.clear();
     setSelectedIndices([]);
     setDragPointer(null);
-  }, [currentFormedWord, currentPuzzle, isMuted, selectedIndices.length, solvedWordSet, streak]);
+  }, [currentPuzzle, isMuted, solvedWordSet, streak]);
 
-  // Pointer & Drag Handlers
-  const handlePointerDown = (index: number) => {
+  // Pointer & Drag Handlers on Wheel
+  const handleWheelPointerDown = (e: React.PointerEvent) => {
     if (isPaused) return;
-    setIsDragging(true);
-    setSelectedIndices([index]);
-    if (!isMuted) sounds.playTap();
-  };
 
-  const handlePointerEnterLetter = (index: number) => {
-    if (!isDragging || isPaused) return;
-    if (!selectedIndices.includes(index)) {
-      setSelectedIndices((prev) => [...prev, index]);
-      if (!isMuted) sounds.playTap();
+    // Capture pointer on wheel container to keep continuous drag tracking reliable
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch {
+      // ignore if pointer capture unsupported
     }
-  };
 
-  const handleWheelPointerMove = (e: React.PointerEvent) => {
-    if (!isDragging || !wheelRef.current) return;
-    const rect = wheelRef.current.getBoundingClientRect();
+    isPointerDownRef.current = true;
+    hasDraggedRef.current = false;
+    pointerStartPosRef.current = { x: e.clientX, y: e.clientY };
+
+    const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    setDragPointer({ x, y });
 
-    // Check hit test over letter nodes for smooth touch dragging
+    // Hit-test if pointer went down directly over a letter tile
     for (const coord of letterCoords) {
-      const dist = Math.hypot(coord.x - x, coord.y - y);
-      if (dist < 32 && !selectedIndices.includes(coord.index)) {
-        setSelectedIndices((prev) => [...prev, coord.index]);
-        if (!isMuted) sounds.playTap();
+      if (Math.hypot(coord.x - x, coord.y - y) <= 32) {
+        // If starting fresh or not in tap mode:
+        if (engineRef.current.getSelectedIndices().length === 0) {
+          engineRef.current.clear();
+          engineRef.current.selectTile(coord.index);
+          setSelectedIndices(engineRef.current.getSelectedIndices());
+          if (!isMuted) sounds.playTap();
+        }
         break;
       }
     }
   };
 
-  const handlePointerUp = () => {
-    if (!isDragging) return;
-    setIsDragging(false);
-    handleSubmitWord();
+  const handleWheelPointerMove = (e: React.PointerEvent) => {
+    if (!isPointerDownRef.current || isPaused || !wheelRef.current) return;
+
+    const rect = wheelRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    // Threshold detection to distinguish drag gesture from stationary tap
+    if (pointerStartPosRef.current && !hasDraggedRef.current) {
+      const dist = Math.hypot(e.clientX - pointerStartPosRef.current.x, e.clientY - pointerStartPosRef.current.y);
+      if (dist > 8) {
+        hasDraggedRef.current = true;
+        setIsDragging(true);
+      }
+    }
+
+    if (hasDraggedRef.current) {
+      setDragPointer({ x, y });
+
+      // Hit-test letter nodes
+      for (const coord of letterCoords) {
+        const dist = Math.hypot(coord.x - x, coord.y - y);
+        if (dist <= 32) {
+          const changed = engineRef.current.selectTile(coord.index);
+          if (changed) {
+            setSelectedIndices(engineRef.current.getSelectedIndices());
+            if (!isMuted) sounds.playTap();
+          }
+          break;
+        }
+      }
+    }
+  };
+
+  const handleWheelPointerUp = (e: React.PointerEvent) => {
+    if (!isPointerDownRef.current) return;
+    isPointerDownRef.current = false;
+    setDragPointer(null);
+
+    try {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    } catch {
+      // ignore
+    }
+
+    if (hasDraggedRef.current) {
+      // The user finished a drag gesture -> auto-submit the formed word
+      setIsDragging(false);
+      justFinishedDragRef.current = true;
+      setTimeout(() => {
+        justFinishedDragRef.current = false;
+      }, 200);
+
+      handleSubmitWord();
+    } else {
+      // Stationary tap (Smartboard Mode) -> do not auto-submit
+      setIsDragging(false);
+    }
   };
 
   // Click-to-select alternative for Smartboards
   const handleLetterClick = (index: number) => {
-    if (isDragging || isPaused) return;
-    if (selectedIndices.includes(index)) {
-      // If clicked last selected, remove it; or deselect back
-      const pos = selectedIndices.indexOf(index);
-      setSelectedIndices((prev) => prev.slice(0, pos));
-    } else {
-      setSelectedIndices((prev) => [...prev, index]);
+    if (isPaused || justFinishedDragRef.current) return;
+
+    const changed = engineRef.current.handleTapTile(index);
+    if (changed) {
+      setSelectedIndices(engineRef.current.getSelectedIndices());
       if (!isMuted) sounds.playTap();
     }
   };
 
   const handleClearSelection = () => {
+    engineRef.current.clear();
     setSelectedIndices([]);
     setDragPointer(null);
   };
@@ -254,8 +318,10 @@ export const WordConnectGame: React.FC<WordConnectGameProps> = ({
         const j = Math.floor(Math.random() * (i + 1));
         [copy[i], copy[j]] = [copy[j], copy[i]];
       }
+      engineRef.current.setLetters(copy);
       return copy;
     });
+    engineRef.current.clear();
     setSelectedIndices([]);
   };
 
@@ -312,11 +378,7 @@ export const WordConnectGame: React.FC<WordConnectGameProps> = ({
   }
 
   return (
-    <div
-      className="w-full max-w-2xl mx-auto flex flex-col items-center space-y-4 select-none"
-      onPointerUp={handlePointerUp}
-      onPointerLeave={handlePointerUp}
-    >
+    <div className="w-full max-w-2xl mx-auto flex flex-col items-center space-y-4 select-none">
       {/* Top Header / HUD Bar */}
       <div className="w-full card-island p-4 bg-white/95 backdrop-blur-md border-2 border-pink-200 shadow-md rounded-2xl flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -438,8 +500,11 @@ export const WordConnectGame: React.FC<WordConnectGameProps> = ({
         {/* Circular Wheel Canvas / Container */}
         <div
           ref={wheelRef}
+          onPointerDown={handleWheelPointerDown}
           onPointerMove={handleWheelPointerMove}
-          className="relative rounded-full bg-white border-4 border-pink-200 shadow-xl touch-none"
+          onPointerUp={handleWheelPointerUp}
+          onPointerCancel={handleWheelPointerUp}
+          className="relative rounded-full bg-white border-4 border-pink-200 shadow-xl touch-none select-none"
           style={{ width: WHEEL_SIZE, height: WHEEL_SIZE }}
         >
           {/* Connecting SVG Lines */}
@@ -494,10 +559,11 @@ export const WordConnectGame: React.FC<WordConnectGameProps> = ({
             return (
               <div
                 key={coord.index}
-                onPointerDown={() => handlePointerDown(coord.index)}
-                onPointerEnter={() => handlePointerEnterLetter(coord.index)}
-                onClick={() => handleLetterClick(coord.index)}
-                className={`absolute w-14 h-14 -ml-7 -mt-7 rounded-full flex items-center justify-center font-black text-xl cursor-pointer select-none transition-all duration-150 ${
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleLetterClick(coord.index);
+                }}
+                className={`absolute w-14 h-14 -ml-7 -mt-7 rounded-full flex items-center justify-center font-black text-xl cursor-pointer select-none transition-all duration-150 pointer-events-auto ${
                   isSelected
                     ? 'bg-pink-500 border-4 border-white text-white shadow-lg scale-110'
                     : 'bg-white hover:bg-pink-50 border-3 border-pink-300 text-slate-800 shadow-md'
