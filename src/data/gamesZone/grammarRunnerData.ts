@@ -1226,7 +1226,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 0,
             "grammarTopic": "Concessions (Although)",
-            "explanation": "'Although' introduces an unexpected contrast between running fast and missing the bus."
+            "explanation": "'Although' introduces an unexpected contrast between running fast and missing the bus.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g7_h_22",
@@ -2434,7 +2435,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 0,
             "grammarTopic": "Prefer + V-ing",
-            "explanation": "We use the -ing form of the verb after \"prefer\"."
+            "explanation": "We use the -ing form of the verb after \"prefer\".",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_02",
@@ -2446,7 +2448,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 1,
             "grammarTopic": "Prefer X to Y",
-            "explanation": "The preposition used with \"prefer\" when comparing two things is \"to\"."
+            "explanation": "The preposition used with \"prefer\" when comparing two things is \"to\".",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_03",
@@ -2458,7 +2461,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 0,
             "grammarTopic": "Would rather + Bare Verb",
-            "explanation": "We use the base form (bare infinitive) of the verb directly after \"would rather\"."
+            "explanation": "We use the base form (bare infinitive) of the verb directly after \"would rather\".",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_04",
@@ -2470,7 +2474,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 2,
             "grammarTopic": "Would rather ... than",
-            "explanation": "We use \"than\" when comparing two choices with \"would rather\"."
+            "explanation": "We use \"than\" when comparing two choices with \"would rather\".",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_05",
@@ -2482,7 +2487,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 1,
             "grammarTopic": "Responsible for + Gerund",
-            "explanation": "Prepositions like \"for\" are followed by the -ing form of the verb."
+            "explanation": "Prepositions like \"for\" are followed by the -ing form of the verb.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_06",
@@ -2494,7 +2500,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 0,
             "grammarTopic": "Lack of Obligation (don't have to)",
-            "explanation": "We use \"don't have to\" when an action is not necessary."
+            "explanation": "We use \"don't have to\" when an action is not necessary.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_07",
@@ -2506,7 +2513,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 2,
             "grammarTopic": "Prohibition (Mustn't)",
-            "explanation": "We use \"mustn't\" for strict prohibitions and internet safety rules."
+            "explanation": "We use \"mustn't\" for strict prohibitions and internet safety rules.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_08",
@@ -2518,7 +2526,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 1,
             "grammarTopic": "Present Perfect (Ever)",
-            "explanation": "We use \"ever\" in questions to ask about life experiences."
+            "explanation": "We use \"ever\" in questions to ask about life experiences.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_09",
@@ -2530,7 +2539,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 0,
             "grammarTopic": "Present Perfect (Never)",
-            "explanation": "We use \"never\" with positive verbs to express a negative life experience."
+            "explanation": "We use \"never\" with positive verbs to express a negative life experience.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_10",
@@ -2542,7 +2552,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 2,
             "grammarTopic": "Present Perfect (Yet)",
-            "explanation": "We place \"yet\" at the end of negative sentences and questions in Present Perfect."
+            "explanation": "We place \"yet\" at the end of negative sentences and questions in Present Perfect.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_11",
@@ -2554,7 +2565,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 1,
             "grammarTopic": "Present Perfect (Already)",
-            "explanation": "We use \"already\" to say an action happened sooner than expected."
+            "explanation": "We use \"already\" to say an action happened sooner than expected.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_12",
@@ -2566,7 +2578,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 0,
             "grammarTopic": "Present Perfect (Since)",
-            "explanation": "We use \"since\" with a specific starting point in time."
+            "explanation": "We use \"since\" with a specific starting point in time.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_13",
@@ -2578,7 +2591,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 1,
             "grammarTopic": "Present Perfect (For)",
-            "explanation": "We use \"for\" to refer to a duration or period of time."
+            "explanation": "We use \"for\" to refer to a duration or period of time.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_14",
@@ -2590,7 +2604,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 0,
             "grammarTopic": "Purpose (In order to + Infinitive)",
-            "explanation": "\"In order to\" is followed directly by the base verb to express purpose."
+            "explanation": "\"In order to\" is followed directly by the base verb to express purpose.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_15",
@@ -2602,7 +2617,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 2,
             "grammarTopic": "Purpose (So that + Clause)",
-            "explanation": "\"So that\" is followed by a subject and modal verb clause."
+            "explanation": "\"So that\" is followed by a subject and modal verb clause.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_16",
@@ -2614,7 +2630,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 0,
             "grammarTopic": "Concession (Although)",
-            "explanation": "\"Although\" introduces a contrast or concession between two clauses."
+            "explanation": "\"Although\" introduces a contrast or concession between two clauses.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_17",
@@ -2626,7 +2643,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 1,
             "grammarTopic": "Cause and Result (So)",
-            "explanation": "\"So\" introduces the result of the previous situation."
+            "explanation": "\"So\" introduces the result of the previous situation.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_18",
@@ -2638,7 +2656,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 0,
             "grammarTopic": "First Conditional (Real Future)",
-            "explanation": "In first conditionals (real possibilities), the result clause uses \"will + base verb\"."
+            "explanation": "In first conditionals (real possibilities), the result clause uses \"will + base verb\".",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_19",
@@ -2650,7 +2669,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 2,
             "grammarTopic": "First Conditional Negative",
-            "explanation": "Real conditional negative result uses \"will not / won't + base verb\"."
+            "explanation": "Real conditional negative result uses \"will not / won't + base verb\".",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_20",
@@ -2662,7 +2682,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 1,
             "grammarTopic": "Past Continuous with While",
-            "explanation": "\"While\" is used with past continuous to describe an action in progress in the past."
+            "explanation": "\"While\" is used with past continuous to describe an action in progress in the past.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_21",
@@ -2674,7 +2695,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 0,
             "grammarTopic": "Past Simple Interrupting Action",
-            "explanation": "The short interrupting action takes the Past Simple tense."
+            "explanation": "The short interrupting action takes the Past Simple tense.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_22",
@@ -2686,7 +2708,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 1,
             "grammarTopic": "Time Clauses with As Soon As",
-            "explanation": "In time clauses referring to the future, we use Present Simple after \"as soon as\"."
+            "explanation": "In time clauses referring to the future, we use Present Simple after \"as soon as\".",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_23",
@@ -2698,7 +2721,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 2,
             "grammarTopic": "Sequencing Connectors (Then)",
-            "explanation": "We use \"then\" to indicate the next step in a process."
+            "explanation": "We use \"then\" to indicate the next step in a process.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_24",
@@ -2710,7 +2734,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 0,
             "grammarTopic": "Sequencing Connectors (After that)",
-            "explanation": "\"After that\" is a standard connector for sequencing steps in recipes."
+            "explanation": "\"After that\" is a standard connector for sequencing steps in recipes.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_25",
@@ -2722,7 +2747,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 1,
             "grammarTopic": "Telephone Expressions (Put through)",
-            "explanation": "\"Put someone through\" means to connect someone by telephone."
+            "explanation": "\"Put someone through\" means to connect someone by telephone.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_26",
@@ -2734,7 +2760,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 0,
             "grammarTopic": "Telephone Expressions (Leave a message)",
-            "explanation": "A caller asks to \"leave a message\" for someone who is unavailable."
+            "explanation": "A caller asks to \"leave a message\" for someone who is unavailable.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_27",
@@ -2746,7 +2773,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 2,
             "grammarTopic": "Modifying Comparatives (Much)",
-            "explanation": "We use \"much\" before comparative adjectives to show a big difference."
+            "explanation": "We use \"much\" before comparative adjectives to show a big difference.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_28",
@@ -2758,7 +2786,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 1,
             "grammarTopic": "Superlatives (The most)",
-            "explanation": "Long adjectives use \"the most\" in the superlative form."
+            "explanation": "Long adjectives use \"the most\" in the superlative form.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_29",
@@ -2770,7 +2799,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 0,
             "grammarTopic": "Future Predictions with Will",
-            "explanation": "We use \"will + base verb\" for general predictions about the future."
+            "explanation": "We use \"will + base verb\" for general predictions about the future.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_30",
@@ -2782,7 +2812,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 1,
             "grammarTopic": "Predictions with Present Evidence (Be going to)",
-            "explanation": "We use \"be going to\" when there is clear visual evidence in the present."
+            "explanation": "We use \"be going to\" when there is clear visual evidence in the present.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_31",
@@ -2794,7 +2825,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 0,
             "grammarTopic": "Obligation with Must",
-            "explanation": "\"Must\" expresses a strong necessity or moral obligation."
+            "explanation": "\"Must\" expresses a strong necessity or moral obligation.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_32",
@@ -2806,7 +2838,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 2,
             "grammarTopic": "Invitations (Would you like to)",
-            "explanation": "\"Would you like to...\" is the standard polite formula for making an invitation."
+            "explanation": "\"Would you like to...\" is the standard polite formula for making an invitation.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_33",
@@ -2818,7 +2851,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 0,
             "grammarTopic": "Suggestions (Why don't we)",
-            "explanation": "\"Why don't we\" is followed by a base verb (\"look\")."
+            "explanation": "\"Why don't we\" is followed by a base verb (\"look\").",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_34",
@@ -2830,7 +2864,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 1,
             "grammarTopic": "Suggestions (How about + V-ing)",
-            "explanation": "\"How about\" is followed by the -ing form of the verb."
+            "explanation": "\"How about\" is followed by the -ing form of the verb.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_35",
@@ -2842,7 +2877,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 2,
             "grammarTopic": "Adverbs of Frequency (Never)",
-            "explanation": "A trustworthy person \"never\" tells lies."
+            "explanation": "A trustworthy person \"never\" tells lies.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_36",
@@ -2854,7 +2890,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 0,
             "grammarTopic": "Reflexive Pronouns (By yourself)",
-            "explanation": "\"By yourself\" means alone or without help."
+            "explanation": "\"By yourself\" means alone or without help.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_37",
@@ -2866,7 +2903,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 1,
             "grammarTopic": "Correlative Conjunctions (Both ... and)",
-            "explanation": "\"Both\" pairs with \"and\" to join two subjects."
+            "explanation": "\"Both\" pairs with \"and\" to join two subjects.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_38",
@@ -2878,7 +2916,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 2,
             "grammarTopic": "Correlative Conjunctions (Neither ... nor)",
-            "explanation": "\"Neither\" pairs with \"nor\" to negate both choices."
+            "explanation": "\"Neither\" pairs with \"nor\" to negate both choices.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_39",
@@ -2890,7 +2929,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 0,
             "grammarTopic": "Giving Advice (Should)",
-            "explanation": "We use \"should\" to give helpful advice or recommendations."
+            "explanation": "We use \"should\" to give helpful advice or recommendations.",
+            "contentVersion": 2
       },
       {
             "id": "gr_g8_h_40",
@@ -2902,7 +2942,8 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
             ],
             "correctLaneIndex": 1,
             "grammarTopic": "Expressing Opinions (In my opinion)",
-            "explanation": "\"In my opinion\" is the standard phrase to introduce personal viewpoints."
+            "explanation": "\"In my opinion\" is the standard phrase to introduce personal viewpoints.",
+            "contentVersion": 2
       }
 ],
   },

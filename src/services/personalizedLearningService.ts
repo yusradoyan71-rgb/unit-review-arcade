@@ -111,7 +111,8 @@ export class PersonalizedLearningService {
   public static markMistakeCorrected(studentNumber: string, questionId: string): StudentMistakeRecord | null {
     if (!studentNumber || !questionId) return null;
     const existing = this.getCachedMistakes(studentNumber);
-    const item = existing.find((m) => m.questionId === questionId);
+    // Prioritize active uncorrected mistake for this question ID
+    const item = existing.find((m) => m.questionId === questionId && !m.isCorrected) || existing.find((m) => m.questionId === questionId);
 
     if (item) {
       item.isCorrected = true;

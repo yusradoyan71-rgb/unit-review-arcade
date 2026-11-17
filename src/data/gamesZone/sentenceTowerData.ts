@@ -2058,7 +2058,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "We get along well with our classmates.",
             "themeOrTopic": "Phrasal Verbs (Get along)",
-            "explanation": "Subject + get along well with + noun."
+            "explanation": "Subject + get along well with + noun.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_e_11",
@@ -2215,7 +2216,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
                   "Carefully you should peel the potatoes."
             ],
             "themeOrTopic": "Kitchen Advice",
-            "explanation": "Adverb placement."
+            "explanation": "Adverb placement.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_e_21",
@@ -2334,7 +2336,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "He prefers drinking warm milk before bed.",
             "themeOrTopic": "Phrasal Verbs (Turn down)",
-            "explanation": "Why + did + you + turn down + noun."
+            "explanation": "Why + did + you + turn down + noun.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_e_29",
@@ -2451,7 +2454,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
                   "Herself she decorated the birthday cake."
             ],
             "themeOrTopic": "Emphatic Reflexives",
-            "explanation": "Emphatic reflexive placement."
+            "explanation": "Emphatic reflexive placement.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_e_36",
@@ -2554,7 +2558,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
                   "We will stay at home if it rains."
             ],
             "themeOrTopic": "First Conditional",
-            "explanation": "If-condition and main result clause order."
+            "explanation": "If-condition and main result clause order.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_m_02",
@@ -2661,7 +2666,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
                   "You will succeed easily if you study consistently."
             ],
             "themeOrTopic": "First Conditional Adverbs",
-            "explanation": "If-clause and consequence clause order."
+            "explanation": "If-clause and consequence clause order.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_m_08",
@@ -2805,7 +2811,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "She told her brother to be careful.",
             "themeOrTopic": "Relative Clauses (Where)",
-            "explanation": "Subject + where-relative clause + predicate."
+            "explanation": "Subject + where-relative clause + predicate.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_m_16",
@@ -2899,7 +2906,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
                   "In Aegean region delicious olive oil is produced."
             ],
             "themeOrTopic": "Present Simple Passive",
-            "explanation": "Location phrase can be fronted."
+            "explanation": "Location phrase can be fronted.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_m_21",
@@ -2981,7 +2989,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "He is fond of playing acoustic guitar.",
             "themeOrTopic": "Relative Clauses (Why)",
-            "explanation": "Demonstrative + the reason why + clause."
+            "explanation": "Demonstrative + the reason why + clause.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_m_26",
@@ -3071,7 +3080,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
                   "If you mix blue and red you get purple."
             ],
             "themeOrTopic": "Zero Conditional",
-            "explanation": "Condition clause and coordinated color order."
+            "explanation": "Condition clause and coordinated color order.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_m_31",
@@ -3274,7 +3284,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "She prefers doing extreme sports to playing football.",
             "themeOrTopic": "Prefer V-ing to V-ing",
-            "explanation": "Expressing preference between two activities with \"prefer ... to ...\"."
+            "explanation": "Expressing preference between two activities with \"prefer ... to ...\".",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_02",
@@ -3293,7 +3304,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "I would rather cook dinner at home than eat fast food.",
             "themeOrTopic": "Would rather ... than",
-            "explanation": "Using \"would rather\" with bare infinitives and \"than\"."
+            "explanation": "Using \"would rather\" with bare infinitives and \"than\".",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_03",
@@ -3310,7 +3322,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "Have you ever tried rafting on a fast river?",
             "themeOrTopic": "Present Perfect Experience (Ever)",
-            "explanation": "Question form asking about life experiences with \"Have you ever ...?\"."
+            "explanation": "Question form asking about life experiences with \"Have you ever ...?\".",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_04",
@@ -3327,7 +3340,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "They have already booked their hotel rooms in Antalya.",
             "themeOrTopic": "Present Perfect (Already)",
-            "explanation": "Action completed prior to expectations using \"already\"."
+            "explanation": "Action completed prior to expectations using \"already\".",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_05",
@@ -3343,7 +3357,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "We have not received your email attachment yet.",
             "themeOrTopic": "Present Perfect (Yet)",
-            "explanation": "Negative sentence ending with \"yet\" in Present Perfect."
+            "explanation": "Negative sentence ending with \"yet\" in Present Perfect.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_06",
@@ -3361,7 +3376,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "My older brother is responsible for taking out the trash.",
             "themeOrTopic": "Be responsible for + V-ing",
-            "explanation": "Talking about chores and household duties with gerund."
+            "explanation": "Talking about chores and household duties with gerund.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_07",
@@ -3379,7 +3395,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "You do not have to wake up early tomorrow morning.",
             "themeOrTopic": "Lack of obligation (do not have to)",
-            "explanation": "Expressing that an action is unnecessary."
+            "explanation": "Expressing that an action is unnecessary.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_08",
@@ -3395,7 +3412,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "You must never share your private password online.",
             "themeOrTopic": "Internet Safety Rules",
-            "explanation": "Strong obligation and rule using \"must never\"."
+            "explanation": "Strong obligation and rule using \"must never\".",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_09",
@@ -3413,7 +3431,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "If we waste clean water we will have serious droughts.",
             "themeOrTopic": "First Conditional (Real Future)",
-            "explanation": "Real cause and effect: If + Present Simple, will + base verb."
+            "explanation": "Real cause and effect: If + Present Simple, will + base verb.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_10",
@@ -3429,7 +3448,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "If we protect forests wild animals will survive.",
             "themeOrTopic": "First Conditional Environmental",
-            "explanation": "Present condition leading to future consequence."
+            "explanation": "Present condition leading to future consequence.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_11",
@@ -3446,7 +3466,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "We should recycle paper in order to save trees.",
             "themeOrTopic": "Expressing Purpose (In order to)",
-            "explanation": "\"In order to\" expresses purpose followed by a base verb."
+            "explanation": "\"In order to\" expresses purpose followed by a base verb.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_12",
@@ -3462,7 +3483,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "Although paragliding is risky many tourists enjoy it.",
             "themeOrTopic": "Concession (Although)",
-            "explanation": "Contrasting ideas linked with \"although\"."
+            "explanation": "Contrasting ideas linked with \"although\".",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_13",
@@ -3478,7 +3500,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "The telephone rang while we were having dinner.",
             "themeOrTopic": "Past Continuous with While",
-            "explanation": "Past continuous for background action interrupted by a short past action."
+            "explanation": "Past continuous for background action interrupted by a short past action.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_14",
@@ -3496,7 +3519,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "Please send a message as soon as you arrive home.",
             "themeOrTopic": "Time Clause (As soon as)",
-            "explanation": "Future time clause using present simple after \"as soon as\"."
+            "explanation": "Future time clause using present simple after \"as soon as\".",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_15",
@@ -3513,7 +3537,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "Hold on a minute while I connect your call.",
             "themeOrTopic": "Telephone Communication",
-            "explanation": "Polite telephone etiquette when putting someone through."
+            "explanation": "Polite telephone etiquette when putting someone through.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_16",
@@ -3531,7 +3556,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "Would you like to leave a short message for him?",
             "themeOrTopic": "Telephone Dialogue",
-            "explanation": "Offering to take a message for an unavailable person."
+            "explanation": "Offering to take a message for an unavailable person.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_17",
@@ -3549,7 +3575,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "First chop the onions and then heat the olive oil.",
             "themeOrTopic": "Sequencing Steps in Kitchen",
-            "explanation": "Using sequential connectors \"First\" and \"then\"."
+            "explanation": "Using sequential connectors \"First\" and \"then\".",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_18",
@@ -3565,7 +3592,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "After that bake the bread for twenty minutes.",
             "themeOrTopic": "Cooking Process Instructions",
-            "explanation": "Using \"After that\" to describe the next stage."
+            "explanation": "Using \"After that\" to describe the next stage.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_19",
@@ -3580,7 +3608,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "Caving is much more challenging than hiking.",
             "themeOrTopic": "Comparing Extreme Sports",
-            "explanation": "Modified comparative with \"much more challenging than\"."
+            "explanation": "Modified comparative with \"much more challenging than\".",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_20",
@@ -3596,7 +3625,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "Mount Everest is the highest mountain on Earth.",
             "themeOrTopic": "Superlative Adjectives",
-            "explanation": "Superlative construction \"the highest mountain on Earth\"."
+            "explanation": "Superlative construction \"the highest mountain on Earth\".",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_21",
@@ -3612,7 +3642,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "A true friend will always back you up.",
             "themeOrTopic": "Friendship Phrasal Verbs (Back up)",
-            "explanation": "Describing loyalty with \"back someone up\"."
+            "explanation": "Describing loyalty with \"back someone up\".",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_22",
@@ -3630,7 +3661,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "You can always count on your best friends in need.",
             "themeOrTopic": "Phrasal Verb (Count on)",
-            "explanation": "\"Count on\" expresses trust and reliability."
+            "explanation": "\"Count on\" expresses trust and reliability.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_23",
@@ -3648,7 +3680,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "Would you like to join our study group this afternoon?",
             "themeOrTopic": "Making Polite Invitations",
-            "explanation": "Polite invitation formula \"Would you like to join...?\"."
+            "explanation": "Polite invitation formula \"Would you like to join...?\".",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_24",
@@ -3666,7 +3699,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "I would love to come but I am very busy.",
             "themeOrTopic": "Refusing an Invitation with an Excuse",
-            "explanation": "Polite refusal giving a reason with \"but\"."
+            "explanation": "Polite refusal giving a reason with \"but\".",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_25",
@@ -3683,7 +3717,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "Why do we not visit the science museum together?",
             "themeOrTopic": "Making Suggestions",
-            "explanation": "Suggestion structure \"Why don't / do we not ...?\"."
+            "explanation": "Suggestion structure \"Why don't / do we not ...?\".",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_26",
@@ -3700,7 +3735,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "How about going on a cycling tour tomorrow morning?",
             "themeOrTopic": "Suggestions (How about + V-ing)",
-            "explanation": "\"How about\" takes a gerund to propose an activity."
+            "explanation": "\"How about\" takes a gerund to propose an activity.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_27",
@@ -3717,7 +3753,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "It is your turn to empty the clean dishwasher.",
             "themeOrTopic": "Household Chores",
-            "explanation": "Talking about turns and household responsibilities."
+            "explanation": "Talking about turns and household responsibilities.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_28",
@@ -3734,7 +3771,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "We have to keep our bedrooms neat and tidy.",
             "themeOrTopic": "Obligations at Home",
-            "explanation": "Using \"have to\" for house rules."
+            "explanation": "Using \"have to\" for house rules.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_29",
@@ -3749,7 +3787,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "Scientists conducted many experiments in the laboratory.",
             "themeOrTopic": "Science Achievements",
-            "explanation": "Past simple narrative describing scientific work."
+            "explanation": "Past simple narrative describing scientific work.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_30",
@@ -3765,7 +3804,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "Alexander Graham Bell invented the first practical telephone.",
             "themeOrTopic": "Famous Inventions",
-            "explanation": "Talking about inventors and historic milestones."
+            "explanation": "Talking about inventors and historic milestones.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_31",
@@ -3781,7 +3821,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "A massive avalanche tumbled down the steep mountain.",
             "themeOrTopic": "Natural Forces (Avalanche)",
-            "explanation": "Describing a natural disaster with vivid vocabulary."
+            "explanation": "Describing a natural disaster with vivid vocabulary.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_32",
@@ -3797,7 +3838,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "The sudden earthquake damaged several old stone bridges.",
             "themeOrTopic": "Natural Forces (Earthquake)",
-            "explanation": "Narrating consequences of an earthquake."
+            "explanation": "Narrating consequences of an earthquake.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_33",
@@ -3813,7 +3855,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "They stayed at an all-inclusive hotel in Antalya.",
             "themeOrTopic": "Tourism and Accommodation",
-            "explanation": "Describing holiday accommodation types."
+            "explanation": "Describing holiday accommodation types.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_34",
@@ -3829,7 +3872,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "Historic monuments attract thousands of tourists every summer.",
             "themeOrTopic": "Tourism Attractions",
-            "explanation": "Describing popular cultural sites."
+            "explanation": "Describing popular cultural sites.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_35",
@@ -3846,7 +3890,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "You must wear a protective helmet for your safety.",
             "themeOrTopic": "Extreme Sports Safety Gear",
-            "explanation": "Rules for protective equipment using \"must\"."
+            "explanation": "Rules for protective equipment using \"must\".",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_36",
@@ -3861,7 +3906,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "Adrenaline seekers love jumping from high bridges.",
             "themeOrTopic": "Adventure Motivations",
-            "explanation": "Talking about thrill seekers and extreme activities."
+            "explanation": "Talking about thrill seekers and extreme activities.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_37",
@@ -3878,7 +3924,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "Many teenagers are fond of listening to upbeat music.",
             "themeOrTopic": "Teen Interests (Fond of)",
-            "explanation": "\"Be fond of\" followed by a gerund."
+            "explanation": "\"Be fond of\" followed by a gerund.",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_38",
@@ -3894,7 +3941,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "In my opinion heavy metal music is unbearable.",
             "themeOrTopic": "Personal Opinions and Adjectives",
-            "explanation": "Stating a negative preference with \"unbearable\"."
+            "explanation": "Stating a negative preference with \"unbearable\".",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_39",
@@ -3910,7 +3958,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "You should always be respectful to people online.",
             "themeOrTopic": "Internet Netiquette",
-            "explanation": "Giving advice about online etiquette using \"should\"."
+            "explanation": "Giving advice about online etiquette using \"should\".",
+            "contentVersion": 2
       },
       {
             "id": "st_g8_h_40",
@@ -3927,7 +3976,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
             ],
             "correctSentence": "Students use search engines to do their project research.",
             "themeOrTopic": "Digital Habits",
-            "explanation": "Describing digital study tools and habits."
+            "explanation": "Describing digital study tools and habits.",
+            "contentVersion": 2
       }
 ],
   },

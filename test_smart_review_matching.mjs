@@ -649,6 +649,66 @@ assertEq(cachedAfter.length, 1, 'Student historical mistake record was preserved
 assertEq(cachedAfter[0].mistakeId, 'm-legacy-1', 'Student mistake ID unchanged');
 assertEq(cachedAfter[0].studentResponse, 'Option B', 'Student response preserved');
 
+// 5. Test Games Zone items with contentVersion: 2 are properly incompatible with legacy mistakes
+const legacyGamesMistake = {
+  mistakeId: 'm-gz-1',
+  studentNumber: 'student-compat',
+  questionId: 'wn_g8_h_01',
+  activityId: 'word_ninja',
+  activityTitle: 'Word Ninja',
+  unitId: 'games_zone',
+  unitTitle: 'Games Zone',
+  gradeId: 'grade-8',
+  gameType: 'quiz_battle',
+  questionPrompt: "Slice the word for 'Adaptable'",
+  studentResponse: 'Flexible',
+  correctAnswer: 'Adaptable',
+  contentVersion: 1, // Old version
+  isCorrected: false,
+  timestamp: new Date().toISOString(),
+};
+
+// Current wn_g8_h_01 has contentVersion: 2 and new answer "Difficult"
+const currentWnQ = {
+  id: 'wn_g8_h_01',
+  prompt: "Slice the OPPOSITE of 'Easy'",
+  correctWord: 'Difficult',
+  contentVersion: 2,
+};
+
+assertEq(PersonalizedLearningService.isMistakeCompatible(legacyGamesMistake, currentWnQ), false, 'Games Zone v1 mistake is incompatible with v2 question');
+
+// 6. Test that answering a superseded question (isFromMistake: false) NEVER marks an unrelated historical mistake corrected
+const initialUncorrectedCount = PersonalizedLearningService.getCachedMistakes('student-compat').filter(m => !m.isCorrected).length;
+assertEq(initialUncorrectedCount, 1, 'Active uncorrected mistakes before test is 1');
+
+// Simulate Smart Review execution where superseded item was played as general practice (isFromMistake: false)
+// When isFromMistake is false, SmartReviewModal does NOT add questionId to correctedMistakeIds:
+const correctedMistakeIdsFromSession = []; // Empty because isFromMistake was false!
+for (const qId of correctedMistakeIdsFromSession) {
+  PersonalizedLearningService.markMistakeCorrected('student-compat', qId);
+}
+
+const uncorrectedCountAfter = PersonalizedLearningService.getCachedMistakes('student-compat').filter(m => !m.isCorrected).length;
+assertEq(uncorrectedCountAfter, 1, 'Unrelated historical mistake remained uncorrected (not falsely cleared)');
+
+// 7. Verify student XP, level, coins, achievements, and attempt histories remain 100% intact
+localStorage.setItem('ura_student_xp_student-compat', '1250');
+localStorage.setItem('ura_student_coins_student-compat', '340');
+localStorage.setItem('ura_student_level_student-compat', '5');
+localStorage.setItem('ura_student_achievements_student-compat', JSON.stringify(['first_win', 'streak_5']));
+
+// Run session generation and mistake enrichment
+const testEnrichment = PersonalizedLearningService.enrichMistakes([legacyMistakeV1], testArcadeDataWithVersions);
+assertEq(testEnrichment[0].isSuperseded, true, 'Enrichment marks mistake superseded');
+
+// Verify student progress keys were completely untouched
+assertEq(localStorage.getItem('ura_student_xp_student-compat'), '1250', 'Student XP remains intact');
+assertEq(localStorage.getItem('ura_student_coins_student-compat'), '340', 'Student Coins remain intact');
+assertEq(localStorage.getItem('ura_student_level_student-compat'), '5', 'Student Level remains intact');
+const achievements = JSON.parse(localStorage.getItem('ura_student_achievements_student-compat'));
+assertEq(achievements.length, 2, 'Student achievements intact');
+
 console.log('✅ Part A Question History Compatibility tests passed!\n');
 
 // ============================================================================

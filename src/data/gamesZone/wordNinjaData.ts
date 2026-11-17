@@ -97,7 +97,7 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
     ],
     hard: [
       { id: 'wn_g7_h_01', prompt: "Slice the word for 'never changes mind'", promptType: 'meaning', correctWord: 'Stubborn', distractorWords: ['Generous', 'Outgoing', 'Honest'], contentVersion: 2 },
-      { id: 'wn_g7_h_02', prompt: "Slice the SYNONYM of 'Historic'", promptType: 'synonym', correctWord: 'Ancient', distractorWords: ['Modern', 'Futuristic', 'Recent'] },
+      { id: 'wn_g7_h_02', prompt: "Slice the SYNONYM of 'Historic'", promptType: 'synonym', correctWord: 'Ancient', distractorWords: ['Modern', 'Futuristic', 'Recent'], contentVersion: 2 },
       { id: 'wn_g7_h_03', prompt: "Slice the word for 'always on time'", promptType: 'meaning', correctWord: 'Punctual', distractorWords: ['Clumsy', 'Lazy', 'Selfish'], contentVersion: 2 },
       { id: 'wn_g7_h_04', prompt: "Slice the OPPOSITE of 'Generous'", promptType: 'antonym', correctWord: 'Selfish', distractorWords: ['Helpful', 'Friendly', 'Polite'], contentVersion: 2 },
       { id: 'wn_g7_h_05', prompt: "Slice the word for 'drops things easily'", promptType: 'meaning', correctWord: 'Clumsy', distractorWords: ['Stubborn', 'Punctual', 'Honest'], contentVersion: 2 },
@@ -921,7 +921,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Hang up",
                   "Dial",
                   "Hold on"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_m_32",
@@ -932,7 +933,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Selfish",
                   "Arrogant",
                   "Sneaky"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_m_33",
@@ -1033,7 +1035,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Easy",
                   "Careless",
                   "Boring"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_02",
@@ -1044,7 +1047,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Fascinating",
                   "Impressive",
                   "Awesome"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_03",
@@ -1055,7 +1059,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Supportive",
                   "Generous",
                   "Honest"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_04",
@@ -1066,7 +1071,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Connection",
                   "Password",
                   "Browser"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_05",
@@ -1077,7 +1083,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Refuse",
                   "Ignore",
                   "Argue"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_06",
@@ -1088,7 +1095,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Chop",
                   "Peel",
                   "Boil"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_07",
@@ -1099,7 +1107,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Flood",
                   "Avalanche",
                   "Storm"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_08",
@@ -1110,7 +1119,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Bed and breakfast",
                   "Camping",
                   "Hostel"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_09",
@@ -1121,7 +1131,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Excuse",
                   "Preference",
                   "Hobby"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_10",
@@ -1132,7 +1143,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Damage",
                   "Disappear",
                   "Refuse"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_11",
@@ -1143,7 +1155,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Boring",
                   "Ordinary",
                   "Ridiculous"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_12",
@@ -1154,7 +1167,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Secure",
                   "Private",
                   "Helpful"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_13",
@@ -1165,7 +1179,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Melt",
                   "Dice",
                   "Slice"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_14",
@@ -1176,7 +1191,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Connection",
                   "Network",
                   "Message"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_15",
@@ -1187,7 +1203,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Tourist",
                   "Passenger",
                   "Captain"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_16",
@@ -1198,7 +1215,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Turn down",
                   "Call off",
                   "Keep away"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_17",
@@ -1209,7 +1227,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Supportive",
                   "Reliable",
                   "Honest"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_18",
@@ -1220,7 +1239,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Hurricane",
                   "Tornado",
                   "Blizzard"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_19",
@@ -1231,7 +1251,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Library",
                   "Stadium",
                   "Bakery"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_20",
@@ -1242,7 +1263,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Dust",
                   "Iron",
                   "Mop"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_21",
@@ -1253,7 +1275,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Ridiculous",
                   "Unbearable",
                   "Boring"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_22",
@@ -1264,7 +1287,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Welcome",
                   "Join",
                   "Attend"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_23",
@@ -1275,7 +1299,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Trekking",
                   "Cycling",
                   "Jogging"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_24",
@@ -1286,7 +1311,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Boil",
                   "Bake",
                   "Roast"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_25",
@@ -1297,7 +1323,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Departure",
                   "Ticket",
                   "Luggage"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_26",
@@ -1308,7 +1335,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Sneaky",
                   "Jealous",
                   "Stubborn"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_27",
@@ -1319,7 +1347,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Ancient",
                   "Historic",
                   "Old"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_28",
@@ -1330,7 +1359,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Volcano",
                   "Drought",
                   "Flood"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_29",
@@ -1341,7 +1371,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Explanation",
                   "Argument",
                   "Invitation"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_30",
@@ -1352,7 +1383,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Make bed",
                   "Walk dog",
                   "Set table"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_31",
@@ -1363,7 +1395,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Awful",
                   "Terrible",
                   "Boring"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_32",
@@ -1374,7 +1407,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Dishonest",
                   "Secret",
                   "Sly"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_33",
@@ -1385,7 +1419,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Browser",
                   "Screen",
                   "Cable"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_34",
@@ -1396,7 +1431,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Call",
                   "Bell",
                   "Signal"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_35",
@@ -1407,7 +1443,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Helmet",
                   "Paddle",
                   "Mask"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_36",
@@ -1418,7 +1455,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Start",
                   "Delay",
                   "Route"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_37",
@@ -1429,7 +1467,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Endangered",
                   "Vanished",
                   "Gone"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_38",
@@ -1440,7 +1479,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Explorer",
                   "Tourist",
                   "Passenger"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_39",
@@ -1451,7 +1491,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Sweep",
                   "Mop",
                   "Dry"
-            ]
+            ],
+            "contentVersion": 2
       },
       {
             "id": "wn_g8_h_40",
@@ -1462,7 +1503,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
                   "Generous",
                   "Thoughtful",
                   "Caring"
-            ]
+            ],
+            "contentVersion": 2
       }
 ],
   },
