@@ -38,12 +38,28 @@ interface Projectile {
   vy: number;
 }
 
-// Playfield coordinate space (800 x 500)
+interface ExplosionEffect {
+  x: number;
+  y: number;
+  progress: number; // 0 to 1
+}
+
+// Fixed Virtual Coordinate Space (800 x 500)
 const PLAYFIELD_WIDTH = 800;
 const PLAYFIELD_HEIGHT = 500;
 const CANNON_Y = 445;
+const CANNON_MIN_X = 75;
+const CANNON_MAX_X = 725;
 const LANE_CENTERS = [105, 300, 495, 690];
 const DEFENSE_PERIMETER_Y = 415;
+
+// Color Palettes for the 4 Alien Ships
+const SHIP_THEMES = [
+  { bg: '#f43f5e', border: '#fda4af', ufoFill: '#fb7185', glow: 'rgba(244, 63, 94, 0.4)' },
+  { bg: '#0284c7', border: '#7dd3fc', ufoFill: '#38bdf8', glow: 'rgba(2, 132, 199, 0.4)' },
+  { bg: '#ea580c', border: '#fdba74', ufoFill: '#fb923c', glow: 'rgba(234, 88, 12, 0.4)' },
+  { bg: '#059669', border: '#6ee7b7', ufoFill: '#34d399', glow: 'rgba(5, 150, 105, 0.4)' },
+];
 
 export const VocabularyInvadersGame: React.FC<VocabularyInvadersGameProps> = ({
   gradeId,
@@ -55,98 +71,67 @@ export const VocabularyInvadersGame: React.FC<VocabularyInvadersGameProps> = ({
   isPaused,
   isMuted,
 }) => {
+  // Questions and UI reactive state (Updated only on wave events)
   const [questions, setQuestions] = useState<VocabularyInvadersItem[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [alienShips, setAlienShips] = useState<AlienShip[]>([]);
-
-  // Cannon & Projectiles State
-  const [cannonX, setCannonX] = useState(400);
-  const [projectiles, setProjectiles] = useState<Projectile[]>([]);
-  const lastFireTimeRef = useRef(0);
-  const keysDownRef = useRef<Record<string, boolean>>({});
-
-  // Descent progress: 0 (top) to 100 (ground defense barrier)
-  const [descentProgress, setDescentProgress] = useState(0);
-
-  // Hit & Feedback State
+  const [score, setScore] = useState(0);
+  const [streak, setStreak] = useState(1);
+  const [shields, setShields] = useState(3);
   const [hitFeedback, setHitFeedback] = useState<{
     isSuccess: boolean;
     text: string;
     explanation?: string;
   } | null>(null);
-  const [explodingShipId, setExplodingShipId] = useState<string | null>(null);
 
-  // Performance telemetry
-  const [score, setScore] = useState(0);
-  const [streak, setStreak] = useState(1);
-  const [shields, setShields] = useState(3);
-  const [correctCount, setCorrectCount] = useState(0);
-  const [incorrectCount, setIncorrectCount] = useState(0);
-
+  // Canvas and Animation References
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const animFrameIdRef = useRef<number | null>(null);
+  const timeoutsRef = useRef<number[]>([]);
+  const keysDownRef = useRef<Record<string, boolean>>({});
   const startTimeRef = useRef(Date.now());
-  const animFrameRef = useRef<number | null>(null);
-  const playfieldSvgRef = useRef<SVGSVGElement | null>(null);
 
-  // EXACT TEACHER-APPROVED DESCENT SPEED (Preserved as requested)
+  // Performance telemetry counters
+  const correctCountRef = useRef(0);
+  const incorrectCountRef = useRef(0);
+  const scoreRef = useRef(0);
+  const streakRef = useRef(1);
+  const shieldsRef = useRef(3);
+
+  // EXACT TEACHER-APPROVED DESCENT SPEED (Strictly Preserved)
   const descentSpeed = difficulty === 'hard' ? 0.22 : difficulty === 'medium' ? 0.16 : 0.11;
 
-  // Initialize questions
-  useEffect(() => {
-    const pool = getQuestionsForGame('vocabulary_invaders', gradeId, difficulty, 10) as VocabularyInvadersItem[];
-    setQuestions(pool);
-    setCurrentIndex(0);
-    setCannonX(400);
-    setProjectiles([]);
-    setDescentProgress(0);
-    setHitFeedback(null);
-    setExplodingShipId(null);
-    setScore(0);
-    setStreak(1);
-    setShields(3);
-    setCorrectCount(0);
-    setIncorrectCount(0);
-    startTimeRef.current = Date.now();
-  }, [gradeId, difficulty]);
+  // Real-Time Simulation State (Lives in Ref: zero React re-renders during 60 FPS animation loop!)
+  const simStateRef = useRef({
+    cannonX: 400,
+    targetCannonX: 400,
+    descentProgress: 0,
+    projectiles: [] as Projectile[],
+    alienShips: [] as AlienShip[],
+    explosions: [] as ExplosionEffect[],
+    lastFireTime: 0,
+    isWaveActive: false,
+    hitResolved: false,
+  });
 
-  // Spawn alien ships for current wave
-  useEffect(() => {
-    if (!questions[currentIndex]) return;
-    const q = questions[currentIndex];
-
-    // Combine targetWord + distractorWords into 4 distinct invaders
-    const rawCandidates = [
-      { id: `${q.id}_tgt`, word: q.targetWord, isCorrect: true },
-      ...q.distractorWords.slice(0, 3).map((w, idx) => ({
-        id: `${q.id}_dist_${idx}`,
-        word: w,
-        isCorrect: false,
-      })),
-    ];
-
-    // Shuffle lane assignments (Fisher-Yates)
-    for (let i = rawCandidates.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [rawCandidates[i], rawCandidates[j]] = [rawCandidates[j], rawCandidates[i]];
-    }
-
-    const ships: AlienShip[] = rawCandidates.map((c, idx) => ({
-      ...c,
-      laneIndex: idx,
-      x: LANE_CENTERS[idx],
-      width: 160,
-      height: 56,
-    }));
-
-    setAlienShips(ships);
-    setProjectiles([]);
-    setDescentProgress(0);
-    setHitFeedback(null);
-    setExplodingShipId(null);
-  }, [currentIndex, questions]);
+  // Safe timeout scheduler that tracks IDs for clean unmount
+  const scheduleTimeout = useCallback((fn: () => void, delayMs: number) => {
+    const tid = window.setTimeout(() => {
+      timeoutsRef.current = timeoutsRef.current.filter((id) => id !== tid);
+      fn();
+    }, delayMs);
+    timeoutsRef.current.push(tid);
+    return tid;
+  }, []);
 
   // Finish session helper
   const finishGame = useCallback(
     (finalCorrect: number, finalIncorrect: number, finalScore: number) => {
+      // Cancel active loop
+      if (animFrameIdRef.current) {
+        cancelAnimationFrame(animFrameIdRef.current);
+        animFrameIdRef.current = null;
+      }
+
       const totalQ = questions.length || 10;
       const evaluated = finalCorrect + finalIncorrect;
       const accuracy = evaluated > 0 ? Math.round((finalCorrect / evaluated) * 100) : 0;
@@ -184,38 +169,118 @@ export const VocabularyInvadersGame: React.FC<VocabularyInvadersGameProps> = ({
     [questions.length, studentNumber, difficulty, studentClass, gradeId, onComplete]
   );
 
-  // Fire a projectile from the cannon
+  // Initialize questions and telemetry
+  useEffect(() => {
+    const pool = getQuestionsForGame('vocabulary_invaders', gradeId, difficulty, 10) as VocabularyInvadersItem[];
+    setQuestions(pool);
+    setCurrentIndex(0);
+    setScore(0);
+    setStreak(1);
+    setShields(3);
+    setHitFeedback(null);
+
+    scoreRef.current = 0;
+    streakRef.current = 1;
+    shieldsRef.current = 3;
+    correctCountRef.current = 0;
+    incorrectCountRef.current = 0;
+    startTimeRef.current = Date.now();
+
+    const sim = simStateRef.current;
+    sim.cannonX = 400;
+    sim.targetCannonX = 400;
+    sim.descentProgress = 0;
+    sim.projectiles = [];
+    sim.explosions = [];
+    sim.isWaveActive = false;
+    sim.hitResolved = false;
+  }, [gradeId, difficulty]);
+
+  // Setup wave when index or questions change
+  useEffect(() => {
+    if (!questions[currentIndex]) return;
+    const q = questions[currentIndex];
+
+    // Combine targetWord + distractorWords into 4 distinct invaders
+    const rawCandidates = [
+      { id: `${q.id}_tgt`, word: q.targetWord, isCorrect: true },
+      ...q.distractorWords.slice(0, 3).map((w, idx) => ({
+        id: `${q.id}_dist_${idx}`,
+        word: w,
+        isCorrect: false,
+      })),
+    ];
+
+    // Shuffle lane assignments (Fisher-Yates)
+    for (let i = rawCandidates.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [rawCandidates[i], rawCandidates[j]] = [rawCandidates[j], rawCandidates[i]];
+    }
+
+    const ships: AlienShip[] = rawCandidates.map((c, idx) => ({
+      ...c,
+      laneIndex: idx,
+      x: LANE_CENTERS[idx],
+      width: 160,
+      height: 52,
+    }));
+
+    // Reset simulation state for the new wave
+    const sim = simStateRef.current;
+    sim.alienShips = ships;
+    sim.descentProgress = 0;
+    sim.projectiles = [];
+    sim.explosions = [];
+    sim.hitResolved = false;
+    sim.isWaveActive = true;
+    setHitFeedback(null);
+  }, [currentIndex, questions]);
+
+  // Advance to next wave
+  const advanceWave = useCallback(() => {
+    if (shieldsRef.current <= 0 || currentIndex + 1 >= questions.length) {
+      finishGame(correctCountRef.current, incorrectCountRef.current, scoreRef.current);
+    } else {
+      setCurrentIndex((prev) => prev + 1);
+    }
+  }, [currentIndex, questions.length, finishGame]);
+
+  // Fire cannon action (Triggered by Space, Enter, or Fire Button)
   const handleFireCannon = useCallback(() => {
-    if (hitFeedback || isPaused) return;
+    const sim = simStateRef.current;
+    if (isPaused || !sim.isWaveActive || sim.hitResolved) return;
 
     const now = performance.now();
-    if (now - lastFireTimeRef.current < 320) return; // Cooldown gate
-    lastFireTimeRef.current = now;
+    if (now - sim.lastFireTime < 320) return; // Cooldown limit
+    sim.lastFireTime = now;
 
     if (!isMuted) sounds.playTap();
 
-    setProjectiles((prev) => [
-      ...prev,
-      {
-        id: `p_${now}_${Math.random()}`,
-        x: cannonX,
-        y: CANNON_Y - 20,
-        vy: -13, // Fast upward speed
-      },
-    ]);
-  }, [hitFeedback, isPaused, isMuted, cannonX]);
+    // Spawn new projectile at cannon tip
+    sim.projectiles.push({
+      id: `p_${now}_${Math.random().toString(36).substring(2, 6)}`,
+      x: sim.cannonX,
+      y: CANNON_Y - 20,
+      vy: -13, // High-velocity ascending laser
+    });
+  }, [isPaused, isMuted]);
 
-  // Ground breach handler (alien ships hit planetary defense line)
+  // Ground breach handler (Aliens reach planetary defense line)
   const handleGroundBreach = useCallback(() => {
+    const sim = simStateRef.current;
+    if (sim.hitResolved || !sim.isWaveActive) return;
+    sim.hitResolved = true;
+    sim.isWaveActive = false;
+
     const currentQ = questions[currentIndex];
-    if (!currentQ || hitFeedback) return;
+    if (!currentQ) return;
 
     if (!isMuted) sounds.playError();
+    streakRef.current = 1;
     setStreak(1);
-    const nextIncorrect = incorrectCount + 1;
-    setIncorrectCount(nextIncorrect);
-    const nextShields = shields - 1;
-    setShields(nextShields);
+    incorrectCountRef.current += 1;
+    shieldsRef.current -= 1;
+    setShields(shieldsRef.current);
 
     setHitFeedback({
       isSuccess: false,
@@ -223,160 +288,344 @@ export const VocabularyInvadersGame: React.FC<VocabularyInvadersGameProps> = ({
       explanation: currentQ.explanation,
     });
 
-    setTimeout(() => {
-      if (nextShields <= 0 || currentIndex + 1 >= questions.length) {
-        finishGame(correctCount, nextIncorrect, score);
-      } else {
-        setCurrentIndex((i) => i + 1);
-      }
+    scheduleTimeout(() => {
+      advanceWave();
     }, 1800);
-  }, [questions, currentIndex, hitFeedback, isMuted, incorrectCount, shields, score, correctCount, finishGame]);
+  }, [questions, currentIndex, isMuted, scheduleTimeout, advanceWave]);
 
-  // Main 60 FPS Game Loop: Cannon movement, Projectile flight, Descent, and 2D Collisions
+  // Main 60 FPS Hardware-Accelerated Canvas Engine
   useEffect(() => {
-    if (isPaused || hitFeedback) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
 
-    const currentQ = questions[currentIndex];
-    if (!currentQ) return;
+    let isRunning = true;
 
-    const loop = () => {
-      // 1. Cannon continuous keyboard movement
-      const keys = keysDownRef.current;
-      if (keys['ArrowLeft'] || keys['a'] || keys['A']) {
-        setCannonX((x) => Math.max(70, x - 7.5));
-      }
-      if (keys['ArrowRight'] || keys['d'] || keys['D']) {
-        setCannonX((x) => Math.min(PLAYFIELD_WIDTH - 70, x + 7.5));
-      }
+    const renderLoop = () => {
+      if (!isRunning) return;
 
-      // 2. Advance alien ship descent progress
-      setDescentProgress((prev) => {
-        const next = prev + descentSpeed;
-        if (next >= 100) {
-          handleGroundBreach();
-          return 100;
+      const sim = simStateRef.current;
+
+      // 1. Update Physics (Only if not paused and wave is active)
+      if (!isPaused && sim.isWaveActive && !sim.hitResolved) {
+        // Continuous keyboard movement
+        const keys = keysDownRef.current;
+        if (keys['ArrowLeft'] || keys['a'] || keys['A']) {
+          sim.cannonX = Math.max(CANNON_MIN_X, sim.cannonX - 8);
+          sim.targetCannonX = sim.cannonX;
         }
-        return next;
-      });
+        if (keys['ArrowRight'] || keys['d'] || keys['D']) {
+          sim.cannonX = Math.min(CANNON_MAX_X, sim.cannonX + 8);
+          sim.targetCannonX = sim.cannonX;
+        }
 
-      // 3. Move projectiles and evaluate 2D collisions
-      setProjectiles((prev) => {
-        if (prev.length === 0) return prev;
+        // Smooth touch/pointer lerp
+        if (Math.abs(sim.targetCannonX - sim.cannonX) > 1) {
+          sim.cannonX += (sim.targetCannonX - sim.cannonX) * 0.35;
+          sim.cannonX = Math.max(CANNON_MIN_X, Math.min(CANNON_MAX_X, sim.cannonX));
+        }
 
-        const updated: Projectile[] = [];
-        const currentShipY = 55 + (descentProgress / 100) * (DEFENSE_PERIMETER_Y - 110);
+        // Alien Descent
+        sim.descentProgress += descentSpeed;
+        if (sim.descentProgress >= 100) {
+          sim.descentProgress = 100;
+          handleGroundBreach();
+        }
 
-        for (const p of prev) {
-          const nextY = p.y + p.vy;
+        // Projectiles update & 2D collision detection
+        const currentShipY = 55 + (sim.descentProgress / 100) * (DEFENSE_PERIMETER_Y - 110);
+        const aliveProjectiles: Projectile[] = [];
 
-          // Out of screen at top
-          if (nextY < 10) continue;
+        for (const p of sim.projectiles) {
+          p.y += p.vy;
 
-          // Check collision against each descending alien ship
+          // Check top boundary
+          if (p.y < 15) continue;
+
+          // 2D Bounding Box Collision Check against the 4 Alien Ships
           let hitShip: AlienShip | null = null;
-
-          for (const ship of alienShips) {
+          for (const ship of sim.alienShips) {
             const shipLeft = ship.x - ship.width / 2;
             const shipRight = ship.x + ship.width / 2;
             const shipTop = currentShipY;
             const shipBottom = currentShipY + ship.height;
 
-            if (p.x >= shipLeft && p.x <= shipRight && nextY >= shipTop && nextY <= shipBottom) {
+            if (p.x >= shipLeft && p.x <= shipRight && p.y >= shipTop && p.y <= shipBottom) {
               hitShip = ship;
               break;
             }
           }
 
           if (hitShip) {
-            // Collision occurred! Consume projectile and process hit
-            if (hitShip.isCorrect) {
-              // Direct correct target hit!
-              if (!isMuted) sounds.playSuccess();
-              setExplodingShipId(hitShip.id);
-              const points = 100 * streak;
-              const nextScore = score + points;
-              setScore(nextScore);
-              const nextCorrect = correctCount + 1;
-              setCorrectCount(nextCorrect);
-              setStreak((s) => Math.min(5, s + 1));
+            // Collision occurred! Stop wave flight and trigger resolution
+            sim.hitResolved = true;
+            sim.isWaveActive = false;
 
+            // Spawn explosion effect
+            sim.explosions.push({
+              x: hitShip.x,
+              y: currentShipY + hitShip.height / 2,
+              progress: 0,
+            });
+
+            const currentQ = questions[currentIndex];
+
+            if (hitShip.isCorrect) {
+              // Direct hit on correct target!
+              if (!isMuted) sounds.playSuccess();
+              const points = 100 * streakRef.current;
+              scoreRef.current += points;
+              correctCountRef.current += 1;
+              streakRef.current = Math.min(5, streakRef.current + 1);
+
+              setScore(scoreRef.current);
+              setStreak(streakRef.current);
               setHitFeedback({
                 isSuccess: true,
                 text: `DIRECT HIT! +${points} PTS! 💥`,
               });
 
-              setTimeout(() => {
-                if (currentIndex + 1 >= questions.length) {
-                  finishGame(nextCorrect, incorrectCount, nextScore);
-                } else {
-                  setCurrentIndex((i) => i + 1);
-                }
+              scheduleTimeout(() => {
+                advanceWave();
               }, 950);
             } else {
               // Wrong target hit!
               if (!isMuted) sounds.playError();
+              streakRef.current = 1;
               setStreak(1);
-              const nextIncorrect = incorrectCount + 1;
-              setIncorrectCount(nextIncorrect);
-              const nextShields = shields - 1;
-              setShields(nextShields);
+              incorrectCountRef.current += 1;
+              shieldsRef.current -= 1;
+              setShields(shieldsRef.current);
 
               setHitFeedback({
                 isSuccess: false,
-                text: `WRONG TARGET! Target was "${currentQ.targetWord}"`,
-                explanation: currentQ.explanation,
+                text: `WRONG TARGET! Target was "${currentQ?.targetWord}"`,
+                explanation: currentQ?.explanation,
               });
 
-              setTimeout(() => {
-                if (nextShields <= 0 || currentIndex + 1 >= questions.length) {
-                  finishGame(correctCount, nextIncorrect, score);
-                } else {
-                  setCurrentIndex((i) => i + 1);
-                }
+              scheduleTimeout(() => {
+                advanceWave();
               }, 1800);
             }
 
-            // Do not keep this projectile
+            // Consume projectile
             continue;
           }
 
-          // Keep projectile moving upward
-          updated.push({ ...p, y: nextY });
+          aliveProjectiles.push(p);
         }
 
-        return updated;
-      });
+        sim.projectiles = aliveProjectiles;
+      }
 
-      animFrameRef.current = requestAnimationFrame(loop);
+      // Update active explosions
+      for (const ex of sim.explosions) {
+        ex.progress = Math.min(1, ex.progress + 0.05);
+      }
+      sim.explosions = sim.explosions.filter((ex) => ex.progress < 1);
+
+      // 2. RENDER SCENE ON CANVAS (< 0.2ms total execution time)
+      ctx.clearRect(0, 0, PLAYFIELD_WIDTH, PLAYFIELD_HEIGHT);
+
+      // Cosmic background gradient
+      const bgGrad = ctx.createLinearGradient(0, 0, 0, PLAYFIELD_HEIGHT);
+      bgGrad.addColorStop(0, '#0f172a');
+      bgGrad.addColorStop(0.5, '#1e1b4b');
+      bgGrad.addColorStop(1, '#090d16');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, PLAYFIELD_WIDTH, PLAYFIELD_HEIGHT);
+
+      // Lane Guide Lines
+      ctx.strokeStyle = 'rgba(99, 102, 241, 0.2)';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([4, 6]);
+      for (const lx of LANE_CENTERS) {
+        ctx.beginPath();
+        ctx.moveTo(lx, 30);
+        ctx.lineTo(lx, DEFENSE_PERIMETER_Y);
+        ctx.stroke();
+      }
+      ctx.setLineDash([]); // Reset line dash
+
+      // Planetary Defense Perimeter Line
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 3;
+      ctx.shadowColor = '#0284c7';
+      ctx.shadowBlur = 8;
+      ctx.beginPath();
+      ctx.moveTo(20, DEFENSE_PERIMETER_Y);
+      ctx.lineTo(PLAYFIELD_WIDTH - 20, DEFENSE_PERIMETER_Y);
+      ctx.stroke();
+      ctx.shadowBlur = 0; // Reset shadow
+
+      ctx.fillStyle = '#38bdf8';
+      ctx.font = '900 10px monospace';
+      ctx.fillText('PLANETARY SHIELD PERIMETER', 30, DEFENSE_PERIMETER_Y - 8);
+
+      // Projectiles (Glow + Energy Core)
+      for (const p of sim.projectiles) {
+        // Outer glow
+        ctx.fillStyle = 'rgba(56, 189, 248, 0.6)';
+        ctx.beginPath();
+        ctx.ellipse(p.x, p.y, 6, 14, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Inner beam
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 3.5;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y - 10);
+        ctx.lineTo(p.x, p.y + 10);
+        ctx.stroke();
+      }
+
+      // Descending Alien Ships
+      const currentShipY = 55 + (sim.descentProgress / 100) * (DEFENSE_PERIMETER_Y - 110);
+
+      for (const ship of sim.alienShips) {
+        const theme = SHIP_THEMES[ship.laneIndex] || SHIP_THEMES[0];
+        const shipX = ship.x - ship.width / 2;
+
+        ctx.save();
+        ctx.translate(shipX, currentShipY);
+
+        // Canopy / Dome
+        ctx.fillStyle = theme.ufoFill;
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.ellipse(ship.width / 2, 10, 28, 13, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        // Main Saucer Hull (Card)
+        ctx.fillStyle = '#ffffff';
+        ctx.strokeStyle = theme.bg;
+        ctx.lineWidth = 3.5;
+        ctx.shadowColor = theme.glow;
+        ctx.shadowBlur = 10;
+
+        // Rounded rect for hull
+        ctx.beginPath();
+        ctx.roundRect(0, 10, ship.width, ship.height - 10, 14);
+        ctx.fill();
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        // Thruster Lights
+        ctx.fillStyle = theme.bg;
+        ctx.beginPath();
+        ctx.arc(15, 31, 4.5, 0, Math.PI * 2);
+        ctx.arc(ship.width - 15, 31, 4.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        // English Vocabulary Text Badge
+        ctx.fillStyle = '#0f172a';
+        ctx.font = '900 15px "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(ship.word, ship.width / 2, 33);
+
+        ctx.restore();
+      }
+
+      // Explosions
+      for (const ex of sim.explosions) {
+        ctx.save();
+        ctx.translate(ex.x, ex.y);
+        const radius = ex.progress * 48;
+        const alpha = 1 - ex.progress;
+
+        ctx.strokeStyle = `rgba(251, 146, 60, ${alpha})`;
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.arc(0, 0, radius, 0, Math.PI * 2);
+        ctx.stroke();
+
+        ctx.fillStyle = `rgba(250, 204, 21, ${alpha * 0.8})`;
+        ctx.beginPath();
+        ctx.arc(0, 0, radius * 0.65, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.font = '22px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('💥', 0, 0);
+
+        ctx.restore();
+      }
+
+      // Player Cannon at Bottom
+      ctx.save();
+      ctx.translate(sim.cannonX, CANNON_Y);
+
+      // Aiming Guideline Beam
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.25)';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(0, -25);
+      ctx.lineTo(0, -CANNON_Y + 45);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Cannon Base Chassis & Wheels
+      ctx.fillStyle = '#334155';
+      ctx.strokeStyle = '#64748b';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.roundRect(-28, 0, 56, 22, 7);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = '#0f172a';
+      ctx.beginPath();
+      ctx.arc(-17, 16, 5.5, 0, Math.PI * 2);
+      ctx.arc(17, 16, 5.5, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Turret Barrel
+      ctx.fillStyle = '#38bdf8';
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.roundRect(-6, -28, 12, 22, 3);
+      ctx.fill();
+      ctx.stroke();
+
+      // Turret Hub
+      ctx.fillStyle = '#94a3b8';
+      ctx.beginPath();
+      ctx.arc(0, -2, 10, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Core Indicator Light
+      ctx.fillStyle = '#f43f5e';
+      ctx.beginPath();
+      ctx.arc(0, -2, 4, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
+
+      animFrameIdRef.current = requestAnimationFrame(renderLoop);
     };
 
-    animFrameRef.current = requestAnimationFrame(loop);
+    animFrameIdRef.current = requestAnimationFrame(renderLoop);
+
     return () => {
-      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+      isRunning = false;
+      if (animFrameIdRef.current) {
+        cancelAnimationFrame(animFrameIdRef.current);
+        animFrameIdRef.current = null;
+      }
     };
-  }, [
-    isPaused,
-    hitFeedback,
-    questions,
-    currentIndex,
-    descentSpeed,
-    descentProgress,
-    alienShips,
-    streak,
-    score,
-    correctCount,
-    incorrectCount,
-    shields,
-    isMuted,
-    handleGroundBreach,
-    finishGame,
-  ]);
+  }, [isPaused, descentSpeed, isMuted, handleGroundBreach, scheduleTimeout, advanceWave, questions, currentIndex]);
 
-  // Keyboard Event Listeners (Arrow keys, A/D, Space)
+  // Window Keyboard Listeners (Attached ONCE on mount, cleanly removed on unmount)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (isPaused) return;
-
       keysDownRef.current[e.key] = true;
 
       if (e.key === ' ' || e.key === 'Enter') {
@@ -391,36 +640,39 @@ export const VocabularyInvadersGame: React.FC<VocabularyInvadersGameProps> = ({
 
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('keyup', handleKeyUp);
+
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
     };
-  }, [isPaused, handleFireCannon]);
+  }, [handleFireCannon]);
 
-  // Pointer drag & tap on playfield to move cannon and fire
-  const handlePlayfieldPointer = (e: React.PointerEvent) => {
-    if (isPaused || hitFeedback || !playfieldSvgRef.current) return;
-    const pt = playfieldSvgRef.current.createSVGPoint();
-    pt.x = e.clientX;
-    pt.y = e.clientY;
-    const svgP = pt.matrixTransform(playfieldSvgRef.current.getScreenCTM()?.inverse());
+  // Comprehensive Cleanup on Component Unmount
+  useEffect(() => {
+    return () => {
+      if (animFrameIdRef.current) {
+        cancelAnimationFrame(animFrameIdRef.current);
+        animFrameIdRef.current = null;
+      }
+      for (const tid of timeoutsRef.current) {
+        clearTimeout(tid);
+      }
+      timeoutsRef.current = [];
+    };
+  }, []);
 
-    // Update cannon X position directly towards pointer location
-    setCannonX(Math.max(70, Math.min(PLAYFIELD_WIDTH - 70, svgP.x)));
+  // Pointer drag & tap on playfield to position cannon
+  const handlePlayfieldPointer = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = PLAYFIELD_WIDTH / rect.width;
+    const touchX = (e.clientX - rect.left) * scaleX;
+    simStateRef.current.targetCannonX = Math.max(CANNON_MIN_X, Math.min(CANNON_MAX_X, touchX));
   };
 
   const currentQ = questions[currentIndex];
   if (!currentQ) return null;
-
-  // Ship visual themes
-  const shipThemes = [
-    { bg: '#f43f5e', border: '#fda4af', ufoFill: '#fb7185', emoji: '🛸' },
-    { bg: '#0284c7', border: '#7dd3fc', ufoFill: '#38bdf8', emoji: '👾' },
-    { bg: '#ea580c', border: '#fdba74', ufoFill: '#fb923c', emoji: '👽' },
-    { bg: '#059669', border: '#6ee7b7', ufoFill: '#34d399', emoji: '🛸' },
-  ];
-
-  const currentShipY = 55 + (descentProgress / 100) * (DEFENSE_PERIMETER_Y - 110);
 
   return (
     <div className="relative w-full max-w-4xl mx-auto bg-gradient-to-b from-indigo-50 via-sky-50 to-purple-100 rounded-3xl border-3 border-indigo-300 shadow-2xl overflow-hidden flex flex-col select-none">
@@ -498,178 +750,22 @@ export const VocabularyInvadersGame: React.FC<VocabularyInvadersGameProps> = ({
         </p>
       </div>
 
-      {/* INTERACTIVE 2D SHOOTER PLAYFIELD */}
-      <div className="relative flex-1 min-h-[440px] bg-gradient-to-b from-indigo-950 via-slate-900 to-slate-950 overflow-hidden flex flex-col justify-between">
+      {/* 60 FPS HARDWARE-ACCELERATED PLAYFIELD */}
+      <div className="relative flex-1 min-h-[440px] bg-slate-950 overflow-hidden flex flex-col justify-between">
         
-        {/* SVG Game Canvas */}
-        <svg
-          ref={playfieldSvgRef}
-          viewBox={`0 0 ${PLAYFIELD_WIDTH} ${PLAYFIELD_HEIGHT}`}
+        {/* Canvas Element with Virtual 800x500 Resolution */}
+        <canvas
+          ref={canvasRef}
+          width={PLAYFIELD_WIDTH}
+          height={PLAYFIELD_HEIGHT}
           className="w-full h-full cursor-crosshair touch-none"
           onPointerDown={handlePlayfieldPointer}
           onPointerMove={(e) => {
             if (e.buttons > 0) handlePlayfieldPointer(e);
           }}
-        >
-          {/* Starfield Backdrop */}
-          <defs>
-            <linearGradient id="laserGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#ffffff" />
-              <stop offset="40%" stopColor="#38bdf8" />
-              <stop offset="100%" stopColor="#a855f7" />
-            </linearGradient>
-            <linearGradient id="cannonMetal" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#94a3b8" />
-              <stop offset="50%" stopColor="#e2e8f0" />
-              <stop offset="100%" stopColor="#64748b" />
-            </linearGradient>
-          </defs>
+        />
 
-          {/* Lane dividers */}
-          {LANE_CENTERS.map((lx, idx) => (
-            <line
-              key={idx}
-              x1={lx}
-              y1="30"
-              x2={lx}
-              y2={DEFENSE_PERIMETER_Y}
-              stroke="#6366f1"
-              strokeWidth="1.5"
-              strokeDasharray="4 6"
-              opacity="0.25"
-            />
-          ))}
-
-          {/* Planetary Defense Barrier Line */}
-          <line
-            x1="20"
-            y1={DEFENSE_PERIMETER_Y}
-            x2={PLAYFIELD_WIDTH - 20}
-            y2={DEFENSE_PERIMETER_Y}
-            stroke="#38bdf8"
-            strokeWidth="3"
-            opacity="0.8"
-          />
-          <text x="30" y={DEFENSE_PERIMETER_Y - 8} fill="#38bdf8" fontSize="10" fontWeight="900" letterSpacing="2">
-            SHIELD PERIMETER
-          </text>
-
-          {/* PROJECTILES (Moving upward with laser glow) */}
-          {projectiles.map((p) => (
-            <g key={p.id}>
-              {/* Outer Glow */}
-              <ellipse cx={p.x} cy={p.y} rx="5" ry="12" fill="#38bdf8" opacity="0.6" />
-              {/* Core Laser Bolt */}
-              <line
-                x1={p.x}
-                y1={p.y - 10}
-                x2={p.x}
-                y2={p.y + 10}
-                stroke="url(#laserGrad)"
-                strokeWidth="4"
-                strokeLinecap="round"
-              />
-            </g>
-          ))}
-
-          {/* DESCENDING ALIEN SHIPS (With clear English vocabulary labels) */}
-          {alienShips.map((ship) => {
-            const theme = shipThemes[ship.laneIndex] || shipThemes[0];
-            const isExploding = explodingShipId === ship.id;
-
-            if (isExploding) {
-              return (
-                <g key={ship.id} transform={`translate(${ship.x}, ${currentShipY + 28})`}>
-                  <circle cx="0" cy="0" r="45" fill="#facc15" opacity="0.9" className="animate-ping" />
-                  <circle cx="0" cy="0" r="30" fill="#f97316" />
-                  <text x="0" y="8" textAnchor="middle" fontSize="24">💥</text>
-                </g>
-              );
-            }
-
-            return (
-              <g
-                key={ship.id}
-                transform={`translate(${ship.x - ship.width / 2}, ${currentShipY})`}
-                className="transition-transform duration-75"
-              >
-                {/* UFO Dome / Canopy */}
-                <ellipse
-                  cx={ship.width / 2}
-                  cy="12"
-                  rx="30"
-                  ry="14"
-                  fill={theme.ufoFill}
-                  stroke="#ffffff"
-                  strokeWidth="2"
-                  opacity="0.95"
-                />
-
-                {/* Main Vessel Saucer Chassis */}
-                <rect
-                  x="0"
-                  y="12"
-                  width={ship.width}
-                  height="42"
-                  rx="14"
-                  fill="#ffffff"
-                  stroke={theme.bg}
-                  strokeWidth="3.5"
-                  filter="drop-shadow(0 4px 10px rgba(0,0,0,0.4))"
-                />
-
-                {/* Left/Right UFO Thruster Lights */}
-                <circle cx="16" cy="33" r="5" fill={theme.bg} />
-                <circle cx={ship.width - 16} cy="33" r="5" fill={theme.bg} />
-
-                {/* English Word Card Badge inside Saucer */}
-                <text
-                  x={ship.width / 2}
-                  y="38"
-                  textAnchor="middle"
-                  fill="#0f172a"
-                  fontSize="15"
-                  fontWeight="900"
-                  letterSpacing="0.5"
-                >
-                  {ship.word}
-                </text>
-              </g>
-            );
-          })}
-
-          {/* PLAYER-CONTROLLED CANNON (At bottom of screen) */}
-          <g transform={`translate(${cannonX}, ${CANNON_Y})`}>
-            {/* Target Reticle Beam Guideline */}
-            <line
-              x1="0"
-              y1="-22"
-              x2="0"
-              y2={-CANNON_Y + 50}
-              stroke="#38bdf8"
-              strokeWidth="1.5"
-              strokeDasharray="4 4"
-              opacity="0.3"
-            />
-
-            {/* Cannon Base Wheel Chassis */}
-            <rect x="-30" y="0" width="60" height="24" rx="8" fill="#334155" stroke="#64748b" strokeWidth="2" />
-            <circle cx="-18" cy="18" r="6" fill="#0f172a" />
-            <circle cx="18" cy="18" r="6" fill="#0f172a" />
-
-            {/* Cannon Turret Body */}
-            <polygon points="-22,4 22,4 16,-12 -16,-12" fill="url(#cannonMetal)" stroke="#94a3b8" strokeWidth="2" />
-
-            {/* Laser Barrel */}
-            <rect x="-6" y="-30" width="12" height="22" rx="3" fill="#38bdf8" stroke="#ffffff" strokeWidth="2" />
-            <ellipse cx="0" cy="-30" rx="6" ry="2.5" fill="#f0abfc" />
-
-            {/* Cannon Indicator Light */}
-            <circle cx="0" cy="-4" r="4" fill="#a855f7" className="animate-pulse" />
-          </g>
-        </svg>
-
-        {/* FEEDBACK OVERLAY BANNER */}
+        {/* Educational Feedback Overlay Banner */}
         {hitFeedback && (
           <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 z-40 flex flex-col items-center justify-center">
             <div
@@ -692,14 +788,16 @@ export const VocabularyInvadersGame: React.FC<VocabularyInvadersGameProps> = ({
         )}
 
         {/* BOTTOM SMARTBOARD & TOUCH SHOOTING CONSOLE */}
-        <div className="p-3 bg-slate-900/90 border-t-2 border-indigo-400/40 flex items-center justify-between gap-4 z-20 backdrop-blur-md">
+        <div className="p-3 bg-slate-900/95 border-t-2 border-indigo-400/40 flex items-center justify-between gap-4 z-20 backdrop-blur-md">
           
-          {/* Movement Arrow Buttons (Touch/Click) */}
+          {/* Movement Arrow Buttons (Touch / Smartboard) */}
           <div className="flex items-center gap-2">
             <button
               type="button"
               onPointerDown={() => {
-                setCannonX((x) => Math.max(70, x - 55));
+                const sim = simStateRef.current;
+                sim.targetCannonX = Math.max(CANNON_MIN_X, sim.cannonX - 65);
+                sim.cannonX = sim.targetCannonX;
               }}
               className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 active:bg-slate-600 border border-slate-600 text-white font-black text-xs flex items-center gap-1 shadow-md"
             >
@@ -710,7 +808,9 @@ export const VocabularyInvadersGame: React.FC<VocabularyInvadersGameProps> = ({
             <button
               type="button"
               onPointerDown={() => {
-                setCannonX((x) => Math.min(PLAYFIELD_WIDTH - 70, x + 55));
+                const sim = simStateRef.current;
+                sim.targetCannonX = Math.min(CANNON_MAX_X, sim.cannonX + 65);
+                sim.cannonX = sim.targetCannonX;
               }}
               className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 active:bg-slate-600 border border-slate-600 text-white font-black text-xs flex items-center gap-1 shadow-md"
             >
@@ -719,12 +819,12 @@ export const VocabularyInvadersGame: React.FC<VocabularyInvadersGameProps> = ({
             </button>
           </div>
 
-          {/* Cannon Track Tap Info */}
+          {/* Drag & Key Guidance Info */}
           <div className="hidden md:flex items-center text-xs font-bold text-slate-400">
             <span>Drag cannon or use Arrow keys to aim</span>
           </div>
 
-          {/* Big Fire Cannon Button */}
+          {/* Accessible Big Fire Cannon Button */}
           <button
             type="button"
             onClick={handleFireCannon}
