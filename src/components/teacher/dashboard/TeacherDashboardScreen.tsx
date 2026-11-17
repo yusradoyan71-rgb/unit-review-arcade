@@ -1,6 +1,8 @@
 /**
- * UNIT REVIEW ARCADE — TEACHER MONITORING DASHBOARD (PHASE 3B)
+ * UNIT REVIEW ARCADE — TEACHER MONITORING DASHBOARD (PHASE 9D)
+ * Version: 9.4.0
  * 
+ * Creative Campus Professional Educator Redesign.
  * Comprehensive monitoring cockpit for classes 7A, 7B, 8A, 8B.
  * Coordinates KPI aggregation, class comparisons, dynamic curriculum roster,
  * student drill-down profiles, diagnostic question analytics, and curriculum sync.
@@ -131,14 +133,12 @@ export const TeacherDashboardScreen: React.FC = () => {
   });
 
   return (
-    <div className="min-h-screen w-full bg-slate-950 text-slate-100 flex flex-col font-sans relative selection:bg-indigo-500 selection:text-white">
-      {/* 100% Opaque solid slate-950 background + subtle atmospheric arcade grid overlay */}
-      <div className="fixed inset-0 bg-slate-950 pointer-events-none -z-10" />
-      <div className="fixed inset-0 bg-arcade-grid opacity-20 pointer-events-none z-0" />
-      <div className="fixed inset-0 bg-radial-vignette opacity-35 pointer-events-none z-0" />
+    <div className="min-h-screen w-full bg-slate-50/70 text-slate-800 flex flex-col font-sans relative selection:bg-indigo-500 selection:text-white">
+      {/* Daylight Atmospheric Ambient Gradient */}
+      <div className="fixed inset-0 pointer-events-none bg-gradient-to-b from-sky-50/50 via-slate-50/80 to-indigo-50/30 -z-10" />
 
       {/* Top Smartboard Navigation Bar */}
-      <header className="sticky top-0 z-40 bg-slate-950/95 backdrop-blur-xl border-b border-slate-800 px-4 md:px-8 py-3.5 transition-all shadow-lg shadow-black/40">
+      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 px-4 md:px-8 py-3.5 transition-all shadow-xs">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
           
           {/* Left: Brand & Title */}
@@ -146,22 +146,22 @@ export const TeacherDashboardScreen: React.FC = () => {
             <button
               onClick={closeDashboard}
               title="Return to Student Arcade"
-              className="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-400 hover:text-white transition-all flex items-center gap-2 text-xs font-semibold"
+              className="p-2 sm:px-3 sm:py-2 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 transition-all flex items-center gap-2 text-xs font-bold"
             >
-              <ArrowLeft className="w-4 h-4" />
+              <ArrowLeft className="w-4 h-4 text-slate-600" />
               <span className="hidden sm:inline">Exit to Arcade</span>
             </button>
 
-            <div className="h-5 w-px bg-slate-800" />
+            <div className="h-5 w-px bg-slate-200" />
 
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white shadow-md shadow-indigo-600/40">
+              <div className="w-8 h-8 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-md shadow-indigo-600/30">
                 <ShieldCheck className="w-5 h-5" />
               </div>
               <div>
-                <h1 className="font-arcade font-bold text-base sm:text-lg tracking-tight text-white flex items-center gap-2">
+                <h1 className="font-bubble font-black text-base sm:text-lg tracking-wide text-slate-900 flex items-center gap-2">
                   <span>TEACHER MONITORING COCKPIT</span>
-                  <span className="text-[10px] px-2 py-0.2 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 hidden md:inline">
+                  <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 font-mono font-bold hidden md:inline">
                     TEST Backend
                   </span>
                 </h1>
@@ -176,10 +176,10 @@ export const TeacherDashboardScreen: React.FC = () => {
               type="button"
               onClick={() => loadDashboardData(true)}
               disabled={isRefreshing}
-              className="p-2 sm:px-3 sm:py-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white transition-all text-xs font-semibold flex items-center gap-1.5"
+              className="p-2 sm:px-3 sm:py-2 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 transition-all text-xs font-bold flex items-center gap-1.5"
               title="Refresh Analytics"
             >
-              <RefreshCw className={`w-3.5 h-3.5 ${isRefreshing ? 'animate-spin text-indigo-400' : ''}`} />
+              <RefreshCw className={`w-3.5 h-3.5 ${isRefreshing ? 'animate-spin text-indigo-600' : 'text-slate-600'}`} />
               <span className="hidden md:inline">{isRefreshing ? 'Refreshing...' : 'Refresh'}</span>
             </button>
 
@@ -187,10 +187,10 @@ export const TeacherDashboardScreen: React.FC = () => {
             <button
               type="button"
               onClick={() => setIsCurriculumSyncOpen(true)}
-              className="px-3 py-2 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 border border-indigo-500/30 text-indigo-300 transition-all text-xs font-semibold flex items-center gap-1.5"
+              className="px-3 py-2 rounded-xl bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 text-indigo-700 transition-all text-xs font-bold flex items-center gap-1.5"
               title="Sync Authoritative Curriculum Catalog to Google Sheets"
             >
-              <UploadCloud className="w-3.5 h-3.5" />
+              <UploadCloud className="w-3.5 h-3.5 text-indigo-600" />
               <span className="hidden sm:inline">Sync Curriculum</span>
             </button>
 
@@ -201,10 +201,10 @@ export const TeacherDashboardScreen: React.FC = () => {
                 closeDashboard();
                 openTeacherPanel('units');
               }}
-              className="px-3 py-2 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 transition-all text-xs font-semibold flex items-center gap-1.5"
+              className="px-3 py-2 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-800 transition-all text-xs font-bold flex items-center gap-1.5"
               title="Open Local Unit and Activity Editor"
             >
-              <Layers className="w-3.5 h-3.5" />
+              <Layers className="w-3.5 h-3.5 text-amber-600" />
               <span className="hidden lg:inline">Content Editor</span>
             </button>
 
@@ -212,7 +212,7 @@ export const TeacherDashboardScreen: React.FC = () => {
             <button
               type="button"
               onClick={logout}
-              className="p-2 sm:px-3 sm:py-2 rounded-xl bg-slate-900 hover:bg-rose-950/60 border border-slate-800 hover:border-rose-800/40 text-slate-400 hover:text-rose-300 transition-all text-xs font-semibold flex items-center gap-1.5"
+              className="p-2 sm:px-3 sm:py-2 rounded-xl bg-slate-100 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 text-slate-600 hover:text-rose-600 transition-all text-xs font-bold flex items-center gap-1.5"
               title="Teacher Logout"
             >
               <LogOut className="w-3.5 h-3.5" />
@@ -228,30 +228,30 @@ export const TeacherDashboardScreen: React.FC = () => {
         
         {/* Error Alert */}
         {error && (
-          <div className="p-4 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-3">
-            <AlertCircle className="w-5 h-5 shrink-0 text-rose-400" />
+          <div className="p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center gap-3">
+            <AlertCircle className="w-5 h-5 shrink-0 text-rose-500" />
             <div className="space-y-0.5">
-              <p className="font-semibold text-rose-200">Unable to load dashboard data</p>
-              <p>{error}</p>
+              <p className="font-bold text-rose-800">Unable to load dashboard data</p>
+              <p className="text-slate-600">{error}</p>
             </div>
           </div>
         )}
 
         {/* Filter Toolbar & Class Tabs */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 p-4 rounded-2xl bg-slate-900/80 border border-slate-800">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 p-4 rounded-2xl bg-white border border-slate-200/90 shadow-xs">
           
           {/* Class Tabs */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
-            <span className="text-xs font-semibold text-slate-400 mr-1 hidden sm:inline">Class:</span>
+            <span className="text-xs font-bold text-slate-500 mr-1 hidden sm:inline">Class:</span>
             {(['all', '7A', '7B', '8A', '8B'] as const).map((cId) => (
               <button
                 key={cId}
                 type="button"
                 onClick={() => setSelectedClassId(cId)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
                   selectedClassId === cId
-                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                    : 'bg-slate-950/60 text-slate-400 hover:text-slate-200 hover:bg-slate-800 border border-slate-800'
+                    ? 'bg-indigo-600 text-white shadow-sm'
+                    : 'bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200 border border-slate-200'
                 }`}
               >
                 {cId === 'all' ? 'All Classes' : `Class ${cId}`}
@@ -261,16 +261,16 @@ export const TeacherDashboardScreen: React.FC = () => {
 
           {/* Grade Selector */}
           <div className="flex items-center gap-1.5">
-            <span className="text-xs font-semibold text-slate-400 mr-1 hidden sm:inline">Grade:</span>
+            <span className="text-xs font-bold text-slate-500 mr-1 hidden sm:inline">Grade:</span>
             {(['all', 'grade-7', 'grade-8'] as const).map((gId) => (
               <button
                 key={gId}
                 type="button"
                 onClick={() => setSelectedGradeId(gId)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                   selectedGradeId === gId
-                    ? 'bg-slate-800 text-white border border-slate-700'
-                    : 'bg-slate-950/40 text-slate-500 hover:text-slate-300'
+                    ? 'bg-slate-800 text-white shadow-xs'
+                    : 'bg-slate-100 text-slate-500 hover:text-slate-800'
                 }`}
               >
                 {gId === 'all' ? 'All Grades' : gId === 'grade-7' ? 'Grade 7' : 'Grade 8'}
@@ -282,7 +282,7 @@ export const TeacherDashboardScreen: React.FC = () => {
 
         {/* Section 1: Overview KPIs */}
         <section className="space-y-3">
-          <h2 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+          <h2 className="text-xs font-bold uppercase tracking-wider text-slate-500">
             Performance Overview {selectedClassId !== 'all' ? `(Class ${selectedClassId})` : ''}
           </h2>
           <OverviewKpiCards kpis={kpis} isLoading={isLoading} />
@@ -291,7 +291,7 @@ export const TeacherDashboardScreen: React.FC = () => {
         {/* Section 2: Class Comparison Grid */}
         {selectedClassId === 'all' && (
           <section className="space-y-3">
-            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-500">
               Class Breakdown (7A, 7B, 8A, 8B)
             </h2>
             <ClassComparisonCards
@@ -304,30 +304,30 @@ export const TeacherDashboardScreen: React.FC = () => {
         )}
 
         {/* Section 3: Navigation Tabs between Roster and Question Diagnostics */}
-        <div className="flex border-b border-slate-800 gap-4">
+        <div className="flex border-b border-slate-200 gap-4">
           <button
             type="button"
             onClick={() => setDashboardTab('overview')}
-            className={`pb-3 px-1 text-sm font-bold flex items-center gap-2 border-b-2 transition-colors ${
+            className={`pb-3 px-2 text-sm font-bold flex items-center gap-2 border-b-2 transition-colors ${
               dashboardTab === 'overview'
-                ? 'border-indigo-500 text-white'
-                : 'border-transparent text-slate-400 hover:text-slate-200'
+                ? 'border-indigo-600 text-indigo-700'
+                : 'border-transparent text-slate-500 hover:text-slate-800'
             }`}
           >
-            <Users className="w-4 h-4 text-indigo-400" />
+            <Users className="w-4 h-4 text-indigo-600" />
             <span>Student Roster & Progress ({filteredRoster.length})</span>
           </button>
 
           <button
             type="button"
             onClick={() => setDashboardTab('analytics')}
-            className={`pb-3 px-1 text-sm font-bold flex items-center gap-2 border-b-2 transition-colors ${
+            className={`pb-3 px-2 text-sm font-bold flex items-center gap-2 border-b-2 transition-colors ${
               dashboardTab === 'analytics'
-                ? 'border-indigo-500 text-white'
-                : 'border-transparent text-slate-400 hover:text-slate-200'
+                ? 'border-indigo-600 text-indigo-700'
+                : 'border-transparent text-slate-500 hover:text-slate-800'
             }`}
           >
-            <FileQuestion className="w-4 h-4 text-rose-400" />
+            <FileQuestion className="w-4 h-4 text-rose-500" />
             <span>Diagnostic Question Analytics ({questionAnalytics.length})</span>
           </button>
         </div>

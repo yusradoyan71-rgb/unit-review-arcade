@@ -48,7 +48,7 @@ const MainView: React.FC = () => {
   // Isolates dashboard rendering completely; unmounts the arcade home screen and classroom header
   if (isDashboardOpen) {
     return (
-      <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
+      <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
         <TeacherDashboardScreen />
         <TeacherLoginModal />
         <ToastContainer />

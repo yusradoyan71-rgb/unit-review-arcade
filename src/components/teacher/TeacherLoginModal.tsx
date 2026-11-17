@@ -1,6 +1,8 @@
 /**
- * UNIT REVIEW ARCADE — TEACHER LOGIN MODAL (PHASE 3B)
+ * UNIT REVIEW ARCADE — TEACHER LOGIN MODAL (PHASE 9D)
+ * Version: 9.4.0
  * 
+ * Creative Campus Professional Educator Redesign.
  * Secure modal prompt for Teacher Master Passphrase.
  * Features rate-limiting cooldown timers, locked-state indicators,
  * and zero credential exposure.
@@ -71,22 +73,18 @@ export const TeacherLoginModal: React.FC = () => {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 10 }}
           transition={{ duration: 0.2 }}
-          className="relative w-full max-w-md bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl shadow-indigo-950/40 text-slate-100 overflow-hidden"
+          className="relative w-full max-w-md bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-2xl text-slate-800 overflow-hidden"
         >
-          {/* Subtle background glow */}
-          <div className="absolute -top-24 -right-24 w-48 h-48 bg-indigo-600/20 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-purple-600/15 rounded-full blur-3xl pointer-events-none" />
-
           {/* Close Button */}
           <button
             onClick={handleClose}
-            className="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            className="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
             title="Close"
           >
             <X className="w-5 h-5" />
@@ -94,14 +92,14 @@ export const TeacherLoginModal: React.FC = () => {
 
           {/* Header */}
           <div className="flex items-center gap-3.5 mb-6">
-            <div className="w-12 h-12 rounded-2xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 shadow-md">
+            <div className="w-12 h-12 rounded-2xl bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-600 shadow-xs">
               <ShieldCheck className="w-6 h-6" />
             </div>
             <div>
-              <h2 className="font-arcade text-lg font-bold text-white tracking-wide">
+              <h2 className="font-bubble text-lg font-bold text-slate-900 tracking-wide">
                 TEACHER DASHBOARD
               </h2>
-              <p className="text-slate-400 text-xs">
+              <p className="text-slate-500 text-xs font-medium">
                 Master Passphrase Authentication
               </p>
             </div>
@@ -109,15 +107,15 @@ export const TeacherLoginModal: React.FC = () => {
 
           {/* NOT_CONFIGURED Educational Banner */}
           {authErrorCode === 'NOT_CONFIGURED' && (
-            <div className="mb-5 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs space-y-2">
-              <div className="flex items-center gap-2 font-bold text-amber-300">
-                <HelpCircle className="w-4 h-4 shrink-0" />
+            <div className="mb-5 p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-xs space-y-2 font-medium">
+              <div className="flex items-center gap-2 font-bold text-amber-800">
+                <HelpCircle className="w-4 h-4 shrink-0 text-amber-600" />
                 <span>Teacher Authentication Not Initialized</span>
               </div>
               <p className="leading-relaxed">
                 Teacher authentication is currently disabled in your Google Apps Script project.
               </p>
-              <div className="p-2.5 rounded-xl bg-slate-950/60 font-mono text-[11px] text-amber-300/90 leading-tight">
+              <div className="p-2.5 rounded-xl bg-white border border-amber-200 font-mono text-[11px] text-amber-900 leading-tight">
                 1. Set Script Property: <strong>TEACHER_SETUP_PASSWORD</strong> (min 12 chars)<br />
                 2. Run <strong>initializeTeacherFromScriptProperties()</strong> in GAS
               </div>
@@ -126,16 +124,16 @@ export const TeacherLoginModal: React.FC = () => {
 
           {/* LOCKED Alert with Cooldown */}
           {isLocked && (
-            <div className="mb-5 p-4 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-200 text-xs space-y-2">
-              <div className="flex items-center gap-2 font-bold text-rose-400">
-                <ShieldAlert className="w-4 h-4 shrink-0" />
+            <div className="mb-5 p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-900 text-xs space-y-2 font-medium">
+              <div className="flex items-center gap-2 font-bold text-rose-700">
+                <ShieldAlert className="w-4 h-4 shrink-0 text-rose-600" />
                 <span>Account Temporarily Locked</span>
               </div>
               <p className="leading-relaxed">
                 Maximum failed password attempts exceeded. Rate limiting is active for your security.
               </p>
-              <div className="flex items-center gap-2 font-mono text-sm font-bold text-rose-300 bg-slate-950/60 p-2.5 rounded-xl">
-                <Clock className="w-4 h-4 animate-spin text-rose-400" />
+              <div className="flex items-center gap-2 font-mono text-sm font-bold text-rose-800 bg-white border border-rose-200 p-2.5 rounded-xl">
+                <Clock className="w-4 h-4 animate-spin text-rose-600" />
                 <span>Cooldown Remaining: {formatCooldown(lockoutRemainingSeconds)}</span>
               </div>
             </div>
@@ -143,12 +141,12 @@ export const TeacherLoginModal: React.FC = () => {
 
           {/* Standard Auth Error Banner */}
           {authError && authErrorCode !== 'NOT_CONFIGURED' && !isLocked && (
-            <div className="mb-5 p-3.5 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-start gap-2.5">
-              <AlertTriangle className="w-4 h-4 shrink-0 text-rose-400 mt-0.5" />
+            <div className="mb-5 p-3.5 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-start gap-2.5 font-medium">
+              <AlertTriangle className="w-4 h-4 shrink-0 text-rose-600 mt-0.5" />
               <div className="space-y-1">
-                <p className="font-medium leading-snug">{authError}</p>
+                <p className="font-semibold leading-snug">{authError}</p>
                 {typeof attemptsRemaining === 'number' && attemptsRemaining > 0 && (
-                  <p className="text-[11px] text-rose-400 font-mono">
+                  <p className="text-[11px] text-rose-700 font-mono">
                     ⚠️ {attemptsRemaining} attempt{attemptsRemaining === 1 ? '' : 's'} remaining before 15-minute lockout.
                   </p>
                 )}
@@ -159,11 +157,11 @@ export const TeacherLoginModal: React.FC = () => {
           {/* Login Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
                 Teacher Passphrase
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
                   <KeyRound className="w-4 h-4" />
                 </div>
                 <input
@@ -174,13 +172,13 @@ export const TeacherLoginModal: React.FC = () => {
                   placeholder="Enter private teacher passphrase..."
                   autoComplete="current-password"
                   autoFocus
-                  className="w-full pl-10 pr-11 py-3 rounded-2xl bg-slate-950 border border-slate-800 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                  className="w-full pl-10 pr-11 py-3 rounded-2xl bg-white border border-slate-200 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-xs"
                 />
                 <button
                   type="button"
                   disabled={isLocked || isLoggingIn}
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-500 hover:text-slate-300 disabled:opacity-40"
+                  className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 disabled:opacity-40"
                   tabIndex={-1}
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
@@ -191,7 +189,7 @@ export const TeacherLoginModal: React.FC = () => {
             <button
               type="submit"
               disabled={isLocked || isLoggingIn || !password.trim()}
-              className="w-full py-3.5 px-4 rounded-2xl bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-800 disabled:text-slate-500 disabled:cursor-not-allowed text-white font-semibold text-sm transition-all duration-150 flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/30 group"
+              className="w-full py-3.5 px-4 rounded-2xl bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed text-white font-bold text-sm transition-all duration-150 flex items-center justify-center gap-2 shadow-md shadow-indigo-600/20 group"
             >
               {isLoggingIn ? (
                 <>
@@ -208,13 +206,13 @@ export const TeacherLoginModal: React.FC = () => {
           </form>
 
           {/* Security Guarantee Footer */}
-          <div className="mt-6 pt-5 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500">
+          <div className="mt-6 pt-5 border-t border-slate-200 flex items-center justify-between text-[11px] text-slate-400 font-medium">
             <span className="flex items-center gap-1.5">
-              <Lock className="w-3.5 h-3.5 text-indigo-400" />
+              <Lock className="w-3.5 h-3.5 text-indigo-500" />
               <span>5,000-round Salted SHA-256</span>
             </span>
             <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
               <span>Session Isolation Active</span>
             </span>
           </div>
@@ -223,4 +221,3 @@ export const TeacherLoginModal: React.FC = () => {
     </AnimatePresence>
   );
 };
-
