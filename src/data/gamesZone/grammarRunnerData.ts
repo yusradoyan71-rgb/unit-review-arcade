@@ -1570,7 +1570,7 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
       },
       {
             "id": "gr_g8_e_10",
-            "sentencePrompt": "How long _____ you known your best friend?",
+            "sentencePrompt": "My brother _____ like eating vegetables.",
             "laneOptions": [
                   "have",
                   "did",
@@ -1750,7 +1750,7 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
       },
       {
             "id": "gr_g8_e_25",
-            "sentencePrompt": "He _____ finish this chore before his parents return home.",
+            "sentencePrompt": "She _____ English every day after school.",
             "laneOptions": [
                   "has to",
                   "have to",
@@ -1992,7 +1992,7 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
       },
       {
             "id": "gr_g8_m_05",
-            "sentencePrompt": "When I arrive at the airport, I _____ you a text message.",
+            "sentencePrompt": "We _____ wear school uniforms on weekdays.",
             "laneOptions": [
                   "send",
                   "will send",
@@ -2112,7 +2112,7 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
       },
       {
             "id": "gr_g8_m_15",
-            "sentencePrompt": "The cake _____ my mother baked smelled delightful.",
+            "sentencePrompt": "You _____ be careful when crossing the avenue.",
             "laneOptions": [
                   "where",
                   "who",
@@ -2196,7 +2196,7 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
       },
       {
             "id": "gr_g8_m_22",
-            "sentencePrompt": "The telephone _____ invented by Alexander Graham Bell.",
+            "sentencePrompt": "He went to the library _____ borrow a science book.",
             "laneOptions": [
                   "was",
                   "is",
@@ -2292,7 +2292,7 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
       },
       {
             "id": "gr_g8_m_30",
-            "sentencePrompt": "These delicious cookies _____ baked by my grandmother.",
+            "sentencePrompt": "If you finish your chores, you _____ play games.",
             "laneOptions": [
                   "are being",
                   "was",
@@ -2426,483 +2426,483 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
     hard: [
       {
             "id": "gr_g8_h_01",
-            "sentencePrompt": "If I _____ a million dollars, I would travel around the world.",
+            "sentencePrompt": "I prefer _____ rafting to canoeing because it is more thrilling.",
             "laneOptions": [
-                  "had",
-                  "have",
-                  "would have"
+                  "going",
+                  "go",
+                  "to go"
             ],
             "correctLaneIndex": 0,
-            "grammarTopic": "Second Conditional",
-            "explanation": "Conditionals Type 2 uses past simple in the 'if' condition."
+            "grammarTopic": "Prefer + V-ing",
+            "explanation": "We use the -ing form of the verb after \"prefer\"."
       },
       {
             "id": "gr_g8_h_02",
-            "sentencePrompt": "If she knew the answer, she _____ tell us immediately.",
+            "sentencePrompt": "He prefers reading mystery books _____ watching television.",
             "laneOptions": [
-                  "will",
-                  "would",
-                  "shall"
+                  "than",
+                  "to",
+                  "from"
             ],
             "correctLaneIndex": 1,
-            "grammarTopic": "Second Conditional Result",
-            "explanation": "Conditionals Type 2 uses 'would + base verb' in the main clause."
+            "grammarTopic": "Prefer X to Y",
+            "explanation": "The preposition used with \"prefer\" when comparing two things is \"to\"."
       },
       {
             "id": "gr_g8_h_03",
-            "sentencePrompt": "If I _____ you, I would consult a doctor right away.",
+            "sentencePrompt": "I would rather _____ at home tonight than go out in the rain.",
             "laneOptions": [
-                  "am",
-                  "was",
-                  "were"
+                  "stay",
+                  "staying",
+                  "to stay"
             ],
-            "correctLaneIndex": 2,
-            "grammarTopic": "Second Conditional (Advice)",
-            "explanation": "'If I were you' is standard subjunctive phrasing for advice."
+            "correctLaneIndex": 0,
+            "grammarTopic": "Would rather + Bare Verb",
+            "explanation": "We use the base form (bare infinitive) of the verb directly after \"would rather\"."
       },
       {
             "id": "gr_g8_h_04",
-            "sentencePrompt": "Where would you live if you _____ choose any city on Earth?",
+            "sentencePrompt": "She would rather cook dinner herself _____ order fast food.",
             "laneOptions": [
-                  "could",
-                  "can",
-                  "will"
+                  "to",
+                  "instead",
+                  "than"
             ],
-            "correctLaneIndex": 0,
-            "grammarTopic": "Second Conditional Modal",
-            "explanation": "Use 'could' as the past form of 'can' in conditional clauses."
+            "correctLaneIndex": 2,
+            "grammarTopic": "Would rather ... than",
+            "explanation": "We use \"than\" when comparing two choices with \"would rather\"."
       },
       {
             "id": "gr_g8_h_05",
-            "sentencePrompt": "If we had more free time, we _____ take up tennis lessons.",
+            "sentencePrompt": "My older brother is responsible for _____ the dishwasher after meals.",
             "laneOptions": [
-                  "will",
-                  "would",
-                  "did"
+                  "empty",
+                  "emptying",
+                  "emptied"
             ],
             "correctLaneIndex": 1,
-            "grammarTopic": "Second Conditional",
-            "explanation": "'Would' expresses an unreal hypothetical outcome."
+            "grammarTopic": "Responsible for + Gerund",
+            "explanation": "Prepositions like \"for\" are followed by the -ing form of the verb."
       },
       {
             "id": "gr_g8_h_06",
-            "sentencePrompt": "What _____ you do if you found a lost wallet in the park?",
+            "sentencePrompt": "Tomorrow is Sunday, so we _____ get up early for school.",
             "laneOptions": [
-                  "will",
-                  "did",
-                  "would"
+                  "don't have to",
+                  "must not",
+                  "have to"
             ],
-            "correctLaneIndex": 2,
-            "grammarTopic": "Second Conditional Question",
-            "explanation": "Questions in Type 2 conditional use 'would + subject + base verb'."
+            "correctLaneIndex": 0,
+            "grammarTopic": "Lack of Obligation (don't have to)",
+            "explanation": "We use \"don't have to\" when an action is not necessary."
       },
       {
             "id": "gr_g8_h_07",
-            "sentencePrompt": "If he didn't complain so much, people _____ enjoy his company.",
+            "sentencePrompt": "You _____ share your personal password with strangers on the internet.",
             "laneOptions": [
-                  "would",
-                  "will",
-                  "shall"
+                  "should",
+                  "don't need to",
+                  "mustn't"
             ],
-            "correctLaneIndex": 0,
-            "grammarTopic": "Second Conditional",
-            "explanation": "Use 'would' in the main clause."
+            "correctLaneIndex": 2,
+            "grammarTopic": "Prohibition (Mustn't)",
+            "explanation": "We use \"mustn't\" for strict prohibitions and internet safety rules."
       },
       {
             "id": "gr_g8_h_08",
-            "sentencePrompt": "I wouldn't buy that expensive jacket if I _____ you.",
+            "sentencePrompt": "Have you _____ tried extreme sports like paragliding?",
             "laneOptions": [
-                  "was",
-                  "were",
-                  "am"
+                  "never",
+                  "ever",
+                  "yet"
             ],
             "correctLaneIndex": 1,
-            "grammarTopic": "Hypothetical Were",
-            "explanation": "In formal English, 'were' is preferred for all subjects in Type 2."
+            "grammarTopic": "Present Perfect (Ever)",
+            "explanation": "We use \"ever\" in questions to ask about life experiences."
       },
       {
             "id": "gr_g8_h_09",
-            "sentencePrompt": "If she _____ harder, she would achieve higher marks.",
+            "sentencePrompt": "She has _____ travelled to a foreign country by plane.",
             "laneOptions": [
-                  "would study",
-                  "studies",
-                  "studied"
+                  "never",
+                  "ever",
+                  "already"
             ],
-            "correctLaneIndex": 2,
-            "grammarTopic": "Second Conditional",
-            "explanation": "Use the past simple in the 'if' condition."
+            "correctLaneIndex": 0,
+            "grammarTopic": "Present Perfect (Never)",
+            "explanation": "We use \"never\" with positive verbs to express a negative life experience."
       },
       {
             "id": "gr_g8_h_10",
-            "sentencePrompt": "They would be much happier if they _____ in the countryside.",
+            "sentencePrompt": "We haven't finished preparing the science presentation _____ .",
             "laneOptions": [
-                  "lived",
-                  "live",
-                  "will live"
+                  "already",
+                  "just",
+                  "yet"
             ],
-            "correctLaneIndex": 0,
-            "grammarTopic": "Second Conditional",
-            "explanation": "The condition takes the past simple tense ('lived')."
+            "correctLaneIndex": 2,
+            "grammarTopic": "Present Perfect (Yet)",
+            "explanation": "We place \"yet\" at the end of negative sentences and questions in Present Perfect."
       },
       {
             "id": "gr_g8_h_11",
-            "sentencePrompt": "When we arrived at the cinema, the movie _____ already started.",
+            "sentencePrompt": "I am not hungry because I have _____ eaten a sandwich.",
             "laneOptions": [
-                  "has",
-                  "had",
-                  "was"
+                  "yet",
+                  "already",
+                  "ever"
             ],
             "correctLaneIndex": 1,
-            "grammarTopic": "Past Perfect",
-            "explanation": "Use 'had + past participle' for an action that happened before another past event."
+            "grammarTopic": "Present Perfect (Already)",
+            "explanation": "We use \"already\" to say an action happened sooner than expected."
       },
       {
             "id": "gr_g8_h_12",
-            "sentencePrompt": "She couldn't board the flight because she _____ her passport.",
+            "sentencePrompt": "They have lived in this neighbourhood _____ 2018.",
             "laneOptions": [
-                  "forgot",
-                  "has forgotten",
-                  "had forgotten"
+                  "since",
+                  "for",
+                  "during"
             ],
-            "correctLaneIndex": 2,
-            "grammarTopic": "Past Perfect Cause",
-            "explanation": "Forgetting the passport happened before she was denied boarding."
+            "correctLaneIndex": 0,
+            "grammarTopic": "Present Perfect (Since)",
+            "explanation": "We use \"since\" with a specific starting point in time."
       },
       {
             "id": "gr_g8_h_13",
-            "sentencePrompt": "By the time the firefighter arrived, the neighbors _____ extinguished the blaze.",
+            "sentencePrompt": "He has been interested in robotics _____ three years.",
             "laneOptions": [
-                  "had",
-                  "have",
-                  "were"
+                  "since",
+                  "for",
+                  "ago"
             ],
-            "correctLaneIndex": 0,
-            "grammarTopic": "Past Perfect with By The Time",
-            "explanation": "'By the time' + past simple requires past perfect in the main clause."
+            "correctLaneIndex": 1,
+            "grammarTopic": "Present Perfect (For)",
+            "explanation": "We use \"for\" to refer to a duration or period of time."
       },
       {
             "id": "gr_g8_h_14",
-            "sentencePrompt": "He was very nervous because he _____ never flown before.",
+            "sentencePrompt": "We should recycle paper and plastic _____ protect nature.",
             "laneOptions": [
-                  "has",
-                  "had",
-                  "was"
+                  "in order to",
+                  "so that",
+                  "because of"
             ],
-            "correctLaneIndex": 1,
-            "grammarTopic": "Past Perfect Experience",
-            "explanation": "Life experience prior to a past event uses 'had never flown'."
+            "correctLaneIndex": 0,
+            "grammarTopic": "Purpose (In order to + Infinitive)",
+            "explanation": "\"In order to\" is followed directly by the base verb to express purpose."
       },
       {
             "id": "gr_g8_h_15",
-            "sentencePrompt": "After they _____ lunch, they went for a walk in the garden.",
+            "sentencePrompt": "I set an alarm _____ I wouldn't miss the school bus.",
             "laneOptions": [
-                  "finished",
-                  "have finished",
-                  "had finished"
+                  "in order to",
+                  "because",
+                  "so that"
             ],
             "correctLaneIndex": 2,
-            "grammarTopic": "Past Perfect with After",
-            "explanation": "'After' introduces the earlier of two past actions (had finished)."
+            "grammarTopic": "Purpose (So that + Clause)",
+            "explanation": "\"So that\" is followed by a subject and modal verb clause."
       },
       {
             "id": "gr_g8_h_16",
-            "sentencePrompt": "I realized I _____ left my house keys on the dining table.",
+            "sentencePrompt": "_____ rock climbing is risky, many adventurers love it.",
             "laneOptions": [
-                  "had",
-                  "have",
-                  "was"
+                  "Although",
+                  "Because",
+                  "So"
             ],
             "correctLaneIndex": 0,
-            "grammarTopic": "Past Perfect",
-            "explanation": "Leaving the keys occurred before the realization in the past."
+            "grammarTopic": "Concession (Although)",
+            "explanation": "\"Although\" introduces a contrast or concession between two clauses."
       },
       {
             "id": "gr_g8_h_17",
-            "sentencePrompt": "The grass was soaking wet because it _____ heavily all night.",
+            "sentencePrompt": "The internet connection was weak, _____ we could not join the video meeting.",
             "laneOptions": [
-                  "rained",
-                  "had rained",
-                  "has rained"
+                  "because",
+                  "so",
+                  "although"
             ],
             "correctLaneIndex": 1,
-            "grammarTopic": "Past Perfect Continuous / Simple",
-            "explanation": "The rain happened before the observed past condition."
+            "grammarTopic": "Cause and Result (So)",
+            "explanation": "\"So\" introduces the result of the previous situation."
       },
       {
             "id": "gr_g8_h_18",
-            "sentencePrompt": "She didn't want to see the film because she _____ already read the book.",
+            "sentencePrompt": "If we waste fresh water, we _____ severe droughts in the future.",
             "laneOptions": [
-                  "was",
-                  "has",
-                  "had"
+                  "will face",
+                  "faced",
+                  "would face"
             ],
-            "correctLaneIndex": 2,
-            "grammarTopic": "Past Perfect with Already",
-            "explanation": "Reading the book occurred prior to the cinema invitation."
+            "correctLaneIndex": 0,
+            "grammarTopic": "First Conditional (Real Future)",
+            "explanation": "In first conditionals (real possibilities), the result clause uses \"will + base verb\"."
       },
       {
             "id": "gr_g8_h_19",
-            "sentencePrompt": "Until yesterday, I _____ never heard of that famous Turkish scientist.",
+            "sentencePrompt": "If there is no rain this season, crops _____ grow properly.",
             "laneOptions": [
-                  "had",
-                  "have",
-                  "did"
+                  "wouldn't",
+                  "didn't",
+                  "won't"
             ],
-            "correctLaneIndex": 0,
-            "grammarTopic": "Past Perfect with Until",
-            "explanation": "'Until yesterday' sets a past deadline, requiring 'had never heard'."
+            "correctLaneIndex": 2,
+            "grammarTopic": "First Conditional Negative",
+            "explanation": "Real conditional negative result uses \"will not / won't + base verb\"."
       },
       {
             "id": "gr_g8_h_20",
-            "sentencePrompt": "He thanked the stranger who _____ found his lost wallet.",
+            "sentencePrompt": "The landline phone rang while we _____ dinner together.",
             "laneOptions": [
-                  "has",
                   "had",
-                  "did"
+                  "were having",
+                  "have had"
             ],
             "correctLaneIndex": 1,
-            "grammarTopic": "Past Perfect in Relative Clause",
-            "explanation": "Finding the wallet happened before he expressed gratitude."
+            "grammarTopic": "Past Continuous with While",
+            "explanation": "\"While\" is used with past continuous to describe an action in progress in the past."
       },
       {
             "id": "gr_g8_h_21",
-            "sentencePrompt": "You are coming to the graduation ceremony, _____ you?",
+            "sentencePrompt": "While I was studying in the bedroom, the electricity suddenly _____ out.",
             "laneOptions": [
-                  "won't",
-                  "don't",
-                  "aren't"
+                  "went",
+                  "was going",
+                  "goes"
             ],
-            "correctLaneIndex": 2,
-            "grammarTopic": "Tag Questions",
-            "explanation": "A positive sentence with 'are' takes the negative tag 'aren't you?'."
+            "correctLaneIndex": 0,
+            "grammarTopic": "Past Simple Interrupting Action",
+            "explanation": "The short interrupting action takes the Past Simple tense."
       },
       {
             "id": "gr_g8_h_22",
-            "sentencePrompt": "She doesn't eat meat, _____ she?",
+            "sentencePrompt": "Please send me a text message as soon as you _____ home.",
             "laneOptions": [
-                  "does",
-                  "is",
-                  "do"
+                  "arrived",
+                  "arrive",
+                  "will arrive"
             ],
-            "correctLaneIndex": 0,
-            "grammarTopic": "Tag Questions",
-            "explanation": "A negative sentence with 'doesn't' takes the positive tag 'does she?'."
+            "correctLaneIndex": 1,
+            "grammarTopic": "Time Clauses with As Soon As",
+            "explanation": "In time clauses referring to the future, we use Present Simple after \"as soon as\"."
       },
       {
             "id": "gr_g8_h_23",
-            "sentencePrompt": "They won the regional championship, _____ they?",
+            "sentencePrompt": "First peel the potatoes, and _____ slice them into thin pieces.",
             "laneOptions": [
-                  "don't",
-                  "didn't",
-                  "weren't"
+                  "before",
+                  "until",
+                  "then"
             ],
-            "correctLaneIndex": 1,
-            "grammarTopic": "Tag Questions (Past Simple)",
-            "explanation": "Past simple positive sentences take the tag 'didn't they?'."
+            "correctLaneIndex": 2,
+            "grammarTopic": "Sequencing Connectors (Then)",
+            "explanation": "We use \"then\" to indicate the next step in a process."
       },
       {
             "id": "gr_g8_h_24",
-            "sentencePrompt": "He can play the acoustic guitar, _____ he?",
+            "sentencePrompt": "_____ that, place the baking tray into the oven for twenty minutes.",
             "laneOptions": [
-                  "couldn't",
-                  "doesn't",
-                  "can't"
+                  "After",
+                  "Before",
+                  "During"
             ],
-            "correctLaneIndex": 2,
-            "grammarTopic": "Tag Questions with Modals",
-            "explanation": "Match the modal verb 'can' with 'can't he?'."
+            "correctLaneIndex": 0,
+            "grammarTopic": "Sequencing Connectors (After that)",
+            "explanation": "\"After that\" is a standard connector for sequencing steps in recipes."
       },
       {
             "id": "gr_g8_h_25",
-            "sentencePrompt": "Let's take a short break now, _____ we?",
+            "sentencePrompt": "Could you please hold on a minute? I will _____ you through to the manager.",
             "laneOptions": [
-                  "shall",
-                  "will",
-                  "don't"
+                  "take",
+                  "put",
+                  "hang"
             ],
-            "correctLaneIndex": 0,
-            "grammarTopic": "Tag Questions with Let's",
-            "explanation": "Suggestions starting with 'Let's' take the tag 'shall we?'."
+            "correctLaneIndex": 1,
+            "grammarTopic": "Telephone Expressions (Put through)",
+            "explanation": "\"Put someone through\" means to connect someone by telephone."
       },
       {
             "id": "gr_g8_h_26",
-            "sentencePrompt": "Could you tell me where the nearest pharmacy _____?",
+            "sentencePrompt": "The doctor is busy right now. Would you like to _____ a message?",
             "laneOptions": [
-                  "is it",
-                  "is",
-                  "it is"
+                  "leave",
+                  "take",
+                  "make"
             ],
-            "correctLaneIndex": 1,
-            "grammarTopic": "Indirect Questions",
-            "explanation": "In indirect questions, the verb follows the subject (where the pharmacy is)."
+            "correctLaneIndex": 0,
+            "grammarTopic": "Telephone Expressions (Leave a message)",
+            "explanation": "A caller asks to \"leave a message\" for someone who is unavailable."
       },
       {
             "id": "gr_g8_h_27",
-            "sentencePrompt": "Do you know what time the library _____?",
+            "sentencePrompt": "Skydiving is _____ more dangerous than riding a bicycle.",
             "laneOptions": [
-                  "is closing",
-                  "does close",
-                  "closes"
+                  "very",
+                  "more",
+                  "much"
             ],
             "correctLaneIndex": 2,
-            "grammarTopic": "Indirect Questions",
-            "explanation": "Indirect questions use statement word order without auxiliary 'does'."
+            "grammarTopic": "Modifying Comparatives (Much)",
+            "explanation": "We use \"much\" before comparative adjectives to show a big difference."
       },
       {
             "id": "gr_g8_h_28",
-            "sentencePrompt": "I wonder why she _____ so upset yesterday.",
+            "sentencePrompt": "Mount Everest is the _____ challenging peak in the world.",
             "laneOptions": [
-                  "was",
-                  "was she",
-                  "did she be"
+                  "more",
+                  "most",
+                  "much"
             ],
-            "correctLaneIndex": 0,
-            "grammarTopic": "Embedded Clauses",
-            "explanation": "Embedded clauses keep normal subject-verb order (why she was)."
+            "correctLaneIndex": 1,
+            "grammarTopic": "Superlatives (The most)",
+            "explanation": "Long adjectives use \"the most\" in the superlative form."
       },
       {
             "id": "gr_g8_h_29",
-            "sentencePrompt": "Don't be late for the exam, _____ you?",
+            "sentencePrompt": "Scientists predict that robot helpers _____ common in homes by 2035.",
             "laneOptions": [
-                  "do",
-                  "will",
-                  "shall"
+                  "will be",
+                  "were",
+                  "would be"
             ],
-            "correctLaneIndex": 1,
-            "grammarTopic": "Imperative Tag Questions",
-            "explanation": "Negative imperatives take the tag 'will you?'."
+            "correctLaneIndex": 0,
+            "grammarTopic": "Future Predictions with Will",
+            "explanation": "We use \"will + base verb\" for general predictions about the future."
       },
       {
             "id": "gr_g8_h_30",
-            "sentencePrompt": "Nobody was injured in the accident, _____ they?",
+            "sentencePrompt": "Look at those heavy dark clouds; it _____ rain very heavily.",
             "laneOptions": [
-                  "was",
-                  "weren't",
-                  "were"
+                  "will",
+                  "is going to",
+                  "was going to"
             ],
-            "correctLaneIndex": 2,
-            "grammarTopic": "Tag Questions with Nobody",
-            "explanation": "'Nobody' is negative, so it takes a positive plural tag 'were they?'."
+            "correctLaneIndex": 1,
+            "grammarTopic": "Predictions with Present Evidence (Be going to)",
+            "explanation": "We use \"be going to\" when there is clear visual evidence in the present."
       },
       {
             "id": "gr_g8_h_31",
-            "sentencePrompt": "He said that he _____ travelling to London the next day.",
+            "sentencePrompt": "Everyone in our family _____ share the household duties equally.",
             "laneOptions": [
-                  "was",
-                  "is",
-                  "were"
+                  "must",
+                  "can",
+                  "may"
             ],
             "correctLaneIndex": 0,
-            "grammarTopic": "Reported Speech Tense Shift",
-            "explanation": "Present Continuous 'am/is travelling' shifts back to 'was travelling'."
+            "grammarTopic": "Obligation with Must",
+            "explanation": "\"Must\" expresses a strong necessity or moral obligation."
       },
       {
             "id": "gr_g8_h_32",
-            "sentencePrompt": "She told me that she _____ her keys in the car.",
+            "sentencePrompt": "_____ you like to join our study group this afternoon?",
             "laneOptions": [
-                  "has left",
-                  "had left",
-                  "leaves"
+                  "Do",
+                  "Did",
+                  "Would"
             ],
-            "correctLaneIndex": 1,
-            "grammarTopic": "Reported Speech Past Shift",
-            "explanation": "Past simple shifts to past perfect ('had left') in reported speech."
+            "correctLaneIndex": 2,
+            "grammarTopic": "Invitations (Would you like to)",
+            "explanation": "\"Would you like to...\" is the standard polite formula for making an invitation."
       },
       {
             "id": "gr_g8_h_33",
-            "sentencePrompt": "The teacher told the students _____ quiet.",
+            "sentencePrompt": "_____ we look online for more information about the national park?",
             "laneOptions": [
-                  "be",
-                  "being",
-                  "to be"
+                  "Why don't",
+                  "How about",
+                  "What about"
             ],
-            "correctLaneIndex": 2,
-            "grammarTopic": "Reported Commands",
-            "explanation": "Reported orders and commands use 'to + infinitive' (to be quiet)."
+            "correctLaneIndex": 0,
+            "grammarTopic": "Suggestions (Why don't we)",
+            "explanation": "\"Why don't we\" is followed by a base verb (\"look\")."
       },
       {
             "id": "gr_g8_h_34",
-            "sentencePrompt": "My doctor advised me _____ more fresh vegetables.",
+            "sentencePrompt": "How about _____ a cycling tour along the coast on Saturday?",
             "laneOptions": [
-                  "to eat",
-                  "eating",
-                  "eat"
+                  "take",
+                  "taking",
+                  "to take"
             ],
-            "correctLaneIndex": 0,
-            "grammarTopic": "Reported Advice",
-            "explanation": "The verb 'advise someone' takes an infinitive with 'to'."
+            "correctLaneIndex": 1,
+            "grammarTopic": "Suggestions (How about + V-ing)",
+            "explanation": "\"How about\" is followed by the -ing form of the verb."
       },
       {
             "id": "gr_g8_h_35",
-            "sentencePrompt": "Look at the wet ground; it _____ have rained during the night.",
+            "sentencePrompt": "A trustworthy friend _____ tells lies or breaks promises.",
             "laneOptions": [
-                  "can't",
-                  "must",
-                  "should"
+                  "always",
+                  "sometimes",
+                  "never"
             ],
-            "correctLaneIndex": 1,
-            "grammarTopic": "Modal of Deduction",
-            "explanation": "'Must have + past participle' expresses near-certainty based on evidence."
+            "correctLaneIndex": 2,
+            "grammarTopic": "Adverbs of Frequency (Never)",
+            "explanation": "A trustworthy person \"never\" tells lies."
       },
       {
             "id": "gr_g8_h_36",
-            "sentencePrompt": "He _____ be at home; I saw him at the library five minutes ago.",
+            "sentencePrompt": "Can you solve this computer network problem by _____ ?",
             "laneOptions": [
-                  "might",
-                  "must",
-                  "can't"
+                  "yourself",
+                  "yours",
+                  "you"
             ],
-            "correctLaneIndex": 2,
-            "grammarTopic": "Modal of Impossibility",
-            "explanation": "'Can't be' expresses logical impossibility based on known facts."
+            "correctLaneIndex": 0,
+            "grammarTopic": "Reflexive Pronouns (By yourself)",
+            "explanation": "\"By yourself\" means alone or without help."
       },
       {
             "id": "gr_g8_h_37",
-            "sentencePrompt": "You _____ have shouted at your sister; now she is crying.",
+            "sentencePrompt": "Both Selin _____ her sister are keen on classical music.",
             "laneOptions": [
-                  "shouldn't",
-                  "mustn't",
-                  "couldn't"
+                  "or",
+                  "and",
+                  "nor"
             ],
-            "correctLaneIndex": 0,
-            "grammarTopic": "Criticism / Past Regret",
-            "explanation": "'Shouldn't have + past participle' criticizes a past action."
+            "correctLaneIndex": 1,
+            "grammarTopic": "Correlative Conjunctions (Both ... and)",
+            "explanation": "\"Both\" pairs with \"and\" to join two subjects."
       },
       {
             "id": "gr_g8_h_38",
-            "sentencePrompt": "Despite _____ exhausted, he finished the marathon race.",
+            "sentencePrompt": "Neither the bus _____ the metro was running during the heavy snowstorm.",
             "laneOptions": [
-                  "be",
-                  "being",
-                  "to be"
+                  "or",
+                  "and",
+                  "nor"
             ],
-            "correctLaneIndex": 1,
-            "grammarTopic": "Despite + Gerund",
-            "explanation": "The preposition 'despite' is followed by a gerund (-ing)."
+            "correctLaneIndex": 2,
+            "grammarTopic": "Correlative Conjunctions (Neither ... nor)",
+            "explanation": "\"Neither\" pairs with \"nor\" to negate both choices."
       },
       {
             "id": "gr_g8_h_39",
-            "sentencePrompt": "In order to _____ your grades, you must study regularly.",
+            "sentencePrompt": "You look very exhausted; you _____ take a short rest before studying.",
             "laneOptions": [
-                  "improved",
-                  "improving",
-                  "improve"
+                  "should",
+                  "mustn't",
+                  "needn't"
             ],
-            "correctLaneIndex": 2,
-            "grammarTopic": "In order to + Infinitive",
-            "explanation": "'In order to' is followed by the bare base verb."
+            "correctLaneIndex": 0,
+            "grammarTopic": "Giving Advice (Should)",
+            "explanation": "We use \"should\" to give helpful advice or recommendations."
       },
       {
             "id": "gr_g8_h_40",
-            "sentencePrompt": "We decided to walk _____ of taking the crowded bus.",
+            "sentencePrompt": "In my _____ , extreme adventure sports help build self-confidence.",
             "laneOptions": [
-                  "instead",
-                  "in place",
-                  "rather"
+                  "mind",
+                  "opinion",
+                  "thought"
             ],
-            "correctLaneIndex": 0,
-            "grammarTopic": "Instead of + Gerund",
-            "explanation": "The fixed prepositional phrase is 'instead of'."
+            "correctLaneIndex": 1,
+            "grammarTopic": "Expressing Opinions (In my opinion)",
+            "explanation": "\"In my opinion\" is the standard phrase to introduce personal viewpoints."
       }
 ],
   },

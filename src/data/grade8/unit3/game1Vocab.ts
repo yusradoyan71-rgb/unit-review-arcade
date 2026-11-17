@@ -3,7 +3,7 @@ import type { MultipleChoiceQuestion } from '../../../types/schema';
 export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   {
     id: 'g8u3-g1-q01',
-    prompt: 'A public building where ancient historical objects, fossils, and scientific items are preserved and displayed is a...',
+    prompt: 'A building where historical objects, art, and fossils are displayed is a...',
     options: ['cinema', 'museum', 'sports centre', 'station'],
     correctOptionIndex: 1,
     explanation: 'A museum collects, preserves, and displays items of artistic, cultural, historical, or scientific importance.',
@@ -19,7 +19,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u3-g1-q03',
-    prompt: 'A large, open public area in the middle of a town or city, often surrounded by shops, cafes, and statues, is a...',
+    prompt: 'An open public plaza in a city surrounded by shops and cafes is a...',
     options: ['platform', 'bridge', 'river', 'square'],
     correctOptionIndex: 3,
     explanation: 'A square (like Trafalgar Square or Leicester Square) is a central open plaza in a town or city.',
@@ -27,7 +27,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u3-g1-q04',
-    prompt: 'A street or shopping district that is filled with hundreds of people walking in all directions is described as...',
+    prompt: 'A shopping street filled with hundreds of walking people is...',
     options: ['crowded', 'peaceful', 'quiet', 'empty'],
     correctOptionIndex: 0,
     explanation: '"Crowded" describes a location that is full of people, with little space to move freely.',
@@ -59,7 +59,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u3-g1-q08',
-    prompt: 'An outdoor market where traders sell clothes, street food, crafts, and vintage goods from open stalls is a...',
+    prompt: 'An outdoor market selling clothes and food from open stalls is a...',
     options: ['street market', 'sports centre', 'library', 'cinema'],
     correctOptionIndex: 0,
     explanation: 'A street market (like Camden Market or Portobello Road) consists of open-air stalls along pedestrian streets.',
@@ -67,7 +67,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u3-g1-q09',
-    prompt: 'Which adjective describes a city with many ancient monuments, old castles, and centuries of heritage?',
+    prompt: 'A city with many ancient monuments, castles, and centuries of heritage is...',
     options: ['modern', 'historic', 'cheap', 'unfriendly'],
     correctOptionIndex: 1,
     explanation: '"Historic" refers to places having great importance or longevity in human history.',
@@ -99,7 +99,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u3-g1-q13',
-    prompt: 'A city that has lots of car horns, roaring engines, sirens, and loud construction work is very...',
+    prompt: 'A street with blaring horns, loud sirens, and roar of traffic is very...',
     options: ['quiet', 'noisy', 'peaceful', 'boring'],
     correctOptionIndex: 1,
     explanation: '"Noisy" describes environments with unpleasant or continuous loud sounds.',

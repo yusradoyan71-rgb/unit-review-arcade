@@ -175,7 +175,7 @@ assert(Array.isArray(q.options), 'Options is an array');
 assertEq(q.options.length, 4, 'Options array has exactly 4 options');
 
 // Check that correct answer is present
-const expectedAnswer = 'Calm, quiet, and free from noise or stress';
+const expectedAnswer = 'Quiet and calm';
 assert(q.options.includes(expectedAnswer), 'Options includes the correct definition');
 assert(typeof q.correctOptionIndex === 'number', 'correctOptionIndex is a number');
 assert(q.correctOptionIndex >= 0 && q.correctOptionIndex < 4, 'correctOptionIndex is within bounds [0..3]');

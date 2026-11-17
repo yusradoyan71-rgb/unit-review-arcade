@@ -3,7 +3,7 @@ import type { MultipleChoiceQuestion } from '../../../types/schema';
 export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   {
     id: 'g8u2-g1-q01',
-    prompt: 'Which word refers to the distance or process of travelling from one specific place to another?',
+    prompt: 'Travelling from one specific place to another is a...',
     options: ['Journey', 'Trip', 'Luggage', 'Passport'],
     correctOptionIndex: 0,
     explanation: 'A "journey" focuses on the process and time spent travelling from a starting point to a destination.',
@@ -35,7 +35,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u2-g1-q05',
-    prompt: 'Before travelling abroad to another country, you must show an official government document called a...',
+    prompt: 'Before travelling abroad, you must show your official travel document: a...',
     options: ['passport', 'postcard', 'receipt', 'souvenir'],
     correctOptionIndex: 0,
     explanation: 'A "passport" is an official national identity booklet required for international border crossings.',
@@ -43,7 +43,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u2-g1-q06',
-    prompt: 'All the bags, suitcases, and backpacks you carry on a journey are collectively known as...',
+    prompt: 'The bags, suitcases, and backpacks you carry on a journey are your...',
     options: ['routes', 'luggage', 'tickets', 'accommodations'],
     correctOptionIndex: 1,
     explanation: '"Luggage" (or baggage) is an uncountable noun referring to all your travel bags together.',
@@ -51,7 +51,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u2-g1-q07',
-    prompt: 'Which preposition correctly completes the sentence? "My father always goes to work ________ train."',
+    prompt: 'My father always travels to work ________ train.',
     options: ['with', 'on', 'by', 'at'],
     correctOptionIndex: 2,
     explanation: 'We use the preposition "by" with general modes of transport: by train, by bus, by car, by plane.',
@@ -115,7 +115,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u2-g1-q15',
-    prompt: 'A place where travellers can sleep and stay, such as a hotel, hostel, or guesthouse, is called...',
+    prompt: 'A place where travellers can sleep and stay (hotel or hostel) is called...',
     options: ['departure', 'transportation', 'accommodation', 'passport'],
     correctOptionIndex: 2,
     explanation: '"Accommodation" refers to a room or building providing lodging for travellers.',
@@ -123,7 +123,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u2-g1-q16',
-    prompt: 'The planned path or way you travel to get from your starting point to your destination is the...',
+    prompt: 'The planned road or path you take to reach your destination is the...',
     options: ['delay', 'ticket', 'suitcase', 'route'],
     correctOptionIndex: 3,
     explanation: 'A "route" is the predetermined roads, rails, or paths taken during a journey.',
@@ -179,7 +179,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u2-g1-q23',
-    prompt: 'A journey that makes you feel so tired that you have no physical energy left is...',
+    prompt: 'A journey that makes you feel extremely tired is...',
     options: ['relaxing', 'peaceful', 'exhausting', 'comfortable'],
     correctOptionIndex: 2,
     explanation: '"Exhausting" means extremely tiring, leaving you with little or no energy.',
@@ -187,7 +187,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u2-g1-q24',
-    prompt: 'An experience so wonderful and special that you will remember it for the rest of your life is...',
+    prompt: 'An experience so special that you will always remember it is...',
     options: ['boring', 'uncomfortable', 'disappointing', 'unforgettable'],
     correctOptionIndex: 3,
     explanation: '"Unforgettable" describes an experience so memorable that it cannot be forgotten.',
@@ -195,7 +195,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u2-g1-q25',
-    prompt: 'A hotel bed that feels rough, noisy, and hurts your back while sleeping is very...',
+    prompt: 'A hotel bed that is painful and not relaxing to sleep on is very...',
     options: ['uncomfortable', 'luxurious', 'peaceful', 'fascinating'],
     correctOptionIndex: 0,
     explanation: '"Uncomfortable" means not pleasant, awkward, or causing physical ache and stiffness.',

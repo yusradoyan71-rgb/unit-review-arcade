@@ -1466,7 +1466,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
     easy: [
       {
             "id": "wf_g8_e_01",
-            "cluePrompt": "Hook the word for a close, dependable friend who always backs you up",
+            "cluePrompt": "Hook a loyal friend who always supports you",
             "clueCategory": "Friendship",
             "targetWord": "Buddy",
             "distractorWords": [
@@ -1538,7 +1538,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_e_07",
-            "cluePrompt": "Hook a written or verbal invitation asking a friend to your birthday party",
+            "cluePrompt": "Hook a friendly card asking someone to your party",
             "clueCategory": "Social",
             "targetWord": "Invitation",
             "distractorWords": [
@@ -1586,7 +1586,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_e_11",
-            "cluePrompt": "Hook the cooking action of heating water until it bubbles at 100 degrees",
+            "cluePrompt": "Hook heating water until it bubbles at 100 degrees",
             "clueCategory": "Cooking",
             "targetWord": "Boil",
             "distractorWords": [
@@ -1658,7 +1658,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_e_17",
-            "cluePrompt": "Hook beating eggs and cream quickly in a bowl with a wire tool",
+            "cluePrompt": "Hook beating eggs quickly with a wire utensil",
             "clueCategory": "Cooking",
             "targetWord": "Whisk",
             "distractorWords": [
@@ -1682,7 +1682,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_e_19",
-            "cluePrompt": "Hook any food item like flour, sugar, or salt used in a recipe",
+            "cluePrompt": "Hook any food item used to make a dish",
             "clueCategory": "Cooking",
             "targetWord": "Ingredient",
             "distractorWords": [
@@ -1706,7 +1706,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_e_21",
-            "cluePrompt": "Hook the kitchen utensil with a long handle and deep spoon used to serve soup",
+            "cluePrompt": "Hook a deep spoon used to serve hot soup",
             "clueCategory": "Kitchen",
             "targetWord": "Ladle",
             "distractorWords": [
@@ -1718,7 +1718,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_e_22",
-            "cluePrompt": "Hook the bowl with drain holes used to drain boiling water from pasta",
+            "cluePrompt": "Hook the bowl with holes used to drain pasta",
             "clueCategory": "Kitchen",
             "targetWord": "Colander",
             "distractorWords": [
@@ -1742,7 +1742,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_e_24",
-            "cluePrompt": "Hook the sour taste of fresh lemon juice",
+            "cluePrompt": "Hook the sharp, acidic taste of fresh lemons",
             "clueCategory": "Food",
             "targetWord": "Sour",
             "distractorWords": [
@@ -1754,7 +1754,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_e_25",
-            "cluePrompt": "Hook food with lots of red chili peppers that makes your tongue feel hot",
+            "cluePrompt": "Hook hot food with lots of red chili peppers",
             "clueCategory": "Food",
             "targetWord": "Spicy",
             "distractorWords": [
@@ -1766,7 +1766,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_e_26",
-            "cluePrompt": "Hook the kitchen action of moving a wooden spoon in circles inside a pot",
+            "cluePrompt": "Hook moving a wooden spoon in circles in soup",
             "clueCategory": "Cooking",
             "targetWord": "Stir",
             "distractorWords": [
@@ -1814,7 +1814,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_e_30",
-            "cluePrompt": "Hook a live phone call where you see each other on your screens",
+            "cluePrompt": "Hook a phone call with video on screen",
             "clueCategory": "Communication",
             "targetWord": "Video call",
             "distractorWords": [
@@ -1826,7 +1826,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_e_31",
-            "cluePrompt": "Hook keeping contact with friends over many years so you don't lose touch",
+            "cluePrompt": "Hook staying in contact with old friends",
             "clueCategory": "Friendship",
             "targetWord": "Keep in touch",
             "distractorWords": [
@@ -1886,7 +1886,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_e_36",
-            "cluePrompt": "Hook a yellow smiley icon in a chat message showing how you feel",
+            "cluePrompt": "Hook a yellow smiley icon in a message",
             "clueCategory": "Digital",
             "targetWord": "Emoji",
             "distractorWords": [
@@ -1898,7 +1898,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_e_37",
-            "cluePrompt": "Hook a pop-up alert on your phone showing a new message has arrived",
+            "cluePrompt": "Hook a pop-up alert when a message arrives",
             "clueCategory": "Digital",
             "targetWord": "Notification",
             "distractorWords": [
@@ -1922,7 +1922,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_e_39",
-            "cluePrompt": "Hook wanting what another person has and feeling jealous",
+            "cluePrompt": "Hook feeling unhappy because someone has what you want",
             "clueCategory": "Feelings",
             "targetWord": "Jealous",
             "distractorWords": [
@@ -1948,7 +1948,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
     medium: [
       {
             "id": "wf_g8_m_01",
-            "cluePrompt": "Hook an all-inclusive holiday hotel where food and drinks are included in the price",
+            "cluePrompt": "Hook a resort where meals and drinks are covered",
             "clueCategory": "Tourism",
             "targetWord": "All-inclusive",
             "distractorWords": [
@@ -1972,7 +1972,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_m_03",
-            "cluePrompt": "Hook a place where travellers stay overnight on holiday, like a hotel or hostel",
+            "cluePrompt": "Hook a hotel or hostel where tourists stay",
             "clueCategory": "Tourism",
             "targetWord": "Accommodation",
             "distractorWords": [
@@ -1984,7 +1984,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_m_04",
-            "cluePrompt": "Hook the daily travel plan and list of sights a tourist will visit",
+            "cluePrompt": "Hook the daily travel plan of sights to visit",
             "clueCategory": "Tourism",
             "targetWord": "Itinerary",
             "distractorWords": [
@@ -1996,7 +1996,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_m_05",
-            "cluePrompt": "Hook a famous building or tower in a city that everyone recognizes easily",
+            "cluePrompt": "Hook a famous building or tower in a city",
             "clueCategory": "Tourism",
             "targetWord": "Landmark",
             "distractorWords": [
@@ -2032,7 +2032,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_m_08",
-            "cluePrompt": "Hook touring around a new city to see its famous sights, monuments, and parks",
+            "cluePrompt": "Hook touring a city to see famous monuments",
             "clueCategory": "Tourism",
             "targetWord": "Sightseeing",
             "distractorWords": [
@@ -2044,7 +2044,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_m_09",
-            "cluePrompt": "Hook the guide who shows tourists around historic sites and explains their stories",
+            "cluePrompt": "Hook the guide who shows tourists around ruins",
             "clueCategory": "Tourism",
             "targetWord": "Tour guide",
             "distractorWords": [
@@ -2080,7 +2080,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_m_12",
-            "cluePrompt": "Hook smoothing out wrinkles on clean shirts and trousers with a hot iron",
+            "cluePrompt": "Hook pressing clean shirts with a hot iron",
             "clueCategory": "Chores",
             "targetWord": "Do the ironing",
             "distractorWords": [
@@ -2092,7 +2092,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_m_13",
-            "cluePrompt": "Hook putting plates, glasses, forks, and napkins on the dining table before dinner",
+            "cluePrompt": "Hook placing plates and forks on the dinner table",
             "clueCategory": "Chores",
             "targetWord": "Set the table",
             "distractorWords": [
@@ -2116,7 +2116,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_m_15",
-            "cluePrompt": "Hook taking the kitchen garbage bags out to the big rubbish bin outside",
+            "cluePrompt": "Hook carrying rubbish bags to the outside bin",
             "clueCategory": "Chores",
             "targetWord": "Take out the trash",
             "distractorWords": [
@@ -2152,7 +2152,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_m_18",
-            "cluePrompt": "Hook a personal duty or chore that you are responsible for doing regularly",
+            "cluePrompt": "Hook a regular chore you must carry out",
             "clueCategory": "Values",
             "targetWord": "Responsibility",
             "distractorWords": [
@@ -2188,7 +2188,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_m_21",
-            "cluePrompt": "Hook jumping out of an airplane with a parachute for a sky-high thrill",
+            "cluePrompt": "Hook jumping from an aeroplane with a parachute",
             "clueCategory": "Extreme Sports",
             "targetWord": "Skydiving",
             "distractorWords": [
@@ -2200,7 +2200,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_m_22",
-            "cluePrompt": "Hook leaping off a tall bridge attached to a strong, stretchy rubber rope",
+            "cluePrompt": "Hook jumping off a bridge tied to elastic cord",
             "clueCategory": "Extreme Sports",
             "targetWord": "Bungee jumping",
             "distractorWords": [
@@ -2260,7 +2260,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_m_27",
-            "cluePrompt": "Hook strong straps wrapped around your body to keep you safe while climbing",
+            "cluePrompt": "Hook safety straps worn while rock climbing",
             "clueCategory": "Safety",
             "targetWord": "Harness",
             "distractorWords": [
@@ -2272,7 +2272,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_m_28",
-            "cluePrompt": "Hook the wooden pole with a flat blade used to row and steer a raft",
+            "cluePrompt": "Hook the wooden blade used to steer a raft",
             "clueCategory": "Equipment",
             "targetWord": "Paddle",
             "distractorWords": [
@@ -2284,7 +2284,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_m_29",
-            "cluePrompt": "Hook a thick foam jacket you wear on boats to stay afloat in water",
+            "cluePrompt": "Hook a buoyancy vest worn on boats",
             "clueCategory": "Safety",
             "targetWord": "Life jacket",
             "distractorWords": [
@@ -2296,7 +2296,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_m_30",
-            "cluePrompt": "Hook creating a brand new device or tool that nobody ever built before",
+            "cluePrompt": "Hook creating a new tool nobody built before",
             "clueCategory": "Science",
             "targetWord": "Invention",
             "distractorWords": [
@@ -2320,7 +2320,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_m_32",
-            "cluePrompt": "Hook the special room equipped with beakers and test tubes where scientists work",
+            "cluePrompt": "Hook the room with test tubes where scientists work",
             "clueCategory": "Science",
             "targetWord": "Laboratory",
             "distractorWords": [
@@ -2368,7 +2368,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_m_36",
-            "cluePrompt": "Hook artificial metal probes launched into outer space to orbit Earth and send TV signals",
+            "cluePrompt": "Hook metal probes in space sending TV signals",
             "clueCategory": "Space",
             "targetWord": "Satellite",
             "distractorWords": [
@@ -2404,7 +2404,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_m_39",
-            "cluePrompt": "Hook a safe, sturdy building where families go for protection during a storm",
+            "cluePrompt": "Hook a safe building providing protection during storms",
             "clueCategory": "Safety",
             "targetWord": "Shelter",
             "distractorWords": [
@@ -2416,7 +2416,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_m_40",
-            "cluePrompt": "Hook moving people away from a dangerous flood area to a safe place",
+            "cluePrompt": "Hook moving people away from flood danger",
             "clueCategory": "Safety",
             "targetWord": "Evacuate",
             "distractorWords": [
@@ -2430,7 +2430,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
     hard: [
       {
             "id": "wf_g8_h_01",
-            "cluePrompt": "Hook a sudden violent shaking of the ground caused by shifts in Earth's crust",
+            "cluePrompt": "Hook sudden violent shaking of the ground",
             "clueCategory": "Disasters",
             "targetWord": "Earthquake",
             "distractorWords": [
@@ -2442,7 +2442,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_h_02",
-            "cluePrompt": "Hook a huge overflow of water that covers streets and houses after heavy rain",
+            "cluePrompt": "Hook an overflow of water covering streets",
             "clueCategory": "Disasters",
             "targetWord": "Flood",
             "distractorWords": [
@@ -2454,7 +2454,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_h_03",
-            "cluePrompt": "Hook a long period with no rain where lakes dry up and crops cannot grow",
+            "cluePrompt": "Hook a long period with no rainfall",
             "clueCategory": "Disasters",
             "targetWord": "Drought",
             "distractorWords": [
@@ -2466,7 +2466,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_h_04",
-            "cluePrompt": "Hook a huge mass of snow and ice tumbling rapidly down a steep mountain",
+            "cluePrompt": "Hook snow tumbling rapidly down a mountain",
             "clueCategory": "Disasters",
             "targetWord": "Avalanche",
             "distractorWords": [
@@ -2478,7 +2478,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_h_05",
-            "cluePrompt": "Hook a spinning funnel of fierce wind that sweeps across land like a whirlwind",
+            "cluePrompt": "Hook a spinning funnel of fierce wind",
             "clueCategory": "Disasters",
             "targetWord": "Tornado",
             "distractorWords": [
@@ -2490,7 +2490,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_h_06",
-            "cluePrompt": "Hook a massive ocean wave triggered by undersea earthquakes that hits the coast",
+            "cluePrompt": "Hook a huge ocean wave from undersea tremors",
             "clueCategory": "Disasters",
             "targetWord": "Tsunami",
             "distractorWords": [
@@ -2502,7 +2502,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_h_07",
-            "cluePrompt": "Hook a dangerous fire that spreads quickly across dry forest trees and brush",
+            "cluePrompt": "Hook a dangerous fire spreading across dry forest",
             "clueCategory": "Disasters",
             "targetWord": "Wildfire",
             "distractorWords": [
@@ -2514,7 +2514,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_h_08",
-            "cluePrompt": "Hook rocks and earth sliding suddenly down a steep hillside after rain",
+            "cluePrompt": "Hook rocks and mud sliding down a slope",
             "clueCategory": "Disasters",
             "targetWord": "Landslide",
             "distractorWords": [
@@ -2574,7 +2574,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_h_13",
-            "cluePrompt": "Hook giving helpful suggestions to a friend to help them solve a dilemma",
+            "cluePrompt": "Hook giving helpful guidance to solve problems",
             "clueCategory": "Friendship",
             "targetWord": "Advice",
             "distractorWords": [
@@ -2586,7 +2586,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_h_14",
-            "cluePrompt": "Hook liking one thing more than another, like preferring tea over coffee",
+            "cluePrompt": "Hook choosing one option over another",
             "clueCategory": "Preferences",
             "targetWord": "Prefer",
             "distractorWords": [
@@ -2598,7 +2598,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_h_15",
-            "cluePrompt": "Hook protecting nature, wild animals, and clean oceans from harm",
+            "cluePrompt": "Hook keeping wildlife and oceans safe from harm",
             "clueCategory": "Environment",
             "targetWord": "Protect",
             "distractorWords": [
@@ -2610,15 +2610,15 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_h_16",
-            "cluePrompt": "Hook working stubbornly toward your dreams and not giving up when tasks get tough",
-            "clueCategory": "Mindset",
-            "targetWord": "Perseverance",
+            "cluePrompt": "Hook cutting down large areas of forest trees",
+            "clueCategory": "Environment",
+            "targetWord": "Deforestation",
             "distractorWords": [
-                  "Giving up",
-                  "Laziness",
-                  "Carelessness"
+                  "Pollution",
+                  "Erosion",
+                  "Extinction"
             ],
-            "explanation": "Perseverance means keeping on trying until you succeed."
+            "explanation": "Deforestation means cutting down trees across large forest areas."
       },
       {
             "id": "wf_g8_h_17",
@@ -2658,7 +2658,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_h_20",
-            "cluePrompt": "Hook someone you can count on and who will never let you down",
+            "cluePrompt": "Hook someone dependable who never lets you down",
             "clueCategory": "Personality",
             "targetWord": "Trustworthy",
             "distractorWords": [
@@ -2670,7 +2670,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_h_21",
-            "cluePrompt": "Hook energy from wind or sunshine that never runs out or causes pollution",
+            "cluePrompt": "Hook clean power from sunlight and wind",
             "clueCategory": "Environment",
             "targetWord": "Renewable energy",
             "distractorWords": [
@@ -2706,19 +2706,19 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_h_24",
-            "cluePrompt": "Hook reaching an agreement where both sides give up a small wish to make peace",
-            "clueCategory": "Social",
-            "targetWord": "Compromise",
+            "cluePrompt": "Hook a measure taken in advance to prevent danger",
+            "clueCategory": "Safety",
+            "targetWord": "Precaution",
             "distractorWords": [
-                  "Argument",
-                  "Fight",
-                  "Conflict"
+                  "Accident",
+                  "Disaster",
+                  "Emergency"
             ],
-            "explanation": "A compromise settles a disagreement fairly for both sides."
+            "explanation": "Taking precautions prevents accidents and injuries."
       },
       {
             "id": "wf_g8_h_25",
-            "cluePrompt": "Hook a wonderful breakthrough discovery that solves a difficult medical puzzle",
+            "cluePrompt": "Hook a major scientific discovery that solves puzzles",
             "clueCategory": "Science",
             "targetWord": "Breakthrough",
             "distractorWords": [
@@ -2778,7 +2778,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_h_30",
-            "cluePrompt": "Hook the variety of different birds, animals, and plants living in a forest",
+            "cluePrompt": "Hook the variety of wildlife in an ecosystem",
             "clueCategory": "Nature",
             "targetWord": "Wildlife variety",
             "distractorWords": [
@@ -2790,43 +2790,43 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_h_31",
-            "cluePrompt": "Hook acting honestly and doing what is right even when nobody is watching",
-            "clueCategory": "Values",
-            "targetWord": "Integrity",
+            "cluePrompt": "Hook energy from sun or wind that never runs out",
+            "clueCategory": "Environment",
+            "targetWord": "Renewable",
             "distractorWords": [
-                  "Dishonesty",
-                  "Cheating",
-                  "Lying"
+                  "Fossil",
+                  "Nuclear",
+                  "Polluting"
             ],
-            "explanation": "Integrity means being honest and true to your values at all times."
+            "explanation": "Renewable energy sources do not run out."
       },
       {
             "id": "wf_g8_h_32",
-            "cluePrompt": "Hook the ability to bounce back and stay cheerful after facing a setback",
-            "clueCategory": "Mindset",
-            "targetWord": "Resilience",
+            "cluePrompt": "Hook the dying out of an entire animal species",
+            "clueCategory": "Environment",
+            "targetWord": "Extinction",
             "distractorWords": [
-                  "Surrender",
-                  "Weakness",
-                  "Panic"
+                  "Evolution",
+                  "Migration",
+                  "Pollution"
             ],
-            "explanation": "Resilient students bounce back with a smile after losing a game."
+            "explanation": "Extinction occurs when all members of a species die out."
       },
       {
             "id": "wf_g8_h_33",
-            "cluePrompt": "Hook deep kindness and caring for others who are hurt or having a hard day",
-            "clueCategory": "Values",
-            "targetWord": "Compassion",
+            "cluePrompt": "Hook a duty or moral obligation you must do",
+            "clueCategory": "Chores",
+            "targetWord": "Responsibility",
             "distractorWords": [
-                  "Cruelty",
-                  "Coldness",
-                  "Spite"
+                  "Permission",
+                  "Excuse",
+                  "Invitation"
             ],
-            "explanation": "Compassion is showing gentle caring and sympathy to friends in need."
+            "explanation": "A responsibility is a duty you are expected to handle."
       },
       {
             "id": "wf_g8_h_34",
-            "cluePrompt": "Hook having modest humility and not boasting about your test scores",
+            "cluePrompt": "Hook not boasting or bragging about your success",
             "clueCategory": "Personality",
             "targetWord": "Modest",
             "distractorWords": [
@@ -2838,7 +2838,7 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_h_35",
-            "cluePrompt": "Hook being open to new ideas and respecting opinions different from your own",
+            "cluePrompt": "Hook respecting different ideas and customs",
             "clueCategory": "Mindset",
             "targetWord": "Open-minded",
             "distractorWords": [
@@ -2862,39 +2862,39 @@ export const WORD_FISHING_BANK: WordFishingBank = {
       },
       {
             "id": "wf_g8_h_37",
-            "cluePrompt": "Hook an early test model made by inventors before building the final machine",
-            "clueCategory": "Engineering",
-            "targetWord": "Prototype",
+            "cluePrompt": "Hook providing a room and meals for travellers",
+            "clueCategory": "Tourism",
+            "targetWord": "Accommodate",
             "distractorWords": [
-                  "Toy",
-                  "Drawing",
-                  "Waste"
+                  "Cancel",
+                  "Postpone",
+                  "Interrupt"
             ],
-            "explanation": "Inventors test a prototype to fix problems before making more."
+            "explanation": "Hotels accommodate visitors during holidays."
       },
       {
             "id": "wf_g8_h_38",
-            "cluePrompt": "Hook automated mechanical machines built to help doctors or explore Mars",
-            "clueCategory": "Technology",
-            "targetWord": "Robots",
+            "cluePrompt": "Hook a prediction about tomorrow's weather conditions",
+            "clueCategory": "Science",
+            "targetWord": "Forecast",
             "distractorWords": [
-                  "Statues",
-                  "Tools",
-                  "Furniture"
+                  "Experiment",
+                  "Discovery",
+                  "Vaccine"
             ],
-            "explanation": "Robots are automated machines that perform useful tasks."
+            "explanation": "A weather forecast predicts temperature and rain."
       },
       {
             "id": "wf_g8_h_39",
-            "cluePrompt": "Hook the set of rules or democratic laws that protect citizens' freedoms",
-            "clueCategory": "Civics",
-            "targetWord": "Constitution",
+            "cluePrompt": "Hook a chemical medicine used to prevent serious illness",
+            "clueCategory": "Science",
+            "targetWord": "Vaccine",
             "distractorWords": [
-                  "Bill",
-                  "Tax",
-                  "Notice"
+                  "Bandage",
+                  "Bacteria",
+                  "Thermometer"
             ],
-            "explanation": "The constitution is the supreme law that protects citizens' rights."
+            "explanation": "Vaccines protect people against serious viral diseases."
       },
       {
             "id": "wf_g8_h_40",

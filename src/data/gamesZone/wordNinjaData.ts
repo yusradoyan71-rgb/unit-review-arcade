@@ -140,130 +140,1330 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
   },
   'grade-8': {
     easy: [
-      { id: 'wn_g8_e_01', prompt: "Slice the personality trait of someone you CAN TRUST", promptType: 'meaning', correctWord: 'Reliable', distractorWords: ['Selfish', 'Sneaky', 'Jealous'] },
-      { id: 'wn_g8_e_02', prompt: "Slice the OPPOSITE of 'Generous'", promptType: 'antonym', correctWord: 'Selfish', distractorWords: ['Caring', 'Giving', 'Kind'] },
-      { id: 'wn_g8_e_03', prompt: "Slice the word meaning 'To invite someone to an event'", promptType: 'meaning', correctWord: 'Invite', distractorWords: ['Refuse', 'Decline', 'Reject'] },
-      { id: 'wn_g8_e_04', prompt: "Slice the personality trait of someone who NEVER changes their mind", promptType: 'meaning', correctWord: 'Stubborn', distractorWords: ['Easy-going', 'Relaxed', 'Friendly'] },
-      { id: 'wn_g8_e_05', prompt: "Slice the SYNONYM of 'Friend'", promptType: 'synonym', correctWord: 'Buddy', distractorWords: ['Enemy', 'Rival', 'Opponent'] },
-      { id: 'wn_g8_e_06', prompt: "Slice the word meaning 'To say NO to an offer'", promptType: 'meaning', correctWord: 'Refuse', distractorWords: ['Accept', 'Agree', 'Welcome'] },
-      { id: 'wn_g8_e_07', prompt: "Slice the cooking method in an OVEN with dry heat", promptType: 'meaning', correctWord: 'Bake', distractorWords: ['Boil', 'Chop', 'Peel'] },
-      { id: 'wn_g8_e_08', prompt: "Slice the personality trait of someone who shares things", promptType: 'meaning', correctWord: 'Generous', distractorWords: ['Mean', 'Stingy', 'Greedy'] },
-      { id: 'wn_g8_e_09', prompt: "Slice the musical instrument with BLACK and WHITE keys", promptType: 'meaning', correctWord: 'Piano', distractorWords: ['Guitar', 'Violin', 'Drums'] },
-      { id: 'wn_g8_e_10', prompt: "Slice the OPPOSITE of 'Honest'", promptType: 'antonym', correctWord: 'Dishonest', distractorWords: ['Truthful', 'Loyal', 'Sincere'] },
-      { id: 'wn_g8_e_11', prompt: "Slice the phone action meaning 'End a phone call'", promptType: 'meaning', correctWord: 'Hang up', distractorWords: ['Pick up', 'Dial', 'Call back'] },
-      { id: 'wn_g8_e_12', prompt: "Slice the SYNONYM of 'Trendy'", promptType: 'synonym', correctWord: 'Fashionable', distractorWords: ['Old-fashioned', 'Dull', 'Boring'] },
-      { id: 'wn_g8_e_13', prompt: "Slice the kitchen verb meaning 'Remove the skin of a fruit'", promptType: 'meaning', correctWord: 'Peel', distractorWords: ['Slice', 'Whisk', 'Grate'] },
-      { id: 'wn_g8_e_14', prompt: "Slice the OPPOSITE of 'Supportive'", promptType: 'antonym', correctWord: 'Unhelpful', distractorWords: ['Caring', 'Kind', 'Helpful'] },
-      { id: 'wn_g8_e_15', prompt: "Slice the word for 'Person who visits places for pleasure'", promptType: 'meaning', correctWord: 'Tourist', distractorWords: ['Pilot', 'Sailor', 'Driver'] },
-      { id: 'wn_g8_e_16', prompt: "Slice the sports gear worn on the HEAD for safety", promptType: 'meaning', correctWord: 'Helmet', distractorWords: ['Goggles', 'Boots', 'Gloves'] },
-      { id: 'wn_g8_e_17', prompt: "Slice the SYNONYM of 'Awesome'", promptType: 'synonym', correctWord: 'Terrific', distractorWords: ['Awful', 'Terrible', 'Dreadful'] },
-      { id: 'wn_g8_e_18', prompt: "Slice the word for 'A list of foods and dishes in a restaurant'", promptType: 'meaning', correctWord: 'Menu', distractorWords: ['Bill', 'Receipt', 'Ticket'] },
-      { id: 'wn_g8_e_19', prompt: "Slice the OPPOSITE of 'Calm'", promptType: 'antonym', correctWord: 'Anxious', distractorWords: ['Peaceful', 'Quiet', 'Serene'] },
-      { id: 'wn_g8_e_20', prompt: "Slice the extreme sport of jumping from a plane", promptType: 'meaning', correctWord: 'Skydiving', distractorWords: ['Snorkeling', 'Hiking', 'Jogging'] },
-      { id: 'wn_g8_e_21', prompt: "Slice the kitchen tool used to TURN or WHISK eggs", promptType: 'meaning', correctWord: 'Whisk', distractorWords: ['Grater', 'Saucepan', 'Colander'] },
-      { id: 'wn_g8_e_22', prompt: "Slice the adjective meaning 'Not proud; modest'", promptType: 'meaning', correctWord: 'Humble', distractorWords: ['Arrogant', 'Snobbish', 'Boastful'] },
-      { id: 'wn_g8_e_23', prompt: "Slice the phone expression: 'Please _____ the line'", promptType: 'meaning', correctWord: 'Hold', distractorWords: ['Drop', 'Cut', 'Break'] },
-      { id: 'wn_g8_e_24', prompt: "Slice the SYNONYM of 'Famous'", promptType: 'synonym', correctWord: 'Well-known', distractorWords: ['Unknown', 'Anonymous', 'Ordinary'] },
-      { id: 'wn_g8_e_25', prompt: "Slice the music genre originating from Jamaica", promptType: 'meaning', correctWord: 'Reggae', distractorWords: ['Opera', 'Classical', 'Country'] },
-      { id: 'wn_g8_e_26', prompt: "Slice the OPPOSITE of 'Boring'", promptType: 'antonym', correctWord: 'Exciting', distractorWords: ['Dull', 'Tedious', 'Tiring'] },
-      { id: 'wn_g8_e_27', prompt: "Slice the cooking method in HOT OIL", promptType: 'meaning', correctWord: 'Fry', distractorWords: ['Steam', 'Bake', 'Boil'] },
-      { id: 'wn_g8_e_28', prompt: "Slice the person who plays lead or rhythm guitar", promptType: 'meaning', correctWord: 'Guitarist', distractorWords: ['Drummer', 'Vocalist', 'Bassist'] },
-      { id: 'wn_g8_e_29', prompt: "Slice the OPPOSITE of 'Polite'", promptType: 'antonym', correctWord: 'Impolite', distractorWords: ['Courteous', 'Charming', 'Respectful'] },
-      { id: 'wn_g8_e_30', prompt: "Slice the item you need to BOARD a flight", promptType: 'meaning', correctWord: 'Boarding pass', distractorWords: ['Credit card', 'Postcard', 'Receipt'] },
-      { id: 'wn_g8_e_31', prompt: "Slice the person who lives NEXT DOOR to you", promptType: 'meaning', correctWord: 'Neighbour', distractorWords: ['Stranger', 'Relative', 'Boss'] },
-      { id: 'wn_g8_e_32', prompt: "Slice the SYNONYM of 'Relaxed'", promptType: 'synonym', correctWord: 'Laid-back', distractorWords: ['Stressed', 'Worried', 'Frantic'] },
-      { id: 'wn_g8_e_33', prompt: "Slice the kitchen item used to SHRED cheese", promptType: 'meaning', correctWord: 'Grater', distractorWords: ['Rolling pin', 'Teaspoon', 'Kettle'] },
-      { id: 'wn_g8_e_34', prompt: "Slice the OPPOSITE of 'Dangerous'", promptType: 'antonym', correctWord: 'Harmless', distractorWords: ['Risky', 'Fatal', 'Severe'] },
-      { id: 'wn_g8_e_35', prompt: "Slice the digital action meaning 'Enter your username and PIN'", promptType: 'meaning', correctWord: 'Log in', distractorWords: ['Scroll', 'Post', 'Tag'] },
-      { id: 'wn_g8_e_36', prompt: "Slice the person who LEADS a team or ship", promptType: 'meaning', correctWord: 'Captain', distractorWords: ['Soldier', 'Passenger', 'Guest'] },
-      { id: 'wn_g8_e_37', prompt: "Slice the SYNONYM of 'Difficult'", promptType: 'synonym', correctWord: 'Challenging', distractorWords: ['Effortless', 'Simple', 'Smooth'] },
-      { id: 'wn_g8_e_38', prompt: "Slice the water activity with swimming under water with a tube", promptType: 'meaning', correctWord: 'Snorkeling', distractorWords: ['Archery', 'Caving', 'Paragliding'] },
-      { id: 'wn_g8_e_39', prompt: "Slice the OPPOSITE of 'Permanent'", promptType: 'antonym', correctWord: 'Temporary', distractorWords: ['Lifelong', 'Constant', 'Eternal'] },
-      { id: 'wn_g8_e_40', prompt: "Slice the verb meaning 'To count on or trust a friend'", promptType: 'meaning', correctWord: 'Rely on', distractorWords: ['Cheat on', 'Laugh at', 'Look down on'] },
-    ],
+      {
+            "id": "wn_g8_e_01",
+            "prompt": "Slice the personality trait of someone you CAN TRUST",
+            "promptType": "meaning",
+            "correctWord": "Reliable",
+            "distractorWords": [
+                  "Selfish",
+                  "Sneaky",
+                  "Jealous"
+            ]
+      },
+      {
+            "id": "wn_g8_e_02",
+            "prompt": "Slice the OPPOSITE of 'Generous'",
+            "promptType": "antonym",
+            "correctWord": "Selfish",
+            "distractorWords": [
+                  "Caring",
+                  "Giving",
+                  "Kind"
+            ]
+      },
+      {
+            "id": "wn_g8_e_03",
+            "prompt": "Slice the word meaning: Invite someone to an event",
+            "promptType": "meaning",
+            "correctWord": "Invite",
+            "distractorWords": [
+                  "Refuse",
+                  "Decline",
+                  "Reject"
+            ]
+      },
+      {
+            "id": "wn_g8_e_04",
+            "prompt": "Slice someone who never changes their mind",
+            "promptType": "meaning",
+            "correctWord": "Stubborn",
+            "distractorWords": [
+                  "Easy-going",
+                  "Relaxed",
+                  "Friendly"
+            ]
+      },
+      {
+            "id": "wn_g8_e_05",
+            "prompt": "Slice the SYNONYM of 'Friend'",
+            "promptType": "synonym",
+            "correctWord": "Buddy",
+            "distractorWords": [
+                  "Enemy",
+                  "Rival",
+                  "Opponent"
+            ]
+      },
+      {
+            "id": "wn_g8_e_06",
+            "prompt": "Slice the word meaning: To say NO to an offer",
+            "promptType": "meaning",
+            "correctWord": "Refuse",
+            "distractorWords": [
+                  "Accept",
+                  "Agree",
+                  "Welcome"
+            ]
+      },
+      {
+            "id": "wn_g8_e_07",
+            "prompt": "Slice the cooking method in an OVEN with dry heat",
+            "promptType": "meaning",
+            "correctWord": "Bake",
+            "distractorWords": [
+                  "Boil",
+                  "Chop",
+                  "Peel"
+            ]
+      },
+      {
+            "id": "wn_g8_e_08",
+            "prompt": "Slice the personality trait of someone who shares things",
+            "promptType": "meaning",
+            "correctWord": "Generous",
+            "distractorWords": [
+                  "Mean",
+                  "Stingy",
+                  "Greedy"
+            ]
+      },
+      {
+            "id": "wn_g8_e_09",
+            "prompt": "Slice the musical instrument with BLACK and WHITE keys",
+            "promptType": "meaning",
+            "correctWord": "Piano",
+            "distractorWords": [
+                  "Guitar",
+                  "Violin",
+                  "Drums"
+            ]
+      },
+      {
+            "id": "wn_g8_e_10",
+            "prompt": "Slice the OPPOSITE of 'Honest'",
+            "promptType": "antonym",
+            "correctWord": "Dishonest",
+            "distractorWords": [
+                  "Truthful",
+                  "Loyal",
+                  "Sincere"
+            ]
+      },
+      {
+            "id": "wn_g8_e_11",
+            "prompt": "Slice the phone action meaning 'End a phone call'",
+            "promptType": "meaning",
+            "correctWord": "Hang up",
+            "distractorWords": [
+                  "Pick up",
+                  "Dial",
+                  "Call back"
+            ]
+      },
+      {
+            "id": "wn_g8_e_12",
+            "prompt": "Slice the SYNONYM of 'Trendy'",
+            "promptType": "synonym",
+            "correctWord": "Fashionable",
+            "distractorWords": [
+                  "Old-fashioned",
+                  "Dull",
+                  "Boring"
+            ]
+      },
+      {
+            "id": "wn_g8_e_13",
+            "prompt": "Slice the kitchen verb: Remove fruit skin",
+            "promptType": "meaning",
+            "correctWord": "Peel",
+            "distractorWords": [
+                  "Slice",
+                  "Whisk",
+                  "Grate"
+            ]
+      },
+      {
+            "id": "wn_g8_e_14",
+            "prompt": "Slice the OPPOSITE of 'Supportive'",
+            "promptType": "antonym",
+            "correctWord": "Unhelpful",
+            "distractorWords": [
+                  "Caring",
+                  "Kind",
+                  "Helpful"
+            ]
+      },
+      {
+            "id": "wn_g8_e_15",
+            "prompt": "Slice the word for 'Person who visits places for pleasure'",
+            "promptType": "meaning",
+            "correctWord": "Tourist",
+            "distractorWords": [
+                  "Pilot",
+                  "Sailor",
+                  "Driver"
+            ]
+      },
+      {
+            "id": "wn_g8_e_16",
+            "prompt": "Slice the sports gear worn on the HEAD for safety",
+            "promptType": "meaning",
+            "correctWord": "Helmet",
+            "distractorWords": [
+                  "Goggles",
+                  "Boots",
+                  "Gloves"
+            ]
+      },
+      {
+            "id": "wn_g8_e_17",
+            "prompt": "Slice the SYNONYM of 'Awesome'",
+            "promptType": "synonym",
+            "correctWord": "Terrific",
+            "distractorWords": [
+                  "Awful",
+                  "Terrible",
+                  "Dreadful"
+            ]
+      },
+      {
+            "id": "wn_g8_e_18",
+            "prompt": "Slice a list of dishes in a restaurant",
+            "promptType": "meaning",
+            "correctWord": "Menu",
+            "distractorWords": [
+                  "Bill",
+                  "Receipt",
+                  "Ticket"
+            ]
+      },
+      {
+            "id": "wn_g8_e_19",
+            "prompt": "Slice the OPPOSITE of 'Calm'",
+            "promptType": "antonym",
+            "correctWord": "Anxious",
+            "distractorWords": [
+                  "Peaceful",
+                  "Quiet",
+                  "Serene"
+            ]
+      },
+      {
+            "id": "wn_g8_e_20",
+            "prompt": "Slice the extreme sport of jumping from a plane",
+            "promptType": "meaning",
+            "correctWord": "Skydiving",
+            "distractorWords": [
+                  "Snorkeling",
+                  "Hiking",
+                  "Jogging"
+            ]
+      },
+      {
+            "id": "wn_g8_e_21",
+            "prompt": "Slice the tool used to whisk eggs",
+            "promptType": "meaning",
+            "correctWord": "Whisk",
+            "distractorWords": [
+                  "Grater",
+                  "Saucepan",
+                  "Colander"
+            ]
+      },
+      {
+            "id": "wn_g8_e_22",
+            "prompt": "Slice the adjective meaning 'Not proud; modest'",
+            "promptType": "meaning",
+            "correctWord": "Humble",
+            "distractorWords": [
+                  "Arrogant",
+                  "Snobbish",
+                  "Boastful"
+            ]
+      },
+      {
+            "id": "wn_g8_e_23",
+            "prompt": "Slice the phone expression: 'Please _____ the line'",
+            "promptType": "meaning",
+            "correctWord": "Hold",
+            "distractorWords": [
+                  "Drop",
+                  "Cut",
+                  "Break"
+            ]
+      },
+      {
+            "id": "wn_g8_e_24",
+            "prompt": "Slice the SYNONYM of 'Famous'",
+            "promptType": "synonym",
+            "correctWord": "Well-known",
+            "distractorWords": [
+                  "Unknown",
+                  "Anonymous",
+                  "Ordinary"
+            ]
+      },
+      {
+            "id": "wn_g8_e_25",
+            "prompt": "Slice the music genre originating from Jamaica",
+            "promptType": "meaning",
+            "correctWord": "Reggae",
+            "distractorWords": [
+                  "Opera",
+                  "Classical",
+                  "Country"
+            ]
+      },
+      {
+            "id": "wn_g8_e_26",
+            "prompt": "Slice the OPPOSITE of 'Boring'",
+            "promptType": "antonym",
+            "correctWord": "Exciting",
+            "distractorWords": [
+                  "Dull",
+                  "Tedious",
+                  "Tiring"
+            ]
+      },
+      {
+            "id": "wn_g8_e_27",
+            "prompt": "Slice the cooking method in HOT OIL",
+            "promptType": "meaning",
+            "correctWord": "Fry",
+            "distractorWords": [
+                  "Steam",
+                  "Bake",
+                  "Boil"
+            ]
+      },
+      {
+            "id": "wn_g8_e_28",
+            "prompt": "Slice the person who plays lead or rhythm guitar",
+            "promptType": "meaning",
+            "correctWord": "Guitarist",
+            "distractorWords": [
+                  "Drummer",
+                  "Vocalist",
+                  "Bassist"
+            ]
+      },
+      {
+            "id": "wn_g8_e_29",
+            "prompt": "Slice the OPPOSITE of 'Polite'",
+            "promptType": "antonym",
+            "correctWord": "Impolite",
+            "distractorWords": [
+                  "Courteous",
+                  "Charming",
+                  "Respectful"
+            ]
+      },
+      {
+            "id": "wn_g8_e_30",
+            "prompt": "Slice the item you need to BOARD a flight",
+            "promptType": "meaning",
+            "correctWord": "Boarding pass",
+            "distractorWords": [
+                  "Credit card",
+                  "Postcard",
+                  "Receipt"
+            ]
+      },
+      {
+            "id": "wn_g8_e_31",
+            "prompt": "Slice the person who lives NEXT DOOR to you",
+            "promptType": "meaning",
+            "correctWord": "Neighbour",
+            "distractorWords": [
+                  "Stranger",
+                  "Relative",
+                  "Boss"
+            ]
+      },
+      {
+            "id": "wn_g8_e_32",
+            "prompt": "Slice the SYNONYM of 'Relaxed'",
+            "promptType": "synonym",
+            "correctWord": "Laid-back",
+            "distractorWords": [
+                  "Stressed",
+                  "Worried",
+                  "Frantic"
+            ]
+      },
+      {
+            "id": "wn_g8_e_33",
+            "prompt": "Slice the kitchen item used to SHRED cheese",
+            "promptType": "meaning",
+            "correctWord": "Grater",
+            "distractorWords": [
+                  "Rolling pin",
+                  "Teaspoon",
+                  "Kettle"
+            ]
+      },
+      {
+            "id": "wn_g8_e_34",
+            "prompt": "Slice the OPPOSITE of 'Dangerous'",
+            "promptType": "antonym",
+            "correctWord": "Harmless",
+            "distractorWords": [
+                  "Risky",
+                  "Fatal",
+                  "Severe"
+            ]
+      },
+      {
+            "id": "wn_g8_e_35",
+            "prompt": "Slice the digital action meaning 'Enter your username and PIN'",
+            "promptType": "meaning",
+            "correctWord": "Log in",
+            "distractorWords": [
+                  "Scroll",
+                  "Post",
+                  "Tag"
+            ]
+      },
+      {
+            "id": "wn_g8_e_36",
+            "prompt": "Slice the person who LEADS a team or ship",
+            "promptType": "meaning",
+            "correctWord": "Captain",
+            "distractorWords": [
+                  "Soldier",
+                  "Passenger",
+                  "Guest"
+            ]
+      },
+      {
+            "id": "wn_g8_e_37",
+            "prompt": "Slice the SYNONYM of 'Difficult'",
+            "promptType": "synonym",
+            "correctWord": "Challenging",
+            "distractorWords": [
+                  "Effortless",
+                  "Simple",
+                  "Smooth"
+            ]
+      },
+      {
+            "id": "wn_g8_e_38",
+            "prompt": "Slice swimming underwater with a tube",
+            "promptType": "meaning",
+            "correctWord": "Snorkeling",
+            "distractorWords": [
+                  "Archery",
+                  "Caving",
+                  "Paragliding"
+            ]
+      },
+      {
+            "id": "wn_g8_e_39",
+            "prompt": "Slice the OPPOSITE of 'Permanent'",
+            "promptType": "antonym",
+            "correctWord": "Temporary",
+            "distractorWords": [
+                  "Lifelong",
+                  "Constant",
+                  "Eternal"
+            ]
+      },
+      {
+            "id": "wn_g8_e_40",
+            "prompt": "Slice to count on or trust a friend",
+            "promptType": "meaning",
+            "correctWord": "Rely on",
+            "distractorWords": [
+                  "Cheat on",
+                  "Laugh at",
+                  "Look down on"
+            ]
+      }
+],
     medium: [
-      { id: 'wn_g8_m_01', prompt: "Slice the idiom meaning 'To share the same interests and views'", promptType: 'meaning', correctWord: 'Have in common', distractorWords: ['Argue with', 'Back down', 'Count on'] },
-      { id: 'wn_g8_m_02', prompt: "Slice the cooking method: COOKING OVER VAPOUR above hot water", promptType: 'meaning', correctWord: 'Steam', distractorWords: ['Deep fry', 'Barbecue', 'Roast'] },
-      { id: 'wn_g8_m_03', prompt: "Slice the SYNONYM of 'Back someone up'", promptType: 'synonym', correctWord: 'Support', distractorWords: ['Betray', 'Abandon', 'Mock'] },
-      { id: 'wn_g8_m_04', prompt: "Slice the person addicted to using their mobile phone", promptType: 'meaning', correctWord: 'Phubbing', distractorWords: ['Blogging', 'Vlogging', 'Streaming'] },
-      { id: 'wn_g8_m_05', prompt: "Slice the extreme sport of climbing up STEEP ROCK faces", promptType: 'meaning', correctWord: 'Rock climbing', distractorWords: ['Canoeing', 'Windsurfing', 'Cycling'] },
-      { id: 'wn_g8_m_06', prompt: "Slice the OPPOSITE of 'Sensible'", promptType: 'antonym', correctWord: 'Foolish', distractorWords: ['Wise', 'Prudent', 'Smart'] },
-      { id: 'wn_g8_m_07', prompt: "Slice the phone expression: 'The line is _____ right now'", promptType: 'meaning', correctWord: 'Engaged', distractorWords: ['Free', 'Open', 'Clear'] },
-      { id: 'wn_g8_m_08', prompt: "Slice the kitchen ingredient that gives food a SWEET taste", promptType: 'meaning', correctWord: 'Sugar', distractorWords: ['Vinegar', 'Pepper', 'Mustard'] },
-      { id: 'wn_g8_m_09', prompt: "Slice the personality trait of someone who THINKS HIGHLY of themselves", promptType: 'meaning', correctWord: 'Arrogant', distractorWords: ['Modest', 'Tolerant', 'Humble'] },
-      { id: 'wn_g8_m_10', prompt: "Slice the SYNONYM of 'Fascinating'", promptType: 'synonym', correctWord: 'Captivating', distractorWords: ['Monotonous', 'Tedious', 'Dull'] },
-      { id: 'wn_g8_m_11', prompt: "Slice the extreme adventure activity descending into DEEP CAVES", promptType: 'meaning', correctWord: 'Caving', distractorWords: ['Trekking', 'Surfing', 'Skateboarding'] },
-      { id: 'wn_g8_m_12', prompt: "Slice the phrase meaning 'To have a good relationship with someone'", promptType: 'meaning', correctWord: 'Get on well', distractorWords: ['Fall out', 'Give up', 'Break down'] },
-      { id: 'wn_g8_m_13', prompt: "Slice the OPPOSITE of 'Traditional'", promptType: 'antonym', correctWord: 'Contemporary', distractorWords: ['Conventional', 'Ancient', 'Customary'] },
-      { id: 'wn_g8_m_14', prompt: "Slice the cooking step: MIXING INGREDIENTS smoothly with a spoon", promptType: 'meaning', correctWord: 'Stir', distractorWords: ['Chop', 'Squeeze', 'Grate'] },
-      { id: 'wn_g8_m_15', prompt: "Slice the phone term for 'Connection is noisy or unclear'", promptType: 'meaning', correctWord: 'Bad line', distractorWords: ['Dial tone', 'Voicemail', 'Contact list'] },
-      { id: 'wn_g8_m_16', prompt: "Slice the SYNONYM of 'Unbearable'", promptType: 'synonym', correctWord: 'Intolerable', distractorWords: ['Pleasant', 'Enjoyable', 'Delightful'] },
-      { id: 'wn_g8_m_17', prompt: "Slice the gear that protects eyes while swimming or skiing", promptType: 'meaning', correctWord: 'Goggles', distractorWords: ['Life jacket', 'Compass', 'Whistle'] },
-      { id: 'wn_g8_m_18', prompt: "Slice the natural disaster with a GIANT OCEAN WAVE", promptType: 'meaning', correctWord: 'Tsunami', distractorWords: ['Tornado', 'Landslide', 'Blizzard'] },
-      { id: 'wn_g8_m_19', prompt: "Slice the OPPOSITE of 'Punctual'", promptType: 'antonym', correctWord: 'Unpunctual', distractorWords: ['On time', 'Prompt', 'Ready'] },
-      { id: 'wn_g8_m_20', prompt: "Slice the culinary taste of lemons or unripe apples", promptType: 'meaning', correctWord: 'Sour', distractorWords: ['Bitter', 'Salty', 'Sweet'] },
-      { id: 'wn_g8_m_21', prompt: "Slice the phrase meaning 'To stop making phone contact or fall out'", promptType: 'meaning', correctWord: 'Lose touch', distractorWords: ['Keep in touch', 'Back up', 'Count on'] },
-      { id: 'wn_g8_m_22', prompt: "Slice the SYNONYM of 'Thrilling'", promptType: 'synonym', correctWord: 'Exhilarating', distractorWords: ['Boring', 'Unremarkable', 'Tiresome'] },
-      { id: 'wn_g8_m_23', prompt: "Slice the device used to determine NORTH, SOUTH, EAST, WEST", promptType: 'meaning', correctWord: 'Compass', distractorWords: ['Altimeter', 'Binoculars', 'Flashlight'] },
-      { id: 'wn_g8_m_24', prompt: "Slice the culinary verb: PRESSING citrus fruits for juice", promptType: 'meaning', correctWord: 'Squeeze', distractorWords: ['Knead', 'Sprinkle', 'Dice'] },
-      { id: 'wn_g8_m_25', prompt: "Slice the OPPOSITE of 'Courteous'", promptType: 'antonym', correctWord: 'Discourteous', distractorWords: ['Mannerly', 'Civil', 'Gracious'] },
-      { id: 'wn_g8_m_26', prompt: "Slice the phrase meaning 'To be enthusiastic about something'", promptType: 'meaning', correctWord: 'Keen on', distractorWords: ['Tired of', 'Bored with', 'Afraid of'] },
-      { id: 'wn_g8_m_27', prompt: "Slice the natural disaster with snow and rock rushing down a mountain", promptType: 'meaning', correctWord: 'Avalanche', distractorWords: ['Volcano', 'Wildfire', 'Drought'] },
-      { id: 'wn_g8_m_28', prompt: "Slice the culinary verb: CUTTING into small square cubes", promptType: 'meaning', correctWord: 'Dice', distractorWords: ['Boil', 'Bake', 'Whisk'] },
-      { id: 'wn_g8_m_29', prompt: "Slice the SYNONYM of 'Tolerant'", promptType: 'synonym', correctWord: 'Open-minded', distractorWords: ['Narrow-minded', 'Biased', 'Rigid'] },
-      { id: 'wn_g8_m_30', prompt: "Slice the safety gear you wear in a boat so you don\\'t sink", promptType: 'meaning', correctWord: 'Life jacket', distractorWords: ['Backpack', 'Parachute', 'Flippers'] },
-      { id: 'wn_g8_m_31', prompt: "Slice the communication verb: To call someone back later", promptType: 'meaning', correctWord: 'Return call', distractorWords: ['Interrupt', 'Mute', 'Unfollow'] },
-      { id: 'wn_g8_m_32', prompt: "Slice the OPPOSITE of 'Self-centered'", promptType: 'antonym', correctWord: 'Altruistic', distractorWords: ['Egotistical', 'Vain', 'Proud'] },
-      { id: 'wn_g8_m_33', prompt: "Slice the culinary technique: ROASTING on an open fire rack", promptType: 'meaning', correctWord: 'Grill', distractorWords: ['Poach', 'Mince', 'Blend'] },
-      { id: 'wn_g8_m_34', prompt: "Slice the adventurous trek on foot carrying heavy gear", promptType: 'meaning', correctWord: 'Backpacking', distractorWords: ['Sunbathing', 'Cruising', 'Sightseeing'] },
-      { id: 'wn_g8_m_35', prompt: "Slice the SYNONYM of 'Essential'", promptType: 'synonym', correctWord: 'Crucial', distractorWords: ['Trivial', 'Secondary', 'Insignificant'] },
-      { id: 'wn_g8_m_36', prompt: "Slice the phone status when no one picks up after 10 rings", promptType: 'meaning', correctWord: 'Unanswered', distractorWords: ['Occupied', 'Connected', 'Received'] },
-      { id: 'wn_g8_m_37', prompt: "Slice the flavor associated with dark coffee or unsweetened cocoa", promptType: 'meaning', correctWord: 'Bitter', distractorWords: ['Syrupy', 'Tangy', 'Savory'] },
-      { id: 'wn_g8_m_38', prompt: "Slice the OPPOSITE of 'Reliable'", promptType: 'antonym', correctWord: 'Unreliable', distractorWords: ['Dependable', 'Trusty', 'Sound'] },
-      { id: 'wn_g8_m_39', prompt: "Slice the adventure sport of riding waves standing on a board", promptType: 'meaning', correctWord: 'Surfing', distractorWords: ['Rowing', 'Diving', 'Kayaking'] },
-      { id: 'wn_g8_m_40', prompt: "Slice the personality trait of someone who gets ANGRY or JEALOUS easily", promptType: 'meaning', correctWord: 'Possessive', distractorWords: ['Supportive', 'Generous', 'Patient'] },
-    ],
+      {
+            "id": "wn_g8_m_01",
+            "prompt": "Slice: To share the same interests",
+            "promptType": "meaning",
+            "correctWord": "Have in common",
+            "distractorWords": [
+                  "Argue with",
+                  "Back down",
+                  "Count on"
+            ]
+      },
+      {
+            "id": "wn_g8_m_02",
+            "prompt": "Slice the cooking method: Over steam",
+            "promptType": "meaning",
+            "correctWord": "Steam",
+            "distractorWords": [
+                  "Deep fry",
+                  "Barbecue",
+                  "Roast"
+            ]
+      },
+      {
+            "id": "wn_g8_m_03",
+            "prompt": "Slice the SYNONYM of 'Back someone up'",
+            "promptType": "synonym",
+            "correctWord": "Support",
+            "distractorWords": [
+                  "Betray",
+                  "Abandon",
+                  "Mock"
+            ]
+      },
+      {
+            "id": "wn_g8_m_04",
+            "prompt": "Slice ignoring friends for your phone",
+            "promptType": "meaning",
+            "correctWord": "Phubbing",
+            "distractorWords": [
+                  "Blogging",
+                  "Chatting",
+                  "Surfing"
+            ]
+      },
+      {
+            "id": "wn_g8_m_05",
+            "prompt": "Slice the extreme sport of climbing up STEEP ROCK faces",
+            "promptType": "meaning",
+            "correctWord": "Rock climbing",
+            "distractorWords": [
+                  "Canoeing",
+                  "Windsurfing",
+                  "Cycling"
+            ]
+      },
+      {
+            "id": "wn_g8_m_06",
+            "prompt": "Slice the OPPOSITE of 'Sensible'",
+            "promptType": "antonym",
+            "correctWord": "Foolish",
+            "distractorWords": [
+                  "Wise",
+                  "Prudent",
+                  "Smart"
+            ]
+      },
+      {
+            "id": "wn_g8_m_07",
+            "prompt": "Slice the phone expression: 'The line is _____ right now'",
+            "promptType": "meaning",
+            "correctWord": "Engaged",
+            "distractorWords": [
+                  "Free",
+                  "Open",
+                  "Clear"
+            ]
+      },
+      {
+            "id": "wn_g8_m_08",
+            "prompt": "Slice the kitchen ingredient that gives food a SWEET taste",
+            "promptType": "meaning",
+            "correctWord": "Sugar",
+            "distractorWords": [
+                  "Vinegar",
+                  "Pepper",
+                  "Mustard"
+            ]
+      },
+      {
+            "id": "wn_g8_m_09",
+            "prompt": "Slice: Someone who feels superior to others",
+            "promptType": "meaning",
+            "correctWord": "Arrogant",
+            "distractorWords": [
+                  "Modest",
+                  "Tolerant",
+                  "Humble"
+            ]
+      },
+      {
+            "id": "wn_g8_m_10",
+            "prompt": "Slice the SYNONYM of 'Fascinating'",
+            "promptType": "synonym",
+            "correctWord": "Captivating",
+            "distractorWords": [
+                  "Monotonous",
+                  "Tedious",
+                  "Dull"
+            ]
+      },
+      {
+            "id": "wn_g8_m_11",
+            "prompt": "Slice the adventure sport of exploring caves",
+            "promptType": "meaning",
+            "correctWord": "Caving",
+            "distractorWords": [
+                  "Trekking",
+                  "Surfing",
+                  "Skateboarding"
+            ]
+      },
+      {
+            "id": "wn_g8_m_12",
+            "prompt": "Slice to have a good relationship with someone",
+            "promptType": "meaning",
+            "correctWord": "Get on well",
+            "distractorWords": [
+                  "Fall out",
+                  "Give up",
+                  "Break down"
+            ]
+      },
+      {
+            "id": "wn_g8_m_13",
+            "prompt": "Slice the OPPOSITE of 'Traditional'",
+            "promptType": "antonym",
+            "correctWord": "Contemporary",
+            "distractorWords": [
+                  "Conventional",
+                  "Ancient",
+                  "Customary"
+            ]
+      },
+      {
+            "id": "wn_g8_m_14",
+            "prompt": "Slice the cooking step: Mix with a spoon",
+            "promptType": "meaning",
+            "correctWord": "Stir",
+            "distractorWords": [
+                  "Chop",
+                  "Squeeze",
+                  "Grate"
+            ]
+      },
+      {
+            "id": "wn_g8_m_15",
+            "prompt": "Slice the phone term for 'Connection is noisy or unclear'",
+            "promptType": "meaning",
+            "correctWord": "Bad line",
+            "distractorWords": [
+                  "Dial tone",
+                  "Voicemail",
+                  "Contact list"
+            ]
+      },
+      {
+            "id": "wn_g8_m_16",
+            "prompt": "Slice the SYNONYM of 'Unbearable'",
+            "promptType": "synonym",
+            "correctWord": "Intolerable",
+            "distractorWords": [
+                  "Pleasant",
+                  "Enjoyable",
+                  "Delightful"
+            ]
+      },
+      {
+            "id": "wn_g8_m_17",
+            "prompt": "Slice the gear that protects eyes while swimming or skiing",
+            "promptType": "meaning",
+            "correctWord": "Goggles",
+            "distractorWords": [
+                  "Life jacket",
+                  "Compass",
+                  "Whistle"
+            ]
+      },
+      {
+            "id": "wn_g8_m_18",
+            "prompt": "Slice the natural disaster with a GIANT OCEAN WAVE",
+            "promptType": "meaning",
+            "correctWord": "Tsunami",
+            "distractorWords": [
+                  "Tornado",
+                  "Landslide",
+                  "Blizzard"
+            ]
+      },
+      {
+            "id": "wn_g8_m_19",
+            "prompt": "Slice the OPPOSITE of 'Punctual'",
+            "promptType": "antonym",
+            "correctWord": "Unpunctual",
+            "distractorWords": [
+                  "On time",
+                  "Prompt",
+                  "Ready"
+            ]
+      },
+      {
+            "id": "wn_g8_m_20",
+            "prompt": "Slice the culinary taste of lemons or unripe apples",
+            "promptType": "meaning",
+            "correctWord": "Sour",
+            "distractorWords": [
+                  "Bitter",
+                  "Salty",
+                  "Sweet"
+            ]
+      },
+      {
+            "id": "wn_g8_m_21",
+            "prompt": "Slice to lose contact or fall out",
+            "promptType": "meaning",
+            "correctWord": "Lose touch",
+            "distractorWords": [
+                  "Keep in touch",
+                  "Back up",
+                  "Count on"
+            ]
+      },
+      {
+            "id": "wn_g8_m_22",
+            "prompt": "Slice the SYNONYM of 'Thrilling'",
+            "promptType": "synonym",
+            "correctWord": "Exhilarating",
+            "distractorWords": [
+                  "Boring",
+                  "Unremarkable",
+                  "Tiresome"
+            ]
+      },
+      {
+            "id": "wn_g8_m_23",
+            "prompt": "Slice the device used to determine NORTH, SOUTH, EAST, WEST",
+            "promptType": "meaning",
+            "correctWord": "Compass",
+            "distractorWords": [
+                  "Altimeter",
+                  "Binoculars",
+                  "Flashlight"
+            ]
+      },
+      {
+            "id": "wn_g8_m_24",
+            "prompt": "Slice the culinary verb: PRESSING citrus fruits for juice",
+            "promptType": "meaning",
+            "correctWord": "Squeeze",
+            "distractorWords": [
+                  "Knead",
+                  "Sprinkle",
+                  "Dice"
+            ]
+      },
+      {
+            "id": "wn_g8_m_25",
+            "prompt": "Slice the OPPOSITE of 'Courteous'",
+            "promptType": "antonym",
+            "correctWord": "Discourteous",
+            "distractorWords": [
+                  "Mannerly",
+                  "Civil",
+                  "Gracious"
+            ]
+      },
+      {
+            "id": "wn_g8_m_26",
+            "prompt": "Slice the phrase meaning 'To be enthusiastic about something'",
+            "promptType": "meaning",
+            "correctWord": "Keen on",
+            "distractorWords": [
+                  "Tired of",
+                  "Bored with",
+                  "Afraid of"
+            ]
+      },
+      {
+            "id": "wn_g8_m_27",
+            "prompt": "Slice: Snow tumbling rapidly down mountains",
+            "promptType": "meaning",
+            "correctWord": "Avalanche",
+            "distractorWords": [
+                  "Volcano",
+                  "Wildfire",
+                  "Drought"
+            ]
+      },
+      {
+            "id": "wn_g8_m_28",
+            "prompt": "Slice: Cutting food into small cubes",
+            "promptType": "meaning",
+            "correctWord": "Dice",
+            "distractorWords": [
+                  "Boil",
+                  "Bake",
+                  "Whisk"
+            ]
+      },
+      {
+            "id": "wn_g8_m_29",
+            "prompt": "Slice the SYNONYM of 'Tolerant'",
+            "promptType": "synonym",
+            "correctWord": "Open-minded",
+            "distractorWords": [
+                  "Narrow-minded",
+                  "Biased",
+                  "Rigid"
+            ]
+      },
+      {
+            "id": "wn_g8_m_30",
+            "prompt": "Slice: Vest you wear on boats to stay afloat",
+            "promptType": "meaning",
+            "correctWord": "Life jacket",
+            "distractorWords": [
+                  "Backpack",
+                  "Parachute",
+                  "Flippers"
+            ]
+      },
+      {
+            "id": "wn_g8_m_31",
+            "prompt": "Slice the action: To call someone back",
+            "promptType": "meaning",
+            "correctWord": "Call back",
+            "distractorWords": [
+                  "Hang up",
+                  "Dial",
+                  "Hold on"
+            ]
+      },
+      {
+            "id": "wn_g8_m_32",
+            "prompt": "Slice the OPPOSITE of 'Self-centered'",
+            "promptType": "antonym",
+            "correctWord": "Caring",
+            "distractorWords": [
+                  "Selfish",
+                  "Arrogant",
+                  "Sneaky"
+            ]
+      },
+      {
+            "id": "wn_g8_m_33",
+            "prompt": "Slice the culinary technique: ROASTING on an open fire rack",
+            "promptType": "meaning",
+            "correctWord": "Grill",
+            "distractorWords": [
+                  "Poach",
+                  "Mince",
+                  "Blend"
+            ]
+      },
+      {
+            "id": "wn_g8_m_34",
+            "prompt": "Slice the adventurous trek on foot carrying heavy gear",
+            "promptType": "meaning",
+            "correctWord": "Backpacking",
+            "distractorWords": [
+                  "Sunbathing",
+                  "Cruising",
+                  "Sightseeing"
+            ]
+      },
+      {
+            "id": "wn_g8_m_35",
+            "prompt": "Slice the SYNONYM of 'Essential'",
+            "promptType": "synonym",
+            "correctWord": "Crucial",
+            "distractorWords": [
+                  "Trivial",
+                  "Secondary",
+                  "Insignificant"
+            ]
+      },
+      {
+            "id": "wn_g8_m_36",
+            "prompt": "Slice phone status when nobody answers after rings",
+            "promptType": "meaning",
+            "correctWord": "Unanswered",
+            "distractorWords": [
+                  "Occupied",
+                  "Connected",
+                  "Received"
+            ]
+      },
+      {
+            "id": "wn_g8_m_37",
+            "prompt": "Slice the flavor associated with dark coffee or unsweetened cocoa",
+            "promptType": "meaning",
+            "correctWord": "Bitter",
+            "distractorWords": [
+                  "Syrupy",
+                  "Tangy",
+                  "Savory"
+            ]
+      },
+      {
+            "id": "wn_g8_m_38",
+            "prompt": "Slice the OPPOSITE of 'Reliable'",
+            "promptType": "antonym",
+            "correctWord": "Unreliable",
+            "distractorWords": [
+                  "Dependable",
+                  "Trusty",
+                  "Sound"
+            ]
+      },
+      {
+            "id": "wn_g8_m_39",
+            "prompt": "Slice riding waves standing on a board",
+            "promptType": "meaning",
+            "correctWord": "Surfing",
+            "distractorWords": [
+                  "Rowing",
+                  "Diving",
+                  "Kayaking"
+            ]
+      },
+      {
+            "id": "wn_g8_m_40",
+            "prompt": "Slice someone who gets jealous easily",
+            "promptType": "meaning",
+            "correctWord": "Possessive",
+            "distractorWords": [
+                  "Supportive",
+                  "Generous",
+                  "Patient"
+            ]
+      }
+],
     hard: [
-      { id: 'wn_g8_h_01', prompt: "Slice the SYNONYM of 'Resilient'", promptType: 'synonym', correctWord: 'Adaptable', distractorWords: ['Fragile', 'Rigid', 'Helpless'] },
-      { id: 'wn_g8_h_02', prompt: "Slice the CORRECT spelling of 'Conscientious'", promptType: 'spelling', correctWord: 'Conscientious', distractorWords: ['Consciensous', 'Concentious', 'Concientious'] },
-      { id: 'wn_g8_h_03', prompt: "Slice the OPPOSITE of 'Meticulous'", promptType: 'antonym', correctWord: 'Careless', distractorWords: ['Precise', 'Thorough', 'Accurate'] },
-      { id: 'wn_g8_h_04', prompt: "Slice the term for 'The ability to withstand hardships or danger'", promptType: 'meaning', correctWord: 'Endurance', distractorWords: ['Hesitation', 'Frailty', 'Cowardice'] },
-      { id: 'wn_g8_h_05', prompt: "Slice the CORRECT spelling of 'Perseverance'", promptType: 'spelling', correctWord: 'Perseverance', distractorWords: ['Perseverence', 'Perserverance', 'Persevarance'] },
-      { id: 'wn_g8_h_06', prompt: "Slice the SYNONYM of 'Indispensable'", promptType: 'synonym', correctWord: 'Vital', distractorWords: ['Disposable', 'Optional', 'Superfluous'] },
-      { id: 'wn_g8_h_07', prompt: "Slice the OPPOSITE of 'Spontaneous'", promptType: 'antonym', correctWord: 'Premeditated', distractorWords: ['Impulsive', 'Natural', 'Unplanned'] },
-      { id: 'wn_g8_h_08', prompt: "Slice the CORRECT spelling of 'Manoeuvre'", promptType: 'spelling', correctWord: 'Manoeuvre', distractorWords: ['Maneuverer', 'Manover', 'Manoevre'] },
-      { id: 'wn_g8_h_09', prompt: "Slice the culinary term for 'Soaking food in a seasoned liquid before cooking'", promptType: 'meaning', correctWord: 'Marinating', distractorWords: ['Caramelizing', 'Garnishing', 'Pureeing'] },
-      { id: 'wn_g8_h_10', prompt: "Slice the CORRECT spelling of 'Entrepreneur'", promptType: 'spelling', correctWord: 'Entrepreneur', distractorWords: ['Enterpreneur', 'Entrepeneur', 'Entreprenur'] },
-      { id: 'wn_g8_h_11', prompt: "Slice the SYNONYM of 'Courteous'", promptType: 'synonym', correctWord: 'Chivalrous', distractorWords: ['Brash', 'Insolent', 'Tactless'] },
-      { id: 'wn_g8_h_12', prompt: "Slice the OPPOSITE of 'Benevolent'", promptType: 'antonym', correctWord: 'Malevolent', distractorWords: ['Altruistic', 'Humane', 'Compassionate'] },
-      { id: 'wn_g8_h_13', prompt: "Slice the CORRECT spelling of 'Simultaneous'", promptType: 'spelling', correctWord: 'Simultaneous', distractorWords: ['Simultanious', 'Semultaneous', 'Simultaneus'] },
-      { id: 'wn_g8_h_14', prompt: "Slice the term meaning 'A person who loves travelling and exploring the world'", promptType: 'meaning', correctWord: 'Globetrotter', distractorWords: ['Commuter', 'Bystander', 'Pedestrian'] },
-      { id: 'wn_g8_h_15', prompt: "Slice the CORRECT spelling of 'Idiosyncrasy'", promptType: 'spelling', correctWord: 'Idiosyncrasy', distractorWords: ['Idiosyncracy', 'Idyosyncrasy', 'Ideosyncracy'] },
-      { id: 'wn_g8_h_16', prompt: "Slice the SYNONYM of 'Plausible'", promptType: 'synonym', correctWord: 'Credible', distractorWords: ['Absurd', 'Implausible', 'Doubtful'] },
-      { id: 'wn_g8_h_17', prompt: "Slice the OPPOSITE of 'Tedious'", promptType: 'antonym', correctWord: 'Stimulating', distractorWords: ['Monotonous', 'Dreary', 'Tiresome'] },
-      { id: 'wn_g8_h_18', prompt: "Slice the CORRECT spelling of 'Hierarchy'", promptType: 'spelling', correctWord: 'Hierarchy', distractorWords: ['Heirarchy', 'Hierarcy', 'Hierachy'] },
-      { id: 'wn_g8_h_19', prompt: "Slice the natural disaster causing sudden collapse of rock and earth down a hillside", promptType: 'meaning', correctWord: 'Landslide', distractorWords: ['Erosion', 'Sinkhole', 'Geyser'] },
-      { id: 'wn_g8_h_20', prompt: "Slice the CORRECT spelling of 'Unprecedented'", promptType: 'spelling', correctWord: 'Unprecedented', distractorWords: ['Unprecendented', 'Unpresidented', 'Unprecidented'] },
-      { id: 'wn_g8_h_21', prompt: "Slice the SYNONYM of 'Gregarious'", promptType: 'synonym', correctWord: 'Sociable', distractorWords: ['Introverted', 'Reclusive', 'Antisocial'] },
-      { id: 'wn_g8_h_22', prompt: "Slice the OPPOSITE of 'Eloquent'", promptType: 'antonym', correctWord: 'Inarticulate', distractorWords: ['Persuasive', 'Expressive', 'Fluent'] },
-      { id: 'wn_g8_h_23', prompt: "Slice the CORRECT spelling of 'Questionnaire'", promptType: 'spelling', correctWord: 'Questionnaire', distractorWords: ['Questionaire', 'Questionnair', 'Questionnare'] },
-      { id: 'wn_g8_h_24', prompt: "Slice the phrase meaning 'To reach a mutual understanding or settlement'", promptType: 'meaning', correctWord: 'Compromise', distractorWords: ['Contradict', 'Dispute', 'Confront'] },
-      { id: 'wn_g8_h_25', prompt: "Slice the CORRECT spelling of 'Surveillance'", promptType: 'spelling', correctWord: 'Surveillance', distractorWords: ['Surveilance', 'Survaliance', 'Survaillance'] },
-      { id: 'wn_g8_h_26', prompt: "Slice the SYNONYM of 'Pragmatic'", promptType: 'synonym', correctWord: 'Practical', distractorWords: ['Idealistic', 'Impractical', 'Theoretical'] },
-      { id: 'wn_g8_h_27', prompt: "Slice the OPPOSITE of 'Ephemeral'", promptType: 'antonym', correctWord: 'Everlasting', distractorWords: ['Fleeting', 'Transient', 'Brief'] },
-      { id: 'wn_g8_h_28', prompt: "Slice the CORRECT spelling of 'Pneumonia'", promptType: 'spelling', correctWord: 'Pneumonia', distractorWords: ['Pnumonia', 'Pneumonea', 'Newmonia'] },
-      { id: 'wn_g8_h_29', prompt: "Slice the literary word for 'A journey undertaken by a hero in search of something'", promptType: 'meaning', correctWord: 'Quest', distractorWords: ['Stroll', 'Detour', 'Retreat'] },
-      { id: 'wn_g8_h_30', prompt: "Slice the CORRECT spelling of 'Superintendent'", promptType: 'spelling', correctWord: 'Superintendent', distractorWords: ['Superintendant', 'Superintendentt', 'Suprintendent'] },
-      { id: 'wn_g8_h_31', prompt: "Slice the SYNONYM of 'Audacious'", promptType: 'synonym', correctWord: 'Daring', distractorWords: ['Meek', 'Timid', 'Submissive'] },
-      { id: 'wn_g8_h_32', prompt: "Slice the OPPOSITE of 'Ambiguous'", promptType: 'antonym', correctWord: 'Unambiguous', distractorWords: ['Vague', 'Obscure', 'Dubious'] },
-      { id: 'wn_g8_h_33', prompt: "Slice the CORRECT spelling of 'Lieutenant'", promptType: 'spelling', correctWord: 'Lieutenant', distractorWords: ['Leiutenant', 'Leutenant', 'Lieutenent'] },
-      { id: 'wn_g8_h_34', prompt: "Slice the quality of being honest and having strong moral principles", promptType: 'meaning', correctWord: 'Integrity', distractorWords: ['Hypocrisy', 'Deceit', 'Treachery'] },
-      { id: 'wn_g8_h_35', prompt: "Slice the CORRECT spelling of 'Mischievous'", promptType: 'spelling', correctWord: 'Mischievous', distractorWords: ['Mischievious', 'Mischevous', 'Mischevious'] },
-      { id: 'wn_g8_h_36', prompt: "Slice the SYNONYM of 'Formidable'", promptType: 'synonym', correctWord: 'Intimidating', distractorWords: ['Feeble', 'Effortless', 'Trivial'] },
-      { id: 'wn_g8_h_37', prompt: "Slice the OPPOSITE of 'Complacent'", promptType: 'antonym', correctWord: 'Ambitious', distractorWords: ['Smug', 'Self-satisfied', 'Content'] },
-      { id: 'wn_g8_h_38', prompt: "Slice the CORRECT spelling of 'Bureaucracy'", promptType: 'spelling', correctWord: 'Bureaucracy', distractorWords: ['Beurocracy', 'Burocracy', 'Bureaucrasy'] },
-      { id: 'wn_g8_h_39', prompt: "Slice the culinary art of designing and cooking fine meals", promptType: 'meaning', correctWord: 'Gastronomy', distractorWords: ['Agronomy', 'Astronomy', 'Anatomy'] },
-      { id: 'wn_g8_h_40', prompt: "Slice the CORRECT spelling of 'Acquaintance'", promptType: 'spelling', correctWord: 'Acquaintance', distractorWords: ['Aquaintance', 'Acquantance', 'Acquaintence'] },
-    ],
+      {
+            "id": "wn_g8_h_01",
+            "prompt": "Slice the SYNONYM of 'Challenging'",
+            "promptType": "synonym",
+            "correctWord": "Difficult",
+            "distractorWords": [
+                  "Easy",
+                  "Careless",
+                  "Boring"
+            ]
+      },
+      {
+            "id": "wn_g8_h_02",
+            "prompt": "Slice: You cannot stand or tolerate it",
+            "promptType": "meaning",
+            "correctWord": "Unbearable",
+            "distractorWords": [
+                  "Fascinating",
+                  "Impressive",
+                  "Awesome"
+            ]
+      },
+      {
+            "id": "wn_g8_h_03",
+            "prompt": "Slice the OPPOSITE of 'Tactful'",
+            "promptType": "antonym",
+            "correctWord": "Tactless",
+            "distractorWords": [
+                  "Supportive",
+                  "Generous",
+                  "Honest"
+            ]
+      },
+      {
+            "id": "wn_g8_h_04",
+            "prompt": "Slice the email file sent with a message",
+            "promptType": "meaning",
+            "correctWord": "Attachment",
+            "distractorWords": [
+                  "Connection",
+                  "Password",
+                  "Browser"
+            ]
+      },
+      {
+            "id": "wn_g8_h_05",
+            "prompt": "Slice the SYNONYM of 'Back up' a friend",
+            "promptType": "synonym",
+            "correctWord": "Support",
+            "distractorWords": [
+                  "Refuse",
+                  "Ignore",
+                  "Argue"
+            ]
+      },
+      {
+            "id": "wn_g8_h_06",
+            "prompt": "Slice the kitchen step: Press bread dough",
+            "promptType": "meaning",
+            "correctWord": "Knead",
+            "distractorWords": [
+                  "Chop",
+                  "Peel",
+                  "Boil"
+            ]
+      },
+      {
+            "id": "wn_g8_h_07",
+            "prompt": "Slice: Long period without any rain",
+            "promptType": "meaning",
+            "correctWord": "Drought",
+            "distractorWords": [
+                  "Flood",
+                  "Avalanche",
+                  "Storm"
+            ]
+      },
+      {
+            "id": "wn_g8_h_08",
+            "prompt": "Slice: Hotel where all meals are included",
+            "promptType": "meaning",
+            "correctWord": "All-inclusive",
+            "distractorWords": [
+                  "Bed and breakfast",
+                  "Camping",
+                  "Hostel"
+            ]
+      },
+      {
+            "id": "wn_g8_h_09",
+            "prompt": "Slice: A chore or duty you MUST do",
+            "promptType": "meaning",
+            "correctWord": "Obligation",
+            "distractorWords": [
+                  "Excuse",
+                  "Preference",
+                  "Hobby"
+            ]
+      },
+      {
+            "id": "wn_g8_h_10",
+            "prompt": "Slice: To find something for the first time",
+            "promptType": "meaning",
+            "correctWord": "Discover",
+            "distractorWords": [
+                  "Damage",
+                  "Disappear",
+                  "Refuse"
+            ]
+      },
+      {
+            "id": "wn_g8_h_11",
+            "prompt": "Slice the SYNONYM of 'Fascinating'",
+            "promptType": "synonym",
+            "correctWord": "Captivating",
+            "distractorWords": [
+                  "Boring",
+                  "Ordinary",
+                  "Ridiculous"
+            ]
+      },
+      {
+            "id": "wn_g8_h_12",
+            "prompt": "Slice the OPPOSITE of 'Safe' online",
+            "promptType": "antonym",
+            "correctWord": "Dangerous",
+            "distractorWords": [
+                  "Secure",
+                  "Private",
+                  "Helpful"
+            ]
+      },
+      {
+            "id": "wn_g8_h_13",
+            "prompt": "Slice: Pour liquid through a sieve",
+            "promptType": "meaning",
+            "correctWord": "Drain",
+            "distractorWords": [
+                  "Melt",
+                  "Dice",
+                  "Slice"
+            ]
+      },
+      {
+            "id": "wn_g8_h_14",
+            "prompt": "Slice: An internal telephone number",
+            "promptType": "meaning",
+            "correctWord": "Extension",
+            "distractorWords": [
+                  "Connection",
+                  "Network",
+                  "Message"
+            ]
+      },
+      {
+            "id": "wn_g8_h_15",
+            "prompt": "Slice: An active internet user",
+            "promptType": "meaning",
+            "correctWord": "Netizen",
+            "distractorWords": [
+                  "Tourist",
+                  "Passenger",
+                  "Captain"
+            ]
+      },
+      {
+            "id": "wn_g8_h_16",
+            "prompt": "Slice the SYNONYM of 'Count on'",
+            "promptType": "synonym",
+            "correctWord": "Rely on",
+            "distractorWords": [
+                  "Turn down",
+                  "Call off",
+                  "Keep away"
+            ]
+      },
+      {
+            "id": "wn_g8_h_17",
+            "prompt": "Slice the OPPOSITE of 'Generous'",
+            "promptType": "antonym",
+            "correctWord": "Mean",
+            "distractorWords": [
+                  "Supportive",
+                  "Reliable",
+                  "Honest"
+            ]
+      },
+      {
+            "id": "wn_g8_h_18",
+            "prompt": "Slice: Giant ocean wave from tremor",
+            "promptType": "meaning",
+            "correctWord": "Tsunami",
+            "distractorWords": [
+                  "Hurricane",
+                  "Tornado",
+                  "Blizzard"
+            ]
+      },
+      {
+            "id": "wn_g8_h_19",
+            "prompt": "Slice: Room where scientific tests happen",
+            "promptType": "meaning",
+            "correctWord": "Laboratory",
+            "distractorWords": [
+                  "Library",
+                  "Stadium",
+                  "Bakery"
+            ]
+      },
+      {
+            "id": "wn_g8_h_20",
+            "prompt": "Slice: Clean carpet with an electric machine",
+            "promptType": "meaning",
+            "correctWord": "Vacuum",
+            "distractorWords": [
+                  "Dust",
+                  "Iron",
+                  "Mop"
+            ]
+      },
+      {
+            "id": "wn_g8_h_21",
+            "prompt": "Slice the SYNONYM of 'Impressive'",
+            "promptType": "synonym",
+            "correctWord": "Splendid",
+            "distractorWords": [
+                  "Ridiculous",
+                  "Unbearable",
+                  "Boring"
+            ]
+      },
+      {
+            "id": "wn_g8_h_22",
+            "prompt": "Slice the OPPOSITE of 'Accept' an offer",
+            "promptType": "antonym",
+            "correctWord": "Refuse",
+            "distractorWords": [
+                  "Welcome",
+                  "Join",
+                  "Attend"
+            ]
+      },
+      {
+            "id": "wn_g8_h_23",
+            "prompt": "Slice: Flying with a wide fabric wing",
+            "promptType": "meaning",
+            "correctWord": "Paragliding",
+            "distractorWords": [
+                  "Trekking",
+                  "Cycling",
+                  "Jogging"
+            ]
+      },
+      {
+            "id": "wn_g8_h_24",
+            "prompt": "Slice: Cut vegetables into tiny pieces",
+            "promptType": "meaning",
+            "correctWord": "Chop",
+            "distractorWords": [
+                  "Boil",
+                  "Bake",
+                  "Roast"
+            ]
+      },
+      {
+            "id": "wn_g8_h_25",
+            "prompt": "Slice: Famous historic site tourists visit",
+            "promptType": "meaning",
+            "correctWord": "Attraction",
+            "distractorWords": [
+                  "Departure",
+                  "Ticket",
+                  "Luggage"
+            ]
+      },
+      {
+            "id": "wn_g8_h_26",
+            "prompt": "Slice the SYNONYM of 'Honest'",
+            "promptType": "synonym",
+            "correctWord": "Truthful",
+            "distractorWords": [
+                  "Sneaky",
+                  "Jealous",
+                  "Stubborn"
+            ]
+      },
+      {
+            "id": "wn_g8_h_27",
+            "prompt": "Slice the OPPOSITE of 'Traditional'",
+            "promptType": "antonym",
+            "correctWord": "Modern",
+            "distractorWords": [
+                  "Ancient",
+                  "Historic",
+                  "Old"
+            ]
+      },
+      {
+            "id": "wn_g8_h_28",
+            "prompt": "Slice: Snow tumbling rapidly down a slope",
+            "promptType": "meaning",
+            "correctWord": "Avalanche",
+            "distractorWords": [
+                  "Volcano",
+                  "Drought",
+                  "Flood"
+            ]
+      },
+      {
+            "id": "wn_g8_h_29",
+            "prompt": "Slice: A test to see if a science idea works",
+            "promptType": "meaning",
+            "correctWord": "Experiment",
+            "distractorWords": [
+                  "Explanation",
+                  "Argument",
+                  "Invitation"
+            ]
+      },
+      {
+            "id": "wn_g8_h_30",
+            "prompt": "Slice: Wash cups, plates, and forks",
+            "promptType": "meaning",
+            "correctWord": "Do dishes",
+            "distractorWords": [
+                  "Make bed",
+                  "Walk dog",
+                  "Set table"
+            ]
+      },
+      {
+            "id": "wn_g8_h_31",
+            "prompt": "Slice the SYNONYM of 'Terrific'",
+            "promptType": "synonym",
+            "correctWord": "Wonderful",
+            "distractorWords": [
+                  "Awful",
+                  "Terrible",
+                  "Boring"
+            ]
+      },
+      {
+            "id": "wn_g8_h_32",
+            "prompt": "Slice the OPPOSITE of 'Sneaky'",
+            "promptType": "antonym",
+            "correctWord": "Sincere",
+            "distractorWords": [
+                  "Dishonest",
+                  "Secret",
+                  "Sly"
+            ]
+      },
+      {
+            "id": "wn_g8_h_33",
+            "prompt": "Slice: Secret code to protect your account",
+            "promptType": "meaning",
+            "correctWord": "Password",
+            "distractorWords": [
+                  "Browser",
+                  "Screen",
+                  "Cable"
+            ]
+      },
+      {
+            "id": "wn_g8_h_34",
+            "prompt": "Slice: Short phone note left for someone",
+            "promptType": "meaning",
+            "correctWord": "Message",
+            "distractorWords": [
+                  "Call",
+                  "Bell",
+                  "Signal"
+            ]
+      },
+      {
+            "id": "wn_g8_h_35",
+            "prompt": "Slice: Safety straps worn while climbing",
+            "promptType": "meaning",
+            "correctWord": "Harness",
+            "distractorWords": [
+                  "Helmet",
+                  "Paddle",
+                  "Mask"
+            ]
+      },
+      {
+            "id": "wn_g8_h_36",
+            "prompt": "Slice the SYNONYM of 'Destination'",
+            "promptType": "synonym",
+            "correctWord": "Goal",
+            "distractorWords": [
+                  "Start",
+                  "Delay",
+                  "Route"
+            ]
+      },
+      {
+            "id": "wn_g8_h_37",
+            "prompt": "Slice the OPPOSITE of 'Extinct'",
+            "promptType": "antonym",
+            "correctWord": "Alive",
+            "distractorWords": [
+                  "Endangered",
+                  "Vanished",
+                  "Gone"
+            ]
+      },
+      {
+            "id": "wn_g8_h_38",
+            "prompt": "Slice: Person who designs a brand new tool",
+            "promptType": "meaning",
+            "correctWord": "Inventor",
+            "distractorWords": [
+                  "Explorer",
+                  "Tourist",
+                  "Passenger"
+            ]
+      },
+      {
+            "id": "wn_g8_h_39",
+            "prompt": "Slice: Wipe dust off furniture with cloth",
+            "promptType": "meaning",
+            "correctWord": "Dust",
+            "distractorWords": [
+                  "Sweep",
+                  "Mop",
+                  "Dry"
+            ]
+      },
+      {
+            "id": "wn_g8_h_40",
+            "prompt": "Slice: Someone who cares only for themselves",
+            "promptType": "meaning",
+            "correctWord": "Selfish",
+            "distractorWords": [
+                  "Generous",
+                  "Thoughtful",
+                  "Caring"
+            ]
+      }
+],
   },
 };

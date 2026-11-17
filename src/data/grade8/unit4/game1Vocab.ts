@@ -3,7 +3,7 @@ import type { MultipleChoiceQuestion } from '../../../types/schema';
 export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   {
     id: 'g8u4-g1-q01',
-    prompt: 'Which preposition is used when you travel without any vehicle, using your legs?',
+    prompt: 'Travelling by walking on your legs without a vehicle is...',
     options: ['with foot', 'by foot', 'on foot', 'in foot'],
     correctOptionIndex: 2,
     explanation: 'In English, we say "on foot" for walking, while for vehicles we say "by bus", "by train", etc.',
@@ -27,7 +27,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u4-g1-q04',
-    prompt: 'When an aeroplane leaves the ground and starts flying up into the sky, it...',
+    prompt: 'When an aeroplane departs the runway into the air, it...',
     options: ['lands', 'takes off', 'gets on', 'breaks down'],
     correctOptionIndex: 1,
     explanation: 'An aeroplane "takes off" when departing and "lands" when arriving back on the runway.',
@@ -35,7 +35,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u4-g1-q05',
-    prompt: 'The place or town where someone is travelling to is called their...',
+    prompt: 'The final town or place someone is travelling to is their...',
     options: ['delay', 'departure', 'destination', 'route'],
     correctOptionIndex: 2,
     explanation: 'A "destination" is the final place where someone is going or being sent.',

@@ -2047,14 +2047,15 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_e_10",
             "scrambledWords": [
-                  "We",
-                  "with",
+                  "our",
                   "classmates",
-                  "get",
+                  "We",
                   "along",
-                  "well"
+                  "get",
+                  "well",
+                  "with"
             ],
-            "correctSentence": "We get along well with classmates.",
+            "correctSentence": "We get along well with our classmates.",
             "themeOrTopic": "Phrasal Verbs (Get along)",
             "explanation": "Subject + get along well with + noun."
       },
@@ -2200,14 +2201,15 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_e_20",
             "scrambledWords": [
-                  "You",
-                  "carefully",
-                  "peel",
-                  "potatoes",
-                  "the",
-                  "should"
+                  "chores",
+                  "helps",
+                  "She",
+                  "with",
+                  "parents",
+                  "always",
+                  "her"
             ],
-            "correctSentence": "You should peel the potatoes carefully.",
+            "correctSentence": "She always helps her parents with chores.",
             "alternativeSentences": [
                   "Carefully you should peel the potatoes."
             ],
@@ -2321,14 +2323,15 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_e_28",
             "scrambledWords": [
-                  "invitation",
-                  "turn",
-                  "down",
-                  "did",
-                  "you",
-                  "Why"
+                  "before",
+                  "warm",
+                  "bed",
+                  "prefers",
+                  "drinking",
+                  "He",
+                  "milk"
             ],
-            "correctSentence": "Why did you turn down invitation?",
+            "correctSentence": "He prefers drinking warm milk before bed.",
             "themeOrTopic": "Phrasal Verbs (Turn down)",
             "explanation": "Why + did + you + turn down + noun."
       },
@@ -2434,14 +2437,15 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_e_35",
             "scrambledWords": [
-                  "decorated",
-                  "the",
-                  "cake",
-                  "herself",
-                  "She",
-                  "birthday"
+                  "rock",
+                  "They",
+                  "to",
+                  "listening",
+                  "together",
+                  "music",
+                  "like"
             ],
-            "correctSentence": "She decorated the birthday cake herself.",
+            "correctSentence": "They like listening to rock music together.",
             "alternativeSentences": [
                   "Herself she decorated the birthday cake."
             ],
@@ -2535,16 +2539,16 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_m_01",
             "scrambledWords": [
+                  "tomorrow",
                   "rains",
-                  "at",
                   "we",
-                  "stay",
+                  "If",
                   "it",
+                  "stay",
                   "will",
-                  "home",
-                  "If"
+                  "home"
             ],
-            "correctSentence": "If it rains we will stay at home.",
+            "correctSentence": "If it rains tomorrow we will stay home.",
             "alternativeSentences": [
                   "We will stay at home if it rains."
             ],
@@ -2643,16 +2647,15 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_m_07",
             "scrambledWords": [
-                  "consistently",
-                  "easily",
                   "study",
-                  "you",
-                  "you",
-                  "will",
                   "If",
-                  "succeed"
+                  "will",
+                  "you",
+                  "succeed",
+                  "regularly",
+                  "you"
             ],
-            "correctSentence": "If you study consistently you will succeed easily.",
+            "correctSentence": "If you study regularly you will succeed.",
             "alternativeSentences": [
                   "You will succeed easily if you study consistently."
             ],
@@ -2791,16 +2794,15 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_m_15",
             "scrambledWords": [
-                  "up",
-                  "where",
-                  "The",
-                  "historic",
-                  "I",
-                  "grew",
-                  "city",
-                  "is"
+                  "brother",
+                  "careful",
+                  "told",
+                  "to",
+                  "be",
+                  "She",
+                  "her"
             ],
-            "correctSentence": "The city where I grew up is historic.",
+            "correctSentence": "She told her brother to be careful.",
             "themeOrTopic": "Relative Clauses (Where)",
             "explanation": "Subject + where-relative clause + predicate."
       },
@@ -2882,16 +2884,16 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_m_20",
             "scrambledWords": [
-                  "Aegean",
-                  "Delicious",
-                  "is",
-                  "produced",
-                  "oil",
-                  "in",
-                  "region",
-                  "olive"
+                  "ancient",
+                  "visited",
+                  "to",
+                  "museum",
+                  "We",
+                  "see",
+                  "coins",
+                  "the"
             ],
-            "correctSentence": "Delicious olive oil is produced in Aegean region.",
+            "correctSentence": "We visited the museum to see ancient coins.",
             "alternativeSentences": [
                   "In Aegean region delicious olive oil is produced."
             ],
@@ -2968,16 +2970,15 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_m_25",
             "scrambledWords": [
-                  "we",
-                  "That",
-                  "reason",
-                  "why",
-                  "arrived",
+                  "guitar",
                   "is",
-                  "the",
-                  "late"
+                  "He",
+                  "acoustic",
+                  "fond",
+                  "playing",
+                  "of"
             ],
-            "correctSentence": "That is the reason why we arrived late.",
+            "correctSentence": "He is fond of playing acoustic guitar.",
             "themeOrTopic": "Relative Clauses (Why)",
             "explanation": "Demonstrative + the reason why + clause."
       },
@@ -3054,17 +3055,16 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_m_30",
             "scrambledWords": [
-                  "If",
-                  "you",
-                  "purple",
-                  "and",
-                  "you",
-                  "blue",
-                  "red",
-                  "get",
-                  "mix"
+                  "decided",
+                  "train",
+                  "by",
+                  "travel",
+                  "to",
+                  "They",
+                  "to",
+                  "London"
             ],
-            "correctSentence": "If you mix red and blue you get purple.",
+            "correctSentence": "They decided to travel to London by train.",
             "alternativeSentences": [
                   "You get purple if you mix red and blue.",
                   "If you mix blue and red you get purple."
@@ -3262,762 +3262,671 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
       {
             "id": "st_g8_h_01",
             "scrambledWords": [
-                  "a",
-                  "would",
-                  "dollars",
-                  "I",
-                  "travel",
-                  "If",
-                  "I",
-                  "had",
-                  "million"
+                  "sports",
+                  "doing",
+                  "football",
+                  "playing",
+                  "prefers",
+                  "She",
+                  "extreme",
+                  "to"
             ],
-            "correctSentence": "If I had a million dollars I would travel.",
-            "alternativeSentences": [
-                  "I would travel if I had a million dollars."
-            ],
-            "themeOrTopic": "Second Conditional",
-            "explanation": "Hypothetical condition and result clause order."
+            "correctSentence": "She prefers doing extreme sports to playing football.",
+            "themeOrTopic": "Prefer V-ing to V-ing",
+            "explanation": "Expressing preference between two activities with \"prefer ... to ...\"."
       },
       {
             "id": "st_g8_h_02",
             "scrambledWords": [
-                  "left",
-                  "the",
-                  "arrived",
-                  "By",
-                  "train",
-                  "had",
-                  "we",
-                  "time",
-                  "the"
+                  "would",
+                  "eat",
+                  "home",
+                  "than",
+                  "food",
+                  "rather",
+                  "cook",
+                  "I",
+                  "dinner",
+                  "fast",
+                  "at"
             ],
-            "correctSentence": "By the time we arrived the train had left.",
-            "alternativeSentences": [
-                  "The train had left by the time we arrived."
-            ],
-            "themeOrTopic": "Past Perfect with By The Time",
-            "explanation": "Time boundary clause can precede or follow."
+            "correctSentence": "I would rather cook dinner at home than eat fast food.",
+            "themeOrTopic": "Would rather ... than",
+            "explanation": "Using \"would rather\" with bare infinitives and \"than\"."
       },
       {
             "id": "st_g8_h_03",
             "scrambledWords": [
-                  "us",
-                  "she",
-                  "tell",
-                  "she",
-                  "knew",
-                  "truth",
-                  "would",
-                  "If",
-                  "the"
+                  "a",
+                  "river",
+                  "tried",
+                  "you",
+                  "fast",
+                  "ever",
+                  "Have",
+                  "rafting",
+                  "on"
             ],
-            "correctSentence": "If she knew the truth she would tell us.",
-            "alternativeSentences": [
-                  "She would tell us if she knew the truth."
-            ],
-            "themeOrTopic": "Second Conditional",
-            "explanation": "Condition and result clause order."
+            "correctSentence": "Have you ever tried rafting on a fast river?",
+            "themeOrTopic": "Present Perfect Experience (Ever)",
+            "explanation": "Question form asking about life experiences with \"Have you ever ...?\"."
       },
       {
             "id": "st_g8_h_04",
             "scrambledWords": [
-                  "flown",
-                  "was",
-                  "had",
-                  "before",
-                  "because",
-                  "nervous",
-                  "he",
-                  "never",
-                  "He"
+                  "in",
+                  "They",
+                  "their",
+                  "Antalya",
+                  "have",
+                  "rooms",
+                  "already",
+                  "booked",
+                  "hotel"
             ],
-            "correctSentence": "He was nervous because he had never flown before.",
-            "alternativeSentences": [
-                  "Because he had never flown before he was nervous."
-            ],
-            "themeOrTopic": "Past Perfect Reason",
-            "explanation": "Because clause can come first or second."
+            "correctSentence": "They have already booked their hotel rooms in Antalya.",
+            "themeOrTopic": "Present Perfect (Already)",
+            "explanation": "Action completed prior to expectations using \"already\"."
       },
       {
             "id": "st_g8_h_05",
             "scrambledWords": [
-                  "that",
-                  "me",
-                  "she",
-                  "She",
-                  "was",
-                  "to",
-                  "moving",
-                  "London",
-                  "told"
+                  "yet",
+                  "attachment",
+                  "have",
+                  "received",
+                  "your",
+                  "We",
+                  "not",
+                  "email"
             ],
-            "correctSentence": "She told me that she was moving to London.",
-            "themeOrTopic": "Reported Speech Tense Shift",
-            "explanation": "Subject + told me that + past continuous shift."
+            "correctSentence": "We have not received your email attachment yet.",
+            "themeOrTopic": "Present Perfect (Yet)",
+            "explanation": "Negative sentence ending with \"yet\" in Present Perfect."
       },
       {
             "id": "st_g8_h_06",
             "scrambledWords": [
-                  "would",
-                  "your",
-                  "I",
-                  "in",
-                  "were",
-                  "position",
-                  "I",
-                  "apologize",
-                  "If"
+                  "older",
+                  "is",
+                  "responsible",
+                  "the",
+                  "for",
+                  "brother",
+                  "My",
+                  "taking",
+                  "out",
+                  "trash"
             ],
-            "correctSentence": "If I were in your position I would apologize.",
-            "alternativeSentences": [
-                  "I would apologize if I were in your position."
-            ],
-            "themeOrTopic": "Second Conditional (Advice)",
-            "explanation": "Advice conditional clause order."
+            "correctSentence": "My older brother is responsible for taking out the trash.",
+            "themeOrTopic": "Be responsible for + V-ing",
+            "explanation": "Talking about chores and household duties with gerund."
       },
       {
             "id": "st_g8_h_07",
             "scrambledWords": [
-                  "dinner",
-                  "a",
-                  "for",
-                  "had",
-                  "walk",
-                  "they",
-                  "they",
-                  "went",
-                  "finished",
-                  "After"
+                  "wake",
+                  "up",
+                  "have",
+                  "morning",
+                  "early",
+                  "to",
+                  "not",
+                  "do",
+                  "tomorrow",
+                  "You"
             ],
-            "correctSentence": "After they had finished dinner they went for a walk.",
-            "alternativeSentences": [
-                  "They went for a walk after they had finished dinner."
-            ],
-            "themeOrTopic": "Past Perfect with After",
-            "explanation": "After clause can precede or follow."
+            "correctSentence": "You do not have to wake up early tomorrow morning.",
+            "themeOrTopic": "Lack of obligation (do not have to)",
+            "explanation": "Expressing that an action is unnecessary."
       },
       {
             "id": "st_g8_h_08",
             "scrambledWords": [
+                  "share",
+                  "your",
+                  "never",
                   "You",
-                  "party",
-                  "you",
-                  "coming",
-                  "aren't",
-                  "are",
-                  "the",
-                  "tonight",
-                  "to"
+                  "online",
+                  "password",
+                  "private",
+                  "must"
             ],
-            "correctSentence": "You are coming to the party tonight aren't you?",
-            "themeOrTopic": "Tag Questions",
-            "explanation": "Positive sentence + negative question tag."
+            "correctSentence": "You must never share your private password online.",
+            "themeOrTopic": "Internet Safety Rules",
+            "explanation": "Strong obligation and rule using \"must never\"."
       },
       {
             "id": "st_g8_h_09",
             "scrambledWords": [
-                  "is",
-                  "the",
-                  "you",
-                  "me",
-                  "Could",
-                  "please",
-                  "where",
-                  "library",
-                  "tell"
+                  "droughts",
+                  "waste",
+                  "have",
+                  "If",
+                  "serious",
+                  "we",
+                  "clean",
+                  "water",
+                  "will",
+                  "we"
             ],
-            "correctSentence": "Could you please tell me where the library is?",
-            "alternativeSentences": [
-                  "Could you tell me please where the library is?"
-            ],
-            "themeOrTopic": "Indirect Questions",
-            "explanation": "Polite adverb 'please' placement."
+            "correctSentence": "If we waste clean water we will have serious droughts.",
+            "themeOrTopic": "First Conditional (Real Future)",
+            "explanation": "Real cause and effect: If + Present Simple, will + base verb."
       },
       {
             "id": "st_g8_h_10",
             "scrambledWords": [
-                  "forgotten",
-                  "his",
-                  "at",
-                  "He",
-                  "must",
-                  "yesterday",
-                  "school",
-                  "have",
-                  "phone"
+                  "survive",
+                  "If",
+                  "forests",
+                  "wild",
+                  "protect",
+                  "will",
+                  "animals",
+                  "we"
             ],
-            "correctSentence": "He must have forgotten his phone at school yesterday.",
-            "alternativeSentences": [
-                  "Yesterday he must have forgotten his phone at school."
-            ],
-            "themeOrTopic": "Modal of Past Deduction",
-            "explanation": "Time phrase can be fronted."
+            "correctSentence": "If we protect forests wild animals will survive.",
+            "themeOrTopic": "First Conditional Environmental",
+            "explanation": "Present condition leading to future consequence."
       },
       {
             "id": "st_g8_h_11",
             "scrambledWords": [
-                  "tennis",
-                  "raining",
-                  "were",
-                  "it",
-                  "could",
-                  "we",
-                  "not",
-                  "If",
-                  "play"
+                  "trees",
+                  "We",
+                  "in",
+                  "should",
+                  "save",
+                  "paper",
+                  "to",
+                  "recycle",
+                  "order"
             ],
-            "correctSentence": "If it were not raining we could play tennis.",
-            "alternativeSentences": [
-                  "We could play tennis if it were not raining."
-            ],
-            "themeOrTopic": "Second Conditional Continuous",
-            "explanation": "Hypothetical condition clause order."
+            "correctSentence": "We should recycle paper in order to save trees.",
+            "themeOrTopic": "Expressing Purpose (In order to)",
+            "explanation": "\"In order to\" expresses purpose followed by a base verb."
       },
       {
             "id": "st_g8_h_12",
             "scrambledWords": [
-                  "teacher",
-                  "late",
-                  "The",
-                  "why",
-                  "was",
-                  "know",
-                  "to",
-                  "wanted",
-                  "student",
-                  "the"
+                  "many",
+                  "risky",
+                  "enjoy",
+                  "Although",
+                  "is",
+                  "it",
+                  "paragliding",
+                  "tourists"
             ],
-            "correctSentence": "The teacher wanted to know why the student was late.",
-            "themeOrTopic": "Embedded Wh- Questions",
-            "explanation": "Reporting clause + why + subject + was predicate."
+            "correctSentence": "Although paragliding is risky many tourists enjoy it.",
+            "themeOrTopic": "Concession (Although)",
+            "explanation": "Contrasting ideas linked with \"although\"."
       },
       {
             "id": "st_g8_h_13",
             "scrambledWords": [
-                  "in",
-                  "if",
-                  "much",
-                  "lived",
-                  "they",
-                  "be",
-                  "happier",
-                  "countryside",
-                  "would",
-                  "They"
+                  "rang",
+                  "were",
+                  "telephone",
+                  "we",
+                  "while",
+                  "dinner",
+                  "having",
+                  "The"
             ],
-            "correctSentence": "They would be much happier if they lived in countryside.",
-            "alternativeSentences": [
-                  "If they lived in countryside they would be much happier."
-            ],
-            "themeOrTopic": "Second Conditional",
-            "explanation": "Condition and result clause order."
+            "correctSentence": "The telephone rang while we were having dinner.",
+            "themeOrTopic": "Past Continuous with While",
+            "explanation": "Past continuous for background action interrupted by a short past action."
       },
       {
             "id": "st_g8_h_14",
             "scrambledWords": [
-                  "when",
-                  "alarm",
-                  "the",
-                  "the",
-                  "locked",
-                  "had",
-                  "She",
-                  "doors",
-                  "sounded",
-                  "already"
+                  "as",
+                  "Please",
+                  "message",
+                  "home",
+                  "you",
+                  "a",
+                  "send",
+                  "arrive",
+                  "as",
+                  "soon"
             ],
-            "correctSentence": "She had already locked the doors when the alarm sounded.",
-            "alternativeSentences": [
-                  "When the alarm sounded she had already locked the doors."
-            ],
-            "themeOrTopic": "Past Perfect with When",
-            "explanation": "When clause can precede or follow."
+            "correctSentence": "Please send a message as soon as you arrive home.",
+            "themeOrTopic": "Time Clause (As soon as)",
+            "explanation": "Future time clause using present simple after \"as soon as\"."
       },
       {
             "id": "st_g8_h_15",
             "scrambledWords": [
-                  "her",
-                  "if",
-                  "had",
-                  "keys",
-                  "me",
-                  "She",
-                  "seen",
-                  "I",
-                  "asked"
+                  "minute",
+                  "on",
+                  "your",
+                  "call",
+                  "Hold",
+                  "while",
+                  "a",
+                  "connect",
+                  "I"
             ],
-            "correctSentence": "She asked me if I had seen her keys.",
-            "themeOrTopic": "Reported Yes/No Questions",
-            "explanation": "Reporting verb + if + subject + past perfect."
+            "correctSentence": "Hold on a minute while I connect your call.",
+            "themeOrTopic": "Telephone Communication",
+            "explanation": "Polite telephone etiquette when putting someone through."
       },
       {
             "id": "st_g8_h_16",
             "scrambledWords": [
-                  "they",
-                  "accident",
-                  "in",
-                  "Nobody",
-                  "the",
-                  "serious",
-                  "were",
-                  "was",
-                  "injured"
+                  "a",
+                  "leave",
+                  "Would",
+                  "like",
+                  "to",
+                  "for",
+                  "you",
+                  "short",
+                  "him",
+                  "message"
             ],
-            "correctSentence": "Nobody was injured in the serious accident were they?",
-            "themeOrTopic": "Tag Questions with Nobody",
-            "explanation": "Negative pronoun subject takes positive plural tag."
+            "correctSentence": "Would you like to leave a short message for him?",
+            "themeOrTopic": "Telephone Dialogue",
+            "explanation": "Offering to take a message for an unavailable person."
       },
       {
             "id": "st_g8_h_17",
             "scrambledWords": [
-                  "morning",
-                  "time",
-                  "opens",
-                  "what",
+                  "oil",
+                  "onions",
+                  "chop",
                   "the",
-                  "museum",
-                  "know",
-                  "Do",
-                  "you",
-                  "in"
+                  "heat",
+                  "and",
+                  "First",
+                  "olive",
+                  "the",
+                  "then"
             ],
-            "correctSentence": "Do you know what time the museum opens in morning?",
-            "themeOrTopic": "Indirect Questions",
-            "explanation": "Do you know + what time + subject + verb."
+            "correctSentence": "First chop the onions and then heat the olive oil.",
+            "themeOrTopic": "Sequencing Steps in Kitchen",
+            "explanation": "Using sequential connectors \"First\" and \"then\"."
       },
       {
             "id": "st_g8_h_18",
             "scrambledWords": [
-                  "because",
-                  "wallet",
-                  "can't",
-                  "stolen",
-                  "was",
-                  "have",
+                  "twenty",
+                  "After",
                   "the",
-                  "away",
-                  "He",
-                  "he"
+                  "bread",
+                  "minutes",
+                  "for",
+                  "that",
+                  "bake"
             ],
-            "correctSentence": "He can't have stolen the wallet because he was away.",
-            "alternativeSentences": [
-                  "Because he was away he can't have stolen the wallet."
-            ],
-            "themeOrTopic": "Modal of Past Impossibility",
-            "explanation": "Reason clause can come first or second."
+            "correctSentence": "After that bake the bread for twenty minutes.",
+            "themeOrTopic": "Cooking Process Instructions",
+            "explanation": "Using \"After that\" to describe the next stage."
       },
       {
             "id": "st_g8_h_19",
             "scrambledWords": [
-                  "had",
-                  "we",
-                  "time",
-                  "would",
-                  "we",
-                  "explore",
+                  "Caving",
+                  "than",
                   "more",
-                  "ancient",
-                  "ruins",
-                  "If"
+                  "much",
+                  "is",
+                  "hiking",
+                  "challenging"
             ],
-            "correctSentence": "If we had more time we would explore ancient ruins.",
-            "alternativeSentences": [
-                  "We would explore ancient ruins if we had more time."
-            ],
-            "themeOrTopic": "Second Conditional",
-            "explanation": "Hypothetical condition and result order."
+            "correctSentence": "Caving is much more challenging than hiking.",
+            "themeOrTopic": "Comparing Extreme Sports",
+            "explanation": "Modified comparative with \"much more challenging than\"."
       },
       {
             "id": "st_g8_h_20",
             "scrambledWords": [
-                  "wallet",
-                  "her",
-                  "had",
-                  "that",
-                  "She",
-                  "realized",
-                  "she",
-                  "home",
-                  "at",
-                  "left"
+                  "is",
+                  "Everest",
+                  "Earth",
+                  "mountain",
+                  "highest",
+                  "Mount",
+                  "on",
+                  "the"
             ],
-            "correctSentence": "She realized that she had left her wallet at home.",
-            "themeOrTopic": "Past Perfect Discovery",
-            "explanation": "Past realization + earlier action in past perfect."
+            "correctSentence": "Mount Everest is the highest mountain on Earth.",
+            "themeOrTopic": "Superlative Adjectives",
+            "explanation": "Superlative construction \"the highest mountain on Earth\"."
       },
       {
             "id": "st_g8_h_21",
             "scrambledWords": [
-                  "your",
-                  "You",
-                  "that",
-                  "teacher",
-                  "shouldn't",
-                  "to",
-                  "like",
-                  "spoken",
-                  "have"
+                  "always",
+                  "will",
+                  "A",
+                  "friend",
+                  "up",
+                  "back",
+                  "you",
+                  "true"
             ],
-            "correctSentence": "You shouldn't have spoken to your teacher like that.",
-            "themeOrTopic": "Past Criticism (Shouldn't Have)",
-            "explanation": "Shouldn't have + past participle criticizes past action."
+            "correctSentence": "A true friend will always back you up.",
+            "themeOrTopic": "Friendship Phrasal Verbs (Back up)",
+            "explanation": "Describing loyalty with \"back someone up\"."
       },
       {
             "id": "st_g8_h_22",
             "scrambledWords": [
-                  "he",
-                  "call",
-                  "as",
-                  "said",
-                  "He",
-                  "soon",
-                  "he",
-                  "would",
-                  "landed",
-                  "as"
+                  "friends",
+                  "your",
+                  "need",
+                  "best",
+                  "in",
+                  "You",
+                  "always",
+                  "count",
+                  "on",
+                  "can"
             ],
-            "correctSentence": "He said he would call as soon as he landed.",
-            "themeOrTopic": "Reported Future in Past",
-            "explanation": "Said + would call + as soon as past clause."
+            "correctSentence": "You can always count on your best friends in need.",
+            "themeOrTopic": "Phrasal Verb (Count on)",
+            "explanation": "\"Count on\" expresses trust and reliability."
       },
       {
             "id": "st_g8_h_23",
             "scrambledWords": [
-                  "go",
                   "you",
-                  "could",
-                  "would",
-                  "you",
-                  "if",
-                  "anywhere",
-                  "go",
-                  "Where"
+                  "afternoon",
+                  "Would",
+                  "our",
+                  "group",
+                  "to",
+                  "join",
+                  "this",
+                  "study",
+                  "like"
             ],
-            "correctSentence": "Where would you go if you could go anywhere?",
-            "alternativeSentences": [
-                  "If you could go anywhere where would you go?"
-            ],
-            "themeOrTopic": "Second Conditional Questions",
-            "explanation": "Question clause and if-clause order."
+            "correctSentence": "Would you like to join our study group this afternoon?",
+            "themeOrTopic": "Making Polite Invitations",
+            "explanation": "Polite invitation formula \"Would you like to join...?\"."
       },
       {
             "id": "st_g8_h_24",
             "scrambledWords": [
-                  "cuisine",
-                  "tasted",
-                  "last",
+                  "but",
+                  "to",
+                  "come",
                   "I",
-                  "Until",
-                  "traditional",
-                  "year",
-                  "had",
-                  "never"
+                  "busy",
+                  "would",
+                  "I",
+                  "very",
+                  "love",
+                  "am"
             ],
-            "correctSentence": "Until last year I had never tasted traditional cuisine.",
-            "alternativeSentences": [
-                  "I had never tasted traditional cuisine until last year."
-            ],
-            "themeOrTopic": "Past Perfect with Until",
-            "explanation": "Until time marker can precede or follow."
+            "correctSentence": "I would love to come but I am very busy.",
+            "themeOrTopic": "Refusing an Invitation with an Excuse",
+            "explanation": "Polite refusal giving a reason with \"but\"."
       },
       {
             "id": "st_g8_h_25",
             "scrambledWords": [
-                  "doctor",
-                  "weights",
-                  "The",
-                  "heavy",
-                  "to",
-                  "him",
+                  "science",
                   "not",
-                  "lift",
-                  "warned"
+                  "Why",
+                  "visit",
+                  "do",
+                  "museum",
+                  "together",
+                  "the",
+                  "we"
             ],
-            "correctSentence": "The doctor warned him not to lift heavy weights.",
-            "themeOrTopic": "Reported Negative Commands",
-            "explanation": "Warned + object + not to-infinitive."
+            "correctSentence": "Why do we not visit the science museum together?",
+            "themeOrTopic": "Making Suggestions",
+            "explanation": "Suggestion structure \"Why don't / do we not ...?\"."
       },
       {
             "id": "st_g8_h_26",
             "scrambledWords": [
-                  "Despite",
-                  "travel",
-                  "to",
-                  "comfortably",
-                  "they",
-                  "little",
-                  "managed",
-                  "money",
-                  "having"
+                  "morning",
+                  "tour",
+                  "cycling",
+                  "tomorrow",
+                  "on",
+                  "about",
+                  "a",
+                  "How",
+                  "going"
             ],
-            "correctSentence": "Despite having little money they managed to travel comfortably.",
-            "alternativeSentences": [
-                  "They managed to travel comfortably despite having little money."
-            ],
-            "themeOrTopic": "Despite + Gerund Phrase",
-            "explanation": "Despite phrase can precede or follow."
+            "correctSentence": "How about going on a cycling tour tomorrow morning?",
+            "themeOrTopic": "Suggestions (How about + V-ing)",
+            "explanation": "\"How about\" takes a gerund to propose an activity."
       },
       {
             "id": "st_g8_h_27",
             "scrambledWords": [
-                  "If",
-                  "make",
-                  "he",
-                  "carefully",
-                  "errors",
-                  "would",
-                  "he",
-                  "listened",
-                  "fewer",
-                  "more"
+                  "clean",
+                  "empty",
+                  "dishwasher",
+                  "your",
+                  "It",
+                  "the",
+                  "turn",
+                  "is",
+                  "to"
             ],
-            "correctSentence": "If he listened more carefully he would make fewer errors.",
-            "alternativeSentences": [
-                  "He would make fewer errors if he listened more carefully."
-            ],
-            "themeOrTopic": "Second Conditional",
-            "explanation": "Condition and consequence order."
+            "correctSentence": "It is your turn to empty the clean dishwasher.",
+            "themeOrTopic": "Household Chores",
+            "explanation": "Talking about turns and household responsibilities."
       },
       {
             "id": "st_g8_h_28",
             "scrambledWords": [
-                  "weather",
-                  "whether",
-                  "the",
-                  "wondered",
-                  "been",
-                  "delayed",
-                  "flight",
-                  "She",
-                  "by",
-                  "had"
+                  "tidy",
+                  "and",
+                  "We",
+                  "bedrooms",
+                  "our",
+                  "to",
+                  "keep",
+                  "neat",
+                  "have"
             ],
-            "correctSentence": "She wondered whether the flight had been delayed by weather.",
-            "themeOrTopic": "Embedded Passive Questions",
-            "explanation": "Wondered + whether + past perfect passive."
+            "correctSentence": "We have to keep our bedrooms neat and tidy.",
+            "themeOrTopic": "Obligations at Home",
+            "explanation": "Using \"have to\" for house rules."
       },
       {
             "id": "st_g8_h_29",
             "scrambledWords": [
-                  "for",
-                  "Let's",
-                  "campaign",
-                  "we",
-                  "charity",
-                  "shall",
-                  "homeless",
-                  "a",
-                  "organize"
+                  "Scientists",
+                  "laboratory",
+                  "in",
+                  "the",
+                  "many",
+                  "conducted",
+                  "experiments"
             ],
-            "correctSentence": "Let's organize a charity campaign for homeless shall we?",
-            "themeOrTopic": "Tag Questions with Let's",
-            "explanation": "Suggestions starting with Let's end with 'shall we?'."
+            "correctSentence": "Scientists conducted many experiments in the laboratory.",
+            "themeOrTopic": "Science Achievements",
+            "explanation": "Past simple narrative describing scientific work."
       },
       {
             "id": "st_g8_h_30",
             "scrambledWords": [
-                  "taken",
-                  "wrong",
-                  "by",
-                  "have",
-                  "mistake",
-                  "might",
-                  "He",
+                  "telephone",
+                  "practical",
+                  "Graham",
+                  "Alexander",
+                  "Bell",
+                  "invented",
                   "the",
-                  "train"
+                  "first"
             ],
-            "correctSentence": "He might have taken the wrong train by mistake.",
-            "alternativeSentences": [
-                  "By mistake he might have taken the wrong train."
-            ],
-            "themeOrTopic": "Modal of Past Possibility",
-            "explanation": "Adverbial prepositional phrase placement."
+            "correctSentence": "Alexander Graham Bell invented the first practical telephone.",
+            "themeOrTopic": "Famous Inventions",
+            "explanation": "Talking about inventors and historic milestones."
       },
       {
             "id": "st_g8_h_31",
             "scrambledWords": [
-                  "she",
-                  "she",
-                  "would",
-                  "German",
-                  "for",
-                  "If",
-                  "job",
-                  "spoke",
-                  "apply",
-                  "fluent"
+                  "mountain",
+                  "A",
+                  "the",
+                  "massive",
+                  "down",
+                  "steep",
+                  "avalanche",
+                  "tumbled"
             ],
-            "correctSentence": "If she spoke fluent German she would apply for job.",
-            "alternativeSentences": [
-                  "She would apply for job if she spoke fluent German."
-            ],
-            "themeOrTopic": "Second Conditional Abilities",
-            "explanation": "Condition and result clause order."
+            "correctSentence": "A massive avalanche tumbled down the steep mountain.",
+            "themeOrTopic": "Natural Forces (Avalanche)",
+            "explanation": "Describing a natural disaster with vivid vocabulary."
       },
       {
             "id": "st_g8_h_32",
             "scrambledWords": [
-                  "for",
+                  "damaged",
+                  "several",
                   "The",
-                  "been",
-                  "decades",
-                  "being",
-                  "renovated",
-                  "abandoned",
-                  "house",
-                  "before",
-                  "had"
+                  "earthquake",
+                  "sudden",
+                  "stone",
+                  "old",
+                  "bridges"
             ],
-            "correctSentence": "The house had been abandoned for decades before being renovated.",
-            "themeOrTopic": "Past Perfect Passive",
-            "explanation": "Had been abandoned + time + before clause."
+            "correctSentence": "The sudden earthquake damaged several old stone bridges.",
+            "themeOrTopic": "Natural Forces (Earthquake)",
+            "explanation": "Narrating consequences of an earthquake."
       },
       {
             "id": "st_g8_h_33",
             "scrambledWords": [
-                  "take",
-                  "urged",
-                  "the",
-                  "to",
-                  "urgent",
+                  "at",
+                  "an",
+                  "hotel",
+                  "in",
                   "They",
-                  "environmental",
-                  "government",
-                  "action"
+                  "stayed",
+                  "Antalya",
+                  "all-inclusive"
             ],
-            "correctSentence": "They urged the government to take urgent environmental action.",
-            "themeOrTopic": "Reporting Verbs of Urgency",
-            "explanation": "Urged + object + to-infinitive phrase."
+            "correctSentence": "They stayed at an all-inclusive hotel in Antalya.",
+            "themeOrTopic": "Tourism and Accommodation",
+            "explanation": "Describing holiday accommodation types."
       },
       {
             "id": "st_g8_h_34",
             "scrambledWords": [
+                  "thousands",
+                  "every",
+                  "Historic",
+                  "summer",
                   "of",
-                  "In",
-                  "spite",
-                  "the",
-                  "storm",
-                  "the",
-                  "succeeded",
-                  "team",
-                  "rescue"
+                  "monuments",
+                  "attract",
+                  "tourists"
             ],
-            "correctSentence": "In spite of the storm the rescue team succeeded.",
-            "alternativeSentences": [
-                  "The rescue team succeeded in spite of the storm."
-            ],
-            "themeOrTopic": "In Spite Of + Noun Phrase",
-            "explanation": "Concessive prepositional phrase can precede or follow."
+            "correctSentence": "Historic monuments attract thousands of tourists every summer.",
+            "themeOrTopic": "Tourism Attractions",
+            "explanation": "Describing popular cultural sites."
       },
       {
             "id": "st_g8_h_35",
             "scrambledWords": [
-                  "the",
-                  "would",
-                  "if",
-                  "ice",
-                  "melted",
-                  "polar",
-                  "all",
-                  "What",
-                  "happen"
+                  "safety",
+                  "You",
+                  "helmet",
+                  "for",
+                  "protective",
+                  "a",
+                  "must",
+                  "wear",
+                  "your"
             ],
-            "correctSentence": "What would happen if all the polar ice melted?",
-            "alternativeSentences": [
-                  "If all the polar ice melted what would happen?"
-            ],
-            "themeOrTopic": "Second Conditional Questions",
-            "explanation": "Conditional question clause order."
+            "correctSentence": "You must wear a protective helmet for your safety.",
+            "themeOrTopic": "Extreme Sports Safety Gear",
+            "explanation": "Rules for protective equipment using \"must\"."
       },
       {
             "id": "st_g8_h_36",
             "scrambledWords": [
+                  "jumping",
                   "from",
-                  "He",
-                  "office",
-                  "documents",
-                  "confidential",
-                  "taken",
-                  "denied",
-                  "the",
-                  "having"
+                  "love",
+                  "high",
+                  "seekers",
+                  "Adrenaline",
+                  "bridges"
             ],
-            "correctSentence": "He denied having taken the confidential documents from office.",
-            "themeOrTopic": "Deny + Perfect Gerund",
-            "explanation": "Denied + having taken + direct object."
+            "correctSentence": "Adrenaline seekers love jumping from high bridges.",
+            "themeOrTopic": "Adventure Motivations",
+            "explanation": "Talking about thrill seekers and extreme activities."
       },
       {
             "id": "st_g8_h_37",
             "scrambledWords": [
-                  "cured",
-                  "The",
-                  "claimed",
-                  "the",
-                  "formula",
-                  "had",
-                  "scientist",
-                  "disease",
-                  "that"
+                  "to",
+                  "Many",
+                  "of",
+                  "teenagers",
+                  "are",
+                  "upbeat",
+                  "listening",
+                  "fond",
+                  "music"
             ],
-            "correctSentence": "The scientist claimed that the formula had cured disease.",
-            "themeOrTopic": "Reported Claims with Past Perfect",
-            "explanation": "Claimed that + formula had cured."
+            "correctSentence": "Many teenagers are fond of listening to upbeat music.",
+            "themeOrTopic": "Teen Interests (Fond of)",
+            "explanation": "\"Be fond of\" followed by a gerund."
       },
       {
             "id": "st_g8_h_38",
             "scrambledWords": [
-                  "the",
-                  "injured",
-                  "Neither",
-                  "was",
-                  "seriously",
-                  "nor",
-                  "driver",
-                  "the",
-                  "passengers"
+                  "metal",
+                  "music",
+                  "heavy",
+                  "unbearable",
+                  "my",
+                  "is",
+                  "In",
+                  "opinion"
             ],
-            "correctSentence": "Neither the passengers nor the driver was seriously injured.",
-            "themeOrTopic": "Correlative Agreement",
-            "explanation": "Neither... nor structure."
+            "correctSentence": "In my opinion heavy metal music is unbearable.",
+            "themeOrTopic": "Personal Opinions and Adjectives",
+            "explanation": "Stating a negative preference with \"unbearable\"."
       },
       {
             "id": "st_g8_h_39",
             "scrambledWords": [
-                  "explain",
-                  "satellite",
-                  "Could",
-                  "how",
-                  "operates",
-                  "in",
-                  "advanced",
-                  "this",
-                  "orbit",
-                  "you"
+                  "You",
+                  "respectful",
+                  "to",
+                  "be",
+                  "always",
+                  "people",
+                  "online",
+                  "should"
             ],
-            "correctSentence": "Could you explain how this advanced satellite operates in orbit?",
-            "themeOrTopic": "Indirect Embedded Questions",
-            "explanation": "Could you explain + how clause with subject and verb."
+            "correctSentence": "You should always be respectful to people online.",
+            "themeOrTopic": "Internet Netiquette",
+            "explanation": "Giving advice about online etiquette using \"should\"."
       },
       {
             "id": "st_g8_h_40",
             "scrambledWords": [
-                  "extinct",
-                  "habitats",
-                  "protected",
-                  "fewer",
-                  "If",
-                  "would",
-                  "become",
-                  "we",
-                  "species"
+                  "use",
+                  "their",
+                  "do",
+                  "project",
+                  "to",
+                  "Students",
+                  "research",
+                  "engines",
+                  "search"
             ],
-            "correctSentence": "If we protected habitats fewer species would become extinct.",
-            "alternativeSentences": [
-                  "Fewer species would become extinct if we protected habitats."
-            ],
-            "themeOrTopic": "Second Conditional Ecology",
-            "explanation": "Hypothetical condition and result clause order."
+            "correctSentence": "Students use search engines to do their project research.",
+            "themeOrTopic": "Digital Habits",
+            "explanation": "Describing digital study tools and habits."
       }
 ],
   },

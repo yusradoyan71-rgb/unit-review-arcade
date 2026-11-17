@@ -3,7 +3,7 @@ import type { MultipleChoiceQuestion } from '../../../types/schema';
 export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   {
     id: 'g8u1-g1-q01',
-    prompt: 'Which musical genre originated in Jamaica and is known for its relaxed, rhythmic off-beat guitar strumming?',
+    prompt: 'Which relaxed music genre originated in Jamaica with a rhythmic off-beat?',
     options: ['Reggae', 'Heavy metal', 'Classical', 'Opera'],
     correctOptionIndex: 0,
     explanation: 'Reggae originated in Jamaica in the late 1960s, famously popularized by Bob Marley.',
@@ -11,7 +11,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u1-g1-q02',
-    prompt: 'A large group of musicians who play classical music together using string, woodwind, brass, and percussion instruments is called an...',
+    prompt: 'A large group of musicians playing classical instruments together is an...',
     options: ['Audience', 'Orchestra', 'Chorus', 'Encore'],
     correctOptionIndex: 1,
     explanation: 'An orchestra is an ensemble of instrumentalists combining strings, woodwinds, brass, and percussion.',
@@ -59,7 +59,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u1-g1-q08',
-    prompt: 'Which genre features dramatic theatrical stories told entirely or mostly through singing accompanied by an orchestra?',
+    prompt: 'Which dramatic musical genre tells a theatrical story entirely through singing?',
     options: ['Hip-hop', 'Rap', 'Folk', 'Opera'],
     correctOptionIndex: 3,
     explanation: 'Opera is a dramatic art form in which singers perform theatrical works set completely to music.',
@@ -139,7 +139,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u1-g1-q18',
-    prompt: 'Which genre developed in the southern United States with roots in African American spirituals, expressing deep sorrow and longing?',
+    prompt: 'Which music genre expresses deep, soulful feelings of sorrow and longing?',
     options: ['Synthwave', 'Blues', 'Punk', 'Disco'],
     correctOptionIndex: 1,
     explanation: 'The Blues originated in the Deep South with spiritual roots, often utilizing 12-bar chord progressions and emotive themes.',
@@ -171,7 +171,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g8u1-g1-q22',
-    prompt: 'A musical genre characterized by rhythmic chanting of rhyming speech over synthesized beats and sampled tracks is...',
+    prompt: 'Which genre features rhythmic rhyming words spoken over beats?',
     options: ['Classical', 'Hip-hop / Rap', 'Country', 'Baroque'],
     correctOptionIndex: 1,
     explanation: 'Hip-hop and rap emphasize spoken or chanted rhyming lyrics over rhythmic beats.',
