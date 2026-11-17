@@ -115,7 +115,7 @@ export const GAME_5_DIALOGUES: MultipleChoiceQuestion[] = [
       "learned the drums"
     ],
     correctOptionIndex: 1,
-    explanation: '"Would rather" must be followed by a bare infinitive ("learn").',
+    explanation: '"Would rather" must be followed by the base verb without "to" ("learn").',
     difficulty: 'medium',
   },
   {
@@ -297,7 +297,7 @@ export const GAME_5_DIALOGUES: MultipleChoiceQuestion[] = [
       "but"
     ],
     correctOptionIndex: 3,
-    explanation: 'Correlative conjunction structure: "Not only ... but (also) ...".',
+    explanation: 'Paired sentence pattern: "Not only ... but also ...".',
     difficulty: 'challenging',
   },
   {

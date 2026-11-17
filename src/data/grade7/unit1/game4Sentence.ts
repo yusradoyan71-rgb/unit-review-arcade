@@ -122,7 +122,7 @@ export const GAME_4_SENTENCES: SentenceBuilderQuestion[] = [
     difficulty: 'easy',
   },
 
-  // 9. Infinitive of Purpose
+  // 9. Purpose with To + Verb
   {
     id: 'g7-u1-s09',
     prompt: 'Explaining why someone uses a navigation app:',
@@ -135,7 +135,7 @@ export const GAME_4_SENTENCES: SentenceBuilderQuestion[] = [
     alternativeValidSentences: [
       'We use navigation apps to easily find places.',
     ],
-    explanation: 'Infinitive of purpose ("to find places") explains the reason for using the app.',
+    explanation: 'Use "to + verb" ("to find places") to explain why we use the app.',
     difficulty: 'medium',
   },
 
@@ -167,7 +167,7 @@ export const GAME_4_SENTENCES: SentenceBuilderQuestion[] = [
     difficulty: 'medium',
   },
 
-  // 12. Stative Verb Preference
+  // 12. Preference Verbs
   {
     id: 'g7-u1-s12',
     prompt: 'Comparing preferences between digital communication methods:',
@@ -181,7 +181,7 @@ export const GAME_4_SENTENCES: SentenceBuilderQuestion[] = [
     difficulty: 'medium',
   },
 
-  // 13. Stative Verb Belief
+  // 13. Verbs of Thought
   {
     id: 'g7-u1-s13',
     prompt: 'Expressing a belief about screen time and sleep:',
@@ -191,7 +191,7 @@ export const GAME_4_SENTENCES: SentenceBuilderQuestion[] = [
       'Many doctors believe that excessive screen time harms sleep.',
       'Doctors believe that excessive screen time harms sleep.',
     ],
-    explanation: '"Believe" is a stative verb followed by a that-clause.',
+    explanation: 'Use "believe" in the present simple to express what you think.',
     difficulty: 'medium',
   },
 

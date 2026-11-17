@@ -75,7 +75,7 @@ export const GAME_6_STATEMENTS: TrueFalseQuestion[] = [
     id: 'g8u2-g6-tf11',
     prompt: 'Using public transport like trains and buses generally creates less pollution per passenger than driving private cars.',
     isTrue: true,
-    explanation: 'True. Public transport carries many people simultaneously, reducing carbon emissions per person.',
+    explanation: 'True. Public transport carries many people at the same time, reducing carbon emissions per person.',
     difficulty: 'medium',
   },
   {

@@ -85,7 +85,7 @@ export const GAME_7_ULTIMATE_QUESTIONS: MultipleChoiceQuestion[] = [
     prompt: '"I would rather ________ a live concert than stream it on a smartphone screen."',
     options: ['attending', 'to attend', 'attended', 'attend'],
     correctOptionIndex: 3,
-    explanation: '"Would rather" takes a bare infinitive without "to" ("attend").',
+    explanation: '"Would rather" takes the base verb without "to" ("attend").',
     difficulty: 'easy',
   },
   {
@@ -166,13 +166,13 @@ export const GAME_7_ULTIMATE_QUESTIONS: MultipleChoiceQuestion[] = [
     id: 'g8u1-g7-q18',
     prompt: 'How can you politely disagree with someone\'s musical opinion?',
     options: [
-      "I see your point, however I have a different opinion.",
-      "Your opinion is completely stupid.",
-      "You don't know anything about music.",
-      "Shut up and listen to me."
+      "I see your point, but I have a different opinion.",
+      "I totally agree with everything you said.",
+      "Could you please speak a little louder?",
+      "What time does the concert start tonight?"
     ],
     correctOptionIndex: 0,
-    explanation: '"I see your point, however I have a different opinion" is the diplomatic and respectful English standard.',
+    explanation: '"I see your point, but I have a different opinion" is the polite and respectful way to express disagreement.',
     difficulty: 'medium',
   },
   {

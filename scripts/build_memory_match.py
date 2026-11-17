@@ -720,3 +720,4 @@ with open(out_path, "w", encoding="utf-8") as f:
     f.write(";\n")
 
 print(f"Successfully generated {out_path} ({os.path.getsize(out_path)} bytes).")
+

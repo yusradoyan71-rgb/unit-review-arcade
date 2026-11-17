@@ -20,7 +20,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v3',
-    prompt: 'To move up and down on a touchscreen, you _____.',
+    prompt: 'To move up and down on a screen, you _____.',
     options: ['log out', 'download', 'scroll', 'subscribe'],
     correctOptionIndex: 2,
     explanation: "'Scroll' describes moving up or down through digital content on a screen.",
@@ -28,10 +28,10 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u1-v4',
-    prompt: 'To move sideways between photos by sliding your finger, you _____.',
+    prompt: 'To move between photos by sliding your finger, you _____.',
     options: ['click', 'install', 'stream', 'swipe'],
     correctOptionIndex: 3,
-    explanation: "'Swipe' means sliding your finger horizontally or vertically across a touchscreen.",
+    explanation: "'Swipe' means sliding your finger across a screen to see the next photo or page.",
     difficulty: 'easy',
   },
   {

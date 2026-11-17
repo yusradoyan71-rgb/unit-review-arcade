@@ -1,15 +1,3 @@
-/**
- * UNIT REVIEW ARCADE — WORD CONNECT DATA BANK (PHASE 10B)
- * Version: 10.2.0
- * 
- * 240 validated curriculum-aligned letter-wheel connecting puzzles:
- * - Grade 7: Easy (40 x 4-5 letters), Medium (40 x 5-6 letters), Hard (40 x 6-7 letters)
- * - Grade 8: Easy (40 x 4-5 letters), Medium (40 x 5-6 letters), Hard (40 x 6-7 letters)
- * 
- * Aligned strictly to Turkish MEB English Curriculum & LGS outcomes.
- * Mathematical multiset validation guaranteed for all target words.
- */
-
 import type { WordConnectBank } from '../../types/gamesZone';
 
 export const WORD_CONNECT_BANK: WordConnectBank = {
@@ -34,7 +22,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "PAY",
-            "turkishMeaning": "\u00d6demek"
+            "turkishMeaning": "Ödemek"
           }
         ],
         "category": "Sports",
@@ -44,28 +32,33 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
       {
         "id": "wc_g7_e_02",
         "availableLetters": [
-          "F",
-          "A",
           "S",
-          "T"
+          "T",
+          "E",
+          "P"
         ],
         "targetWords": [
           {
-            "word": "FAST",
-            "turkishMeaning": "H\u0131zl\u0131"
+            "word": "STEP",
+            "turkishMeaning": "Adım"
           },
           {
-            "word": "FAT",
-            "turkishMeaning": "\u015ei\u015fman"
+            "word": "PETS",
+            "turkishMeaning": "Evcil hayvanlar"
           },
           {
-            "word": "SAT",
-            "turkishMeaning": "Oturdu"
+            "word": "PET",
+            "turkishMeaning": "Evcil hayvan"
+          },
+          {
+            "word": "SET",
+            "turkishMeaning": "Ayar / set"
           }
         ],
-        "category": "Appearance",
-        "theme": "Speed",
-        "explanation": "Connect letters F, A, S, T to form: FAST, FAT, SAT."
+        "category": "Sports & Health",
+        "theme": "Fitness & Activity",
+        "explanation": "Connect letters S, T, E, P to form: STEP, PETS, PET, SET.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g7_e_03",
@@ -82,11 +75,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "OIL",
-            "turkishMeaning": "Ya\u011f"
+            "turkishMeaning": "Yağ"
           },
           {
             "word": "ION",
-            "turkishMeaning": "\u0130yon"
+            "turkishMeaning": "İyon"
           }
         ],
         "category": "Wild Animals",
@@ -104,7 +97,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "BIRD",
-            "turkishMeaning": "Ku\u015f"
+            "turkishMeaning": "Kuş"
           },
           {
             "word": "RIB",
@@ -161,7 +154,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "STAR",
-            "turkishMeaning": "Y\u0131ld\u0131z"
+            "turkishMeaning": "Yıldız"
           },
           {
             "word": "ART",
@@ -191,7 +184,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "WIND",
-            "turkishMeaning": "R\u00fczgar"
+            "turkishMeaning": "Rüzgar"
           },
           {
             "word": "WIN",
@@ -199,7 +192,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "DIN",
-            "turkishMeaning": "G\u00fcr\u00fclt\u00fc"
+            "turkishMeaning": "Gürültü"
           }
         ],
         "category": "Environment",
@@ -269,7 +262,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "WARM",
-            "turkishMeaning": "Il\u0131k"
+            "turkishMeaning": "Ilık"
           },
           {
             "word": "ARM",
@@ -277,11 +270,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "RAM",
-            "turkishMeaning": "Ko\u00e7"
+            "turkishMeaning": "Koç"
           },
           {
             "word": "RAW",
-            "turkishMeaning": "\u00c7i\u011f"
+            "turkishMeaning": "Çiğ"
           }
         ],
         "category": "Environment",
@@ -299,7 +292,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "COLD",
-            "turkishMeaning": "So\u011fuk"
+            "turkishMeaning": "Soğuk"
           },
           {
             "word": "OLD",
@@ -325,7 +318,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "BORN",
-            "turkishMeaning": "Do\u011fmu\u015f"
+            "turkishMeaning": "Doğmuş"
           },
           {
             "word": "ROB",
@@ -359,7 +352,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "FIG",
-            "turkishMeaning": "\u0130ncir"
+            "turkishMeaning": "İncir"
           }
         ],
         "category": "Celebrations",
@@ -381,7 +374,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "RYE",
-            "turkishMeaning": "\u00c7avdar"
+            "turkishMeaning": "Çavdar"
           },
           {
             "word": "REP",
@@ -421,32 +414,34 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
       {
         "id": "wc_g7_e_16",
         "availableLetters": [
-          "T",
+          "B",
           "E",
           "A",
-          "M"
+          "R",
+          "S"
         ],
         "targetWords": [
           {
-            "word": "TEAM",
-            "turkishMeaning": "Tak\u0131m"
+            "word": "BEARS",
+            "turkishMeaning": "Ayılar"
           },
           {
-            "word": "MEAT",
-            "turkishMeaning": "Et"
+            "word": "BEAR",
+            "turkishMeaning": "Ayı"
           },
           {
-            "word": "TEA",
-            "turkishMeaning": "\u00c7ay"
+            "word": "EARS",
+            "turkishMeaning": "Kulaklar"
           },
           {
-            "word": "MATE",
-            "turkishMeaning": "Dost"
+            "word": "SEA",
+            "turkishMeaning": "Deniz"
           }
         ],
-        "category": "Sports",
-        "theme": "Match",
-        "explanation": "Connect letters T, E, A, M to form: TEAM, MEAT, TEA, MATE."
+        "category": "Wild Animals",
+        "theme": "Forest Bears",
+        "explanation": "Connect letters B, E, A, R, S to form: BEARS, BEAR, EARS, SEA.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g7_e_17",
@@ -459,11 +454,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "FROG",
-            "turkishMeaning": "Kurba\u011fa"
+            "turkishMeaning": "Kurbağa"
           },
           {
             "word": "FOR",
-            "turkishMeaning": "\u0130\u00e7in"
+            "turkishMeaning": "İçin"
           },
           {
             "word": "FOG",
@@ -489,11 +484,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "RED",
-            "turkishMeaning": "K\u0131rm\u0131z\u0131"
+            "turkishMeaning": "Kırmızı"
           },
           {
             "word": "REED",
-            "turkishMeaning": "Kam\u0131\u015f"
+            "turkishMeaning": "Kamış"
           }
         ],
         "category": "Wild Animals",
@@ -511,24 +506,25 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "BEAR",
-            "turkishMeaning": "Ay\u0131"
+            "turkishMeaning": "Ayı"
+          },
+          {
+            "word": "BARE",
+            "turkishMeaning": "Çıplak, yalın"
           },
           {
             "word": "EAR",
             "turkishMeaning": "Kulak"
           },
           {
-            "word": "BAR",
-            "turkishMeaning": "Bar"
-          },
-          {
-            "word": "ARE",
-            "turkishMeaning": "Olmak"
+            "word": "ERA",
+            "turkishMeaning": "Dönem, çağ"
           }
         ],
         "category": "Wild Animals",
-        "theme": "Mammals",
-        "explanation": "Connect letters B, E, A, R to form: BEAR, EAR, BAR, ARE."
+        "theme": "Forest Bear",
+        "explanation": "Connect letters B, E, A, R to form: BEAR, BARE, EAR, ERA.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g7_e_20",
@@ -542,11 +538,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "DUCK",
-            "turkishMeaning": "\u00d6rdek"
+            "turkishMeaning": "Ördek"
           },
           {
             "word": "DUCKS",
-            "turkishMeaning": "\u00d6rdekler"
+            "turkishMeaning": "Ördekler"
           },
           {
             "word": "SUCK",
@@ -572,7 +568,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "OIL",
-            "turkishMeaning": "Ya\u011f"
+            "turkishMeaning": "Yağ"
           },
           {
             "word": "SILO",
@@ -603,7 +599,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SEE",
-            "turkishMeaning": "G\u00f6rmek"
+            "turkishMeaning": "Görmek"
           }
         ],
         "category": "Environment",
@@ -647,11 +643,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "RAIN",
-            "turkishMeaning": "Ya\u011fmur"
+            "turkishMeaning": "Yağmur"
           },
           {
             "word": "RAN",
-            "turkishMeaning": "Ko\u015ftu"
+            "turkishMeaning": "Koştu"
           },
           {
             "word": "AIR",
@@ -677,15 +673,15 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "NOW",
-            "turkishMeaning": "\u015eimdi"
+            "turkishMeaning": "Şimdi"
           },
           {
             "word": "WON",
-            "turkishMeaning": "Kazand\u0131"
+            "turkishMeaning": "Kazandı"
           },
           {
             "word": "SON",
-            "turkishMeaning": "O\u011ful"
+            "turkishMeaning": "Oğul"
           }
         ],
         "category": "Environment",
@@ -704,7 +700,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "FISH",
-            "turkishMeaning": "Bal\u0131k"
+            "turkishMeaning": "Balık"
           },
           {
             "word": "SHIP",
@@ -712,7 +708,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "HIP",
-            "turkishMeaning": "Kal\u00e7a"
+            "turkishMeaning": "Kalça"
           }
         ],
         "category": "Wild Animals",
@@ -731,15 +727,15 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "TREE",
-            "turkishMeaning": "A\u011fa\u00e7"
+            "turkishMeaning": "Ağaç"
           },
           {
             "word": "TREES",
-            "turkishMeaning": "A\u011fa\u00e7lar"
+            "turkishMeaning": "Ağaçlar"
           },
           {
             "word": "SEE",
-            "turkishMeaning": "G\u00f6rmek"
+            "turkishMeaning": "Görmek"
           },
           {
             "word": "SET",
@@ -770,11 +766,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "MOO",
-            "turkishMeaning": "B\u00f6\u011f\u00fcrmek"
+            "turkishMeaning": "Böğürmek"
           },
           {
             "word": "SOON",
-            "turkishMeaning": "Yak\u0131nda"
+            "turkishMeaning": "Yakında"
           }
         ],
         "category": "Planets",
@@ -800,7 +796,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "RAM",
-            "turkishMeaning": "Ko\u00e7"
+            "turkishMeaning": "Koç"
           },
           {
             "word": "ARMS",
@@ -822,15 +818,15 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "SHOP",
-            "turkishMeaning": "D\u00fckkan"
+            "turkishMeaning": "Dükkan"
           },
           {
             "word": "HOP",
-            "turkishMeaning": "Z\u0131plamak"
+            "turkishMeaning": "Zıplamak"
           },
           {
             "word": "POSH",
-            "turkishMeaning": "L\u00fcks"
+            "turkishMeaning": "Lüks"
           }
         ],
         "category": "Public Buildings",
@@ -878,7 +874,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "FACE",
-            "turkishMeaning": "Y\u00fcz"
+            "turkishMeaning": "Yüz"
           },
           {
             "word": "ACE",
@@ -928,19 +924,19 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "GROW",
-            "turkishMeaning": "B\u00fcy\u00fcmek"
+            "turkishMeaning": "Büyümek"
           },
           {
             "word": "GROWN",
-            "turkishMeaning": "B\u00fcy\u00fcm\u00fc\u015f"
+            "turkishMeaning": "Büyümüş"
           },
           {
             "word": "ROW",
-            "turkishMeaning": "S\u0131ra"
+            "turkishMeaning": "Sıra"
           },
           {
             "word": "NOW",
-            "turkishMeaning": "\u015eimdi"
+            "turkishMeaning": "Şimdi"
           }
         ],
         "category": "Environment",
@@ -962,7 +958,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "CUE",
-            "turkishMeaning": "\u0130pucu"
+            "turkishMeaning": "İpucu"
           },
           {
             "word": "CUT",
@@ -1007,33 +1003,34 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
       {
         "id": "wc_g7_e_37",
         "availableLetters": [
-          "S",
-          "L",
-          "I",
           "M",
-          "T"
+          "E",
+          "D",
+          "A",
+          "L"
         ],
         "targetWords": [
           {
-            "word": "SLIM",
-            "turkishMeaning": "\u0130nce"
+            "word": "MEDAL",
+            "turkishMeaning": "Madalya"
           },
           {
-            "word": "MIST",
-            "turkishMeaning": "Sis"
+            "word": "DEAL",
+            "turkishMeaning": "Anlaşma"
           },
           {
-            "word": "LIST",
-            "turkishMeaning": "Liste"
+            "word": "MALE",
+            "turkishMeaning": "Erkek"
           },
           {
-            "word": "SIT",
-            "turkishMeaning": "Oturmak"
+            "word": "LEAD",
+            "turkishMeaning": "Öncülük etmek"
           }
         ],
-        "category": "Appearance",
-        "theme": "Fit",
-        "explanation": "Connect letters S, L, I, M, T to form: SLIM, MIST, LIST, SIT."
+        "category": "Sports & Awards",
+        "theme": "Medals & Honors",
+        "explanation": "Connect letters M, E, D, A, L to form: MEDAL, DEAL, MALE, LEAD.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g7_e_38",
@@ -1072,15 +1069,15 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "POND",
-            "turkishMeaning": "G\u00f6let"
+            "turkishMeaning": "Gölet"
           },
           {
             "word": "POD",
-            "turkishMeaning": "Kaps\u00fcl"
+            "turkishMeaning": "Kapsül"
           },
           {
             "word": "NOD",
-            "turkishMeaning": "Ba\u015f e\u011fmek"
+            "turkishMeaning": "Baş eğmek"
           }
         ],
         "category": "Environment",
@@ -1102,15 +1099,15 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "OWL",
-            "turkishMeaning": "Bayku\u015f"
+            "turkishMeaning": "Baykuş"
           },
           {
             "word": "FLOW",
-            "turkishMeaning": "Ak\u0131nt\u0131"
+            "turkishMeaning": "Akıntı"
           },
           {
             "word": "LOW",
-            "turkishMeaning": "Al\u00e7ak"
+            "turkishMeaning": "Alçak"
           }
         ],
         "category": "Wild Animals",
@@ -1143,7 +1140,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "ANT",
-            "turkishMeaning": "Kar\u0131nca"
+            "turkishMeaning": "Karınca"
           },
           {
             "word": "PAN",
@@ -1166,7 +1163,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "EARTH",
-            "turkishMeaning": "D\u00fcnya"
+            "turkishMeaning": "Dünya"
           },
           {
             "word": "HEART",
@@ -1174,7 +1171,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "HEAT",
-            "turkishMeaning": "Is\u0131"
+            "turkishMeaning": "Isı"
           },
           {
             "word": "HEAR",
@@ -1205,7 +1202,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "STAR",
-            "turkishMeaning": "Y\u0131ld\u0131z"
+            "turkishMeaning": "Yıldız"
           },
           {
             "word": "TRAM",
@@ -1240,24 +1237,25 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "BEAR",
-            "turkishMeaning": "Ay\u0131"
+            "turkishMeaning": "Ayı"
           },
           {
             "word": "BARE",
-            "turkishMeaning": "Yal\u0131n"
+            "turkishMeaning": "Yalın, sade"
           },
           {
             "word": "RAVE",
-            "turkishMeaning": "\u00d6vmek"
+            "turkishMeaning": "Övgüyle bahsetmek"
           },
           {
-            "word": "BAR",
-            "turkishMeaning": "Bar"
+            "word": "EAR",
+            "turkishMeaning": "Kulak"
           }
         ],
         "category": "Personality",
-        "theme": "Bravery",
-        "explanation": "Connect letters B, R, A, V, E to form: BRAVE, BEAR, BARE, RAVE, BAR."
+        "theme": "Courageous Friends",
+        "explanation": "Connect letters B, R, A, V, E to form: BRAVE, BEAR, BARE, RAVE, EAR.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g7_m_05",
@@ -1271,23 +1269,23 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "SHORT",
-            "turkishMeaning": "K\u0131sa"
+            "turkishMeaning": "Kısa"
           },
           {
             "word": "SHOT",
-            "turkishMeaning": "At\u0131\u015f"
+            "turkishMeaning": "Atış"
           },
           {
             "word": "SORT",
-            "turkishMeaning": "S\u0131ralamak"
+            "turkishMeaning": "Sıralamak"
           },
           {
             "word": "HOT",
-            "turkishMeaning": "S\u0131cak"
+            "turkishMeaning": "Sıcak"
           },
           {
             "word": "ROT",
-            "turkishMeaning": "\u00c7\u00fcr\u00fcmek"
+            "turkishMeaning": "Çürümek"
           }
         ],
         "category": "Appearance",
@@ -1310,11 +1308,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "RAIN",
-            "turkishMeaning": "Ya\u011fmur"
+            "turkishMeaning": "Yağmur"
           },
           {
             "word": "RANT",
-            "turkishMeaning": "Ba\u011f\u0131rmak"
+            "turkishMeaning": "Bağırmak"
           },
           {
             "word": "TIN",
@@ -1341,7 +1339,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "MATCH",
-            "turkishMeaning": "Ma\u00e7"
+            "turkishMeaning": "Maç"
           },
           {
             "word": "CHAT",
@@ -1357,7 +1355,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "HAT",
-            "turkishMeaning": "\u015eapka"
+            "turkishMeaning": "Şapka"
           }
         ],
         "category": "Sports",
@@ -1384,11 +1382,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "ROT",
-            "turkishMeaning": "\u00c7\u00fcr\u00fcmek"
+            "turkishMeaning": "Çürümek"
           },
           {
             "word": "OUT",
-            "turkishMeaning": "D\u0131\u015far\u0131"
+            "turkishMeaning": "Dışarı"
           },
           {
             "word": "COT",
@@ -1412,11 +1410,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "PRIZE",
-            "turkishMeaning": "\u00d6d\u00fcl"
+            "turkishMeaning": "Ödül"
           },
           {
             "word": "PRIZES",
-            "turkishMeaning": "\u00d6d\u00fcller"
+            "turkishMeaning": "Ödüller"
           },
           {
             "word": "RIPE",
@@ -1424,7 +1422,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "PIER",
-            "turkishMeaning": "\u0130skele"
+            "turkishMeaning": "İskele"
           },
           {
             "word": "ZIP",
@@ -1447,29 +1445,30 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         ],
         "targetWords": [
           {
-            "word": "AWARD",
-            "turkishMeaning": "\u00d6d\u00fcl"
+            "word": "AWARDS",
+            "turkishMeaning": "Ödüller"
           },
           {
-            "word": "AWARDS",
-            "turkishMeaning": "\u00d6d\u00fcller"
+            "word": "AWARD",
+            "turkishMeaning": "Ödül"
           },
           {
             "word": "DRAW",
-            "turkishMeaning": "\u00c7izmek"
-          },
-          {
-            "word": "WAR",
-            "turkishMeaning": "Sava\u015f"
+            "turkishMeaning": "Çizmek / berabere"
           },
           {
             "word": "RAW",
-            "turkishMeaning": "\u00c7i\u011f"
+            "turkishMeaning": "Ham, çiğ"
+          },
+          {
+            "word": "SAD",
+            "turkishMeaning": "Üzgün"
           }
         ],
         "category": "Biographies",
-        "theme": "Medals",
-        "explanation": "Connect letters A, W, A, R, D, S to form: AWARD, AWARDS, DRAW, WAR, RAW."
+        "theme": "Honors & Achievements",
+        "explanation": "Connect letters A, W, A, R, D, S to form: AWARDS, AWARD, DRAW, RAW, SAD.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g7_m_11",
@@ -1492,15 +1491,15 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "GALE",
-            "turkishMeaning": "F\u0131rt\u0131na"
+            "turkishMeaning": "Fırtına"
           },
           {
             "word": "SALE",
-            "turkishMeaning": "Sat\u0131\u015f"
+            "turkishMeaning": "Satış"
           },
           {
             "word": "AGE",
-            "turkishMeaning": "Ya\u015f"
+            "turkishMeaning": "Yaş"
           }
         ],
         "category": "Wild Animals",
@@ -1532,7 +1531,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "TIE",
-            "turkishMeaning": "Ba\u011flamak"
+            "turkishMeaning": "Bağlamak"
           },
           {
             "word": "GET",
@@ -1547,37 +1546,38 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "id": "wc_g7_m_13",
         "availableLetters": [
           "W",
-          "H",
           "A",
-          "L",
+          "T",
           "E",
+          "R",
           "S"
         ],
         "targetWords": [
           {
-            "word": "WHALE",
-            "turkishMeaning": "Balina"
+            "word": "WATERS",
+            "turkishMeaning": "Sular"
           },
           {
-            "word": "WHALES",
-            "turkishMeaning": "Balinalar"
+            "word": "WATER",
+            "turkishMeaning": "Su"
           },
           {
-            "word": "HEAL",
-            "turkishMeaning": "\u0130yile\u015fmek"
+            "word": "SWEAT",
+            "turkishMeaning": "Ter, terlemek"
           },
           {
-            "word": "SALE",
-            "turkishMeaning": "Sat\u0131\u015f"
+            "word": "WASTE",
+            "turkishMeaning": "Atık / israf"
           },
           {
-            "word": "LAW",
-            "turkishMeaning": "Yasa"
+            "word": "STAR",
+            "turkishMeaning": "Yıldız"
           }
         ],
-        "category": "Wild Animals",
-        "theme": "Cetaceans",
-        "explanation": "Connect letters W, H, A, L, E, S to form: WHALE, WHALES, HEAL, SALE, LAW."
+        "category": "Environment",
+        "theme": "Fresh Water",
+        "explanation": "Connect letters W, A, T, E, R, S to form: WATERS, WATER, SWEAT, WASTE, STAR.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g7_m_14",
@@ -1592,11 +1592,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "SHARK",
-            "turkishMeaning": "K\u00f6pekbal\u0131\u011f\u0131"
+            "turkishMeaning": "Köpekbalığı"
           },
           {
             "word": "SHARKS",
-            "turkishMeaning": "K\u00f6pekbal\u0131klar\u0131"
+            "turkishMeaning": "Köpekbalıkları"
           },
           {
             "word": "HARK",
@@ -1604,7 +1604,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "ASH",
-            "turkishMeaning": "K\u00fcl"
+            "turkishMeaning": "Kül"
           },
           {
             "word": "ARK",
@@ -1628,11 +1628,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "ACTOR",
-            "turkishMeaning": "Akt\u00f6r"
+            "turkishMeaning": "Aktör"
           },
           {
             "word": "ACTORS",
-            "turkishMeaning": "Akt\u00f6rler"
+            "turkishMeaning": "Aktörler"
           },
           {
             "word": "COAT",
@@ -1679,7 +1679,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "PAY",
-            "turkishMeaning": "\u00d6demek"
+            "turkishMeaning": "Ödemek"
           }
         ],
         "category": "Celebrations",
@@ -1702,11 +1702,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "GUST",
-            "turkishMeaning": "R\u00fczgar hamlesi"
+            "turkishMeaning": "Rüzgar hamlesi"
           },
           {
             "word": "GETS",
-            "turkishMeaning": "Al\u0131r"
+            "turkishMeaning": "Alır"
           },
           {
             "word": "SET",
@@ -1714,7 +1714,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "GUT",
-            "turkishMeaning": "\u0130\u00e7g\u00fcd\u00fc"
+            "turkishMeaning": "İçgüdü"
           }
         ],
         "category": "Celebrations",
@@ -1734,23 +1734,23 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "CLOWN",
-            "turkishMeaning": "Palya\u00e7o"
+            "turkishMeaning": "Palyaço"
           },
           {
             "word": "CLOWNS",
-            "turkishMeaning": "Palya\u00e7olar"
+            "turkishMeaning": "Palyaçolar"
           },
           {
             "word": "OWL",
-            "turkishMeaning": "Bayku\u015f"
+            "turkishMeaning": "Baykuş"
           },
           {
             "word": "LOW",
-            "turkishMeaning": "Al\u00e7ak"
+            "turkishMeaning": "Alçak"
           },
           {
             "word": "NOW",
-            "turkishMeaning": "\u015eimdi"
+            "turkishMeaning": "Şimdi"
           }
         ],
         "category": "Celebrations",
@@ -1770,15 +1770,15 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "MUSIC",
-            "turkishMeaning": "M\u00fczik"
+            "turkishMeaning": "Müzik"
           },
           {
             "word": "MUSICS",
-            "turkishMeaning": "M\u00fczikler"
+            "turkishMeaning": "Müzikler"
           },
           {
             "word": "SCUM",
-            "turkishMeaning": "K\u00f6p\u00fck"
+            "turkishMeaning": "Köpük"
           },
           {
             "word": "SUM",
@@ -1806,11 +1806,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "DREAM",
-            "turkishMeaning": "R\u00fcya"
+            "turkishMeaning": "Rüya"
           },
           {
             "word": "DREAMS",
-            "turkishMeaning": "R\u00fcyalar"
+            "turkishMeaning": "Rüyalar"
           },
           {
             "word": "DARE",
@@ -1822,7 +1822,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "RED",
-            "turkishMeaning": "K\u0131rm\u0131z\u0131"
+            "turkishMeaning": "Kırmızı"
           }
         ],
         "category": "Dreams",
@@ -1854,11 +1854,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "PACE",
-            "turkishMeaning": "Ad\u0131m"
+            "turkishMeaning": "Adım"
           },
           {
             "word": "CAP",
-            "turkishMeaning": "\u015eapka"
+            "turkishMeaning": "Şapka"
           }
         ],
         "category": "Planets",
@@ -1868,38 +1868,39 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
       {
         "id": "wc_g7_m_22",
         "availableLetters": [
-          "C",
-          "O",
-          "M",
+          "B",
+          "R",
+          "A",
+          "V",
           "E",
-          "T",
           "S"
         ],
         "targetWords": [
           {
-            "word": "COMET",
-            "turkishMeaning": "Kuyruklu y\u0131ld\u0131z"
+            "word": "BRAVES",
+            "turkishMeaning": "Cesurlar"
           },
           {
-            "word": "COMETS",
-            "turkishMeaning": "Kuyruklu y\u0131ld\u0131zlar"
+            "word": "BRAVE",
+            "turkishMeaning": "Cesur"
           },
           {
-            "word": "COME",
-            "turkishMeaning": "Gelmek"
+            "word": "BEARS",
+            "turkishMeaning": "Ayılar"
           },
           {
-            "word": "MOST",
-            "turkishMeaning": "En \u00e7ok"
+            "word": "SAVE",
+            "turkishMeaning": "Kurtarmak"
           },
           {
-            "word": "COT",
-            "turkishMeaning": "Karyola"
+            "word": "BASE",
+            "turkishMeaning": "Temel / üs"
           }
         ],
-        "category": "Planets",
-        "theme": "Astronomy",
-        "explanation": "Connect letters C, O, M, E, T, S to form: COMET, COMETS, COME, MOST, COT."
+        "category": "Personality",
+        "theme": "Heroic Courage",
+        "explanation": "Connect letters B, R, A, V, E, S to form: BRAVES, BRAVE, BEARS, SAVE, BASE.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g7_m_23",
@@ -1914,19 +1915,19 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "ORBIT",
-            "turkishMeaning": "Y\u00f6r\u00fcnge"
+            "turkishMeaning": "Yörünge"
           },
           {
             "word": "ORBITS",
-            "turkishMeaning": "Y\u00f6r\u00fcngeler"
+            "turkishMeaning": "Yörüngeler"
           },
           {
             "word": "RIOT",
-            "turkishMeaning": "\u0130syan"
+            "turkishMeaning": "İsyan"
           },
           {
             "word": "BIT",
-            "turkishMeaning": "Par\u00e7a"
+            "turkishMeaning": "Parça"
           },
           {
             "word": "ROB",
@@ -1950,23 +1951,23 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "SOLAR",
-            "turkishMeaning": "G\u00fcne\u015fle ilgili"
+            "turkishMeaning": "Güneşle ilgili"
           },
           {
             "word": "SOAR",
-            "turkishMeaning": "S\u00fcz\u00fclmek"
+            "turkishMeaning": "Süzülmek"
           },
           {
             "word": "ORAL",
-            "turkishMeaning": "S\u00f6zl\u00fc"
+            "turkishMeaning": "Sözlü"
           },
           {
             "word": "ALSO",
-            "turkishMeaning": "Ayr\u0131ca"
+            "turkishMeaning": "Ayrıca"
           },
           {
             "word": "OAR",
-            "turkishMeaning": "K\u00fcrek"
+            "turkishMeaning": "Kürek"
           }
         ],
         "category": "Environment",
@@ -1994,7 +1995,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "LANE",
-            "turkishMeaning": "\u015eerit"
+            "turkishMeaning": "Şerit"
           },
           {
             "word": "LEAN",
@@ -2022,11 +2023,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "GREEN",
-            "turkishMeaning": "Ye\u015fil"
+            "turkishMeaning": "Yeşil"
           },
           {
             "word": "GREENS",
-            "turkishMeaning": "Ye\u015fillikler"
+            "turkishMeaning": "Yeşillikler"
           },
           {
             "word": "GENE",
@@ -2034,11 +2035,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SEEN",
-            "turkishMeaning": "G\u00f6r\u00fclm\u00fc\u015f"
+            "turkishMeaning": "Görülmüş"
           },
           {
             "word": "SEE",
-            "turkishMeaning": "G\u00f6rmek"
+            "turkishMeaning": "Görmek"
           }
         ],
         "category": "Environment",
@@ -2058,19 +2059,19 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "TRASH",
-            "turkishMeaning": "\u00c7\u00f6p"
+            "turkishMeaning": "Çöp"
           },
           {
             "word": "STAR",
-            "turkishMeaning": "Y\u0131ld\u0131z"
+            "turkishMeaning": "Yıldız"
           },
           {
             "word": "RASH",
-            "turkishMeaning": "K\u0131zar\u0131kl\u0131k"
+            "turkishMeaning": "Kızarıklık"
           },
           {
             "word": "HAT",
-            "turkishMeaning": "\u015eapka"
+            "turkishMeaning": "Şapka"
           },
           {
             "word": "ART",
@@ -2093,29 +2094,30 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         ],
         "targetWords": [
           {
-            "word": "WATER",
-            "turkishMeaning": "Su"
-          },
-          {
             "word": "WATERS",
             "turkishMeaning": "Sular"
           },
           {
-            "word": "WEAR",
-            "turkishMeaning": "Giymek"
+            "word": "WATER",
+            "turkishMeaning": "Su"
           },
           {
-            "word": "TEAR",
-            "turkishMeaning": "G\u00f6zya\u015f\u0131"
+            "word": "SWEAT",
+            "turkishMeaning": "Ter"
           },
           {
-            "word": "WAR",
-            "turkishMeaning": "Sava\u015f"
+            "word": "WASTE",
+            "turkishMeaning": "Atık / israf"
+          },
+          {
+            "word": "STAR",
+            "turkishMeaning": "Yıldız"
           }
         ],
         "category": "Environment",
-        "theme": "Hydrology",
-        "explanation": "Connect letters W, A, T, E, R, S to form: WATER, WATERS, WEAR, TEAR, WAR."
+        "theme": "Water Conservation",
+        "explanation": "Connect letters W, A, T, E, R, S to form: WATERS, WATER, SWEAT, WASTE, STAR.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g7_m_29",
@@ -2174,7 +2176,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "RISE",
-            "turkishMeaning": "Y\u00fckselmek"
+            "turkishMeaning": "Yükselmek"
           },
           {
             "word": "SIRE",
@@ -2210,11 +2212,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SHIN",
-            "turkishMeaning": "\u0130ncik"
+            "turkishMeaning": "İncik"
           },
           {
             "word": "SHE",
-            "turkishMeaning": "O kad\u0131n"
+            "turkishMeaning": "O kadın"
           },
           {
             "word": "HEN",
@@ -2238,19 +2240,19 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "STORM",
-            "turkishMeaning": "F\u0131rt\u0131na"
+            "turkishMeaning": "Fırtına"
           },
           {
             "word": "STORMS",
-            "turkishMeaning": "F\u0131rt\u0131nalar"
+            "turkishMeaning": "Fırtınalar"
           },
           {
             "word": "MOST",
-            "turkishMeaning": "En \u00e7ok"
+            "turkishMeaning": "En çok"
           },
           {
             "word": "ROT",
-            "turkishMeaning": "\u00c7\u00fcr\u00fcmek"
+            "turkishMeaning": "Çürümek"
           },
           {
             "word": "TOM",
@@ -2282,15 +2284,15 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "COLD",
-            "turkishMeaning": "So\u011fuk"
+            "turkishMeaning": "Soğuk"
           },
           {
             "word": "LOUD",
-            "turkishMeaning": "Y\u00fcksek ses"
+            "turkishMeaning": "Yüksek ses"
           },
           {
             "word": "OLD",
-            "turkishMeaning": "Ya\u015fl\u0131"
+            "turkishMeaning": "Yaşlı"
           }
         ],
         "category": "Environment",
@@ -2310,15 +2312,15 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "LIGHT",
-            "turkishMeaning": "I\u015f\u0131k"
+            "turkishMeaning": "Işık"
           },
           {
             "word": "LIGHTS",
-            "turkishMeaning": "I\u015f\u0131klar"
+            "turkishMeaning": "Işıklar"
           },
           {
             "word": "SIGHT",
-            "turkishMeaning": "G\u00f6r\u00fc\u015f"
+            "turkishMeaning": "Görüş"
           },
           {
             "word": "HIT",
@@ -2326,7 +2328,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "LIT",
-            "turkishMeaning": "Ayd\u0131nlat\u0131lm\u0131\u015f"
+            "turkishMeaning": "Aydınlatılmış"
           }
         ],
         "category": "Environment",
@@ -2346,11 +2348,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "GLOBE",
-            "turkishMeaning": "Yerk\u00fcre"
+            "turkishMeaning": "Yerküre"
           },
           {
             "word": "GLOBES",
-            "turkishMeaning": "K\u00fcreler"
+            "turkishMeaning": "Küreler"
           },
           {
             "word": "LOBE",
@@ -2394,11 +2396,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "ROSE",
-            "turkishMeaning": "G\u00fcl"
+            "turkishMeaning": "Gül"
           },
           {
             "word": "SOFT",
-            "turkishMeaning": "Yumu\u015fak"
+            "turkishMeaning": "Yumuşak"
           }
         ],
         "category": "Wild Animals",
@@ -2426,7 +2428,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "NAME",
-            "turkishMeaning": "\u0130sim"
+            "turkishMeaning": "İsim"
           },
           {
             "word": "MAIN",
@@ -2444,38 +2446,38 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
       {
         "id": "wc_g7_m_38",
         "availableLetters": [
-          "B",
-          "A",
-          "K",
-          "E",
           "R",
-          "Y"
+          "A",
+          "F",
+          "T",
+          "S"
         ],
         "targetWords": [
           {
-            "word": "BAKERY",
-            "turkishMeaning": "F\u0131r\u0131n"
+            "word": "RAFTS",
+            "turkishMeaning": "Rafting botları"
           },
           {
-            "word": "BAKE",
-            "turkishMeaning": "Pi\u015firmek"
+            "word": "RAFT",
+            "turkishMeaning": "Sal / bot"
           },
           {
-            "word": "BARE",
-            "turkishMeaning": "Yal\u0131n"
+            "word": "FAST",
+            "turkishMeaning": "Hızlı"
           },
           {
-            "word": "BAR",
-            "turkishMeaning": "Bar"
+            "word": "STAR",
+            "turkishMeaning": "Yıldız"
           },
           {
-            "word": "RAY",
-            "turkishMeaning": "I\u015f\u0131n"
+            "word": "ARTS",
+            "turkishMeaning": "Sanatlar"
           }
         ],
-        "category": "Public Buildings",
-        "theme": "Patisserie",
-        "explanation": "Connect letters B, A, K, E, R, Y to form: BAKERY, BAKE, BARE, BAR, RAY."
+        "category": "Sports",
+        "theme": "River Rafting",
+        "explanation": "Connect letters R, A, F, T, S to form: RAFTS, RAFT, FAST, STAR, ARTS.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g7_m_39",
@@ -2498,7 +2500,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "MARK",
-            "turkishMeaning": "\u0130\u015faret"
+            "turkishMeaning": "İşaret"
           },
           {
             "word": "MEAT",
@@ -2506,7 +2508,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "TEA",
-            "turkishMeaning": "\u00c7ay"
+            "turkishMeaning": "Çay"
           }
         ],
         "category": "Public Buildings",
@@ -2530,7 +2532,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "LANCE",
-            "turkishMeaning": "M\u0131zrak"
+            "turkishMeaning": "Mızrak"
           },
           {
             "word": "LAND",
@@ -2538,7 +2540,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "LANE",
-            "turkishMeaning": "\u015eerit"
+            "turkishMeaning": "Şerit"
           },
           {
             "word": "CAN",
@@ -2564,11 +2566,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "HONEST",
-            "turkishMeaning": "D\u00fcr\u00fcst"
+            "turkishMeaning": "Dürüst"
           },
           {
             "word": "STONE",
-            "turkishMeaning": "Ta\u015f"
+            "turkishMeaning": "Taş"
           },
           {
             "word": "NOSE",
@@ -2576,7 +2578,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SHOT",
-            "turkishMeaning": "At\u0131\u015f"
+            "turkishMeaning": "Atış"
           },
           {
             "word": "TONE",
@@ -2584,7 +2586,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "HOT",
-            "turkishMeaning": "S\u0131cak"
+            "turkishMeaning": "Sıcak"
           }
         ],
         "category": "Personality",
@@ -2624,7 +2626,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "TOP",
-            "turkishMeaning": "\u00dcst"
+            "turkishMeaning": "Üst"
           }
         ],
         "category": "Personality",
@@ -2644,11 +2646,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "FAMOUS",
-            "turkishMeaning": "\u00dcnl\u00fc"
+            "turkishMeaning": "Ünlü"
           },
           {
             "word": "FOAM",
-            "turkishMeaning": "K\u00f6p\u00fck"
+            "turkishMeaning": "Köpük"
           },
           {
             "word": "SUM",
@@ -2689,11 +2691,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "RACE",
-            "turkishMeaning": "Yar\u0131\u015f"
+            "turkishMeaning": "Yarış"
           },
           {
             "word": "CARE",
-            "turkishMeaning": "\u00d6zen"
+            "turkishMeaning": "Özen"
           },
           {
             "word": "REAR",
@@ -2733,11 +2735,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SENT",
-            "turkishMeaning": "G\u00f6nderdi"
+            "turkishMeaning": "Gönderdi"
           },
           {
             "word": "TIE",
-            "turkishMeaning": "Ba\u011flamak"
+            "turkishMeaning": "Bağlamak"
           },
           {
             "word": "NET",
@@ -2762,15 +2764,15 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "RUNNER",
-            "turkishMeaning": "Ko\u015fucu"
+            "turkishMeaning": "Koşucu"
           },
           {
             "word": "RUNNERS",
-            "turkishMeaning": "Ko\u015fucular"
+            "turkishMeaning": "Koşucular"
           },
           {
             "word": "NURSE",
-            "turkishMeaning": "Hem\u015fire"
+            "turkishMeaning": "Hemşire"
           },
           {
             "word": "RERUN",
@@ -2778,7 +2780,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "RUN",
-            "turkishMeaning": "Ko\u015fmak"
+            "turkishMeaning": "Koşmak"
           },
           {
             "word": "URN",
@@ -2811,7 +2813,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SHORT",
-            "turkishMeaning": "K\u0131sa"
+            "turkishMeaning": "Kısa"
           },
           {
             "word": "PORT",
@@ -2823,7 +2825,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "HOT",
-            "turkishMeaning": "S\u0131cak"
+            "turkishMeaning": "Sıcak"
           }
         ],
         "category": "Sports",
@@ -2884,74 +2886,67 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         ],
         "targetWords": [
           {
+            "word": "RABBITS",
+            "turkishMeaning": "Tavşanlar"
+          },
+          {
             "word": "RABBIT",
-            "turkishMeaning": "Tav\u015fan"
+            "turkishMeaning": "Tavşan"
           },
           {
             "word": "BAIT",
             "turkishMeaning": "Yem"
           },
           {
-            "word": "BRAT",
-            "turkishMeaning": "Yaramaz"
+            "word": "BATS",
+            "turkishMeaning": "Yarasalar"
           },
           {
-            "word": "BAR",
-            "turkishMeaning": "Bar"
-          },
-          {
-            "word": "BAT",
-            "turkishMeaning": "Yarasa"
-          },
-          {
-            "word": "ART",
-            "turkishMeaning": "Sanat"
+            "word": "STAR",
+            "turkishMeaning": "Yıldız"
           }
         ],
         "category": "Wild Animals",
-        "theme": "Burrows",
-        "explanation": "Connect letters R, A, B, B, I, T, S to form: RABBIT, BAIT, BRAT, BAR, BAT, ART."
+        "theme": "Forest Rabbits",
+        "explanation": "Connect letters R, A, B, B, I, T, S to form: RABBITS, RABBIT, BAIT, BATS, STAR.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g7_h_10",
         "availableLetters": [
-          "J",
-          "U",
-          "N",
-          "G",
-          "L",
+          "F",
+          "O",
+          "R",
           "E",
-          "S"
+          "S",
+          "T"
         ],
         "targetWords": [
           {
-            "word": "JUNGLE",
+            "word": "FOREST",
             "turkishMeaning": "Orman"
           },
           {
-            "word": "GLUE",
-            "turkishMeaning": "Yap\u0131\u015ft\u0131r\u0131c\u0131"
+            "word": "REST",
+            "turkishMeaning": "Dinlenmek"
           },
           {
-            "word": "LUNG",
-            "turkishMeaning": "Akci\u011fer"
+            "word": "SOFT",
+            "turkishMeaning": "Yumuşak"
           },
           {
-            "word": "GUN",
-            "turkishMeaning": "Silah"
+            "word": "ROSE",
+            "turkishMeaning": "Gül"
           },
           {
-            "word": "JUG",
-            "turkishMeaning": "S\u00fcrahi"
-          },
-          {
-            "word": "SUN",
-            "turkishMeaning": "G\u00fcne\u015f"
+            "word": "SORT",
+            "turkishMeaning": "Tür, çeşit"
           }
         ],
         "category": "Wild Animals",
-        "theme": "Tropics",
-        "explanation": "Connect letters J, U, N, G, L, E, S to form: JUNGLE, GLUE, LUNG, GUN, JUG, SUN."
+        "theme": "Forest Wildlife",
+        "explanation": "Connect letters F, O, R, E, S, T to form: FOREST, REST, SOFT, ROSE, SORT.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g7_h_11",
@@ -2967,11 +2962,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "DESERT",
-            "turkishMeaning": "\u00c7\u00f6l"
+            "turkishMeaning": "Çöl"
           },
           {
             "word": "RESET",
-            "turkishMeaning": "S\u0131f\u0131rlamak"
+            "turkishMeaning": "Sıfırlamak"
           },
           {
             "word": "REST",
@@ -2983,11 +2978,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "TREE",
-            "turkishMeaning": "A\u011fa\u00e7"
+            "turkishMeaning": "Ağaç"
           },
           {
             "word": "RED",
-            "turkishMeaning": "K\u0131rm\u0131z\u0131"
+            "turkishMeaning": "Kırmızı"
           }
         ],
         "category": "Wild Animals",
@@ -3008,11 +3003,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "INSECT",
-            "turkishMeaning": "B\u00f6cek"
+            "turkishMeaning": "Böcek"
           },
           {
             "word": "INSECTS",
-            "turkishMeaning": "B\u00f6cekler"
+            "turkishMeaning": "Böcekler"
           },
           {
             "word": "SCENT",
@@ -3020,11 +3015,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "NICE",
-            "turkishMeaning": "G\u00fczel"
+            "turkishMeaning": "Güzel"
           },
           {
             "word": "TIE",
-            "turkishMeaning": "Ba\u011flamak"
+            "turkishMeaning": "Bağlamak"
           },
           {
             "word": "NET",
@@ -3049,11 +3044,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "MUSEUM",
-            "turkishMeaning": "M\u00fcze"
+            "turkishMeaning": "Müze"
           },
           {
             "word": "MUSE",
-            "turkishMeaning": "\u0130lham"
+            "turkishMeaning": "İlham"
           },
           {
             "word": "SUMS",
@@ -3106,11 +3101,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "TIE",
-            "turkishMeaning": "Ba\u011flamak"
+            "turkishMeaning": "Bağlamak"
           },
           {
             "word": "NET",
-            "turkishMeaning": "A\u011f"
+            "turkishMeaning": "Ağ"
           }
         ],
         "category": "Celebrations",
@@ -3135,7 +3130,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "BORN",
-            "turkishMeaning": "Do\u011fmu\u015f"
+            "turkishMeaning": "Doğmuş"
           },
           {
             "word": "IRON",
@@ -3151,7 +3146,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SON",
-            "turkishMeaning": "O\u011ful"
+            "turkishMeaning": "Oğul"
           }
         ],
         "category": "Celebrations",
@@ -3176,19 +3171,19 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "TRUE",
-            "turkishMeaning": "Do\u011fru"
+            "turkishMeaning": "Doğru"
           },
           {
             "word": "RUE",
-            "turkishMeaning": "Pi\u015fmanl\u0131k"
+            "turkishMeaning": "Pişmanlık"
           },
           {
             "word": "FUR",
-            "turkishMeaning": "K\u00fcrk"
+            "turkishMeaning": "Kürk"
           },
           {
             "word": "RUT",
-            "turkishMeaning": "\u0130z"
+            "turkishMeaning": "İz"
           },
           {
             "word": "USE",
@@ -3221,19 +3216,19 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "ALERT",
-            "turkishMeaning": "Uyan\u0131k"
+            "turkishMeaning": "Uyanık"
           },
           {
             "word": "ALTER",
-            "turkishMeaning": "De\u011fi\u015ftirmek"
+            "turkishMeaning": "Değiştirmek"
           },
           {
             "word": "LATE",
-            "turkishMeaning": "Ge\u00e7"
+            "turkishMeaning": "Geç"
           },
           {
             "word": "STAR",
-            "turkishMeaning": "Y\u0131ld\u0131z"
+            "turkishMeaning": "Yıldız"
           }
         ],
         "category": "Dreams",
@@ -3266,15 +3261,15 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "PLANE",
-            "turkishMeaning": "U\u00e7ak"
+            "turkishMeaning": "Uçak"
           },
           {
             "word": "LEAP",
-            "turkishMeaning": "S\u0131\u00e7ramak"
+            "turkishMeaning": "Sıçramak"
           },
           {
             "word": "NET",
-            "turkishMeaning": "A\u011f"
+            "turkishMeaning": "Ağ"
           }
         ],
         "category": "Planets",
@@ -3303,11 +3298,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "TRACE",
-            "turkishMeaning": "\u0130z"
+            "turkishMeaning": "İz"
           },
           {
             "word": "CARE",
-            "turkishMeaning": "\u00d6zen"
+            "turkishMeaning": "Özen"
           },
           {
             "word": "RATE",
@@ -3340,7 +3335,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SLAG",
-            "turkishMeaning": "C\u00fcruf"
+            "turkishMeaning": "Cüruf"
           },
           {
             "word": "LAY",
@@ -3352,7 +3347,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SAY",
-            "turkishMeaning": "S\u00f6ylemek"
+            "turkishMeaning": "Söylemek"
           }
         ],
         "category": "Planets",
@@ -3381,11 +3376,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "STEM",
-            "turkishMeaning": "G\u00f6vde"
+            "turkishMeaning": "Gövde"
           },
           {
             "word": "MESS",
-            "turkishMeaning": "Da\u011f\u0131n\u0131kl\u0131k"
+            "turkishMeaning": "Dağınıklık"
           },
           {
             "word": "YES",
@@ -3393,7 +3388,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SET",
-            "turkishMeaning": "K\u00fcme"
+            "turkishMeaning": "Küme"
           }
         ],
         "category": "Planets",
@@ -3414,7 +3409,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "NATURE",
-            "turkishMeaning": "Do\u011fa"
+            "turkishMeaning": "Doğa"
           },
           {
             "word": "TUNE",
@@ -3422,7 +3417,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "NEAR",
-            "turkishMeaning": "Yak\u0131n"
+            "turkishMeaning": "Yakın"
           },
           {
             "word": "RATE",
@@ -3430,11 +3425,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "RUN",
-            "turkishMeaning": "Ko\u015fmak"
+            "turkishMeaning": "Koşmak"
           },
           {
             "word": "NUT",
-            "turkishMeaning": "F\u0131nd\u0131k"
+            "turkishMeaning": "Fındık"
           }
         ],
         "category": "Environment",
@@ -3487,41 +3482,42 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "availableLetters": [
           "D",
           "A",
-          "N",
+          "M",
+          "A",
           "G",
           "E",
-          "R",
           "S"
         ],
         "targetWords": [
           {
-            "word": "DANGER",
-            "turkishMeaning": "Tehlike"
+            "word": "DAMAGES",
+            "turkishMeaning": "Zararlar"
           },
           {
-            "word": "GARDEN",
-            "turkishMeaning": "Bah\u00e7e"
+            "word": "DAMAGE",
+            "turkishMeaning": "Zarar, hasar"
           },
           {
-            "word": "RANG",
-            "turkishMeaning": "\u00c7ald\u0131"
+            "word": "GAMES",
+            "turkishMeaning": "Oyunlar"
           },
           {
-            "word": "READ",
-            "turkishMeaning": "Okumak"
+            "word": "GAME",
+            "turkishMeaning": "Oyun"
           },
           {
-            "word": "DEAR",
-            "turkishMeaning": "Sevgili"
+            "word": "MADE",
+            "turkishMeaning": "Yapılmış"
           },
           {
-            "word": "RED",
-            "turkishMeaning": "K\u0131rm\u0131z\u0131"
+            "word": "AGED",
+            "turkishMeaning": "Yaşlı"
           }
         ],
-        "category": "Wild Animals",
-        "theme": "Perils",
-        "explanation": "Connect letters D, A, N, G, E, R, S to form: DANGER, GARDEN, RANG, READ, DEAR, RED."
+        "category": "Environment",
+        "theme": "Nature Protection",
+        "explanation": "Connect letters D, A, M, A, G, E, S to form: DAMAGES, DAMAGE, GAMES, GAME, MADE, AGED.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g7_h_25",
@@ -3536,33 +3532,34 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         ],
         "targetWords": [
           {
-            "word": "DAMAGE",
-            "turkishMeaning": "Hasar"
+            "word": "DAMAGES",
+            "turkishMeaning": "Zararlar"
           },
           {
-            "word": "DAMAGES",
-            "turkishMeaning": "Hasarlar"
+            "word": "DAMAGE",
+            "turkishMeaning": "Zarar, hasar"
+          },
+          {
+            "word": "GAMES",
+            "turkishMeaning": "Oyunlar"
           },
           {
             "word": "GAME",
             "turkishMeaning": "Oyun"
           },
           {
+            "word": "MADE",
+            "turkishMeaning": "Yapılmış"
+          },
+          {
             "word": "AGED",
-            "turkishMeaning": "Ya\u015fl\u0131"
-          },
-          {
-            "word": "MAD",
-            "turkishMeaning": "Deli"
-          },
-          {
-            "word": "AGE",
-            "turkishMeaning": "Ya\u015f"
+            "turkishMeaning": "Yaşlı"
           }
         ],
         "category": "Environment",
-        "theme": "Pollution",
-        "explanation": "Connect letters D, A, M, A, G, E, S to form: DAMAGE, DAMAGES, GAME, AGED, MAD, AGE."
+        "theme": "Environmental Damage",
+        "explanation": "Connect letters D, A, M, A, G, E, S to form: DAMAGES, DAMAGE, GAMES, GAME, MADE, AGED.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g7_h_26",
@@ -3594,11 +3591,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "USER",
-            "turkishMeaning": "Kullan\u0131c\u0131"
+            "turkishMeaning": "Kullanıcı"
           },
           {
             "word": "SEE",
-            "turkishMeaning": "G\u00f6rmek"
+            "turkishMeaning": "Görmek"
           }
         ],
         "category": "Environment",
@@ -3623,7 +3620,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "GENRE",
-            "turkishMeaning": "T\u00fcr"
+            "turkishMeaning": "Tür"
           },
           {
             "word": "GREY",
@@ -3631,11 +3628,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "GREEN",
-            "turkishMeaning": "Ye\u015fil"
+            "turkishMeaning": "Yeşil"
           },
           {
             "word": "EYE",
-            "turkishMeaning": "G\u00f6z"
+            "turkishMeaning": "Göz"
           },
           {
             "word": "YES",
@@ -3664,7 +3661,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "GONE",
-            "turkishMeaning": "Gitmi\u015f"
+            "turkishMeaning": "Gitmiş"
           },
           {
             "word": "NOSE",
@@ -3713,7 +3710,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "DOWN",
-            "turkishMeaning": "A\u015fa\u011f\u0131"
+            "turkishMeaning": "Aşağı"
           },
           {
             "word": "WORD",
@@ -3721,7 +3718,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "RED",
-            "turkishMeaning": "K\u0131rm\u0131z\u0131"
+            "turkishMeaning": "Kırmızı"
           }
         ],
         "category": "Environment",
@@ -3750,11 +3747,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "ROOT",
-            "turkishMeaning": "K\u00f6k"
+            "turkishMeaning": "Kök"
           },
           {
             "word": "DOOR",
-            "turkishMeaning": "Kap\u0131"
+            "turkishMeaning": "Kapı"
           },
           {
             "word": "ODOR",
@@ -3782,33 +3779,34 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         ],
         "targetWords": [
           {
-            "word": "HEALTH",
-            "turkishMeaning": "Sa\u011fl\u0131k"
+            "word": "HEALTHY",
+            "turkishMeaning": "Sağlıklı"
           },
           {
-            "word": "HEAT",
-            "turkishMeaning": "Is\u0131"
+            "word": "HEALTH",
+            "turkishMeaning": "Sağlık"
           },
           {
             "word": "HEAL",
-            "turkishMeaning": "\u0130yile\u015fmek"
+            "turkishMeaning": "İyileşmek"
+          },
+          {
+            "word": "HEAT",
+            "turkishMeaning": "Isı, sıcaklık"
           },
           {
             "word": "LATE",
-            "turkishMeaning": "Ge\u00e7"
+            "turkishMeaning": "Geç"
           },
           {
-            "word": "HATE",
-            "turkishMeaning": "Nefret"
-          },
-          {
-            "word": "HAT",
-            "turkishMeaning": "\u015eapka"
+            "word": "THEY",
+            "turkishMeaning": "Onlar"
           }
         ],
-        "category": "Environment",
-        "theme": "Vitality",
-        "explanation": "Connect letters H, E, A, L, T, H, Y to form: HEALTH, HEAT, HEAL, LATE, HATE, HAT."
+        "category": "Sports & Health",
+        "theme": "Healthy Living",
+        "explanation": "Connect letters H, E, A, L, T, H, Y to form: HEALTHY, HEALTH, HEAL, HEAT, LATE, THEY.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g7_h_32",
@@ -3824,27 +3822,27 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "SHADOW",
-            "turkishMeaning": "G\u00f6lge"
+            "turkishMeaning": "Gölge"
           },
           {
             "word": "SHADOWS",
-            "turkishMeaning": "G\u00f6lgeler"
+            "turkishMeaning": "Gölgeler"
           },
           {
             "word": "SHOW",
-            "turkishMeaning": "G\u00f6steri"
+            "turkishMeaning": "Gösteri"
           },
           {
             "word": "WASH",
-            "turkishMeaning": "Y\u0131kamak"
+            "turkishMeaning": "Yıkamak"
           },
           {
             "word": "DASH",
-            "turkishMeaning": "F\u0131rlamak"
+            "turkishMeaning": "Fırlamak"
           },
           {
             "word": "HOW",
-            "turkishMeaning": "Nas\u0131l"
+            "turkishMeaning": "Nasıl"
           }
         ],
         "category": "Planets",
@@ -3854,43 +3852,40 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
       {
         "id": "wc_g7_h_33",
         "availableLetters": [
-          "S",
-          "U",
-          "M",
-          "M",
+          "B",
           "E",
-          "R",
+          "A",
+          "C",
+          "H",
+          "E",
           "S"
         ],
         "targetWords": [
           {
-            "word": "SUMMER",
-            "turkishMeaning": "Yaz"
+            "word": "BEACHES",
+            "turkishMeaning": "Kumsallar"
           },
           {
-            "word": "SUMMERS",
-            "turkishMeaning": "Yazlar"
+            "word": "BEACH",
+            "turkishMeaning": "Kumsal, plaj"
           },
           {
-            "word": "MUSE",
-            "turkishMeaning": "\u0130lham"
+            "word": "EACH",
+            "turkishMeaning": "Her biri"
           },
           {
-            "word": "SURE",
-            "turkishMeaning": "Emin"
+            "word": "CHASE",
+            "turkishMeaning": "Kovalamak"
           },
           {
-            "word": "USER",
-            "turkishMeaning": "Kullan\u0131c\u0131"
-          },
-          {
-            "word": "RUM",
-            "turkishMeaning": "Rom"
+            "word": "BASE",
+            "turkishMeaning": "Taban, üs"
           }
         ],
-        "category": "Environment",
-        "theme": "Sun Season",
-        "explanation": "Connect letters S, U, M, M, E, R, S to form: SUMMER, SUMMERS, MUSE, SURE, USER, RUM."
+        "category": "Celebrations & Weather",
+        "theme": "Summer Seaside",
+        "explanation": "Connect letters B, E, A, C, H, E, S to form: BEACHES, BEACH, EACH, CHASE, BASE.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g7_h_34",
@@ -3906,11 +3901,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "WINTER",
-            "turkishMeaning": "K\u0131\u015f"
+            "turkishMeaning": "Kış"
           },
           {
             "word": "WINTERS",
-            "turkishMeaning": "K\u0131\u015flar"
+            "turkishMeaning": "Kışlar"
           },
           {
             "word": "WRITE",
@@ -3918,7 +3913,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "TWIN",
-            "turkishMeaning": "\u0130kiz"
+            "turkishMeaning": "İkiz"
           },
           {
             "word": "WIRE",
@@ -3951,11 +3946,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SPRINGS",
-            "turkishMeaning": "P\u0131narlar"
+            "turkishMeaning": "Pınarlar"
           },
           {
             "word": "RINGS",
-            "turkishMeaning": "Y\u00fcz\u00fckler"
+            "turkishMeaning": "Yüzükler"
           },
           {
             "word": "GRIP",
@@ -3963,7 +3958,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SIGN",
-            "turkishMeaning": "\u0130\u015faret"
+            "turkishMeaning": "İşaret"
           },
           {
             "word": "PIG",
@@ -3992,7 +3987,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "TUNA",
-            "turkishMeaning": "Ton bal\u0131\u011f\u0131"
+            "turkishMeaning": "Ton balığı"
           },
           {
             "word": "AUNT",
@@ -4000,7 +3995,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "NUT",
-            "turkishMeaning": "F\u0131nd\u0131k"
+            "turkishMeaning": "Fındık"
           },
           {
             "word": "MAT",
@@ -4008,7 +4003,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SUN",
-            "turkishMeaning": "G\u00fcne\u015f"
+            "turkishMeaning": "Güneş"
           }
         ],
         "category": "Environment",
@@ -4037,7 +4032,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SCALE",
-            "turkishMeaning": "\u00d6l\u00e7ek"
+            "turkishMeaning": "Ölçek"
           },
           {
             "word": "STALE",
@@ -4045,7 +4040,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SALE",
-            "turkishMeaning": "Sat\u0131\u015f"
+            "turkishMeaning": "Satış"
           },
           {
             "word": "CAT",
@@ -4082,7 +4077,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "PACE",
-            "turkishMeaning": "Ad\u0131m"
+            "turkishMeaning": "Adım"
           },
           {
             "word": "PLEA",
@@ -4119,7 +4114,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "COOL",
-            "turkishMeaning": "Haval\u0131"
+            "turkishMeaning": "Havalı"
           },
           {
             "word": "SOLO",
@@ -4152,11 +4147,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "GARDEN",
-            "turkishMeaning": "Bah\u00e7e"
+            "turkishMeaning": "Bahçe"
           },
           {
             "word": "GARDENS",
-            "turkishMeaning": "Bah\u00e7eler"
+            "turkishMeaning": "Bahçeler"
           },
           {
             "word": "DANGER",
@@ -4172,7 +4167,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "RED",
-            "turkishMeaning": "K\u0131rm\u0131z\u0131"
+            "turkishMeaning": "Kırmızı"
           }
         ],
         "category": "Environment",
@@ -4202,11 +4197,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "TEAM",
-            "turkishMeaning": "Tak\u0131m"
+            "turkishMeaning": "Takım"
           },
           {
             "word": "TEA",
-            "turkishMeaning": "\u00c7ay"
+            "turkishMeaning": "Çay"
           }
         ],
         "category": "Friendship",
@@ -4224,15 +4219,15 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "TRUE",
-            "turkishMeaning": "Ger\u00e7ek"
+            "turkishMeaning": "Gerçek"
           },
           {
             "word": "RUE",
-            "turkishMeaning": "Pi\u015fmanl\u0131k"
+            "turkishMeaning": "Pişmanlık"
           },
           {
             "word": "RUT",
-            "turkishMeaning": "\u0130z"
+            "turkishMeaning": "İz"
           }
         ],
         "category": "Friendship",
@@ -4254,7 +4249,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "CAP",
-            "turkishMeaning": "\u015eapka"
+            "turkishMeaning": "Şapka"
           },
           {
             "word": "MAP",
@@ -4276,7 +4271,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "ROCK",
-            "turkishMeaning": "Rock m\u00fczik"
+            "turkishMeaning": "Rock müzik"
           },
           {
             "word": "CORK",
@@ -4284,7 +4279,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "COR",
-            "turkishMeaning": "Y\u00fcrek"
+            "turkishMeaning": "Yürek"
           }
         ],
         "category": "Teen Life",
@@ -4303,11 +4298,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "BAKE",
-            "turkishMeaning": "F\u0131r\u0131nda pi\u015firmek"
+            "turkishMeaning": "Fırında pişirmek"
           },
           {
             "word": "BAKES",
-            "turkishMeaning": "Pi\u015firir"
+            "turkishMeaning": "Pişirir"
           },
           {
             "word": "BEAK",
@@ -4333,7 +4328,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "OIL",
-            "turkishMeaning": "S\u0131v\u0131 ya\u011f"
+            "turkishMeaning": "Sıvı yağ"
           },
           {
             "word": "LOB",
@@ -4355,11 +4350,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "CHOP",
-            "turkishMeaning": "Do\u011framak"
+            "turkishMeaning": "Doğramak"
           },
           {
             "word": "HOP",
-            "turkishMeaning": "Z\u0131plamak"
+            "turkishMeaning": "Zıplamak"
           },
           {
             "word": "COP",
@@ -4382,11 +4377,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "COOK",
-            "turkishMeaning": "Yemek pi\u015firmek"
+            "turkishMeaning": "Yemek pişirmek"
           },
           {
             "word": "COOKS",
-            "turkishMeaning": "A\u015f\u00e7\u0131lar"
+            "turkishMeaning": "Aşçılar"
           },
           {
             "word": "COO",
@@ -4435,7 +4430,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "DIAL",
-            "turkishMeaning": "Numara \u00e7evirmek"
+            "turkishMeaning": "Numara çevirmek"
           },
           {
             "word": "LID",
@@ -4443,11 +4438,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "AID",
-            "turkishMeaning": "Yard\u0131m"
+            "turkishMeaning": "Yardım"
           },
           {
             "word": "LAD",
-            "turkishMeaning": "Delikanl\u0131"
+            "turkishMeaning": "Delikanlı"
           }
         ],
         "category": "On The Phone",
@@ -4495,7 +4490,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "NIL",
-            "turkishMeaning": "S\u0131f\u0131r"
+            "turkishMeaning": "Sıfır"
           },
           {
             "word": "LIE",
@@ -4525,11 +4520,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "LOG",
-            "turkishMeaning": "K\u00fct\u00fck"
+            "turkishMeaning": "Kütük"
           },
           {
             "word": "BOG",
-            "turkishMeaning": "Batakl\u0131k"
+            "turkishMeaning": "Bataklık"
           }
         ],
         "category": "The Internet",
@@ -4547,7 +4542,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "LINK",
-            "turkishMeaning": "Ba\u011flant\u0131"
+            "turkishMeaning": "Bağlantı"
           },
           {
             "word": "KIN",
@@ -4555,7 +4550,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "INK",
-            "turkishMeaning": "M\u00fcrekkep"
+            "turkishMeaning": "Mürekkep"
           }
         ],
         "category": "The Internet",
@@ -4573,7 +4568,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "POST",
-            "turkishMeaning": "Payla\u015f\u0131m"
+            "turkishMeaning": "Paylaşım"
           },
           {
             "word": "SPOT",
@@ -4585,7 +4580,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "TOP",
-            "turkishMeaning": "\u00dcst"
+            "turkishMeaning": "Üst"
           }
         ],
         "category": "The Internet",
@@ -4611,7 +4606,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "HAT",
-            "turkishMeaning": "\u015eapka"
+            "turkishMeaning": "Şapka"
           },
           {
             "word": "ACT",
@@ -4633,11 +4628,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "SITE",
-            "turkishMeaning": "\u0130nternet sitesi"
+            "turkishMeaning": "İnternet sitesi"
           },
           {
             "word": "TIE",
-            "turkishMeaning": "Ba\u011flamak"
+            "turkishMeaning": "Bağlamak"
           },
           {
             "word": "SIT",
@@ -4659,15 +4654,15 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "SOAR",
-            "turkishMeaning": "S\u00fcz\u00fclmek"
+            "turkishMeaning": "Süzülmek"
           },
           {
             "word": "OAR",
-            "turkishMeaning": "K\u00fcrek"
+            "turkishMeaning": "Kürek"
           },
           {
             "word": "ROA",
-            "turkishMeaning": "Ku\u015f"
+            "turkishMeaning": "Kuş"
           }
         ],
         "category": "Adventures",
@@ -4680,29 +4675,31 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           "R",
           "A",
           "F",
-          "T"
+          "T",
+          "S"
         ],
         "targetWords": [
           {
+            "word": "RAFTS",
+            "turkishMeaning": "Botlar"
+          },
+          {
             "word": "RAFT",
-            "turkishMeaning": "Sal"
+            "turkishMeaning": "Sal / bot"
           },
           {
-            "word": "FAT",
-            "turkishMeaning": "\u015ei\u015fman"
+            "word": "FAST",
+            "turkishMeaning": "Hızlı"
           },
           {
-            "word": "ART",
-            "turkishMeaning": "Sanat"
-          },
-          {
-            "word": "RAT",
-            "turkishMeaning": "S\u0131\u00e7an"
+            "word": "STAR",
+            "turkishMeaning": "Yıldız"
           }
         ],
         "category": "Adventures",
-        "theme": "Rafting",
-        "explanation": "Connect letters R, A, F, T to form: RAFT, FAT, ART, RAT."
+        "theme": "River Raft",
+        "explanation": "Connect letters R, A, F, T, S to form: RAFTS, RAFT, FAST, STAR.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g8_e_20",
@@ -4745,11 +4742,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "ROT",
-            "turkishMeaning": "\u00c7\u00fcr\u00fcmek"
+            "turkishMeaning": "Çürümek"
           },
           {
             "word": "OUT",
-            "turkishMeaning": "D\u0131\u015far\u0131"
+            "turkishMeaning": "Dışarı"
           }
         ],
         "category": "Tourism",
@@ -4771,15 +4768,15 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "TIP",
-            "turkishMeaning": "Bah\u015fi\u015f"
+            "turkishMeaning": "Bahşiş"
           },
           {
             "word": "PIT",
-            "turkishMeaning": "\u00c7ukur"
+            "turkishMeaning": "Çukur"
           },
           {
             "word": "RIP",
-            "turkishMeaning": "Y\u0131rtmak"
+            "turkishMeaning": "Yırtmak"
           }
         ],
         "category": "Tourism",
@@ -4824,11 +4821,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "WASH",
-            "turkishMeaning": "Y\u0131kamak"
+            "turkishMeaning": "Yıkamak"
           },
           {
             "word": "ASH",
-            "turkishMeaning": "K\u00fcl"
+            "turkishMeaning": "Kül"
           },
           {
             "word": "SAW",
@@ -4854,11 +4851,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "STUD",
-            "turkishMeaning": "D\u00fc\u011fme"
+            "turkishMeaning": "Düğme"
           },
           {
             "word": "SUT",
-            "turkishMeaning": "\u0130s"
+            "turkishMeaning": "İs"
           }
         ],
         "category": "Chores",
@@ -4884,7 +4881,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SID",
-            "turkishMeaning": "Erkek ad\u0131"
+            "turkishMeaning": "Erkek adı"
           }
         ],
         "category": "Chores",
@@ -4902,7 +4899,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "IRON",
-            "turkishMeaning": "\u00dct\u00fclemek"
+            "turkishMeaning": "Ütülemek"
           },
           {
             "word": "NOR",
@@ -4910,7 +4907,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "ION",
-            "turkishMeaning": "\u0130yon"
+            "turkishMeaning": "İyon"
           }
         ],
         "category": "Chores",
@@ -4932,11 +4929,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "CUE",
-            "turkishMeaning": "\u0130pucu"
+            "turkishMeaning": "İpucu"
           },
           {
             "word": "RUE",
-            "turkishMeaning": "Pi\u015fmanl\u0131k"
+            "turkishMeaning": "Pişmanlık"
           }
         ],
         "category": "Science",
@@ -4963,11 +4960,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SEE",
-            "turkishMeaning": "G\u00f6rmek"
+            "turkishMeaning": "Görmek"
           },
           {
             "word": "SEEN",
-            "turkishMeaning": "G\u00f6r\u00fclm\u00fc\u015f"
+            "turkishMeaning": "Görülmüş"
           }
         ],
         "category": "Science",
@@ -4986,15 +4983,15 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "CELL",
-            "turkishMeaning": "H\u00fccre"
+            "turkishMeaning": "Hücre"
           },
           {
             "word": "CELLS",
-            "turkishMeaning": "H\u00fccreler"
+            "turkishMeaning": "Hücreler"
           },
           {
             "word": "ELL",
-            "turkishMeaning": "Eski \u00f6l\u00e7\u00fc"
+            "turkishMeaning": "Eski ölçü"
           }
         ],
         "category": "Science",
@@ -5042,15 +5039,15 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "FIRE",
-            "turkishMeaning": "Ate\u015f"
+            "turkishMeaning": "Ateş"
           },
           {
             "word": "RIFE",
-            "turkishMeaning": "Yayg\u0131n"
+            "turkishMeaning": "Yaygın"
           },
           {
             "word": "FIR",
-            "turkishMeaning": "K\u00f6knar"
+            "turkishMeaning": "Köknar"
           }
         ],
         "category": "Natural Forces",
@@ -5069,11 +5066,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "TREK",
-            "turkishMeaning": "Do\u011fa y\u00fcr\u00fcy\u00fc\u015f\u00fc"
+            "turkishMeaning": "Doğa yürüyüşü"
           },
           {
             "word": "TREKS",
-            "turkishMeaning": "Y\u00fcr\u00fcy\u00fc\u015fler"
+            "turkishMeaning": "Yürüyüşler"
           },
           {
             "word": "REST",
@@ -5096,11 +5093,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "HIKE",
-            "turkishMeaning": "Y\u00fcr\u00fcy\u00fc\u015f"
+            "turkishMeaning": "Yürüyüş"
           },
           {
             "word": "HIKES",
-            "turkishMeaning": "Y\u00fcr\u00fcy\u00fc\u015fler"
+            "turkishMeaning": "Yürüyüşler"
           },
           {
             "word": "SKI",
@@ -5123,15 +5120,15 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "SURF",
-            "turkishMeaning": "S\u00f6rf"
+            "turkishMeaning": "Sörf"
           },
           {
             "word": "SURFS",
-            "turkishMeaning": "S\u00f6rfler"
+            "turkishMeaning": "Sörfler"
           },
           {
             "word": "FUR",
-            "turkishMeaning": "K\u00fcrk"
+            "turkishMeaning": "Kürk"
           }
         ],
         "category": "Adventures",
@@ -5144,25 +5141,31 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           "D",
           "I",
           "V",
-          "E"
+          "E",
+          "R"
         ],
         "targetWords": [
+          {
+            "word": "DIVER",
+            "turkishMeaning": "Dalgıç"
+          },
           {
             "word": "DIVE",
             "turkishMeaning": "Dalmak"
           },
           {
-            "word": "DIE",
-            "turkishMeaning": "\u00d6lmek"
+            "word": "RIDE",
+            "turkishMeaning": "Binmek / sürüş"
           },
           {
-            "word": "VIE",
-            "turkishMeaning": "Yar\u0131\u015fmak"
+            "word": "RED",
+            "turkishMeaning": "Kırmızı"
           }
         ],
         "category": "Adventures",
-        "theme": "Diving",
-        "explanation": "Connect letters D, I, V, E to form: DIVE, DIE, VIE."
+        "theme": "Scuba Diving",
+        "explanation": "Connect letters D, I, V, E, R to form: DIVER, DIVE, RIDE, RED.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g8_e_37",
@@ -5196,25 +5199,31 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           "F",
           "L",
           "A",
-          "T"
+          "T",
+          "S"
         ],
         "targetWords": [
           {
+            "word": "FLATS",
+            "turkishMeaning": "Düzlükler"
+          },
+          {
             "word": "FLAT",
-            "turkishMeaning": "Daire"
+            "turkishMeaning": "Düz"
           },
           {
-            "word": "FAT",
-            "turkishMeaning": "\u015ei\u015fman"
+            "word": "FAST",
+            "turkishMeaning": "Hızlı"
           },
           {
-            "word": "AT",
-            "turkishMeaning": "De/da"
+            "word": "LAST",
+            "turkishMeaning": "Son"
           }
         ],
-        "category": "Chores",
-        "theme": "Home Flat",
-        "explanation": "Connect letters F, L, A, T to form: FLAT, FAT, AT."
+        "category": "Tourism & Geography",
+        "theme": "Plateaus & Nature",
+        "explanation": "Connect letters F, L, A, T, S to form: FLATS, FLAT, FAST, LAST.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g8_e_39",
@@ -5228,7 +5237,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "WIFE",
-            "turkishMeaning": "E\u015f"
+            "turkishMeaning": "Eş"
           },
           {
             "word": "FEW",
@@ -5236,7 +5245,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SEW",
-            "turkishMeaning": "Diki\u015f dikmek"
+            "turkishMeaning": "Dikiş dikmek"
           }
         ],
         "category": "The Internet",
@@ -5255,15 +5264,15 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "SONG",
-            "turkishMeaning": "\u015eark\u0131"
+            "turkishMeaning": "Şarkı"
           },
           {
             "word": "SONGS",
-            "turkishMeaning": "\u015eark\u0131lar"
+            "turkishMeaning": "Şarkılar"
           },
           {
             "word": "SON",
-            "turkishMeaning": "O\u011ful"
+            "turkishMeaning": "Oğul"
           }
         ],
         "category": "Teen Life",
@@ -5284,7 +5293,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "TRUST",
-            "turkishMeaning": "G\u00fcven"
+            "turkishMeaning": "Güven"
           },
           {
             "word": "RUST",
@@ -5292,11 +5301,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "RUTS",
-            "turkishMeaning": "\u0130zler"
+            "turkishMeaning": "İzler"
           },
           {
             "word": "RUT",
-            "turkishMeaning": "\u0130z"
+            "turkishMeaning": "İz"
           }
         ],
         "category": "Friendship",
@@ -5315,11 +5324,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "SHARE",
-            "turkishMeaning": "Payla\u015fmak"
+            "turkishMeaning": "Paylaşmak"
           },
           {
             "word": "HARE",
-            "turkishMeaning": "Tav\u015fan"
+            "turkishMeaning": "Tavşan"
           },
           {
             "word": "HEAR",
@@ -5327,7 +5336,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "ERA",
-            "turkishMeaning": "\u00c7a\u011f"
+            "turkishMeaning": "Çağ"
           },
           {
             "word": "EAR",
@@ -5350,15 +5359,15 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "LOYAL",
-            "turkishMeaning": "Sad\u0131k"
+            "turkishMeaning": "Sadık"
           },
           {
             "word": "ALLOY",
-            "turkishMeaning": "Ala\u015f\u0131m"
+            "turkishMeaning": "Alaşım"
           },
           {
             "word": "ALLY",
-            "turkishMeaning": "M\u00fcttefik"
+            "turkishMeaning": "Müttefik"
           },
           {
             "word": "ALL",
@@ -5393,7 +5402,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "VIE",
-            "turkishMeaning": "Yar\u0131\u015fmak"
+            "turkishMeaning": "Yarışmak"
           }
         ],
         "category": "On The Phone",
@@ -5443,23 +5452,23 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "ROAST",
-            "turkishMeaning": "K\u0131zartmak"
+            "turkishMeaning": "Kızartmak"
           },
           {
             "word": "SORT",
-            "turkishMeaning": "S\u0131ralamak"
+            "turkishMeaning": "Sıralamak"
           },
           {
             "word": "STAR",
-            "turkishMeaning": "Y\u0131ld\u0131z"
+            "turkishMeaning": "Yıldız"
           },
           {
             "word": "OAR",
-            "turkishMeaning": "K\u00fcrek"
+            "turkishMeaning": "Kürek"
           },
           {
             "word": "ROT",
-            "turkishMeaning": "\u00c7\u00fcr\u00fcmek"
+            "turkishMeaning": "Çürümek"
           }
         ],
         "category": "In The Kitchen",
@@ -5482,7 +5491,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "GIRL",
-            "turkishMeaning": "K\u0131z"
+            "turkishMeaning": "Kız"
           },
           {
             "word": "RIG",
@@ -5513,7 +5522,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "EPIC",
-            "turkishMeaning": "Destans\u0131"
+            "turkishMeaning": "Destansı"
           },
           {
             "word": "PIE",
@@ -5548,15 +5557,15 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "FOUR",
-            "turkishMeaning": "D\u00f6rt"
+            "turkishMeaning": "Dört"
           },
           {
             "word": "FOUL",
-            "turkishMeaning": "K\u00f6t\u00fc"
+            "turkishMeaning": "Kötü"
           },
           {
             "word": "FOR",
-            "turkishMeaning": "\u0130\u00e7in"
+            "turkishMeaning": "İçin"
           },
           {
             "word": "OUR",
@@ -5587,11 +5596,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "DUG",
-            "turkishMeaning": "Kazd\u0131"
+            "turkishMeaning": "Kazdı"
           },
           {
             "word": "GOD",
-            "turkishMeaning": "Tanr\u0131"
+            "turkishMeaning": "Tanrı"
           }
         ],
         "category": "In The Kitchen",
@@ -5610,7 +5619,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "SPEAK",
-            "turkishMeaning": "Konu\u015fmak"
+            "turkishMeaning": "Konuşmak"
           },
           {
             "word": "PEAK",
@@ -5681,11 +5690,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "CLICK",
-            "turkishMeaning": "T\u0131klamak"
+            "turkishMeaning": "Tıklamak"
           },
           {
             "word": "CLICKS",
-            "turkishMeaning": "T\u0131klamalar"
+            "turkishMeaning": "Tıklamalar"
           },
           {
             "word": "LICK",
@@ -5713,11 +5722,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "CLIMB",
-            "turkishMeaning": "T\u0131rmanmak"
+            "turkishMeaning": "Tırmanmak"
           },
           {
             "word": "CLIMBS",
-            "turkishMeaning": "T\u0131rman\u0131\u015flar"
+            "turkishMeaning": "Tırmanışlar"
           },
           {
             "word": "LIMB",
@@ -5725,7 +5734,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SLIM",
-            "turkishMeaning": "\u0130nce"
+            "turkishMeaning": "İnce"
           }
         ],
         "category": "Adventures",
@@ -5744,11 +5753,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "SCUBA",
-            "turkishMeaning": "T\u00fcpl\u00fc dal\u0131\u015f"
+            "turkishMeaning": "Tüplü dalış"
           },
           {
             "word": "CUBA",
-            "turkishMeaning": "K\u00fcba"
+            "turkishMeaning": "Küba"
           },
           {
             "word": "CAB",
@@ -5756,7 +5765,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "BUS",
-            "turkishMeaning": "Otob\u00fcs"
+            "turkishMeaning": "Otobüs"
           }
         ],
         "category": "Adventures",
@@ -5783,7 +5792,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "ACHE",
-            "turkishMeaning": "A\u011fr\u0131"
+            "turkishMeaning": "Ağrı"
           },
           {
             "word": "CAB",
@@ -5801,29 +5810,35 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           "U",
           "I",
           "D",
-          "E"
+          "E",
+          "S"
         ],
         "targetWords": [
+          {
+            "word": "GUIDES",
+            "turkishMeaning": "Rehberler"
+          },
           {
             "word": "GUIDE",
             "turkishMeaning": "Rehber"
           },
           {
-            "word": "DUE",
-            "turkishMeaning": "Vadesi gelmi\u015f"
+            "word": "SIDE",
+            "turkishMeaning": "Taraf, yan"
           },
           {
             "word": "DIG",
             "turkishMeaning": "Kazmak"
           },
           {
-            "word": "DIE",
-            "turkishMeaning": "\u00d6lmek"
+            "word": "DUE",
+            "turkishMeaning": "Vadesi gelen / bağlı"
           }
         ],
         "category": "Tourism",
-        "theme": "Tour Guide",
-        "explanation": "Connect letters G, U, I, D, E to form: GUIDE, DUE, DIG, DIE."
+        "theme": "Tour Guides",
+        "explanation": "Connect letters G, U, I, D, E, S to form: GUIDES, GUIDE, SIDE, DIG, DUE.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g8_m_18",
@@ -5863,37 +5878,39 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
       {
         "id": "wc_g8_m_19",
         "availableLetters": [
-          "H",
-          "O",
-          "T",
+          "R",
           "E",
-          "L"
+          "C",
+          "I",
+          "P",
+          "E"
         ],
         "targetWords": [
           {
-            "word": "HOTEL",
-            "turkishMeaning": "Otel"
+            "word": "RECIPE",
+            "turkishMeaning": "Yemek tarifi"
           },
           {
-            "word": "HOLE",
-            "turkishMeaning": "Delik"
+            "word": "PIECE",
+            "turkishMeaning": "Parça, dilim"
           },
           {
-            "word": "LET",
-            "turkishMeaning": "\u0130zin vermek"
+            "word": "RIPE",
+            "turkishMeaning": "Olgun meyve"
           },
           {
-            "word": "HOT",
-            "turkishMeaning": "S\u0131cak"
+            "word": "PRICE",
+            "turkishMeaning": "Fiyat"
           },
           {
-            "word": "THE",
-            "turkishMeaning": "Belirte\u00e7"
+            "word": "PIE",
+            "turkishMeaning": "Turta"
           }
         ],
-        "category": "Tourism",
-        "theme": "Accommodations",
-        "explanation": "Connect letters H, O, T, E, L to form: HOTEL, HOLE, LET, HOT, THE."
+        "category": "In the Kitchen",
+        "theme": "Secret Recipe",
+        "explanation": "Connect letters R, E, C, I, P, E to form: RECIPE, PIECE, RIPE, PRICE, PIE.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g8_m_20",
@@ -5907,7 +5924,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "SIGHT",
-            "turkishMeaning": "G\u00f6r\u00fc\u015f"
+            "turkishMeaning": "Görüş"
           },
           {
             "word": "THIS",
@@ -5970,19 +5987,19 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "SWEEP",
-            "turkishMeaning": "S\u00fcp\u00fcrmek"
+            "turkishMeaning": "Süpürmek"
           },
           {
             "word": "WEEP",
-            "turkishMeaning": "A\u011flamak"
+            "turkishMeaning": "Ağlamak"
           },
           {
             "word": "SEEP",
-            "turkishMeaning": "S\u0131zmak"
+            "turkishMeaning": "Sızmak"
           },
           {
             "word": "SEE",
-            "turkishMeaning": "G\u00f6rmek"
+            "turkishMeaning": "Görmek"
           }
         ],
         "category": "Chores",
@@ -6001,11 +6018,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "CHORE",
-            "turkishMeaning": "Ev i\u015fi"
+            "turkishMeaning": "Ev işi"
           },
           {
             "word": "ECHO",
-            "turkishMeaning": "Yank\u0131"
+            "turkishMeaning": "Yankı"
           },
           {
             "word": "HERO",
@@ -6013,7 +6030,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "CORE",
-            "turkishMeaning": "\u00c7ekirdek"
+            "turkishMeaning": "Çekirdek"
           },
           {
             "word": "HER",
@@ -6040,19 +6057,19 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "BOOT",
-            "turkishMeaning": "\u00c7izme"
+            "turkishMeaning": "Çizme"
           },
           {
             "word": "ROOT",
-            "turkishMeaning": "K\u00f6k"
+            "turkishMeaning": "Kök"
           },
           {
             "word": "TOO",
-            "turkishMeaning": "A\u015f\u0131r\u0131"
+            "turkishMeaning": "Aşırı"
           },
           {
             "word": "ROT",
-            "turkishMeaning": "\u00c7\u00fcr\u00fcmek"
+            "turkishMeaning": "Çürümek"
           }
         ],
         "category": "Science",
@@ -6079,11 +6096,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "REAL",
-            "turkishMeaning": "Ger\u00e7ek"
+            "turkishMeaning": "Gerçek"
           },
           {
             "word": "SALE",
-            "turkishMeaning": "Sat\u0131\u015f"
+            "turkishMeaning": "Satış"
           },
           {
             "word": "EAR",
@@ -6097,33 +6114,39 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
       {
         "id": "wc_g8_m_26",
         "availableLetters": [
-          "F",
-          "L",
+          "S",
+          "T",
           "O",
-          "O",
-          "D"
+          "R",
+          "M",
+          "Y"
         ],
         "targetWords": [
           {
-            "word": "FLOOD",
-            "turkishMeaning": "Sel"
+            "word": "STORMY",
+            "turkishMeaning": "Fırtınalı"
           },
           {
-            "word": "FOOD",
-            "turkishMeaning": "Yiyecek"
+            "word": "STORM",
+            "turkishMeaning": "Fırtına"
           },
           {
-            "word": "FOOL",
-            "turkishMeaning": "Aptal"
+            "word": "STORY",
+            "turkishMeaning": "Hikaye"
           },
           {
-            "word": "OLD",
-            "turkishMeaning": "Eski"
+            "word": "MOST",
+            "turkishMeaning": "En çok"
+          },
+          {
+            "word": "SORT",
+            "turkishMeaning": "Sıralamak / tür"
           }
         ],
         "category": "Natural Forces",
-        "theme": "Overflow",
-        "explanation": "Connect letters F, L, O, O, D to form: FLOOD, FOOD, FOOL, OLD."
+        "theme": "Stormy Weather",
+        "explanation": "Connect letters S, T, O, R, M, Y to form: STORMY, STORM, STORY, MOST, SORT.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g8_m_27",
@@ -6146,7 +6169,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SAKE",
-            "turkishMeaning": "U\u011fruna"
+            "turkishMeaning": "Uğruna"
           },
           {
             "word": "ASK",
@@ -6169,11 +6192,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "ASHES",
-            "turkishMeaning": "K\u00fcller"
+            "turkishMeaning": "Küller"
           },
           {
             "word": "SHE",
-            "turkishMeaning": "O kad\u0131n"
+            "turkishMeaning": "O kadın"
           },
           {
             "word": "SEA",
@@ -6181,7 +6204,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "ASH",
-            "turkishMeaning": "K\u00fcl"
+            "turkishMeaning": "Kül"
           }
         ],
         "category": "Natural Forces",
@@ -6209,7 +6232,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SAD",
-            "turkishMeaning": "\u00dczg\u00fcn"
+            "turkishMeaning": "Üzgün"
           },
           {
             "word": "RAD",
@@ -6232,7 +6255,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "SPEED",
-            "turkishMeaning": "H\u0131z"
+            "turkishMeaning": "Hız"
           },
           {
             "word": "DEEP",
@@ -6244,7 +6267,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SEE",
-            "turkishMeaning": "G\u00f6rmek"
+            "turkishMeaning": "Görmek"
           }
         ],
         "category": "Natural Forces",
@@ -6263,7 +6286,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "CRASH",
-            "turkishMeaning": "\u00c7arp\u0131\u015fma"
+            "turkishMeaning": "Çarpışma"
           },
           {
             "word": "CASH",
@@ -6279,7 +6302,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "ASH",
-            "turkishMeaning": "K\u00fcl"
+            "turkishMeaning": "Kül"
           }
         ],
         "category": "Natural Forces",
@@ -6302,15 +6325,15 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "CORE",
-            "turkishMeaning": "\u00c7ekirdek"
+            "turkishMeaning": "Çekirdek"
           },
           {
             "word": "FORE",
-            "turkishMeaning": "\u00d6n"
+            "turkishMeaning": "Ön"
           },
           {
             "word": "FOR",
-            "turkishMeaning": "\u0130\u00e7in"
+            "turkishMeaning": "İçin"
           }
         ],
         "category": "Natural Forces",
@@ -6329,15 +6352,15 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "ALIEN",
-            "turkishMeaning": "Uzayl\u0131"
+            "turkishMeaning": "Uzaylı"
           },
           {
             "word": "LINE",
-            "turkishMeaning": "\u00c7izgi"
+            "turkishMeaning": "Çizgi"
           },
           {
             "word": "LANE",
-            "turkishMeaning": "\u015eerit"
+            "turkishMeaning": "Şerit"
           },
           {
             "word": "LIE",
@@ -6364,11 +6387,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "SCALE",
-            "turkishMeaning": "\u00d6l\u00e7ek"
+            "turkishMeaning": "Ölçek"
           },
           {
             "word": "SALE",
-            "turkishMeaning": "Sat\u0131\u015f"
+            "turkishMeaning": "Satış"
           },
           {
             "word": "CASE",
@@ -6435,11 +6458,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SEEN",
-            "turkishMeaning": "G\u00f6r\u00fclm\u00fc\u015f"
+            "turkishMeaning": "Görülmüş"
           },
           {
             "word": "SENT",
-            "turkishMeaning": "G\u00f6nderdi"
+            "turkishMeaning": "Gönderdi"
           },
           {
             "word": "NET",
@@ -6474,7 +6497,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "LATE",
-            "turkishMeaning": "Ge\u00e7"
+            "turkishMeaning": "Geç"
           },
           {
             "word": "TALE",
@@ -6482,7 +6505,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "TEA",
-            "turkishMeaning": "\u00c7ay"
+            "turkishMeaning": "Çay"
           }
         ],
         "category": "Natural Forces",
@@ -6501,7 +6524,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "CLOTH",
-            "turkishMeaning": "Kuma\u015f"
+            "turkishMeaning": "Kumaş"
           },
           {
             "word": "COLT",
@@ -6509,11 +6532,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "HOT",
-            "turkishMeaning": "S\u0131cak"
+            "turkishMeaning": "Sıcak"
           },
           {
             "word": "LOT",
-            "turkishMeaning": "\u00c7ok"
+            "turkishMeaning": "Çok"
           }
         ],
         "category": "Chores",
@@ -6541,11 +6564,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "HURT",
-            "turkishMeaning": "\u0130ncitmek"
+            "turkishMeaning": "İncitmek"
           },
           {
             "word": "HUT",
-            "turkishMeaning": "Kul\u00fcbe"
+            "turkishMeaning": "Kulübe"
           }
         ],
         "category": "Friendship",
@@ -6565,19 +6588,19 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "SPOON",
-            "turkishMeaning": "Ka\u015f\u0131k"
+            "turkishMeaning": "Kaşık"
           },
           {
             "word": "SPOONS",
-            "turkishMeaning": "Ka\u015f\u0131klar"
+            "turkishMeaning": "Kaşıklar"
           },
           {
             "word": "SOON",
-            "turkishMeaning": "Yak\u0131nda"
+            "turkishMeaning": "Yakında"
           },
           {
             "word": "SON",
-            "turkishMeaning": "O\u011ful"
+            "turkishMeaning": "Oğul"
           }
         ],
         "category": "In The Kitchen",
@@ -6599,7 +6622,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "FRIEND",
-            "turkishMeaning": "Arkada\u015f"
+            "turkishMeaning": "Arkadaş"
           },
           {
             "word": "FINDER",
@@ -6607,7 +6630,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "FIEND",
-            "turkishMeaning": "D\u00fc\u015fman"
+            "turkishMeaning": "Düşman"
           },
           {
             "word": "RIDE",
@@ -6619,7 +6642,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "RED",
-            "turkishMeaning": "K\u0131rm\u0131z\u0131"
+            "turkishMeaning": "Kırmızı"
           }
         ],
         "category": "Friendship",
@@ -6639,7 +6662,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "SECRET",
-            "turkishMeaning": "S\u0131r"
+            "turkishMeaning": "Sır"
           },
           {
             "word": "ERECT",
@@ -6647,7 +6670,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "TREE",
-            "turkishMeaning": "A\u011fa\u00e7"
+            "turkishMeaning": "Ağaç"
           },
           {
             "word": "REST",
@@ -6655,7 +6678,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SEE",
-            "turkishMeaning": "G\u00f6rmek"
+            "turkishMeaning": "Görmek"
           }
         ],
         "category": "Friendship",
@@ -6687,7 +6710,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "CAP",
-            "turkishMeaning": "\u015eapka"
+            "turkishMeaning": "Şapka"
           },
           {
             "word": "CUP",
@@ -6715,7 +6738,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "TREND",
-            "turkishMeaning": "Ak\u0131m"
+            "turkishMeaning": "Akım"
           },
           {
             "word": "DYE",
@@ -6723,7 +6746,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "RED",
-            "turkishMeaning": "K\u0131rm\u0131z\u0131"
+            "turkishMeaning": "Kırmızı"
           },
           {
             "word": "TRY",
@@ -6751,11 +6774,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "PIECE",
-            "turkishMeaning": "Par\u00e7a"
+            "turkishMeaning": "Parça"
           },
           {
             "word": "CREEP",
-            "turkishMeaning": "S\u00fcr\u00fcnmek"
+            "turkishMeaning": "Sürünmek"
           },
           {
             "word": "RIPE",
@@ -6787,15 +6810,15 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "GARLIC",
-            "turkishMeaning": "Sar\u0131msak"
+            "turkishMeaning": "Sarımsak"
           },
           {
             "word": "GIRL",
-            "turkishMeaning": "K\u0131z"
+            "turkishMeaning": "Kız"
           },
           {
             "word": "LIAR",
-            "turkishMeaning": "Yalanc\u0131"
+            "turkishMeaning": "Yalancı"
           },
           {
             "word": "RAIL",
@@ -6828,7 +6851,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "PREP",
-            "turkishMeaning": "Haz\u0131rl\u0131k"
+            "turkishMeaning": "Hazırlık"
           },
           {
             "word": "PEER",
@@ -6836,7 +6859,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SEE",
-            "turkishMeaning": "G\u00f6rmek"
+            "turkishMeaning": "Görmek"
           }
         ],
         "category": "In The Kitchen",
@@ -6856,23 +6879,23 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "BUTTER",
-            "turkishMeaning": "Tereya\u011f\u0131"
+            "turkishMeaning": "Tereyağı"
           },
           {
             "word": "TRUE",
-            "turkishMeaning": "Do\u011fru"
+            "turkishMeaning": "Doğru"
           },
           {
             "word": "TUBE",
-            "turkishMeaning": "T\u00fcp"
+            "turkishMeaning": "Tüp"
           },
           {
             "word": "RUT",
-            "turkishMeaning": "\u0130z"
+            "turkishMeaning": "İz"
           },
           {
             "word": "TUB",
-            "turkishMeaning": "K\u00fcvet"
+            "turkishMeaning": "Küvet"
           }
         ],
         "category": "In The Kitchen",
@@ -6893,15 +6916,15 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "ENGAGE",
-            "turkishMeaning": "Kat\u0131lmak"
+            "turkishMeaning": "Katılmak"
           },
           {
             "word": "ENGAGES",
-            "turkishMeaning": "Kat\u0131l\u0131r"
+            "turkishMeaning": "Katılır"
           },
           {
             "word": "GANG",
-            "turkishMeaning": "\u00c7ete"
+            "turkishMeaning": "Çete"
           },
           {
             "word": "GAGE",
@@ -6909,7 +6932,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "AGE",
-            "turkishMeaning": "Ya\u015f"
+            "turkishMeaning": "Yaş"
           }
         ],
         "category": "On The Phone",
@@ -6919,38 +6942,43 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
       {
         "id": "wc_g8_h_10",
         "availableLetters": [
+          "P",
           "H",
-          "A",
+          "O",
           "N",
-          "G",
-          "U",
-          "P"
+          "E",
+          "S"
         ],
         "targetWords": [
           {
-            "word": "HANGUP",
-            "turkishMeaning": "Kapatmak"
+            "word": "PHONES",
+            "turkishMeaning": "Telefonlar"
           },
           {
-            "word": "HANG",
-            "turkishMeaning": "Asmak"
+            "word": "PHONE",
+            "turkishMeaning": "Telefon"
           },
           {
-            "word": "HUG",
-            "turkishMeaning": "Kucaklamak"
+            "word": "HOPE",
+            "turkishMeaning": "Umut etmek"
           },
           {
-            "word": "GUN",
-            "turkishMeaning": "Silah"
+            "word": "NOSE",
+            "turkishMeaning": "Burun"
           },
           {
-            "word": "PAN",
-            "turkishMeaning": "Tava"
+            "word": "OPEN",
+            "turkishMeaning": "Açık, açmak"
+          },
+          {
+            "word": "SHOP",
+            "turkishMeaning": "Dükkan, alışveriş"
           }
         ],
-        "category": "On The Phone",
-        "theme": "Disconnect",
-        "explanation": "Connect letters H, A, N, G, U, P to form: HANGUP, HANG, HUG, GUN, PAN."
+        "category": "On the Phone",
+        "theme": "Phone Connection",
+        "explanation": "Connect letters P, H, O, N, E, S to form: PHONES, PHONE, HOPE, NOSE, OPEN, SHOP.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g8_h_11",
@@ -6973,7 +7001,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SHARE",
-            "turkishMeaning": "Payla\u015fmak"
+            "turkishMeaning": "Paylaşmak"
           },
           {
             "word": "HEAR",
@@ -6981,7 +7009,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "RACE",
-            "turkishMeaning": "Yar\u0131\u015f"
+            "turkishMeaning": "Yarış"
           },
           {
             "word": "CAR",
@@ -7013,7 +7041,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SEEN",
-            "turkishMeaning": "G\u00f6r\u00fclm\u00fc\u015f"
+            "turkishMeaning": "Görülmüş"
           },
           {
             "word": "SEER",
@@ -7021,7 +7049,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SEE",
-            "turkishMeaning": "G\u00f6rmek"
+            "turkishMeaning": "Görmek"
           }
         ],
         "category": "The Internet",
@@ -7045,7 +7073,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "COAL",
-            "turkishMeaning": "K\u00f6m\u00fcr"
+            "turkishMeaning": "Kömür"
           },
           {
             "word": "COIL",
@@ -7057,7 +7085,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "OIL",
-            "turkishMeaning": "Ya\u011f"
+            "turkishMeaning": "Yağ"
           }
         ],
         "category": "The Internet",
@@ -7089,7 +7117,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "CEDE",
-            "turkishMeaning": "B\u0131rakmak"
+            "turkishMeaning": "Bırakmak"
           },
           {
             "word": "ICE",
@@ -7117,11 +7145,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "GARDEN",
-            "turkishMeaning": "Bah\u00e7e"
+            "turkishMeaning": "Bahçe"
           },
           {
             "word": "RANG",
-            "turkishMeaning": "\u00c7ald\u0131"
+            "turkishMeaning": "Çaldı"
           },
           {
             "word": "READ",
@@ -7133,7 +7161,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "RED",
-            "turkishMeaning": "K\u0131rm\u0131z\u0131"
+            "turkishMeaning": "Kırmızı"
           }
         ],
         "category": "Adventures",
@@ -7194,11 +7222,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "STORE",
-            "turkishMeaning": "Ma\u011faza"
+            "turkishMeaning": "Mağaza"
           },
           {
             "word": "ROSE",
-            "turkishMeaning": "G\u00fcl"
+            "turkishMeaning": "Gül"
           },
           {
             "word": "REST",
@@ -7206,11 +7234,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SORT",
-            "turkishMeaning": "S\u0131ralamak"
+            "turkishMeaning": "Sıralamak"
           },
           {
             "word": "TORE",
-            "turkishMeaning": "Y\u0131rtt\u0131"
+            "turkishMeaning": "Yırttı"
           }
         ],
         "category": "Tourism",
@@ -7234,15 +7262,15 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "ALERT",
-            "turkishMeaning": "Uyan\u0131k"
+            "turkishMeaning": "Uyanık"
           },
           {
             "word": "ALTER",
-            "turkishMeaning": "De\u011fi\u015ftirmek"
+            "turkishMeaning": "Değiştirmek"
           },
           {
             "word": "LATE",
-            "turkishMeaning": "Ge\u00e7"
+            "turkishMeaning": "Geç"
           },
           {
             "word": "RATE",
@@ -7270,7 +7298,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "TEMPLE",
-            "turkishMeaning": "Tap\u0131nak"
+            "turkishMeaning": "Tapınak"
           },
           {
             "word": "MELT",
@@ -7278,7 +7306,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "MEET",
-            "turkishMeaning": "Bulu\u015fmak"
+            "turkishMeaning": "Buluşmak"
           },
           {
             "word": "PEEL",
@@ -7310,7 +7338,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SCALE",
-            "turkishMeaning": "\u00d6l\u00e7ek"
+            "turkishMeaning": "Ölçek"
           },
           {
             "word": "STALE",
@@ -7318,11 +7346,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SALE",
-            "turkishMeaning": "Sat\u0131\u015f"
+            "turkishMeaning": "Satış"
           },
           {
             "word": "LATE",
-            "turkishMeaning": "Ge\u00e7"
+            "turkishMeaning": "Geç"
           },
           {
             "word": "CAT",
@@ -7347,11 +7375,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "VACUUM",
-            "turkishMeaning": "S\u00fcp\u00fcrmek"
+            "turkishMeaning": "Süpürmek"
           },
           {
             "word": "SCUM",
-            "turkishMeaning": "K\u00f6p\u00fck"
+            "turkishMeaning": "Köpük"
           },
           {
             "word": "SUM",
@@ -7383,7 +7411,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "ERRAND",
-            "turkishMeaning": "Ayak i\u015fi"
+            "turkishMeaning": "Ayak işi"
           },
           {
             "word": "REAR",
@@ -7403,7 +7431,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "RED",
-            "turkishMeaning": "K\u0131rm\u0131z\u0131"
+            "turkishMeaning": "Kırmızı"
           }
         ],
         "category": "Chores",
@@ -7423,7 +7451,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "DISHES",
-            "turkishMeaning": "Bula\u015f\u0131klar"
+            "turkishMeaning": "Bulaşıklar"
           },
           {
             "word": "DISH",
@@ -7431,7 +7459,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "SHED",
-            "turkishMeaning": "Kul\u00fcbe"
+            "turkishMeaning": "Kulübe"
           },
           {
             "word": "SIDE",
@@ -7459,11 +7487,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "SPREAD",
-            "turkishMeaning": "S\u00fcrmek"
+            "turkishMeaning": "Sürmek"
           },
           {
             "word": "SPEAR",
-            "turkishMeaning": "M\u0131zrak"
+            "turkishMeaning": "Mızrak"
           },
           {
             "word": "READ",
@@ -7479,7 +7507,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "RED",
-            "turkishMeaning": "K\u0131rm\u0131z\u0131"
+            "turkishMeaning": "Kırmızı"
           }
         ],
         "category": "In The Kitchen",
@@ -7499,7 +7527,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "INVENT",
-            "turkishMeaning": "\u0130cat etmek"
+            "turkishMeaning": "İcat etmek"
           },
           {
             "word": "NINE",
@@ -7507,7 +7535,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "VENT",
-            "turkishMeaning": "Havaland\u0131rma"
+            "turkishMeaning": "Havalandırma"
           },
           {
             "word": "VINE",
@@ -7515,11 +7543,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "TIE",
-            "turkishMeaning": "Ba\u011flamak"
+            "turkishMeaning": "Bağlamak"
           },
           {
             "word": "NET",
-            "turkishMeaning": "A\u011f"
+            "turkishMeaning": "Ağ"
           }
         ],
         "category": "Science",
@@ -7551,11 +7579,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "LOSS",
-            "turkishMeaning": "Kay\u0131p"
+            "turkishMeaning": "Kayıp"
           },
           {
             "word": "OIL",
-            "turkishMeaning": "Ya\u011f"
+            "turkishMeaning": "Yağ"
           }
         ],
         "category": "Science",
@@ -7584,7 +7612,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "GONE",
-            "turkishMeaning": "Gitmi\u015f"
+            "turkishMeaning": "Gitmiş"
           },
           {
             "word": "MEN",
@@ -7612,32 +7640,33 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "HEATED",
-            "turkishMeaning": "Is\u0131t\u0131lm\u0131\u015f"
-          },
-          {
-            "word": "HATE",
-            "turkishMeaning": "Nefret"
+            "turkishMeaning": "Isıtılmış"
           },
           {
             "word": "HEAT",
-            "turkishMeaning": "Is\u0131"
+            "turkishMeaning": "Isı, ısıtmak"
           },
           {
             "word": "DATE",
-            "turkishMeaning": "Tarih"
+            "turkishMeaning": "Tarih / hurma"
+          },
+          {
+            "word": "HEAD",
+            "turkishMeaning": "Baş, kafa"
           },
           {
             "word": "HAT",
-            "turkishMeaning": "\u015eapka"
+            "turkishMeaning": "Şapka"
           },
           {
             "word": "TEA",
-            "turkishMeaning": "\u00c7ay"
+            "turkishMeaning": "Çay"
           }
         ],
-        "category": "Science",
-        "theme": "Thermal",
-        "explanation": "Connect letters H, E, A, T, E, D to form: HEATED, HATE, HEAT, DATE, HAT, TEA."
+        "category": "In the Kitchen",
+        "theme": "Heated Oven",
+        "explanation": "Connect letters H, E, A, T, E, D to form: HEATED, HEAT, DATE, HEAD, HAT, TEA.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g8_h_29",
@@ -7652,64 +7681,66 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "DAMAGE",
-            "turkishMeaning": "Hasar"
+            "turkishMeaning": "Hasar, zarar"
           },
           {
             "word": "GAME",
             "turkishMeaning": "Oyun"
           },
           {
-            "word": "AGED",
-            "turkishMeaning": "Ya\u015fl\u0131"
+            "word": "MADE",
+            "turkishMeaning": "Yapılmış"
           },
           {
-            "word": "MAD",
-            "turkishMeaning": "Deli"
+            "word": "AGED",
+            "turkishMeaning": "Yaşlı"
           },
           {
             "word": "AGE",
-            "turkishMeaning": "Ya\u015f"
+            "turkishMeaning": "Yaş, çağ"
           }
         ],
         "category": "Natural Forces",
-        "theme": "Storm Harm",
-        "explanation": "Connect letters D, A, M, A, G, E to form: DAMAGE, GAME, AGED, MAD, AGE."
+        "theme": "Disaster Damage",
+        "explanation": "Connect letters D, A, M, A, G, E to form: DAMAGE, GAME, MADE, AGED, AGE.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g8_h_30",
         "availableLetters": [
-          "R",
-          "E",
-          "S",
-          "C",
-          "U",
+          "D",
+          "A",
+          "M",
+          "A",
+          "G",
           "E"
         ],
         "targetWords": [
           {
-            "word": "RESCUE",
-            "turkishMeaning": "Kurtarmak"
+            "word": "DAMAGE",
+            "turkishMeaning": "Hasar, zarar"
           },
           {
-            "word": "CURSE",
-            "turkishMeaning": "Lanet"
+            "word": "GAME",
+            "turkishMeaning": "Oyun"
           },
           {
-            "word": "CURE",
-            "turkishMeaning": "Tedavi"
+            "word": "MADE",
+            "turkishMeaning": "Yapılmış"
           },
           {
-            "word": "USER",
-            "turkishMeaning": "Kullan\u0131c\u0131"
+            "word": "AGED",
+            "turkishMeaning": "Yaşlı"
           },
           {
-            "word": "SEE",
-            "turkishMeaning": "G\u00f6rmek"
+            "word": "AGE",
+            "turkishMeaning": "Yaş, çağ"
           }
         ],
         "category": "Natural Forces",
-        "theme": "Relief Team",
-        "explanation": "Connect letters R, E, S, C, U, E to form: RESCUE, CURSE, CURE, USER, SEE."
+        "theme": "Earthquake Aftermath",
+        "explanation": "Connect letters D, A, M, A, G, E to form: DAMAGE, GAME, MADE, AGED, AGE.",
+        "contentVersion": 2
       },
       {
         "id": "wc_g8_h_31",
@@ -7725,11 +7756,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "VICTIM",
-            "turkishMeaning": "Ma\u011fdur"
+            "turkishMeaning": "Mağdur"
           },
           {
             "word": "VICTIMS",
-            "turkishMeaning": "Ma\u011fdurlar"
+            "turkishMeaning": "Mağdurlar"
           },
           {
             "word": "MIST",
@@ -7797,7 +7828,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "WINTER",
-            "turkishMeaning": "K\u0131\u015f"
+            "turkishMeaning": "Kış"
           },
           {
             "word": "WRITE",
@@ -7805,7 +7836,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "TWIN",
-            "turkishMeaning": "\u0130kiz"
+            "turkishMeaning": "İkiz"
           },
           {
             "word": "WIRE",
@@ -7837,7 +7868,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "GLOBAL",
-            "turkishMeaning": "K\u00fcresel"
+            "turkishMeaning": "Küresel"
           },
           {
             "word": "BALL",
@@ -7849,11 +7880,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "LOG",
-            "turkishMeaning": "K\u00fct\u00fck"
+            "turkishMeaning": "Kütük"
           },
           {
             "word": "BAG",
-            "turkishMeaning": "\u00c7anta"
+            "turkishMeaning": "Çanta"
           }
         ],
         "category": "Natural Forces",
@@ -7878,7 +7909,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "GONE",
-            "turkishMeaning": "Gitmi\u015f"
+            "turkishMeaning": "Gitmiş"
           },
           {
             "word": "NOSE",
@@ -7910,7 +7941,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "NATURE",
-            "turkishMeaning": "Do\u011fa"
+            "turkishMeaning": "Doğa"
           },
           {
             "word": "TUNE",
@@ -7918,7 +7949,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "NEAR",
-            "turkishMeaning": "Yak\u0131n"
+            "turkishMeaning": "Yakın"
           },
           {
             "word": "RATE",
@@ -7926,11 +7957,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "RUN",
-            "turkishMeaning": "Ko\u015fmak"
+            "turkishMeaning": "Koşmak"
           },
           {
             "word": "NUT",
-            "turkishMeaning": "F\u0131nd\u0131k"
+            "turkishMeaning": "Fındık"
           }
         ],
         "category": "Adventures",
@@ -7950,7 +7981,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "COPING",
-            "turkishMeaning": "Ba\u015fa \u00e7\u0131kma"
+            "turkishMeaning": "Başa çıkma"
           },
           {
             "word": "COIN",
@@ -7962,7 +7993,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "PIN",
-            "turkishMeaning": "\u0130\u011fne"
+            "turkishMeaning": "İğne"
           }
         ],
         "category": "Friendship",
@@ -7982,11 +8013,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "targetWords": [
           {
             "word": "FLIGHT",
-            "turkishMeaning": "U\u00e7u\u015f"
+            "turkishMeaning": "Uçuş"
           },
           {
             "word": "LIGHT",
-            "turkishMeaning": "I\u015f\u0131k"
+            "turkishMeaning": "Işık"
           },
           {
             "word": "GIFT",
@@ -8022,11 +8053,11 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "MAPLE",
-            "turkishMeaning": "Ak\u00e7aa\u011fa\u00e7"
+            "turkishMeaning": "Akçaağaç"
           },
           {
             "word": "LEAP",
-            "turkishMeaning": "S\u0131\u00e7ramak"
+            "turkishMeaning": "Sıçramak"
           },
           {
             "word": "PALE",
@@ -8062,7 +8093,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "OTHER",
-            "turkishMeaning": "Di\u011fer"
+            "turkishMeaning": "Diğer"
           },
           {
             "word": "HERO",
@@ -8074,7 +8105,7 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
           },
           {
             "word": "HOT",
-            "turkishMeaning": "S\u0131cak"
+            "turkishMeaning": "Sıcak"
           }
         ],
         "category": "Science",

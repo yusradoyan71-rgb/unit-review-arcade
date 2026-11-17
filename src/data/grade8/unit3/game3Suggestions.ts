@@ -6,7 +6,7 @@ export const GAME_3_QUESTIONS: MultipleChoiceQuestion[] = [
     prompt: `Liam: "It's a beautiful sunny morning in London. What shall we do?"\nEmma: "________ visit the animals at London Zoo."`,
     options: ["What about", "How about", "Let's", "Would you like"],
     correctOptionIndex: 2,
-    explanation: '"Let\'s" is followed directly by the base bare infinitive of the verb ("visit").',
+    explanation: '"Let\'s" is followed directly by the base verb without "to" ("visit").',
     difficulty: 'easy',
   },
   {
@@ -90,7 +90,7 @@ export const GAME_3_QUESTIONS: MultipleChoiceQuestion[] = [
     prompt: `Teacher: "It's starting to rain heavily. I suggest we ________ inside the Science Museum."`,
     options: ['to go', 'going', 'go', 'went'],
     correctOptionIndex: 2,
-    explanation: '"I suggest we [base verb]" uses the subjunctive base form: "I suggest we go...".',
+    explanation: 'After "I suggest we...", use the base form of the verb: "I suggest we go...".',
     difficulty: 'easy',
   },
   {
@@ -153,7 +153,7 @@ export const GAME_3_QUESTIONS: MultipleChoiceQuestion[] = [
     prompt: `Jacob: "We should ________ the guard change at Buckingham Palace at eleven."`,
     options: ['watch', 'watching', 'to watch', 'watched'],
     correctOptionIndex: 0,
-    explanation: 'Modal verb "should" is followed by a bare infinitive without "to": "should watch".',
+    explanation: 'After modal verb "should", use the base verb without "to": "should watch".',
     difficulty: 'medium',
   },
   {
@@ -174,7 +174,7 @@ export const GAME_3_QUESTIONS: MultipleChoiceQuestion[] = [
     prompt: `Arthur: "I would rather ________ in the park than sit in a noisy shopping mall."`,
     options: ['relaxing', 'to relax', 'relax', 'relaxed'],
     correctOptionIndex: 2,
-    explanation: '"Would rather" takes a bare infinitive: "would rather relax".',
+    explanation: '"Would rather" takes the base verb without "to": "would rather relax".',
     difficulty: 'medium',
   },
   {
@@ -279,7 +279,7 @@ export const GAME_3_QUESTIONS: MultipleChoiceQuestion[] = [
     prompt: `Grace: "Would you rather visit the Natural History Museum or the Science Museum?"\nOliver: "I'd rather ________ the dinosaurs at the Natural History Museum."`,
     options: ['see', 'to see', 'seeing', 'saw'],
     correctOptionIndex: 0,
-    explanation: '"Would rather" takes a bare infinitive: "I\'d rather see".',
+    explanation: '"Would rather" takes the base verb without "to": "I\'d rather see".',
     difficulty: 'challenging',
   },
   {

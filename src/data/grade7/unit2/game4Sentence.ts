@@ -421,7 +421,7 @@ export const GAME_4_SENTENCES: SentenceBuilderQuestion[] = [
       'Brave emergency volunteers worked around the clock to save lives.',
       'To save lives brave emergency volunteers worked around the clock.',
     ],
-    explanation: 'Infinitive of purpose "to save lives" expresses the goal of the rescue effort.',
+    explanation: 'Use "to + verb" ("to save lives") to explain the purpose of the rescue effort.',
     difficulty: 'easy',
   },
 ];

@@ -89,7 +89,7 @@ export const GAME_6_STATEMENTS: TrueFalseQuestion[] = [
     id: 'g8u3-g6-tf13',
     prompt: "The sentence 'Let's to visit the museum' is grammatically correct in English.",
     isTrue: false,
-    explanation: "False. 'Let's' is followed directly by the bare infinitive without 'to': 'Let's visit the museum'.",
+    explanation: "False. 'Let's' is followed directly by the base verb without 'to': 'Let's visit the museum'.",
     difficulty: 'medium',
   },
   {
@@ -159,7 +159,7 @@ export const GAME_6_STATEMENTS: TrueFalseQuestion[] = [
     id: 'g8u3-g6-tf23',
     prompt: "The phrase 'I would rather' is followed by a to-infinitive (e.g., 'I would rather to stay home').",
     isTrue: false,
-    explanation: "False. 'Would rather' takes a bare infinitive without 'to': 'I would rather stay home'.",
+    explanation: "False. 'Would rather' takes the base verb without 'to': 'I would rather stay home'.",
     difficulty: 'challenging',
   },
   {

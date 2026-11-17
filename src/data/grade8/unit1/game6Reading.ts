@@ -436,7 +436,7 @@ export const GAME_6_READING_QUESTIONS: ReadingPassageQuestion[] = [
     options: [
       'Singing in complete silence without opening their mouths',
       'Singing the exact same words and melody together at the same time',
-      'Singing in twenty different languages simultaneously',
+      'Singing in twenty different languages at the same time',
       'Arguing over who should sing the next verse'
     ],
     correctOptionIndex: 1,

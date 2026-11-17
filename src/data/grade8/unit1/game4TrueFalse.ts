@@ -26,7 +26,7 @@ export const GAME_4_STATEMENTS: TrueFalseQuestion[] = [
     id: 'g8u1-g4-tf04',
     prompt: 'The sentence "I would rather to listen to jazz" is grammatically correct.',
     isTrue: false,
-    explanation: 'False. "Would rather" is followed by a bare infinitive without "to" (correct: "I would rather listen to jazz").',
+    explanation: 'False. "Would rather" is followed by the base verb without "to" (correct: "I would rather listen to jazz").',
     difficulty: 'easy',
   },
   {

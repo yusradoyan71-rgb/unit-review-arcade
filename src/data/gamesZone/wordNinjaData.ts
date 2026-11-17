@@ -422,7 +422,7 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
             "correctWord": "Exciting",
             "distractorWords": [
                   "Dull",
-                  "Tedious",
+                  "Slow",
                   "Tiring"
             ]
       },
@@ -687,8 +687,8 @@ export const WORD_NINJA_BANK: WordNinjaBank = {
             "promptType": "synonym",
             "correctWord": "Captivating",
             "distractorWords": [
-                  "Monotonous",
-                  "Tedious",
+                  "Boring",
+                  "Ordinary",
                   "Dull"
             ]
       },

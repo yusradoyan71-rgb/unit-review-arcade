@@ -213,13 +213,13 @@ export const GAME_3_QUESTIONS: MultipleChoiceQuestion[] = [
     difficulty: 'medium',
   },
 
-  // 23-28: Stative Verbs (like, love, hate, want, need, know, believe, prefer, understand)
+  // 23-28: Verbs of Feeling & Preference (like, love, hate, want, need, know, believe, prefer, understand)
   {
     id: 'g7-u1-g23',
     prompt: 'I _____ messaging apps to long phone calls because they are faster.',
     options: ['am prefer', 'am preferring', 'prefers', 'prefer'],
     correctOptionIndex: 3,
-    explanation: "'Prefer' is a stative verb expressing a preference; it is used in the Present Simple.",
+    explanation: "'Prefer' expresses a preference and is not used with -ing. Use the Present Simple ('prefers').",
     difficulty: 'easy',
   },
   {
@@ -227,7 +227,7 @@ export const GAME_3_QUESTIONS: MultipleChoiceQuestion[] = [
     prompt: 'Do you _____ how this video editing application works?',
     options: ['understand', 'understanding', 'are understanding', 'understands'],
     correctOptionIndex: 0,
-    explanation: "'Understand' is a stative verb of mental state and is not used in continuous tenses here.",
+    explanation: "We do not use -ing with 'understand'. Use the Present Simple ('understands').",
     difficulty: 'easy',
   },
   {
@@ -235,7 +235,7 @@ export const GAME_3_QUESTIONS: MultipleChoiceQuestion[] = [
     prompt: 'Jack _____ a new charger for his tablet because his old one is broken.',
     options: ['is needing', 'needs', 'need', 'are needing'],
     correctOptionIndex: 1,
-    explanation: "'Need' is a stative verb expressing necessity; use Present Simple third-person singular ('needs').",
+    explanation: "'Need' is not used with -ing. Use Present Simple third-person singular ('needs').",
     difficulty: 'easy',
   },
   {
@@ -243,7 +243,7 @@ export const GAME_3_QUESTIONS: MultipleChoiceQuestion[] = [
     prompt: 'We _____ that spending six hours a day on social media is unhealthy.',
     options: ['believes', 'are believing', 'believe', 'believing'],
     correctOptionIndex: 2,
-    explanation: "'Believe' is a stative verb expressing an opinion; use Present Simple ('believe').",
+    explanation: "'Believe' expresses opinion and is not used with -ing. Use the Present Simple ('believe').",
     difficulty: 'easy',
   },
   {
@@ -251,7 +251,7 @@ export const GAME_3_QUESTIONS: MultipleChoiceQuestion[] = [
     prompt: 'She _____ the password to her email account, so she cannot log in.',
     options: ["aren't knowing", "isn't knowing", "don't know", "doesn't know"],
     correctOptionIndex: 3,
-    explanation: "'Know' is a stative verb of knowledge; use Present Simple negative 'doesn't know'.",
+    explanation: "We do not use -ing with 'know'. Use the Present Simple negative 'doesn't know'.",
     difficulty: 'medium',
   },
   {
@@ -259,7 +259,7 @@ export const GAME_3_QUESTIONS: MultipleChoiceQuestion[] = [
     prompt: 'They _____ playing video games on Saturdays when they have free time.',
     options: ['love', 'are loving', 'loves', 'loving'],
     correctOptionIndex: 0,
-    explanation: "'Love' is a stative verb expressing emotion and takes the Present Simple form.",
+    explanation: "Verbs of emotion like 'love' take the Present Simple ('loves'), not continuous.",
     difficulty: 'easy',
   },
 
@@ -309,7 +309,7 @@ export const GAME_3_QUESTIONS: MultipleChoiceQuestion[] = [
     prompt: 'Many students use language apps _____ their English pronunciation.',
     options: ['improve', 'improving', 'to improve', 'improved'],
     correctOptionIndex: 2,
-    explanation: "Use an infinitive of purpose ('to improve') to explain why someone performs an action.",
+    explanation: "Use 'to + verb' ('to improve') to explain why someone performs an action.",
     difficulty: 'medium',
   },
   {
@@ -317,7 +317,7 @@ export const GAME_3_QUESTIONS: MultipleChoiceQuestion[] = [
     prompt: 'She opened Google Maps _____ the nearest train station.',
     options: ['for find', 'finding', 'find', 'to find'],
     correctOptionIndex: 3,
-    explanation: "An infinitive of purpose ('to find') explains the objective of an action ('She opened Maps to find...').",
+    explanation: "Use 'to + verb' ('to find') to explain why she opened Maps.",
     difficulty: 'medium',
   },
 ];

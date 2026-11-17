@@ -57,7 +57,7 @@ export const GAME_3_ACTIVITY: Activity = {
   title: 'Grammar Challenge',
   gameType: 'quiz_battle',
   difficulty: 'mixed',
-  instructions: 'Master Present Simple, Present Continuous, stative verbs, gerunds, infinitives, and adverbs of frequency.',
+  instructions: 'Master Present Simple, Present Continuous, verbs of feeling & preference, gerunds, infinitives, and adverbs of frequency.',
   settings: {
     showTimer: false,
     allowRevealAnswer: true,
@@ -165,7 +165,7 @@ export const GRADE_7_UNIT_1: Unit = {
   gradeId: 'grade-7',
   unitNumber: 1,
   title: 'Life Online',
-  description: 'Interactive revision: social media vocabulary, technology & apps, digital habits, word formation, Present Simple vs Continuous, stative verbs, gerunds & infinitives, opinions, and reading comprehension.',
+  description: 'Interactive revision: social media vocabulary, technology & apps, digital habits, word formation, Present Simple vs Continuous, verbs of feeling & preference, gerunds & infinitives, opinions, and reading comprehension.',
   icon: 'Globe',
   colorTheme: 'blue',
   activities: [

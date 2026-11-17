@@ -21,7 +21,7 @@ export const GAME_5_SENTENCES: SentenceBuilderQuestion[] = [
     acceptedAnswers: [
       "Let's take the underground train to Oxford Street.",
     ],
-    explanation: '"Let\'s" is followed by the bare infinitive "take".',
+    explanation: '"Let\'s" is followed by the base verb "take".',
     difficulty: 'easy',
   },
   {
@@ -164,7 +164,7 @@ export const GAME_5_SENTENCES: SentenceBuilderQuestion[] = [
       'We should walk across the bridge to see the view.',
       'To see the view we should walk across the bridge.',
     ],
-    explanation: 'Infinitive of purpose ("to see the view") can follow the action or introduce the sentence.',
+    explanation: 'The phrase "to see the view" explains why and can go at the end or start of the sentence.',
     difficulty: 'medium',
   },
   {

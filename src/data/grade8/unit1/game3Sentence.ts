@@ -79,7 +79,7 @@ export const GAME_3_SENTENCES: SentenceBuilderQuestion[] = [
     acceptedAnswers: [
       'I would rather attend a live concert than watch it online.',
     ],
-    explanation: '"Would rather" is followed by base bare infinitives: "attend ... than watch".',
+    explanation: '"Would rather" is followed by the base verb without "to": "attend ... than watch".',
     difficulty: 'easy',
   },
   {

@@ -118,7 +118,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
     prompt: 'When a song plays the same three notes again and again without variation, it can feel too...',
     options: ['Inspiring', 'Profound', 'Repetitive', 'Melodic'],
     correctOptionIndex: 2,
-    explanation: '"Repetitive" means recurring continuously in a way that can become tedious or monotonous.',
+    explanation: '"Repetitive" means repeating the same sound or pattern again and again in a boring way.',
     difficulty: 'medium',
   },
   {
@@ -156,7 +156,7 @@ export const GAME_1_QUESTIONS: MultipleChoiceQuestion[] = [
   {
     id: 'g8u1-g1-q20',
     prompt: 'Songs that touch your heart and make you reflect deeply on life and relationships are very...',
-    options: ['Careless', 'Superficial', 'Pointless', 'Meaningful'],
+    options: ['Careless', 'Boring', 'Pointless', 'Meaningful'],
     correctOptionIndex: 3,
     explanation: '"Meaningful" means having real significance, purpose, and emotional depth.',
     difficulty: 'medium',

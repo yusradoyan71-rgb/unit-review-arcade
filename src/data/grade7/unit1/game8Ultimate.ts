@@ -78,7 +78,7 @@ export const GAME_8_QUESTIONS: MultipleChoiceQuestion[] = [
     prompt: 'Emma _____ using public Wi-Fi networks when she makes online payments.',
     options: ["doesn't like", "isn't liking", "not likes", "don't likes"],
     correctOptionIndex: 0,
-    explanation: "'Like' is a stative verb expressing preference; third-person singular negative is 'doesn't like'.",
+    explanation: "Verbs of preference like 'like' use Present Simple negative 'doesn't like', not continuous.",
     difficulty: 'medium',
   },
   {
@@ -90,13 +90,13 @@ export const GAME_8_QUESTIONS: MultipleChoiceQuestion[] = [
     difficulty: 'easy',
   },
 
-  // 11-15: Stative Verbs, Gerunds & Infinitives
+  // 11-15: Verbs of Preference, Gerunds & Infinitives
   {
     id: 'g7-u1-ult11',
     prompt: 'I _____ messaging apps to traditional emails because replies are much faster.',
     options: ['prefers', 'am preferring', 'prefer', 'am prefer'],
     correctOptionIndex: 2,
-    explanation: "'Prefer' is a stative verb used in the simple form, not continuous.",
+    explanation: "'Prefer' is used in the Present Simple, not with -ing.",
     difficulty: 'easy',
   },
   {
@@ -120,7 +120,7 @@ export const GAME_8_QUESTIONS: MultipleChoiceQuestion[] = [
     prompt: 'Sophie uses Google Maps on her phone _____ the fastest walking route to the library.',
     options: ['finding', 'to find', 'find', 'for find'],
     correctOptionIndex: 1,
-    explanation: "A to-infinitive of purpose ('to find') explains why she uses the app.",
+    explanation: "Use 'to + verb' ('to find') to explain why she uses the app.",
     difficulty: 'medium',
   },
   {

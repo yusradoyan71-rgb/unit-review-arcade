@@ -7,7 +7,7 @@ export const GAME_10_QUESTIONS: MultipleChoiceQuestion[] = [
     prompt: 'Which natural disaster involves a massive sliding mass of snow, ice, and rock hurtling down a mountain?',
     options: ['Tornado', 'Avalanche', 'Heatwave', 'Sandstorm'],
     correctOptionIndex: 1,
-    explanation: 'An avalanche is a catastrophic snow and ice slide occurring on steep mountain slopes.',
+    explanation: 'An avalanche is a dangerous snow and ice slide occurring on steep mountain slopes.',
     difficulty: 'easy',
   },
   {

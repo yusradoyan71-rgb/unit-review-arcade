@@ -1,12 +1,6 @@
 /**
- * UNIT REVIEW ARCADE — WORDLE ENGLISH DATA BANK (PHASE 10B)
- * Version: 10.2.0
- * 
- * 240 validated curriculum-aligned English word-guessing challenges:
- * - Grade 7: Easy (40 x 4 letters), Medium (40 x 5 letters), Hard (40 x 6 letters)
- * - Grade 8: Easy (40 x 4 letters), Medium (40 x 5 letters), Hard (40 x 6 letters)
- * 
- * Aligned strictly to Turkish MEB English Curriculum & LGS outcomes.
+ * UNIT REVIEW ARCADE — WORDLEENGLISHDATA DATA BANK
+ * Refined for Turkish EFL Middle-School Pedagogy & School Safety Standards.
  */
 
 import type { WordleEnglishBank } from '../../types/gamesZone';
@@ -930,11 +924,12 @@ export const WORDLE_ENGLISH_BANK: WordleEnglishBank = {
       {
         "id": "we_g7_h_22",
         "word": "RIBBON",
-        "clue": "A long narrow strip of fabric used for decoration",
+        "clue": "A narrow strip of decorative fabric",
         "turkishMeaning": "Kurdele",
         "exampleSentence": "She tied a shiny red ribbon around the gift box.",
         "category": "Celebrations",
-        "explanation": "RIBBON (Kurdele): A long narrow strip of fabric used for decoration. E.g.: \"She tied a shiny red ribbon around the gift box.\""
+        "explanation": "RIBBON (Kurdele): A narrow strip of decorative fabric used for gifts. E.g.: 'She tied a shiny red ribbon around the gift box.'",
+        "contentVersion": 2
       },
       {
         "id": "we_g7_h_23",
@@ -1656,11 +1651,12 @@ export const WORDLE_ENGLISH_BANK: WordleEnglishBank = {
       {
         "id": "we_g8_m_22",
         "word": "VISIT",
-        "clue": "To go to see someone or travel to a place as a guest",
+        "clue": "To go and see someone or spend time at a place",
         "turkishMeaning": "Ziyaret etmek",
         "exampleSentence": "Millions of travelers visit Pamukkale every year.",
         "category": "Tourism",
-        "explanation": "VISIT (Ziyaret etmek): To go to see someone or travel to a place as a guest. E.g.: \"Millions of travelers visit Pamukkale every year.\""
+        "explanation": "VISIT (Ziyaret etmek): To go to see someone or travel to a place as a guest. E.g.: \"Millions of travelers visit Pamukkale every year.\"",
+        "contentVersion": 2
       },
       {
         "id": "we_g8_m_23",
@@ -2083,9 +2079,10 @@ export const WORDLE_ENGLISH_BANK: WordleEnglishBank = {
         "word": "DAMAGE",
         "clue": "Physical harm caused to buildings or natural terrain",
         "turkishMeaning": "Hasar, zarar",
-        "exampleSentence": "The heavy hurricane caused catastrophic structural damage.",
+        "exampleSentence": "The heavy storm caused severe damage to the coastal buildings.",
         "category": "Natural Forces",
-        "explanation": "DAMAGE (Hasar, zarar): Physical harm caused to buildings or natural terrain. E.g.: \"The heavy hurricane caused catastrophic structural damage.\""
+        "explanation": "DAMAGE (Hasar, zarar): Physical harm caused to buildings or objects. E.g.: 'The heavy storm caused serious damage to the roof.'",
+        "contentVersion": 2
       },
       {
         "id": "we_g8_h_30",

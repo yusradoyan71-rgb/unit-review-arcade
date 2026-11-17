@@ -28,12 +28,12 @@ export const GAME_6_STATEMENTS: TrueFalseQuestion[] = [
     difficulty: 'easy',
   },
 
-  // 4. Grammar: Stative Verbs
+  // 4. Grammar: Verbs of Thought and Feeling
   {
     id: 'g7-u1-tf04',
-    prompt: 'Stative verbs like "know", "believe", and "prefer" are normally used in the Present Continuous form ("I am knowing").',
+    prompt: 'Verbs of thought and feeling like "know", "believe", and "prefer" are normally used in the Present Continuous form ("I am knowing").',
     isTrue: false,
-    explanation: 'False. Stative verbs express mental states and preferences; they are usually used in Present Simple ("I know", "I prefer").',
+    explanation: 'False. Verbs of thought and feeling are used in the Present Simple ("I know", "I prefer"), not with -ing.',
     difficulty: 'medium',
   },
 
@@ -181,12 +181,12 @@ export const GAME_6_STATEMENTS: TrueFalseQuestion[] = [
     difficulty: 'medium',
   },
 
-  // 21. Grammar: Infinitive of Purpose
+  // 21. Grammar: Purpose with To + Verb
   {
     id: 'g7-u1-tf21',
     prompt: 'In the sentence "I use this dictionary app to learn new words", "to learn" expresses the purpose of using the app.',
     isTrue: true,
-    explanation: 'True. A to-infinitive of purpose explains the objective or reason behind an action.',
+    explanation: 'True. Use "to + verb" (to find, to learn) to explain the purpose or reason for an action.',
     difficulty: 'easy',
   },
 

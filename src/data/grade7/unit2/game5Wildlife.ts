@@ -142,7 +142,7 @@ export const GAME_5_QUESTIONS: MultipleChoiceQuestion[] = [
   },
   {
     id: 'g7-u2-wl18',
-    prompt: 'Why do forest fires represent a catastrophic threat to slow-moving tree-dwelling animals like young sun bears?',
+    prompt: 'Why do forest fires represent a severe danger to slow-moving tree-dwelling animals like young sun bears?',
     options: ['They turn river water into ice.', 'They destroy tree canopies and block escape routes.', 'They attract large ocean predators.', 'They increase the thickness of animal fur.'],
     correctOptionIndex: 1,
     explanation: 'Wildfires consume tree habitats rapidly, leaving tree-dependent wildlife with nowhere to escape.',
