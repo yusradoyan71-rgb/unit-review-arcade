@@ -86,6 +86,47 @@ export class CoinService {
   }
 
   /**
+   * Deduct coins for an approved shop purchase (Phase 8B).
+   */
+  public static deductCoins(
+    studentNumber: string,
+    studentClass: string,
+    amount: number,
+    itemId: string
+  ): { success: boolean; balanceAfter: number; transaction?: CoinTransaction } {
+    const current = this.getBalance(studentNumber);
+    if (current < amount) {
+      return { success: false, balanceAfter: current };
+    }
+    const balanceAfter = current - amount;
+    this.setBalance(studentNumber, balanceAfter);
+
+    const transaction: CoinTransaction = {
+      id: `ctx_shop_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+      studentNumber,
+      class: studentClass || '',
+      amount: -amount,
+      balanceAfter,
+      reason: 'shop_purchase',
+      sourceId: itemId,
+      createdAt: new Date().toISOString(),
+    };
+
+    try {
+      const txKey = `${COIN_TX_PREFIX}${studentNumber}`;
+      const raw = localStorage.getItem(txKey);
+      const list: CoinTransaction[] = raw ? JSON.parse(raw) : [];
+      list.unshift(transaction);
+      if (list.length > 50) list.length = 50;
+      localStorage.setItem(txKey, JSON.stringify(list));
+    } catch {
+      // Storage unavailable
+    }
+
+    return { success: true, balanceAfter, transaction };
+  }
+
+  /**
    * Calculate client-side projected coin rewards for an activity attempt.
    */
   public static calculateAttemptCoins(options: {

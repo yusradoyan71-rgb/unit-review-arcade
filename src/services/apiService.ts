@@ -449,6 +449,57 @@ export class ApiService {
   }
 
   /**
+   * Purchases an accessory from the monster shop (Phase 8B).
+   */
+  public static async purchaseAccessory(sessionToken: string, itemId: string): Promise<MonsterApiResponse> {
+    const apiUrl = this.getApiUrl();
+    if (!apiUrl || !sessionToken) {
+      return { success: false, error: 'Session token or server URL missing.', code: 'UNAUTHORIZED' };
+    }
+
+    try {
+      return await this.postRequest<MonsterApiResponse>(apiUrl, {
+        action: 'student_purchase_accessory',
+        sessionToken,
+        itemId,
+      });
+    } catch (err) {
+      return {
+        success: false,
+        error: err instanceof Error ? err.message : 'Failed to complete accessory purchase.',
+      };
+    }
+  }
+
+  /**
+   * Equips or unequips an owned accessory slot (Phase 8B).
+   */
+  public static async equipAccessory(
+    sessionToken: string,
+    slot: 'hat' | 'glasses' | 'clothing' | 'wings',
+    itemId: string | null
+  ): Promise<MonsterApiResponse> {
+    const apiUrl = this.getApiUrl();
+    if (!apiUrl || !sessionToken) {
+      return { success: false, error: 'Session token or server URL missing.', code: 'UNAUTHORIZED' };
+    }
+
+    try {
+      return await this.postRequest<MonsterApiResponse>(apiUrl, {
+        action: 'student_equip_accessory',
+        sessionToken,
+        slot,
+        itemId,
+      });
+    } catch (err) {
+      return {
+        success: false,
+        error: err instanceof Error ? err.message : 'Failed to update equipped accessories.',
+      };
+    }
+  }
+
+  /**
    * Generic POST method for custom actions.
    */
   public static async post<T>(payload: unknown): Promise<T> {

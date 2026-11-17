@@ -16,10 +16,15 @@ import {
   type MonsterHornType,
   type MonsterCheekType,
   type MonsterPattern,
+  type MonsterAccessories,
+  FUTURE_SHOP_CATALOG,
 } from '../types/monster.ts';
 import { ApiService } from './apiService.ts';
+import { CoinService } from './coinService.ts';
 
 const MONSTER_STORAGE_PREFIX = 'ura_monster_config_';
+const HATCHING_SEEN_PREFIX = 'ura_hatching_seen_';
+const EVOLUTION_SEEN_PREFIX = 'ura_evolution_seen_';
 
 export const MONSTER_OPTIONS = {
   shapes: ['blob', 'fuzzy', 'sprout', 'slime', 'chubby', 'star'] as MonsterBodyShape[],
@@ -249,5 +254,176 @@ export class MonsterService {
       accessories: raw.accessories || {},
       updatedAt: raw.updatedAt,
     };
+  }
+
+  /**
+   * Check whether student has seen the egg hatching celebration (Phase 8B).
+   */
+  public static hasSeenHatching(studentNumber?: string): boolean {
+    if (!studentNumber) return false;
+    try {
+      return localStorage.getItem(`${HATCHING_SEEN_PREFIX}${studentNumber}`) === 'true';
+    } catch {
+      return false;
+    }
+  }
+
+  /**
+   * Marks egg hatching celebration as seen to prevent endless celebration popups (Phase 8B).
+   */
+  public static markHatchingSeen(studentNumber?: string): void {
+    if (!studentNumber) return;
+    try {
+      localStorage.setItem(`${HATCHING_SEEN_PREFIX}${studentNumber}`, 'true');
+    } catch {
+      // Storage unavailable
+    }
+  }
+
+  /**
+   * Check whether student has seen a specific evolution celebration modal (Phase 8B).
+   */
+  public static hasSeenEvolution(studentNumber: string, tier: number): boolean {
+    if (!studentNumber) return false;
+    try {
+      return localStorage.getItem(`${EVOLUTION_SEEN_PREFIX}${studentNumber}_tier_${tier}`) === 'true';
+    } catch {
+      return false;
+    }
+  }
+
+  /**
+   * Marks a specific evolution tier modal as seen (Phase 8B).
+   */
+  public static markEvolutionSeen(studentNumber: string, tier: number): void {
+    if (!studentNumber) return;
+    try {
+      localStorage.setItem(`${EVOLUTION_SEEN_PREFIX}${studentNumber}_tier_${tier}`, 'true');
+    } catch {
+      // Storage unavailable
+    }
+  }
+
+  /**
+   * Gets list of owned accessory IDs for a student (Phase 8B).
+   */
+  public static getOwnedAccessories(studentNumber?: string): string[] {
+    const monster = this.getMonster(studentNumber);
+    return monster.accessories?.owned || [];
+  }
+
+  /**
+   * Purchases an accessory with Monster Coins, updating both backend and local cache (Phase 8B).
+   */
+  public static async purchaseAccessory(
+    studentNumber: string,
+    sessionToken: string | undefined,
+    studentClass: string | undefined,
+    itemId: string
+  ): Promise<{ success: boolean; monster: MonsterConfig; totalCoins?: number; error?: string }> {
+    const item = FUTURE_SHOP_CATALOG.find((it) => it.id === itemId);
+    if (!item) {
+      return { success: false, monster: this.getMonster(studentNumber), error: 'Accessory not found in shop catalog.' };
+    }
+
+    const currentMonster = this.getMonster(studentNumber);
+    const owned = currentMonster.accessories?.owned || [];
+    if (owned.includes(itemId)) {
+      return { success: false, monster: currentMonster, error: 'You already own this accessory!' };
+    }
+
+    if (sessionToken) {
+      try {
+        const response = await ApiService.purchaseAccessory(sessionToken, itemId);
+        if (response && response.success && response.monster) {
+          const updated = this.updateCachedMonster(studentNumber, response.monster);
+          if (response.totalCoins !== undefined) {
+            CoinService.setBalance(studentNumber, response.totalCoins);
+          }
+          return { success: true, monster: updated, totalCoins: response.totalCoins };
+        }
+        return {
+          success: false,
+          monster: currentMonster,
+          error: response?.error || 'Shop purchase failed on server.',
+        };
+      } catch (err) {
+        return {
+          success: false,
+          monster: currentMonster,
+          error: err instanceof Error ? err.message : 'Network error during purchase.',
+        };
+      }
+    }
+
+    // Offline / guest fallback
+    const balance = CoinService.getBalance(studentNumber);
+    if (balance < item.price) {
+      return { success: false, monster: currentMonster, error: `Not enough Monster Coins! Need ${item.price} coins.` };
+    }
+
+    CoinService.deductCoins(studentNumber, studentClass || '', item.price, itemId);
+    const updatedAccessories: MonsterAccessories = {
+      ...currentMonster.accessories,
+      owned: [...owned, itemId],
+    };
+    const updatedMonster: MonsterConfig = {
+      ...currentMonster,
+      accessories: updatedAccessories,
+      updatedAt: new Date().toISOString(),
+    };
+    const cached = this.updateCachedMonster(studentNumber, updatedMonster);
+    return { success: true, monster: cached, totalCoins: CoinService.getBalance(studentNumber) };
+  }
+
+  /**
+   * Equips or unequips an owned accessory slot (Phase 8B).
+   */
+  public static async equipAccessory(
+    studentNumber: string,
+    sessionToken: string | undefined,
+    slot: 'hat' | 'glasses' | 'clothing' | 'wings',
+    itemId: string | null
+  ): Promise<{ success: boolean; monster: MonsterConfig; error?: string }> {
+    const currentMonster = this.getMonster(studentNumber);
+    const owned = currentMonster.accessories?.owned || [];
+
+    if (itemId && !owned.includes(itemId)) {
+      return { success: false, monster: currentMonster, error: 'Cannot equip an accessory you do not own!' };
+    }
+
+    if (sessionToken) {
+      try {
+        const response = await ApiService.equipAccessory(sessionToken, slot, itemId);
+        if (response && response.success && response.monster) {
+          const updated = this.updateCachedMonster(studentNumber, response.monster);
+          return { success: true, monster: updated };
+        }
+        return {
+          success: false,
+          monster: currentMonster,
+          error: response?.error || 'Failed to equip accessory on server.',
+        };
+      } catch (err) {
+        return {
+          success: false,
+          monster: currentMonster,
+          error: err instanceof Error ? err.message : 'Network error updating equipped accessory.',
+        };
+      }
+    }
+
+    // Offline / guest fallback
+    const updatedAccessories: MonsterAccessories = {
+      ...currentMonster.accessories,
+      [slot]: itemId || undefined,
+    };
+    const updatedMonster: MonsterConfig = {
+      ...currentMonster,
+      accessories: updatedAccessories,
+      updatedAt: new Date().toISOString(),
+    };
+    const cached = this.updateCachedMonster(studentNumber, updatedMonster);
+    return { success: true, monster: cached };
   }
 }

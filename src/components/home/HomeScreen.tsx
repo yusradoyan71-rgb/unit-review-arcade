@@ -6,6 +6,7 @@ import { MonsterAvatar } from '../monster/MonsterAvatar';
 import { MonsterService } from '../../services/monsterService';
 import { CoinService } from '../../services/coinService';
 import { calculateLevelFromXp } from '../../utils/gamification';
+import { getMonsterMilestoneInfo } from '../../types/monster';
 import { motion } from 'framer-motion';
 import { 
   Sparkles, 
@@ -32,6 +33,8 @@ export const HomeScreen: React.FC = () => {
   const studentNumber = student?.studentNumber || '';
   const monsterConfig = MonsterService.resolveMonster(student?.monster, studentNumber);
   const coinBalance = student?.totalCoins ?? CoinService.getBalance(studentNumber);
+  const currentTotalXp = gamificationProfile?.totalXp || 0;
+  const milestoneInfo = getMonsterMilestoneInfo(currentTotalXp);
 
   // Level & XP calculations (supporting unlimited levels)
   const totalXp = gamificationProfile?.totalXp || 0;
@@ -170,14 +173,22 @@ export const HomeScreen: React.FC = () => {
 
             <div className="flex items-center gap-4 mb-3">
               <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-purple-900/80 to-slate-950 flex items-center justify-center border border-purple-500/30 shadow-lg group-hover:scale-110 transition-transform duration-300 shrink-0 overflow-hidden">
-                <MonsterAvatar config={monsterConfig} size={52} animate />
+                <MonsterAvatar
+                  config={monsterConfig}
+                  size={52}
+                  animate
+                  stage={milestoneInfo.stage}
+                  evolutionTier={milestoneInfo.evolutionTier}
+                />
               </div>
               <div className="flex-1 min-w-0">
                 <h2 className="text-xl sm:text-2xl font-black text-white group-hover:text-amber-200 transition-colors tracking-tight flex items-center gap-2">
                   <span>MONSTER WORLD</span>
                 </h2>
                 <span className="text-xs text-amber-300/90 font-semibold truncate block">
-                  Companion: {monsterConfig.name}
+                  {milestoneInfo.isEgg
+                    ? `${milestoneInfo.stageName} • ${currentTotalXp}/500 XP`
+                    : `Companion: ${monsterConfig.name} (${milestoneInfo.stageName})`}
                 </span>
               </div>
             </div>

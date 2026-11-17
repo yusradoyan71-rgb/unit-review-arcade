@@ -344,12 +344,18 @@ function doPost(e) {
       case "student_record_mistake_retry":
         return handleStudentRecordMistakeRetry(ss, payload);
 
-      // Student Monster World & Economy (Phase 8A)
+      // Student Monster World & Economy (Phase 8A & 8B)
       case "student_save_monster":
         return handleStudentSaveMonster(ss, payload);
 
       case "student_get_monster":
         return handleStudentGetMonster(ss, payload);
+
+      case "student_purchase_accessory":
+        return handleStudentPurchaseAccessory(ss, payload);
+
+      case "student_equip_accessory":
+        return handleStudentEquipAccessory(ss, payload);
 
       case "student_record_games_zone_coins":
         return handleStudentRecordGamesZoneCoins(ss, payload);
@@ -6005,6 +6011,13 @@ function sanitizeMonsterConfig(input) {
     if (input.accessories.glasses) accessories.glasses = String(input.accessories.glasses).trim();
     if (input.accessories.clothing) accessories.clothing = String(input.accessories.clothing).trim();
     if (input.accessories.wings) accessories.wings = String(input.accessories.wings).trim();
+    if (Array.isArray(input.accessories.owned)) {
+      accessories.owned = input.accessories.owned.map(function(item) {
+        return String(item).trim();
+      }).filter(function(item) {
+        return item.length > 0;
+      });
+    }
   }
 
   return {
@@ -6183,6 +6196,43 @@ function recordCoinTransaction(ss, studentNumber, studentClass, amount, reason, 
 }
 
 /**
+ * Helper to retrieve student's cumulative XP for milestone enforcement.
+ */
+function getStudentTotalXp(ss, studentNumber) {
+  if (!ss || !studentNumber) return 0;
+  try {
+    var summary = getStudentGamificationSummary(ss, studentNumber);
+    return summary ? Number(summary.totalXp || 0) : 0;
+  } catch (e) {
+    return 0;
+  }
+}
+
+/**
+ * Server-authoritative Monster Shop Catalog (Phase 8B).
+ */
+var MONSTER_SHOP_CATALOG = {
+  // Common (50 - 75 Coins)
+  "hat_party": { price: 60, category: "hat" },
+  "glasses_round": { price: 50, category: "glasses" },
+  "cloth_bowtie": { price: 60, category: "clothing" },
+  "cloth_scarf": { price: 75, category: "clothing" },
+
+  // Rare (150 - 220 Coins)
+  "hat_crown_bronze": { price: 150, category: "hat" },
+  "glasses_star": { price: 180, category: "glasses" },
+  "cloth_hero_cape": { price: 220, category: "clothing" },
+
+  // Epic (350 - 450 Coins)
+  "hat_wizard": { price: 350, category: "hat" },
+  "wings_fairy": { price: 450, category: "wings" },
+
+  // Legendary (750 - 900 Coins)
+  "hat_celestial_crown": { price: 750, category: "hat" },
+  "wings_cosmic_phoenix": { price: 900, category: "wings" }
+};
+
+/**
  * ACTION: student_save_monster
  * Validates and saves student monster design.
  */
@@ -6197,11 +6247,146 @@ function handleStudentSaveMonster(ss, payload) {
     return createJsonResponse({ success: false, error: "Missing monster configuration.", code: "BAD_REQUEST" });
   }
 
+  var currentConfig = getStudentMonsterConfig(ss, auth.studentNumber);
+
+  // Preserve existing owned accessories if incoming payload omitted or did not include them
+  if (currentConfig && currentConfig.accessories) {
+    if (!monster.accessories) monster.accessories = {};
+    if (Array.isArray(currentConfig.accessories.owned) && !monster.accessories.owned) {
+      monster.accessories.owned = currentConfig.accessories.owned;
+    }
+  }
+
   var saved = saveStudentMonsterConfig(ss, auth.studentNumber, auth.class, monster);
 
   return createJsonResponse({
     success: true,
     monster: saved,
+    totalCoins: getStudentCoinBalance(ss, auth.studentNumber)
+  });
+}
+
+/**
+ * ACTION: student_purchase_accessory (Phase 8B)
+ * Server-authoritative purchase: validates session, XP milestone (>= 750), item existence,
+ * verifies student does not already own item, checks coin balance, records negative coin transaction,
+ * and adds item to student's owned accessories.
+ */
+function handleStudentPurchaseAccessory(ss, payload) {
+  var auth = validateSessionAndGetStudent(ss, payload.sessionToken);
+  if (!auth.success) {
+    return createJsonResponse({ success: false, error: auth.error, code: "UNAUTHORIZED" });
+  }
+
+  var studentXp = getStudentTotalXp(ss, auth.studentNumber);
+  if (studentXp < 750) {
+    return createJsonResponse({
+      success: false,
+      error: "Monster Wardrobe unlocks at 750 XP! Keep earning XP to shop.",
+      code: "LOCKED_MILESTONE"
+    });
+  }
+
+  var itemId = String(payload.itemId || "").trim();
+  var catalogItem = MONSTER_SHOP_CATALOG[itemId];
+  if (!catalogItem) {
+    return createJsonResponse({
+      success: false,
+      error: "Item not found in shop catalog.",
+      code: "NOT_FOUND"
+    });
+  }
+
+  var currentMonster = getStudentMonsterConfig(ss, auth.studentNumber);
+  var accessories = currentMonster.accessories || {};
+  var owned = Array.isArray(accessories.owned) ? accessories.owned.slice() : [];
+
+  if (owned.indexOf(itemId) !== -1) {
+    return createJsonResponse({
+      success: false,
+      error: "You already own this accessory!",
+      code: "ALREADY_OWNED"
+    });
+  }
+
+  var currentBalance = getStudentCoinBalance(ss, auth.studentNumber);
+  if (currentBalance < catalogItem.price) {
+    return createJsonResponse({
+      success: false,
+      error: "Insufficient Monster Coins. Required: " + catalogItem.price + ", Balance: " + currentBalance,
+      code: "INSUFFICIENT_FUNDS"
+    });
+  }
+
+  // Deduct coins (negative amount)
+  var tx = recordCoinTransaction(
+    ss,
+    auth.studentNumber,
+    auth.class,
+    -catalogItem.price,
+    "shop_purchase",
+    itemId,
+    new Date().toISOString()
+  );
+
+  // Add to owned accessories
+  owned.push(itemId);
+  accessories.owned = owned;
+  currentMonster.accessories = accessories;
+
+  var updatedMonster = saveStudentMonsterConfig(ss, auth.studentNumber, auth.class, currentMonster);
+
+  return createJsonResponse({
+    success: true,
+    monster: updatedMonster,
+    totalCoins: tx.balanceAfter
+  });
+}
+
+/**
+ * ACTION: student_equip_accessory (Phase 8B)
+ * Equips or unequips an accessory slot. Validates ownership before equipping.
+ */
+function handleStudentEquipAccessory(ss, payload) {
+  var auth = validateSessionAndGetStudent(ss, payload.sessionToken);
+  if (!auth.success) {
+    return createJsonResponse({ success: false, error: auth.error, code: "UNAUTHORIZED" });
+  }
+
+  var slot = String(payload.slot || "").trim().toLowerCase();
+  var validSlots = ["hat", "glasses", "clothing", "wings"];
+  if (validSlots.indexOf(slot) === -1) {
+    return createJsonResponse({
+      success: false,
+      error: "Invalid accessory slot: " + slot,
+      code: "BAD_REQUEST"
+    });
+  }
+
+  var itemId = payload.itemId ? String(payload.itemId).trim() : null;
+  var currentMonster = getStudentMonsterConfig(ss, auth.studentNumber);
+  var accessories = currentMonster.accessories || {};
+  var owned = Array.isArray(accessories.owned) ? accessories.owned : [];
+
+  if (itemId) {
+    if (owned.indexOf(itemId) === -1) {
+      return createJsonResponse({
+        success: false,
+        error: "Cannot equip accessory you do not own.",
+        code: "NOT_OWNED"
+      });
+    }
+    accessories[slot] = itemId;
+  } else {
+    delete accessories[slot];
+  }
+
+  currentMonster.accessories = accessories;
+  var updatedMonster = saveStudentMonsterConfig(ss, auth.studentNumber, auth.class, currentMonster);
+
+  return createJsonResponse({
+    success: true,
+    monster: updatedMonster,
     totalCoins: getStudentCoinBalance(ss, auth.studentNumber)
   });
 }

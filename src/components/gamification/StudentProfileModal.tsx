@@ -15,6 +15,7 @@ import { MonsterAvatar } from '../monster/MonsterAvatar';
 import { MonsterService } from '../../services/monsterService';
 import { CoinService } from '../../services/coinService';
 import { sounds } from '../../services/soundEffects';
+import { getMonsterMilestoneInfo } from '../../types/monster';
 import type { AchievementCategory } from '../../types/gamification';
 import {
   X,
@@ -76,6 +77,7 @@ export const StudentProfileModal: React.FC = () => {
   const studentNumber = profile?.studentNumber || '';
   const monsterConfig = MonsterService.resolveMonster(profile?.monster, studentNumber);
   const coinBalance = profile?.totalCoins ?? CoinService.getBalance(studentNumber);
+  const milestoneInfo = getMonsterMilestoneInfo(profile?.totalXp || 0);
 
   if (!isProfileModalOpen) return null;
 
@@ -155,7 +157,13 @@ export const StudentProfileModal: React.FC = () => {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 rounded-2xl bg-slate-900/80 border border-indigo-500/30 flex items-center justify-center p-1 shrink-0 overflow-hidden shadow-inner">
-                  <MonsterAvatar config={monsterConfig} size={58} animate />
+                  <MonsterAvatar
+                    config={monsterConfig}
+                    size={58}
+                    animate
+                    stage={milestoneInfo.stage}
+                    evolutionTier={milestoneInfo.evolutionTier}
+                  />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
@@ -177,7 +185,9 @@ export const StudentProfileModal: React.FC = () => {
                     </span>
                     <span>•</span>
                     <span className="text-purple-300 font-medium">
-                      Companion: {monsterConfig.name}
+                      {milestoneInfo.isEgg
+                        ? milestoneInfo.stageName
+                        : `Companion: ${monsterConfig.name} (${milestoneInfo.stageName})`}
                     </span>
                   </div>
                 </div>
