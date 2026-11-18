@@ -142,9 +142,18 @@ export const TeacherAuthProvider: React.FC<{ children: ReactNode }> = ({ childre
             teacherName: result.teacherName || parsed.teacherName || 'Teacher',
             expiresAt: parsed.expiresAt,
           });
-        } else {
+        } else if (result.code === 'UNAUTHORIZED') {
+          // Token is explicitly rejected or expired by the server
           sessionStorage.removeItem(TEACHER_SESSION_STORAGE_KEY);
           setTeacherSession(null);
+        } else {
+          // Transient network failure or GAS cold-start timeout: preserve session state
+          // Server-side authorization will still be enforced on every teacher endpoint
+          setTeacherSession({
+            teacherToken: parsed.teacherToken,
+            teacherName: parsed.teacherName || 'Teacher',
+            expiresAt: parsed.expiresAt,
+          });
         }
       } catch {
         if (isMounted) {

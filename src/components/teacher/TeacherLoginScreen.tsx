@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useTeacherAuth } from '../../context/TeacherAuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -26,10 +26,12 @@ export const TeacherLoginScreen: React.FC<TeacherLoginScreenProps> = ({ onBackTo
     lockoutRemainingSeconds,
     clearAuthError,
     openDashboard,
+    teacherSession,
   } = useTeacherAuth();
 
   const [password, setPassword] = useState<string>('');
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const isSubmittingRef = useRef(false);
 
   const isLocked = lockoutRemainingSeconds > 0 || authErrorCode === 'LOCKED';
 
@@ -40,7 +42,12 @@ export const TeacherLoginScreen: React.FC<TeacherLoginScreenProps> = ({ onBackTo
     return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   };
 
-  const isSubmittingRef = useRef(false);
+  // If already authenticated with an active session, open dashboard automatically
+  useEffect(() => {
+    if (teacherSession) {
+      openDashboard();
+    }
+  }, [teacherSession, openDashboard]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

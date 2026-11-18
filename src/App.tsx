@@ -21,6 +21,7 @@ import { UnitDashboardScreen } from './components/dashboard/UnitDashboardScreen'
 import { TeacherPanelModal } from './components/teacher/TeacherPanelModal';
 import { TeacherLoginModal } from './components/teacher/TeacherLoginModal';
 import { TeacherDashboardScreen } from './components/teacher/dashboard/TeacherDashboardScreen';
+import { TeacherDashboardErrorBoundary } from './components/teacher/dashboard/TeacherDashboardErrorBoundary';
 import { GameContainer } from './components/game/GameContainer';
 import { GamesZoneContainer } from './components/gamesZone/GamesZoneContainer';
 import { MonsterWorldScreen } from './components/monster/MonsterWorldScreen';
@@ -29,7 +30,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 const MainView: React.FC = () => {
   const { navigation, navigateTo } = useArcade();
-  const { isDashboardOpen } = useTeacherAuth();
+  const { isDashboardOpen, closeDashboard, logout } = useTeacherAuth();
   const { student } = useAuth();
 
   const [unauthView, setUnauthView] = useState<'welcome' | 'student-login' | 'teacher-login'>('welcome');
@@ -48,11 +49,16 @@ const MainView: React.FC = () => {
   // Isolates dashboard rendering completely; unmounts the arcade home screen and classroom header
   if (isDashboardOpen) {
     return (
-      <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
-        <TeacherDashboardScreen />
-        <TeacherLoginModal />
-        <ToastContainer />
-      </div>
+      <TeacherDashboardErrorBoundary
+        onExitToArcade={closeDashboard}
+        onLogout={logout}
+      >
+        <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
+          <TeacherDashboardScreen />
+          <TeacherLoginModal />
+          <ToastContainer />
+        </div>
+      </TeacherDashboardErrorBoundary>
     );
   }
 

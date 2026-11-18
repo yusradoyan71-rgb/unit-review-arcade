@@ -52,6 +52,11 @@ export const UnitDashboardScreen: React.FC<UnitDashboardScreenProps> = ({ gradeI
   } = useArcade();
   const { profile } = useGamification();
 
+  const [isQuickCreateOpen, setIsQuickCreateOpen] = useState(false);
+  const [actTitle, setActTitle] = useState('');
+  const [actGameType, setActGameType] = useState<GameType>('quiz_battle');
+  const [actInstructions, setActInstructions] = useState('');
+
   // Strict Grade Guard: redirect student if accessing a unit outside their grade
   useEffect(() => {
     if (student && gradeId !== student.grade) {
@@ -62,11 +67,6 @@ export const UnitDashboardScreen: React.FC<UnitDashboardScreenProps> = ({ gradeI
   if (student && gradeId !== student.grade) {
     return null;
   }
-
-  const [isQuickCreateOpen, setIsQuickCreateOpen] = useState(false);
-  const [actTitle, setActTitle] = useState('');
-  const [actGameType, setActGameType] = useState<GameType>('quiz_battle');
-  const [actInstructions, setActInstructions] = useState('');
 
   const gradeUnits = data.units[gradeId] || [];
   const unit = gradeUnits.find((u) => u.id === unitId);

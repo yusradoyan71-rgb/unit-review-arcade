@@ -75,29 +75,27 @@ export class TeacherApiService {
       };
     }
 
-    return this.executeDeduplicated('teacher_login', async () => {
-      try {
-        const endpoint = ApiService.getTeacherApiUrl();
-        const response = await ApiService.postRequest<TeacherLoginResponse>(
-          endpoint,
-          {
-            action: 'teacher_login',
-            password: cleanPassword,
-            userAgent: navigator.userAgent || 'Web Browser',
-          },
-          30000 // Extended to 30.0s to allow full 5,000-round GAS execution & cold starts
-        );
+    try {
+      const endpoint = ApiService.getTeacherApiUrl();
+      const response = await ApiService.postRequest<TeacherLoginResponse>(
+        endpoint,
+        {
+          action: 'teacher_login',
+          password: cleanPassword,
+          userAgent: navigator.userAgent || 'Web Browser',
+        },
+        30000 // Extended to 30.0s to allow full 5,000-round GAS execution & cold starts
+      );
 
-        return response;
-      } catch (err) {
-        const message = err instanceof Error ? err.message : 'Connection failed';
-        return {
-          success: false,
-          error: `Teacher authentication failed: ${message}`,
-          code: message.includes('SECURITY VIOLATION') ? 'ENDPOINT_MISMATCH' : 'NETWORK_ERROR',
-        };
-      }
-    });
+      return response;
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Connection failed';
+      return {
+        success: false,
+        error: `Teacher authentication failed: ${message}`,
+        code: message.includes('SECURITY VIOLATION') ? 'ENDPOINT_MISMATCH' : 'NETWORK_ERROR',
+      };
+    }
   }
 
   /**
@@ -121,7 +119,7 @@ export class TeacherApiService {
           action: 'teacher_check_session',
           teacherToken: cleanToken,
         },
-        12000
+        25000 // Extended to 25.0s to tolerate cold-start GAS latency
       );
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Server unreachable';

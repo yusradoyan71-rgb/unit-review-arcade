@@ -41,6 +41,7 @@ export const TeacherLoginModal: React.FC = () => {
 
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const isSubmittingRef = useRef(false);
 
   if (!isLoginModalOpen) return null;
 
@@ -52,8 +53,6 @@ export const TeacherLoginModal: React.FC = () => {
     const secs = totalSeconds % 60;
     return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   };
-
-  const isSubmittingRef = useRef(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

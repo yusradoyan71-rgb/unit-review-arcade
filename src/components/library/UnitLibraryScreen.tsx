@@ -110,6 +110,12 @@ export const UnitLibraryScreen: React.FC<UnitLibraryScreenProps> = ({ gradeId })
   } = useArcade();
   const { mastery } = usePersonalizedLearning();
 
+  const [isQuickCreateOpen, setIsQuickCreateOpen] = useState(false);
+  const [quickTitle, setQuickTitle] = useState('');
+  const [quickDesc, setQuickDesc] = useState('');
+  const [quickNumber, setQuickNumber] = useState<number | ''>('');
+  const [quickIcon, setQuickIcon] = useState('BookOpen');
+
   // Strict Grade Guard: redirect student if attempting to view another grade
   useEffect(() => {
     if (student && gradeId !== student.grade) {
@@ -120,12 +126,6 @@ export const UnitLibraryScreen: React.FC<UnitLibraryScreenProps> = ({ gradeId })
   if (student && gradeId !== student.grade) {
     return null;
   }
-
-  const [isQuickCreateOpen, setIsQuickCreateOpen] = useState(false);
-  const [quickTitle, setQuickTitle] = useState('');
-  const [quickDesc, setQuickDesc] = useState('');
-  const [quickNumber, setQuickNumber] = useState<number | ''>('');
-  const [quickIcon, setQuickIcon] = useState('BookOpen');
 
   const gradeUnits: Unit[] = data.units[gradeId] || [];
   const gradeLabel = gradeId === 'grade-7' ? 'Grade 7' : 'Grade 8';

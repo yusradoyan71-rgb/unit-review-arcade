@@ -93,6 +93,15 @@ export const BulkResetPinModal: React.FC<BulkResetPinModalProps> = ({
     return eligibleStudents.filter((s) => selectedStudentNumbers.has(s.studentNumber));
   }, [eligibleStudents, selectedStudentNumbers]);
 
+  // Group targeted breakdown
+  const targetedBreakdown = useMemo(() => {
+    const counts: Record<string, number> = { '7A': 0, '7B': 0, '8A': 0, '8B': 0 };
+    targetedStudents.forEach((s) => {
+      if (counts[s.class] !== undefined) counts[s.class]++;
+    });
+    return counts;
+  }, [targetedStudents]);
+
   if (!isOpen) return null;
 
   const handleSelectAllInClass = () => {
@@ -207,15 +216,6 @@ export const BulkResetPinModal: React.FC<BulkResetPinModalProps> = ({
     setGeneratedCredentials([]);
     onClose();
   };
-
-  // Group targeted breakdown
-  const targetedBreakdown = useMemo(() => {
-    const counts: Record<string, number> = { '7A': 0, '7B': 0, '8A': 0, '8B': 0 };
-    targetedStudents.forEach((s) => {
-      if (counts[s.class] !== undefined) counts[s.class]++;
-    });
-    return counts;
-  }, [targetedStudents]);
 
   return (
     <AnimatePresence>
