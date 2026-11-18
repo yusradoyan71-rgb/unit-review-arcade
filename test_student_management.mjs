@@ -163,6 +163,11 @@ class MockSheet {
     return this;
   }
 
+  clearContents() {
+    this.rows = [];
+    return this;
+  }
+
   setFrozenRows(n) { this.frozenRows = n; return this; }
   setTabColor(color) { this.tabColor = color; return this; }
 }
@@ -229,19 +234,52 @@ function createSandboxContext() {
       }
       return signed;
     },
-    newBlob: (data) => ({
-      getBytes: () => {
-        const buf = Buffer.from(String(data), 'utf8');
-        const signed = [];
-        for (let i = 0; i < buf.length; i++) {
-          let byte = buf[i];
-          if (byte > 127) byte -= 256;
-          signed.push(byte);
-        }
-        return signed;
-      },
-    }),
+    newBlob: (data) => {
+      let buf;
+      if (typeof data === 'string') {
+        buf = Buffer.from(data, 'utf8');
+      } else if (Array.isArray(data)) {
+        buf = Buffer.from(data);
+      } else if (Buffer.isBuffer(data)) {
+        buf = data;
+      } else {
+        buf = Buffer.from(String(data), 'utf8');
+      }
+      return {
+        getBytes: () => {
+          const signed = [];
+          for (let i = 0; i < buf.length; i++) {
+            let byte = buf[i];
+            if (byte > 127) byte -= 256;
+            signed.push(byte);
+          }
+          return signed;
+        },
+        getDataAsString: () => buf.toString('utf8'),
+      };
+    },
+    computeHmacSha256Signature: (value, key) => {
+      let keyBuf = Array.isArray(key) ? Buffer.from(key) : Buffer.from(String(key), 'utf8');
+      let valBuf = Array.isArray(value) ? Buffer.from(value) : Buffer.from(String(value), 'utf8');
+      const hmac = crypto.createHmac('sha256', keyBuf).update(valBuf).digest();
+      const signed = [];
+      for (let i = 0; i < hmac.length; i++) {
+        let byte = hmac[i];
+        if (byte > 127) byte -= 256;
+        signed.push(byte);
+      }
+      return signed;
+    },
     getUuid: () => crypto.randomUUID(),
+  };
+
+  const memoryCache = {};
+  const CacheService = {
+    getScriptCache: () => ({
+      get: (k) => memoryCache[k] || null,
+      put: (k, v, ttl) => { memoryCache[k] = String(v); },
+      remove: (k) => { delete memoryCache[k]; },
+    }),
   };
 
   const ContentService = {
@@ -272,6 +310,7 @@ function createSandboxContext() {
     PropertiesService,
     SpreadsheetApp,
     Utilities,
+    CacheService,
     ContentService,
     LockService,
     Logger,

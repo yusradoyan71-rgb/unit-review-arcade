@@ -375,6 +375,7 @@ export interface TeacherResetPinResponse {
 export interface TeacherBulkResetPinsPayload {
   studentNumbers?: string[];
   class?: '7A' | '7B' | '8A' | '8B' | 'all';
+  operationId?: string;
 }
 
 export interface TeacherBulkResetPinsItem {
@@ -391,6 +392,10 @@ export interface TeacherBulkResetPinsResponse {
   count?: number;
   message?: string;
   credentials?: TeacherBulkResetPinsItem[];
+  operationId?: string;
+  isIdempotent?: boolean;
+  recovered?: boolean;
+  expiresAt?: string;
   error?: string;
   code?: TeacherAuthErrorCode;
 }

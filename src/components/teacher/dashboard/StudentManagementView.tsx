@@ -23,7 +23,8 @@ import {
   Power, 
   CheckCircle2, 
   Users, 
-  Clock
+  Clock,
+  History
 } from 'lucide-react';
 import { AddStudentModal } from './AddStudentModal';
 import { BulkImportModal } from './BulkImportModal';
@@ -75,6 +76,7 @@ export const StudentManagementView: React.FC<StudentManagementViewProps> = ({
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isBulkModalOpen, setIsBulkModalOpen] = useState(false);
   const [isBulkResetModalOpen, setIsBulkResetModalOpen] = useState(false);
+  const [bulkResetMode, setBulkResetMode] = useState<'reset' | 'recover'>('reset');
   const [isArchiveModalOpen, setIsArchiveModalOpen] = useState(false);
   const [editingStudent, setEditingStudent] = useState<StudentManagementRecord | null>(null);
   const [resettingPinStudent, setResettingPinStudent] = useState<StudentManagementRecord | null>(null);
@@ -174,13 +176,30 @@ export const StudentManagementView: React.FC<StudentManagementViewProps> = ({
           {/* Generate / Reset PINs Button */}
           <button
             type="button"
-            onClick={() => setIsBulkResetModalOpen(true)}
+            onClick={() => {
+              setBulkResetMode('reset');
+              setIsBulkResetModalOpen(true);
+            }}
             disabled={filteredStudents.length === 0}
             className="px-3.5 py-2.5 rounded-xl bg-amber-50 hover:bg-amber-100 disabled:opacity-40 border border-amber-300 text-amber-800 font-bold text-xs flex items-center gap-1.5 transition-colors shadow-2xs"
             title="Generate fresh 4-digit PINs and printable cards for classroom distribution"
           >
             <KeyRound className="w-4 h-4 text-amber-600" />
             <span>Generate / Reset PINs</span>
+          </button>
+
+          {/* Recover Staged PINs Button */}
+          <button
+            type="button"
+            onClick={() => {
+              setBulkResetMode('recover');
+              setIsBulkResetModalOpen(true);
+            }}
+            className="px-3 py-2.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 text-indigo-700 font-bold text-xs flex items-center gap-1.5 transition-colors shadow-2xs"
+            title="Retrieve credentials from a recent completed reset if you closed the modal or connection was interrupted"
+          >
+            <History className="w-4 h-4 text-indigo-600" />
+            <span>Recover Recent PINs</span>
           </button>
 
           {/* Print Class Cards Button */}
@@ -460,6 +479,7 @@ export const StudentManagementView: React.FC<StudentManagementViewProps> = ({
         onClose={() => setIsBulkResetModalOpen(false)}
         roster={roster}
         initialClassId={selectedClassId}
+        initialMode={bulkResetMode}
         onSuccess={() => onRefresh()}
         onPrintCards={(cards) => setPrintCards(cards)}
       />

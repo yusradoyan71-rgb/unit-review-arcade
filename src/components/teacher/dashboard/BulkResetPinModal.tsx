@@ -11,7 +11,7 @@
  * 4. Provides immediate CSV download and printable slip generation.
  */
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTeacherAuth } from '../../../context/TeacherAuthContext';
 import { TeacherApiService } from '../../../services/teacherApiService';
@@ -32,7 +32,10 @@ import {
   Loader2, 
   CheckCircle2, 
   Sparkles,
-  ArrowRight
+  ArrowRight,
+  RefreshCw,
+  History,
+  ShieldCheck
 } from 'lucide-react';
 
 interface BulkResetPinModalProps {
@@ -41,6 +44,7 @@ interface BulkResetPinModalProps {
   roster: RosterStudent[];
   initialClassId?: 'all' | '7A' | '7B' | '8A' | '8B';
   initialSelectedNumbers?: string[];
+  initialMode?: 'reset' | 'recover';
   onSuccess: (credentials: TeacherBulkResetPinsItem[]) => void;
   onPrintCards: (cards: CredentialCardItem[]) => void;
 }
@@ -53,6 +57,7 @@ export const BulkResetPinModal: React.FC<BulkResetPinModalProps> = ({
   roster,
   initialClassId = 'all',
   initialSelectedNumbers,
+  initialMode = 'reset',
   onSuccess,
   onPrintCards,
 }) => {
@@ -73,7 +78,13 @@ export const BulkResetPinModal: React.FC<BulkResetPinModalProps> = ({
   });
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isRecovering, setIsRecovering] = useState(false);
+  const [progressStatus, setProgressStatus] = useState<string>('');
+  const [currentOperationId, setCurrentOperationId] = useState<string | null>(null);
+  const [recoveredInfo, setRecoveredInfo] = useState<{ isRecovered: boolean; message: string } | null>(null);
+  const [hasExported, setHasExported] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [recoveryError, setRecoveryError] = useState<string | null>(null);
   const [generatedCredentials, setGeneratedCredentials] = useState<TeacherBulkResetPinsItem[]>([]);
   const [copied, setCopied] = useState(false);
 
@@ -102,6 +113,13 @@ export const BulkResetPinModal: React.FC<BulkResetPinModalProps> = ({
     return counts;
   }, [targetedStudents]);
 
+  // Automatic recovery trigger if opened in recovery mode
+  useEffect(() => {
+    if (isOpen && initialMode === 'recover' && teacherSession?.teacherToken) {
+      handleManualRecovery('latest');
+    }
+  }, [isOpen, initialMode, teacherSession?.teacherToken]);
+
   if (!isOpen) return null;
 
   const handleSelectAllInClass = () => {
@@ -129,33 +147,110 @@ export const BulkResetPinModal: React.FC<BulkResetPinModalProps> = ({
   const handleExecuteReset = async () => {
     if (!teacherSession?.teacherToken || targetedStudents.length === 0) return;
 
+    const opId = `reset_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+    setCurrentOperationId(opId);
     setIsLoading(true);
+    setProgressStatus('Generating cryptographically distinct 4-digit PINs...');
     setError(null);
+    setRecoveryError(null);
+    setRecoveredInfo(null);
+    setHasExported(false);
 
     const studentNumbersToReset = targetedStudents.map((s) => s.studentNumber);
 
     try {
+      const progressTimer = setTimeout(() => {
+        setProgressStatus('Hashing PINs with iterative SHA-256 and updating database...');
+      }, 1500);
+
       const res = await TeacherApiService.bulkResetStudentPins(
         teacherSession.teacherToken,
-        { studentNumbers: studentNumbersToReset }
+        { studentNumbers: studentNumbersToReset, operationId: opId }
       );
+      clearTimeout(progressTimer);
 
       if (res.success && res.credentials) {
         setGeneratedCredentials(res.credentials);
         setStep('credentials');
+        if (res.isIdempotent) {
+          setRecoveredInfo({
+            isRecovered: true,
+            message: 'Recovered previously generated credentials for this completed operation.',
+          });
+        }
         onSuccess(res.credentials);
       } else {
         setError(res.error || 'Bulk PIN reset failed on the server.');
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Network error occurred during reset.');
+      // Auto-recovery fallback on client timeout or network abort
+      setProgressStatus('Checking server for completed background credentials...');
+      setIsRecovering(true);
+      try {
+        const recRes = await TeacherApiService.recoverBulkResetCredentials(
+          teacherSession.teacherToken,
+          opId
+        );
+        if (recRes.success && recRes.credentials && recRes.credentials.length > 0) {
+          setGeneratedCredentials(recRes.credentials);
+          setStep('credentials');
+          setRecoveredInfo({
+            isRecovered: true,
+            message: 'Operation finished in background. Credentials recovered successfully!',
+          });
+          onSuccess(recRes.credentials);
+          setIsRecovering(false);
+          setIsLoading(false);
+          return;
+        }
+      } catch (recErr) {
+        // Recovery attempt failed
+      }
+      setIsRecovering(false);
+      setError(
+        (err instanceof Error ? err.message : 'Network error occurred during reset.') +
+          ' You can click "Check for Completed Credentials" to retrieve them without re-resetting.'
+      );
     } finally {
       setIsLoading(false);
     }
   };
 
+  const handleManualRecovery = async (opId?: string) => {
+    if (!teacherSession?.teacherToken) return;
+    setIsRecovering(true);
+    setRecoveryError(null);
+    setError(null);
+
+    try {
+      const targetOp = opId || currentOperationId || 'latest';
+      const recRes = await TeacherApiService.recoverBulkResetCredentials(
+        teacherSession.teacherToken,
+        targetOp
+      );
+
+      if (recRes.success && recRes.credentials && recRes.credentials.length > 0) {
+        setGeneratedCredentials(recRes.credentials);
+        setStep('credentials');
+        setRecoveredInfo({
+          isRecovered: true,
+          message: `Successfully recovered credentials for ${recRes.credentials.length} students from recent completed operation!`,
+        });
+        onSuccess(recRes.credentials);
+        setError(null);
+      } else {
+        setRecoveryError(recRes.error || 'No active unexpired credentials found to recover (15m window).');
+      }
+    } catch (err) {
+      setRecoveryError(err instanceof Error ? err.message : 'Recovery check failed.');
+    } finally {
+      setIsRecovering(false);
+    }
+  };
+
   const handleDownloadCsv = () => {
     if (generatedCredentials.length === 0) return;
+    setHasExported(true);
     const headers = ['Student Number', 'Full Name', 'Class', 'Grade', 'Security PIN', 'Arcade Login URL'];
     const rows = generatedCredentials.map((s) => [
       s.studentNumber,
@@ -178,6 +273,7 @@ export const BulkResetPinModal: React.FC<BulkResetPinModalProps> = ({
 
   const handleCopyText = () => {
     if (generatedCredentials.length === 0) return;
+    setHasExported(true);
     const lines = generatedCredentials.map(
       (s) => `${s.studentNumber}\t${s.fullName}\t${s.class}\t${s.pin}\t${ARCADE_LOGIN_URL}`
     );
@@ -189,6 +285,7 @@ export const BulkResetPinModal: React.FC<BulkResetPinModalProps> = ({
 
   const handlePrintAllSlips = () => {
     if (generatedCredentials.length === 0) return;
+    setHasExported(true);
     const cardItems: CredentialCardItem[] = generatedCredentials.map((c) => ({
       student: {
         studentId: c.studentId,
@@ -206,14 +303,19 @@ export const BulkResetPinModal: React.FC<BulkResetPinModalProps> = ({
 
   const handleClose = () => {
     if (step === 'credentials') {
-      const confirmClose = window.confirm(
-        'Warning: Plaintext PINs will not be shown again once you close this window. Have you downloaded the CSV or printed the cards?'
-      );
-      if (!confirmClose) return;
+      if (!hasExported) {
+        const confirmClose = window.confirm(
+          '⚠️ WARNING: Plaintext PINs are temporary and cannot be viewed again once expired. You have NOT yet downloaded the CSV or printed login cards. Are you sure you want to close?'
+        );
+        if (!confirmClose) return;
+      }
     }
     setStep('select');
     setError(null);
+    setRecoveryError(null);
+    setRecoveredInfo(null);
     setGeneratedCredentials([]);
+    setHasExported(false);
     onClose();
   };
 
@@ -255,9 +357,41 @@ export const BulkResetPinModal: React.FC<BulkResetPinModalProps> = ({
           <div className="flex-1 overflow-y-auto p-6 space-y-4">
             
             {error && (
-              <div className="p-3.5 rounded-2xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center gap-2">
-                <ShieldAlert className="w-4 h-4 text-rose-500 shrink-0" />
-                <span>{error}</span>
+              <div className="p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 text-xs space-y-2">
+                <div className="flex items-center gap-2 font-bold text-rose-900">
+                  <ShieldAlert className="w-4 h-4 text-rose-600 shrink-0" />
+                  <span>{error}</span>
+                </div>
+                <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-rose-200">
+                  <span className="text-[11px] text-rose-700">
+                    If the reset finished on the server while the network waited, retrieve the credentials:
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => handleManualRecovery()}
+                    disabled={isRecovering}
+                    className="px-3 py-1.5 rounded-xl bg-white border border-rose-300 hover:bg-rose-100 text-rose-900 font-bold text-xs flex items-center gap-1.5 transition-colors shadow-2xs disabled:opacity-50"
+                  >
+                    {isRecovering ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <RefreshCw className="w-3.5 h-3.5" />}
+                    <span>Check for Completed Credentials</span>
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {recoveryError && (
+              <div className="p-3.5 rounded-2xl bg-slate-100 border border-slate-300 text-slate-700 text-xs flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <AlertTriangle className="w-4 h-4 text-slate-500 shrink-0" />
+                  <span>{recoveryError}</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setRecoveryError(null)}
+                  className="p-1 rounded-md text-slate-400 hover:text-slate-700"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
               </div>
             )}
 
@@ -272,6 +406,9 @@ export const BulkResetPinModal: React.FC<BulkResetPinModalProps> = ({
                     <span>
                       Because student passwords are encrypted for privacy, the teacher dashboard does not store plaintext PINs.
                       Use this tool to generate fresh 4-digit security PINs and produce printable login cards for your classes.
+                    </span>
+                    <span className="block text-[11px] text-indigo-700/80 pt-0.5">
+                      <strong>Note on Recovery:</strong> The recovery feature retrieves credentials from resets performed with the new recoverable system within the last 15 minutes. Operations performed prior to this update cannot be recovered retroactively; please run a fresh reset to generate and download cards for your students.
                     </span>
                   </div>
                 </div>
@@ -297,6 +434,16 @@ export const BulkResetPinModal: React.FC<BulkResetPinModalProps> = ({
                   </div>
 
                   <div className="flex items-center gap-2 text-xs">
+                    <button
+                      type="button"
+                      onClick={() => handleManualRecovery('latest')}
+                      disabled={isRecovering}
+                      className="px-2.5 py-1 rounded-lg bg-indigo-50 border border-indigo-200 text-indigo-700 font-bold hover:bg-indigo-100 transition-colors flex items-center gap-1 shadow-2xs disabled:opacity-50"
+                      title="Check if a recent reset has credentials ready to view or download"
+                    >
+                      {isRecovering ? <Loader2 className="w-3 h-3 animate-spin" /> : <History className="w-3 h-3" />}
+                      <span>Recover Recent PINs</span>
+                    </button>
                     <button
                       type="button"
                       onClick={handleSelectAllInClass}
@@ -441,6 +588,16 @@ export const BulkResetPinModal: React.FC<BulkResetPinModalProps> = ({
                   </div>
                 </div>
 
+                {isLoading && (
+                  <div className="p-3.5 rounded-2xl bg-indigo-50 border border-indigo-200 text-indigo-900 text-xs flex items-center gap-3">
+                    <Loader2 className="w-5 h-5 text-indigo-600 animate-spin shrink-0" />
+                    <div className="space-y-0.5">
+                      <span className="font-bold block">Processing Bulk PIN Generation</span>
+                      <span className="text-slate-600">{progressStatus || 'Connecting to server...'}</span>
+                    </div>
+                  </div>
+                )}
+
                 <div className="flex items-center justify-between pt-2">
                   <button
                     type="button"
@@ -489,11 +646,22 @@ export const BulkResetPinModal: React.FC<BulkResetPinModalProps> = ({
                   </p>
                 </div>
 
+                {/* Recovery Notice if retrieved via recovery */}
+                {recoveredInfo && (
+                  <div className="p-3.5 rounded-2xl bg-indigo-50 border border-indigo-200 text-indigo-900 text-xs flex items-center gap-2.5">
+                    <ShieldCheck className="w-5 h-5 text-indigo-600 shrink-0" />
+                    <div className="space-y-0.5">
+                      <strong className="block font-bold">Credential Recovery Active</strong>
+                      <span>{recoveredInfo.message}</span>
+                    </div>
+                  </div>
+                )}
+
                 {/* Critical One-Time Warning */}
                 <div className="p-3.5 rounded-2xl bg-rose-50 border border-rose-200 text-rose-900 text-xs flex items-start gap-2.5">
                   <AlertTriangle className="w-5 h-5 text-rose-600 shrink-0 mt-0.5" />
                   <div className="space-y-0.5">
-                    <strong className="block font-bold">CRITICAL WARNING — ONE-TIME DISPLAY:</strong>
+                    <strong className="block font-bold">CRITICAL WARNING — TEMPORARY DISPLAY:</strong>
                     <span>
                       These plaintext PINs are shown <strong>only once</strong> right now. They are not saved in plaintext in the database or anywhere on your computer.
                       Please <strong>Download CSV</strong> or <strong>Print Login Slips</strong> immediately before leaving this screen.
@@ -570,8 +738,15 @@ export const BulkResetPinModal: React.FC<BulkResetPinModalProps> = ({
                 </div>
 
                 {/* Footer Exit Confirmation */}
-                <div className="pt-2 flex items-center justify-between text-xs text-slate-400">
-                  <span>Login URL: {ARCADE_LOGIN_URL}</span>
+                <div className="pt-2 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-400">
+                  <div className="flex items-center gap-2">
+                    <span>Login URL: {ARCADE_LOGIN_URL}</span>
+                    {!hasExported && (
+                      <span className="text-amber-600 font-bold text-[11px] bg-amber-50 px-2.5 py-1 rounded-lg border border-amber-200 inline-flex items-center gap-1">
+                        <AlertTriangle className="w-3.5 h-3.5" /> Download or Print before exit
+                      </span>
+                    )}
+                  </div>
                   <button
                     type="button"
                     onClick={handleClose}

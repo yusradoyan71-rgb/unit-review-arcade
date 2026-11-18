@@ -562,6 +562,7 @@ export class TeacherApiService {
 
     try {
       const endpoint = ApiService.getTeacherApiUrl();
+      const operationId = payload.operationId || `reset_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
       return await ApiService.postRequest<TeacherBulkResetPinsResponse>(
         endpoint,
         {
@@ -569,14 +570,53 @@ export class TeacherApiService {
           teacherToken: cleanToken,
           studentNumbers: payload.studentNumbers,
           class: payload.class,
+          operationId: operationId,
         },
-        30000 // 30s allowance for bulk sheet updates and flush
+        60000 // 60s timeout allowance with recoverable background guarantee
       );
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Server error';
       return {
         success: false,
         error: `Bulk PIN reset failed: ${message}`,
+        code: 'NETWORK_ERROR',
+      };
+    }
+  }
+
+  /**
+   * Recovers staged credentials for a recent bulk PIN reset operation.
+   * Retrieves encrypted credentials within 15-minute TTL without re-resetting.
+   */
+  public static async recoverBulkResetCredentials(
+    teacherToken: string,
+    operationId?: string
+  ): Promise<TeacherBulkResetPinsResponse> {
+    const cleanToken = (teacherToken || '').trim();
+    if (!cleanToken) {
+      return {
+        success: false,
+        error: 'Authentication required. Please log in as a teacher.',
+        code: 'UNAUTHORIZED',
+      };
+    }
+
+    try {
+      const endpoint = ApiService.getTeacherApiUrl();
+      return await ApiService.postRequest<TeacherBulkResetPinsResponse>(
+        endpoint,
+        {
+          action: 'teacher_recover_bulk_reset_credentials',
+          teacherToken: cleanToken,
+          operationId: operationId || 'latest',
+        },
+        20000 // 20s recovery timeout
+      );
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Server error';
+      return {
+        success: false,
+        error: `Credential recovery failed: ${message}`,
         code: 'NETWORK_ERROR',
       };
     }
