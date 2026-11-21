@@ -46,7 +46,7 @@
 // Configuration
 var CONFIG = {
   APP_NAME: "Unit Review Arcade API",
-  VERSION: "3.3.0",
+  VERSION: "3.4.0",
   SESSION_DURATION_HOURS: 12,
   TEACHER_SESSION_DURATION_HOURS: 2,
   MAX_FAILED_ATTEMPTS: 5,
@@ -67,8 +67,90 @@ var CONFIG = {
     MONSTERS: "Monsters",
     COIN_TRANSACTIONS: "CoinTransactions",
     STAGED_CREDENTIALS: "_StagedCredentials",
-    QUESTION_BANK: "QuestionBank"
+    QUESTION_BANK: "QuestionBank",
+    CLASS_POINT_TRANSACTIONS: "Class_PointTransactions",
+    CLASS_CATEGORIES: "Class_Categories",
+    CLASS_REWARD_DEFINITIONS: "Class_RewardDefinitions",
+    CLASS_REWARD_GRANTS: "Class_RewardGrants",
+    CLASS_ACADEMIC_YEARS: "Class_AcademicYears"
   },
+  CLASS_POINT_TRANSACTION_HEADERS: [
+    "transaction_id",
+    "idempotency_key",
+    "academic_year",
+    "timestamp",
+    "student_number",
+    "student_class",
+    "grade",
+    "category_id",
+    "category_name",
+    "category_type",
+    "gross_points",
+    "positive_points",
+    "negative_points",
+    "original_tx_id",
+    "teacher_session_hash",
+    "note",
+    "status"
+  ],
+  CLASS_CATEGORY_HEADERS: [
+    "category_id",
+    "name",
+    "type",
+    "default_points",
+    "icon",
+    "color",
+    "is_active",
+    "sort_order",
+    "updated_at"
+  ],
+  CLASS_REWARD_DEFINITION_HEADERS: [
+    "reward_id",
+    "name",
+    "description",
+    "required_positive_points",
+    "reward_type",
+    "cosmetic_id",
+    "icon",
+    "is_active",
+    "sort_order"
+  ],
+  CLASS_REWARD_GRANT_HEADERS: [
+    "grant_id",
+    "student_number",
+    "reward_id",
+    "unlocked_at",
+    "academic_year_earned",
+    "qualifying_points",
+    "trigger_tx_id",
+    "is_equipped"
+  ],
+  CLASS_ACADEMIC_YEAR_HEADERS: [
+    "academic_year",
+    "status",
+    "start_date",
+    "end_date",
+    "archived_at"
+  ],
+  DEFAULT_CLASS_CATEGORIES: [
+    { id: "cat_speaking_participation", name: "Speaking Participation", type: "positive", points: 2, icon: "Mic", color: "#10b981", sortOrder: 1 },
+    { id: "cat_using_english", name: "Using English", type: "positive", points: 1, icon: "Languages", color: "#06b6d4", sortOrder: 2 },
+    { id: "cat_excellent_effort", name: "Excellent Effort", type: "positive", points: 2, icon: "Sparkles", color: "#6366f1", sortOrder: 3 },
+    { id: "cat_helping_others", name: "Helping Others", type: "positive", points: 2, icon: "HeartHandshake", color: "#ec4899", sortOrder: 4 },
+    { id: "cat_teamwork", name: "Teamwork", type: "positive", points: 1, icon: "Users", color: "#8b5cf6", sortOrder: 5 },
+    { id: "cat_great_improvement", name: "Great Improvement", type: "positive", points: 3, icon: "TrendingUp", color: "#f59e0b", sortOrder: 6 },
+    { id: "cat_classroom_disruption", name: "Classroom Disruption", type: "negative", points: -1, icon: "AlertTriangle", color: "#f43f5e", sortOrder: 7 },
+    { id: "cat_interrupting_others", name: "Interrupting Others", type: "negative", points: -1, icon: "VolumeX", color: "#ef4444", sortOrder: 8 },
+    { id: "cat_not_following_instructions", name: "Not Following Instructions", type: "negative", points: -1, icon: "HelpCircle", color: "#e11d48", sortOrder: 9 }
+  ],
+  DEFAULT_CLASS_REWARDS: [
+    { id: "rwd_first_star", name: "First Star", desc: "First classroom star badge", points: 10, type: "badge", cosmeticId: "badge_first_star", icon: "Star", sortOrder: 1 },
+    { id: "rwd_silver_star_frame", name: "Silver Star Frame", desc: "Silver star profile avatar frame", points: 25, type: "profile_frame", cosmeticId: "frame_silver_star", icon: "Shield", sortOrder: 2 },
+    { id: "rwd_monster_crown", name: "Monster Crown", desc: "Royal golden crown for Pip", points: 50, type: "monster_accessory", cosmeticId: "hat_monster_crown", icon: "Crown", sortOrder: 3 },
+    { id: "rwd_magic_wings", name: "Magic Wings", desc: "Enchanted glimmer wings for Pip", points: 100, type: "monster_accessory", cosmeticId: "wings_magic", icon: "Feather", sortOrder: 4 },
+    { id: "rwd_elite_speaker", name: "Elite Speaker", desc: "Elite speaker profile badge", points: 150, type: "badge", cosmeticId: "badge_elite_speaker", icon: "Award", sortOrder: 5 },
+    { id: "rwd_legendary_aura", name: "Legendary Aura", desc: "Radiant golden aura for Pip and profile", points: 250, type: "monster_aura", cosmeticId: "aura_legendary", icon: "Sparkles", sortOrder: 6 }
+  ],
   STAGED_CREDENTIALS_CONFIG: {
     SHEET_NAME: "_StagedCredentials",
     HEADERS: ["operation_id", "teacher_session_id", "encrypted_payload", "status", "count", "created_at", "expires_at"],
@@ -466,6 +548,32 @@ function doPost(e) {
       // Teacher Section & Mixed Practice Analytics (Phase 5)
       case "teacher_get_section_analytics":
         return handleTeacherGetSectionAnalytics(ss, payload);
+
+      // Student Classroom Points & Rewards (Phase 3.4A)
+      case "student_get_classroom_profile":
+        return handleStudentGetClassroomProfile(ss, payload);
+
+      case "student_claim_milestone_reward":
+        return handleStudentClaimMilestoneReward(ss, payload);
+
+      // Teacher Classroom Points & Rewards (Phase 3.4A)
+      case "teacher_award_classroom_points":
+        return handleTeacherAwardClassroomPoints(ss, payload);
+
+      case "teacher_revert_classroom_point_transaction":
+        return handleTeacherRevertClassroomPointTransaction(ss, payload);
+
+      case "teacher_get_classroom_overview":
+        return handleTeacherGetClassroomOverview(ss, payload);
+
+      case "teacher_get_classroom_history":
+        return handleTeacherGetClassroomHistory(ss, payload);
+
+      case "teacher_manage_classroom_categories":
+        return handleTeacherManageClassroomCategories(ss, payload);
+
+      case "teacher_reconcile_classroom_rewards":
+        return handleTeacherReconcileClassroomRewards(ss, payload);
 
       case "ping":
         return createJsonResponse({ success: true, timestamp: new Date().toISOString(), version: CONFIG.VERSION });
@@ -9442,4 +9550,1189 @@ function setupPhase8AMonsterWorld(ss) {
     monstersCreated: !!mSheet,
     transactionsCreated: !!txSheet
   };
+}
+
+// ============================================================================
+// PHASE 3.4A: CLASSROOM BEHAVIOR POINTS & REWARDS BACKEND
+// ============================================================================
+
+/**
+ * Idempotent setup helper for Classroom Points & Rewards sheets.
+ * Safely initializes 5 new sheets without mutating any existing student records.
+ */
+function setupClassroomPointsSheets(ss) {
+  if (!ss) {
+    try {
+      ss = getArcadeSpreadsheet();
+    } catch (e) {
+      Logger.log("❌ Could not connect to spreadsheet: " + e.message);
+      return { success: false, error: "Spreadsheet not found: " + e.message };
+    }
+  }
+
+  // 1. Class_PointTransactions (Append-Only Event Ledger)
+  var txSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.CLASS_POINT_TRANSACTIONS);
+  if (txSheet && txSheet.getLastRow() === 0) {
+    txSheet.appendRow(CONFIG.CLASS_POINT_TRANSACTION_HEADERS);
+  }
+
+  // 2. Class_Categories (Behavior Categories)
+  var catSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.CLASS_CATEGORIES);
+  if (catSheet && catSheet.getLastRow() === 0) {
+    catSheet.appendRow(CONFIG.CLASS_CATEGORY_HEADERS);
+    var nowIso = new Date().toISOString();
+    for (var c = 0; c < CONFIG.DEFAULT_CLASS_CATEGORIES.length; c++) {
+      var cat = CONFIG.DEFAULT_CLASS_CATEGORIES[c];
+      catSheet.appendRow([
+        cat.id,
+        cat.name,
+        cat.type,
+        cat.points,
+        cat.icon,
+        cat.color,
+        true,
+        cat.sortOrder,
+        nowIso
+      ]);
+    }
+  }
+
+  // 3. Class_RewardDefinitions (Milestone Definitions)
+  var rwdDefSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.CLASS_REWARD_DEFINITIONS);
+  if (rwdDefSheet && rwdDefSheet.getLastRow() === 0) {
+    rwdDefSheet.appendRow(CONFIG.CLASS_REWARD_DEFINITION_HEADERS);
+    for (var r = 0; r < CONFIG.DEFAULT_CLASS_REWARDS.length; r++) {
+      var rwd = CONFIG.DEFAULT_CLASS_REWARDS[r];
+      rwdDefSheet.appendRow([
+        rwd.id,
+        rwd.name,
+        rwd.desc,
+        rwd.points,
+        rwd.type,
+        rwd.cosmeticId,
+        rwd.icon,
+        true,
+        rwd.sortOrder
+      ]);
+    }
+  }
+
+  // 4. Class_RewardGrants (Permanent Student Ownership)
+  var grantsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.CLASS_REWARD_GRANTS);
+  if (grantsSheet && grantsSheet.getLastRow() === 0) {
+    grantsSheet.appendRow(CONFIG.CLASS_REWARD_GRANT_HEADERS);
+  }
+
+  // 5. Class_AcademicYears (Academic Lifecycle & Rollover)
+  var yearsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.CLASS_ACADEMIC_YEARS);
+  if (yearsSheet && yearsSheet.getLastRow() === 0) {
+    yearsSheet.appendRow(CONFIG.CLASS_ACADEMIC_YEAR_HEADERS);
+    yearsSheet.appendRow(["2026-2027", "active", "2026-09-01", "2027-06-30", ""]);
+  }
+
+  Logger.log("✅ Classroom Points & Rewards sheets initialized successfully.");
+  return {
+    success: true,
+    txSheetCreated: !!txSheet,
+    catSheetCreated: !!catSheet,
+    rwdDefSheetCreated: !!rwdDefSheet,
+    grantsSheetCreated: !!grantsSheet,
+    yearsSheetCreated: !!yearsSheet
+  };
+}
+
+/**
+ * Retrieves the currently active academic year string (e.g. "2026-2027").
+ */
+function getActiveAcademicYear(ss) {
+  var yearsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.CLASS_ACADEMIC_YEARS);
+  if (!yearsSheet) return "2026-2027";
+
+  var data = yearsSheet.getDataRange().getValues();
+  if (data.length <= 1) return "2026-2027";
+
+  for (var i = 1; i < data.length; i++) {
+    var status = String(data[i][1] || "").trim().toLowerCase();
+    if (status === "active") {
+      var yearName = String(data[i][0] || "").trim();
+      if (yearName) return yearName;
+    }
+  }
+  return "2026-2027";
+}
+
+/**
+ * Returns a map of category definitions keyed by category_id.
+ */
+function getClassroomCategoriesMap(ss) {
+  var map = {};
+  var catSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.CLASS_CATEGORIES);
+
+  if (catSheet && catSheet.getLastRow() > 1) {
+    var data = catSheet.getDataRange().getValues();
+    var colMap = getSheetColumnMap(catSheet, CONFIG.CLASS_CATEGORY_HEADERS);
+    for (var i = 1; i < data.length; i++) {
+      var row = data[i];
+      var id = String(row[colMap["category_id"] - 1] || "").trim();
+      if (!id) continue;
+      map[id] = {
+        id: id,
+        name: String(row[colMap["name"] - 1] || ""),
+        type: String(row[colMap["type"] - 1] || "positive").trim().toLowerCase(),
+        defaultPoints: Number(row[colMap["default_points"] - 1] || 0),
+        icon: String(row[colMap["icon"] - 1] || "Sparkles"),
+        color: String(row[colMap["color"] - 1] || "#6366f1"),
+        isActive: row[colMap["is_active"] - 1] === true || String(row[colMap["is_active"] - 1]).toLowerCase() === "true",
+        sortOrder: Number(row[colMap["sort_order"] - 1] || 0)
+      };
+    }
+  } else {
+    // Default seed fallback
+    for (var c = 0; c < CONFIG.DEFAULT_CLASS_CATEGORIES.length; c++) {
+      var def = CONFIG.DEFAULT_CLASS_CATEGORIES[c];
+      map[def.id] = {
+        id: def.id,
+        name: def.name,
+        type: def.type,
+        defaultPoints: def.points,
+        icon: def.icon,
+        color: def.color,
+        isActive: true,
+        sortOrder: def.sortOrder
+      };
+    }
+  }
+  return map;
+}
+
+/**
+ * Returns an array of active reward definitions sorted ascending by required_positive_points.
+ */
+function getClassroomRewardDefinitions(ss) {
+  var list = [];
+  var rwdSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.CLASS_REWARD_DEFINITIONS);
+
+  if (rwdSheet && rwdSheet.getLastRow() > 1) {
+    var data = rwdSheet.getDataRange().getValues();
+    var colMap = getSheetColumnMap(rwdSheet, CONFIG.CLASS_REWARD_DEFINITION_HEADERS);
+    for (var i = 1; i < data.length; i++) {
+      var row = data[i];
+      var id = String(row[colMap["reward_id"] - 1] || "").trim();
+      var active = row[colMap["is_active"] - 1] === true || String(row[colMap["is_active"] - 1]).toLowerCase() === "true";
+      if (!id || !active) continue;
+      list.push({
+        id: id,
+        name: String(row[colMap["name"] - 1] || ""),
+        desc: String(row[colMap["description"] - 1] || ""),
+        requiredPoints: Number(row[colMap["required_positive_points"] - 1] || 0),
+        type: String(row[colMap["reward_type"] - 1] || "badge"),
+        cosmeticId: String(row[colMap["cosmetic_id"] - 1] || ""),
+        icon: String(row[colMap["icon"] - 1] || "Star"),
+        sortOrder: Number(row[colMap["sort_order"] - 1] || 0)
+      });
+    }
+  } else {
+    for (var r = 0; r < CONFIG.DEFAULT_CLASS_REWARDS.length; r++) {
+      var def = CONFIG.DEFAULT_CLASS_REWARDS[r];
+      list.push({
+        id: def.id,
+        name: def.name,
+        desc: def.desc,
+        requiredPoints: def.points,
+        type: def.type,
+        cosmeticId: def.cosmeticId,
+        icon: def.icon,
+        sortOrder: def.sortOrder
+      });
+    }
+  }
+
+  list.sort(function(a, b) {
+    return a.requiredPoints - b.requiredPoints;
+  });
+  return list;
+}
+
+/**
+ * Calculates current academic year classroom points strictly from Class_PointTransactions.
+ * Positive Points = sum(positive_points)
+ * Negative Points = sum(negative_points)
+ * Net Points = sum(gross_points)
+ */
+function getStudentClassroomPointsForYear(ss, studentNumber, academicYear) {
+  var txSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.CLASS_POINT_TRANSACTIONS);
+  if (!txSheet || txSheet.getLastRow() <= 1) {
+    return { positivePoints: 0, negativePoints: 0, netPoints: 0, totalTransactions: 0 };
+  }
+
+  var data = txSheet.getDataRange().getValues();
+  var colMap = getSheetColumnMap(txSheet, CONFIG.CLASS_POINT_TRANSACTION_HEADERS);
+  var sCol = colMap["student_number"] - 1;
+  var yrCol = colMap["academic_year"] - 1;
+  var grossCol = colMap["gross_points"] - 1;
+  var posCol = colMap["positive_points"] - 1;
+  var negCol = colMap["negative_points"] - 1;
+
+  var pos = 0;
+  var neg = 0;
+  var gross = 0;
+  var count = 0;
+  var targetNum = String(studentNumber).trim();
+  var targetYr = String(academicYear).trim();
+
+  for (var i = 1; i < data.length; i++) {
+    var row = data[i];
+    if (String(row[sCol] || "").trim() === targetNum && String(row[yrCol] || "").trim() === targetYr) {
+      gross += Number(row[grossCol] || 0);
+      pos += Number(row[posCol] || 0);
+      neg += Number(row[negCol] || 0);
+      count++;
+    }
+  }
+
+  return {
+    positivePoints: Math.max(0, pos),
+    negativePoints: Math.max(0, neg),
+    netPoints: gross,
+    totalTransactions: count
+  };
+}
+
+/**
+ * Retrieves a student's permanently owned reward grants across all academic years.
+ */
+function getStudentPermanentRewardGrants(ss, studentNumber) {
+  var ownedSet = {};
+  var grantsList = [];
+  var grantsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.CLASS_REWARD_GRANTS);
+
+  if (grantsSheet && grantsSheet.getLastRow() > 1) {
+    var data = grantsSheet.getDataRange().getValues();
+    var colMap = getSheetColumnMap(grantsSheet, CONFIG.CLASS_REWARD_GRANT_HEADERS);
+    var sCol = colMap["student_number"] - 1;
+    var rwdCol = colMap["reward_id"] - 1;
+    var grantIdCol = colMap["grant_id"] - 1;
+    var unlockedCol = colMap["unlocked_at"] - 1;
+    var yrCol = colMap["academic_year_earned"] - 1;
+    var eqCol = colMap["is_equipped"] - 1;
+
+    var targetNum = String(studentNumber).trim();
+    for (var i = 1; i < data.length; i++) {
+      var row = data[i];
+      if (String(row[sCol] || "").trim() === targetNum) {
+        var rwdId = String(row[rwdCol] || "").trim();
+        if (rwdId) {
+          ownedSet[rwdId] = true;
+          grantsList.push({
+            grantId: String(row[grantIdCol] || ""),
+            rewardId: rwdId,
+            unlockedAt: row[unlockedCol],
+            academicYearEarned: String(row[yrCol] || ""),
+            isEquipped: row[eqCol] === true || String(row[eqCol]).toLowerCase() === "true"
+          });
+        }
+      }
+    }
+  }
+
+  return {
+    ownedSet: ownedSet,
+    grants: grantsList
+  };
+}
+
+/**
+ * Pure read-only student session validation.
+ * Performs zero sheet writes and zero locks.
+ */
+function validateSessionReadOnly(ss, sessionToken) {
+  if (!sessionToken || typeof sessionToken !== "string" || sessionToken.trim().length === 0) {
+    return { valid: false, error: "Missing session token.", code: "UNAUTHORIZED" };
+  }
+
+  var cleanToken = sessionToken.trim();
+  var sessionsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.SESSIONS);
+  if (!sessionsSheet || sessionsSheet.getLastRow() <= 1) {
+    return { valid: false, error: "Session database unavailable.", code: "UNAUTHORIZED" };
+  }
+
+  var sessionData = sessionsSheet.getDataRange().getValues();
+  var colMap = getSheetColumnMap(sessionsSheet, CONFIG.SESSION_HEADERS);
+  var tokCol = (colMap["session_token"] || 2) - 1;
+  var sNumCol = (colMap["student_number"] || 4) - 1;
+  var classCol = (colMap["class"] || 5) - 1;
+  var expCol = (colMap["expires_at"] || 8) - 1;
+  var statusCol = (colMap["status"] || colMap["is_active"] || 10) - 1;
+
+  for (var i = 1; i < sessionData.length; i++) {
+    var row = sessionData[i];
+    if (String(row[tokCol] || "").trim() === cleanToken) {
+      var expRaw = row[expCol];
+      var expiresAt = expRaw ? new Date(expRaw) : null;
+      var statusRaw = String(row[statusCol] || "active").toLowerCase();
+      var now = new Date();
+
+      if (statusRaw === "inactive" || statusRaw === "revoked" || statusRaw === "expired" || statusRaw === "false") {
+        return { valid: false, error: "Session has expired or was revoked.", code: "UNAUTHORIZED" };
+      }
+      if (expiresAt && now > expiresAt) {
+        return { valid: false, error: "Session has expired. Please log in again.", code: "UNAUTHORIZED" };
+      }
+
+      return {
+        valid: true,
+        studentNumber: String(row[sNumCol] || "").trim(),
+        class: String(row[classCol] || "").trim()
+      };
+    }
+  }
+
+  return { valid: false, error: "Invalid session token.", code: "UNAUTHORIZED" };
+}
+
+/**
+ * ACTION: student_get_classroom_profile (Student Authenticated)
+ * Pure read-only and lock-free query.
+ * Computes current academic year points, next unowned milestone, and recent feedback history.
+ * Never performs database writes.
+ */
+function handleStudentGetClassroomProfile(ss, payload) {
+  var auth = validateSessionReadOnly(ss, payload.sessionToken);
+  if (!auth.valid) {
+    return createJsonResponse({ success: false, error: auth.error, code: auth.code });
+  }
+
+  // Authoritative identity resolved strictly from session
+  var studentNumber = auth.studentNumber;
+  var activeYear = getActiveAcademicYear(ss);
+
+  // 1. Current Academic Year Points
+  var points = getStudentClassroomPointsForYear(ss, studentNumber, activeYear);
+
+  // 2. Permanent Lifetime Rewards
+  var permanentRewards = getStudentPermanentRewardGrants(ss, studentNumber);
+  var ownedSet = permanentRewards.ownedSet;
+
+  // 3. Reward Definitions & Next Unowned Milestone
+  var rewardDefs = getClassroomRewardDefinitions(ss);
+  var nextMilestone = null;
+  var claimableRewards = [];
+
+  for (var i = 0; i < rewardDefs.length; i++) {
+    var rwd = rewardDefs[i];
+    var isOwned = !!ownedSet[rwd.id];
+
+    // Check if eligible to be claimed if missing
+    if (!isOwned && points.positivePoints >= rwd.requiredPoints) {
+      claimableRewards.push({
+        rewardId: rwd.id,
+        name: rwd.name,
+        requiredPoints: rwd.requiredPoints,
+        type: rwd.type,
+        cosmeticId: rwd.cosmeticId
+      });
+    }
+
+    // Determine the next unowned milestone
+    if (!isOwned && !nextMilestone) {
+      var currentProgress = points.positivePoints;
+      var target = rwd.requiredPoints;
+      var percent = target > 0 ? Math.min(100, Math.round((currentProgress / target) * 100)) : 100;
+      nextMilestone = {
+        rewardId: rwd.id,
+        name: rwd.name,
+        requiredPoints: target,
+        currentPoints: currentProgress,
+        progressPercent: percent,
+        type: rwd.type,
+        cosmeticId: rwd.cosmeticId,
+        icon: rwd.icon
+      };
+    }
+  }
+
+  // 4. Personal Feedback History (Last 50 for current student and active academic year)
+  var feedbackHistory = [];
+  var txSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.CLASS_POINT_TRANSACTIONS);
+  if (txSheet && txSheet.getLastRow() > 1) {
+    var txData = txSheet.getDataRange().getValues();
+    var colMap = getSheetColumnMap(txSheet, CONFIG.CLASS_POINT_TRANSACTION_HEADERS);
+    var sCol = colMap["student_number"] - 1;
+    var yrCol = colMap["academic_year"] - 1;
+    var catCol = colMap["category_name"] - 1;
+    var grossCol = colMap["gross_points"] - 1;
+    var typeCol = colMap["category_type"] - 1;
+    var tsCol = colMap["timestamp"] - 1;
+    var noteCol = colMap["note"] - 1;
+
+    for (var r = txData.length - 1; r >= 1; r--) {
+      var row = txData[r];
+      if (String(row[sCol] || "").trim() === studentNumber && String(row[yrCol] || "").trim() === activeYear) {
+        feedbackHistory.push({
+          categoryName: String(row[catCol] || ""),
+          categoryType: String(row[typeCol] || "positive"),
+          grossPoints: Number(row[grossCol] || 0),
+          timestamp: row[tsCol],
+          note: String(row[noteCol] || "")
+        });
+        if (feedbackHistory.length >= 50) break;
+      }
+    }
+  }
+
+  return createJsonResponse({
+    success: true,
+    studentNumber: studentNumber,
+    studentClass: auth.class,
+    academicYear: activeYear,
+    positivePoints: points.positivePoints,
+    negativePoints: points.negativePoints,
+    netPoints: points.netPoints,
+    unlockedRewards: permanentRewards.grants,
+    nextMilestone: nextMilestone,
+    claimableRewards: claimableRewards,
+    feedbackHistory: feedbackHistory,
+    isMaxMilestoneTier: !nextMilestone
+  });
+}
+
+/**
+ * ACTION: student_claim_milestone_reward (Student Authenticated, Lock Protected Mutation)
+ * Allows a student to claim an eligible reward milestone that was not granted during real-time awards.
+ * Safe under concurrency with deterministic grant IDs.
+ */
+function handleStudentClaimMilestoneReward(ss, payload) {
+  var auth = validateSessionReadOnly(ss, payload.sessionToken);
+  if (!auth.valid) {
+    return createJsonResponse({ success: false, error: auth.error, code: auth.code });
+  }
+
+  var rewardId = String(payload.rewardId || "").trim();
+  if (!rewardId) {
+    return createJsonResponse({ success: false, error: "Missing rewardId parameter", code: "BAD_REQUEST" });
+  }
+
+  var studentNumber = auth.studentNumber;
+  var activeYear = getActiveAcademicYear(ss);
+
+  var lock = LockService.getScriptLock();
+  if (!lock.waitLock(25000)) {
+    return createJsonResponse({ success: false, error: "System is busy, please retry", code: "LOCK_TIMEOUT" });
+  }
+
+  try {
+    // 1. Verify eligibility based on current academic year positive points
+    var points = getStudentClassroomPointsForYear(ss, studentNumber, activeYear);
+    var rewardDefs = getClassroomRewardDefinitions(ss);
+    var targetDef = null;
+
+    for (var i = 0; i < rewardDefs.length; i++) {
+      if (rewardDefs[i].id === rewardId) {
+        targetDef = rewardDefs[i];
+        break;
+      }
+    }
+
+    if (!targetDef) {
+      return createJsonResponse({ success: false, error: "Unknown reward milestone", code: "NOT_FOUND" });
+    }
+
+    if (points.positivePoints < targetDef.requiredPoints) {
+      return createJsonResponse({
+        success: false,
+        error: "Insufficient current academic year positive points (" + points.positivePoints + "/" + targetDef.requiredPoints + ")",
+        code: "INELIGIBLE"
+      });
+    }
+
+    // 2. Deterministic grant ID check
+    var grantId = "grnt_" + studentNumber + "_" + rewardId;
+    var grantsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.CLASS_REWARD_GRANTS);
+    if (grantsSheet.getLastRow() === 0) {
+      grantsSheet.appendRow(CONFIG.CLASS_REWARD_GRANT_HEADERS);
+    }
+
+    var existingData = grantsSheet.getDataRange().getValues();
+    for (var g = 1; g < existingData.length; g++) {
+      if (String(existingData[g][0] || "").trim() === grantId) {
+        return createJsonResponse({
+          success: true,
+          alreadyOwned: true,
+          grantId: grantId,
+          rewardId: rewardId,
+          message: "Reward milestone is already permanently unlocked"
+        });
+      }
+    }
+
+    // 3. Append permanent grant
+    var nowIso = new Date().toISOString();
+    grantsSheet.appendRow([
+      grantId,
+      studentNumber,
+      rewardId,
+      nowIso,
+      activeYear,
+      points.positivePoints,
+      "student_claim",
+      false
+    ]);
+
+    return createJsonResponse({
+      success: true,
+      grantId: grantId,
+      rewardId: rewardId,
+      unlockedAt: nowIso,
+      alreadyOwned: false
+    });
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+/**
+ * ACTION: teacher_award_classroom_points (Teacher Authenticated, Lock Protected)
+ * Awards behavior points to single or multiple students atomically.
+ * Enforces per-student idempotency (batchKey_studentNumber) for safe partial retry handling.
+ * Evaluates current academic year milestone thresholds and auto-grants unlocked rewards.
+ */
+function handleTeacherAwardClassroomPoints(ss, payload) {
+  var auth = validateTeacherSession(ss, payload.teacherToken);
+  if (!auth.valid) {
+    return createJsonResponse({ success: false, error: auth.error, code: auth.code });
+  }
+
+  var studentNumbers = payload.studentNumbers;
+  if (!Array.isArray(studentNumbers) || studentNumbers.length === 0) {
+    return createJsonResponse({ success: false, error: "studentNumbers must be a non-empty array", code: "BAD_REQUEST" });
+  }
+
+  var categoryId = String(payload.categoryId || "").trim();
+  if (!categoryId) {
+    return createJsonResponse({ success: false, error: "Missing categoryId", code: "BAD_REQUEST" });
+  }
+
+  var baseBatchKey = String(payload.idempotencyKey || "").trim();
+  if (!baseBatchKey) {
+    baseBatchKey = "batch_" + Utilities.getUuid().substring(0, 8);
+  }
+
+  var customNote = String(payload.note || "").trim();
+  var activeYear = getActiveAcademicYear(ss);
+
+  var lock = LockService.getScriptLock();
+  if (!lock.waitLock(25000)) {
+    return createJsonResponse({ success: false, error: "Teacher database lock timeout", code: "LOCK_TIMEOUT" });
+  }
+
+  try {
+    // 1. Resolve Category
+    var categoriesMap = getClassroomCategoriesMap(ss);
+    var category = categoriesMap[categoryId];
+    if (!category) {
+      return createJsonResponse({ success: false, error: "Category not found: " + categoryId, code: "NOT_FOUND" });
+    }
+
+    var isPos = category.type === "positive";
+    var pointsDelta = Number(category.defaultPoints || 0);
+    var grossPoints = pointsDelta;
+    var posPoints = isPos ? Math.max(0, pointsDelta) : 0;
+    var negPoints = !isPos ? Math.abs(pointsDelta) : 0;
+
+    // 2. Prepare Point Transactions Sheet
+    var txSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.CLASS_POINT_TRANSACTIONS);
+    if (txSheet.getLastRow() === 0) {
+      txSheet.appendRow(CONFIG.CLASS_POINT_TRANSACTION_HEADERS);
+    }
+
+    var txData = txSheet.getDataRange().getValues();
+    var colMap = getSheetColumnMap(txSheet, CONFIG.CLASS_POINT_TRANSACTION_HEADERS);
+    var idempCol = colMap["idempotency_key"] - 1;
+
+    // Existing idempotency keys lookup
+    var existingIdempKeys = {};
+    for (var k = 1; k < txData.length; k++) {
+      var keyVal = String(txData[k][idempCol] || "").trim();
+      if (keyVal) existingIdempKeys[keyVal] = true;
+    }
+
+    // Lookup student records for class & grade
+    var studentsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.STUDENTS);
+    var studentsMap = {};
+    if (studentsSheet && studentsSheet.getLastRow() > 1) {
+      var sData = studentsSheet.getDataRange().getValues();
+      var sColMap = getSheetColumnMap(studentsSheet, CONFIG.STUDENT_HEADERS);
+      for (var s = 1; s < sData.length; s++) {
+        var sNum = String(sData[s][sColMap["student_number"] - 1] || "").trim();
+        if (sNum) {
+          studentsMap[sNum] = {
+            class: String(sData[s][sColMap["class"] - 1] || ""),
+            grade: String(sData[s][sColMap["grade"] - 1] || "")
+          };
+        }
+      }
+    }
+
+    // Teacher session hash for audit trail
+    var teacherHash = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, payload.teacherToken)
+      .map(function(b) { return (b < 0 ? b + 256 : b).toString(16).padStart(2, "0"); })
+      .join("")
+      .substring(0, 16);
+
+    var nowIso = new Date().toISOString();
+    var awardedCount = 0;
+    var newTransactions = [];
+    var newGrants = [];
+
+    // Rewards definitions
+    var rewardDefs = getClassroomRewardDefinitions(ss);
+    var grantsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.CLASS_REWARD_GRANTS);
+    if (grantsSheet.getLastRow() === 0) {
+      grantsSheet.appendRow(CONFIG.CLASS_REWARD_GRANT_HEADERS);
+    }
+    var existingGrantsData = grantsSheet.getDataRange().getValues();
+    var existingGrantIds = {};
+    for (var g = 1; g < existingGrantsData.length; g++) {
+      var gId = String(existingGrantsData[g][0] || "").trim();
+      if (gId) existingGrantIds[gId] = true;
+    }
+
+    // 3. Process each student atomically
+    for (var i = 0; i < studentNumbers.length; i++) {
+      var currentStudentNum = String(studentNumbers[i]).trim();
+      if (!currentStudentNum) continue;
+
+      // Deterministic per-student idempotency key
+      var studentIdempKey = baseBatchKey + "_" + currentStudentNum;
+      if (existingIdempKeys[studentIdempKey]) {
+        // Already recorded in a prior retry: skip writing point transaction
+        continue;
+      }
+
+      var txId = "ctx_" + Date.now() + "_" + Utilities.getUuid().substring(0, 6);
+      var sProfile = studentsMap[currentStudentNum] || { class: "7A", grade: "grade-7" };
+
+      var txRow = [
+        txId,
+        studentIdempKey,
+        activeYear,
+        nowIso,
+        currentStudentNum,
+        sProfile.class,
+        sProfile.grade,
+        categoryId,
+        category.name,
+        category.type,
+        grossPoints,
+        posPoints,
+        negPoints,
+        "", // original_tx_id
+        teacherHash,
+        customNote,
+        "active"
+      ];
+
+      txSheet.appendRow(txRow);
+      existingIdempKeys[studentIdempKey] = true;
+      awardedCount++;
+      newTransactions.push({ transactionId: txId, studentNumber: currentStudentNum });
+
+      // 4. Milestone Evaluation if positive points were awarded
+      if (posPoints > 0) {
+        var currentYearPoints = getStudentClassroomPointsForYear(ss, currentStudentNum, activeYear);
+        for (var m = 0; m < rewardDefs.length; m++) {
+          var rwd = rewardDefs[m];
+          var targetGrantId = "grnt_" + currentStudentNum + "_" + rwd.id;
+          if (currentYearPoints.positivePoints >= rwd.requiredPoints && !existingGrantIds[targetGrantId]) {
+            grantsSheet.appendRow([
+              targetGrantId,
+              currentStudentNum,
+              rwd.id,
+              nowIso,
+              activeYear,
+              currentYearPoints.positivePoints,
+              txId,
+              false
+            ]);
+            existingGrantIds[targetGrantId] = true;
+            newGrants.push({
+              grantId: targetGrantId,
+              studentNumber: currentStudentNum,
+              rewardId: rwd.id,
+              rewardName: rwd.name,
+              requiredPoints: rwd.requiredPoints
+            });
+          }
+        }
+      }
+    }
+
+    return createJsonResponse({
+      success: true,
+      awardedCount: awardedCount,
+      totalRequested: studentNumbers.length,
+      categoryName: category.name,
+      academicYear: activeYear,
+      newGrants: newGrants,
+      batchKey: baseBatchKey
+    });
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+/**
+ * ACTION: teacher_revert_classroom_point_transaction (Teacher Authenticated, Lock Protected)
+ * Reverses an existing transaction using the pure append-only accounting ledger.
+ * Prevents double-reversal and prevents reversing a correction transaction.
+ */
+function handleTeacherRevertClassroomPointTransaction(ss, payload) {
+  var auth = validateTeacherSession(ss, payload.teacherToken);
+  if (!auth.valid) {
+    return createJsonResponse({ success: false, error: auth.error, code: auth.code });
+  }
+
+  var targetTxId = String(payload.transactionId || "").trim();
+  if (!targetTxId) {
+    return createJsonResponse({ success: false, error: "Missing transactionId", code: "BAD_REQUEST" });
+  }
+
+  var reason = String(payload.reason || "Administrative correction").trim();
+
+  var lock = LockService.getScriptLock();
+  if (!lock.waitLock(25000)) {
+    return createJsonResponse({ success: false, error: "Database lock timeout", code: "LOCK_TIMEOUT" });
+  }
+
+  try {
+    var txSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.CLASS_POINT_TRANSACTIONS);
+    if (!txSheet || txSheet.getLastRow() <= 1) {
+      return createJsonResponse({ success: false, error: "Transaction not found", code: "NOT_FOUND" });
+    }
+
+    var txData = txSheet.getDataRange().getValues();
+    var colMap = getSheetColumnMap(txSheet, CONFIG.CLASS_POINT_TRANSACTION_HEADERS);
+
+    var idCol = colMap["transaction_id"] - 1;
+    var origIdCol = colMap["original_tx_id"] - 1;
+    var typeCol = colMap["category_type"] - 1;
+    var grossCol = colMap["gross_points"] - 1;
+    var posCol = colMap["positive_points"] - 1;
+    var negCol = colMap["negative_points"] - 1;
+    var sCol = colMap["student_number"] - 1;
+    var yrCol = colMap["academic_year"] - 1;
+    var classCol = colMap["student_class"] - 1;
+    var gradeCol = colMap["grade"] - 1;
+    var catNameCol = colMap["category_name"] - 1;
+
+    // 1. Locate Target Transaction & Verify Not Already Reverted
+    var targetRow = null;
+    var alreadyReverted = false;
+
+    for (var i = 1; i < txData.length; i++) {
+      var row = txData[i];
+      var currentId = String(row[idCol] || "").trim();
+      var currentOrigId = String(row[origIdCol] || "").trim();
+      var currentType = String(row[typeCol] || "").trim();
+
+      if (currentId === targetTxId) {
+        targetRow = row;
+      }
+      if (currentOrigId === targetTxId && currentType === "correction") {
+        alreadyReverted = true;
+      }
+    }
+
+    if (!targetRow) {
+      return createJsonResponse({ success: false, error: "Transaction not found: " + targetTxId, code: "NOT_FOUND" });
+    }
+
+    if (String(targetRow[typeCol] || "").trim() === "correction") {
+      return createJsonResponse({ success: false, error: "Cannot revert an administrative correction transaction", code: "INVALID_OPERATION" });
+    }
+
+    if (alreadyReverted) {
+      return createJsonResponse({
+        success: false,
+        error: "Transaction " + targetTxId + " has already been reversed.",
+        code: "ALREADY_REVERSED"
+      });
+    }
+
+    // 2. Invert values for exact compensating entry
+    var origGross = Number(targetRow[grossCol] || 0);
+    var origPos = Number(targetRow[posCol] || 0);
+    var origNeg = Number(targetRow[negCol] || 0);
+    var studentNumber = String(targetRow[sCol] || "").trim();
+    var academicYear = String(targetRow[yrCol] || "").trim();
+    var origCatName = String(targetRow[catNameCol] || "");
+
+    var reversalTxId = "ctx_rev_" + Date.now() + "_" + Utilities.getUuid().substring(0, 6);
+    var nowIso = new Date().toISOString();
+
+    var teacherHash = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, payload.teacherToken)
+      .map(function(b) { return (b < 0 ? b + 256 : b).toString(16).padStart(2, "0"); })
+      .join("")
+      .substring(0, 16);
+
+    var reversalRow = [
+      reversalTxId,
+      "rev_" + targetTxId,
+      academicYear,
+      nowIso,
+      studentNumber,
+      String(targetRow[classCol] || ""),
+      String(targetRow[gradeCol] || ""),
+      "correction_reversal",
+      "Reversal: " + origCatName,
+      "correction",
+      -origGross,
+      -origPos,
+      -origNeg,
+      targetTxId,
+      teacherHash,
+      reason,
+      "active"
+    ];
+
+    txSheet.appendRow(reversalRow);
+
+    // 3. Return updated student balances
+    var updatedBalances = getStudentClassroomPointsForYear(ss, studentNumber, academicYear);
+
+    return createJsonResponse({
+      success: true,
+      reversedTransactionId: targetTxId,
+      reversalTransactionId: reversalTxId,
+      studentNumber: studentNumber,
+      updatedBalances: updatedBalances
+    });
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+/**
+ * ACTION: teacher_get_classroom_overview (Teacher Authenticated)
+ * Returns class rosters with current academic year points, next milestone, and reward progress.
+ */
+function handleTeacherGetClassroomOverview(ss, payload) {
+  var auth = validateTeacherSession(ss, payload.teacherToken);
+  if (!auth.valid) {
+    return createJsonResponse({ success: false, error: auth.error, code: auth.code });
+  }
+
+  var filterClass = payload.classId && payload.classId !== "all" ? String(payload.classId).trim().toUpperCase() : null;
+  var filterGrade = payload.gradeId && payload.gradeId !== "all" ? String(payload.gradeId).trim() : null;
+  var activeYear = getActiveAcademicYear(ss);
+
+  var studentsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.STUDENTS);
+  var studentList = [];
+
+  if (studentsSheet && studentsSheet.getLastRow() > 1) {
+    var sData = studentsSheet.getDataRange().getValues();
+    var sColMap = getSheetColumnMap(studentsSheet, CONFIG.STUDENT_HEADERS);
+    var rewardDefs = getClassroomRewardDefinitions(ss);
+
+    for (var i = 1; i < sData.length; i++) {
+      var row = sData[i];
+      var sNum = String(row[sColMap["student_number"] - 1] || "").trim();
+      if (!sNum) continue;
+
+      var sClass = String(row[sColMap["class"] - 1] || "").trim().toUpperCase();
+      if (sClass === "DEMO_ARCHIVE" || /_demo$/.test(sNum)) continue;
+
+      var sGrade = String(row[sColMap["grade"] - 1] || "").trim();
+      var normGrade = (sGrade === "7" || sGrade === 7 || sGrade === "grade-7") ? "grade-7" : "grade-8";
+
+      if (filterClass && sClass !== filterClass) continue;
+      if (filterGrade && normGrade !== filterGrade) continue;
+
+      var points = getStudentClassroomPointsForYear(ss, sNum, activeYear);
+      var permRewards = getStudentPermanentRewardGrants(ss, sNum);
+      var ownedSet = permRewards.ownedSet;
+
+      var nextMilestone = null;
+      for (var m = 0; m < rewardDefs.length; m++) {
+        var rwd = rewardDefs[m];
+        if (!ownedSet[rwd.id]) {
+          var target = rwd.requiredPoints;
+          var percent = target > 0 ? Math.min(100, Math.round((points.positivePoints / target) * 100)) : 100;
+          nextMilestone = {
+            rewardId: rwd.id,
+            name: rwd.name,
+            requiredPoints: target,
+            currentPoints: points.positivePoints,
+            progressPercent: percent
+          };
+          break;
+        }
+      }
+
+      studentList.push({
+        studentNumber: sNum,
+        fullName: String(row[sColMap["full_name"] - 1] || ""),
+        class: sClass,
+        grade: normGrade,
+        positivePoints: points.positivePoints,
+        negativePoints: points.negativePoints,
+        netPoints: points.netPoints,
+        unlockedRewardCount: permRewards.grants.length,
+        unlockedRewards: permRewards.grants.map(function(g) { return g.rewardId; }),
+        nextMilestone: nextMilestone
+      });
+    }
+  }
+
+  var categoriesMap = getClassroomCategoriesMap(ss);
+  var categoriesList = Object.keys(categoriesMap).map(function(k) { return categoriesMap[k]; });
+  categoriesList.sort(function(a, b) { return a.sortOrder - b.sortOrder; });
+
+  return createJsonResponse({
+    success: true,
+    academicYear: activeYear,
+    totalStudents: studentList.length,
+    students: studentList,
+    categories: categoriesList,
+    rewardDefinitions: getClassroomRewardDefinitions(ss)
+  });
+}
+
+/**
+ * ACTION: teacher_get_classroom_history (Teacher Authenticated)
+ * Returns paginated audit trail of classroom point transactions.
+ */
+function handleTeacherGetClassroomHistory(ss, payload) {
+  var auth = validateTeacherSession(ss, payload.teacherToken);
+  if (!auth.valid) {
+    return createJsonResponse({ success: false, error: auth.error, code: auth.code });
+  }
+
+  var filterStudent = payload.studentNumber ? String(payload.studentNumber).trim() : null;
+  var filterClass = payload.classId && payload.classId !== "all" ? String(payload.classId).trim().toUpperCase() : null;
+  var filterYear = payload.academicYear ? String(payload.academicYear).trim() : getActiveAcademicYear(ss);
+  var limit = Math.max(1, Math.min(200, Number(payload.limit || 50)));
+  var offset = Math.max(0, Number(payload.offset || 0));
+
+  var txSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.CLASS_POINT_TRANSACTIONS);
+  var transactions = [];
+  var totalMatches = 0;
+
+  if (txSheet && txSheet.getLastRow() > 1) {
+    var data = txSheet.getDataRange().getValues();
+    var colMap = getSheetColumnMap(txSheet, CONFIG.CLASS_POINT_TRANSACTION_HEADERS);
+
+    var idCol = colMap["transaction_id"] - 1;
+    var yrCol = colMap["academic_year"] - 1;
+    var tsCol = colMap["timestamp"] - 1;
+    var sCol = colMap["student_number"] - 1;
+    var classCol = colMap["student_class"] - 1;
+    var catCol = colMap["category_name"] - 1;
+    var typeCol = colMap["category_type"] - 1;
+    var grossCol = colMap["gross_points"] - 1;
+    var origIdCol = colMap["original_tx_id"] - 1;
+    var noteCol = colMap["note"] - 1;
+
+    for (var i = data.length - 1; i >= 1; i--) {
+      var row = data[i];
+      var sNum = String(row[sCol] || "").trim();
+      var sClass = String(row[classCol] || "").trim().toUpperCase();
+      var sYr = String(row[yrCol] || "").trim();
+
+      if (filterYear && sYr !== filterYear) continue;
+      if (filterStudent && sNum !== filterStudent) continue;
+      if (filterClass && sClass !== filterClass) continue;
+
+      totalMatches++;
+      if (totalMatches > offset && transactions.length < limit) {
+        transactions.push({
+          transactionId: String(row[idCol] || ""),
+          timestamp: row[tsCol],
+          studentNumber: sNum,
+          studentClass: sClass,
+          categoryName: String(row[catCol] || ""),
+          categoryType: String(row[typeCol] || ""),
+          grossPoints: Number(row[grossCol] || 0),
+          originalTxId: String(row[origIdCol] || ""),
+          note: String(row[noteCol] || "")
+        });
+      }
+    }
+  }
+
+  return createJsonResponse({
+    success: true,
+    totalCount: totalMatches,
+    limit: limit,
+    offset: offset,
+    transactions: transactions
+  });
+}
+
+/**
+ * ACTION: teacher_manage_classroom_categories (Teacher Authenticated, Lock Protected)
+ * Supports listing, adding, updating, or toggling active state of behavior categories.
+ */
+function handleTeacherManageClassroomCategories(ss, payload) {
+  var auth = validateTeacherSession(ss, payload.teacherToken);
+  if (!auth.valid) {
+    return createJsonResponse({ success: false, error: auth.error, code: auth.code });
+  }
+
+  var operation = String(payload.operation || "list").trim().toLowerCase();
+  var catSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.CLASS_CATEGORIES);
+  if (catSheet.getLastRow() === 0) {
+    setupClassroomPointsSheets(ss);
+  }
+
+  if (operation === "list") {
+    var categoriesMap = getClassroomCategoriesMap(ss);
+    var list = Object.keys(categoriesMap).map(function(k) { return categoriesMap[k]; });
+    list.sort(function(a, b) { return a.sortOrder - b.sortOrder; });
+    return createJsonResponse({ success: true, categories: list });
+  }
+
+  var lock = LockService.getScriptLock();
+  if (!lock.waitLock(25000)) {
+    return createJsonResponse({ success: false, error: "Database lock timeout", code: "LOCK_TIMEOUT" });
+  }
+
+  try {
+    var categoryData = payload.categoryData || {};
+    var colMap = getSheetColumnMap(catSheet, CONFIG.CLASS_CATEGORY_HEADERS);
+    var nowIso = new Date().toISOString();
+
+    if (operation === "create") {
+      var newId = "cat_" + String(categoryData.name || "").toLowerCase().replace(/[^a-z0-9]+/g, "_") + "_" + Utilities.getUuid().substring(0, 4);
+      catSheet.appendRow([
+        newId,
+        String(categoryData.name || "Custom Behavior"),
+        String(categoryData.type || "positive").toLowerCase() === "negative" ? "negative" : "positive",
+        Number(categoryData.defaultPoints || 1),
+        String(categoryData.icon || "Sparkles"),
+        String(categoryData.color || "#6366f1"),
+        true,
+        catSheet.getLastRow(),
+        nowIso
+      ]);
+      return createJsonResponse({ success: true, createdId: newId });
+    }
+
+    if (operation === "toggle") {
+      var targetId = String(categoryData.categoryId || "").trim();
+      var data = catSheet.getDataRange().getValues();
+      var idCol = colMap["category_id"] - 1;
+      var activeCol = colMap["is_active"] - 1;
+
+      for (var i = 1; i < data.length; i++) {
+        if (String(data[i][idCol] || "").trim() === targetId) {
+          var current = data[i][activeCol] === true || String(data[i][activeCol]).toLowerCase() === "true";
+          catSheet.getRange(i + 1, activeCol + 1).setValue(!current);
+          return createJsonResponse({ success: true, categoryId: targetId, isActive: !current });
+        }
+      }
+      return createJsonResponse({ success: false, error: "Category not found", code: "NOT_FOUND" });
+    }
+
+    return createJsonResponse({ success: false, error: "Unsupported operation: " + operation, code: "BAD_REQUEST" });
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+/**
+ * ACTION: teacher_reconcile_classroom_rewards (Teacher Authenticated, Lock Protected)
+ * Administrative self-healing synchronization for reward grants.
+ * Evaluates current academic year positive points and grants any missing rewards under LockService.
+ */
+function handleTeacherReconcileClassroomRewards(ss, payload) {
+  var auth = validateTeacherSession(ss, payload.teacherToken);
+  if (!auth.valid) {
+    return createJsonResponse({ success: false, error: auth.error, code: auth.code });
+  }
+
+  var activeYear = getActiveAcademicYear(ss);
+  var targetStudent = payload.studentNumber ? String(payload.studentNumber).trim() : null;
+
+  var lock = LockService.getScriptLock();
+  if (!lock.waitLock(25000)) {
+    return createJsonResponse({ success: false, error: "Database lock timeout", code: "LOCK_TIMEOUT" });
+  }
+
+  try {
+    var rewardDefs = getClassroomRewardDefinitions(ss);
+    var grantsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.CLASS_REWARD_GRANTS);
+    if (grantsSheet.getLastRow() === 0) {
+      grantsSheet.appendRow(CONFIG.CLASS_REWARD_GRANT_HEADERS);
+    }
+
+    var existingGrantsData = grantsSheet.getDataRange().getValues();
+    var existingGrantIds = {};
+    for (var g = 1; g < existingGrantsData.length; g++) {
+      var gId = String(existingGrantsData[g][0] || "").trim();
+      if (gId) existingGrantIds[gId] = true;
+    }
+
+    // Determine target students
+    var studentsToProcess = [];
+    if (targetStudent) {
+      studentsToProcess.push(targetStudent);
+    } else {
+      var studentsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.STUDENTS);
+      if (studentsSheet && studentsSheet.getLastRow() > 1) {
+        var sData = studentsSheet.getDataRange().getValues();
+        var sColMap = getSheetColumnMap(studentsSheet, CONFIG.STUDENT_HEADERS);
+        for (var i = 1; i < sData.length; i++) {
+          var num = String(sData[i][sColMap["student_number"] - 1] || "").trim();
+          var sClass = String(sData[i][sColMap["class"] - 1] || "").trim().toUpperCase();
+          if (num && sClass !== "DEMO_ARCHIVE" && !/_demo$/.test(num)) {
+            studentsToProcess.push(num);
+          }
+        }
+      }
+    }
+
+    var reconciledGrants = [];
+    var nowIso = new Date().toISOString();
+
+    for (var s = 0; s < studentsToProcess.length; s++) {
+      var sNum = studentsToProcess[s];
+      var points = getStudentClassroomPointsForYear(ss, sNum, activeYear);
+
+      for (var r = 0; r < rewardDefs.length; r++) {
+        var rwd = rewardDefs[r];
+        var grantId = "grnt_" + sNum + "_" + rwd.id;
+
+        // If current year positive points >= milestone and grant is missing, auto-heal
+        if (points.positivePoints >= rwd.requiredPoints && !existingGrantIds[grantId]) {
+          grantsSheet.appendRow([
+            grantId,
+            sNum,
+            rwd.id,
+            nowIso,
+            activeYear,
+            points.positivePoints,
+            "admin_reconciliation",
+            false
+          ]);
+          existingGrantIds[grantId] = true;
+          reconciledGrants.push({
+            grantId: grantId,
+            studentNumber: sNum,
+            rewardId: rwd.id,
+            rewardName: rwd.name
+          });
+        }
+      }
+    }
+
+    return createJsonResponse({
+      success: true,
+      reconciledCount: reconciledGrants.length,
+      reconciledGrants: reconciledGrants,
+      academicYear: activeYear
+    });
+  } finally {
+    lock.releaseLock();
+  }
 }
