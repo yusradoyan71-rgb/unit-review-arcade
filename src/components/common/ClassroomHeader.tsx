@@ -124,6 +124,30 @@ export const ClassroomHeader: React.FC = () => {
                 </span>
               )}
 
+              {/* General English Breadcrumbs */}
+              {navigation.view === 'general-english' && (
+                <span className="px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-800 border border-indigo-200 font-bold text-xs flex items-center gap-1.5">
+                  <span>📚</span>
+                  <span>General English ({navigation.gradeId === 'grade-7' ? 'Grade 7' : 'Grade 8'})</span>
+                </span>
+              )}
+
+              {navigation.view === 'general-english-play' && (
+                <>
+                  <button
+                    onClick={() => navigateTo({ view: 'general-english', gradeId: navigation.gradeId })}
+                    className="px-2.5 py-1 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-900 border border-sky-200 transition-colors font-medium text-xs flex items-center gap-1"
+                  >
+                    <span>📚</span>
+                    <span>General English</span>
+                  </button>
+                  <ChevronRight className="w-4 h-4 text-slate-400 shrink-0" />
+                  <span className="px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-700 border border-indigo-200 font-bold text-xs truncate max-w-[160px] sm:max-w-xs">
+                    {navigation.mode === 'mixed' ? `Mixed Practice (${navigation.mixedRatio})` : navigation.gameType.replace('_', ' ')}
+                  </span>
+                </>
+              )}
+
               {/* Monster World Breadcrumb */}
               {navigation.view === 'monster-world' && (
                 <span className="px-2.5 py-1 rounded-lg bg-amber-50 text-amber-800 border border-amber-200 font-semibold text-xs flex items-center gap-1.5">

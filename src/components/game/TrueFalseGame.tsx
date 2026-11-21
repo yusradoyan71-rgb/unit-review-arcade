@@ -5,6 +5,7 @@ import { sounds } from '../../services/soundEffects';
 import { useGameTracking } from '../../context/GameTrackingContext';
 import { GameResultsModal } from './GameResultsModal';
 import { ClassroomScoreboard } from './ClassroomScoreboard';
+import { AudioPromptPlayer } from '../common/AudioPromptPlayer';
 import { 
   ArrowLeft, 
   Check, 
@@ -151,6 +152,17 @@ export const TrueFalseGame: React.FC<TrueFalseGameProps> = ({ activity, onExit }
           <h2 className="font-arcade text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 leading-relaxed max-w-3xl mx-auto">
             "{currentStatement.prompt}"
           </h2>
+
+          {(currentStatement.hasAudio || Boolean((currentStatement as unknown as { speechText?: string }).speechText || (currentStatement as unknown as { audioUrl?: string }).audioUrl)) && (
+            <div className="mt-4 max-w-lg mx-auto">
+              <AudioPromptPlayer
+                audioUrl={(currentStatement as unknown as { audioUrl?: string }).audioUrl}
+                speechText={(currentStatement as unknown as { speechText?: string }).speechText}
+                correctTranscript={(currentStatement as unknown as { correctTranscript?: string }).correctTranscript}
+                isAnswered={isAnswered}
+              />
+            </div>
+          )}
         </div>
 
         {/* Giant TRUE / FALSE Buttons */}

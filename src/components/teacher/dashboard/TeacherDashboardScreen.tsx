@@ -19,11 +19,16 @@ import { StudentDetailModal } from './StudentDetailModal';
 import { QuestionAnalyticsView } from './QuestionAnalyticsView';
 import { CurriculumSyncModal } from './CurriculumSyncModal';
 import { StudentManagementView } from './StudentManagementView';
+import { QuestionBankView } from './questionBank/QuestionBankView';
+import { SectionAnalyticsView } from './sectionAnalytics/SectionAnalyticsView';
 import type { 
   TeacherOverviewKpis, 
   ClassStatSummary, 
   RosterStudent, 
   QuestionDiagnosticItem,
+  StudentAttemptRecord,
+  StudentAnswerRecord,
+  TeacherSectionAnalyticsResponse,
   DashboardFilterOptions 
 } from '../../../types/teacher';
 import { 
@@ -36,7 +41,9 @@ import {
   Users, 
   UserCheck,
   FileQuestion, 
-  AlertCircle
+  AlertCircle,
+  Database,
+  BarChart3
 } from 'lucide-react';
 
 export const TeacherDashboardScreen: React.FC = () => {
@@ -47,7 +54,8 @@ export const TeacherDashboardScreen: React.FC = () => {
   const [selectedClassId, setSelectedClassId] = useState<'all' | '7A' | '7B' | '8A' | '8B'>('all');
   const [selectedGradeId, setSelectedGradeId] = useState<'all' | 'grade-7' | 'grade-8'>('all');
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [dashboardTab, setDashboardTab] = useState<'management' | 'overview' | 'analytics'>('management');
+  const [dashboardTab, setDashboardTab] = useState<'management' | 'overview' | 'section_analytics' | 'question_bank' | 'analytics'>('management');
+  const [questionBankCount, setQuestionBankCount] = useState<number | null>(null);
 
   // Selected Student for Drill-down Modal
   const [selectedStudentNumber, setSelectedStudentNumber] = useState<string | null>(null);
@@ -71,6 +79,8 @@ export const TeacherDashboardScreen: React.FC = () => {
   const [classStats, setClassStats] = useState<ClassStatSummary[]>([]);
   const [roster, setRoster] = useState<RosterStudent[]>([]);
   const [questionAnalytics, setQuestionAnalytics] = useState<QuestionDiagnosticItem[]>([]);
+  const [sectionAttempts, setSectionAttempts] = useState<StudentAttemptRecord[]>([]);
+  const [sectionAnswers, setSectionAnswers] = useState<StudentAnswerRecord[]>([]);
 
   // Loading & Error States
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -91,11 +101,12 @@ export const TeacherDashboardScreen: React.FC = () => {
     };
 
     try {
-      // Parallel execution of overview, roster, and question analytics
-      const [overviewRes, rosterRes, analyticsRes] = await Promise.all([
+      // Parallel execution of overview, roster, question analytics, and section analytics
+      const [overviewRes, rosterRes, analyticsRes, sectionRes] = await Promise.all([
         TeacherApiService.getOverview(teacherSession.teacherToken, filters),
         TeacherApiService.getRoster(teacherSession.teacherToken, filters),
         TeacherApiService.getQuestionAnalytics(teacherSession.teacherToken, filters),
+        TeacherApiService.getSectionAnalytics(teacherSession.teacherToken, filters).catch(() => ({ success: false })),
       ]);
 
       if (overviewRes.success && overviewRes.overview) {
@@ -111,6 +122,12 @@ export const TeacherDashboardScreen: React.FC = () => {
 
       if (analyticsRes.success && analyticsRes.questionAnalytics) {
         setQuestionAnalytics(analyticsRes.questionAnalytics);
+      }
+
+      if (sectionRes && 'success' in sectionRes && sectionRes.success) {
+        const secData = sectionRes as TeacherSectionAnalyticsResponse;
+        if (secData.attempts) setSectionAttempts(secData.attempts);
+        if (secData.answers) setSectionAnswers(secData.answers);
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Network failure loading dashboard data.');
@@ -335,6 +352,32 @@ export const TeacherDashboardScreen: React.FC = () => {
 
           <button
             type="button"
+            onClick={() => setDashboardTab('section_analytics')}
+            className={`pb-3 px-2 text-xs sm:text-sm font-bold flex items-center gap-2 border-b-2 transition-colors whitespace-nowrap ${
+              dashboardTab === 'section_analytics'
+                ? 'border-indigo-600 text-indigo-700'
+                : 'border-transparent text-slate-500 hover:text-slate-800'
+            }`}
+          >
+            <BarChart3 className="w-4 h-4 text-purple-600" />
+            <span>General English &amp; Mixed Analytics</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setDashboardTab('question_bank')}
+            className={`pb-3 px-2 text-xs sm:text-sm font-bold flex items-center gap-2 border-b-2 transition-colors whitespace-nowrap ${
+              dashboardTab === 'question_bank'
+                ? 'border-teal-600 text-teal-800'
+                : 'border-transparent text-slate-500 hover:text-slate-800'
+            }`}
+          >
+            <Database className="w-4 h-4 text-teal-600" />
+            <span>Question Bank {typeof questionBankCount === 'number' ? `(${questionBankCount})` : ''}</span>
+          </button>
+
+          <button
+            type="button"
             onClick={() => setDashboardTab('analytics')}
             className={`pb-3 px-2 text-xs sm:text-sm font-bold flex items-center gap-2 border-b-2 transition-colors whitespace-nowrap ${
               dashboardTab === 'analytics'
@@ -369,7 +412,28 @@ export const TeacherDashboardScreen: React.FC = () => {
           />
         )}
 
-        {/* Tab 3: Question Diagnostics Leaderboard */}
+        {/* Tab 3: General English & Mixed Practice Section Telemetry */}
+        {dashboardTab === 'section_analytics' && (
+          <SectionAnalyticsView
+            roster={filteredRoster}
+            attempts={sectionAttempts}
+            answers={sectionAnswers}
+            isLoading={isLoading}
+            onRefresh={() => loadDashboardData(true)}
+            selectedClassId={selectedClassId}
+            onSelectClassId={setSelectedClassId}
+            onSelectStudent={(num) => setSelectedStudentNumber(num)}
+          />
+        )}
+
+        {/* Tab 4: Question Bank Manager */}
+        {dashboardTab === 'question_bank' && (
+          <QuestionBankView
+            onQuestionCountChange={(c) => setQuestionBankCount(c)}
+          />
+        )}
+
+        {/* Tab 5: Question Diagnostics Leaderboard */}
         {dashboardTab === 'analytics' && (
           <QuestionAnalyticsView
             analytics={questionAnalytics}

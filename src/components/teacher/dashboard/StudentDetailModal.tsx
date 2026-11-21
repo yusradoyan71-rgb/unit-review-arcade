@@ -10,12 +10,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TeacherApiService } from '../../../services/teacherApiService';
+import { TeacherAnalyticsService } from '../../../services/teacherAnalyticsService';
 import { useTeacherAuth } from '../../../context/TeacherAuthContext';
 import type { 
   TeacherStudentDetailResponse, 
   RepeatedAttemptGain, 
   StudentAttemptRecord, 
-  StudentAnswerRecord 
+  StudentAnswerRecord,
+  LearningSection
 } from '../../../types/teacher';
 import { 
   X, 
@@ -28,7 +30,8 @@ import {
   XCircle, 
   AlertCircle,
   History,
-  FileQuestion
+  FileQuestion,
+  Filter
 } from 'lucide-react';
 
 interface StudentDetailModalProps {
@@ -45,6 +48,8 @@ export const StudentDetailModal: React.FC<StudentDetailModalProps> = ({
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'repeated' | 'attempts' | 'answers'>('repeated');
+  const [sectionFilter, setSectionFilter] = useState<LearningSection>('all');
+  const [mistakesOnly, setMistakesOnly] = useState<boolean>(false);
 
   useEffect(() => {
     if (!studentNumber || !teacherSession?.teacherToken) {
@@ -81,9 +86,24 @@ export const StudentDetailModal: React.FC<StudentDetailModalProps> = ({
   if (!studentNumber) return null;
 
   const student = data?.student;
-  const attempts = data?.attempts || [];
+  const rawAttempts = data?.attempts || [];
   const repeatedGains = data?.repeatedAttemptGains || [];
-  const answers = data?.answers || [];
+  const rawAnswers = data?.answers || [];
+
+  const getSection = (unitId: string, activityId: string, unitTitle?: string) => {
+    return TeacherAnalyticsService.classifyLearningSection(unitId, activityId, unitTitle);
+  };
+
+  const attempts = rawAttempts.filter((att) => {
+    if (sectionFilter === 'all') return true;
+    return getSection(att.unitId, att.activityId, att.unitTitle) === sectionFilter;
+  });
+
+  const answers = rawAnswers.filter((ans) => {
+    if (mistakesOnly && ans.isCorrect) return false;
+    if (sectionFilter === 'all') return true;
+    return getSection(ans.unitId, ans.activityId) === sectionFilter;
+  });
 
   return (
     <AnimatePresence>
@@ -262,17 +282,42 @@ export const StudentDetailModal: React.FC<StudentDetailModalProps> = ({
                 {/* TAB 2: ALL ATTEMPTS */}
                 {activeTab === 'attempts' && (
                   <div className="space-y-3">
+                    {/* Section Filter Pills */}
+                    <div className="flex flex-wrap items-center justify-between gap-2 p-2.5 rounded-2xl bg-slate-50 border border-slate-200 text-xs">
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        <Filter className="w-3.5 h-3.5 text-slate-400" />
+                        <span className="font-bold text-slate-500 mr-1">Section:</span>
+                        {(['all', 'unit_review', 'general_english', 'mixed_practice'] as const).map((sec) => (
+                          <button
+                            key={sec}
+                            type="button"
+                            onClick={() => setSectionFilter(sec)}
+                            className={`px-2.5 py-1 rounded-xl text-xs font-bold transition-all ${
+                              sectionFilter === sec
+                                ? 'bg-indigo-600 text-white shadow-2xs'
+                                : 'text-slate-600 hover:text-slate-900 bg-white border border-slate-200'
+                            }`}
+                          >
+                            {sec === 'all' ? 'All Sections' : sec === 'unit_review' ? 'Unit Review' : sec === 'general_english' ? 'General English' : 'Mixed Practice'}
+                          </button>
+                        ))}
+                      </div>
+                      <span className="text-[11px] text-slate-400 font-bold">
+                        {attempts.length} attempt{attempts.length === 1 ? '' : 's'}
+                      </span>
+                    </div>
+
                     {attempts.length === 0 ? (
                       <div className="py-12 text-center text-slate-400 bg-slate-50 rounded-2xl border border-slate-200">
                         <Gamepad2 className="w-8 h-8 mx-auto mb-2 text-slate-300" />
-                        <p className="text-xs font-bold text-slate-700">No attempts found for this student.</p>
+                        <p className="text-xs font-bold text-slate-700">No attempts found for this filter.</p>
                       </div>
                     ) : (
                       <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-xs">
                         <table className="w-full text-left text-xs">
                           <thead>
                             <tr className="bg-slate-50 text-slate-500 border-b border-slate-200 text-[10px] uppercase font-bold">
-                              <th className="py-3 px-3.5">Activity</th>
+                              <th className="py-3 px-3.5">Activity &amp; Section</th>
                               <th className="py-3 px-2">Type</th>
                               <th className="py-3 px-2 text-center">Try #</th>
                               <th className="py-3 px-2 text-center">Score</th>
@@ -282,50 +327,64 @@ export const StudentDetailModal: React.FC<StudentDetailModalProps> = ({
                             </tr>
                           </thead>
                           <tbody className="divide-y divide-slate-100">
-                            {attempts.map((att: StudentAttemptRecord) => (
-                              <tr key={att.attemptId} className="hover:bg-slate-50/70">
-                                <td className="py-3 px-3.5">
-                                  <div className="font-bold text-slate-800">{att.activityTitle || att.activityId}</div>
-                                  <div className="text-[10px] text-slate-400">{att.unitTitle}</div>
-                                </td>
-                                <td className="py-3 px-2 font-mono text-[11px] text-slate-500">
-                                  {att.gameType}
-                                </td>
-                                <td className="py-3 px-2 text-center font-bold text-slate-700 font-mono">
-                                  #{att.attemptNumber}
-                                </td>
-                                <td className="py-3 px-2 text-center font-black font-mono">
-                                  <span
-                                    className={
-                                      att.percentage >= 80
-                                        ? 'text-emerald-600'
-                                        : att.percentage >= 50
-                                        ? 'text-amber-600'
-                                        : 'text-rose-600'
-                                    }
-                                  >
-                                    {att.percentage}%
-                                  </span>
-                                </td>
-                                <td className="py-3 px-2 text-center text-slate-500 text-[11px] font-mono">
-                                  {att.durationSeconds}s
-                                </td>
-                                <td className="py-3 px-2">
-                                  <span
-                                    className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase ${
-                                      att.status === 'completed'
-                                        ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-                                        : 'bg-rose-50 text-rose-700 border border-rose-200'
-                                    }`}
-                                  >
-                                    {att.status}
-                                  </span>
-                                </td>
-                                <td className="py-3 px-3.5 text-[10px] font-mono text-slate-400">
-                                  {att.versionLabel}
-                                </td>
-                              </tr>
-                            ))}
+                            {attempts.map((att: StudentAttemptRecord) => {
+                              const sec = getSection(att.unitId, att.activityId, att.unitTitle);
+                              return (
+                                <tr key={att.attemptId} className="hover:bg-slate-50/70">
+                                  <td className="py-3 px-3.5">
+                                    <div className="font-bold text-slate-800 flex items-center gap-1.5 flex-wrap">
+                                      <span>{att.activityTitle || att.activityId}</span>
+                                      <span className={`px-2 py-0.2 rounded-md text-[9px] font-black uppercase ${
+                                        sec === 'general_english'
+                                          ? 'bg-indigo-100 text-indigo-800 border border-indigo-200'
+                                          : sec === 'mixed_practice'
+                                          ? 'bg-amber-100 text-amber-800 border border-amber-200'
+                                          : 'bg-sky-100 text-sky-800 border border-sky-200'
+                                      }`}>
+                                        {sec.replace('_', ' ')}
+                                      </span>
+                                    </div>
+                                    <div className="text-[10px] text-slate-400">{att.unitTitle}</div>
+                                  </td>
+                                  <td className="py-3 px-2 font-mono text-[11px] text-slate-500">
+                                    {att.gameType}
+                                  </td>
+                                  <td className="py-3 px-2 text-center font-bold text-slate-700 font-mono">
+                                    #{att.attemptNumber}
+                                  </td>
+                                  <td className="py-3 px-2 text-center font-black font-mono">
+                                    <span
+                                      className={
+                                        att.percentage >= 80
+                                          ? 'text-emerald-600'
+                                          : att.percentage >= 50
+                                          ? 'text-amber-600'
+                                          : 'text-rose-600'
+                                      }
+                                    >
+                                      {att.percentage}%
+                                    </span>
+                                  </td>
+                                  <td className="py-3 px-2 text-center text-slate-500 text-[11px] font-mono">
+                                    {att.durationSeconds}s
+                                  </td>
+                                  <td className="py-3 px-2">
+                                    <span
+                                      className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase ${
+                                        att.status === 'completed'
+                                          ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                                          : 'bg-rose-50 text-rose-700 border border-rose-200'
+                                      }`}
+                                    >
+                                      {att.status}
+                                    </span>
+                                  </td>
+                                  <td className="py-3 px-3.5 text-[10px] font-mono text-slate-400">
+                                    {att.versionLabel}
+                                  </td>
+                                </tr>
+                              );
+                            })}
                           </tbody>
                         </table>
                       </div>
@@ -336,72 +395,119 @@ export const StudentDetailModal: React.FC<StudentDetailModalProps> = ({
                 {/* TAB 3: QUESTION ANSWERS */}
                 {activeTab === 'answers' && (
                   <div className="space-y-3">
+                    {/* Section Filter & Mistakes-Only Toggle */}
+                    <div className="flex flex-wrap items-center justify-between gap-2 p-2.5 rounded-2xl bg-slate-50 border border-slate-200 text-xs">
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        <Filter className="w-3.5 h-3.5 text-slate-400" />
+                        <span className="font-bold text-slate-500 mr-1">Section:</span>
+                        {(['all', 'unit_review', 'general_english', 'mixed_practice'] as const).map((sec) => (
+                          <button
+                            key={sec}
+                            type="button"
+                            onClick={() => setSectionFilter(sec)}
+                            className={`px-2.5 py-1 rounded-xl text-xs font-bold transition-all ${
+                              sectionFilter === sec
+                                ? 'bg-indigo-600 text-white shadow-2xs'
+                                : 'text-slate-600 hover:text-slate-900 bg-white border border-slate-200'
+                            }`}
+                          >
+                            {sec === 'all' ? 'All Sections' : sec === 'unit_review' ? 'Unit Review' : sec === 'general_english' ? 'General English' : 'Mixed Practice'}
+                          </button>
+                        ))}
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => setMistakesOnly(!mistakesOnly)}
+                        className={`px-3 py-1 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all ${
+                          mistakesOnly
+                            ? 'bg-rose-600 text-white shadow-2xs'
+                            : 'bg-white text-slate-700 border border-slate-200 hover:bg-rose-50'
+                        }`}
+                      >
+                        <XCircle className="w-3.5 h-3.5" />
+                        <span>Show Mistakes Only</span>
+                      </button>
+                    </div>
+
                     {answers.length === 0 ? (
                       <div className="py-12 text-center text-slate-400 bg-slate-50 rounded-2xl border border-slate-200">
                         <FileQuestion className="w-8 h-8 mx-auto mb-2 text-slate-300" />
-                        <p className="text-xs font-bold text-slate-700">No question-level answer records found.</p>
+                        <p className="text-xs font-bold text-slate-700">No question-level answer records found for this filter.</p>
                       </div>
                     ) : (
                       <div className="space-y-2">
-                        {answers.map((ans: StudentAnswerRecord, idx: number) => (
-                          <div
-                            key={ans.answerId || idx}
-                            className={`p-3.5 rounded-2xl border text-xs flex items-start justify-between gap-3 ${
-                              ans.isCorrect
-                                ? 'bg-emerald-50/50 border-emerald-200'
-                                : 'bg-rose-50/50 border-rose-200'
-                            }`}
-                          >
-                            <div className="space-y-1.5 flex-1">
-                              <div className="flex items-center gap-2">
-                                <span className="font-mono text-[10px] font-bold px-1.5 py-0.5 rounded bg-white border border-slate-200 text-slate-600">
-                                  Q#{ans.questionOrder}
-                                </span>
-                                <span className="font-bold text-slate-900">
-                                  {ans.questionPrompt}
-                                </span>
-                              </div>
-
-                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] pt-1">
-                                <div>
-                                  <span className="text-slate-500 font-medium">Student Response: </span>
-                                  <span
-                                    className={`font-bold ${
-                                      ans.isCorrect ? 'text-emerald-700' : 'text-rose-700'
-                                    }`}
-                                  >
-                                    {ans.studentResponse || '—'}
+                        {answers.map((ans: StudentAnswerRecord, idx: number) => {
+                          const ansSec = getSection(ans.unitId, ans.activityId);
+                          return (
+                            <div
+                              key={ans.answerId || idx}
+                              className={`p-3.5 rounded-2xl border text-xs flex items-start justify-between gap-3 ${
+                                ans.isCorrect
+                                  ? 'bg-emerald-50/50 border-emerald-200'
+                                  : 'bg-rose-50/50 border-rose-200'
+                              }`}
+                            >
+                              <div className="space-y-1.5 flex-1">
+                                <div className="flex items-center gap-2 flex-wrap">
+                                  <span className="font-mono text-[10px] font-bold px-1.5 py-0.5 rounded bg-white border border-slate-200 text-slate-600">
+                                    Q#{ans.questionOrder}
+                                  </span>
+                                  <span className={`px-2 py-0.2 rounded-md text-[9px] font-black uppercase ${
+                                    ansSec === 'general_english'
+                                      ? 'bg-indigo-100 text-indigo-800 border border-indigo-200'
+                                      : ansSec === 'mixed_practice'
+                                      ? 'bg-amber-100 text-amber-800 border border-amber-200'
+                                      : 'bg-sky-100 text-sky-800 border border-sky-200'
+                                  }`}>
+                                    {ansSec.replace('_', ' ')}
+                                  </span>
+                                  <span className="font-bold text-slate-900">
+                                    {ans.questionPrompt}
                                   </span>
                                 </div>
-                                {!ans.isCorrect && (
+
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] pt-1">
                                   <div>
-                                    <span className="text-slate-500 font-medium">Correct Answer: </span>
-                                    <span className="font-bold text-emerald-700">
-                                      {ans.correctAnswer}
+                                    <span className="text-slate-500 font-medium">Student Response: </span>
+                                    <span
+                                      className={`font-bold ${
+                                        ans.isCorrect ? 'text-emerald-700' : 'text-rose-700'
+                                      }`}
+                                    >
+                                      {ans.studentResponse || '—'}
                                     </span>
                                   </div>
+                                  {!ans.isCorrect && (
+                                    <div>
+                                      <span className="text-slate-500 font-medium">Correct Answer: </span>
+                                      <span className="font-bold text-emerald-700">
+                                        {ans.correctAnswer}
+                                      </span>
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+
+                              <div className="flex flex-col items-end gap-1 shrink-0">
+                                {ans.isCorrect ? (
+                                  <span className="flex items-center gap-1 text-emerald-700 font-bold text-[11px]">
+                                    <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                                    <span>Correct</span>
+                                  </span>
+                                ) : (
+                                  <span className="flex items-center gap-1 text-rose-700 font-bold text-[11px]">
+                                    <XCircle className="w-4 h-4 text-rose-600" />
+                                    <span>Incorrect</span>
+                                  </span>
                                 )}
+                                <span className="text-[10px] font-mono text-slate-400">
+                                  {ans.versionLabel} • {ans.timeSpentSeconds}s
+                                </span>
                               </div>
                             </div>
-
-                            <div className="flex flex-col items-end gap-1 shrink-0">
-                              {ans.isCorrect ? (
-                                <span className="flex items-center gap-1 text-emerald-700 font-bold text-[11px]">
-                                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                                  <span>Correct</span>
-                                </span>
-                              ) : (
-                                <span className="flex items-center gap-1 text-rose-700 font-bold text-[11px]">
-                                  <XCircle className="w-4 h-4 text-rose-600" />
-                                  <span>Incorrect</span>
-                                </span>
-                              )}
-                              <span className="text-[10px] font-mono text-slate-400">
-                                {ans.versionLabel} • {ans.timeSpentSeconds}s
-                              </span>
-                            </div>
-                          </div>
-                        ))}
+                          );
+                        })}
                       </div>
                     )}
                   </div>

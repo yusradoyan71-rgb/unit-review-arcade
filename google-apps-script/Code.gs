@@ -40,13 +40,13 @@
  *    100% backward compatible with Phase 1 & 2 student accounts, sessions,
  *    game attempts, and telemetry.
  * 
- * Version: 3.0.0 (Phase 3A - Teacher Auth, Reporting & Trusted Curriculum)
+ * Version: 3.3.0 (Phases 1-5: Question Bank, General English & Teacher Section Analytics)
  */
 
 // Configuration
 var CONFIG = {
   APP_NAME: "Unit Review Arcade API",
-  VERSION: "3.2.2",
+  VERSION: "3.3.0",
   SESSION_DURATION_HOURS: 12,
   TEACHER_SESSION_DURATION_HOURS: 2,
   MAX_FAILED_ATTEMPTS: 5,
@@ -66,7 +66,8 @@ var CONFIG = {
     ACHIEVEMENTS: "Achievements",
     MONSTERS: "Monsters",
     COIN_TRANSACTIONS: "CoinTransactions",
-    STAGED_CREDENTIALS: "_StagedCredentials"
+    STAGED_CREDENTIALS: "_StagedCredentials",
+    QUESTION_BANK: "QuestionBank"
   },
   STAGED_CREDENTIALS_CONFIG: {
     SHEET_NAME: "_StagedCredentials",
@@ -201,6 +202,28 @@ var CONFIG = {
     "content_version",
     "is_published",
     "published_at"
+  ],
+  QUESTION_BANK_HEADERS: [
+    "question_id",
+    "section",
+    "grade_id",
+    "unit_id",
+    "unit_title",
+    "topic",
+    "skill",
+    "difficulty",
+    "question_type",
+    "assigned_game_types",
+    "prompt",
+    "payload_json",
+    "correct_answer_preview",
+    "explanation",
+    "points",
+    "tags",
+    "status",
+    "content_version",
+    "created_at",
+    "updated_at"
   ]
 };
 
@@ -423,6 +446,26 @@ function doPost(e) {
 
       case "teacher_archive_demo_accounts":
         return handleTeacherArchiveDemoAccounts(ss, payload);
+
+      // Teacher Question Bank Management (Phase 1)
+      case "teacher_get_question_bank":
+        return handleTeacherGetQuestionBank(ss, payload);
+
+      case "teacher_save_question":
+        return handleTeacherSaveQuestion(ss, payload);
+
+      case "teacher_bulk_import_questions":
+        return handleTeacherBulkImportQuestions(ss, payload);
+
+      case "teacher_archive_question":
+        return handleTeacherArchiveQuestion(ss, payload);
+
+      case "teacher_rollback_question_import":
+        return handleTeacherRollbackQuestionImport(ss, payload);
+
+      // Teacher Section & Mixed Practice Analytics (Phase 5)
+      case "teacher_get_section_analytics":
+        return handleTeacherGetSectionAnalytics(ss, payload);
 
       case "ping":
         return createJsonResponse({ success: true, timestamp: new Date().toISOString(), version: CONFIG.VERSION });
@@ -1224,9 +1267,45 @@ function seedDefaultCurriculum(curriculumSheet) {
 // ============================================================================
 
 /**
+ * Classifies an attempt into its respective Learning Section (Phase 5).
+ * Deterministic and backward-compatible with all existing records.
+ */
+function getAttemptLearningSection(unitId, activityId, unitTitle) {
+  var uId = String(unitId || "").toLowerCase();
+  var aId = String(activityId || "").toLowerCase();
+  var title = String(unitTitle || "").toLowerCase();
+
+  if (uId.indexOf("unit_mixed_") === 0 || aId.indexOf("act_mixed_") === 0 || title.indexOf("mixed practice") !== -1 || uId.indexOf("mixed_") !== -1) {
+    return "mixed_practice";
+  }
+  if (
+    uId.indexOf("unit_g7-") === 0 || uId.indexOf("unit_g8-") === 0 || uId.indexOf("unit_ge_") === 0 ||
+    aId.indexOf("act_g7-") === 0 || aId.indexOf("act_g8-") === 0 || aId.indexOf("act_ge_") === 0 ||
+    uId.indexOf("ge_") === 0 || title.indexOf("general english") !== -1
+  ) {
+    return "general_english";
+  }
+  return "unit_review";
+}
+
+/**
+ * Classifies an attempt or answer into its pedagogical Skill pillar (Phase 5).
+ */
+function getAttemptSkill(unitId, activityId, unitTitle) {
+  var str = (String(unitId || "") + " " + String(activityId || "") + " " + String(unitTitle || "")).toLowerCase();
+  if (str.indexOf("grammar") !== -1 || str.indexOf("-gram-") !== -1 || str.indexOf("_gram_") !== -1) return "grammar";
+  if (str.indexOf("vocab") !== -1 || str.indexOf("-vocab-") !== -1 || str.indexOf("_vocab_") !== -1) return "vocabulary";
+  if (str.indexOf("reading") !== -1 || str.indexOf("-read-") !== -1 || str.indexOf("_read_") !== -1) return "reading";
+  if (str.indexOf("listen") !== -1 || str.indexOf("dictat") !== -1 || str.indexOf("-list-") !== -1 || str.indexOf("_list_") !== -1) return "listening";
+  var sec = getAttemptLearningSection(unitId, activityId, unitTitle);
+  if (sec === "mixed_practice") return "mixed";
+  return "grammar";
+}
+
+/**
  * ACTION: teacher_get_overview
  * Aggregated KPIs, class breakdown (7A, 7B, 8A, 8B), unit and game engine performance,
- * and recent student activity feed.
+ * section breakdown (Unit Review, General English, Mixed Practice), and recent student activity feed.
  */
 function handleTeacherGetOverview(ss, payload) {
   var auth = validateTeacherSession(ss, payload.teacherToken);
@@ -1239,6 +1318,8 @@ function handleTeacherGetOverview(ss, payload) {
   var filterGrade = filters.gradeId && filters.gradeId !== "all" ? String(filters.gradeId).trim() : null;
   var filterUnit = filters.unitId && filters.unitId !== "all" ? String(filters.unitId).trim() : null;
   var filterGame = filters.gameType && filters.gameType !== "all" ? String(filters.gameType).trim() : null;
+  var filterSection = filters.learningSection && filters.learningSection !== "all" ? String(filters.learningSection).trim() : null;
+  var filterSkill = filters.skill && filters.skill !== "all" ? String(filters.skill).trim() : null;
   var startDate = filters.startDate ? new Date(filters.startDate) : null;
   var endDate = filters.endDate ? new Date(filters.endDate) : null;
 
@@ -1310,6 +1391,12 @@ function handleTeacherGetOverview(ss, payload) {
   var sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
   var activeStudentsLast7DaysSet = {};
 
+  var sectionStatsMap = {
+    unitReview: { totalAttempts: 0, completedAttempts: 0, scoreSum: 0, durationSum: 0, students: {} },
+    generalEnglish: { totalAttempts: 0, completedAttempts: 0, scoreSum: 0, durationSum: 0, students: {} },
+    mixedPractice: { totalAttempts: 0, completedAttempts: 0, scoreSum: 0, durationSum: 0, students: {} }
+  };
+
   for (var j = 1; j < attemptData.length; j++) {
     var aRow = attemptData[j];
     var aStudentNum = String(aRow[attemptColMap["student_number"] - 1] || "").trim();
@@ -1317,6 +1404,7 @@ function handleTeacherGetOverview(ss, payload) {
     if (aClass === "DEMO_ARCHIVE" || /_demo$/.test(aStudentNum)) continue; // Exclude demo attempts from classroom KPIs
     var aUnitId = String(aRow[attemptColMap["unit_id"] - 1] || "").trim();
     var aUnitTitle = String(aRow[attemptColMap["unit_title"] - 1] || "").trim();
+    var aActId = String(aRow[attemptColMap["activity_id"] - 1] || "").trim();
     var aGameType = String(aRow[attemptColMap["game_type"] - 1] || "").trim();
     var aStatus = String(aRow[attemptColMap["status"] - 1] || "").trim();
     var aScore = Number(aRow[attemptColMap["score"] - 1] || 0);
@@ -1324,6 +1412,19 @@ function handleTeacherGetOverview(ss, payload) {
     var aDuration = Number(aRow[attemptColMap["duration_seconds"] - 1] || 0);
     var aStartedAt = aRow[attemptColMap["started_at"] - 1];
     var startDateObj = aStartedAt ? new Date(aStartedAt) : null;
+
+    var aSection = getAttemptLearningSection(aUnitId, aActId, aUnitTitle);
+    var aSkill = getAttemptSkill(aUnitId, aActId, aUnitTitle);
+
+    // Section telemetry tracking
+    var secKey = aSection === "general_english" ? "generalEnglish" : aSection === "mixed_practice" ? "mixedPractice" : "unitReview";
+    sectionStatsMap[secKey].totalAttempts++;
+    sectionStatsMap[secKey].durationSum += aDuration;
+    if (aStudentNum) sectionStatsMap[secKey].students[aStudentNum] = true;
+    if (aStatus === "completed") {
+      sectionStatsMap[secKey].completedAttempts++;
+      sectionStatsMap[secKey].scoreSum += aPercentage;
+    }
 
     // Check class/grade filter
     if (filterClass && aClass !== filterClass) continue;
@@ -1333,6 +1434,8 @@ function handleTeacherGetOverview(ss, payload) {
     }
     if (filterUnit && aUnitId !== filterUnit) continue;
     if (filterGame && aGameType !== filterGame) continue;
+    if (filterSection && aSection !== filterSection) continue;
+    if (filterSkill && aSkill !== filterSkill) continue;
     if (startDate && startDateObj && startDateObj < startDate) continue;
     if (endDate && startDateObj && startDateObj > endDate) continue;
 
@@ -1472,7 +1575,33 @@ function handleTeacherGetOverview(ss, payload) {
     classStats: classStats,
     unitStats: unitStats,
     gameStats: gameStats,
-    recentActivity: recentActivity
+    recentActivity: recentActivity,
+    sectionBreakdown: {
+      unitReview: {
+        totalAttempts: sectionStatsMap.unitReview.totalAttempts,
+        completedAttempts: sectionStatsMap.unitReview.completedAttempts,
+        averageScore: sectionStatsMap.unitReview.completedAttempts > 0 ? Math.round(sectionStatsMap.unitReview.scoreSum / sectionStatsMap.unitReview.completedAttempts) : 0,
+        uniqueStudentsCount: Object.keys(sectionStatsMap.unitReview.students).length,
+        totalXpEarned: 0,
+        totalTimeSpentSeconds: sectionStatsMap.unitReview.durationSum
+      },
+      generalEnglish: {
+        totalAttempts: sectionStatsMap.generalEnglish.totalAttempts,
+        completedAttempts: sectionStatsMap.generalEnglish.completedAttempts,
+        averageScore: sectionStatsMap.generalEnglish.completedAttempts > 0 ? Math.round(sectionStatsMap.generalEnglish.scoreSum / sectionStatsMap.generalEnglish.completedAttempts) : 0,
+        uniqueStudentsCount: Object.keys(sectionStatsMap.generalEnglish.students).length,
+        totalXpEarned: 0,
+        totalTimeSpentSeconds: sectionStatsMap.generalEnglish.durationSum
+      },
+      mixedPractice: {
+        totalAttempts: sectionStatsMap.mixedPractice.totalAttempts,
+        completedAttempts: sectionStatsMap.mixedPractice.completedAttempts,
+        averageScore: sectionStatsMap.mixedPractice.completedAttempts > 0 ? Math.round(sectionStatsMap.mixedPractice.scoreSum / sectionStatsMap.mixedPractice.completedAttempts) : 0,
+        uniqueStudentsCount: Object.keys(sectionStatsMap.mixedPractice.students).length,
+        totalXpEarned: 0,
+        totalTimeSpentSeconds: sectionStatsMap.mixedPractice.durationSum
+      }
+    }
   });
 }
 
@@ -1511,6 +1640,8 @@ function handleTeacherGetRoster(ss, payload) {
     if (!aNum) continue;
     if (!studentAttemptsMap[aNum]) studentAttemptsMap[aNum] = [];
     studentAttemptsMap[aNum].push({
+      unitId: String(aRow[attemptColMap["unit_id"] - 1] || "").trim(),
+      unitTitle: String(aRow[attemptColMap["unit_title"] - 1] || "").trim(),
       activityId: String(aRow[attemptColMap["activity_id"] - 1] || "").trim(),
       status: String(aRow[attemptColMap["status"] - 1] || "").trim(),
       percentage: Number(aRow[attemptColMap["percentage"] - 1] || 0),
@@ -1552,9 +1683,34 @@ function handleTeacherGetRoster(ss, payload) {
     var bestScore = 0;
     var totalTimeSpent = 0;
 
+    var urAttempts = 0, urCompleted = 0, urScoreSum = 0;
+    var geAttempts = 0, geCompleted = 0, geScoreSum = 0;
+    var mpAttempts = 0, mpCompleted = 0, mpScoreSum = 0;
+
     for (var a = 0; a < attempts.length; a++) {
       var att = attempts[a];
       totalTimeSpent += att.durationSeconds;
+      var sec = getAttemptLearningSection(att.unitId, att.activityId, att.unitTitle);
+
+      if (sec === "general_english") {
+        geAttempts++;
+        if (att.status === "completed") {
+          geCompleted++;
+          geScoreSum += att.percentage;
+        }
+      } else if (sec === "mixed_practice") {
+        mpAttempts++;
+        if (att.status === "completed") {
+          mpCompleted++;
+          mpScoreSum += att.percentage;
+        }
+      } else {
+        urAttempts++;
+        if (att.status === "completed") {
+          urCompleted++;
+          urScoreSum += att.percentage;
+        }
+      }
 
       if (att.status === "completed") {
         completedCount++;
@@ -1604,7 +1760,16 @@ function handleTeacherGetRoster(ss, payload) {
       averageCompletedScore: averageCompletedScore,
       bestScore: bestScore,
       totalTimeSpentSeconds: totalTimeSpent,
-      status: statusBadge
+      status: statusBadge,
+      unitReviewStarted: urAttempts > 0,
+      unitReviewCompletedCount: urCompleted,
+      unitReviewAverageScore: urCompleted > 0 ? Math.round(urScoreSum / urCompleted) : 0,
+      generalEnglishStarted: geAttempts > 0,
+      generalEnglishCompletedCount: geCompleted,
+      generalEnglishAverageScore: geCompleted > 0 ? Math.round(geScoreSum / geCompleted) : 0,
+      mixedPracticeStarted: mpAttempts > 0,
+      mixedPracticeCompletedCount: mpCompleted,
+      mixedPracticeAverageScore: mpCompleted > 0 ? Math.round(mpScoreSum / mpCompleted) : 0
     });
   }
 
@@ -1713,7 +1878,9 @@ function handleTeacherGetStudentDetail(ss, payload) {
       durationSeconds: Number(aRow[attemptColMap["duration_seconds"] - 1] || 0),
       status: String(aRow[attemptColMap["status"] - 1] || ""),
       contentVersion: contentVersion,
-      versionLabel: versionLabel
+      versionLabel: versionLabel,
+      learningSection: getAttemptLearningSection(String(aRow[attemptColMap["unit_id"] - 1] || ""), actId, String(aRow[attemptColMap["unit_title"] - 1] || "")),
+      skill: getAttemptSkill(String(aRow[attemptColMap["unit_id"] - 1] || ""), actId, String(aRow[attemptColMap["unit_title"] - 1] || ""))
     };
 
     attemptsList.push(attItem);
@@ -1777,7 +1944,9 @@ function handleTeacherGetStudentDetail(ss, payload) {
       timeSpentSeconds: Number(ansRow[answerColMap["time_spent_seconds"] - 1] || 0),
       timestamp: ansRow[answerColMap["timestamp"] - 1] || null,
       questionVersion: questionVersion,
-      versionLabel: qVersionLabel
+      versionLabel: qVersionLabel,
+      learningSection: getAttemptLearningSection(String(ansRow[answerColMap["unit_id"] - 1] || ""), String(ansRow[answerColMap["activity_id"] - 1] || ""), ""),
+      skill: getAttemptSkill(String(ansRow[answerColMap["unit_id"] - 1] || ""), String(ansRow[answerColMap["activity_id"] - 1] || ""), "")
     });
   }
 
@@ -1952,6 +2121,374 @@ function handleTeacherGetQuestionAnalytics(ss, payload) {
   return createJsonResponse({
     success: true,
     questionAnalytics: questionAnalytics
+  });
+}
+
+/**
+ * ACTION: teacher_get_section_analytics (Phase 5)
+ * Deep telemetry across Unit Review, General English, and Mixed Practice.
+ * Provides separate section breakdown, 4 skill pillars, topic-level mastery diagnostics,
+ * and individual student participation matrices with non-started student flags.
+ */
+function handleTeacherGetSectionAnalytics(ss, payload) {
+  var auth = validateTeacherSession(ss, payload.teacherToken);
+  if (!auth.valid) {
+    return createJsonResponse({ success: false, error: auth.error, code: auth.code });
+  }
+
+  var filters = payload.filters || {};
+  var filterClass = filters.classId && filters.classId !== "all" ? String(filters.classId).trim().toUpperCase() : null;
+  var filterGrade = filters.gradeId && filters.gradeId !== "all" ? String(filters.gradeId).trim() : null;
+  var filterSection = filters.learningSection && filters.learningSection !== "all" ? String(filters.learningSection).trim() : null;
+  var filterSkill = filters.skill && filters.skill !== "all" ? String(filters.skill).trim() : null;
+
+  var studentsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.STUDENTS);
+  var attemptsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.ATTEMPTS);
+  var answersSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.ANSWERS);
+
+  var studentData = studentsSheet ? studentsSheet.getDataRange().getValues() : [];
+  var attemptData = attemptsSheet ? attemptsSheet.getDataRange().getValues() : [];
+  var answerData = answersSheet ? answersSheet.getDataRange().getValues() : [];
+
+  var studentColMap = studentsSheet ? getSheetColumnMap(studentsSheet, CONFIG.STUDENT_HEADERS) : {};
+  var attemptColMap = attemptsSheet ? getSheetColumnMap(attemptsSheet, CONFIG.ATTEMPT_HEADERS) : {};
+  var answerColMap = answersSheet ? getSheetColumnMap(answersSheet, CONFIG.ANSWER_HEADERS) : {};
+
+  // Build student cohort lookup
+  var studentsByNum = {};
+  var studentRoster = [];
+
+  for (var i = 1; i < studentData.length; i++) {
+    var sRow = studentData[i];
+    var sNum = String(sRow[studentColMap["student_number"] - 1] || "").trim();
+    if (!sNum) continue;
+
+    var sClass = String(sRow[studentColMap["class"] - 1] || "").trim().toUpperCase();
+    if (sClass === "DEMO_ARCHIVE" || /_demo$/.test(sNum)) continue;
+    var sGrade = String(sRow[studentColMap["grade"] - 1] || "").trim();
+    var normGrade = (sGrade === "7" || sGrade === 7 || sGrade === "grade-7") ? "grade-7" : "grade-8";
+    var fullName = String(sRow[studentColMap["full_name"] - 1] || "");
+    var lastLoginAt = sRow[studentColMap["last_login_at"] - 1] || null;
+
+    if (filterClass && sClass !== filterClass) continue;
+    if (filterGrade && normGrade !== filterGrade) continue;
+
+    var studentEntry = {
+      studentNumber: sNum,
+      fullName: fullName,
+      class: sClass,
+      grade: normGrade,
+      lastLoginAt: lastLoginAt,
+      lastActivityDate: null,
+      totalXp: 0,
+      unitReviewAttempts: 0,
+      unitReviewCompleted: 0,
+      unitReviewAccuracy: 0,
+      unitReviewStarted: false,
+      generalEnglishAttempts: 0,
+      generalEnglishCompleted: 0,
+      generalEnglishAccuracy: 0,
+      generalEnglishStarted: false,
+      mixedPracticeAttempts: 0,
+      mixedPracticeCompleted: 0,
+      mixedPracticeAccuracy: 0,
+      mixedPracticeStarted: false,
+      overallAccuracy: 0,
+      totalAttempts: 0,
+      totalCompleted: 0,
+      _urScores: [],
+      _geScores: [],
+      _mpScores: []
+    };
+
+    studentsByNum[sNum] = studentEntry;
+    studentRoster.push(studentEntry);
+  }
+
+  // Section Breakdown Tracking
+  var sectionBreakdown = {
+    unitReview: { totalAttempts: 0, completedAttempts: 0, averageScore: 0, uniqueStudentsCount: 0, totalXpEarned: 0, totalTimeSpentSeconds: 0, _students: {}, _scores: [] },
+    generalEnglish: { totalAttempts: 0, completedAttempts: 0, averageScore: 0, uniqueStudentsCount: 0, totalXpEarned: 0, totalTimeSpentSeconds: 0, _students: {}, _scores: [] },
+    mixedPractice: { totalAttempts: 0, completedAttempts: 0, averageScore: 0, uniqueStudentsCount: 0, totalXpEarned: 0, totalTimeSpentSeconds: 0, _students: {}, _scores: [] }
+  };
+
+  // Skill Mastery Telemetry Tracking
+  var skillAccumulators = {
+    grammar: { totalAttempts: 0, completedAttempts: 0, scoreSum: 0, students: {}, masteredTopics: {}, needsPracticeTopics: {} },
+    vocabulary: { totalAttempts: 0, completedAttempts: 0, scoreSum: 0, students: {}, masteredTopics: {}, needsPracticeTopics: {} },
+    reading: { totalAttempts: 0, completedAttempts: 0, scoreSum: 0, students: {}, masteredTopics: {}, needsPracticeTopics: {} },
+    listening: { totalAttempts: 0, completedAttempts: 0, scoreSum: 0, students: {}, masteredTopics: {}, needsPracticeTopics: {} }
+  };
+
+  var topicStats = {};
+  var attemptsList = [];
+
+  for (var j = 1; j < attemptData.length; j++) {
+    var aRow = attemptData[j];
+    var aNum = String(aRow[attemptColMap["student_number"] - 1] || "").trim();
+    if (!studentsByNum[aNum]) continue;
+
+    var aUnitId = String(aRow[attemptColMap["unit_id"] - 1] || "").trim();
+    var aActId = String(aRow[attemptColMap["activity_id"] - 1] || "").trim();
+    var aUnitTitle = String(aRow[attemptColMap["unit_title"] - 1] || "").trim();
+    var aGameType = String(aRow[attemptColMap["game_type"] - 1] || "").trim();
+    var aStatus = String(aRow[attemptColMap["status"] - 1] || "").trim();
+    var aPercentage = Number(aRow[attemptColMap["percentage"] - 1] || 0);
+    var aDuration = Number(aRow[attemptColMap["duration_seconds"] - 1] || 0);
+    var aStartedAt = aRow[attemptColMap["started_at"] - 1] || null;
+
+    var sec = getAttemptLearningSection(aUnitId, aActId, aUnitTitle);
+    var sk = getAttemptSkill(aUnitId, aActId, aUnitTitle);
+
+    var student = studentsByNum[aNum];
+    student.totalAttempts++;
+    if (aStartedAt) {
+      if (!student.lastActivityDate || new Date(aStartedAt) > new Date(student.lastActivityDate)) {
+        student.lastActivityDate = aStartedAt;
+      }
+    }
+
+    if (sec === "general_english") {
+      student.generalEnglishStarted = true;
+      student.generalEnglishAttempts++;
+      if (aStatus === "completed") {
+        student.generalEnglishCompleted++;
+        student.totalCompleted++;
+        student._geScores.push(aPercentage);
+      }
+    } else if (sec === "mixed_practice") {
+      student.mixedPracticeStarted = true;
+      student.mixedPracticeAttempts++;
+      if (aStatus === "completed") {
+        student.mixedPracticeCompleted++;
+        student.totalCompleted++;
+        student._mpScores.push(aPercentage);
+      }
+    } else {
+      student.unitReviewStarted = true;
+      student.unitReviewAttempts++;
+      if (aStatus === "completed") {
+        student.unitReviewCompleted++;
+        student.totalCompleted++;
+        student._urScores.push(aPercentage);
+      }
+    }
+
+    var sbKey = sec === "general_english" ? "generalEnglish" : sec === "mixed_practice" ? "mixedPractice" : "unitReview";
+    sectionBreakdown[sbKey].totalAttempts++;
+    sectionBreakdown[sbKey].totalTimeSpentSeconds += aDuration;
+    sectionBreakdown[sbKey]._students[aNum] = true;
+    if (aStatus === "completed") {
+      sectionBreakdown[sbKey].completedAttempts++;
+      sectionBreakdown[sbKey]._scores.push(aPercentage);
+    }
+
+    if (skillAccumulators[sk]) {
+      skillAccumulators[sk].totalAttempts++;
+      skillAccumulators[sk].students[aNum] = true;
+      if (aStatus === "completed") {
+        skillAccumulators[sk].completedAttempts++;
+        skillAccumulators[sk].scoreSum += aPercentage;
+      }
+    }
+
+    var topicKey = aUnitId || aActId;
+    if (topicKey) {
+      if (!topicStats[topicKey]) {
+        topicStats[topicKey] = {
+          topicId: topicKey,
+          topicTitle: aUnitTitle || topicKey,
+          skill: sk === "mixed" ? "grammar" : sk,
+          gradeId: studentsByNum[aNum].grade,
+          cefrLevel: "A2",
+          questionCount: Number(aRow[attemptColMap["total_questions"] - 1] || 10),
+          totalAttempts: 0,
+          completedAttempts: 0,
+          scores: [],
+          students: {},
+          mistakesCount: 0,
+          mistakePrompts: {}
+        };
+      }
+      topicStats[topicKey].totalAttempts++;
+      topicStats[topicKey].students[aNum] = true;
+      if (aStatus === "completed") {
+        topicStats[topicKey].completedAttempts++;
+        topicStats[topicKey].scores.push(aPercentage);
+      }
+    }
+
+    // Apply filters to returned attempts list
+    if (filterSection && sec !== filterSection) continue;
+    if (filterSkill && sk !== filterSkill) continue;
+
+    attemptsList.push({
+      attemptId: String(aRow[attemptColMap["attempt_id"] - 1] || ""),
+      unitId: aUnitId,
+      unitTitle: aUnitTitle,
+      activityId: aActId,
+      activityTitle: String(aRow[attemptColMap["activity_title"] - 1] || ""),
+      gameType: aGameType,
+      learningSection: sec,
+      skill: sk,
+      score: Number(aRow[attemptColMap["score"] - 1] || 0),
+      percentage: aPercentage,
+      status: aStatus,
+      durationSeconds: aDuration,
+      startedAt: aStartedAt
+    });
+  }
+
+  // Question Mistakes Aggregation
+  var answersList = [];
+  for (var k = 1; k < answerData.length; k++) {
+    var ansRow = answerData[k];
+    var ansStudentNum = String(ansRow[answerColMap["student_number"] - 1] || "").trim();
+    if (!studentsByNum[ansStudentNum]) continue;
+
+    var ansUnitId = String(ansRow[answerColMap["unit_id"] - 1] || "").trim();
+    var ansActId = String(ansRow[answerColMap["activity_id"] - 1] || "").trim();
+    var ansSec = getAttemptLearningSection(ansUnitId, ansActId, "");
+    var ansSk = getAttemptSkill(ansUnitId, ansActId, "");
+    var isCorrect = Boolean(ansRow[answerColMap["is_correct"] - 1]);
+    var qPrompt = String(ansRow[answerColMap["question_prompt"] - 1] || "").trim();
+
+    if (!isCorrect && qPrompt && topicStats[ansUnitId || ansActId]) {
+      topicStats[ansUnitId || ansActId].mistakesCount++;
+      topicStats[ansUnitId || ansActId].mistakePrompts[qPrompt] = (topicStats[ansUnitId || ansActId].mistakePrompts[qPrompt] || 0) + 1;
+    }
+
+    if (filterSection && ansSec !== filterSection) continue;
+    if (filterSkill && ansSk !== filterSkill) continue;
+
+    answersList.push({
+      answerId: String(ansRow[answerColMap["answer_id"] - 1] || ""),
+      attemptId: String(ansRow[answerColMap["attempt_id"] - 1] || ""),
+      unitId: ansUnitId,
+      activityId: ansActId,
+      questionId: String(ansRow[answerColMap["question_id"] - 1] || ""),
+      questionPrompt: qPrompt,
+      studentResponse: String(ansRow[answerColMap["student_response"] - 1] || ""),
+      correctAnswer: String(ansRow[answerColMap["correct_answer"] - 1] || ""),
+      isCorrect: isCorrect,
+      learningSection: ansSec,
+      skill: ansSk
+    });
+  }
+
+  // Finalize student averages
+  studentRoster.forEach(function(s) {
+    if (s._urScores.length > 0) {
+      var urSum = s._urScores.reduce(function(acc, val) { return acc + val; }, 0);
+      s.unitReviewAccuracy = Math.round(urSum / s._urScores.length);
+    }
+    if (s._geScores.length > 0) {
+      var geSum = s._geScores.reduce(function(acc, val) { return acc + val; }, 0);
+      s.generalEnglishAccuracy = Math.round(geSum / s._geScores.length);
+    }
+    if (s._mpScores.length > 0) {
+      var mpSum = s._mpScores.reduce(function(acc, val) { return acc + val; }, 0);
+      s.mixedPracticeAccuracy = Math.round(mpSum / s._mpScores.length);
+    }
+    var allScores = s._urScores.concat(s._geScores).concat(s._mpScores);
+    if (allScores.length > 0) {
+      var totSum = allScores.reduce(function(acc, val) { return acc + val; }, 0);
+      s.overallAccuracy = Math.round(totSum / allScores.length);
+    }
+    delete s._urScores;
+    delete s._geScores;
+    delete s._mpScores;
+  });
+
+  // Finalize section breakdown
+  ["unitReview", "generalEnglish", "mixedPractice"].forEach(function(key) {
+    var sb = sectionBreakdown[key];
+    sb.uniqueStudentsCount = Object.keys(sb._students).length;
+    if (sb._scores.length > 0) {
+      var sum = sb._scores.reduce(function(acc, val) { return acc + val; }, 0);
+      sb.averageScore = Math.round(sum / sb._scores.length);
+    }
+    delete sb._students;
+    delete sb._scores;
+  });
+
+  // Finalize topics list & mastery flags
+  var topics = Object.keys(topicStats).map(function(tId) {
+    var t = topicStats[tId];
+    var avg = t.scores.length > 0 ? Math.round(t.scores.reduce(function(a, b) { return a + b; }, 0) / t.scores.length) : 0;
+    var status = "not_started";
+    if (t.totalAttempts > 0) {
+      if (avg >= 85) {
+        status = "mastered";
+        if (skillAccumulators[t.skill]) skillAccumulators[t.skill].masteredTopics[tId] = true;
+      } else if (avg >= 70) {
+        status = "proficient";
+      } else if (avg >= 50) {
+        status = "needs_practice";
+        if (skillAccumulators[t.skill]) skillAccumulators[t.skill].needsPracticeTopics[tId] = true;
+      } else {
+        status = "struggling";
+        if (skillAccumulators[t.skill]) skillAccumulators[t.skill].needsPracticeTopics[tId] = true;
+      }
+    }
+    var weaknessScore = Math.min(100, Math.round((100 - avg) * 0.8 + Math.min(20, t.mistakesCount * 2)));
+
+    var promptsArr = Object.keys(t.mistakePrompts).sort(function(a, b) {
+      return t.mistakePrompts[b] - t.mistakePrompts[a];
+    }).slice(0, 3);
+
+    return {
+      topicId: t.topicId,
+      topicTitle: t.topicTitle,
+      skill: t.skill,
+      gradeId: t.gradeId,
+      cefrLevel: t.cefrLevel,
+      questionCount: t.questionCount,
+      totalAttempts: t.totalAttempts,
+      completedAttempts: t.completedAttempts,
+      uniqueStudentsCount: Object.keys(t.students).length,
+      averageScore: avg,
+      masteryStatus: status,
+      weaknessScore: weaknessScore,
+      commonMistakesCount: t.mistakesCount,
+      commonMistakePrompts: promptsArr
+    };
+  });
+
+  // Finalize skill pillars
+  var skillMastery = [
+    { skill: "grammar", label: "Grammar & Structures" },
+    { skill: "vocabulary", label: "Vocabulary & Idioms" },
+    { skill: "reading", label: "Reading Comprehension" },
+    { skill: "listening", label: "Listening & Dictation" }
+  ].map(function(item) {
+    var acc = skillAccumulators[item.skill];
+    var avg = acc.completedAttempts > 0 ? Math.round(acc.scoreSum / acc.completedAttempts) : 0;
+    return {
+      skill: item.skill,
+      label: item.label,
+      totalAttempts: acc.totalAttempts,
+      completedAttempts: acc.completedAttempts,
+      averageScore: avg,
+      uniqueStudentsCount: Object.keys(acc.students).length,
+      masteredTopicsCount: Object.keys(acc.masteredTopics).length,
+      needsPracticeTopicsCount: Object.keys(acc.needsPracticeTopics).length
+    };
+  });
+
+  // Sort topics descending by weaknessScore (highest urgency first)
+  topics.sort(function(a, b) {
+    return b.weaknessScore - a.weaknessScore;
+  });
+
+  return createJsonResponse({
+    success: true,
+    sectionBreakdown: sectionBreakdown,
+    skillMastery: skillMastery,
+    topics: topics,
+    studentParticipation: studentRoster,
+    attempts: attemptsList.slice(0, 100),
+    answers: answersList.slice(0, 200)
   });
 }
 
@@ -3575,6 +4112,577 @@ function handleTeacherArchiveDemoAccounts(ss, payload) {
 }
 
 // ============================================================================
+// TEACHER QUESTION BANK MANAGEMENT (PHASE 1)
+// ============================================================================
+
+/**
+ * Standalone, non-destructive setup for QuestionBank sheet.
+ * Can be run independently without affecting other sheets or data.
+ */
+function setupQuestionBankSheet(ss) {
+  ss = ss || getArcadeSpreadsheet();
+  var qbSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.QUESTION_BANK);
+  setupSheetHeaders(qbSheet, CONFIG.QUESTION_BANK_HEADERS, "#0f766e", "#ccfbf1");
+  return qbSheet;
+}
+
+/**
+ * ACTION: teacher_get_question_bank
+ * Retrieves questions with optional filtering, topic matching, and diagnostic status.
+ */
+function handleTeacherGetQuestionBank(ss, payload) {
+  var auth = validateTeacherSession(ss, payload.teacherToken);
+  if (!auth.valid) {
+    return createJsonResponse({ success: false, error: auth.error, code: auth.code });
+  }
+
+  var qbSheet = setupQuestionBankSheet(ss);
+  var data = qbSheet.getDataRange().getValues();
+  if (data.length <= 1) {
+    return createJsonResponse({ success: true, count: 0, total: 0, questions: [] });
+  }
+
+  var colMap = getSheetColumnMap(qbSheet, CONFIG.QUESTION_BANK_HEADERS);
+  var filterSection = payload.section && payload.section !== "all" ? String(payload.section).trim() : null;
+  var filterGrade = payload.gradeId && payload.gradeId !== "all" ? String(payload.gradeId).trim() : null;
+  var filterUnit = payload.unitId ? String(payload.unitId).trim() : null;
+  var filterSkill = payload.skill && payload.skill !== "all" ? String(payload.skill).trim() : null;
+  var filterTopic = payload.topic ? String(payload.topic).trim().toLowerCase() : null;
+  var filterDiff = payload.difficulty && payload.difficulty !== "all" ? String(payload.difficulty).trim() : null;
+  var filterType = payload.questionType && payload.questionType !== "all" ? String(payload.questionType).trim() : null;
+  var filterGameType = payload.gameType && payload.gameType !== "all" ? String(payload.gameType).trim() : null;
+  var filterStatus = payload.status && payload.status !== "all" ? String(payload.status).trim() : "active";
+  var searchQuery = payload.searchQuery ? String(payload.searchQuery).trim().toLowerCase() : null;
+
+  var results = [];
+  var totalMatches = 0;
+
+  for (var r = 1; r < data.length; r++) {
+    var row = data[r];
+    var qId = String(row[colMap["question_id"] - 1] || "").trim();
+    if (!qId) continue;
+
+    var qStatus = String(row[colMap["status"] - 1] || "active").trim();
+    if (payload.status !== "all" && qStatus !== filterStatus) continue;
+
+    var qSection = String(row[colMap["section"] - 1] || "general_english").trim();
+    if (filterSection && qSection !== filterSection && qSection !== "both") continue;
+
+    var qGrade = String(row[colMap["grade_id"] - 1] || "all").trim();
+    if (filterGrade && qGrade !== filterGrade && qGrade !== "all") continue;
+
+    var qUnit = String(row[colMap["unit_id"] - 1] || "").trim();
+    if (filterUnit && qUnit !== filterUnit) continue;
+
+    var qSkill = String(row[colMap["skill"] - 1] || "grammar").trim();
+    if (filterSkill && qSkill !== filterSkill) continue;
+
+    var qTopic = String(row[colMap["topic"] - 1] || "").trim();
+    if (filterTopic && qTopic.toLowerCase().indexOf(filterTopic) === -1) continue;
+
+    var qDiff = String(row[colMap["difficulty"] - 1] || "medium").trim();
+    if (filterDiff && qDiff !== filterDiff) continue;
+
+    var qType = String(row[colMap["question_type"] - 1] || "multiple_choice").trim();
+    if (filterType && qType !== filterType) continue;
+
+    var games = [];
+    var gRaw = String(row[colMap["assigned_game_types"] - 1] || "");
+    if (gRaw) {
+      try { games = JSON.parse(gRaw); } catch (gErr) {}
+    }
+    if (filterGameType && games.indexOf(filterGameType) === -1) continue;
+
+    var prompt = String(row[colMap["prompt"] - 1] || "");
+    var correctPreview = String(row[colMap["correct_answer_preview"] - 1] || "");
+    var tagsRaw = String(row[colMap["tags"] - 1] || "");
+    var pRaw = String(row[colMap["payload_json"] - 1] || "");
+
+    if (searchQuery) {
+      var matchPrompt = prompt.toLowerCase().indexOf(searchQuery) !== -1;
+      var matchTopic = qTopic.toLowerCase().indexOf(searchQuery) !== -1;
+      var matchPreview = correctPreview.toLowerCase().indexOf(searchQuery) !== -1;
+      var matchTags = tagsRaw.toLowerCase().indexOf(searchQuery) !== -1;
+      var matchPayload = pRaw.toLowerCase().indexOf(searchQuery) !== -1;
+      if (!matchPrompt && !matchTopic && !matchPreview && !matchTags && !matchPayload) continue;
+    }
+
+    totalMatches++;
+
+    var payloadJson = {};
+    if (pRaw) {
+      try { payloadJson = JSON.parse(pRaw); } catch (pErr) {}
+    }
+
+    var tags = [];
+    if (tagsRaw) {
+      try { tags = JSON.parse(tagsRaw); } catch (tErr) {}
+    }
+
+    results.push({
+      id: qId,
+      section: qSection,
+      gradeId: qGrade,
+      unitId: qUnit,
+      unitTitle: String(row[colMap["unit_title"] - 1] || ""),
+      topic: qTopic,
+      skill: qSkill,
+      difficulty: qDiff,
+      questionType: qType,
+      assignedGameTypes: games,
+      prompt: prompt,
+      payload: payloadJson,
+      correctAnswerPreview: String(row[colMap["correct_answer_preview"] - 1] || ""),
+      explanation: String(row[colMap["explanation"] - 1] || ""),
+      points: Number(row[colMap["points"] - 1]) || 10,
+      tags: tags,
+      status: qStatus,
+      contentVersion: Number(row[colMap["content_version"] - 1]) || 1,
+      createdAt: String(row[colMap["created_at"] - 1] || ""),
+      updatedAt: String(row[colMap["updated_at"] - 1] || "")
+    });
+  }
+
+  return createJsonResponse({
+    success: true,
+    count: results.length,
+    total: totalMatches,
+    questions: results
+  });
+}
+
+/**
+ * ACTION: teacher_save_question
+ * Creates or updates a single question in QuestionBank sheet.
+ */
+function handleTeacherSaveQuestion(ss, payload) {
+  var auth = validateTeacherSession(ss, payload.teacherToken);
+  if (!auth.valid) {
+    return createJsonResponse({ success: false, error: auth.error, code: auth.code });
+  }
+
+  var qData = payload.question;
+  if (!qData || typeof qData !== "object") {
+    return createJsonResponse({ success: false, error: "Missing question payload.", code: "BAD_REQUEST" });
+  }
+
+  var prompt = String(qData.prompt || "").trim();
+  if (!prompt) {
+    return createJsonResponse({ success: false, error: "Question prompt cannot be empty.", code: "BAD_REQUEST" });
+  }
+
+  var qbSheet = setupQuestionBankSheet(ss);
+  var colMap = getSheetColumnMap(qbSheet, CONFIG.QUESTION_BANK_HEADERS);
+  var data = qbSheet.getDataRange().getValues();
+  var lastCol = qbSheet.getLastColumn();
+  var now = new Date().toISOString();
+
+  var targetId = String(qData.id || "").trim();
+  var existingRowIdx = -1;
+
+  if (targetId) {
+    for (var r = 1; r < data.length; r++) {
+      if (String(data[r][colMap["question_id"] - 1] || "").trim() === targetId) {
+        existingRowIdx = r + 1; // 1-based row index
+        break;
+      }
+    }
+  }
+
+  var isNew = (existingRowIdx === -1);
+  var questionId = isNew ? ("qb_" + Utilities.getUuid().substring(0, 12)) : targetId;
+  var contentVersion = 1;
+  var createdAt = now;
+
+  if (!isNew) {
+    var oldVersion = Number(data[existingRowIdx - 1][colMap["content_version"] - 1]) || 1;
+    contentVersion = oldVersion + 1;
+    createdAt = String(data[existingRowIdx - 1][colMap["created_at"] - 1] || now);
+  }
+
+  var payloadJsonStr = JSON.stringify(qData.payload || {});
+  var assignedGamesStr = JSON.stringify(qData.assignedGameTypes || ["quiz_battle"]);
+  var tagsStr = JSON.stringify(qData.tags || []);
+  var correctPreview = String(qData.correctAnswerPreview || "");
+
+  // Narrow DocumentLock
+  var lock = null;
+  try {
+    if (typeof LockService !== "undefined" && LockService) {
+      if (typeof LockService.getDocumentLock === "function") {
+        lock = LockService.getDocumentLock();
+      }
+      if (!lock && typeof LockService.getScriptLock === "function") {
+        lock = LockService.getScriptLock();
+      }
+      if (lock && typeof lock.tryLock === "function") {
+        lock.tryLock(15000);
+      }
+    }
+  } catch (lErr) {}
+
+  try {
+    if (isNew) {
+      var newRow = new Array(lastCol);
+      for (var c = 0; c < lastCol; c++) newRow[c] = "";
+
+      newRow[colMap["question_id"] - 1] = questionId;
+      newRow[colMap["section"] - 1] = String(qData.section || "general_english");
+      newRow[colMap["grade_id"] - 1] = String(qData.gradeId || "all");
+      newRow[colMap["unit_id"] - 1] = String(qData.unitId || "");
+      newRow[colMap["unit_title"] - 1] = String(qData.unitTitle || "");
+      newRow[colMap["topic"] - 1] = String(qData.topic || "General");
+      newRow[colMap["skill"] - 1] = String(qData.skill || "grammar");
+      newRow[colMap["difficulty"] - 1] = String(qData.difficulty || "medium");
+      newRow[colMap["question_type"] - 1] = String(qData.questionType || "multiple_choice");
+      newRow[colMap["assigned_game_types"] - 1] = assignedGamesStr;
+      newRow[colMap["prompt"] - 1] = prompt;
+      newRow[colMap["payload_json"] - 1] = payloadJsonStr;
+      newRow[colMap["correct_answer_preview"] - 1] = correctPreview;
+      newRow[colMap["explanation"] - 1] = String(qData.explanation || "");
+      newRow[colMap["points"] - 1] = Number(qData.points) || 10;
+      newRow[colMap["tags"] - 1] = tagsStr;
+      newRow[colMap["status"] - 1] = String(qData.status || "active");
+      newRow[colMap["content_version"] - 1] = contentVersion;
+      newRow[colMap["created_at"] - 1] = createdAt;
+      newRow[colMap["updated_at"] - 1] = now;
+
+      qbSheet.appendRow(newRow);
+    } else {
+      qbSheet.getRange(existingRowIdx, colMap["section"]).setValue(String(qData.section || "general_english"));
+      qbSheet.getRange(existingRowIdx, colMap["grade_id"]).setValue(String(qData.gradeId || "all"));
+      qbSheet.getRange(existingRowIdx, colMap["unit_id"]).setValue(String(qData.unitId || ""));
+      qbSheet.getRange(existingRowIdx, colMap["unit_title"]).setValue(String(qData.unitTitle || ""));
+      qbSheet.getRange(existingRowIdx, colMap["topic"]).setValue(String(qData.topic || "General"));
+      qbSheet.getRange(existingRowIdx, colMap["skill"]).setValue(String(qData.skill || "grammar"));
+      qbSheet.getRange(existingRowIdx, colMap["difficulty"]).setValue(String(qData.difficulty || "medium"));
+      qbSheet.getRange(existingRowIdx, colMap["question_type"]).setValue(String(qData.questionType || "multiple_choice"));
+      qbSheet.getRange(existingRowIdx, colMap["assigned_game_types"]).setValue(assignedGamesStr);
+      qbSheet.getRange(existingRowIdx, colMap["prompt"]).setValue(prompt);
+      qbSheet.getRange(existingRowIdx, colMap["payload_json"]).setValue(payloadJsonStr);
+      qbSheet.getRange(existingRowIdx, colMap["correct_answer_preview"]).setValue(correctPreview);
+      qbSheet.getRange(existingRowIdx, colMap["explanation"]).setValue(String(qData.explanation || ""));
+      qbSheet.getRange(existingRowIdx, colMap["points"]).setValue(Number(qData.points) || 10);
+      qbSheet.getRange(existingRowIdx, colMap["tags"]).setValue(tagsStr);
+      qbSheet.getRange(existingRowIdx, colMap["status"]).setValue(String(qData.status || "active"));
+      qbSheet.getRange(existingRowIdx, colMap["content_version"]).setValue(contentVersion);
+      qbSheet.getRange(existingRowIdx, colMap["updated_at"]).setValue(now);
+    }
+    SpreadsheetApp.flush();
+  } finally {
+    if (lock) {
+      try { lock.releaseLock(); } catch (rErr) {}
+    }
+  }
+
+  return createJsonResponse({
+    success: true,
+    created: isNew,
+    updated: !isNew,
+    question: {
+      id: questionId,
+      prompt: prompt,
+      contentVersion: contentVersion,
+      status: String(qData.status || "active"),
+      updatedAt: now
+    }
+  });
+}
+
+/**
+ * ACTION: teacher_bulk_import_questions
+ * Atomic batch import of questions with validation and deduplication.
+ */
+function handleTeacherBulkImportQuestions(ss, payload) {
+  var auth = validateTeacherSession(ss, payload.teacherToken);
+  if (!auth.valid) {
+    return createJsonResponse({ success: false, error: auth.error, code: auth.code });
+  }
+
+  var list = payload.questions;
+  if (!Array.isArray(list) || list.length === 0) {
+    return createJsonResponse({ success: false, error: "Questions array cannot be empty.", code: "BAD_REQUEST" });
+  }
+
+  var qbSheet = setupQuestionBankSheet(ss);
+  var colMap = getSheetColumnMap(qbSheet, CONFIG.QUESTION_BANK_HEADERS);
+  var data = qbSheet.getDataRange().getValues();
+  var lastCol = qbSheet.getLastColumn();
+  var now = new Date().toISOString();
+
+  var existingMap = {};
+  for (var r = 1; r < data.length; r++) {
+    var existId = String(data[r][colMap["question_id"] - 1] || "").trim();
+    if (existId) existingMap[existId] = r + 1; // row index
+  }
+
+  var importedCount = 0;
+  var updatedCount = 0;
+  var rowsToAppend = [];
+  var importedIds = [];
+  var batchId = String(payload.importBatchId || "").trim();
+
+  // Pre-process items in pure memory
+  for (var i = 0; i < list.length; i++) {
+    var q = list[i];
+    var prompt = String(q.prompt || "").trim();
+    if (!prompt) continue;
+
+    var qId = String(q.id || "").trim();
+    var targetId = qId || ("qb_" + Utilities.getUuid().substring(0, 12));
+    var isExisting = Boolean(existingMap[targetId]);
+
+    var rowArr = new Array(lastCol);
+    for (var c = 0; c < lastCol; c++) rowArr[c] = "";
+
+    var qPayload = q.payload || {};
+    if (batchId) {
+      qPayload.importBatchId = batchId;
+    }
+
+    var qTags = Array.isArray(q.tags) ? q.tags.slice() : [];
+    if (batchId && qTags.indexOf("batch:" + batchId) === -1) {
+      qTags.push("batch:" + batchId);
+    }
+
+    rowArr[colMap["question_id"] - 1] = targetId;
+    rowArr[colMap["section"] - 1] = String(q.section || "general_english");
+    rowArr[colMap["grade_id"] - 1] = String(q.gradeId || "all");
+    rowArr[colMap["unit_id"] - 1] = String(q.unitId || "");
+    rowArr[colMap["unit_title"] - 1] = String(q.unitTitle || "");
+    rowArr[colMap["topic"] - 1] = String(q.topic || "General");
+    rowArr[colMap["skill"] - 1] = String(q.skill || "grammar");
+    rowArr[colMap["difficulty"] - 1] = String(q.difficulty || "medium");
+    rowArr[colMap["question_type"] - 1] = String(q.questionType || "multiple_choice");
+    rowArr[colMap["assigned_game_types"] - 1] = JSON.stringify(q.assignedGameTypes || ["quiz_battle"]);
+    rowArr[colMap["prompt"] - 1] = prompt;
+    rowArr[colMap["payload_json"] - 1] = JSON.stringify(qPayload);
+    rowArr[colMap["correct_answer_preview"] - 1] = String(q.correctAnswerPreview || "");
+    rowArr[colMap["explanation"] - 1] = String(q.explanation || "");
+    rowArr[colMap["points"] - 1] = Number(q.points) || 10;
+    rowArr[colMap["tags"] - 1] = JSON.stringify(qTags);
+    rowArr[colMap["status"] - 1] = String(q.status || "active");
+    rowArr[colMap["content_version"] - 1] = Number(q.contentVersion) || 1;
+    rowArr[colMap["created_at"] - 1] = now;
+    rowArr[colMap["updated_at"] - 1] = now;
+
+    if (isExisting && payload.overwriteDuplicates) {
+      var rowNum = existingMap[targetId];
+      data[rowNum - 1] = rowArr;
+      updatedCount++;
+      importedIds.push(targetId);
+    } else if (!isExisting) {
+      rowsToAppend.push(rowArr);
+      importedCount++;
+      importedIds.push(targetId);
+    }
+  }
+
+  // Narrow DocumentLock for batch write
+  var lock = null;
+  try {
+    if (typeof LockService !== "undefined" && LockService) {
+      if (typeof LockService.getDocumentLock === "function") {
+        lock = LockService.getDocumentLock();
+      }
+      if (!lock && typeof LockService.getScriptLock === "function") {
+        lock = LockService.getScriptLock();
+      }
+      if (lock && typeof lock.tryLock === "function") {
+        lock.tryLock(30000);
+      }
+    }
+  } catch (lErr) {}
+
+  try {
+    if (updatedCount > 0) {
+      qbSheet.getDataRange().setValues(data);
+    }
+    if (rowsToAppend.length > 0) {
+      var startRow = qbSheet.getLastRow() + 1;
+      qbSheet.getRange(startRow, 1, rowsToAppend.length, lastCol).setValues(rowsToAppend);
+    }
+    SpreadsheetApp.flush();
+  } finally {
+    if (lock) {
+      try { lock.releaseLock(); } catch (rErr) {}
+    }
+  }
+
+  return createJsonResponse({
+    success: true,
+    importedCount: importedCount,
+    updatedCount: updatedCount,
+    count: importedCount + updatedCount,
+    importBatchId: batchId,
+    importedIds: importedIds
+  });
+}
+
+/**
+ * ACTION: teacher_archive_question
+ * Non-destructive soft delete: sets status to 'archived'.
+ */
+function handleTeacherArchiveQuestion(ss, payload) {
+  var auth = validateTeacherSession(ss, payload.teacherToken);
+  if (!auth.valid) {
+    return createJsonResponse({ success: false, error: auth.error, code: auth.code });
+  }
+
+  var targetId = String(payload.questionId || "").trim();
+  if (!targetId) {
+    return createJsonResponse({ success: false, error: "Question ID required.", code: "BAD_REQUEST" });
+  }
+
+  var qbSheet = setupQuestionBankSheet(ss);
+  var colMap = getSheetColumnMap(qbSheet, CONFIG.QUESTION_BANK_HEADERS);
+  var data = qbSheet.getDataRange().getValues();
+  var foundRow = -1;
+
+  for (var r = 1; r < data.length; r++) {
+    if (String(data[r][colMap["question_id"] - 1] || "").trim() === targetId) {
+      foundRow = r + 1;
+      break;
+    }
+  }
+
+  if (foundRow === -1) {
+    return createJsonResponse({ success: false, error: "Question not found.", code: "NOT_FOUND" });
+  }
+
+  var lock = null;
+  try {
+    if (typeof LockService !== "undefined" && LockService) {
+      if (typeof LockService.getDocumentLock === "function") {
+        lock = LockService.getDocumentLock();
+      }
+      if (!lock && typeof LockService.getScriptLock === "function") {
+        lock = LockService.getScriptLock();
+      }
+      if (lock && typeof lock.tryLock === "function") {
+        lock.tryLock(15000);
+      }
+    }
+  } catch (lErr) {}
+
+  try {
+    qbSheet.getRange(foundRow, colMap["status"]).setValue("archived");
+    qbSheet.getRange(foundRow, colMap["updated_at"]).setValue(new Date().toISOString());
+    SpreadsheetApp.flush();
+  } finally {
+    if (lock) {
+      try { lock.releaseLock(); } catch (rErr) {}
+    }
+  }
+
+  return createJsonResponse({
+    success: true,
+    archivedId: targetId,
+    status: "archived"
+  });
+}
+
+/**
+ * ACTION: teacher_rollback_question_import
+ * Safely rolls back the last import batch by removing the questions that were
+ * added in that specific batch, without affecting any previously existing questions.
+ */
+function handleTeacherRollbackQuestionImport(ss, payload) {
+  var auth = validateTeacherSession(ss, payload.teacherToken);
+  if (!auth.valid) {
+    return createJsonResponse({ success: false, error: auth.error, code: auth.code });
+  }
+
+  var batchId = String(payload.importBatchId || "").trim();
+  var questionIds = Array.isArray(payload.questionIds) ? payload.questionIds : [];
+
+  if (!batchId && questionIds.length === 0) {
+    return createJsonResponse({
+      success: false,
+      error: "Either importBatchId or questionIds is required for rollback.",
+      code: "BAD_REQUEST"
+    });
+  }
+
+  var qbSheet = setupQuestionBankSheet(ss);
+  var colMap = getSheetColumnMap(qbSheet, CONFIG.QUESTION_BANK_HEADERS);
+  var data = qbSheet.getDataRange().getValues();
+
+  var idSet = {};
+  for (var i = 0; i < questionIds.length; i++) {
+    idSet[String(questionIds[i]).trim()] = true;
+  }
+
+  var rowsToKeep = [data[0]]; // Retain header row
+  var rolledBackCount = 0;
+  var rolledBackIds = [];
+
+  for (var r = 1; r < data.length; r++) {
+    var row = data[r];
+    var qId = String(row[colMap["question_id"] - 1] || "").trim();
+    var tagsRaw = String(row[colMap["tags"] - 1] || "");
+    var payloadRaw = String(row[colMap["payload_json"] - 1] || "");
+
+    var isMatch = false;
+    if (qId && idSet[qId]) {
+      isMatch = true;
+    } else if (batchId) {
+      if (tagsRaw.indexOf(batchId) !== -1 || payloadRaw.indexOf(batchId) !== -1) {
+        isMatch = true;
+      }
+    }
+
+    if (isMatch) {
+      rolledBackCount++;
+      rolledBackIds.push(qId);
+    } else {
+      rowsToKeep.push(row);
+    }
+  }
+
+  if (rolledBackCount === 0) {
+    return createJsonResponse({
+      success: true,
+      rolledBackCount: 0,
+      message: "No questions matched the specified rollback batch."
+    });
+  }
+
+  var lock = null;
+  try {
+    if (typeof LockService !== "undefined" && LockService) {
+      if (typeof LockService.getDocumentLock === "function") {
+        lock = LockService.getDocumentLock();
+      }
+      if (!lock && typeof LockService.getScriptLock === "function") {
+        lock = LockService.getScriptLock();
+      }
+      if (lock && typeof lock.tryLock === "function") {
+        lock.tryLock(30000);
+      }
+    }
+  } catch (lErr) {}
+
+  try {
+    var lastCol = (rowsToKeep[0] && rowsToKeep[0].length > 0) ? rowsToKeep[0].length : qbSheet.getLastColumn();
+    qbSheet.clearContents();
+    qbSheet.getRange(1, 1, rowsToKeep.length, lastCol).setValues(rowsToKeep);
+    SpreadsheetApp.flush();
+  } finally {
+    if (lock) {
+      try { lock.releaseLock(); } catch (rErr) {}
+    }
+  }
+
+  return createJsonResponse({
+    success: true,
+    rolledBackCount: rolledBackCount,
+    rolledBackIds: rolledBackIds,
+    message: "Successfully rolled back " + rolledBackCount + " imported questions."
+  });
+}
+
+// ============================================================================
 // STUDENT AUTHENTICATION & GRADE AUTHORIZATION LOGIC
 // ============================================================================
 
@@ -4969,6 +6077,9 @@ function setupArcadeDatabase() {
   // 8. ACHIEVEMENTS SHEET (Phase 5 Student Gamification - Non-destructive)
   var achievementsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.ACHIEVEMENTS);
   setupSheetHeaders(achievementsSheet, CONFIG.ACHIEVEMENT_HEADERS, "#1e293b", "#eab308");
+
+  // 9. QUESTION BANK SHEET (Phase 1 Question Bank Manager - Non-destructive)
+  setupQuestionBankSheet(ss);
 
   // Populate 8 demo students ONLY IF database is brand new (0 students exist)
   var studentsData = studentsSheet.getDataRange().getValues();

@@ -1,0 +1,824 @@
+[
+  {
+    "id": "ge_g7_list_001",
+    "section": "both",
+    "gradeId": "grade-7",
+    "topic": "Transit Announcements",
+    "skill": "listening",
+    "difficulty": "easy",
+    "questionType": "train_station",
+    "assignedGameTypes": [
+      "train_station",
+      "quiz_battle"
+    ],
+    "prompt": "[Station Audio] Listen to Announcement 1: From which platform will the 10:15 express to Oxford depart?",
+    "payload": {
+      "audioUrl": "https://assets.unitreviewarcade.org/audio/general_english/grade7/announcement_oxford_1015.mp3",
+      "speechText": "Attention passengers on the concourse. The 10:15 Great Western Service to Oxford is now boarding at Platform 4. Please have your tickets ready.",
+      "correctTranscript": "Attention passengers on the concourse. The 10:15 Great Western Service to Oxford is now boarding at Platform 4. Please have your tickets ready.",
+      "options": [
+        "Platform 2",
+        "Platform 7",
+        "Platform 4",
+        "Platform 11"
+      ],
+      "correctOptionIndex": 2,
+      "round": 1,
+      "roundTitle": "Platform Call"
+    },
+    "correctAnswerPreview": "C) Platform 4",
+    "explanation": "The announcement states clearly: \"...is now boarding at Platform 4.\"",
+    "points": 10,
+    "tags": [
+      "listening",
+      "station-announcements",
+      "numbers"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g7_list_002",
+    "section": "both",
+    "gradeId": "grade-7",
+    "topic": "Transit Announcements",
+    "skill": "listening",
+    "difficulty": "medium",
+    "questionType": "train_station",
+    "assignedGameTypes": [
+      "train_station",
+      "quiz_battle"
+    ],
+    "prompt": "[Station Audio] Listen to Announcement 2: Why has the Bristol service been delayed by twenty minutes?",
+    "payload": {
+      "audioUrl": "https://assets.unitreviewarcade.org/audio/general_english/grade7/announcement_bristol_delay.mp3",
+      "speechText": "We regret to announce that the 11:30 service to Bristol Temple Meads is delayed by approximately twenty minutes due to an urgent track inspection outside Reading.",
+      "correctTranscript": "We regret to announce that the 11:30 service to Bristol Temple Meads is delayed by approximately twenty minutes due to an urgent track inspection outside Reading.",
+      "options": [
+        "Due to heavy snowstorm weather",
+        "Due to a passenger medical emergency",
+        "Due to a power failure inside the station",
+        "Due to an urgent track inspection"
+      ],
+      "correctOptionIndex": 3,
+      "round": 2,
+      "roundTitle": "Delay Advisory"
+    },
+    "correctAnswerPreview": "D) Due to an urgent track inspection",
+    "explanation": "The audio speaker announces the delay is \"due to an urgent track inspection outside Reading.\"",
+    "points": 10,
+    "tags": [
+      "listening",
+      "delays",
+      "reasons"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g7_list_003",
+    "section": "both",
+    "gradeId": "grade-7",
+    "topic": "Transit Announcements",
+    "skill": "listening",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle",
+      "train_station"
+    ],
+    "prompt": "[Station Audio] Listen to Announcement 3: What does the station announcer instruct passengers waiting on Platform 2 to do?",
+    "payload": {
+      "audioUrl": "https://assets.unitreviewarcade.org/audio/general_english/grade7/announcement_fast_train_pass.mp3",
+      "speechText": "Stand well clear of the edge of Platform 2, please. The approaching train does not stop at this station.",
+      "correctTranscript": "Stand well clear of the edge of Platform 2, please. The approaching train does not stop at this station.",
+      "options": [
+        "Stand well clear of the edge of the platform",
+        "Board the train quickly before the doors close",
+        "Show their identity cards to the conductor",
+        "Move to Platform 5 immediately"
+      ],
+      "correctOptionIndex": 0
+    },
+    "correctAnswerPreview": "A) Stand well clear of the edge of the platform",
+    "explanation": "The announcer warns: \"Stand well clear of the edge of Platform 2, please.\"",
+    "points": 10,
+    "tags": [
+      "listening",
+      "safety-warnings"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g7_list_004",
+    "section": "both",
+    "gradeId": "grade-7",
+    "topic": "Transit Announcements",
+    "skill": "listening",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle",
+      "train_station"
+    ],
+    "prompt": "[Station Audio] Listen to Announcement 4: Which new platform should passengers for the 14:40 to Cambridge proceed to?",
+    "payload": {
+      "audioUrl": "https://assets.unitreviewarcade.org/audio/general_english/grade7/announcement_cambridge_platform_change.mp3",
+      "speechText": "Passenger notice: Platform change. The 14:40 departure to Cambridge, previously advertised on Platform 3, will now depart from Platform 9.",
+      "correctTranscript": "Passenger notice: Platform change. The 14:40 departure to Cambridge, previously advertised on Platform 3, will now depart from Platform 9.",
+      "options": [
+        "Platform 3",
+        "Platform 9",
+        "Platform 1",
+        "Platform 6"
+      ],
+      "correctOptionIndex": 1
+    },
+    "correctAnswerPreview": "B) Platform 9",
+    "explanation": "The announcement warns of a platform change from 3 to Platform 9.",
+    "points": 10,
+    "tags": [
+      "listening",
+      "platform-change"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g7_list_005",
+    "section": "both",
+    "gradeId": "grade-7",
+    "topic": "Transit Announcements",
+    "skill": "listening",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle",
+      "train_station"
+    ],
+    "prompt": "[Station Audio] Listen to Announcement 5: What safety reminder is given to passengers boarding the train?",
+    "payload": {
+      "audioUrl": "https://assets.unitreviewarcade.org/audio/general_english/grade7/announcement_mind_the_gap.mp3",
+      "speechText": "Please mind the gap between the train and the platform when boarding or alighting. Keep your personal luggage with you at all times.",
+      "correctTranscript": "Please mind the gap between the train and the platform when boarding or alighting. Keep your personal luggage with you at all times.",
+      "options": [
+        "Leave heavy bags unattended near the door",
+        "Do not talk to fellow passengers onboard",
+        "Mind the gap between the train and the platform",
+        "Wear safety goggles while walking on the platform"
+      ],
+      "correctOptionIndex": 2
+    },
+    "correctAnswerPreview": "C) Mind the gap between the train and the platform",
+    "explanation": "The classic British safety reminder states: \"Please mind the gap between the train and the platform\".",
+    "points": 10,
+    "tags": [
+      "listening",
+      "safety",
+      "common-expressions"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g7_list_006",
+    "section": "both",
+    "gradeId": "grade-7",
+    "topic": "Shopping & Directions Dialogue",
+    "skill": "listening",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "[Audio Dialogue] Listen to the conversation: What item is the customer asking to buy at the bakery counter?",
+    "payload": {
+      "audioUrl": "https://assets.unitreviewarcade.org/audio/general_english/grade7/dialogue_bakery_croissants.mp3",
+      "speechText": "Customer: Good morning! Could I please have three chocolate croissants and a loaf of brown bread? Baker: Certainly! That will be six euros and fifty cents.",
+      "correctTranscript": "Customer: Good morning! Could I please have three chocolate croissants and a loaf of brown bread? Baker: Certainly! That will be six euros and fifty cents.",
+      "options": [
+        "Two apple pies and a cup of black coffee",
+        "A large birthday cake and candles",
+        "Four cheese sandwiches and a bottle of milk",
+        "Three chocolate croissants and a loaf of brown bread"
+      ],
+      "correctOptionIndex": 3
+    },
+    "correctAnswerPreview": "D) Three chocolate croissants and a loaf of brown bread",
+    "explanation": "The customer specifically requests: \"three chocolate croissants and a loaf of brown bread\".",
+    "points": 10,
+    "tags": [
+      "listening",
+      "dialogue",
+      "shopping"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g7_list_007",
+    "section": "both",
+    "gradeId": "grade-7",
+    "topic": "Shopping & Directions Dialogue",
+    "skill": "listening",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "[Audio Dialogue] Listen to the conversation: How much does the customer pay for their bakery order?",
+    "payload": {
+      "audioUrl": "https://assets.unitreviewarcade.org/audio/general_english/grade7/dialogue_bakery_price.mp3",
+      "speechText": "Customer: Good morning! Could I please have three chocolate croissants and a loaf of brown bread? Baker: Certainly! That will be six euros and fifty cents.",
+      "correctTranscript": "Customer: Good morning! Could I please have three chocolate croissants and a loaf of brown bread? Baker: Certainly! That will be six euros and fifty cents.",
+      "options": [
+        "Six euros and fifty cents (€6.50)",
+        "Ten euros even (€10.00)",
+        "Three euros and twenty cents (€3.20)",
+        "Eight euros (€8.00)"
+      ],
+      "correctOptionIndex": 0
+    },
+    "correctAnswerPreview": "A) Six euros and fifty cents (€6.50)",
+    "explanation": "The baker states: \"That will be six euros and fifty cents.\"",
+    "points": 10,
+    "tags": [
+      "listening",
+      "numbers",
+      "prices"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g7_list_008",
+    "section": "both",
+    "gradeId": "grade-7",
+    "topic": "Shopping & Directions Dialogue",
+    "skill": "listening",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "[Audio Dialogue] Listen to the street conversation: How does the local resident direct the tourist to the museum?",
+    "payload": {
+      "audioUrl": "https://assets.unitreviewarcade.org/audio/general_english/grade7/dialogue_directions_museum.mp3",
+      "speechText": "Tourist: Excuse me, where is the natural history museum? Resident: Walk straight down Green Street, take the second turning on your right, and you will see it opposite the city fountain.",
+      "correctTranscript": "Tourist: Excuse me, where is the natural history museum? Resident: Walk straight down Green Street, take the second turning on your right, and you will see it opposite the city fountain.",
+      "options": [
+        "Take a taxi across the river and turn left at the hospital",
+        "Walk straight down Green Street, turn second right, opposite the fountain",
+        "Walk two blocks south and enter through the underground metro",
+        "Turn left immediately and climb the steps behind the stadium"
+      ],
+      "correctOptionIndex": 1
+    },
+    "correctAnswerPreview": "B) Walk straight down Green Street, turn second right, opposite the fountain",
+    "explanation": "The resident instructs: \"Walk straight down Green Street, take the second turning on your right, and you will see it opposite the city fountain.\"",
+    "points": 10,
+    "tags": [
+      "listening",
+      "directions",
+      "navigation"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g7_list_009",
+    "section": "both",
+    "gradeId": "grade-7",
+    "topic": "Shopping & Directions Dialogue",
+    "skill": "listening",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "[Audio Dialogue] Listen to the juice bar exchange: What kind of drink does the girl order?",
+    "payload": {
+      "audioUrl": "https://assets.unitreviewarcade.org/audio/general_english/grade7/dialogue_juice_bar.mp3",
+      "speechText": "Server: What can I get for you today? Girl: I would like a fresh orange and carrot juice with ice, please.",
+      "correctTranscript": "Server: What can I get for you today? Girl: I would like a fresh orange and carrot juice with ice, please.",
+      "options": [
+        "Hot chocolate with whipped cream",
+        "Cold sparkling mineral water with lemon",
+        "Fresh orange and carrot juice with ice",
+        "Strawberry milkshake with a chocolate cookie"
+      ],
+      "correctOptionIndex": 2
+    },
+    "correctAnswerPreview": "C) Fresh orange and carrot juice with ice",
+    "explanation": "The girl asks for \"a fresh orange and carrot juice with ice\".",
+    "points": 10,
+    "tags": [
+      "listening",
+      "ordering-food"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g7_list_010",
+    "section": "both",
+    "gradeId": "grade-7",
+    "topic": "Shopping & Directions Dialogue",
+    "skill": "listening",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "[Audio Dialogue] Listen to the library conversation: How many books is the student permitted to borrow today?",
+    "payload": {
+      "audioUrl": "https://assets.unitreviewarcade.org/audio/general_english/grade7/dialogue_library_borrowing.mp3",
+      "speechText": "Student: Can I take these five graphic novels home? Librarian: With a junior card, you can borrow up to four books at a time for two weeks.",
+      "correctTranscript": "Student: Can I take these five graphic novels home? Librarian: With a junior card, you can borrow up to four books at a time for two weeks.",
+      "options": [
+        "Up to ten books",
+        "Only one single book",
+        "Unlimited books",
+        "Up to four books"
+      ],
+      "correctOptionIndex": 3
+    },
+    "correctAnswerPreview": "D) Up to four books",
+    "explanation": "The librarian explains: \"With a junior card, you can borrow up to four books at a time\".",
+    "points": 10,
+    "tags": [
+      "listening",
+      "rules",
+      "library"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g7_list_011",
+    "section": "both",
+    "gradeId": "grade-7",
+    "topic": "Daily Routine Dictation",
+    "skill": "listening",
+    "difficulty": "easy",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "[Audio Dictation] Listen to the spoken sentence and arrange the word chips in the exact spoken order:",
+    "payload": {
+      "audioUrl": "https://assets.unitreviewarcade.org/audio/general_english/grade7/dict_sister_walks_school.mp3",
+      "speechText": "My sister usually walks to school with her best friend.",
+      "correctTranscript": "My sister usually walks to school with her best friend.",
+      "correctSentence": "My sister usually walks to school with her best friend.",
+      "scrambledWords": [
+        "walks",
+        "My",
+        "sister",
+        "to",
+        "friend",
+        "her",
+        "best",
+        "usually",
+        "school",
+        "with"
+      ]
+    },
+    "correctAnswerPreview": "My sister usually walks to school with her best friend.",
+    "explanation": "Acoustic dictation of a routine sentence with frequency adverb \"usually\".",
+    "points": 10,
+    "tags": [
+      "dictation",
+      "sentence-builder",
+      "routines"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g7_list_012",
+    "section": "both",
+    "gradeId": "grade-7",
+    "topic": "Daily Routine Dictation",
+    "skill": "listening",
+    "difficulty": "easy",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "[Audio Dictation] Listen to the audio and construct the exact sentence you heard:",
+    "payload": {
+      "audioUrl": "https://assets.unitreviewarcade.org/audio/general_english/grade7/dict_picnic_city_park.mp3",
+      "speechText": "We are having a picnic in the city park right now.",
+      "correctTranscript": "We are having a picnic in the city park right now.",
+      "correctSentence": "We are having a picnic in the city park right now.",
+      "scrambledWords": [
+        "a",
+        "right",
+        "are",
+        "the",
+        "We",
+        "picnic",
+        "city",
+        "having",
+        "in",
+        "now",
+        "park"
+      ]
+    },
+    "correctAnswerPreview": "We are having a picnic in the city park right now.",
+    "explanation": "Acoustic dictation of present continuous action occurring \"right now\".",
+    "points": 10,
+    "tags": [
+      "dictation",
+      "sentence-builder",
+      "present-continuous"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g7_list_013",
+    "section": "both",
+    "gradeId": "grade-7",
+    "topic": "Daily Routine Dictation",
+    "skill": "listening",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "[Audio Dictation] Listen to the spoken recording and assemble the words into the correct sentence:",
+    "payload": {
+      "audioUrl": "https://assets.unitreviewarcade.org/audio/general_english/grade7/dict_feed_pet_rabbit.mp3",
+      "speechText": "He always feeds his pet rabbit before having breakfast.",
+      "correctTranscript": "He always feeds his pet rabbit before having breakfast.",
+      "correctSentence": "He always feeds his pet rabbit before having breakfast.",
+      "scrambledWords": [
+        "breakfast",
+        "his",
+        "feeds",
+        "having",
+        "He",
+        "rabbit",
+        "pet",
+        "always",
+        "before"
+      ]
+    },
+    "correctAnswerPreview": "He always feeds his pet rabbit before having breakfast.",
+    "explanation": "Acoustic dictation with 3rd-person singular \"feeds\" and temporal preposition \"before\".",
+    "points": 10,
+    "tags": [
+      "dictation",
+      "sentence-builder",
+      "habits"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g7_list_014",
+    "section": "both",
+    "gradeId": "grade-7",
+    "topic": "Daily Routine Dictation",
+    "skill": "listening",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "[Audio Dictation] Listen carefully and place the word chips into the exact uttered order:",
+    "payload": {
+      "audioUrl": "https://assets.unitreviewarcade.org/audio/general_english/grade7/dict_television_homework.mp3",
+      "speechText": "They never watch television while doing their homework.",
+      "correctTranscript": "They never watch television while doing their homework.",
+      "correctSentence": "They never watch television while doing their homework.",
+      "scrambledWords": [
+        "watch",
+        "never",
+        "while",
+        "television",
+        "They",
+        "their",
+        "doing",
+        "homework"
+      ]
+    },
+    "correctAnswerPreview": "They never watch television while doing their homework.",
+    "explanation": "Acoustic dictation featuring negative frequency adverb \"never\" and simultaneous conjunction \"while\".",
+    "points": 10,
+    "tags": [
+      "dictation",
+      "sentence-builder",
+      "study-habits"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g7_list_015",
+    "section": "both",
+    "gradeId": "grade-7",
+    "topic": "Daily Routine Dictation",
+    "skill": "listening",
+    "difficulty": "easy",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "[Audio Dictation] Listen to the audio sentence and assemble the chips:",
+    "payload": {
+      "audioUrl": "https://assets.unitreviewarcade.org/audio/general_english/grade7/dict_listen_podcast_bedroom.mp3",
+      "speechText": "I am listening to my favorite podcast in my bedroom.",
+      "correctTranscript": "I am listening to my favorite podcast in my bedroom.",
+      "correctSentence": "I am listening to my favorite podcast in my bedroom.",
+      "scrambledWords": [
+        "am",
+        "favorite",
+        "my",
+        "listening",
+        "to",
+        "in",
+        "I",
+        "my",
+        "bedroom",
+        "podcast"
+      ]
+    },
+    "correctAnswerPreview": "I am listening to my favorite podcast in my bedroom.",
+    "explanation": "Acoustic dictation with preposition \"listening to\" and location preposition \"in my bedroom\".",
+    "points": 10,
+    "tags": [
+      "dictation",
+      "sentence-builder",
+      "free-time"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g7_list_016",
+    "section": "both",
+    "gradeId": "grade-7",
+    "topic": "Past Events Dictation",
+    "skill": "listening",
+    "difficulty": "easy",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "[Audio Dictation] Listen to the past tense sentence and reconstruct it using the word chips:",
+    "payload": {
+      "audioUrl": "https://assets.unitreviewarcade.org/audio/general_english/grade7/dict_amphitheater_holiday.mp3",
+      "speechText": "We visited the ancient amphitheater during our summer holiday.",
+      "correctTranscript": "We visited the ancient amphitheater during our summer holiday.",
+      "correctSentence": "We visited the ancient amphitheater during our summer holiday.",
+      "scrambledWords": [
+        "summer",
+        "during",
+        "holiday",
+        "our",
+        "visited",
+        "the",
+        "We",
+        "amphitheater",
+        "ancient"
+      ]
+    },
+    "correctAnswerPreview": "We visited the ancient amphitheater during our summer holiday.",
+    "explanation": "Acoustic past simple dictation with regular verb \"visited\" and temporal preposition \"during\".",
+    "points": 10,
+    "tags": [
+      "dictation",
+      "sentence-builder",
+      "past-simple"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g7_list_017",
+    "section": "both",
+    "gradeId": "grade-7",
+    "topic": "Past Events Dictation",
+    "skill": "listening",
+    "difficulty": "easy",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "[Audio Dictation] Listen to the recording and arrange the words into the sentence:",
+    "payload": {
+      "audioUrl": "https://assets.unitreviewarcade.org/audio/general_english/grade7/dict_bought_tickets_concert.mp3",
+      "speechText": "She bought two tickets for the concert yesterday afternoon.",
+      "correctTranscript": "She bought two tickets for the concert yesterday afternoon.",
+      "correctSentence": "She bought two tickets for the concert yesterday afternoon.",
+      "scrambledWords": [
+        "She",
+        "for",
+        "tickets",
+        "yesterday",
+        "concert",
+        "bought",
+        "two",
+        "afternoon",
+        "the"
+      ]
+    },
+    "correctAnswerPreview": "She bought two tickets for the concert yesterday afternoon.",
+    "explanation": "Acoustic past simple sentence with irregular verb \"bought\" and past time expression \"yesterday afternoon\".",
+    "points": 10,
+    "tags": [
+      "dictation",
+      "sentence-builder",
+      "irregular-verbs"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g7_list_018",
+    "section": "both",
+    "gradeId": "grade-7",
+    "topic": "Past Events Dictation",
+    "skill": "listening",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "[Audio Dictation] Listen to the audio and construct the interrupted past sentence:",
+    "payload": {
+      "audioUrl": "https://assets.unitreviewarcade.org/audio/general_english/grade7/dict_interrupted_homework_lights.mp3",
+      "speechText": "I was doing my homework when the lights went out.",
+      "correctTranscript": "I was doing my homework when the lights went out.",
+      "correctSentence": "I was doing my homework when the lights went out.",
+      "scrambledWords": [
+        "doing",
+        "homework",
+        "I",
+        "the",
+        "my",
+        "out",
+        "lights",
+        "went",
+        "when",
+        "was"
+      ]
+    },
+    "correctAnswerPreview": "I was doing my homework when the lights went out.",
+    "explanation": "Acoustic dictation contrasting ongoing past continuous (was doing) with interrupting past simple (went out).",
+    "points": 10,
+    "tags": [
+      "dictation",
+      "sentence-builder",
+      "past-continuous"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g7_list_019",
+    "section": "both",
+    "gradeId": "grade-7",
+    "topic": "Past Events Dictation",
+    "skill": "listening",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "[Audio Dictation] Listen carefully and reconstruct the negative past sentence:",
+    "payload": {
+      "audioUrl": "https://assets.unitreviewarcade.org/audio/general_english/grade7/dict_did_not_find_keys.mp3",
+      "speechText": "They did not find their car keys in the living room.",
+      "correctTranscript": "They did not find their car keys in the living room.",
+      "correctSentence": "They did not find their car keys in the living room.",
+      "scrambledWords": [
+        "not",
+        "keys",
+        "They",
+        "their",
+        "car",
+        "living",
+        "the",
+        "did",
+        "find",
+        "in",
+        "room"
+      ]
+    },
+    "correctAnswerPreview": "They did not find their car keys in the living room.",
+    "explanation": "Acoustic dictation of negative past simple with auxiliary \"did not\" + base verb \"find\".",
+    "points": 10,
+    "tags": [
+      "dictation",
+      "sentence-builder",
+      "negation"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g7_list_020",
+    "section": "both",
+    "gradeId": "grade-7",
+    "topic": "Past Events Dictation",
+    "skill": "listening",
+    "difficulty": "easy",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "[Audio Dictation] Listen to the sentence and assemble the chips into the correct order:",
+    "payload": {
+      "audioUrl": "https://assets.unitreviewarcade.org/audio/general_english/grade7/dict_rode_bicycle_bridge.mp3",
+      "speechText": "He rode his bicycle across the wooden bridge safely.",
+      "correctTranscript": "He rode his bicycle across the wooden bridge safely.",
+      "correctSentence": "He rode his bicycle across the wooden bridge safely.",
+      "scrambledWords": [
+        "his",
+        "wooden",
+        "across",
+        "rode",
+        "He",
+        "bicycle",
+        "bridge",
+        "the",
+        "safely"
+      ]
+    },
+    "correctAnswerPreview": "He rode his bicycle across the wooden bridge safely.",
+    "explanation": "Acoustic dictation with irregular verb \"rode\", preposition \"across\", and adverb \"safely\".",
+    "points": 10,
+    "tags": [
+      "dictation",
+      "sentence-builder",
+      "past-simple"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  }
+]

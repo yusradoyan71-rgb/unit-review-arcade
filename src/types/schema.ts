@@ -90,6 +90,10 @@ export interface BaseQuestion {
   points?: number;
   difficulty?: 'easy' | 'medium' | 'challenging';
   contentVersion?: number;
+  audioUrl?: string;
+  speechText?: string;
+  correctTranscript?: string;
+  hasAudio?: boolean;
 }
 
 // Extensible questions for game engines
@@ -219,4 +223,14 @@ export type NavigationTarget =
   | { view: 'teacher-panel'; initialTab?: 'units' | 'activities' | 'backup' | 'tracking'; targetGradeId?: GradeId }
   | { view: 'games-zone'; gradeId?: GradeId }
   | { view: 'games-zone-play'; gameId: GamesZoneGameId; gradeId: GradeId; difficulty: GamesZoneDifficulty }
-  | { view: 'monster-world' };
+  | { view: 'monster-world' }
+  | { view: 'general-english'; gradeId?: GradeId }
+  | {
+      view: 'general-english-play';
+      gradeId: GradeId;
+      topicId: string;
+      gameType: GameType;
+      mode?: 'topic' | 'mixed';
+      mixedRatio?: '50/50' | '70/30' | '30/70';
+      mixedSkill?: string;
+    };

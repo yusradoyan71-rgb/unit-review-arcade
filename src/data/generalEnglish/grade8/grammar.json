@@ -1,0 +1,2152 @@
+[
+  {
+    "id": "ge_g8_gram_001",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Present Perfect: Experiences & Time",
+    "skill": "grammar",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Have you _______ seen a shooting star with your own eyes?",
+    "payload": {
+      "options": [
+        "ever",
+        "never",
+        "already",
+        "yet"
+      ],
+      "correctOptionIndex": 0
+    },
+    "correctAnswerPreview": "A) ever",
+    "explanation": "\"Ever\" is used in questions to ask about life experiences up to the present moment.",
+    "points": 10,
+    "tags": [
+      "present-perfect",
+      "ever-never",
+      "life-experiences"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_002",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Present Perfect: Experiences & Time",
+    "skill": "grammar",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "I am not hungry because I have _______ eaten a large chicken wrap.",
+    "payload": {
+      "options": [
+        "yet",
+        "just",
+        "ever",
+        "since"
+      ],
+      "correctOptionIndex": 1
+    },
+    "correctAnswerPreview": "B) just",
+    "explanation": "\"Just\" placed between the auxiliary (have) and past participle indicates a very recently completed action.",
+    "points": 10,
+    "tags": [
+      "present-perfect",
+      "just",
+      "recent-actions"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_003",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Present Perfect: Experiences & Time",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Has the science teacher checked our experiment reports _______?",
+    "payload": {
+      "options": [
+        "already",
+        "ever",
+        "yet",
+        "since"
+      ],
+      "correctOptionIndex": 2
+    },
+    "correctAnswerPreview": "C) yet",
+    "explanation": "\"Yet\" is placed at the end of questions and negative statements to ask if an expected action has occurred.",
+    "points": 10,
+    "tags": [
+      "present-perfect",
+      "yet",
+      "questions"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_004",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Present Perfect: Experiences & Time",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Mrs. Davis has taught English at our school _______ eight years.",
+    "payload": {
+      "options": [
+        "since",
+        "during",
+        "from",
+        "for"
+      ],
+      "correctOptionIndex": 3
+    },
+    "correctAnswerPreview": "D) for",
+    "explanation": "\"For\" is used with a duration/period of time (\"for eight years\"), whereas \"since\" marks a specific starting point.",
+    "points": 10,
+    "tags": [
+      "present-perfect",
+      "for-since",
+      "duration"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_005",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Present Perfect: Experiences & Time",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "Assemble the words into a correct Present Perfect sentence:",
+    "payload": {
+      "correctSentence": "We have lived in this coastal city since 2018.",
+      "scrambledWords": [
+        "since",
+        "in",
+        "city",
+        "We",
+        "coastal",
+        "lived",
+        "have",
+        "2018",
+        "this"
+      ]
+    },
+    "correctAnswerPreview": "We have lived in this coastal city since 2018.",
+    "explanation": "Present perfect with starting point year: Subject + have lived + location + since 2018.",
+    "points": 10,
+    "tags": [
+      "sentence-builder",
+      "present-perfect",
+      "since"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_006",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Present Perfect: Experiences & Time",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "match_it",
+    "assignedGameTypes": [
+      "match_it"
+    ],
+    "prompt": "Match each base irregular verb with its past participle (V3) form:",
+    "payload": {
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "choose",
+          "right": "chosen"
+        },
+        {
+          "id": "p2",
+          "left": "freeze",
+          "right": "frozen"
+        },
+        {
+          "id": "p3",
+          "left": "speak",
+          "right": "spoken"
+        },
+        {
+          "id": "p4",
+          "left": "write",
+          "right": "written"
+        }
+      ]
+    },
+    "correctAnswerPreview": "choose-chosen, freeze-frozen, speak-spoken, write-written",
+    "explanation": "These irregular verbs form their past participle with -en or -n in the Present Perfect.",
+    "points": 10,
+    "tags": [
+      "irregular-participles",
+      "verb-forms",
+      "match-it"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_007",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Present Perfect: Experiences & Time",
+    "skill": "grammar",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Can you believe it? She has _______ finished her university thesis two weeks ahead of schedule!",
+    "payload": {
+      "options": [
+        "already",
+        "yet",
+        "ever",
+        "since"
+      ],
+      "correctOptionIndex": 0
+    },
+    "correctAnswerPreview": "A) already",
+    "explanation": "\"Already\" indicates that an action was completed sooner than expected.",
+    "points": 10,
+    "tags": [
+      "present-perfect",
+      "already"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_008",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Present Perfect: Experiences & Time",
+    "skill": "grammar",
+    "difficulty": "easy",
+    "questionType": "true_false",
+    "assignedGameTypes": [
+      "true_false"
+    ],
+    "prompt": "True or False: We use \"since\" with periods of time like \"three months\" or \"five hours\".",
+    "payload": {
+      "isTrue": false
+    },
+    "correctAnswerPreview": "FALSE",
+    "explanation": "False. Periods of time take \"for\" (for three months). \"Since\" is used for specific start points (since March, since 2 o’clock).",
+    "points": 10,
+    "tags": [
+      "for-since",
+      "time-expressions"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_009",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Present Perfect: Experiences & Time",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "Order the words to make a negative experience statement:",
+    "payload": {
+      "correctSentence": "He has never travelled by passenger airplane before.",
+      "scrambledWords": [
+        "He",
+        "by",
+        "travelled",
+        "airplane",
+        "never",
+        "before",
+        "has",
+        "passenger"
+      ]
+    },
+    "correctAnswerPreview": "He has never travelled by passenger airplane before.",
+    "explanation": "\"Never\" gives negative meaning without \"not\": Subject + has + never + past participle + adverbial.",
+    "points": 10,
+    "tags": [
+      "sentence-builder",
+      "present-perfect",
+      "never"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_010",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Present Perfect: Experiences & Time",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Where is Kevin? - He _______ gone to the post office; he will be back in an hour.",
+    "payload": {
+      "options": [
+        "have",
+        "has",
+        "is",
+        "was"
+      ],
+      "correctOptionIndex": 1
+    },
+    "correctAnswerPreview": "B) has",
+    "explanation": "Third-person singular \"He\" takes \"has gone\" (indicating he has left and has not yet returned).",
+    "points": 10,
+    "tags": [
+      "present-perfect",
+      "been-vs-gone"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_011",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Present Perfect vs. Past Simple",
+    "skill": "grammar",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Alexander Graham Bell _______ the telephone in 1876.",
+    "payload": {
+      "options": [
+        "has invented",
+        "was inventing",
+        "invented",
+        "had been inventing"
+      ],
+      "correctOptionIndex": 2
+    },
+    "correctAnswerPreview": "C) invented",
+    "explanation": "A definite completed past year (\"in 1876\") strictly requires the Past Simple, never the Present Perfect.",
+    "points": 10,
+    "tags": [
+      "tense-contrast",
+      "past-simple",
+      "historical-facts"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_012",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Present Perfect vs. Past Simple",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "I _______ to Antalya three times in my life, but I _______ there last summer with my cousins.",
+    "payload": {
+      "options": [
+        "went / have been",
+        "have gone / went",
+        "was / have gone",
+        "have been / went"
+      ],
+      "correctOptionIndex": 3
+    },
+    "correctAnswerPreview": "D) have been / went",
+    "explanation": "Life experience uses Present Perfect (\"have been\"), while the specific past trip (\"last summer\") requires Past Simple (\"went\").",
+    "points": 10,
+    "tags": [
+      "tense-contrast",
+      "experience-vs-specific"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_013",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Present Perfect vs. Past Simple",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "When _______ you finish building your robotic car project?",
+    "payload": {
+      "options": [
+        "did",
+        "have",
+        "were",
+        "had"
+      ],
+      "correctOptionIndex": 0
+    },
+    "correctAnswerPreview": "A) did",
+    "explanation": "Questions beginning with \"When\" ask about a specific point in past time and must use Past Simple (\"When did you...\").",
+    "points": 10,
+    "tags": [
+      "tense-contrast",
+      "when-questions",
+      "past-simple"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_014",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Present Perfect vs. Past Simple",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "true_false",
+    "assignedGameTypes": [
+      "true_false"
+    ],
+    "prompt": "True or False: \"I have already seen that movie twice\" is a correct present perfect sentence.",
+    "payload": {
+      "isTrue": true
+    },
+    "correctAnswerPreview": "TRUE",
+    "explanation": "True. Present perfect is used with \"already\" and \"twice\" to describe an experience at an unspecified time in the past.",
+    "points": 10,
+    "tags": [
+      "tense-contrast",
+      "common-errors"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_015",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Present Perfect vs. Past Simple",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "Assemble the sentence contrasting experience with a past event:",
+    "payload": {
+      "correctSentence": "She has lost her apartment keys and cannot enter her home now.",
+      "scrambledWords": [
+        "enter",
+        "her",
+        "her",
+        "keys",
+        "has",
+        "home",
+        "apartment",
+        "now",
+        "lost",
+        "and",
+        "cannot",
+        "She"
+      ]
+    },
+    "correctAnswerPreview": "She has lost her apartment keys and cannot enter her home now.",
+    "explanation": "Present perfect shows a past action with direct result in the present (\"cannot enter now\").",
+    "points": 10,
+    "tags": [
+      "sentence-builder",
+      "present-result"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_016",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Present Perfect vs. Past Simple",
+    "skill": "grammar",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Shakespeare _______ many famous plays and sonnets during his lifetime.",
+    "payload": {
+      "options": [
+        "has written",
+        "wrote",
+        "was written",
+        "writes"
+      ],
+      "correctOptionIndex": 1
+    },
+    "correctAnswerPreview": "B) wrote",
+    "explanation": "Since Shakespeare is deceased and his life period is finished, Past Simple (\"wrote\") is required.",
+    "points": 10,
+    "tags": [
+      "past-simple",
+      "historical-figures"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_017",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Present Perfect vs. Past Simple",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "J.K. Rowling _______ many best-selling novels, and she is still writing today.",
+    "payload": {
+      "options": [
+        "wrote",
+        "was writing",
+        "has written",
+        "written"
+      ],
+      "correctOptionIndex": 2
+    },
+    "correctAnswerPreview": "C) has written",
+    "explanation": "Since the author is living and the career is ongoing, the Present Perfect (\"has written\") expresses achievement up to now.",
+    "points": 10,
+    "tags": [
+      "present-perfect",
+      "ongoing-careers"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_018",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Present Perfect vs. Past Simple",
+    "skill": "grammar",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Did you hear the news? Our school volleyball team _______ the regional cup!",
+    "payload": {
+      "options": [
+        "won yesterday",
+        "did win",
+        "is winning",
+        "has won"
+      ],
+      "correctOptionIndex": 3
+    },
+    "correctAnswerPreview": "D) has won",
+    "explanation": "Announcing breaking news of current interest without a specified past time uses Present Perfect (\"has won\").",
+    "points": 10,
+    "tags": [
+      "present-perfect",
+      "breaking-news"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_019",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Present Perfect vs. Past Simple",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "Assemble the sentence with proper tense and time adverb placement:",
+    "payload": {
+      "correctSentence": "We visited the archaeological museum two days ago.",
+      "scrambledWords": [
+        "visited",
+        "two",
+        "archaeological",
+        "days",
+        "the",
+        "museum",
+        "ago",
+        "We"
+      ]
+    },
+    "correctAnswerPreview": "We visited the archaeological museum two days ago.",
+    "explanation": "\"Two days ago\" mandates Past Simple \"visited\".",
+    "points": 10,
+    "tags": [
+      "sentence-builder",
+      "past-simple",
+      "ago"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_020",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Present Perfect vs. Past Simple",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "I have known Cemal _______ we were first-grade primary students.",
+    "payload": {
+      "options": [
+        "since",
+        "for",
+        "ago",
+        "already"
+      ],
+      "correctOptionIndex": 0
+    },
+    "correctAnswerPreview": "A) since",
+    "explanation": "A specific past event clause (\"we were first-grade students\") introducing a continuing state takes \"since\".",
+    "points": 10,
+    "tags": [
+      "present-perfect",
+      "since-clause"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_021",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Past Perfect & Narrative Sequences",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "By the time we arrived at the platform, the express train _______.",
+    "payload": {
+      "options": [
+        "already left",
+        "had already left",
+        "has left",
+        "was leaving"
+      ],
+      "correctOptionIndex": 1
+    },
+    "correctAnswerPreview": "B) had already left",
+    "explanation": "The Past Perfect (\"had already left\") shows that the train departed before the past action of arriving occurred.",
+    "points": 10,
+    "tags": [
+      "past-perfect",
+      "by-the-time",
+      "narrative-sequence"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_022",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Past Perfect & Narrative Sequences",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Zeynep felt confident during the exam because she _______ for three weeks.",
+    "payload": {
+      "options": [
+        "revises",
+        "has revised",
+        "had revised",
+        "is revising"
+      ],
+      "correctOptionIndex": 2
+    },
+    "correctAnswerPreview": "C) had revised",
+    "explanation": "The studying occurred prior to the past feeling of confidence, so the earlier action requires Past Perfect (\"had revised\").",
+    "points": 10,
+    "tags": [
+      "past-perfect",
+      "reasons-in-past"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_023",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Past Perfect & Narrative Sequences",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "After they _______ dinner, they washed the dishes and watched a film.",
+    "payload": {
+      "options": [
+        "have finished",
+        "finish",
+        "are finishing",
+        "had finished"
+      ],
+      "correctOptionIndex": 3
+    },
+    "correctAnswerPreview": "D) had finished",
+    "explanation": "In narrative clauses with \"after\", the earlier completed event takes Past Perfect (\"had finished\").",
+    "points": 10,
+    "tags": [
+      "past-perfect",
+      "after-clause"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_024",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Past Perfect & Narrative Sequences",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "Assemble the narrative sentence in proper time sequence:",
+    "payload": {
+      "correctSentence": "When the teacher entered, the students had already sat down.",
+      "scrambledWords": [
+        "the",
+        "already",
+        "teacher",
+        "students",
+        "sat",
+        "down",
+        "entered",
+        "the",
+        "had",
+        "When"
+      ]
+    },
+    "correctAnswerPreview": "When the teacher entered, the students had already sat down.",
+    "explanation": "When-clause in past simple (entered) + earlier completed action in past perfect (had already sat down).",
+    "points": 10,
+    "tags": [
+      "sentence-builder",
+      "past-perfect",
+      "narratives"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_025",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Past Perfect & Narrative Sequences",
+    "skill": "grammar",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Had you ever _______ sushi before you visited Japan last year?",
+    "payload": {
+      "options": [
+        "eaten",
+        "ate",
+        "eat",
+        "eating"
+      ],
+      "correctOptionIndex": 0
+    },
+    "correctAnswerPreview": "A) eaten",
+    "explanation": "Past Perfect question structure: Had + subject + ever + past participle (eaten).",
+    "points": 10,
+    "tags": [
+      "past-perfect",
+      "question-forms",
+      "participles"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_026",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Past Perfect & Narrative Sequences",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "true_false",
+    "assignedGameTypes": [
+      "true_false"
+    ],
+    "prompt": "True or False: In \"The match started before we had bought our tickets\", the time sequence is correct.",
+    "payload": {
+      "isTrue": false
+    },
+    "correctAnswerPreview": "FALSE",
+    "explanation": "False. The event that happened first requires the Past Perfect: \"The match had already started before we bought our tickets\".",
+    "points": 10,
+    "tags": [
+      "past-perfect",
+      "chronology",
+      "concept-check"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_027",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Past Perfect & Narrative Sequences",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "The streets were completely wet in the morning because it _______ heavily during the night.",
+    "payload": {
+      "options": [
+        "has rained",
+        "had rained",
+        "rains",
+        "is raining"
+      ],
+      "correctOptionIndex": 1
+    },
+    "correctAnswerPreview": "B) had rained",
+    "explanation": "The rain occurred during the night before the morning observation, requiring Past Perfect (\"had rained\").",
+    "points": 10,
+    "tags": [
+      "past-perfect",
+      "past-evidence"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_028",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Past Perfect & Narrative Sequences",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "Arrange the sequence of events using before and the past perfect:",
+    "payload": {
+      "correctSentence": "She had locked all windows before she left the office.",
+      "scrambledWords": [
+        "she",
+        "all",
+        "had",
+        "the",
+        "windows",
+        "locked",
+        "before",
+        "office",
+        "left",
+        "She"
+      ]
+    },
+    "correctAnswerPreview": "She had locked all windows before she left the office.",
+    "explanation": "Earlier completed action in past perfect (had locked) + before-clause in past simple (left).",
+    "points": 10,
+    "tags": [
+      "sentence-builder",
+      "before-clause",
+      "past-perfect"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_029",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Past Perfect & Narrative Sequences",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "He couldn’t pay for his groceries because he _______ his wallet at home.",
+    "payload": {
+      "options": [
+        "has forgotten",
+        "forgets",
+        "had forgotten",
+        "was forgetting"
+      ],
+      "correctOptionIndex": 2
+    },
+    "correctAnswerPreview": "C) had forgotten",
+    "explanation": "Forgetting the wallet happened prior to attempting to pay, requiring the Past Perfect (\"had forgotten\").",
+    "points": 10,
+    "tags": [
+      "past-perfect",
+      "causes"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_030",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Past Perfect & Narrative Sequences",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Until yesterday, I _______ never heard of that extreme sports competition.",
+    "payload": {
+      "options": [
+        "have",
+        "was",
+        "did",
+        "had"
+      ],
+      "correctOptionIndex": 3
+    },
+    "correctAnswerPreview": "D) had",
+    "explanation": "\"Until yesterday\" establishes a cutoff point in past time, requiring Past Perfect (\"had never heard\").",
+    "points": 10,
+    "tags": [
+      "past-perfect",
+      "until-yesterday"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_031",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Conditionals: Zero & First Conditional",
+    "skill": "grammar",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "If you heat pure water to 100 degrees Celsius, it _______.",
+    "payload": {
+      "options": [
+        "boils",
+        "will boil",
+        "boiled",
+        "would boil"
+      ],
+      "correctOptionIndex": 0
+    },
+    "correctAnswerPreview": "A) boils",
+    "explanation": "Zero Conditional expresses universal scientific facts: If + Present Simple, Present Simple (\"it boils\").",
+    "points": 10,
+    "tags": [
+      "zero-conditional",
+      "scientific-facts"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_032",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Conditionals: Zero & First Conditional",
+    "skill": "grammar",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "If it _______ sunny tomorrow, we will have a picnic in the botanical garden.",
+    "payload": {
+      "options": [
+        "will be",
+        "is",
+        "was",
+        "would be"
+      ],
+      "correctOptionIndex": 1
+    },
+    "correctAnswerPreview": "B) is",
+    "explanation": "In First Conditional sentences, the if-clause uses the Present Simple (\"If it is\"), not \"will\".",
+    "points": 10,
+    "tags": [
+      "first-conditional",
+      "if-clause-present"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_033",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Conditionals: Zero & First Conditional",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "You will fail the driving test _______ you practice parking properly.",
+    "payload": {
+      "options": [
+        "if",
+        "as soon as",
+        "unless",
+        "until"
+      ],
+      "correctOptionIndex": 2
+    },
+    "correctAnswerPreview": "C) unless",
+    "explanation": "\"Unless\" means \"if not\" (\"unless you practice\" = \"if you do not practice\").",
+    "points": 10,
+    "tags": [
+      "first-conditional",
+      "unless"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_034",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Conditionals: Zero & First Conditional",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "match_it",
+    "assignedGameTypes": [
+      "match_it"
+    ],
+    "prompt": "Match each conditional condition clause with its natural result clause:",
+    "payload": {
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "If you leave milk in the sun",
+          "right": "it spoils quickly"
+        },
+        {
+          "id": "p2",
+          "left": "If you study diligently every day",
+          "right": "you will pass the exam"
+        },
+        {
+          "id": "p3",
+          "left": "If plants get no sunlight",
+          "right": "they cannot produce food"
+        },
+        {
+          "id": "p4",
+          "left": "If we miss the 8 o’clock bus",
+          "right": "we will take the subway"
+        }
+      ]
+    },
+    "correctAnswerPreview": "If you leave milk...-it spoils quickly, If you study diligently...-you will pass the exam, If plants get no sunlight...-they cannot produce food, If we miss the bus...-we will take the subway",
+    "explanation": "Pairs realistic conditions with their corresponding Zero and First conditional outcomes.",
+    "points": 10,
+    "tags": [
+      "conditionals",
+      "match-it"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_035",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Conditionals: Zero & First Conditional",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "Assemble the words into a correct First Conditional sentence:",
+    "payload": {
+      "correctSentence": "If you do not hurry up, we will miss our flight.",
+      "scrambledWords": [
+        "hurry",
+        "do",
+        "up",
+        "will",
+        "flight",
+        "you",
+        "we",
+        "not",
+        "miss",
+        "our",
+        "If"
+      ]
+    },
+    "correctAnswerPreview": "If you do not hurry up, we will miss our flight.",
+    "explanation": "First Conditional: If + subject + negative present simple + will + base verb.",
+    "points": 10,
+    "tags": [
+      "sentence-builder",
+      "first-conditional",
+      "warnings"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_036",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Conditionals: Zero & First Conditional",
+    "skill": "grammar",
+    "difficulty": "easy",
+    "questionType": "true_false",
+    "assignedGameTypes": [
+      "true_false"
+    ],
+    "prompt": "True or False: In a First Conditional sentence, the if-clause uses the simple present tense.",
+    "payload": {
+      "isTrue": true
+    },
+    "correctAnswerPreview": "TRUE",
+    "explanation": "True. In first conditional sentences, the if-clause uses the present simple (e.g., \"If it rains...\"), while the main clause uses \"will\" + verb.",
+    "points": 10,
+    "tags": [
+      "first-conditional",
+      "common-mistakes"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_037",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Conditionals: Zero & First Conditional",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "What _______ if she does not accept your invitation to the party?",
+    "payload": {
+      "options": [
+        "do you",
+        "would you do",
+        "did you do",
+        "will you do"
+      ],
+      "correctOptionIndex": 3
+    },
+    "correctAnswerPreview": "D) will you do",
+    "explanation": "Question form in First Conditional: Wh-word + will + subject + base verb + if-clause.",
+    "points": 10,
+    "tags": [
+      "first-conditional",
+      "questions"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_038",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Conditionals: Zero & First Conditional",
+    "skill": "grammar",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "When you mix blue and yellow paint, you _______ green.",
+    "payload": {
+      "options": [
+        "get",
+        "will get",
+        "got",
+        "getting"
+      ],
+      "correctOptionIndex": 0
+    },
+    "correctAnswerPreview": "A) get",
+    "explanation": "General factual rule expressed in Zero Conditional with \"when\": When + present, present (\"you get green\").",
+    "points": 10,
+    "tags": [
+      "zero-conditional",
+      "when",
+      "facts"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_039",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Conditionals: Zero & First Conditional",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "Form a conditional sentence using unless:",
+    "payload": {
+      "correctSentence": "Unless it stops snowing, the soccer match will be cancelled.",
+      "scrambledWords": [
+        "it",
+        "match",
+        "the",
+        "soccer",
+        "stops",
+        "will",
+        "be",
+        "cancelled",
+        "snowing",
+        "Unless"
+      ]
+    },
+    "correctAnswerPreview": "Unless it stops snowing, the soccer match will be cancelled.",
+    "explanation": "Unless + 3rd person singular present (stops) + future result clause with will.",
+    "points": 10,
+    "tags": [
+      "sentence-builder",
+      "unless",
+      "first-conditional"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_040",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Conditionals: Zero & First Conditional",
+    "skill": "grammar",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "If you touch a hot stove, your finger _______ burned.",
+    "payload": {
+      "options": [
+        "will get",
+        "gets",
+        "got",
+        "is getting"
+      ],
+      "correctOptionIndex": 1
+    },
+    "correctAnswerPreview": "B) gets",
+    "explanation": "Immediate physical and biological cause-and-effect rule (Zero Conditional): \"gets burned\".",
+    "points": 10,
+    "tags": [
+      "zero-conditional",
+      "cause-effect"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_041",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Passive Voice (Present & Past)",
+    "skill": "grammar",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "The Mona Lisa _______ painted by Leonardo da Vinci in the early 16th century.",
+    "payload": {
+      "options": [
+        "is",
+        "were",
+        "was",
+        "has"
+      ],
+      "correctOptionIndex": 2
+    },
+    "correctAnswerPreview": "C) was",
+    "explanation": "Past Simple Passive for singular subject (The Mona Lisa): was + past participle (painted).",
+    "points": 10,
+    "tags": [
+      "passive-voice",
+      "past-passive",
+      "art-history"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_042",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Passive Voice (Present & Past)",
+    "skill": "grammar",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Turkish tea _______ usually served in delicate, tulip-shaped glasses.",
+    "payload": {
+      "options": [
+        "are",
+        "was",
+        "were",
+        "is"
+      ],
+      "correctOptionIndex": 3
+    },
+    "correctAnswerPreview": "D) is",
+    "explanation": "Present Simple Passive with uncountable noun (tea): is + past participle (served).",
+    "points": 10,
+    "tags": [
+      "passive-voice",
+      "present-passive",
+      "culture"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_043",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Passive Voice (Present & Past)",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Penicillin was discovered by Alexander Fleming _______ 1928.",
+    "payload": {
+      "options": [
+        "in",
+        "at",
+        "on",
+        "by"
+      ],
+      "correctOptionIndex": 0
+    },
+    "correctAnswerPreview": "A) in",
+    "explanation": "Years take the preposition \"in\" (\"in 1928\"). Notice the agent is marked with \"by Alexander Fleming\".",
+    "points": 10,
+    "tags": [
+      "passive-voice",
+      "prepositions",
+      "inventions"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_044",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Passive Voice (Present & Past)",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "Assemble the words into a correct Present Simple passive statement:",
+    "payload": {
+      "correctSentence": "Millions of text messages are sent around the world every minute.",
+      "scrambledWords": [
+        "Millions",
+        "text",
+        "are",
+        "every",
+        "world",
+        "messages",
+        "sent",
+        "of",
+        "around",
+        "minute",
+        "the"
+      ]
+    },
+    "correctAnswerPreview": "Millions of text messages are sent around the world every minute.",
+    "explanation": "Plural subject (messages) + are + irregular participle sent + adverbial phrases.",
+    "points": 10,
+    "tags": [
+      "sentence-builder",
+      "passive-voice",
+      "present-passive"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_045",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Passive Voice (Present & Past)",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "match_it",
+    "assignedGameTypes": [
+      "match_it"
+    ],
+    "prompt": "Match each famous invention with its passive past invention credit:",
+    "payload": {
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "The steam engine",
+          "right": "was improved by James Watt"
+        },
+        {
+          "id": "p2",
+          "left": "The World Wide Web",
+          "right": "was created by Tim Berners-Lee"
+        },
+        {
+          "id": "p3",
+          "left": "The light bulb",
+          "right": "was patented by Thomas Edison"
+        },
+        {
+          "id": "p4",
+          "left": "Radio communication",
+          "right": "was developed by Guglielmo Marconi"
+        }
+      ]
+    },
+    "correctAnswerPreview": "Steam engine-was improved by James Watt, World Wide Web-was created by Tim Berners-Lee, Light bulb-was patented by Thomas Edison, Radio-was developed by Marconi",
+    "explanation": "Past passive verb phrases (was + V3 + by agent) matching world-changing inventions.",
+    "points": 10,
+    "tags": [
+      "passive-voice",
+      "science-history",
+      "match-it"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_046",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Passive Voice (Present & Past)",
+    "skill": "grammar",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "These organic oranges _______ grown in orchards across the Aegean region.",
+    "payload": {
+      "options": [
+        "is",
+        "are",
+        "was",
+        "has"
+      ],
+      "correctOptionIndex": 1
+    },
+    "correctAnswerPreview": "B) are",
+    "explanation": "Plural subject \"These organic oranges\" requires \"are + past participle (grown)\".",
+    "points": 10,
+    "tags": [
+      "passive-voice",
+      "agriculture"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_047",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Passive Voice (Present & Past)",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "Build a past passive sentence specifying the agent:",
+    "payload": {
+      "correctSentence": "The historical stone bridge was constructed by Ottoman architects in 1590.",
+      "scrambledWords": [
+        "historical",
+        "bridge",
+        "Ottoman",
+        "constructed",
+        "stone",
+        "in",
+        "1590",
+        "architects",
+        "was",
+        "by",
+        "The"
+      ]
+    },
+    "correctAnswerPreview": "The historical stone bridge was constructed by Ottoman architects in 1590.",
+    "explanation": "Past passive: Subject + was constructed + by agent + time expression.",
+    "points": 10,
+    "tags": [
+      "sentence-builder",
+      "past-passive",
+      "architecture"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_048",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Passive Voice (Present & Past)",
+    "skill": "grammar",
+    "difficulty": "easy",
+    "questionType": "true_false",
+    "assignedGameTypes": [
+      "true_false"
+    ],
+    "prompt": "True or False: In passive voice sentences, the agent who performed the action is introduced by \"by\" (e.g. \"written by Shakespeare\").",
+    "payload": {
+      "isTrue": true
+    },
+    "correctAnswerPreview": "TRUE",
+    "explanation": "True. The preposition \"by\" introduces the agent performing the action, whereas \"with\" is used for tools or instruments.",
+    "points": 10,
+    "tags": [
+      "passive-voice",
+      "agent-by",
+      "prepositions"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_049",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Passive Voice (Present & Past)",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Thousands of high-tech electric cars _______ manufactured in this factory every month.",
+    "payload": {
+      "options": [
+        "were",
+        "is",
+        "are",
+        "was"
+      ],
+      "correctOptionIndex": 2
+    },
+    "correctAnswerPreview": "C) are",
+    "explanation": "Regular monthly manufacturing habit (\"every month\") in the passive: plural subject \"cars\" + \"are manufactured\".",
+    "points": 10,
+    "tags": [
+      "passive-voice",
+      "present-passive",
+      "industry"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_050",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Passive Voice (Present & Past)",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "The missing museum artifacts _______ found in an abandoned warehouse last night.",
+    "payload": {
+      "options": [
+        "was",
+        "are",
+        "is",
+        "were"
+      ],
+      "correctOptionIndex": 3
+    },
+    "correctAnswerPreview": "D) were",
+    "explanation": "Plural subject (artifacts) + finished past time marker (last night) requires \"were found\".",
+    "points": 10,
+    "tags": [
+      "passive-voice",
+      "past-passive"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_051",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Question Forms & Tag Questions",
+    "skill": "grammar",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "You enjoy playing chess, _______ you?",
+    "payload": {
+      "options": [
+        "don’t",
+        "aren’t",
+        "do",
+        "haven’t"
+      ],
+      "correctOptionIndex": 0
+    },
+    "correctAnswerPreview": "A) don’t",
+    "explanation": "A positive Present Simple statement with dynamic verb (\"enjoy\") takes a negative tag with auxiliary do: \"don't you?\".",
+    "points": 10,
+    "tags": [
+      "tag-questions",
+      "present-simple"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_052",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Question Forms & Tag Questions",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "_______ broke the laboratory glass beaker during chemistry class yesterday?",
+    "payload": {
+      "options": [
+        "Who did",
+        "Who",
+        "Whom",
+        "What did"
+      ],
+      "correctOptionIndex": 1
+    },
+    "correctAnswerPreview": "B) Who",
+    "explanation": "In subject questions (asking who performed the action), no auxiliary \"did\" is used: \"Who broke...?\", not \"Who did break...\".",
+    "points": 10,
+    "tags": [
+      "subject-questions",
+      "wh-questions"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_053",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Question Forms & Tag Questions",
+    "skill": "grammar",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "She hasn’t finished reading the novel yet, _______ she?",
+    "payload": {
+      "options": [
+        "hasn’t",
+        "did",
+        "has",
+        "is"
+      ],
+      "correctOptionIndex": 2
+    },
+    "correctAnswerPreview": "C) has",
+    "explanation": "A negative statement (\"hasn't finished\") takes a positive question tag (\"has she?\").",
+    "points": 10,
+    "tags": [
+      "tag-questions",
+      "negative-statement"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_054",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Question Forms & Tag Questions",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "Assemble the object question in correct grammatical order:",
+    "payload": {
+      "correctSentence": "Which historical site did you visit during your school trip?",
+      "scrambledWords": [
+        "Which",
+        "site",
+        "did",
+        "school",
+        "your",
+        "historical",
+        "during",
+        "trip",
+        "you",
+        "visit"
+      ]
+    },
+    "correctAnswerPreview": "Which historical site did you visit during your school trip?",
+    "explanation": "Object question structure: Wh-phrase + did + subject + base verb + prepositional phrase.",
+    "points": 10,
+    "tags": [
+      "sentence-builder",
+      "object-questions",
+      "word-order"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_055",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Question Forms & Tag Questions",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Your parents were at home yesterday evening, _______ they?",
+    "payload": {
+      "options": [
+        "were",
+        "didn’t",
+        "aren’t",
+        "weren’t"
+      ],
+      "correctOptionIndex": 3
+    },
+    "correctAnswerPreview": "D) weren’t",
+    "explanation": "Positive statement with past be (\"were\") takes negative tag \"weren't they?\".",
+    "points": 10,
+    "tags": [
+      "tag-questions",
+      "past-be"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_056",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Question Forms & Tag Questions",
+    "skill": "grammar",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Let’s go cycling around the lake this afternoon, _______ we?",
+    "payload": {
+      "options": [
+        "shall",
+        "will",
+        "do",
+        "can"
+      ],
+      "correctOptionIndex": 0
+    },
+    "correctAnswerPreview": "A) shall",
+    "explanation": "Suggestions beginning with \"Let's\" take the fixed question tag \"shall we?\".",
+    "points": 10,
+    "tags": [
+      "tag-questions",
+      "suggestions",
+      "shall-we"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_057",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Question Forms & Tag Questions",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "true_false",
+    "assignedGameTypes": [
+      "true_false"
+    ],
+    "prompt": "True or False: \"Who called you?\" and \"Who did you call?\" ask about the exact same person.",
+    "payload": {
+      "isTrue": false
+    },
+    "correctAnswerPreview": "FALSE",
+    "explanation": "False. \"Who called you?\" is a subject question (asking who made the call). \"Who did you call?\" is an object question (asking who received the call).",
+    "points": 10,
+    "tags": [
+      "subject-vs-object-questions",
+      "concept-check"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_058",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Question Forms & Tag Questions",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Nobody called while I was out at the grocery store, _______ they?",
+    "payload": {
+      "options": [
+        "didn’t",
+        "did",
+        "was",
+        "were"
+      ],
+      "correctOptionIndex": 1
+    },
+    "correctAnswerPreview": "B) did",
+    "explanation": "\"Nobody\" is treated as negative, so the question tag is affirmative. Pronoun \"they\" takes auxiliary \"did\": \"did they?\".",
+    "points": 10,
+    "tags": [
+      "tag-questions",
+      "nobody",
+      "special-rules"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_059",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Question Forms & Tag Questions",
+    "skill": "grammar",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "Construct the subject question asking about the inventor:",
+    "payload": {
+      "correctSentence": "Who invented the first mechanical printing press in Europe?",
+      "scrambledWords": [
+        "mechanical",
+        "the",
+        "press",
+        "Europe",
+        "Who",
+        "printing",
+        "invented",
+        "first",
+        "in"
+      ]
+    },
+    "correctAnswerPreview": "Who invented the first mechanical printing press in Europe?",
+    "explanation": "Subject question: Who + past simple verb (invented) + object noun phrase without auxiliary \"did\".",
+    "points": 10,
+    "tags": [
+      "sentence-builder",
+      "subject-questions",
+      "history"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_gram_060",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Question Forms & Tag Questions",
+    "skill": "grammar",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Open the classroom door for the teacher, _______ you?",
+    "payload": {
+      "options": [
+        "shall",
+        "are",
+        "will",
+        "did"
+      ],
+      "correctOptionIndex": 2
+    },
+    "correctAnswerPreview": "C) will",
+    "explanation": "Imperative requests use the tag \"will you?\" (or \"won't you?\").",
+    "points": 10,
+    "tags": [
+      "tag-questions",
+      "imperatives"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  }
+]

@@ -36,7 +36,17 @@ import type {
   TeacherDemoAccountsResponse,
   TeacherArchiveDemoResponse,
   TeacherSetAllPinsDefaultResponse,
+  TeacherSectionAnalyticsResponse,
 } from '../types/teacher';
+import type {
+  QuestionBankItem,
+  QuestionBankFilterOptions,
+  TeacherGetQuestionBankResponse,
+  TeacherSaveQuestionResponse,
+  TeacherBulkImportQuestionsResponse,
+  TeacherArchiveQuestionResponse,
+  TeacherRollbackQuestionImportResponse,
+} from '../types/questionBank';
 
 export class TeacherApiService {
   // In-flight request deduplication map
@@ -325,6 +335,48 @@ export class TeacherApiService {
         return {
           success: false,
           error: `Failed to load question analytics: ${message}`,
+          code: 'NETWORK_ERROR',
+        };
+      }
+    });
+  }
+
+  /**
+   * Retrieves comprehensive General English & Mixed Practice section analytics,
+   * skill pillars, topic mastery diagnostics, and student participation matrix.
+   */
+  public static async getSectionAnalytics(
+    teacherToken: string,
+    filters?: DashboardFilterOptions
+  ): Promise<TeacherSectionAnalyticsResponse> {
+    const cleanToken = (teacherToken || '').trim();
+    if (!cleanToken) {
+      return {
+        success: false,
+        error: 'Authentication required. Please log in as a teacher.',
+        code: 'UNAUTHORIZED',
+      };
+    }
+
+    const cacheKey = `section_analytics_${JSON.stringify(filters || {})}`;
+
+    return this.executeDeduplicated(cacheKey, async () => {
+      try {
+        const endpoint = ApiService.getTeacherApiUrl();
+        return await ApiService.postRequest<TeacherSectionAnalyticsResponse>(
+          endpoint,
+          {
+            action: 'teacher_get_section_analytics',
+            teacherToken: cleanToken,
+            filters: filters || {},
+          },
+          25000
+        );
+      } catch (err) {
+        const message = err instanceof Error ? err.message : 'Server error';
+        return {
+          success: false,
+          error: `Failed to load section analytics: ${message}`,
           code: 'NETWORK_ERROR',
         };
       }
@@ -768,6 +820,213 @@ export class TeacherApiService {
       return {
         success: false,
         error: `Administrative PIN reset failed: ${message}`,
+        code: 'NETWORK_ERROR',
+      };
+    }
+  }
+
+  /**
+   * Question Bank: Retrieves questions matching specified criteria.
+   */
+  public static async getQuestionBank(
+    teacherToken: string,
+    filters?: QuestionBankFilterOptions
+  ): Promise<TeacherGetQuestionBankResponse> {
+    const cleanToken = (teacherToken || '').trim();
+    if (!cleanToken) {
+      return {
+        success: false,
+        error: 'Authentication required. Please log in as a teacher.',
+        code: 'UNAUTHORIZED',
+      };
+    }
+
+    try {
+      const endpoint = ApiService.getTeacherApiUrl();
+      return await ApiService.postRequest<TeacherGetQuestionBankResponse>(
+        endpoint,
+        {
+          action: 'teacher_get_question_bank',
+          teacherToken: cleanToken,
+          ...(filters || {}),
+        },
+        20000
+      );
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Server error';
+      return {
+        success: false,
+        error: `Failed to load Question Bank: ${message}`,
+        code: 'NETWORK_ERROR',
+      };
+    }
+  }
+
+  /**
+   * Question Bank: Creates or updates a single question.
+   */
+  public static async saveQuestion(
+    teacherToken: string,
+    question: Partial<QuestionBankItem> & {
+      prompt: string;
+      questionType: QuestionBankItem['questionType'];
+      skill: QuestionBankItem['skill'];
+      topic: string;
+      section: QuestionBankItem['section'];
+      assignedGameTypes: QuestionBankItem['assignedGameTypes'];
+      payload: QuestionBankItem['payload'];
+    }
+  ): Promise<TeacherSaveQuestionResponse> {
+    const cleanToken = (teacherToken || '').trim();
+    if (!cleanToken) {
+      return {
+        success: false,
+        error: 'Authentication required. Please log in as a teacher.',
+        code: 'UNAUTHORIZED',
+      };
+    }
+
+    try {
+      const endpoint = ApiService.getTeacherApiUrl();
+      return await ApiService.postRequest<TeacherSaveQuestionResponse>(
+        endpoint,
+        {
+          action: 'teacher_save_question',
+          teacherToken: cleanToken,
+          question,
+        },
+        25000
+      );
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Server error';
+      return {
+        success: false,
+        error: `Failed to save question: ${message}`,
+        code: 'NETWORK_ERROR',
+      };
+    }
+  }
+
+  /**
+   * Question Bank: Bulk imports questions into the Question Bank sheet.
+   */
+  public static async bulkImportQuestions(
+    teacherToken: string,
+    questions: Array<Partial<QuestionBankItem> & {
+      prompt: string;
+      questionType: QuestionBankItem['questionType'];
+      skill: QuestionBankItem['skill'];
+      topic: string;
+      section: QuestionBankItem['section'];
+      assignedGameTypes: QuestionBankItem['assignedGameTypes'];
+      payload: QuestionBankItem['payload'];
+    }>,
+    overwriteDuplicates: boolean = false,
+    importBatchId?: string
+  ): Promise<TeacherBulkImportQuestionsResponse> {
+    const cleanToken = (teacherToken || '').trim();
+    if (!cleanToken) {
+      return {
+        success: false,
+        error: 'Authentication required. Please log in as a teacher.',
+        code: 'UNAUTHORIZED',
+      };
+    }
+
+    try {
+      const endpoint = ApiService.getTeacherApiUrl();
+      return await ApiService.postRequest<TeacherBulkImportQuestionsResponse>(
+        endpoint,
+        {
+          action: 'teacher_bulk_import_questions',
+          teacherToken: cleanToken,
+          questions,
+          overwriteDuplicates,
+          importBatchId,
+        },
+        45000 // 45s timeout allowance for bulk write & flush
+      );
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Server error';
+      return {
+        success: false,
+        error: `Failed to bulk import questions: ${message}`,
+        code: 'NETWORK_ERROR',
+      };
+    }
+  }
+
+  /**
+   * Question Bank: Safely rolls back the last import batch.
+   */
+  public static async rollbackQuestionImport(
+    teacherToken: string,
+    importBatchId?: string,
+    questionIds?: string[]
+  ): Promise<TeacherRollbackQuestionImportResponse> {
+    const cleanToken = (teacherToken || '').trim();
+    if (!cleanToken) {
+      return {
+        success: false,
+        error: 'Authentication required. Please log in as a teacher.',
+        code: 'UNAUTHORIZED',
+      };
+    }
+
+    try {
+      const endpoint = ApiService.getTeacherApiUrl();
+      return await ApiService.postRequest<TeacherRollbackQuestionImportResponse>(
+        endpoint,
+        {
+          action: 'teacher_rollback_question_import',
+          teacherToken: cleanToken,
+          importBatchId,
+          questionIds,
+        },
+        30000
+      );
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Server error';
+      return {
+        success: false,
+        error: `Failed to rollback question import: ${message}`,
+        code: 'NETWORK_ERROR',
+      };
+    }
+  }
+
+  /**
+   * Question Bank: Soft archives a question (status = 'archived').
+   */
+  public static async archiveQuestion(
+    teacherToken: string,
+    questionId: string
+  ): Promise<TeacherArchiveQuestionResponse> {
+    const cleanToken = (teacherToken || '').trim();
+    if (!cleanToken) {
+      return {
+        success: false,
+        error: 'Authentication required. Please log in as a teacher.',
+        code: 'UNAUTHORIZED',
+      };
+    }
+
+    try {
+      const endpoint = ApiService.getTeacherApiUrl();
+      return await ApiService.postRequest<TeacherArchiveQuestionResponse>(
+        endpoint,
+        {
+          action: 'teacher_archive_question',
+          teacherToken: cleanToken,
+          questionId,
+        },
+        20000
+      );
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Server error';
+      return {
+        success: false,
+        error: `Failed to archive question: ${message}`,
         code: 'NETWORK_ERROR',
       };
     }

@@ -25,6 +25,8 @@ import { TeacherDashboardErrorBoundary } from './components/teacher/dashboard/Te
 import { GameContainer } from './components/game/GameContainer';
 import { GamesZoneContainer } from './components/gamesZone/GamesZoneContainer';
 import { MonsterWorldScreen } from './components/monster/MonsterWorldScreen';
+import { GeneralEnglishScreen } from './components/generalEnglish/GeneralEnglishScreen';
+import { GeneralEnglishGameContainer } from './components/generalEnglish/GeneralEnglishGameContainer';
 import { useAuth } from './context/AuthContext';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -34,7 +36,34 @@ const MainView: React.FC = () => {
   const { student } = useAuth();
 
   const [unauthView, setUnauthView] = useState<'welcome' | 'student-login' | 'teacher-login'>('welcome');
-  const [isGuestMode, setIsGuestMode] = useState<boolean>(false);
+  const [isGuestMode, setIsGuestMode] = useState<boolean>(() => {
+    try {
+      return sessionStorage.getItem('ura_guest_mode_v1') === 'true';
+    } catch {
+      return false;
+    }
+  });
+
+  // Sync guest mode state across storage events and reset when student logs out
+  useEffect(() => {
+    const syncGuest = () => {
+      try {
+        const isGuest = sessionStorage.getItem('ura_guest_mode_v1') === 'true';
+        setIsGuestMode(isGuest);
+        if (!student && !isGuest) {
+          setUnauthView('welcome');
+        }
+      } catch {
+        // ignore
+      }
+    };
+    window.addEventListener('storage', syncGuest);
+    window.addEventListener('ura_auth_change', syncGuest);
+    return () => {
+      window.removeEventListener('storage', syncGuest);
+      window.removeEventListener('ura_auth_change', syncGuest);
+    };
+  }, [student]);
 
   // If student logs out, reset view to public welcome screen and disable guest mode
   useEffect(() => {
@@ -69,7 +98,14 @@ const MainView: React.FC = () => {
         <div className="min-h-screen bg-game-sky text-slate-900 flex flex-col font-sans selection:bg-cyan-500 selection:text-white">
           <StudentLoginScreen
             onBackToWelcome={() => setUnauthView('welcome')}
-            onEnterGuestMode={() => setIsGuestMode(true)}
+            onEnterGuestMode={() => {
+              try {
+                sessionStorage.setItem('ura_guest_mode_v1', 'true');
+              } catch {
+                // ignore
+              }
+              setIsGuestMode(true);
+            }}
           />
           <ToastContainer />
         </div>
@@ -191,6 +227,39 @@ const MainView: React.FC = () => {
               className="flex-1 flex flex-col"
             >
               <MonsterWorldScreen />
+            </motion.div>
+          )}
+
+          {navigation.view === 'general-english' && (
+            <motion.div
+              key={`general-english-${navigation.gradeId || 'default'}`}
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.25 }}
+              className="flex-1 flex flex-col"
+            >
+              <GeneralEnglishScreen initialGradeId={navigation.gradeId} />
+            </motion.div>
+          )}
+
+          {navigation.view === 'general-english-play' && (
+            <motion.div
+              key={`ge-play-${navigation.gradeId}-${navigation.topicId}-${navigation.gameType}`}
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.25 }}
+              className="flex-1 flex flex-col"
+            >
+              <GeneralEnglishGameContainer
+                gradeId={navigation.gradeId}
+                topicId={navigation.topicId}
+                gameType={navigation.gameType}
+                mode={navigation.mode}
+                mixedRatio={navigation.mixedRatio}
+                onExit={() => navigateTo({ view: 'general-english', gradeId: navigation.gradeId })}
+              />
             </motion.div>
           )}
 

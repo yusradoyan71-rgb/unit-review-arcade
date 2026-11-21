@@ -106,7 +106,8 @@ export const UnitLibraryScreen: React.FC<UnitLibraryScreenProps> = ({ gradeId })
     openTeacherPanel, 
     deleteUnit, 
     reorderUnits,
-    createUnit 
+    createUnit,
+    navigateTo 
   } = useArcade();
   const { mastery } = usePersonalizedLearning();
 
@@ -218,31 +219,44 @@ export const UnitLibraryScreen: React.FC<UnitLibraryScreenProps> = ({ gradeId })
           </div>
         </div>
 
-        {/* Right: Teacher Actions (Classroom Mode Only) */}
-        {authMode !== 'student' && (
-          <div className="flex items-center gap-2 sm:gap-3">
-            <button
-              onClick={() => {
-                sounds.playTap();
-                setIsQuickCreateOpen(true);
-              }}
-              className="px-4 py-2.5 rounded-xl btn-game-primary text-xs sm:text-sm font-black flex items-center gap-1.5"
-            >
-              <PlusCircle className="w-4 h-4" />
-              <span>Create Unit</span>
-            </button>
+        {/* Right: Section Switcher & Teacher Actions */}
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+          <button
+            onClick={() => {
+              sounds.playNavigate();
+              navigateTo({ view: 'general-english', gradeId });
+            }}
+            className="px-4 py-2 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs sm:text-sm font-black border border-indigo-200 shadow-xs flex items-center gap-1.5 transition-colors"
+          >
+            <span>📚</span>
+            <span>Switch to General English</span>
+          </button>
 
-            <button
-              onClick={() => {
-                sounds.playTap();
-                openTeacherPanel('units', gradeId);
-              }}
-              className="px-3.5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-700 hover:text-slate-900 text-xs sm:text-sm font-bold transition-all"
-            >
-              Manage Library
-            </button>
-          </div>
-        )}
+          {authMode !== 'student' && (
+            <>
+              <button
+                onClick={() => {
+                  sounds.playTap();
+                  setIsQuickCreateOpen(true);
+                }}
+                className="px-4 py-2.5 rounded-xl btn-game-primary text-xs sm:text-sm font-black flex items-center gap-1.5"
+              >
+                <PlusCircle className="w-4 h-4" />
+                <span>Create Unit</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  sounds.playTap();
+                  openTeacherPanel('units', gradeId);
+                }}
+                className="px-3.5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-700 hover:text-slate-900 text-xs sm:text-sm font-bold transition-all"
+              >
+                Manage Library
+              </button>
+            </>
+          )}
+        </div>
 
       </div>
 

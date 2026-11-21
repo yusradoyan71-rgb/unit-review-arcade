@@ -5,6 +5,7 @@ import { sounds } from '../../services/soundEffects';
 import { useGameTracking } from '../../context/GameTrackingContext';
 import { GameResultsModal } from './GameResultsModal';
 import { ClassroomScoreboard } from './ClassroomScoreboard';
+import { AudioPromptPlayer } from '../common/AudioPromptPlayer';
 import { 
   ArrowLeft, 
   RotateCcw, 
@@ -45,6 +46,7 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ activi
   const [isRevealed, setIsRevealed] = useState(false);
   const [score, setScore] = useState(initialScore);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [isAudioAvailable, setIsAudioAvailable] = useState<boolean>(true);
 
   const hasInitializedFromCheckpointRef = useRef(Boolean(resumeCheckpoint));
   useEffect(() => {
@@ -80,6 +82,8 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ activi
   // Click word in Bank -> Move to Selected Tray
   const handleSelectWord = (tile: Tile) => {
     if (isAnswerChecked || isRevealed) return;
+    const hasAudio = currentSentence.hasAudio || Boolean((currentSentence as unknown as { speechText?: string }).speechText || (currentSentence as unknown as { audioUrl?: string }).audioUrl);
+    if (hasAudio && !isAudioAvailable) return;
     sounds.playTap();
     setBankTiles((prev) => prev.filter((t) => t.id !== tile.id));
     setSelectedTiles((prev) => [...prev, tile]);
@@ -255,6 +259,18 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ activi
           <span>Reset Tiles</span>
         </button>
       </div>
+
+      {(currentSentence.hasAudio || Boolean((currentSentence as unknown as { speechText?: string }).speechText || (currentSentence as unknown as { audioUrl?: string }).audioUrl)) && (
+        <div className="mb-6">
+          <AudioPromptPlayer
+            audioUrl={(currentSentence as unknown as { audioUrl?: string }).audioUrl}
+            speechText={(currentSentence as unknown as { speechText?: string }).speechText}
+            correctTranscript={(currentSentence as unknown as { correctTranscript?: string }).correctTranscript}
+            isAnswered={isAnswerChecked || isRevealed}
+            onPlaybackAvailabilityChange={(avail) => setIsAudioAvailable(avail)}
+          />
+        </div>
+      )}
 
       {/* Sentence Assembly Drop Area */}
       <div className="mb-6 p-6 sm:p-8 rounded-3xl bg-white/95 border-2 border-dashed border-indigo-200 min-h-[140px] flex flex-wrap items-center gap-2.5 shadow-sm">

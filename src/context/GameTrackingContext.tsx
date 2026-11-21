@@ -80,11 +80,15 @@ export const GameTrackingProvider: React.FC<GameTrackingProviderProps> = ({
   const { authMode, sessionToken, student, updateSessionToken, updateStudent } = useAuth();
   const { refreshProfile } = useGamification();
   
-  // Strict Grade Check: authenticated student must match the grade of the activity
+  // Strict Grade Check: authenticated student must match the grade of the activity (supports Unit Review, General English, and Mixed Practice)
   const isGradeMismatch = Boolean(
     student && (
       student.grade !== gradeId ||
-      !activity.id.startsWith(student.grade === 'grade-7' ? 'g7-' : 'g8-')
+      (
+        !activity.id.startsWith(student.grade === 'grade-7' ? 'g7-' : 'g8-') &&
+        !activity.id.includes(student.grade) &&
+        !unit.id.includes(student.grade)
+      )
     )
   );
 

@@ -1,0 +1,2276 @@
+/**
+ * GENERAL ENGLISH STARTER CONTENT — GRADE 8 VOCABULARY
+ * Total Questions: 60 (4 thematic clusters × 15 questions)
+ * CEFR Levels: A2+ to B1-
+ * Status: draft (Pending Teacher Review)
+ */
+
+import type { QuestionBankItem } from '../../../types/questionBank';
+
+export const GRADE_8_VOCABULARY_QUESTIONS: QuestionBankItem[] = [
+  {
+    "id": "ge_g8_voc_001",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Friendship & Personal Traits",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "A true friend is someone you can always _______ on when you face tough problems.",
+    "payload": {
+      "options": [
+        "stand",
+        "look",
+        "hold",
+        "count"
+      ],
+      "correctOptionIndex": 3
+    },
+    "correctAnswerPreview": "D) count",
+    "explanation": "The phrasal verb \"count on someone\" means to rely on or trust them completely.",
+    "points": 10,
+    "tags": [
+      "phrasal-verbs",
+      "friendship",
+      "trust"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_002",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Friendship & Personal Traits",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Whenever I have an ambitious project idea, my best friend always _______ me up.",
+    "payload": {
+      "options": [
+        "backs",
+        "calls",
+        "brings",
+        "takes"
+      ],
+      "correctOptionIndex": 0
+    },
+    "correctAnswerPreview": "A) backs",
+    "explanation": "\"Back someone up\" means to give them support, encouragement, or backing.",
+    "points": 10,
+    "tags": [
+      "phrasal-verbs",
+      "support",
+      "friendship"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_003",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Friendship & Personal Traits",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "match_it",
+    "assignedGameTypes": [
+      "match_it"
+    ],
+    "prompt": "Match each character adjective with its antonym (opposite meaning):",
+    "payload": {
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "generous",
+          "right": "stingy / selfish"
+        },
+        {
+          "id": "p2",
+          "left": "modest",
+          "right": "arrogant / boastful"
+        },
+        {
+          "id": "p3",
+          "left": "honest",
+          "right": "deceitful / dishonest"
+        },
+        {
+          "id": "p4",
+          "left": "flexible",
+          "right": "stubborn / obstinate"
+        }
+      ]
+    },
+    "correctAnswerPreview": "generous-stingy/selfish, modest-arrogant/boastful, honest-deceitful/dishonest, flexible-stubborn/obstinate",
+    "explanation": "Key personality antonym pairs frequently tested in middle school English exams.",
+    "points": 10,
+    "tags": [
+      "antonyms",
+      "personality-traits",
+      "match-it"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_004",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Friendship & Personal Traits",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Tolga never changes his mind even when he knows he is wrong. He is very _______.",
+    "payload": {
+      "options": [
+        "tactful",
+        "stubborn",
+        "caring",
+        "polite"
+      ],
+      "correctOptionIndex": 1
+    },
+    "correctAnswerPreview": "B) stubborn",
+    "explanation": "A person who refuses to change their opinion or course of action is described as \"stubborn\".",
+    "points": 10,
+    "tags": [
+      "character-traits",
+      "adjectives"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_005",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Friendship & Personal Traits",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "Assemble the sentence describing a close friendship bond:",
+    "payload": {
+      "correctSentence": "We get on well with each other because we share common interests.",
+      "scrambledWords": [
+        "get",
+        "We",
+        "with",
+        "each",
+        "well",
+        "we",
+        "common",
+        "share",
+        "other",
+        "interests",
+        "because",
+        "on"
+      ]
+    },
+    "correctAnswerPreview": "We get on well with each other because we share common interests.",
+    "explanation": "\"Get on well with\" (have a harmonious relationship) and \"share common interests\".",
+    "points": 10,
+    "tags": [
+      "sentence-builder",
+      "collocations",
+      "friendship"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_006",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Friendship & Personal Traits",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Someone who tells the truth, never cheats, and does not deceive others is _______.",
+    "payload": {
+      "options": [
+        "sneaky",
+        "jealous",
+        "honest",
+        "clumsy"
+      ],
+      "correctOptionIndex": 2
+    },
+    "correctAnswerPreview": "C) honest",
+    "explanation": "\"Honest\" describes an upright person who always tells the truth and acts fairly.",
+    "points": 10,
+    "tags": [
+      "character-traits",
+      "values"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_007",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Friendship & Personal Traits",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Burak is so _______. He only thinks about his own advantage and never considers his classmates.",
+    "payload": {
+      "options": [
+        "generous",
+        "understanding",
+        "loyal",
+        "self-centered"
+      ],
+      "correctOptionIndex": 3
+    },
+    "correctAnswerPreview": "D) self-centered",
+    "explanation": "\"Self-centered\" (selfish) describes someone preoccupied solely with their own interests.",
+    "points": 10,
+    "tags": [
+      "character-traits",
+      "negative-traits"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_008",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Friendship & Personal Traits",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "You can trust Aylin with your secrets because she is completely _______.",
+    "payload": {
+      "options": [
+        "reliable",
+        "unpredictable",
+        "forgetful",
+        "jealous"
+      ],
+      "correctOptionIndex": 0
+    },
+    "correctAnswerPreview": "A) reliable",
+    "explanation": "\"Reliable\" (dependable) means someone who can be trusted to behave consistently and keep their word.",
+    "points": 10,
+    "tags": [
+      "trust",
+      "positive-traits"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_009",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Friendship & Personal Traits",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "match_it",
+    "assignedGameTypes": [
+      "match_it"
+    ],
+    "prompt": "Match each idiom/collocation with its practical social meaning:",
+    "payload": {
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "keep a secret",
+          "right": "not reveal private information to others"
+        },
+        {
+          "id": "p2",
+          "left": "have things in common",
+          "right": "share similar hobbies and values"
+        },
+        {
+          "id": "p3",
+          "left": "tell a white lie",
+          "right": "say something untrue to avoid hurting feelings"
+        },
+        {
+          "id": "p4",
+          "left": "fall out with someone",
+          "right": "have an argument and stop being friends"
+        }
+      ]
+    },
+    "correctAnswerPreview": "keep a secret-not reveal private info, have things in common-share similar hobbies, tell a white lie-avoid hurting feelings, fall out-have an argument",
+    "explanation": "Essential idiomatic expressions related to friendships and interpersonal relationships.",
+    "points": 10,
+    "tags": [
+      "idioms",
+      "social-expressions",
+      "match-it"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_010",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Friendship & Personal Traits",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "A person who behaves carefully to avoid upsetting or offending others is described as _______.",
+    "payload": {
+      "options": [
+        "aggressive",
+        "tactful",
+        "clumsy",
+        "rude"
+      ],
+      "correctOptionIndex": 1
+    },
+    "correctAnswerPreview": "B) tactful",
+    "explanation": "\"Tactful\" means having or showing sensitivity in dealing with others or difficult issues.",
+    "points": 10,
+    "tags": [
+      "adjectives",
+      "diplomacy",
+      "politeness"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_011",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Friendship & Personal Traits",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "Arrange the sentence emphasizing loyalty in friendship:",
+    "payload": {
+      "correctSentence": "A loyal friend never talks behind your back when you leave.",
+      "scrambledWords": [
+        "talks",
+        "you",
+        "loyal",
+        "your",
+        "never",
+        "when",
+        "leave",
+        "friend",
+        "back",
+        "A",
+        "behind"
+      ]
+    },
+    "correctAnswerPreview": "A loyal friend never talks behind your back when you leave.",
+    "explanation": "\"Talk behind someone's back\" is an idiom for saying negative things when someone is absent.",
+    "points": 10,
+    "tags": [
+      "sentence-builder",
+      "loyalty",
+      "idioms"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_012",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Friendship & Personal Traits",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Gizem felt _______ when her friend got the lead role in the school theatre play.",
+    "payload": {
+      "options": [
+        "proud",
+        "reliable",
+        "jealous",
+        "modest"
+      ],
+      "correctOptionIndex": 2
+    },
+    "correctAnswerPreview": "C) jealous",
+    "explanation": "\"Jealous\" (or envious) describes the feeling of discontent caused by someone else's success.",
+    "points": 10,
+    "tags": [
+      "emotions",
+      "adjectives"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_013",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Friendship & Personal Traits",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "She bought gifts for all her classmates with her holiday savings. She is exceptionally _______.",
+    "payload": {
+      "options": [
+        "sneaky",
+        "stubborn",
+        "mean",
+        "generous"
+      ],
+      "correctOptionIndex": 3
+    },
+    "correctAnswerPreview": "D) generous",
+    "explanation": "\"Generous\" describes someone willing to give and share money, gifts, or time freely.",
+    "points": 10,
+    "tags": [
+      "virtues",
+      "positive-traits"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_014",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Friendship & Personal Traits",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "Put the words in order to form a statement about personal trust:",
+    "payload": {
+      "correctSentence": "We can tell our secrets to Ali because he never shares them.",
+      "scrambledWords": [
+        "secrets",
+        "to",
+        "our",
+        "because",
+        "can",
+        "Ali",
+        "never",
+        "We",
+        "shares",
+        "tell",
+        "them",
+        "he"
+      ]
+    },
+    "correctAnswerPreview": "We can tell our secrets to Ali because he never shares them.",
+    "explanation": "Complex sentence with causal conjunction \"because\" explaining trust in a peer.",
+    "points": 10,
+    "tags": [
+      "sentence-builder",
+      "trust",
+      "friendship"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_015",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Friendship & Personal Traits",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Which word describes someone who behaves in a secretive, deceitful, and dishonest way?",
+    "payload": {
+      "options": [
+        "Sneaky",
+        "Caring",
+        "Supportive",
+        "Modest"
+      ],
+      "correctOptionIndex": 0
+    },
+    "correctAnswerPreview": "A) Sneaky",
+    "explanation": "\"Sneaky\" means doing things in a secret and often dishonest manner.",
+    "points": 10,
+    "tags": [
+      "character-traits",
+      "definitions"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_016",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Science, Inventions & Tech",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Scientists perform controlled chemical and biological tests in a _______.",
+    "payload": {
+      "options": [
+        "greenhouse",
+        "laboratory",
+        "dormitory",
+        "library"
+      ],
+      "correctOptionIndex": 1
+    },
+    "correctAnswerPreview": "B) laboratory",
+    "explanation": "A \"laboratory\" (lab) is a room equipped for scientific experiments and research.",
+    "points": 10,
+    "tags": [
+      "science",
+      "facilities"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_017",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Science, Inventions & Tech",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "An inventor applies for a legal _______ so no other company can copy their new invention without permission.",
+    "payload": {
+      "options": [
+        "receipt",
+        "contract",
+        "patent",
+        "diploma"
+      ],
+      "correctOptionIndex": 2
+    },
+    "correctAnswerPreview": "C) patent",
+    "explanation": "A \"patent\" gives an inventor the exclusive legal right to make, use, or sell their invention for a set period.",
+    "points": 10,
+    "tags": [
+      "inventions",
+      "legal-terms"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_018",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Science, Inventions & Tech",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "match_it",
+    "assignedGameTypes": [
+      "match_it"
+    ],
+    "prompt": "Match the technology concept with its real-world definition:",
+    "payload": {
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "artificial intelligence",
+          "right": "computer systems simulating human thinking"
+        },
+        {
+          "id": "p2",
+          "left": "malware",
+          "right": "malicious software created to damage devices"
+        },
+        {
+          "id": "p3",
+          "left": "cybersecurity",
+          "right": "practices of protecting computer networks and data"
+        },
+        {
+          "id": "p4",
+          "left": "cloud storage",
+          "right": "saving files on remote servers accessible via internet"
+        }
+      ]
+    },
+    "correctAnswerPreview": "artificial intelligence-simulating human thinking, malware-malicious software, cybersecurity-protecting networks, cloud storage-remote servers",
+    "explanation": "Core modern digital literacy and computer science concepts.",
+    "points": 10,
+    "tags": [
+      "technology",
+      "cybersecurity",
+      "match-it"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_019",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Science, Inventions & Tech",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "A major and sudden dramatic advance in scientific knowledge is called a _______.",
+    "payload": {
+      "options": [
+        "breakdown",
+        "breakout",
+        "breakaway",
+        "breakthrough"
+      ],
+      "correctOptionIndex": 3
+    },
+    "correctAnswerPreview": "D) breakthrough",
+    "explanation": "A \"breakthrough\" is a sudden, significant development or discovery in research.",
+    "points": 10,
+    "tags": [
+      "science-advances",
+      "vocabulary"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_020",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Science, Inventions & Tech",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "Construct the sentence about digital safety practices:",
+    "payload": {
+      "correctSentence": "You should create strong passwords to protect your online accounts.",
+      "scrambledWords": [
+        "create",
+        "passwords",
+        "online",
+        "should",
+        "your",
+        "strong",
+        "You",
+        "accounts",
+        "protect",
+        "to"
+      ]
+    },
+    "correctAnswerPreview": "You should create strong passwords to protect your online accounts.",
+    "explanation": "Essential advice regarding cybersecurity and safeguarding online credentials.",
+    "points": 10,
+    "tags": [
+      "sentence-builder",
+      "cybersecurity",
+      "passwords"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_021",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Science, Inventions & Tech",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "A biological substance administered to stimulate the body’s immune defense against disease is a _______.",
+    "payload": {
+      "options": [
+        "vaccine",
+        "bandage",
+        "thermometer",
+        "microscope"
+      ],
+      "correctOptionIndex": 0
+    },
+    "correctAnswerPreview": "A) vaccine",
+    "explanation": "A \"vaccine\" trains the immune system to produce antibodies against viral or bacterial infections.",
+    "points": 10,
+    "tags": [
+      "medicine",
+      "immunology"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_022",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Science, Inventions & Tech",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "To test their hypothesis, the young researchers will _______ an experiment in the physics lab.",
+    "payload": {
+      "options": [
+        "invent",
+        "conduct",
+        "discover",
+        "build"
+      ],
+      "correctOptionIndex": 1
+    },
+    "correctAnswerPreview": "B) conduct",
+    "explanation": "The natural academic collocation is to \"conduct (or carry out) an experiment\".",
+    "points": 10,
+    "tags": [
+      "collocations",
+      "scientific-method"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_023",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Science, Inventions & Tech",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Which optical instrument allows biologists to view bacteria and microscopic cells?",
+    "payload": {
+      "options": [
+        "Telescope",
+        "Binoculars",
+        "Microscope",
+        "Periscope"
+      ],
+      "correctOptionIndex": 2
+    },
+    "correctAnswerPreview": "C) Microscope",
+    "explanation": "A microscope magnifies minute objects not visible to the naked eye.",
+    "points": 10,
+    "tags": [
+      "laboratory-tools",
+      "optics"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_024",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Science, Inventions & Tech",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "match_it",
+    "assignedGameTypes": [
+      "match_it"
+    ],
+    "prompt": "Match each scientist with the area they revolutionized:",
+    "payload": {
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "Marie Curie",
+          "right": "research on radioactivity"
+        },
+        {
+          "id": "p2",
+          "left": "Albert Einstein",
+          "right": "theory of relativity"
+        },
+        {
+          "id": "p3",
+          "left": "Isaac Newton",
+          "right": "laws of motion and gravity"
+        },
+        {
+          "id": "p4",
+          "left": "Charles Darwin",
+          "right": "theory of evolution by natural selection"
+        }
+      ]
+    },
+    "correctAnswerPreview": "Marie Curie-radioactivity, Albert Einstein-relativity, Isaac Newton-laws of motion, Charles Darwin-evolution",
+    "explanation": "Historic scientists and their landmark contributions to human science.",
+    "points": 10,
+    "tags": [
+      "famous-scientists",
+      "discoveries",
+      "match-it"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_025",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Science, Inventions & Tech",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "Arrange the sentence showing the impact of renewable energy engineering:",
+    "payload": {
+      "correctSentence": "Solar engineers designed high-tech panels to generate electricity from sunlight.",
+      "scrambledWords": [
+        "engineers",
+        "high-tech",
+        "sunlight",
+        "from",
+        "panels",
+        "designed",
+        "electricity",
+        "generate",
+        "to",
+        "Solar"
+      ]
+    },
+    "correctAnswerPreview": "Solar engineers designed high-tech panels to generate electricity from sunlight.",
+    "explanation": "Descriptive sentence combining engineering subject, technological adjective, and infinitive of purpose.",
+    "points": 10,
+    "tags": [
+      "sentence-builder",
+      "clean-energy",
+      "engineering"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_026",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Science, Inventions & Tech",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "What do we call a small mechanical or electronic gadget with a practical purpose?",
+    "payload": {
+      "options": [
+        "Ingredient",
+        "Prescription",
+        "Monument",
+        "Device"
+      ],
+      "correctOptionIndex": 3
+    },
+    "correctAnswerPreview": "D) Device",
+    "explanation": "A \"device\" is a piece of equipment made or adapted for a particular electronic or mechanical purpose.",
+    "points": 10,
+    "tags": [
+      "technology",
+      "definitions"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_027",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Science, Inventions & Tech",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Astronomers use the James Webb Space _______ to capture images of distant galaxies.",
+    "payload": {
+      "options": [
+        "Telescope",
+        "Microscope",
+        "Thermometer",
+        "Radar"
+      ],
+      "correctOptionIndex": 0
+    },
+    "correctAnswerPreview": "A) Telescope",
+    "explanation": "A space telescope orbits in space to observe distant celestial bodies.",
+    "points": 10,
+    "tags": [
+      "astronomy",
+      "space-tech"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_028",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Science, Inventions & Tech",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Never open suspicious email attachments from unknown senders to prevent _______ attacks.",
+    "payload": {
+      "options": [
+        "camping",
+        "phishing",
+        "surfing",
+        "trekking"
+      ],
+      "correctOptionIndex": 1
+    },
+    "correctAnswerPreview": "B) phishing",
+    "explanation": "\"Phishing\" is the fraudulent practice of sending emails masquerading as reputable senders to steal confidential data.",
+    "points": 10,
+    "tags": [
+      "cybersecurity",
+      "online-safety"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_029",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Science, Inventions & Tech",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "The record of all traces of your personal activity left online is called your digital _______.",
+    "payload": {
+      "options": [
+        "handshake",
+        "signature",
+        "footprint",
+        "passport"
+      ],
+      "correctOptionIndex": 2
+    },
+    "correctAnswerPreview": "C) footprint",
+    "explanation": "A \"digital footprint\" is the trail of data created while using the internet.",
+    "points": 10,
+    "tags": [
+      "digital-literacy",
+      "collocations"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_030",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Science, Inventions & Tech",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "Assemble the sentence describing scientific advancement:",
+    "payload": {
+      "correctSentence": "Medical researchers hope to discover an effective cure for the disease.",
+      "scrambledWords": [
+        "for",
+        "researchers",
+        "disease",
+        "an",
+        "discover",
+        "to",
+        "Medical",
+        "cure",
+        "effective",
+        "the",
+        "hope"
+      ]
+    },
+    "correctAnswerPreview": "Medical researchers hope to discover an effective cure for the disease.",
+    "explanation": "Verb \"discover\" paired with object \"cure for the disease\".",
+    "points": 10,
+    "tags": [
+      "sentence-builder",
+      "medical-research"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_031",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Teen Life, Music & Trends",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "I am extremely fond _______ listening to classical acoustic guitar while studying.",
+    "payload": {
+      "options": [
+        "in",
+        "at",
+        "with",
+        "of"
+      ],
+      "correctOptionIndex": 3
+    },
+    "correctAnswerPreview": "D) of",
+    "explanation": "The adjective \"fond\" is followed by the preposition \"of\" (fond of doing something).",
+    "points": 10,
+    "tags": [
+      "prepositions",
+      "preferences",
+      "music"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_032",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Teen Life, Music & Trends",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "I can’t _______ listening to loud heavy metal music; it gives me a terrible headache.",
+    "payload": {
+      "options": [
+        "stand",
+        "keen",
+        "bear",
+        "like"
+      ],
+      "correctOptionIndex": 0
+    },
+    "correctAnswerPreview": "A) stand",
+    "explanation": "\"Can't stand\" is a strong expression meaning to dislike someone or something intensely.",
+    "points": 10,
+    "tags": [
+      "dislikes",
+      "expressions"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_033",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Teen Life, Music & Trends",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "match_it",
+    "assignedGameTypes": [
+      "match_it"
+    ],
+    "prompt": "Match each expression of preference with its emotional strength:",
+    "payload": {
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "crazy about",
+          "right": "enthusiastically passionate and loving"
+        },
+        {
+          "id": "p2",
+          "left": "unbearable",
+          "right": "impossible to tolerate or endure"
+        },
+        {
+          "id": "p3",
+          "left": "trendy",
+          "right": "fashionable and currently popular"
+        },
+        {
+          "id": "p4",
+          "left": "ridiculous",
+          "right": "foolish, silly, or unreasonable"
+        }
+      ]
+    },
+    "correctAnswerPreview": "crazy about-enthusiastically passionate, unbearable-impossible to endure, trendy-fashionable and popular, ridiculous-foolish and silly",
+    "explanation": "Key affective vocabulary used by teens to describe trends and music in MEB Grade 8 Unit 2.",
+    "points": 10,
+    "tags": [
+      "opinions",
+      "adjectives",
+      "match-it"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_034",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Teen Life, Music & Trends",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "The written words of a song are known as the song’s _______.",
+    "payload": {
+      "options": [
+        "rhythms",
+        "lyrics",
+        "notes",
+        "stages"
+      ],
+      "correctOptionIndex": 1
+    },
+    "correctAnswerPreview": "B) lyrics",
+    "explanation": "The \"lyrics\" are the verbal poetic words that make up a musical track.",
+    "points": 10,
+    "tags": [
+      "music",
+      "definitions"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_035",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Teen Life, Music & Trends",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "Assemble the sentence describing an opinion on music:",
+    "payload": {
+      "correctSentence": "His guitar performance at the youth festival was truly impressive.",
+      "scrambledWords": [
+        "the",
+        "impressive",
+        "His",
+        "was",
+        "performance",
+        "festival",
+        "truly",
+        "guitar",
+        "at",
+        "youth"
+      ]
+    },
+    "correctAnswerPreview": "His guitar performance at the youth festival was truly impressive.",
+    "explanation": "Adjective \"impressive\" modified by adverb \"truly\" describing a musical show.",
+    "points": 10,
+    "tags": [
+      "sentence-builder",
+      "music",
+      "opinions"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_036",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Teen Life, Music & Trends",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Music played with non-electric traditional instruments is called _______ music.",
+    "payload": {
+      "options": [
+        "electronic",
+        "digital",
+        "acoustic",
+        "synthesized"
+      ],
+      "correctOptionIndex": 2
+    },
+    "correctAnswerPreview": "C) acoustic",
+    "explanation": "\"Acoustic\" instruments do not use electrical amplification (e.g. acoustic guitar, violin, piano).",
+    "points": 10,
+    "tags": [
+      "music-types",
+      "instruments"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_037",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Teen Life, Music & Trends",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Most teenagers prefer wearing comfortable and _______ clothes like hoodies and jeans to school events.",
+    "payload": {
+      "options": [
+        "formal",
+        "unbearable",
+        "clumsy",
+        "casual"
+      ],
+      "correctOptionIndex": 3
+    },
+    "correctAnswerPreview": "D) casual",
+    "explanation": "\"Casual\" clothes are relaxed, informal, and suited for everyday wear.",
+    "points": 10,
+    "tags": [
+      "fashion",
+      "teen-life"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_038",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Teen Life, Music & Trends",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "match_it",
+    "assignedGameTypes": [
+      "match_it"
+    ],
+    "prompt": "Match each musical genre with its characteristic feature:",
+    "payload": {
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "jazz",
+          "right": "brass horns and improvised solos"
+        },
+        {
+          "id": "p2",
+          "left": "hip-hop",
+          "right": "rhythmic beats and spoken rhyming verses"
+        },
+        {
+          "id": "p3",
+          "left": "folk",
+          "right": "cultural story songs with regional acoustic instruments"
+        },
+        {
+          "id": "p4",
+          "left": "classical",
+          "right": "orchestral compositions by symphonic masters"
+        }
+      ]
+    },
+    "correctAnswerPreview": "jazz-brass horns and improvised solos, hip-hop-rhythmic beats and spoken rhyming verses, folk-cultural story songs, classical-orchestral compositions",
+    "explanation": "Core musical genres taught across middle school curricula.",
+    "points": 10,
+    "tags": [
+      "genres",
+      "music",
+      "match-it"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_039",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Teen Life, Music & Trends",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "A musical performance in front of an enthusiastic audience is called a live _______.",
+    "payload": {
+      "options": [
+        "concert",
+        "exhibition",
+        "laboratory",
+        "broadcast"
+      ],
+      "correctOptionIndex": 0
+    },
+    "correctAnswerPreview": "A) concert",
+    "explanation": "A \"live concert\" is a musical performance given in public by musicians or singers.",
+    "points": 10,
+    "tags": [
+      "music",
+      "performances"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_040",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Teen Life, Music & Trends",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "Arrange the sentence showing teen musical preference:",
+    "payload": {
+      "correctSentence": "Many teenagers are crazy about listening to upbeat pop songs.",
+      "scrambledWords": [
+        "Many",
+        "to",
+        "teenagers",
+        "songs",
+        "about",
+        "upbeat",
+        "pop",
+        "crazy",
+        "are",
+        "listening"
+      ]
+    },
+    "correctAnswerPreview": "Many teenagers are crazy about listening to upbeat pop songs.",
+    "explanation": "\"Crazy about + gerund\" (extremely enthusiastic about doing something).",
+    "points": 10,
+    "tags": [
+      "sentence-builder",
+      "preferences",
+      "teen-life"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_041",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Teen Life, Music & Trends",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Someone who is very interested in outdoor activities is _______ on camping and hiking.",
+    "payload": {
+      "options": [
+        "afraid",
+        "keen",
+        "proud",
+        "tired"
+      ],
+      "correctOptionIndex": 1
+    },
+    "correctAnswerPreview": "B) keen",
+    "explanation": "\"Keen on\" means very interested, eager, or enthusiastic.",
+    "points": 10,
+    "tags": [
+      "adjectives",
+      "prepositions"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_042",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Teen Life, Music & Trends",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Spending ten hours straight playing video games without drinking water is completely _______.",
+    "payload": {
+      "options": [
+        "impressive",
+        "trendy",
+        "ridiculous",
+        "acoustic"
+      ],
+      "correctOptionIndex": 2
+    },
+    "correctAnswerPreview": "C) ridiculous",
+    "explanation": "\"Ridiculous\" means unreasonable, absurd, or foolish.",
+    "points": 10,
+    "tags": [
+      "adjectives",
+      "opinions"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_043",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Teen Life, Music & Trends",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Sitting around a crackling camp _______ with guitar songs is a favorite scout activity.",
+    "payload": {
+      "options": [
+        "stove",
+        "lantern",
+        "heater",
+        "fire"
+      ],
+      "correctOptionIndex": 3
+    },
+    "correctAnswerPreview": "D) fire",
+    "explanation": "A \"campfire\" is an open outdoor fire used by campers for warmth and singing.",
+    "points": 10,
+    "tags": [
+      "camping",
+      "outdoor-routines"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_044",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Teen Life, Music & Trends",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "The beat and recurring pattern of sound in music is called the _______.",
+    "payload": {
+      "options": [
+        "rhythm",
+        "lyric",
+        "costume",
+        "stage"
+      ],
+      "correctOptionIndex": 0
+    },
+    "correctAnswerPreview": "A) rhythm",
+    "explanation": "\"Rhythm\" is a strong, regular repeated pattern of movement or sound.",
+    "points": 10,
+    "tags": [
+      "music-terminology",
+      "spelling"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_045",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Teen Life, Music & Trends",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "Arrange the sentence showing adolescent lifestyle balance:",
+    "payload": {
+      "correctSentence": "Teens should balance their screen time with sports and outdoor hobbies.",
+      "scrambledWords": [
+        "screen",
+        "outdoor",
+        "balance",
+        "and",
+        "Teens",
+        "hobbies",
+        "sports",
+        "their",
+        "time",
+        "should",
+        "with"
+      ]
+    },
+    "correctAnswerPreview": "Teens should balance their screen time with sports and outdoor hobbies.",
+    "explanation": "\"Balance screen time with sports\" provides healthy lifestyle advice.",
+    "points": 10,
+    "tags": [
+      "sentence-builder",
+      "wellbeing",
+      "teen-life"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_046",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Tourism & Adventures",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "A holiday package where your room, all meals, and entertainment are included in the price is called _______-inclusive.",
+    "payload": {
+      "options": [
+        "full",
+        "all",
+        "half",
+        "self"
+      ],
+      "correctOptionIndex": 1
+    },
+    "correctAnswerPreview": "B) all",
+    "explanation": "\"All-inclusive\" refers to a holiday where lodging, all meals, and most activities are covered in one upfront price.",
+    "points": 10,
+    "tags": [
+      "tourism",
+      "holiday-types"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_047",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Tourism & Adventures",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Gliding through the air with a wide parachute launched from a mountain peak is called _______.",
+    "payload": {
+      "options": [
+        "scuba diving",
+        "rafting",
+        "paragliding",
+        "caving"
+      ],
+      "correctOptionIndex": 2
+    },
+    "correctAnswerPreview": "C) paragliding",
+    "explanation": "Paragliding is the recreational sport of flying non-motorized, foot-launched paragliders (famous in Ölüdeniz/Fethiye).",
+    "points": 10,
+    "tags": [
+      "extreme-sports",
+      "adventures"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_048",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Tourism & Adventures",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "match_it",
+    "assignedGameTypes": [
+      "match_it"
+    ],
+    "prompt": "Match each extreme adventure sport with its mandatory safety equipment:",
+    "payload": {
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "white-water rafting",
+          "right": "life jacket and safety helmet"
+        },
+        {
+          "id": "p2",
+          "left": "scuba diving",
+          "right": "oxygen tank and diving mask"
+        },
+        {
+          "id": "p3",
+          "left": "rock climbing",
+          "right": "climbing harness and safety rope"
+        },
+        {
+          "id": "p4",
+          "left": "bungee jumping",
+          "right": "elastic ankle cords and harness"
+        }
+      ]
+    },
+    "correctAnswerPreview": "rafting-life jacket and helmet, scuba diving-oxygen tank and mask, rock climbing-harness and rope, bungee jumping-elastic cord and harness",
+    "explanation": "Safety equipment associated with thrilling adventure sports in Grade 8 Unit 6.",
+    "points": 10,
+    "tags": [
+      "extreme-sports",
+      "safety-gear",
+      "match-it"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_049",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Tourism & Adventures",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "The view of the fairy chimneys from a hot-air balloon at dawn was absolutely _______.",
+    "payload": {
+      "options": [
+        "unbearable",
+        "ridiculous",
+        "dangerous",
+        "breathtaking"
+      ],
+      "correctOptionIndex": 3
+    },
+    "correctAnswerPreview": "D) breathtaking",
+    "explanation": "\"Breathtaking\" means astonishingly beautiful, magnificent, or awe-inspiring.",
+    "points": 10,
+    "tags": [
+      "adjectives",
+      "scenery",
+      "cappadocia"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_050",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Tourism & Adventures",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "Assemble the sentence booking travel accommodation:",
+    "payload": {
+      "correctSentence": "We made an online reservation for a seaside hotel in Bodrum.",
+      "scrambledWords": [
+        "We",
+        "hotel",
+        "an",
+        "Bodrum",
+        "made",
+        "a",
+        "online",
+        "for",
+        "seaside",
+        "in",
+        "reservation"
+      ]
+    },
+    "correctAnswerPreview": "We made an online reservation for a seaside hotel in Bodrum.",
+    "explanation": "Collocation \"make a reservation\" + purpose preposition \"for\".",
+    "points": 10,
+    "tags": [
+      "sentence-builder",
+      "travel-booking"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_051",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Tourism & Adventures",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Someone who actively pursues thrilling and hazardous activities is an _______ seeker.",
+    "payload": {
+      "options": [
+        "adrenaline",
+        "oxygen",
+        "energy",
+        "altitude"
+      ],
+      "correctOptionIndex": 0
+    },
+    "correctAnswerPreview": "A) adrenaline",
+    "explanation": "An \"adrenaline seeker\" (or junkie) is a person who loves intense, high-risk sports and sensations.",
+    "points": 10,
+    "tags": [
+      "collocations",
+      "extreme-sports"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_052",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Tourism & Adventures",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Before boarding the flight to Munich, passengers must present their passport and _______ pass.",
+    "payload": {
+      "options": [
+        "advisory",
+        "boarding",
+        "landing",
+        "visiting"
+      ],
+      "correctOptionIndex": 1
+    },
+    "correctAnswerPreview": "B) boarding",
+    "explanation": "A \"boarding pass\" is the document given upon check-in permitting entrance onto an airplane.",
+    "points": 10,
+    "tags": [
+      "air-travel",
+      "collocations"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_053",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Tourism & Adventures",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "What do tourists buy to remind themselves of a memorable holiday destination?",
+    "payload": {
+      "options": [
+        "Prescriptions",
+        "Appliances",
+        "Souvenirs",
+        "Utensils"
+      ],
+      "correctOptionIndex": 2
+    },
+    "correctAnswerPreview": "C) Souvenirs",
+    "explanation": "A \"souvenir\" (keepsake) is an item purchased as a reminder of a place visited.",
+    "points": 10,
+    "tags": [
+      "tourism",
+      "travel-keepsakes"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_054",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Tourism & Adventures",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "match_it",
+    "assignedGameTypes": [
+      "match_it"
+    ],
+    "prompt": "Match each famous tourism destination with its attraction type:",
+    "payload": {
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "Ephesus Ancient City",
+          "right": "historical Greco-Roman ruins"
+        },
+        {
+          "id": "p2",
+          "left": "Pamukkale Travertines",
+          "right": "natural thermal mineral terraces"
+        },
+        {
+          "id": "p3",
+          "left": "Köprülü Canyon",
+          "right": "white-water river rafting center"
+        },
+        {
+          "id": "p4",
+          "left": "Topkapı Palace",
+          "right": "historic Ottoman imperial museum"
+        }
+      ]
+    },
+    "correctAnswerPreview": "Ephesus-Greco-Roman ruins, Pamukkale-mineral terraces, Köprülü-river rafting, Topkapı-Ottoman palace",
+    "explanation": "Turkish world heritage sites and their cultural/adventure classification.",
+    "points": 10,
+    "tags": [
+      "tourism-sites",
+      "turkey",
+      "match-it"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_055",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Tourism & Adventures",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "Construct the safety sentence for extreme water adventures:",
+    "payload": {
+      "correctSentence": "Participants must fasten their life jackets securely before starting the rafting tour.",
+      "scrambledWords": [
+        "Participants",
+        "rafting",
+        "fasten",
+        "securely",
+        "jackets",
+        "starting",
+        "life",
+        "tour",
+        "before",
+        "must",
+        "their",
+        "the"
+      ]
+    },
+    "correctAnswerPreview": "Participants must fasten their life jackets securely before starting the rafting tour.",
+    "explanation": "Obligation modal \"must fasten securely\" with extreme sports safety protocol.",
+    "points": 10,
+    "tags": [
+      "sentence-builder",
+      "safety",
+      "rafting"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_056",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Tourism & Adventures",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Accommodation that offers overnight lodging and a morning meal only is known as a B&B (Bed and _______).",
+    "payload": {
+      "options": [
+        "Bedtime",
+        "Bakery",
+        "Buffet",
+        "Breakfast"
+      ],
+      "correctOptionIndex": 3
+    },
+    "correctAnswerPreview": "D) Breakfast",
+    "explanation": "B&B stands for \"Bed and Breakfast\", a cozy small guest house accommodation.",
+    "points": 10,
+    "tags": [
+      "lodging",
+      "acronyms"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_057",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Tourism & Adventures",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Swimming underwater equipped with a self-contained breathing apparatus is called _______ diving.",
+    "payload": {
+      "options": [
+        "scuba",
+        "sky",
+        "cliff",
+        "ice"
+      ],
+      "correctOptionIndex": 0
+    },
+    "correctAnswerPreview": "A) scuba",
+    "explanation": "SCUBA stands for Self-Contained Underwater Breathing Apparatus.",
+    "points": 10,
+    "tags": [
+      "water-sports",
+      "scuba-diving"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_058",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Tourism & Adventures",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "A large statue, building, or structure built to commemorate a historic figure or event is a _______.",
+    "payload": {
+      "options": [
+        "resort",
+        "monument",
+        "harbor",
+        "highway"
+      ],
+      "correctOptionIndex": 1
+    },
+    "correctAnswerPreview": "B) monument",
+    "explanation": "A \"monument\" honors a historical personality or significant event (e.g. Anıtkabir).",
+    "points": 10,
+    "tags": [
+      "history",
+      "landmarks"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_059",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Tourism & Adventures",
+    "skill": "vocabulary",
+    "difficulty": "medium",
+    "questionType": "sentence_builder",
+    "assignedGameTypes": [
+      "sentence_builder"
+    ],
+    "prompt": "Arrange the sentence showing travel enthusiasm:",
+    "payload": {
+      "correctSentence": "We experienced the breathtaking panoramic view of the Aegean coastline.",
+      "scrambledWords": [
+        "the",
+        "coastline",
+        "of",
+        "the",
+        "panoramic",
+        "experienced",
+        "Aegean",
+        "breathtaking",
+        "We",
+        "view"
+      ]
+    },
+    "correctAnswerPreview": "We experienced the breathtaking panoramic view of the Aegean coastline.",
+    "explanation": "Combines descriptive travel adjectives (breathtaking, panoramic) with regional geography.",
+    "points": 10,
+    "tags": [
+      "sentence-builder",
+      "travel",
+      "scenery"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  },
+  {
+    "id": "ge_g8_voc_060",
+    "section": "both",
+    "gradeId": "grade-8",
+    "topic": "Tourism & Adventures",
+    "skill": "vocabulary",
+    "difficulty": "easy",
+    "questionType": "multiple_choice",
+    "assignedGameTypes": [
+      "quiz_battle"
+    ],
+    "prompt": "Traveling through rushing wild river waters in an inflatable raft with paddles is called white-water _______.",
+    "payload": {
+      "options": [
+        "skiing",
+        "surfing",
+        "rafting",
+        "sailing"
+      ],
+      "correctOptionIndex": 2
+    },
+    "correctAnswerPreview": "C) rafting",
+    "explanation": "\"White-water rafting\" is navigating turbulent river currents on an inflatable craft.",
+    "points": 10,
+    "tags": [
+      "extreme-sports",
+      "rafting"
+    ],
+    "status": "draft",
+    "contentVersion": 1,
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "author": "Milestone 3.5 Content Generator"
+  }
+];

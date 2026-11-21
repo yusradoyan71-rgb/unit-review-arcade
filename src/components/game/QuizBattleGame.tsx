@@ -6,6 +6,7 @@ import { useGameTracking } from '../../context/GameTrackingContext';
 import { shuffleQuestionsOptions } from '../../utils/shuffle';
 import { GameResultsModal } from './GameResultsModal';
 import { ClassroomScoreboard } from './ClassroomScoreboard';
+import { AudioPromptPlayer } from '../common/AudioPromptPlayer';
 import { 
   ArrowLeft, 
   Eye, 
@@ -51,6 +52,7 @@ export const QuizBattleGame: React.FC<QuizBattleGameProps> = ({ activity, onExit
   const [isAnswerRevealed, setIsAnswerRevealed] = useState(false);
   const [score, setScore] = useState(initialScore);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [isAudioAvailable, setIsAudioAvailable] = useState<boolean>(true);
 
   const hasInitializedFromCheckpointRef = useRef(Boolean(resumeCheckpoint));
   useEffect(() => {
@@ -70,6 +72,8 @@ export const QuizBattleGame: React.FC<QuizBattleGameProps> = ({ activity, onExit
 
   const handleSelectOption = (idx: number) => {
     if (isAnswered) return;
+    const hasAudio = currentQ.hasAudio || Boolean((currentQ as unknown as { speechText?: string }).speechText || (currentQ as unknown as { audioUrl?: string }).audioUrl);
+    if (hasAudio && !isAudioAvailable) return;
 
     setSelectedOption(idx);
     const isCorrect = idx === currentQ.correctOptionIndex;
@@ -200,6 +204,18 @@ export const QuizBattleGame: React.FC<QuizBattleGameProps> = ({ activity, onExit
           <h2 className="font-arcade text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 leading-relaxed whitespace-pre-line">
             {currentQ.prompt}
           </h2>
+
+          {(currentQ.hasAudio || Boolean((currentQ as unknown as { speechText?: string }).speechText || (currentQ as unknown as { audioUrl?: string }).audioUrl)) && (
+            <div className="mt-4">
+              <AudioPromptPlayer
+                audioUrl={(currentQ as unknown as { audioUrl?: string }).audioUrl}
+                speechText={(currentQ as unknown as { speechText?: string }).speechText}
+                correctTranscript={(currentQ as unknown as { correctTranscript?: string }).correctTranscript}
+                isAnswered={isAnswered}
+                onPlaybackAvailabilityChange={(avail) => setIsAudioAvailable(avail)}
+              />
+            </div>
+          )}
         </div>
 
         {/* Options Grid (2x2) */}

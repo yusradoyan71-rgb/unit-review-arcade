@@ -183,6 +183,15 @@ export const HomeScreen: React.FC = () => {
             <button 
               onClick={() => {
                 sounds.playNavigate();
+                navigateTo({ view: 'general-english', gradeId: activeGrade });
+              }} 
+              className="px-3.5 py-1.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-900 font-bold text-xs border border-sky-200 flex items-center gap-1.5 whitespace-nowrap transition-colors"
+            >
+              <span>📚</span> General English
+            </button>
+            <button 
+              onClick={() => {
+                sounds.playNavigate();
                 navigateTo({ view: 'games-zone' });
               }} 
               className="px-3.5 py-1.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-900 font-bold text-xs border border-sky-200 flex items-center gap-1.5 whitespace-nowrap transition-colors"
@@ -213,7 +222,13 @@ export const HomeScreen: React.FC = () => {
           <button 
             onClick={() => {
               sounds.playTap();
+              try {
+                sessionStorage.removeItem('ura_guest_mode_v1');
+              } catch {}
               logout();
+              if (typeof window !== 'undefined') {
+                window.dispatchEvent(new Event('ura_auth_change'));
+              }
             }} 
             className="px-3.5 py-1.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 font-black text-xs flex items-center gap-1.5 border border-rose-200 transition-colors shadow-sm whitespace-nowrap" 
             title="Sign out of student account"
@@ -257,9 +272,9 @@ export const HomeScreen: React.FC = () => {
       </motion.div>
 
       {/* =================================================================== */}
-      {/* 3. THREE CORE ADVENTURE ISLANDS (CURRICULUM, GAMES ZONE, MONSTER)   */}
+      {/* 3. FOUR CORE ADVENTURE ISLANDS (CURRICULUM, GENERAL, GAMES, MONSTER) */}
       {/* =================================================================== */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 relative z-10">
         
         {/* DESTINATION 1: CURRICULUM ADVENTURE ISLAND (STRICT GRADE ISOLATION) */}
         <motion.div
@@ -310,6 +325,55 @@ export const HomeScreen: React.FC = () => {
 
           <button className="w-full py-3 rounded-2xl btn-game-primary font-black text-xs">
             OPEN CURRICULUM MAP ➔
+          </button>
+        </motion.div>
+
+        {/* DESTINATION 2: GENERAL ENGLISH ACADEMY (SKILL MASTERY & MIXED PRACTICE) */}
+        <motion.div
+          whileHover={{ y: -4, transition: { duration: 0.2 } }}
+          whileTap={{ scale: 0.99 }}
+          onClick={() => {
+            sounds.playNavigate();
+            navigateTo({ view: 'general-english', gradeId: activeGrade });
+          }}
+          className="card-island p-6 cursor-pointer relative overflow-hidden group flex flex-col justify-between"
+        >
+          <div>
+            {/* Themed Academy Floating Island Illustration */}
+            <div className="w-full h-36 rounded-2xl bg-gradient-to-b from-indigo-100 to-sky-100 border-2 border-indigo-200 flex items-center justify-center relative overflow-hidden mb-4 shadow-inner">
+              <svg viewBox="0 0 200 120" className="w-full h-full">
+                <path d="M 30 75 Q 100 115 170 75 Q 140 105 100 108 Q 60 105 30 75 Z" fill="#4338ca" />
+                <path d="M 25 70 Q 100 105 175 70 Q 180 55 160 55 Q 100 45 40 55 Q 20 55 25 70 Z" fill="#6366f1" />
+                <rect x="75" y="25" width="50" height="35" rx="4" fill="#ffffff" stroke="#4f46e5" strokeWidth="2" />
+                <polygon points="100,10 65,28 135,28" fill="#f59e0b" />
+                <circle cx="100" cy="40" r="8" fill="#38bdf8" />
+                <path d="M 85 50 Q 100 45 115 50" stroke="#4f46e5" strokeWidth="2" fill="none" />
+              </svg>
+              <span className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-lg text-[10px] font-black uppercase bg-white/90 text-indigo-800 border border-indigo-200 shadow-sm">
+                Skill Academy
+              </span>
+            </div>
+
+            <h3 className="text-xl font-black font-display text-slate-900 group-hover:text-indigo-600 transition-colors">
+              General English
+            </h3>
+            <p className="text-xs text-slate-600 font-medium mb-4 leading-relaxed">
+              Master Grammar, Vocabulary, Reading, and Listening. Includes Mixed Practice Lab.
+            </p>
+
+            <div className="space-y-1.5 p-3 rounded-2xl bg-indigo-50 border border-indigo-100 mb-4">
+              <div className="flex justify-between text-xs font-black">
+                <span className="text-indigo-900">Skill Questions</span>
+                <span className="text-indigo-600 font-mono">160 Questions</span>
+              </div>
+              <div className="w-full h-2 rounded-full bg-indigo-200 overflow-hidden">
+                <div className="h-full bg-gradient-to-r from-indigo-500 to-sky-400 rounded-full" style={{ width: '100%' }} />
+              </div>
+            </div>
+          </div>
+
+          <button className="w-full py-3 rounded-2xl bg-gradient-to-r from-indigo-600 to-sky-600 hover:from-indigo-700 hover:to-sky-700 text-white font-black text-xs shadow-md shadow-indigo-500/20">
+            EXPLORE SKILLS ➔
           </button>
         </motion.div>
 

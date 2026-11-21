@@ -112,6 +112,7 @@ export interface TeacherOverviewResponse {
   unitStats?: UnitStatSummary[];
   gameStats?: GameStatSummary[];
   recentActivity?: RecentActivityRecord[];
+  sectionBreakdown?: SectionBreakdownSummary;
   error?: string;
   code?: TeacherAuthErrorCode;
 }
@@ -137,6 +138,16 @@ export interface RosterStudent {
   bestScore: number;
   totalTimeSpentSeconds: number;
   status: 'active' | 'never_logged_in' | 'needs_attention';
+  // Section breakdown telemetry (Phase 5)
+  unitReviewStarted?: boolean;
+  unitReviewCompletedCount?: number;
+  unitReviewAverageScore?: number;
+  generalEnglishStarted?: boolean;
+  generalEnglishCompletedCount?: number;
+  generalEnglishAverageScore?: number;
+  mixedPracticeStarted?: boolean;
+  mixedPracticeCompletedCount?: number;
+  mixedPracticeAverageScore?: number;
 }
 
 export interface TeacherRosterResponse {
@@ -168,6 +179,9 @@ export interface StudentAttemptRecord {
   activityId: string;
   activityTitle: string;
   gameType: string;
+  learningSection?: 'unit_review' | 'general_english' | 'mixed_practice';
+  skill?: 'grammar' | 'vocabulary' | 'reading' | 'listening' | 'mixed';
+  topicId?: string;
   attemptNumber: number;
   score: number;
   totalQuestions: number;
@@ -209,6 +223,8 @@ export interface StudentAnswerRecord {
   timestamp: string | null;
   questionVersion: string | null;
   versionLabel: string;
+  learningSection?: 'unit_review' | 'general_english' | 'mixed_practice';
+  skill?: 'grammar' | 'vocabulary' | 'reading' | 'listening' | 'mixed';
 }
 
 export interface TeacherStudentDetailResponse {
@@ -283,15 +299,113 @@ export interface TeacherPublishCurriculumResponse {
 // FILTERS
 // ---------------------------------------------------------------------------
 
+export type LearningSection = 'all' | 'unit_review' | 'general_english' | 'mixed_practice';
+export type SkillCategory = 'all' | 'grammar' | 'vocabulary' | 'reading' | 'listening';
+
 export interface DashboardFilterOptions {
   classId?: 'all' | '7A' | '7B' | '8A' | '8B';
   gradeId?: 'all' | 'grade-7' | 'grade-8';
   unitId?: string;
   gameType?: string;
+  learningSection?: LearningSection;
+  skill?: SkillCategory;
+  topicId?: string;
+  studentNumber?: string;
+  participationFilter?: 'all' | 'not_started_general' | 'not_started_mixed' | 'active_all';
   searchTerm?: string;
   startDate?: string;
   endDate?: string;
   includeArchived?: boolean;
+}
+
+// ---------------------------------------------------------------------------
+// PHASE 5: GENERAL ENGLISH & MIXED PRACTICE ANALYTICS & REPORTING
+// ---------------------------------------------------------------------------
+
+export interface SectionMetricsSummary {
+  totalAttempts: number;
+  completedAttempts: number;
+  averageScore: number;
+  uniqueStudentsCount: number;
+  totalXpEarned: number;
+  totalTimeSpentSeconds: number;
+}
+
+export interface SectionBreakdownSummary {
+  unitReview: SectionMetricsSummary;
+  generalEnglish: SectionMetricsSummary;
+  mixedPractice: SectionMetricsSummary;
+}
+
+export interface SkillMasterySummary {
+  skill: 'grammar' | 'vocabulary' | 'reading' | 'listening';
+  label: string;
+  totalAttempts: number;
+  completedAttempts: number;
+  averageScore: number;
+  uniqueStudentsCount: number;
+  masteredTopicsCount: number;
+  needsPracticeTopicsCount: number;
+}
+
+export type TopicMasteryStatus = 'mastered' | 'proficient' | 'needs_practice' | 'struggling' | 'not_started';
+
+export interface TopicMasteryItem {
+  topicId: string;
+  topicTitle: string;
+  skill: 'grammar' | 'vocabulary' | 'reading' | 'listening';
+  gradeId: 'grade-7' | 'grade-8';
+  cefrLevel: string;
+  questionCount: number;
+  totalAttempts: number;
+  completedAttempts: number;
+  uniqueStudentsCount: number;
+  averageScore: number; // 0-100%
+  masteryStatus: TopicMasteryStatus;
+  weaknessScore: number; // 0-100 (higher means greater urgency for teacher intervention)
+  commonMistakesCount: number;
+  commonMistakePrompts: string[];
+}
+
+export interface StudentSectionParticipation {
+  studentNumber: string;
+  fullName: string;
+  class: string;
+  grade: string;
+  lastLoginAt: string | null;
+  lastActivityDate: string | null;
+  totalXp: number;
+  // Unit Review
+  unitReviewAttempts: number;
+  unitReviewCompleted: number;
+  unitReviewAccuracy: number;
+  unitReviewStarted: boolean;
+  // General English
+  generalEnglishAttempts: number;
+  generalEnglishCompleted: number;
+  generalEnglishAccuracy: number;
+  generalEnglishStarted: boolean;
+  // Mixed Practice
+  mixedPracticeAttempts: number;
+  mixedPracticeCompleted: number;
+  mixedPracticeAccuracy: number;
+  mixedPracticeStarted: boolean;
+  // Aggregate
+  overallAccuracy: number;
+  totalAttempts: number;
+  totalCompleted: number;
+}
+
+export interface TeacherSectionAnalyticsResponse {
+  success: boolean;
+  sectionBreakdown?: SectionBreakdownSummary;
+  skillMastery?: SkillMasterySummary[];
+  topics?: TopicMasteryItem[];
+  studentParticipation?: StudentSectionParticipation[];
+  attempts?: StudentAttemptRecord[];
+  answers?: StudentAnswerRecord[];
+  error?: string;
+  code?: TeacherAuthErrorCode;
 }
 
 // ---------------------------------------------------------------------------

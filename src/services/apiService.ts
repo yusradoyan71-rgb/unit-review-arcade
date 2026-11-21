@@ -65,7 +65,8 @@ export class ApiService {
    */
   public static getApiUrl(): string {
     const isDev = Boolean((import.meta as unknown as { env?: { DEV?: boolean } }).env?.DEV);
-    const envUrl = (import.meta as unknown as { env?: { VITE_APPS_SCRIPT_URL?: string } }).env?.VITE_APPS_SCRIPT_URL;
+    const env = (import.meta as unknown as { env?: { VITE_APPS_SCRIPT_URL?: string; VITE_GOOGLE_SCRIPT_URL?: string } }).env;
+    const envUrl = env?.VITE_APPS_SCRIPT_URL || env?.VITE_GOOGLE_SCRIPT_URL;
     const cleanEnvUrl = envUrl && envUrl.trim().startsWith('http') ? envUrl.trim() : null;
 
     let storedUrl: string | null = null;
@@ -125,7 +126,7 @@ export class ApiService {
     const url = this.getApiUrl();
 
     if (!url || !url.startsWith('http')) {
-      throw new Error('Teacher backend endpoint is not configured. Please set VITE_APPS_SCRIPT_URL.');
+      throw new Error('Teacher backend endpoint is not configured. Please set VITE_APPS_SCRIPT_URL (or VITE_GOOGLE_SCRIPT_URL).');
     }
 
     if (isDev && this.isProductionUrl(url)) {
@@ -143,7 +144,8 @@ export class ApiService {
    */
   public static getEndpointSecurityInfo(): EndpointSecurityInfo {
     const isDev = Boolean((import.meta as unknown as { env?: { DEV?: boolean } }).env?.DEV);
-    const envUrl = (import.meta as unknown as { env?: { VITE_APPS_SCRIPT_URL?: string } }).env?.VITE_APPS_SCRIPT_URL?.trim();
+    const env = (import.meta as unknown as { env?: { VITE_APPS_SCRIPT_URL?: string; VITE_GOOGLE_SCRIPT_URL?: string } }).env;
+    const envUrl = (env?.VITE_APPS_SCRIPT_URL || env?.VITE_GOOGLE_SCRIPT_URL)?.trim();
     let storedUrl: string | null = null;
     try {
       storedUrl = localStorage.getItem(STORAGE_API_KEY)?.trim() || null;

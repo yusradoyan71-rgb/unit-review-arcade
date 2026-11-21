@@ -222,6 +222,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     // Immediately clean up client state
     sessionStorage.removeItem(SESSION_STORAGE_KEY);
     try {
+      sessionStorage.removeItem('ura_guest_mode_v1');
       sessionStorage.removeItem('unit_review_arcade_nav_target_v1');
       sessionStorage.removeItem('unit_review_arcade_cached_gamification_profile_v1');
       if (currentStudentNumber) {
@@ -254,6 +255,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     sounds.playTap();
     setAuthMode('classroom');
     setIsLoginModalOpen(false);
+    try {
+      sessionStorage.setItem('ura_guest_mode_v1', 'true');
+    } catch {
+      // ignore
+    }
   }, []);
 
   // 5. Update session token in-place (e.g. for mid-game session recovery without navigation reset)

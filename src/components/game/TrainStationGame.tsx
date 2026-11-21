@@ -7,6 +7,7 @@ import { useGameTracking } from '../../context/GameTrackingContext';
 import { shuffleQuestionsOptions } from '../../utils/shuffle';
 import { GameResultsModal } from './GameResultsModal';
 import { ClassroomScoreboard } from './ClassroomScoreboard';
+import { AudioPromptPlayer } from '../common/AudioPromptPlayer';
 import {
   ArrowLeft,
   Eye,
@@ -407,6 +408,17 @@ export const TrainStationGame: React.FC<TrainStationGameProps> = ({ activity, on
                 <h2 className="font-arcade text-lg sm:text-xl font-bold text-slate-900 leading-snug">
                   {currentQ.prompt}
                 </h2>
+
+                {(currentQ.hasAudio || Boolean((currentQ as unknown as { speechText?: string }).speechText || (currentQ as unknown as { audioUrl?: string }).audioUrl)) && (
+                  <div className="mt-3">
+                    <AudioPromptPlayer
+                      audioUrl={(currentQ as unknown as { audioUrl?: string }).audioUrl}
+                      speechText={(currentQ as unknown as { speechText?: string }).speechText}
+                      correctTranscript={(currentQ as unknown as { correctTranscript?: string }).correctTranscript}
+                      isAnswered={isAnswered}
+                    />
+                  </div>
+                )}
               </div>
 
               {/* 4 Answer Options */}
