@@ -35,6 +35,7 @@ import type {
   TeacherSetStudentActiveResponse,
   TeacherDemoAccountsResponse,
   TeacherArchiveDemoResponse,
+  TeacherSetAllPinsDefaultResponse,
 } from '../types/teacher';
 
 export class TeacherApiService {
@@ -727,6 +728,46 @@ export class TeacherApiService {
       return {
         success: false,
         error: `Failed to archive demo accounts: ${message}`,
+        code: 'NETWORK_ERROR',
+      };
+    }
+  }
+
+  /**
+   * One-time Administrative Action: Sets the PIN of all real students to default "1234".
+   * Passing confirm=false returns account preview/count; confirm=true executes the update.
+   */
+  public static async setAllStudentPinsDefault(
+    teacherToken: string,
+    confirm: boolean = false,
+    pin: string = '1234'
+  ): Promise<TeacherSetAllPinsDefaultResponse> {
+    const cleanToken = (teacherToken || '').trim();
+    if (!cleanToken) {
+      return {
+        success: false,
+        error: 'Authentication required. Please log in as a teacher.',
+        code: 'UNAUTHORIZED',
+      };
+    }
+
+    try {
+      const endpoint = ApiService.getTeacherApiUrl();
+      return await ApiService.postRequest<TeacherSetAllPinsDefaultResponse>(
+        endpoint,
+        {
+          action: 'teacher_set_all_student_pins_default',
+          teacherToken: cleanToken,
+          confirm: confirm,
+          pin: pin,
+        },
+        30000
+      );
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Server error';
+      return {
+        success: false,
+        error: `Administrative PIN reset failed: ${message}`,
         code: 'NETWORK_ERROR',
       };
     }

@@ -46,7 +46,7 @@
 // Configuration
 var CONFIG = {
   APP_NAME: "Unit Review Arcade API",
-  VERSION: "3.2.0",
+  VERSION: "3.2.1",
   SESSION_DURATION_HOURS: 12,
   TEACHER_SESSION_DURATION_HOURS: 2,
   MAX_FAILED_ATTEMPTS: 5,
@@ -411,6 +411,9 @@ function doPost(e) {
 
       case "teacher_recover_bulk_reset_credentials":
         return handleTeacherRecoverBulkResetCredentials(ss, payload);
+
+      case "teacher_set_all_student_pins_default":
+        return handleTeacherSetAllStudentPinsDefault(ss, payload);
 
       case "teacher_set_student_active":
         return handleTeacherSetStudentActive(ss, payload);
@@ -2852,6 +2855,148 @@ function handleTeacherRecoverBulkResetCredentials(ss, payload) {
       : "Successfully recovered credentials for " + credentials.length + " students.",
     credentials: credentials
   });
+}
+
+/**
+ * One-time Teacher-Authenticated Administrative Action:
+ * Sets the PIN of all real students to a uniform default PIN (default: "1234").
+ * 
+ * Safety & Integrity:
+ * - Requires valid teacher authentication token.
+ * - Two-phase confirmation: returns account preview if confirm !== true.
+ * - Preserves all student IDs, numbers, names, grades, classes, XP, coins, achievements, and progress.
+ * - Uses existing salt (or generates new salt if empty) + secret pepper + 1,000-round SHA-256 hashing.
+ * - Never stores plaintext PINs in Google Sheets (only salted SHA-256 hash).
+ * - Resets failed attempts and clears lockouts.
+ * - Invalidates all active student sessions in a single batch.
+ * - Atomic batch update with ScriptLock.
+ */
+function handleTeacherSetAllStudentPinsDefault(ss, payload) {
+  var auth = validateTeacherSession(ss, payload.teacherToken);
+  if (!auth.valid) {
+    return createJsonResponse({ success: false, error: auth.error, code: auth.code });
+  }
+
+  var targetPin = String(payload.pin || "1234").trim();
+  if (!targetPin || targetPin.length < 4) {
+    return createJsonResponse({ success: false, error: "A valid PIN of at least 4 digits is required.", code: "BAD_REQUEST" });
+  }
+
+  var studentsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.STUDENTS);
+  if (!studentsSheet) {
+    return createJsonResponse({ success: false, error: "Students sheet not found in database.", code: "NOT_FOUND" });
+  }
+
+  var studentData = studentsSheet.getDataRange().getValues();
+  if (studentData.length <= 1) {
+    return createJsonResponse({ success: false, error: "No student records found in database.", code: "NOT_FOUND" });
+  }
+
+  var colMap = getSheetColumnMap(studentsSheet, CONFIG.STUDENT_HEADERS);
+  var numCol = colMap["student_number"] - 1;
+  var nameCol = colMap["full_name"] - 1;
+  var classCol = colMap["class"] - 1;
+  var gradeCol = colMap["grade"] - 1;
+  var saltCol = colMap["pin_salt"] - 1;
+  var hashCol = colMap["pin_hash"] - 1;
+  var attemptsCol = colMap["failed_attempts"] - 1;
+  var lockedCol = colMap["locked_until"] - 1;
+
+  // Identify all real students (exclude DEMO_ARCHIVE and demo fixtures)
+  var eligibleRows = [];
+  var eligibleStudents = [];
+
+  for (var i = 1; i < studentData.length; i++) {
+    var sRow = studentData[i];
+    var sNum = String(sRow[numCol] || "").trim();
+    if (!sNum) continue;
+
+    var sClass = String(sRow[classCol] || "").trim().toUpperCase();
+    var sName = String(sRow[nameCol] || "");
+
+    // Exclude archived demo accounts, demo numbers, or demo fixtures
+    if (sClass === "DEMO_ARCHIVE" || /_demo$/.test(sNum) || isVerifiedDemoAccount(sNum, sName, sClass)) {
+      continue;
+    }
+
+    eligibleRows.push(i);
+    eligibleStudents.push({
+      studentNumber: sNum,
+      fullName: sName,
+      className: sClass,
+      grade: String(sRow[gradeCol] || "")
+    });
+  }
+
+  // Phase 1: Confirmation preview step if confirm !== true
+  if (payload.confirm !== true) {
+    return createJsonResponse({
+      success: true,
+      preview: true,
+      count: eligibleStudents.length,
+      defaultPin: targetPin,
+      message: "Ready to set PIN to " + targetPin + " for " + eligibleStudents.length + " real students. Confirmation required to execute.",
+      affectedStudents: eligibleStudents
+    });
+  }
+
+  // Phase 2: Execution under ScriptLock
+  var lock = LockService.getScriptLock();
+  try {
+    lock.waitLock(15000);
+  } catch (lockErr) {
+    return createJsonResponse({ success: false, error: "Server is busy. Please retry.", code: "RATE_LIMITED" });
+  }
+
+  try {
+    var pepper = getOrCreateSecretPepper();
+    var affectedNumbers = [];
+
+    for (var k = 0; k < eligibleRows.length; k++) {
+      var rIdx = eligibleRows[k];
+      var salt = String(studentData[rIdx][saltCol] || "").trim();
+      if (!salt) {
+        salt = generateSalt();
+        studentData[rIdx][saltCol] = salt;
+      }
+
+      var newHash = hashPinWithSaltAndPepper(targetPin, salt, pepper);
+      studentData[rIdx][hashCol] = newHash;
+
+      if (attemptsCol >= 0) studentData[rIdx][attemptsCol] = 0;
+      if (lockedCol >= 0) studentData[rIdx][lockedCol] = "";
+
+      affectedNumbers.push(String(studentData[rIdx][numCol]).trim());
+    }
+
+    // Atomic batch write
+    studentsSheet.getDataRange().setValues(studentData);
+    SpreadsheetApp.flush();
+
+    // Invalidate active sessions for all affected students
+    try {
+      invalidateMultipleStudentSessions(ss, affectedNumbers);
+    } catch (sessErr) {
+      Logger.log("Warning: Session invalidation error (non-fatal): " + sessErr.message);
+    }
+
+    return createJsonResponse({
+      success: true,
+      executed: true,
+      count: affectedNumbers.length,
+      pin: targetPin,
+      message: "Successfully set PIN to " + targetPin + " for all " + affectedNumbers.length + " real students. All names, progress, and accounts were preserved.",
+      affectedNumbers: affectedNumbers
+    });
+  } catch (execErr) {
+    return createJsonResponse({
+      success: false,
+      error: "Error setting student PINs: " + execErr.message,
+      code: "INTERNAL_ERROR"
+    });
+  } finally {
+    lock.releaseLock();
+  }
 }
 
 /**

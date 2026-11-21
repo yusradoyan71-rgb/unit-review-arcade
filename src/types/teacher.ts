@@ -435,3 +435,27 @@ export interface TeacherArchiveDemoResponse {
   code?: TeacherAuthErrorCode;
 }
 
+export interface TeacherSetAllPinsDefaultPayload {
+  confirm?: boolean;
+  pin?: string;
+}
+
+export interface TeacherSetAllPinsDefaultResponse {
+  success: boolean;
+  preview?: boolean;
+  executed?: boolean;
+  count?: number;
+  pin?: string;
+  defaultPin?: string;
+  message?: string;
+  affectedStudents?: Array<{
+    studentNumber: string;
+    fullName: string;
+    className: string;
+    grade: string;
+  }>;
+  affectedNumbers?: string[];
+  error?: string;
+  code?: TeacherAuthErrorCode;
+}
+

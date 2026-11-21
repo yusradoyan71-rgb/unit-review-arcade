@@ -24,7 +24,8 @@ import {
   CheckCircle2, 
   Users, 
   Clock,
-  History
+  History,
+  ShieldCheck
 } from 'lucide-react';
 import { AddStudentModal } from './AddStudentModal';
 import { BulkImportModal } from './BulkImportModal';
@@ -33,6 +34,7 @@ import { ResetPinModal } from './ResetPinModal';
 import { BulkResetPinModal } from './BulkResetPinModal';
 import { DemoAccountArchiveModal } from './DemoAccountArchiveModal';
 import { StudentCredentialCardsModal } from './StudentCredentialCardsModal';
+import { SetDefaultPinModal } from './SetDefaultPinModal';
 import type { CredentialCardItem } from './StudentCredentialCardsModal';
 
 // Verification helper for initial demo fixture accounts
@@ -77,6 +79,7 @@ export const StudentManagementView: React.FC<StudentManagementViewProps> = ({
   const [isBulkModalOpen, setIsBulkModalOpen] = useState(false);
   const [isBulkResetModalOpen, setIsBulkResetModalOpen] = useState(false);
   const [bulkResetMode, setBulkResetMode] = useState<'reset' | 'recover'>('reset');
+  const [isSetDefaultPinModalOpen, setIsSetDefaultPinModalOpen] = useState(false);
   const [isArchiveModalOpen, setIsArchiveModalOpen] = useState(false);
   const [editingStudent, setEditingStudent] = useState<StudentManagementRecord | null>(null);
   const [resettingPinStudent, setResettingPinStudent] = useState<StudentManagementRecord | null>(null);
@@ -200,6 +203,18 @@ export const StudentManagementView: React.FC<StudentManagementViewProps> = ({
           >
             <History className="w-4 h-4 text-indigo-600" />
             <span>Recover Recent PINs</span>
+          </button>
+
+          {/* Quick Admin Action: Set All Student PINs to 1234 */}
+          <button
+            type="button"
+            onClick={() => setIsSetDefaultPinModalOpen(true)}
+            disabled={roster.length === 0}
+            className="px-3 py-2.5 rounded-xl bg-purple-50 hover:bg-purple-100 disabled:opacity-40 border border-purple-200 text-purple-800 font-bold text-xs flex items-center gap-1.5 transition-colors shadow-2xs"
+            title="Set the PIN of all real students to 1234 in one click"
+          >
+            <ShieldCheck className="w-4 h-4 text-purple-600" />
+            <span>Set All PINs to 1234</span>
           </button>
 
           {/* Print Class Cards Button */}
@@ -482,6 +497,14 @@ export const StudentManagementView: React.FC<StudentManagementViewProps> = ({
         initialMode={bulkResetMode}
         onSuccess={() => onRefresh()}
         onPrintCards={(cards) => setPrintCards(cards)}
+      />
+
+      {/* Set All Real Student PINs to 1234 Modal */}
+      <SetDefaultPinModal
+        isOpen={isSetDefaultPinModalOpen}
+        onClose={() => setIsSetDefaultPinModalOpen(false)}
+        rosterCount={roster.filter((s) => s.class !== 'DEMO_ARCHIVE' && !s.studentNumber.endsWith('_demo')).length}
+        onSuccess={() => onRefresh()}
       />
 
       {/* Demo Account Archive Modal */}
