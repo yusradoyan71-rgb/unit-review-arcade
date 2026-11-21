@@ -21,6 +21,7 @@ import { CurriculumSyncModal } from './CurriculumSyncModal';
 import { StudentManagementView } from './StudentManagementView';
 import { QuestionBankView } from './questionBank/QuestionBankView';
 import { SectionAnalyticsView } from './sectionAnalytics/SectionAnalyticsView';
+import { ClassroomManagerView } from './classroom/ClassroomManagerView';
 import type { 
   TeacherOverviewKpis, 
   ClassStatSummary, 
@@ -43,7 +44,8 @@ import {
   FileQuestion, 
   AlertCircle,
   Database,
-  BarChart3
+  BarChart3,
+  Award
 } from 'lucide-react';
 
 export const TeacherDashboardScreen: React.FC = () => {
@@ -54,7 +56,7 @@ export const TeacherDashboardScreen: React.FC = () => {
   const [selectedClassId, setSelectedClassId] = useState<'all' | '7A' | '7B' | '8A' | '8B'>('all');
   const [selectedGradeId, setSelectedGradeId] = useState<'all' | 'grade-7' | 'grade-8'>('all');
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [dashboardTab, setDashboardTab] = useState<'management' | 'overview' | 'section_analytics' | 'question_bank' | 'analytics'>('management');
+  const [dashboardTab, setDashboardTab] = useState<'management' | 'overview' | 'section_analytics' | 'classroom_points' | 'question_bank' | 'analytics'>('management');
   const [questionBankCount, setQuestionBankCount] = useState<number | null>(null);
 
   // Selected Student for Drill-down Modal
@@ -365,6 +367,19 @@ export const TeacherDashboardScreen: React.FC = () => {
 
           <button
             type="button"
+            onClick={() => setDashboardTab('classroom_points')}
+            className={`pb-3 px-2 text-xs sm:text-sm font-bold flex items-center gap-2 border-b-2 transition-colors whitespace-nowrap ${
+              dashboardTab === 'classroom_points'
+                ? 'border-amber-600 text-amber-800'
+                : 'border-transparent text-slate-500 hover:text-slate-800'
+            }`}
+          >
+            <Award className="w-4 h-4 text-amber-600" />
+            <span>Classroom Points</span>
+          </button>
+
+          <button
+            type="button"
             onClick={() => setDashboardTab('question_bank')}
             className={`pb-3 px-2 text-xs sm:text-sm font-bold flex items-center gap-2 border-b-2 transition-colors whitespace-nowrap ${
               dashboardTab === 'question_bank'
@@ -426,7 +441,15 @@ export const TeacherDashboardScreen: React.FC = () => {
           />
         )}
 
-        {/* Tab 4: Question Bank Manager */}
+        {/* Tab 4: Classroom Behavior Points & Rewards Cockpit */}
+        {dashboardTab === 'classroom_points' && (
+          <ClassroomManagerView
+            roster={roster}
+            isLoadingRoster={isLoading}
+          />
+        )}
+
+        {/* Tab 5: Question Bank Manager */}
         {dashboardTab === 'question_bank' && (
           <QuestionBankView
             onQuestionCountChange={(c) => setQuestionBankCount(c)}

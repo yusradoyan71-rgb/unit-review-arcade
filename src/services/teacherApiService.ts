@@ -47,6 +47,18 @@ import type {
   TeacherArchiveQuestionResponse,
   TeacherRollbackQuestionImportResponse,
 } from '../types/questionBank';
+import type {
+  TeacherClassroomOverviewResponse,
+  TeacherAwardPointsPayload,
+  TeacherAwardPointsResponse,
+  TeacherRevertTransactionPayload,
+  TeacherRevertTransactionResponse,
+  TeacherClassroomHistoryFilter,
+  TeacherClassroomHistoryResponse,
+  TeacherManageCategoriesPayload,
+  TeacherManageCategoriesResponse,
+  TeacherReconcileRewardsResponse,
+} from '../types/classroomPoints';
 
 export class TeacherApiService {
   // In-flight request deduplication map
@@ -1027,6 +1039,279 @@ export class TeacherApiService {
       return {
         success: false,
         error: `Failed to archive question: ${message}`,
+        code: 'NETWORK_ERROR',
+      };
+    }
+  }
+
+  // =========================================================================
+  // CLASSROOM POINTS & BEHAVIOR REWARDS (v3.4.0)
+  // =========================================================================
+
+  /**
+   * Retrieves classroom points overview, active academic year, category list,
+   * reward definitions, and all student balances.
+   */
+  public static async getClassroomOverview(
+    teacherToken: string,
+    classId?: string
+  ): Promise<TeacherClassroomOverviewResponse> {
+    const cleanToken = (teacherToken || '').trim();
+    if (!cleanToken) {
+      return {
+        success: false,
+        error: 'Authentication required. Please log in as a teacher.',
+        code: 'UNAUTHORIZED',
+      };
+    }
+
+    const cacheKey = `classroom_overview_${classId || 'all'}`;
+    return this.executeDeduplicated(cacheKey, async () => {
+      try {
+        const endpoint = ApiService.getTeacherApiUrl();
+        return await ApiService.postRequest<TeacherClassroomOverviewResponse>(
+          endpoint,
+          {
+            action: 'teacher_get_classroom_overview',
+            teacherToken: cleanToken,
+            classId: classId && classId !== 'all' ? classId : undefined,
+          },
+          25000
+        );
+      } catch (err) {
+        const message = err instanceof Error ? err.message : 'Server error';
+        return {
+          success: false,
+          error: `Failed to load classroom points overview: ${message}`,
+          code: 'NETWORK_ERROR',
+        };
+      }
+    });
+  }
+
+  /**
+   * Awards classroom points to one or multiple students.
+   * Reuses the provided idempotencyKey on retry to prevent duplicate awarding.
+   */
+  public static async awardClassroomPoints(
+    payload: TeacherAwardPointsPayload
+  ): Promise<TeacherAwardPointsResponse> {
+    const cleanToken = (payload.teacherToken || '').trim();
+    if (!cleanToken) {
+      return {
+        success: false,
+        error: 'Authentication required. Please log in as a teacher.',
+        code: 'UNAUTHORIZED',
+      };
+    }
+
+    if (!payload.studentNumbers || payload.studentNumbers.length === 0) {
+      return {
+        success: false,
+        error: 'Please select at least one student.',
+        code: 'BAD_REQUEST',
+      };
+    }
+
+    if (!payload.categoryId) {
+      return {
+        success: false,
+        error: 'Please select a point category.',
+        code: 'BAD_REQUEST',
+      };
+    }
+
+    try {
+      const endpoint = ApiService.getTeacherApiUrl();
+      return await ApiService.postRequest<TeacherAwardPointsResponse>(
+        endpoint,
+        {
+          action: 'teacher_award_classroom_points',
+          teacherToken: cleanToken,
+          studentNumbers: payload.studentNumbers,
+          categoryId: payload.categoryId,
+          idempotencyKey: payload.idempotencyKey,
+          note: payload.note,
+        },
+        30000
+      );
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Server error';
+      return {
+        success: false,
+        error: `Failed to award classroom points: ${message}`,
+        code: 'NETWORK_ERROR',
+      };
+    }
+  }
+
+  /**
+   * Reverses a point transaction with pure append-only accounting.
+   * Prevents double subtraction and preserves full audit history.
+   */
+  public static async revertClassroomPointTransaction(
+    payload: TeacherRevertTransactionPayload
+  ): Promise<TeacherRevertTransactionResponse> {
+    const cleanToken = (payload.teacherToken || '').trim();
+    if (!cleanToken) {
+      return {
+        success: false,
+        error: 'Authentication required. Please log in as a teacher.',
+        code: 'UNAUTHORIZED',
+      };
+    }
+
+    if (!payload.transactionId) {
+      return {
+        success: false,
+        error: 'Transaction ID is required for reversal.',
+        code: 'BAD_REQUEST',
+      };
+    }
+
+    try {
+      const endpoint = ApiService.getTeacherApiUrl();
+      return await ApiService.postRequest<TeacherRevertTransactionResponse>(
+        endpoint,
+        {
+          action: 'teacher_revert_classroom_transaction',
+          teacherToken: cleanToken,
+          transactionId: payload.transactionId,
+          reason: payload.reason,
+        },
+        25000
+      );
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Server error';
+      return {
+        success: false,
+        error: `Failed to revert transaction: ${message}`,
+        code: 'NETWORK_ERROR',
+      };
+    }
+  }
+
+  /**
+   * Retrieves transaction history with optional filters (student, class, limit, offset).
+   */
+  public static async getClassroomHistory(
+    teacherToken: string,
+    filter?: TeacherClassroomHistoryFilter
+  ): Promise<TeacherClassroomHistoryResponse> {
+    const cleanToken = (teacherToken || '').trim();
+    if (!cleanToken) {
+      return {
+        success: false,
+        error: 'Authentication required. Please log in as a teacher.',
+        code: 'UNAUTHORIZED',
+      };
+    }
+
+    try {
+      const endpoint = ApiService.getTeacherApiUrl();
+      return await ApiService.postRequest<TeacherClassroomHistoryResponse>(
+        endpoint,
+        {
+          action: 'teacher_get_classroom_history',
+          teacherToken: cleanToken,
+          studentNumber: filter?.studentNumber,
+          classId: filter?.classId && filter.classId !== 'all' ? filter.classId : undefined,
+          academicYear: filter?.academicYear,
+          limit: filter?.limit,
+          offset: filter?.offset,
+        },
+        25000
+      );
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Server error';
+      return {
+        success: false,
+        error: `Failed to load classroom history: ${message}`,
+        code: 'NETWORK_ERROR',
+      };
+    }
+  }
+
+  /**
+   * Manages behavior categories (list, create, update, toggle active).
+   */
+  public static async manageClassroomCategories(
+    payload: TeacherManageCategoriesPayload
+  ): Promise<TeacherManageCategoriesResponse> {
+    const cleanToken = (payload.teacherToken || '').trim();
+    if (!cleanToken) {
+      return {
+        success: false,
+        error: 'Authentication required. Please log in as a teacher.',
+        code: 'UNAUTHORIZED',
+      };
+    }
+
+    // Enforce non-zero points client-side validation
+    if (payload.categoryData && payload.categoryData.defaultPoints !== undefined) {
+      if (Number(payload.categoryData.defaultPoints) === 0) {
+        return {
+          success: false,
+          error: 'Category points cannot be zero.',
+          code: 'BAD_REQUEST',
+        };
+      }
+    }
+
+    try {
+      const endpoint = ApiService.getTeacherApiUrl();
+      return await ApiService.postRequest<TeacherManageCategoriesResponse>(
+        endpoint,
+        {
+          action: 'teacher_manage_classroom_categories',
+          teacherToken: cleanToken,
+          operation: payload.operation,
+          categoryData: payload.categoryData,
+        },
+        25000
+      );
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Server error';
+      return {
+        success: false,
+        error: `Failed to manage classroom categories: ${message}`,
+        code: 'NETWORK_ERROR',
+      };
+    }
+  }
+
+  /**
+   * Reconciles ungranted milestone rewards for a student or all students.
+   */
+  public static async reconcileClassroomRewards(
+    teacherToken: string,
+    studentNumber?: string
+  ): Promise<TeacherReconcileRewardsResponse> {
+    const cleanToken = (teacherToken || '').trim();
+    if (!cleanToken) {
+      return {
+        success: false,
+        error: 'Authentication required. Please log in as a teacher.',
+        code: 'UNAUTHORIZED',
+      };
+    }
+
+    try {
+      const endpoint = ApiService.getTeacherApiUrl();
+      return await ApiService.postRequest<TeacherReconcileRewardsResponse>(
+        endpoint,
+        {
+          action: 'teacher_reconcile_classroom_rewards',
+          teacherToken: cleanToken,
+          studentNumber: studentNumber || undefined,
+        },
+        30000
+      );
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Server error';
+      return {
+        success: false,
+        error: `Failed to reconcile rewards: ${message}`,
         code: 'NETWORK_ERROR',
       };
     }

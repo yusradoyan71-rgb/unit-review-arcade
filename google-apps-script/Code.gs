@@ -10603,12 +10603,24 @@ function handleTeacherManageClassroomCategories(ss, payload) {
     var nowIso = new Date().toISOString();
 
     if (operation === "create") {
-      var newId = "cat_" + String(categoryData.name || "").toLowerCase().replace(/[^a-z0-9]+/g, "_") + "_" + Utilities.getUuid().substring(0, 4);
+      var catName = String(categoryData.name || "").trim();
+      if (!catName) {
+        return createJsonResponse({ success: false, error: "Category name cannot be empty", code: "BAD_REQUEST" });
+      }
+      var pts = Number(categoryData.defaultPoints);
+      if (isNaN(pts) || pts === 0) {
+        return createJsonResponse({ success: false, error: "Point value cannot be zero or invalid", code: "BAD_REQUEST" });
+      }
+      var cType = String(categoryData.type || "positive").toLowerCase() === "negative" ? "negative" : "positive";
+      if (cType === "positive") pts = Math.abs(pts);
+      if (cType === "negative") pts = -Math.abs(pts);
+
+      var newId = "cat_" + catName.toLowerCase().replace(/[^a-z0-9]+/g, "_") + "_" + Utilities.getUuid().substring(0, 4);
       catSheet.appendRow([
         newId,
-        String(categoryData.name || "Custom Behavior"),
-        String(categoryData.type || "positive").toLowerCase() === "negative" ? "negative" : "positive",
-        Number(categoryData.defaultPoints || 1),
+        catName,
+        cType,
+        pts,
         String(categoryData.icon || "Sparkles"),
         String(categoryData.color || "#6366f1"),
         true,
@@ -10616,6 +10628,61 @@ function handleTeacherManageClassroomCategories(ss, payload) {
         nowIso
       ]);
       return createJsonResponse({ success: true, createdId: newId });
+    }
+
+    if (operation === "update") {
+      var targetId = String(categoryData.categoryId || "").trim();
+      if (!targetId) {
+        return createJsonResponse({ success: false, error: "Missing categoryId", code: "BAD_REQUEST" });
+      }
+      var newName = String(categoryData.name || "").trim();
+      if (!newName) {
+        return createJsonResponse({ success: false, error: "Category name cannot be empty", code: "BAD_REQUEST" });
+      }
+      var newPoints = Number(categoryData.defaultPoints);
+      if (isNaN(newPoints) || newPoints === 0) {
+        return createJsonResponse({ success: false, error: "Point value cannot be zero or invalid", code: "BAD_REQUEST" });
+      }
+      var newIcon = String(categoryData.icon || "Sparkles").trim();
+      var newColor = String(categoryData.color || "#6366f1").trim();
+
+      var data = catSheet.getDataRange().getValues();
+      var idCol = colMap["category_id"] - 1;
+      var nameCol = colMap["name"] - 1;
+      var typeCol = colMap["type"] - 1;
+      var pointsCol = colMap["default_points"] - 1;
+      var iconCol = colMap["icon"] - 1;
+      var colorCol = colMap["color"] - 1;
+      var updatedCol = colMap["updated_at"] - 1;
+
+      for (var i = 1; i < data.length; i++) {
+        if (String(data[i][idCol] || "").trim() === targetId) {
+          var catType = String(data[i][typeCol] || "positive").toLowerCase();
+          // Ensure sign matches type
+          if (catType === "positive" && newPoints < 0) newPoints = Math.abs(newPoints);
+          if (catType === "negative" && newPoints > 0) newPoints = -Math.abs(newPoints);
+
+          catSheet.getRange(i + 1, nameCol + 1).setValue(newName);
+          catSheet.getRange(i + 1, pointsCol + 1).setValue(newPoints);
+          catSheet.getRange(i + 1, iconCol + 1).setValue(newIcon);
+          catSheet.getRange(i + 1, colorCol + 1).setValue(newColor);
+          catSheet.getRange(i + 1, updatedCol + 1).setValue(nowIso);
+
+          return createJsonResponse({
+            success: true,
+            categoryId: targetId,
+            category: {
+              id: targetId,
+              name: newName,
+              type: catType,
+              defaultPoints: newPoints,
+              icon: newIcon,
+              color: newColor
+            }
+          });
+        }
+      }
+      return createJsonResponse({ success: false, error: "Category not found: " + targetId, code: "NOT_FOUND" });
     }
 
     if (operation === "toggle") {
