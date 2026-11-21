@@ -230,6 +230,36 @@ function createGasContext() {
   const scriptProperties = new Map();
   const scriptCache = new Map();
 
+  const mockLockState = {
+    isHeld: false,
+    lockCount: 0,
+    failNextLock: false,
+  };
+
+  const createMockLock = () => ({
+    waitLock: (ms) => {
+      if (mockLockState.failNextLock || mockLockState.isHeld) {
+        throw new Error('Could not obtain lock after ' + ms + 'ms.');
+      }
+      mockLockState.isHeld = true;
+      mockLockState.lockCount++;
+      return true;
+    },
+    tryLock: (ms) => {
+      if (mockLockState.failNextLock || mockLockState.isHeld) {
+        return false;
+      }
+      mockLockState.isHeld = true;
+      mockLockState.lockCount++;
+      return true;
+    },
+    releaseLock: () => {
+      mockLockState.isHeld = false;
+      return true;
+    },
+    hasLock: () => mockLockState.isHeld,
+  });
+
   const ctx = {
     console,
     Date,
@@ -285,12 +315,8 @@ function createGasContext() {
     },
 
     LockService: {
-      getScriptLock: () => ({
-        waitLock: () => true,
-        tryLock: () => true,
-        releaseLock: () => true,
-        hasLock: () => true,
-      })
+      getDocumentLock: () => createMockLock(),
+      getScriptLock: () => createMockLock(),
     },
 
     Utilities: {
@@ -353,7 +379,7 @@ function createGasContext() {
 
   vm.createContext(ctx);
   vm.runInContext(codeGsContent, ctx);
-  return { ctx, activeSpreadsheet, scriptProperties };
+  return { ctx, activeSpreadsheet, scriptProperties, mockLockState };
 }
 
 function postApi(ctx, payload) {
@@ -380,7 +406,7 @@ function assert(condition, message) {
 // TEST SETUP & POPULATION
 // ============================================================================
 console.log('--- 1. Database Setup & Initialization ---');
-const { ctx, activeSpreadsheet } = createGasContext();
+const { ctx, activeSpreadsheet, mockLockState } = createGasContext();
 
 // 1. Initialize DB structure
 vm.runInContext('setupArcadeDatabase()', ctx);
@@ -576,18 +602,22 @@ assert(String(row101Exec[gradeIdx]) === 'grade-7', 'Student 101 grade preserved'
 // ============================================================================
 console.log('\n--- 8. Student Login Verification (All 59 Students with PIN 1234) ---');
 
-// Test 5 students across all grades & classes
-const testSample = ['101', '115', '125', '140', '159'];
-for (const testNum of testSample) {
+// Verify all 59 individual students can log in with PIN 1234
+let all59LoginsSucceeded = true;
+for (let i = 1; i <= 59; i++) {
+  const stdNum = String(100 + i);
   const stdLoginRes = postApi(ctx, {
     action: 'student_login',
-    studentNumber: testNum,
+    studentNumber: stdNum,
     pin: '1234'
   });
-  assert(stdLoginRes.success === true, `Student ${testNum} logs in successfully with PIN 1234`);
-  assert(Boolean(stdLoginRes.sessionToken), `Student ${testNum} issued valid session token`);
-  assert(stdLoginRes.student.studentNumber === testNum, `Student ${testNum} profile returned with correct studentNumber`);
+  if (!stdLoginRes.success || !stdLoginRes.sessionToken || stdLoginRes.student.studentNumber !== stdNum) {
+    all59LoginsSucceeded = false;
+    console.error(`Login failed for student ${stdNum}:`, stdLoginRes);
+    break;
+  }
 }
+assert(all59LoginsSucceeded === true, 'All 59 real students successfully authenticate with PIN 1234');
 
 // Test incorrect PIN rejection
 console.log('\n--- 9. Incorrect PIN Rejection ---');
@@ -612,6 +642,96 @@ for (let s = 1; s <= 10; s++) {
   }
 }
 assert(allOldSessionsRevoked === true, 'All previous active student sessions successfully revoked');
+
+// ============================================================================
+// TEST: Idempotency Fast-Path (Subsequent execution with all PINs already 1234)
+// ============================================================================
+console.log('\n--- 11. Idempotency Fast-Path Verification ---');
+const locksBeforeIdempotentCall = mockLockState.lockCount;
+const idempotentRes = postApi(ctx, {
+  action: 'teacher_set_all_student_pins_default',
+  teacherToken,
+  confirm: true,
+  pin: '1234'
+});
+assert(idempotentRes.success === true, 'Idempotent request succeeded');
+assert(idempotentRes.executed === true, 'Flagged as executed');
+assert(idempotentRes.alreadyApplied === true, 'Flagged as alreadyApplied (fast-path triggered)');
+assert(idempotentRes.count === 59, 'Reports 59 students already configured');
+assert(mockLockState.lockCount === locksBeforeIdempotentCall, 'Zero spreadsheet locks acquired on idempotent call (no unnecessary I/O)');
+
+// Also check preview call reports alreadyApplied: true
+const idempotentPreviewRes = postApi(ctx, {
+  action: 'teacher_set_all_student_pins_default',
+  teacherToken,
+  confirm: false,
+  pin: '1234'
+});
+assert(idempotentPreviewRes.success === true, 'Preview mode reports success');
+assert(idempotentPreviewRes.alreadyApplied === true, 'Preview mode recognizes all 59 accounts already have PIN 1234');
+
+// ============================================================================
+// TEST: Lock Contention & Concurrent Request Simulation
+// ============================================================================
+console.log('\n--- 12. Lock Contention & Concurrent Request Simulation ---');
+// Create a separate environment where students have un-reset PINs
+const contentionEnv = createGasContext();
+vm.runInContext('setupArcadeDatabase()', contentionEnv.ctx);
+vm.runInContext('initializeTeacherCredentials("TeacherMasterPass2026!")', contentionEnv.ctx);
+const cLogin = postApi(contentionEnv.ctx, { action: 'teacher_login', password: 'TeacherMasterPass2026!' });
+const cToken = cLogin.teacherToken;
+
+// Import 59 students into contentionEnv
+postApi(contentionEnv.ctx, {
+  action: 'teacher_bulk_import_students',
+  teacherToken: cToken,
+  students: mockRoster
+});
+
+// Case A: Simulate background job holding the lock (lock acquisition fails after timeout)
+console.log('  Testing Lock Contention (tryLock fails after timeout)...');
+contentionEnv.mockLockState.failNextLock = true;
+
+const busyRes = postApi(contentionEnv.ctx, {
+  action: 'teacher_set_all_student_pins_default',
+  teacherToken: cToken,
+  confirm: true,
+  pin: '1234'
+});
+
+assert(busyRes.success === false, 'Gracefully rejected when lock is held by another process');
+assert(busyRes.code === 'RATE_LIMITED', 'Returns RATE_LIMITED code on lock contention');
+assert(busyRes.error.includes('Server is busy'), 'Error message clearly states "Server is busy"');
+
+// Verify database was NOT corrupted or partially updated during contention
+const cStudentsSheet = contentionEnv.activeSpreadsheet.getSheetByName('Students');
+const cDataAfterFail = cStudentsSheet.getDataRange().getValues();
+const cRow101 = cDataAfterFail.find(r => String(r[1]) === '101');
+const cPepper = vm.runInContext('getOrCreateSecretPepper()', contentionEnv.ctx);
+const cExpectedHash = vm.runInContext(`hashPinWithSaltAndPepper("1234", "${cRow101[5]}", "${cPepper}")`, contentionEnv.ctx);
+assert(String(cRow101[6]) !== cExpectedHash, 'Database was NOT modified when lock acquisition failed');
+
+// Case B: Lock is released, retry immediately succeeds
+console.log('  Testing Lock Release & Clean Recovery...');
+contentionEnv.mockLockState.failNextLock = false;
+
+const retryRes = postApi(contentionEnv.ctx, {
+  action: 'teacher_set_all_student_pins_default',
+  teacherToken: cToken,
+  confirm: true,
+  pin: '1234'
+});
+assert(retryRes.success === true, 'Retry succeeded immediately once lock cleared');
+assert(retryRes.executed === true, 'Successfully executed update');
+assert(retryRes.count === 59, 'Updated all 59 students');
+
+// Verify student 101 now logs in with 1234
+const cStdLogin = postApi(contentionEnv.ctx, {
+  action: 'student_login',
+  studentNumber: '101',
+  pin: '1234'
+});
+assert(cStdLogin.success === true, 'Student 101 successfully logs in after recovered execution');
 
 // ============================================================================
 // SUMMARY

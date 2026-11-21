@@ -11,6 +11,8 @@ import {
   CheckCircle2,
   Users,
   Sparkles,
+  RefreshCw,
+  Info,
 } from 'lucide-react';
 
 interface SetDefaultPinModalProps {
@@ -29,6 +31,9 @@ export const SetDefaultPinModal: React.FC<SetDefaultPinModalProps> = ({
   const { teacherSession } = useTeacherAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [errorType, setErrorType] = useState<'busy' | 'timeout' | 'other' | null>(null);
+  const [isVerifying, setIsVerifying] = useState(false);
+  const [verifyMessage, setVerifyMessage] = useState<string | null>(null);
   const [step, setStep] = useState<'preview' | 'success'>('preview');
   const [previewCount, setPreviewCount] = useState<number>(rosterCount);
   const [confirmedCount, setConfirmedCount] = useState<number | null>(null);
@@ -38,7 +43,10 @@ export const SetDefaultPinModal: React.FC<SetDefaultPinModalProps> = ({
     if (!isOpen) {
       setStep('preview');
       setError(null);
+      setErrorType(null);
+      setVerifyMessage(null);
       setIsLoading(false);
+      setIsVerifying(false);
       return;
     }
 
@@ -66,11 +74,14 @@ export const SetDefaultPinModal: React.FC<SetDefaultPinModalProps> = ({
   const handleExecute = async () => {
     if (!teacherSession?.teacherToken) {
       setError('Teacher authentication required.');
+      setErrorType('other');
       return;
     }
 
     setIsLoading(true);
     setError(null);
+    setErrorType(null);
+    setVerifyMessage(null);
 
     try {
       const res = await TeacherApiService.setAllStudentPinsDefault(
@@ -84,12 +95,80 @@ export const SetDefaultPinModal: React.FC<SetDefaultPinModalProps> = ({
         setStep('success');
         onSuccess();
       } else {
-        setError(res.error || 'Failed to update student PINs on the server.');
+        const errMsg = res.error || 'Failed to update student PINs on the server.';
+        setError(errMsg);
+        if (
+          res.code === 'RATE_LIMITED' ||
+          errMsg.toLowerCase().includes('busy') ||
+          errMsg.toLowerCase().includes('lock')
+        ) {
+          setErrorType('busy');
+        } else if (
+          res.code === 'TIMEOUT' ||
+          errMsg.toLowerCase().includes('timed out') ||
+          errMsg.toLowerCase().includes('timeout')
+        ) {
+          setErrorType('timeout');
+        } else {
+          setErrorType('other');
+        }
       }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Network error occurred.');
+    } catch (err: unknown) {
+      const errMsg = err instanceof Error ? err.message : 'Network error occurred.';
+      setError(errMsg);
+      if (
+        (err as { name?: string })?.name === 'AbortError' ||
+        errMsg.toLowerCase().includes('timed out') ||
+        errMsg.toLowerCase().includes('timeout') ||
+        errMsg.toLowerCase().includes('too long')
+      ) {
+        setErrorType('timeout');
+      } else if (errMsg.toLowerCase().includes('busy') || errMsg.toLowerCase().includes('lock')) {
+        setErrorType('busy');
+      } else {
+        setErrorType('other');
+      }
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleVerifyStatus = async () => {
+    if (!teacherSession?.teacherToken) return;
+
+    setIsVerifying(true);
+    setVerifyMessage(null);
+
+    try {
+      // Query preview mode to check current state of real students
+      const res = await TeacherApiService.setAllStudentPinsDefault(
+        teacherSession.teacherToken,
+        false,
+        '1234'
+      );
+
+      if (res.success) {
+        if (res.alreadyApplied) {
+          // If all students already have PIN 1234, mark as successful!
+          setConfirmedCount(res.count || previewCount);
+          setError(null);
+          setErrorType(null);
+          setStep('success');
+          onSuccess();
+        } else {
+          setVerifyMessage(
+            `Status verified: PIN reset has NOT been applied yet. ${res.count ?? previewCount} accounts are ready to be updated. It is safe to click "Confirm & Set All to 1234" again.`
+          );
+        }
+      } else {
+        setVerifyMessage(res.error || 'Could not verify database status at this time.');
+      }
+    } catch (err: unknown) {
+      setVerifyMessage(
+        err instanceof Error ? err.message : 'Network error while verifying status.'
+      );
+    } finally {
+      setIsVerifying(false);
     }
   };
 
@@ -131,12 +210,79 @@ export const SetDefaultPinModal: React.FC<SetDefaultPinModalProps> = ({
           {/* Body */}
           <div className="p-6 space-y-5">
             {error && (
-              <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-start gap-3">
-                <AlertTriangle className="w-5 h-5 text-rose-600 shrink-0 mt-0.5" />
-                <div className="space-y-1">
-                  <span className="font-bold block">Error</span>
-                  <span>{error}</span>
+              <div
+                className={`p-4 rounded-xl border text-xs space-y-3 ${
+                  errorType === 'busy'
+                    ? 'bg-amber-50/90 border-amber-200 text-amber-900'
+                    : errorType === 'timeout'
+                    ? 'bg-orange-50/90 border-orange-200 text-orange-950'
+                    : 'bg-rose-50 border-rose-200 text-rose-800'
+                }`}
+              >
+                <div className="flex items-start gap-3">
+                  <AlertTriangle
+                    className={`w-5 h-5 shrink-0 mt-0.5 ${
+                      errorType === 'busy'
+                        ? 'text-amber-600'
+                        : errorType === 'timeout'
+                        ? 'text-orange-600'
+                        : 'text-rose-600'
+                    }`}
+                  />
+                  <div className="space-y-1 flex-1">
+                    <span className="font-bold block text-sm">
+                      {errorType === 'busy'
+                        ? 'Server is Busy (Lock Contention)'
+                        : errorType === 'timeout'
+                        ? 'Request Timed Out'
+                        : 'Reset Error'}
+                    </span>
+                    <p className="leading-relaxed">{error}</p>
+                    {errorType === 'timeout' && (
+                      <p className="text-[11px] opacity-90 mt-1">
+                        The operation may have completed or is still finishing on Google Sheets. Check status before retrying to avoid duplicate operations.
+                      </p>
+                    )}
+                  </div>
                 </div>
+
+                {(errorType === 'busy' || errorType === 'timeout') && (
+                  <div className="pt-2 border-t border-current/15 flex items-center justify-end gap-2">
+                    <button
+                      type="button"
+                      onClick={handleVerifyStatus}
+                      disabled={isVerifying || isLoading}
+                      className="px-3 py-1.5 rounded-lg bg-white/80 hover:bg-white text-slate-800 font-bold text-[11px] border border-slate-300 shadow-2xs flex items-center gap-1.5 transition-colors disabled:opacity-50"
+                    >
+                      {isVerifying ? (
+                        <>
+                          <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                          <span>Checking status...</span>
+                        </>
+                      ) : (
+                        <>
+                          <RefreshCw className="w-3.5 h-3.5" />
+                          <span>Verify If Already Updated</span>
+                        </>
+                      )}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleExecute}
+                      disabled={isLoading || isVerifying}
+                      className="px-3 py-1.5 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-bold text-[11px] shadow-2xs transition-colors disabled:opacity-50"
+                    >
+                      {isLoading ? 'Retrying...' : 'Retry Update'}
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {verifyMessage && (
+              <div className="p-3.5 rounded-xl bg-blue-50 border border-blue-200 text-blue-900 text-xs flex items-start gap-2.5">
+                <Info className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                <span className="leading-relaxed">{verifyMessage}</span>
               </div>
             )}
 

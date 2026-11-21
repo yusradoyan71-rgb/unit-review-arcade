@@ -14,6 +14,7 @@ export type TeacherAuthErrorCode =
   | 'NOT_FOUND'
   | 'INTERNAL_ERROR'
   | 'NETWORK_ERROR'
+  | 'TIMEOUT'
   | 'ENDPOINT_MISMATCH';
 
 export interface TeacherSession {
@@ -444,6 +445,7 @@ export interface TeacherSetAllPinsDefaultResponse {
   success: boolean;
   preview?: boolean;
   executed?: boolean;
+  alreadyApplied?: boolean;
   count?: number;
   pin?: string;
   defaultPin?: string;

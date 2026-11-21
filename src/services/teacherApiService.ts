@@ -761,7 +761,7 @@ export class TeacherApiService {
           confirm: confirm,
           pin: pin,
         },
-        30000
+        60000 // 60s timeout allowance for cold starts & spreadsheet flush
       );
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Server error';
