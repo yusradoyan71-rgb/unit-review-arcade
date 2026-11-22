@@ -9000,11 +9000,14 @@ function sanitizeMonsterConfig(input) {
 
 /**
  * Reads student monster configuration from database.
+ * Merges authoritatively with permanently unlocked classroom behavior rewards
+ * from Class_RewardGrants to ensure cross-device consistency.
  */
 function getStudentMonsterConfig(ss, studentNumber) {
   if (!ss || !studentNumber) return JSON.parse(JSON.stringify(DEFAULT_MONSTER_DATA));
 
   var mSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.MONSTERS);
+  var config = null;
   if (mSheet) {
     var data = mSheet.getDataRange().getValues();
     if (data.length > 1) {
@@ -9017,7 +9020,7 @@ function getStudentMonsterConfig(ss, studentNumber) {
           var acc = {};
           try { acc = JSON.parse(accJson); } catch (e) {}
 
-          return sanitizeMonsterConfig({
+          config = sanitizeMonsterConfig({
             name: data[i][colMap["monster_name"] - 1],
             bodyShape: data[i][colMap["body_shape"] - 1],
             bodyColor: data[i][colMap["body_color"] - 1],
@@ -9029,12 +9032,72 @@ function getStudentMonsterConfig(ss, studentNumber) {
             accessories: acc,
             updatedAt: data[i][colMap["updated_at"] - 1]
           });
+          break;
         }
       }
     }
   }
 
-  return JSON.parse(JSON.stringify(DEFAULT_MONSTER_DATA));
+  if (!config) {
+    config = JSON.parse(JSON.stringify(DEFAULT_MONSTER_DATA));
+  }
+
+  return mergeClassroomRewardsIntoMonster(ss, studentNumber, config);
+}
+
+/**
+ * Merges permanently unlocked classroom behavior rewards from Class_RewardGrants
+ * into the student's monster accessories.owned list.
+ * Ensures the backend Class_RewardGrants table is the single source of truth across all devices.
+ */
+function mergeClassroomRewardsIntoMonster(ss, studentNumber, monsterConfig) {
+  if (!ss || !studentNumber || !monsterConfig) return monsterConfig;
+
+  try {
+    var grantsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.CLASS_REWARD_GRANTS);
+    if (!grantsSheet || grantsSheet.getLastRow() <= 1) {
+      return monsterConfig;
+    }
+
+    var permanentRewards = getStudentPermanentRewardGrants(ss, studentNumber);
+    if (!permanentRewards || !permanentRewards.grants || permanentRewards.grants.length === 0) {
+      return monsterConfig;
+    }
+
+    var rewardDefs = getClassroomRewardDefinitions(ss);
+    var cosmeticMap = {};
+    for (var r = 0; r < rewardDefs.length; r++) {
+      if (rewardDefs[r].cosmeticId) {
+        cosmeticMap[rewardDefs[r].id] = rewardDefs[r].cosmeticId;
+      }
+    }
+
+    if (!monsterConfig.accessories) {
+      monsterConfig.accessories = {};
+    }
+    if (!Array.isArray(monsterConfig.accessories.owned)) {
+      monsterConfig.accessories.owned = [];
+    }
+
+    var ownedSet = {};
+    for (var i = 0; i < monsterConfig.accessories.owned.length; i++) {
+      var item = String(monsterConfig.accessories.owned[i]).trim();
+      if (item) ownedSet[item] = true;
+    }
+
+    for (var k = 0; k < permanentRewards.grants.length; k++) {
+      var rId = permanentRewards.grants[k].rewardId;
+      var cosId = cosmeticMap[rId] || rId;
+      if (cosId && !ownedSet[cosId]) {
+        ownedSet[cosId] = true;
+        monsterConfig.accessories.owned.push(cosId);
+      }
+    }
+  } catch (e) {
+    Logger.log("Notice: could not merge classroom rewards into monster config: " + e.message);
+  }
+
+  return monsterConfig;
 }
 
 /**

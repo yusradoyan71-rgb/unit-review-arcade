@@ -115,6 +115,12 @@ assert(
 );
 
 assert(
+  studentScreenContent.includes("id: 'rwd_legendary_aura'") &&
+  studentScreenContent.includes("requiredPoints: 250"),
+  'Milestone 6 Legendary Aura strictly configured at approved 250 positive points'
+);
+
+assert(
   studentScreenContent.includes('Owned Permanently') &&
   studentScreenContent.includes('Ready to Claim') &&
   studentScreenContent.includes('Locked'),
@@ -241,6 +247,22 @@ class MockRange {
       this.sheet.rows[this.row - 2][this.col - 1] = val;
     }
   }
+  setValues(matrix) {
+    for (let r = 0; r < matrix.length; r++) {
+      const targetRow = this.row + r;
+      while (this.sheet.rows.length < targetRow - 1) {
+        this.sheet.rows.push(new Array(this.sheet.headers.length).fill(''));
+      }
+      for (let c = 0; c < matrix[r].length; c++) {
+        const targetCol = this.col + c;
+        if (targetRow === 1) {
+          this.sheet.headers[targetCol - 1] = matrix[r][c];
+        } else {
+          this.sheet.rows[targetRow - 2][targetCol - 1] = matrix[r][c];
+        }
+      }
+    }
+  }
   getValues() {
     const full = [this.sheet.headers, ...this.sheet.rows];
     const slice = full.slice(this.row - 1, this.row - 1 + this.numRows);
@@ -357,10 +379,10 @@ mockSs.addSheet('Students', [
 const MOCK_STUDENT_TOKEN_701 = 'token_student_701_valid';
 const MOCK_STUDENT_TOKEN_702 = 'token_student_702_valid';
 mockSs.addSheet('Sessions', [
-  'session_id', 'session_token', 'student_id', 'student_number', 'class', 'created_at', 'expires_at', 'is_active'
+  'session_id', 'session_token', 'student_id', 'student_number', 'class', 'login_time', 'last_ping_time', 'expires_at', 'logout_time', 'status', 'user_agent'
 ], [
-  ['sess_701', MOCK_STUDENT_TOKEN_701, 'std_701', '701', '7A', new Date().toISOString(), new Date(Date.now() + 86400000).toISOString(), true],
-  ['sess_702', MOCK_STUDENT_TOKEN_702, 'std_702', '702', '7A', new Date().toISOString(), new Date(Date.now() + 86400000).toISOString(), true],
+  ['sess_701', MOCK_STUDENT_TOKEN_701, 'std_701', '701', '7A', new Date().toISOString(), new Date().toISOString(), new Date(Date.now() + 86400000).toISOString(), '', 'active', 'TestAgent'],
+  ['sess_702', MOCK_STUDENT_TOKEN_702, 'std_702', '702', '7A', new Date().toISOString(), new Date().toISOString(), new Date(Date.now() + 86400000).toISOString(), '', 'active', 'TestAgent'],
 ]);
 
 // Seed Teacher Sessions
@@ -533,6 +555,112 @@ const studentOnTeacherCategories = invokeGas(sandbox.handleTeacherManageClassroo
 });
 assert(studentOnTeacherCategories.success === false, 'Student session token rejected from teacher_manage_classroom_categories');
 assert(studentOnTeacherCategories.code === 'UNAUTHORIZED', 'Returns UNAUTHORIZED code');
+
+// ---------------------------------------------------------------------------
+// 4.8 Backend Authoritative Recovery & Cross-Device Synchronization
+// ---------------------------------------------------------------------------
+console.log('\n--- 4.8 Backend Authoritative Recovery & Cross-Device Sync ---');
+
+// Seed a previously purchased accessory in Monsters sheet for student 701
+const monstersSheet = mockSs.getSheetByName('Monsters') || mockSs.addSheet('Monsters', [
+  'student_number', 'class', 'monster_name', 'body_shape', 'body_color',
+  'eye_type', 'mouth_type', 'horn_type', 'cheek_type', 'pattern',
+  'accessories_json', 'updated_at'
+]);
+
+const initialAccessories = {
+  hat: 'hat_party', // Student previously bought and equipped hat_party
+  owned: ['hat_party'],
+};
+
+sandbox.saveStudentMonsterConfig(mockSs, '701', '7A', {
+  name: 'Pip',
+  bodyShape: 'blob',
+  bodyColor: 'cyan',
+  eyeType: 'anime',
+  mouthType: 'smile',
+  hornType: 'antennae',
+  cheekType: 'blush_dots',
+  pattern: 'belly_patch',
+  accessories: initialAccessories,
+});
+
+// Grant classroom reward rwd_monster_crown (hat_monster_crown) to student 701 in Class_RewardGrants
+const grantsSheet = mockSs.getSheetByName('Class_RewardGrants');
+grantsSheet.appendRow([
+  'grnt_701_rwd_monster_crown',
+  '701',
+  'rwd_monster_crown',
+  new Date().toISOString(),
+  '2026-2027',
+  50,
+  'tx_boost_50',
+  false,
+]);
+
+// Simulate signing in on a completely new device (fresh cache / empty localStorage)
+localStorage.clear();
+assert(localStorage.getItem('ura_monster_config_701') === null, 'Simulated device has empty localStorage');
+
+// Backend reads monster config for student 701
+const recoveredMonster = sandbox.getStudentMonsterConfig(mockSs, '701');
+assert(
+  recoveredMonster.accessories.owned.includes('hat_party'),
+  'Cross-device recovery preserves previously purchased shop item (hat_party)'
+);
+assert(
+  recoveredMonster.accessories.owned.includes('hat_monster_crown'),
+  'Cross-device recovery merges classroom reward (hat_monster_crown) from Class_RewardGrants'
+);
+assert(
+  recoveredMonster.accessories.owned.includes('badge_first_star'),
+  'Cross-device recovery merges classroom badge (badge_first_star) from Class_RewardGrants'
+);
+assert(
+  recoveredMonster.accessories.owned.includes('frame_silver_star'),
+  'Cross-device recovery merges classroom frame (frame_silver_star) from Class_RewardGrants'
+);
+assert(
+  recoveredMonster.accessories.hat === 'hat_party',
+  'Cross-device recovery preserves previously equipped slot (hat_party)'
+);
+
+// Simulate student calling student_get_monster on new device
+const getMonsterRes = invokeGas(sandbox.handleStudentGetMonster, mockSs, {
+  sessionToken: MOCK_STUDENT_TOKEN_701,
+});
+assert(getMonsterRes.success === true, 'student_get_monster succeeds on new device');
+assert(
+  getMonsterRes.monster.accessories.owned.includes('hat_monster_crown'),
+  'student_get_monster payload returns classroom reward'
+);
+assert(
+  getMonsterRes.monster.accessories.owned.includes('hat_party'),
+  'student_get_monster payload returns purchased shop accessory'
+);
+
+// Student equips the newly recovered classroom reward (hat_monster_crown)
+const equipRes = invokeGas(sandbox.handleStudentEquipAccessory, mockSs, {
+  sessionToken: MOCK_STUDENT_TOKEN_701,
+  slot: 'hat',
+  itemId: 'hat_monster_crown',
+});
+assert(equipRes.success === true, 'Student successfully equips classroom reward (hat_monster_crown)');
+assert(
+  equipRes.monster.accessories.hat === 'hat_monster_crown',
+  'Equipped slot is now hat_monster_crown'
+);
+assert(
+  equipRes.monster.accessories.owned.includes('hat_party'),
+  'Purchased accessory remains in owned inventory after equipping reward'
+);
+
+// Verify client device local storage caching
+localStorage.setItem('ura_monster_config_701', JSON.stringify(equipRes.monster));
+const clientDeviceCached = JSON.parse(localStorage.getItem('ura_monster_config_701'));
+assert(clientDeviceCached.accessories.owned.includes('hat_party'), 'Client device local cache stores purchased item');
+assert(clientDeviceCached.accessories.owned.includes('hat_monster_crown'), 'Client device local cache stores classroom crown');
+assert(clientDeviceCached.accessories.hat === 'hat_monster_crown', 'Client device local cache reflects equipped crown');
 
 console.log('\n======================================================================');
 console.log(`🎉 ALL PHASE 3.4C TESTS PASSED: ${passedChecks} / ${totalChecks} ASSERTIONS!`);
