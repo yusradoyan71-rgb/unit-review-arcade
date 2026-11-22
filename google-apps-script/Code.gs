@@ -10084,38 +10084,50 @@ function handleStudentClaimMilestoneReward(ss, payload) {
   var studentNumber = auth.studentNumber;
   var activeYear = getActiveAcademicYear(ss);
 
+  // 1. Verify eligibility lock-free first (Double-checked locking pattern)
+  var points = getStudentClassroomPointsForYear(ss, studentNumber, activeYear);
+  var rewardDefs = getClassroomRewardDefinitions(ss);
+  var targetDef = null;
+
+  for (var i = 0; i < rewardDefs.length; i++) {
+    if (rewardDefs[i].id === rewardId) {
+      targetDef = rewardDefs[i];
+      break;
+    }
+  }
+
+  if (!targetDef) {
+    return createJsonResponse({ success: false, error: "Unknown reward milestone", code: "NOT_FOUND" });
+  }
+
+  if (points.positivePoints < targetDef.requiredPoints) {
+    return createJsonResponse({
+      success: false,
+      error: "Insufficient current academic year positive points (" + points.positivePoints + "/" + targetDef.requiredPoints + ")",
+      code: "INELIGIBLE"
+    });
+  }
+
+  // 2. Deterministic grant ID check lock-free
+  var grantId = "grnt_" + studentNumber + "_" + rewardId;
+  var permRewards = getStudentPermanentRewardGrants(ss, studentNumber);
+  if (permRewards.ownedSet[rewardId]) {
+    return createJsonResponse({
+      success: true,
+      alreadyOwned: true,
+      grantId: grantId,
+      rewardId: rewardId,
+      message: "Reward milestone is already permanently unlocked"
+    });
+  }
+
+  // 3. Acquire lock strictly for the write operation
   var lock = LockService.getScriptLock();
-  if (!lock.waitLock(25000)) {
+  if (!lock.waitLock(15000)) {
     return createJsonResponse({ success: false, error: "System is busy, please retry", code: "LOCK_TIMEOUT" });
   }
 
   try {
-    // 1. Verify eligibility based on current academic year positive points
-    var points = getStudentClassroomPointsForYear(ss, studentNumber, activeYear);
-    var rewardDefs = getClassroomRewardDefinitions(ss);
-    var targetDef = null;
-
-    for (var i = 0; i < rewardDefs.length; i++) {
-      if (rewardDefs[i].id === rewardId) {
-        targetDef = rewardDefs[i];
-        break;
-      }
-    }
-
-    if (!targetDef) {
-      return createJsonResponse({ success: false, error: "Unknown reward milestone", code: "NOT_FOUND" });
-    }
-
-    if (points.positivePoints < targetDef.requiredPoints) {
-      return createJsonResponse({
-        success: false,
-        error: "Insufficient current academic year positive points (" + points.positivePoints + "/" + targetDef.requiredPoints + ")",
-        code: "INELIGIBLE"
-      });
-    }
-
-    // 2. Deterministic grant ID check
-    var grantId = "grnt_" + studentNumber + "_" + rewardId;
     var grantsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.CLASS_REWARD_GRANTS);
     if (grantsSheet.getLastRow() === 0) {
       grantsSheet.appendRow(CONFIG.CLASS_REWARD_GRANT_HEADERS);
@@ -10134,7 +10146,7 @@ function handleStudentClaimMilestoneReward(ss, payload) {
       }
     }
 
-    // 3. Append permanent grant
+    // 4. Append permanent grant under lock
     var nowIso = new Date().toISOString();
     grantsSheet.appendRow([
       grantId,
@@ -10266,6 +10278,22 @@ function handleTeacherAwardClassroomPoints(ss, payload) {
       if (gId) existingGrantIds[gId] = true;
     }
 
+    // Pre-calculate positive points per student for activeYear in memory (prevents N+1 sheet reads in loop)
+    var posPointsByStudent = {};
+    var txYrCol = colMap["academic_year"] - 1;
+    var txSCol = colMap["student_number"] - 1;
+    var txPosCol = colMap["positive_points"] - 1;
+    for (var t = 1; t < txData.length; t++) {
+      var tRow = txData[t];
+      if (String(tRow[txYrCol] || "").trim() === activeYear) {
+        var tNum = String(tRow[txSCol] || "").trim();
+        if (tNum) {
+          if (!posPointsByStudent[tNum]) posPointsByStudent[tNum] = 0;
+          posPointsByStudent[tNum] += Number(tRow[txPosCol] || 0);
+        }
+      }
+    }
+
     // 3. Process each student atomically
     for (var i = 0; i < studentNumbers.length; i++) {
       var currentStudentNum = String(studentNumbers[i]).trim();
@@ -10306,20 +10334,23 @@ function handleTeacherAwardClassroomPoints(ss, payload) {
       awardedCount++;
       newTransactions.push({ transactionId: txId, studentNumber: currentStudentNum });
 
-      // 4. Milestone Evaluation if positive points were awarded
+      // 4. Milestone Evaluation if positive points were awarded (In-memory calculation)
       if (posPoints > 0) {
-        var currentYearPoints = getStudentClassroomPointsForYear(ss, currentStudentNum, activeYear);
+        var prevPos = posPointsByStudent[currentStudentNum] || 0;
+        var newPos = prevPos + posPoints;
+        posPointsByStudent[currentStudentNum] = newPos;
+
         for (var m = 0; m < rewardDefs.length; m++) {
           var rwd = rewardDefs[m];
           var targetGrantId = "grnt_" + currentStudentNum + "_" + rwd.id;
-          if (currentYearPoints.positivePoints >= rwd.requiredPoints && !existingGrantIds[targetGrantId]) {
+          if (newPos >= rwd.requiredPoints && !existingGrantIds[targetGrantId]) {
             grantsSheet.appendRow([
               targetGrantId,
               currentStudentNum,
               rwd.id,
               nowIso,
               activeYear,
-              currentYearPoints.positivePoints,
+              newPos,
               txId,
               false
             ]);
@@ -10503,6 +10534,57 @@ function handleTeacherGetClassroomOverview(ss, payload) {
     var sColMap = getSheetColumnMap(studentsSheet, CONFIG.STUDENT_HEADERS);
     var rewardDefs = getClassroomRewardDefinitions(ss);
 
+    // Pre-aggregate transaction points for active year in a single read (O(1) lookups)
+    var txSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.CLASS_POINT_TRANSACTIONS);
+    var pointsByStudent = {};
+    if (txSheet && txSheet.getLastRow() > 1) {
+      var txData = txSheet.getDataRange().getValues();
+      var txColMap = getSheetColumnMap(txSheet, CONFIG.CLASS_POINT_TRANSACTION_HEADERS);
+      var sCol = txColMap["student_number"] - 1;
+      var yrCol = txColMap["academic_year"] - 1;
+      var posCol = txColMap["positive_points"] - 1;
+      var negCol = txColMap["negative_points"] - 1;
+      var grossCol = txColMap["gross_points"] - 1;
+
+      for (var t = 1; t < txData.length; t++) {
+        var tRow = txData[t];
+        var tYr = String(tRow[yrCol] || "").trim();
+        if (tYr !== activeYear) continue;
+        var tNum = String(tRow[sCol] || "").trim();
+        if (!tNum) continue;
+
+        if (!pointsByStudent[tNum]) {
+          pointsByStudent[tNum] = { positivePoints: 0, negativePoints: 0, netPoints: 0 };
+        }
+        pointsByStudent[tNum].positivePoints += Number(tRow[posCol] || 0);
+        pointsByStudent[tNum].negativePoints += Number(tRow[negCol] || 0);
+        pointsByStudent[tNum].netPoints += Number(tRow[grossCol] || 0);
+      }
+    }
+
+    // Pre-aggregate permanent reward grants in a single read (O(1) lookups)
+    var grantsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.CLASS_REWARD_GRANTS);
+    var grantsByStudent = {};
+    if (grantsSheet && grantsSheet.getLastRow() > 1) {
+      var gData = grantsSheet.getDataRange().getValues();
+      var gColMap = getSheetColumnMap(grantsSheet, CONFIG.CLASS_REWARD_GRANT_HEADERS);
+      var gsCol = gColMap["student_number"] - 1;
+      var grwdCol = gColMap["reward_id"] - 1;
+
+      for (var g = 1; g < gData.length; g++) {
+        var gRow = gData[g];
+        var gNum = String(gRow[gsCol] || "").trim();
+        var gRwd = String(gRow[grwdCol] || "").trim();
+        if (!gNum || !gRwd) continue;
+
+        if (!grantsByStudent[gNum]) {
+          grantsByStudent[gNum] = { ownedSet: {}, grants: [] };
+        }
+        grantsByStudent[gNum].ownedSet[gRwd] = true;
+        grantsByStudent[gNum].grants.push(gRwd);
+      }
+    }
+
     for (var i = 1; i < sData.length; i++) {
       var row = sData[i];
       var sNum = String(row[sColMap["student_number"] - 1] || "").trim();
@@ -10517,8 +10599,8 @@ function handleTeacherGetClassroomOverview(ss, payload) {
       if (filterClass && sClass !== filterClass) continue;
       if (filterGrade && normGrade !== filterGrade) continue;
 
-      var points = getStudentClassroomPointsForYear(ss, sNum, activeYear);
-      var permRewards = getStudentPermanentRewardGrants(ss, sNum);
+      var points = pointsByStudent[sNum] || { positivePoints: 0, negativePoints: 0, netPoints: 0 };
+      var permRewards = grantsByStudent[sNum] || { ownedSet: {}, grants: [] };
       var ownedSet = permRewards.ownedSet;
 
       var nextMilestone = null;
@@ -10654,7 +10736,7 @@ function handleTeacherManageClassroomCategories(ss, payload) {
     setupClassroomPointsSheets(ss);
   }
 
-  if (operation === "list") {
+  if (operation === "list" || operation === "get" || !operation) {
     var categoriesMap = getClassroomCategoriesMap(ss);
     var list = Object.keys(categoriesMap).map(function(k) { return categoriesMap[k]; });
     list.sort(function(a, b) { return a.sortOrder - b.sortOrder; });
@@ -10790,75 +10872,129 @@ function handleTeacherReconcileClassroomRewards(ss, payload) {
   var activeYear = getActiveAcademicYear(ss);
   var targetStudent = payload.studentNumber ? String(payload.studentNumber).trim() : null;
 
+  // 1. Audit Phase (Purely lock-free in-memory evaluation)
+  var rewardDefs = getClassroomRewardDefinitions(ss);
+  var grantsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.CLASS_REWARD_GRANTS);
+  if (grantsSheet.getLastRow() === 0) {
+    grantsSheet.appendRow(CONFIG.CLASS_REWARD_GRANT_HEADERS);
+  }
+
+  var existingGrantsData = grantsSheet.getDataRange().getValues();
+  var existingGrantIds = {};
+  for (var g = 1; g < existingGrantsData.length; g++) {
+    var gId = String(existingGrantsData[g][0] || "").trim();
+    if (gId) existingGrantIds[gId] = true;
+  }
+
+  // Pre-aggregate positive points per student for activeYear in a single read
+  var txSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.CLASS_POINT_TRANSACTIONS);
+  var pointsByStudent = {};
+  if (txSheet && txSheet.getLastRow() > 1) {
+    var txData = txSheet.getDataRange().getValues();
+    var txColMap = getSheetColumnMap(txSheet, CONFIG.CLASS_POINT_TRANSACTION_HEADERS);
+    var sCol = txColMap["student_number"] - 1;
+    var yrCol = txColMap["academic_year"] - 1;
+    var posCol = txColMap["positive_points"] - 1;
+
+    for (var t = 1; t < txData.length; t++) {
+      var tRow = txData[t];
+      if (String(tRow[yrCol] || "").trim() !== activeYear) continue;
+      var tNum = String(tRow[sCol] || "").trim();
+      if (!tNum) continue;
+      if (!pointsByStudent[tNum]) pointsByStudent[tNum] = 0;
+      pointsByStudent[tNum] += Number(tRow[posCol] || 0);
+    }
+  }
+
+  // Determine target students
+  var studentsToProcess = [];
+  if (targetStudent) {
+    studentsToProcess.push(targetStudent);
+  } else {
+    var studentsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.STUDENTS);
+    if (studentsSheet && studentsSheet.getLastRow() > 1) {
+      var sData = studentsSheet.getDataRange().getValues();
+      var sColMap = getSheetColumnMap(studentsSheet, CONFIG.STUDENT_HEADERS);
+      for (var i = 1; i < sData.length; i++) {
+        var num = String(sData[i][sColMap["student_number"] - 1] || "").trim();
+        var sClass = String(sData[i][sColMap["class"] - 1] || "").trim().toUpperCase();
+        if (num && sClass !== "DEMO_ARCHIVE" && !/_demo$/.test(num)) {
+          studentsToProcess.push(num);
+        }
+      }
+    }
+  }
+
+  // Identify missing grants in-memory
+  var missingGrants = [];
+  for (var s = 0; s < studentsToProcess.length; s++) {
+    var sNum = studentsToProcess[s];
+    var posPoints = pointsByStudent[sNum] || 0;
+
+    for (var r = 0; r < rewardDefs.length; r++) {
+      var rwd = rewardDefs[r];
+      var grantId = "grnt_" + sNum + "_" + rwd.id;
+
+      if (posPoints >= rwd.requiredPoints && !existingGrantIds[grantId]) {
+        missingGrants.push({
+          grantId: grantId,
+          studentNumber: sNum,
+          rewardId: rwd.id,
+          rewardName: rwd.name,
+          positivePoints: posPoints
+        });
+      }
+    }
+  }
+
+  // If no rewards need to be reconciled, exit lock-free immediately!
+  if (missingGrants.length === 0) {
+    return createJsonResponse({
+      success: true,
+      reconciledCount: 0,
+      reconciledGrants: [],
+      academicYear: activeYear
+    });
+  }
+
+  // 2. Write Phase (Acquires lock strictly to append missing rows)
   var lock = LockService.getScriptLock();
-  if (!lock.waitLock(25000)) {
+  if (!lock.waitLock(10000)) {
     return createJsonResponse({ success: false, error: "Database lock timeout", code: "LOCK_TIMEOUT" });
   }
 
   try {
-    var rewardDefs = getClassroomRewardDefinitions(ss);
-    var grantsSheet = getOrCreateSheet(ss, CONFIG.SHEET_NAMES.CLASS_REWARD_GRANTS);
-    if (grantsSheet.getLastRow() === 0) {
-      grantsSheet.appendRow(CONFIG.CLASS_REWARD_GRANT_HEADERS);
-    }
-
-    var existingGrantsData = grantsSheet.getDataRange().getValues();
-    var existingGrantIds = {};
-    for (var g = 1; g < existingGrantsData.length; g++) {
-      var gId = String(existingGrantsData[g][0] || "").trim();
-      if (gId) existingGrantIds[gId] = true;
-    }
-
-    // Determine target students
-    var studentsToProcess = [];
-    if (targetStudent) {
-      studentsToProcess.push(targetStudent);
-    } else {
-      var studentsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.STUDENTS);
-      if (studentsSheet && studentsSheet.getLastRow() > 1) {
-        var sData = studentsSheet.getDataRange().getValues();
-        var sColMap = getSheetColumnMap(studentsSheet, CONFIG.STUDENT_HEADERS);
-        for (var i = 1; i < sData.length; i++) {
-          var num = String(sData[i][sColMap["student_number"] - 1] || "").trim();
-          var sClass = String(sData[i][sColMap["class"] - 1] || "").trim().toUpperCase();
-          if (num && sClass !== "DEMO_ARCHIVE" && !/_demo$/.test(num)) {
-            studentsToProcess.push(num);
-          }
-        }
-      }
+    // Re-verify under lock to avoid race conditions (Double-checked locking)
+    var lockedGrantsData = grantsSheet.getDataRange().getValues();
+    var lockedGrantIds = {};
+    for (var lg = 1; lg < lockedGrantsData.length; lg++) {
+      var lgId = String(lockedGrantsData[lg][0] || "").trim();
+      if (lgId) lockedGrantIds[lgId] = true;
     }
 
     var reconciledGrants = [];
     var nowIso = new Date().toISOString();
 
-    for (var s = 0; s < studentsToProcess.length; s++) {
-      var sNum = studentsToProcess[s];
-      var points = getStudentClassroomPointsForYear(ss, sNum, activeYear);
-
-      for (var r = 0; r < rewardDefs.length; r++) {
-        var rwd = rewardDefs[r];
-        var grantId = "grnt_" + sNum + "_" + rwd.id;
-
-        // If current year positive points >= milestone and grant is missing, auto-heal
-        if (points.positivePoints >= rwd.requiredPoints && !existingGrantIds[grantId]) {
-          grantsSheet.appendRow([
-            grantId,
-            sNum,
-            rwd.id,
-            nowIso,
-            activeYear,
-            points.positivePoints,
-            "admin_reconciliation",
-            false
-          ]);
-          existingGrantIds[grantId] = true;
-          reconciledGrants.push({
-            grantId: grantId,
-            studentNumber: sNum,
-            rewardId: rwd.id,
-            rewardName: rwd.name
-          });
-        }
+    for (var m = 0; m < missingGrants.length; m++) {
+      var mg = missingGrants[m];
+      if (!lockedGrantIds[mg.grantId]) {
+        grantsSheet.appendRow([
+          mg.grantId,
+          mg.studentNumber,
+          mg.rewardId,
+          nowIso,
+          activeYear,
+          mg.positivePoints,
+          "admin_reconciliation",
+          false
+        ]);
+        lockedGrantIds[mg.grantId] = true;
+        reconciledGrants.push({
+          grantId: mg.grantId,
+          studentNumber: mg.studentNumber,
+          rewardId: mg.rewardId,
+          rewardName: mg.rewardName
+        });
       }
     }
 
