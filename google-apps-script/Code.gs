@@ -9625,6 +9625,10 @@ function setupPhase8AMonsterWorld(ss) {
  * Idempotent setup helper for Classroom Points & Rewards sheets.
  * Safely initializes 5 new sheets without mutating any existing student records.
  */
+function initClassroomPointsSheets(ss) {
+  return setupClassroomPointsSheets(ss);
+}
+
 function setupClassroomPointsSheets(ss) {
   if (!ss) {
     try {
