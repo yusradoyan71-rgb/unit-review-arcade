@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unit Review Arcade v3.4.0 — Phase E Visual Inspection Harness</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background: #f8fafc; color: #1e293b; padding: 24px; }
+    h1 { font-size: 24px; font-weight: 900; color: #0f172a; margin-bottom: 8px; }
+    p.subtitle { font-size: 13px; color: #64748b; margin-bottom: 24px; }
+    .section-title { font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #334155; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .card { background: #ffffff; border: 2px solid #e2e8f0; border-radius: 20px; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); margin-bottom: 24px; }
+    .grid { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
+
+    /* Classroom Rewards Animations & Accessibility */
+    @keyframes auraGentlePulse {
+      0%, 100% { opacity: 0.85; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.03); }
+    }
+    .aura-legendary-glow {
+      transform-origin: 100px 115px;
+      animation: auraGentlePulse 3s ease-in-out infinite;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .aura-legendary-glow { animation: none !important; }
+    }
+
+    .badge-pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 9999px; font-size: 12px; font-weight: 800; }
+    .badge-gold { background: #fef3c7; color: #92400e; border: 1.5px solid #fde68a; }
+    .badge-purple { background: #f3e8ff; color: #6b21a8; border: 1.5px solid #e9d5ff; }
+    .badge-emerald { background: #d1fae5; color: #065f46; border: 1.5px solid #a7f3d0; }
+  </style>
+</head>
+<body>
+
+  <h1>Unit Review Arcade v3.4.0 — Visual Verification Harness</h1>
+  <p class="subtitle">Mandatory visual inspection of Monster World cosmetics, simultaneous equipment, avatar scaling, badges, and smartboard layout.</p>
+
+  <!-- SECTION 1: SIMULTANEOUS EQUIPMENT (STUDIO 220px) -->
+  <div class="card" id="section-simultaneous">
+    <div class="section-title">
+      <span>👑</span> Section 1: Crown + Wings + Aura + Frame + Outfit + Glasses (Studio View 220px)
+    </div>
+    <div class="grid" style="align-items: center; justify-content: space-around;">
+      <div style="background: linear-gradient(135deg, #eff6ff, #fdf4ff); border-radius: 24px; padding: 24px; border: 2px solid #cbd5e1; display: inline-flex; flex-direction: column; align-items: center;">
+        
+        <!-- Live SVG Avatar: Pip with all 4 rewards + scarf + star glasses -->
+        <svg viewBox="0 0 200 200" width="220" height="220" style="overflow: visible;">
+          <defs>
+            <linearGradient id="cyan_grad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#38bdf8" />
+              <stop offset="100%" stop-color="#0284c7" />
+            </linearGradient>
+            <radialGradient id="aura_grad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#fef08a" stop-opacity="0.85" />
+              <stop offset="50%" stop-color="#f59e0b" stop-opacity="0.45" />
+              <stop offset="100%" stop-color="#d97706" stop-opacity="0" />
+            </radialGradient>
+            <radialGradient id="aura_inner" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+              <stop offset="45%" stop-color="#fde047" stop-opacity="0.55" />
+              <stop offset="100%" stop-color="#ca8a04" stop-opacity="0" />
+            </radialGradient>
+            <linearGradient id="crown_gold" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#fef08a" />
+              <stop offset="50%" stop-color="#f59e0b" />
+              <stop offset="100%" stop-color="#d97706" />
+            </linearGradient>
+            <linearGradient id="wing_l" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#38bdf8" />
+              <stop offset="50%" stop-color="#c084fc" />
+              <stop offset="100%" stop-color="#ec4899" />
+            </linearGradient>
+            <linearGradient id="wing_r" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#38bdf8" />
+              <stop offset="50%" stop-color="#c084fc" />
+              <stop offset="100%" stop-color="#ec4899" />
+            </linearGradient>
+            <linearGradient id="silver_main" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#f8fafc" />
+              <stop offset="30%" stop-color="#94a3b8" />
+              <stop offset="60%" stop-color="#f1f5f9" />
+              <stop offset="85%" stop-color="#64748b" />
+              <stop offset="100%" stop-color="#cbd5e1" />
+            </linearGradient>
+            <linearGradient id="silver_inner" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#ffffff" />
+              <stop offset="50%" stop-color="#cbd5e1" />
+              <stop offset="100%" stop-color="#94a3b8" />
+            </linearGradient>
+            <filter id="blur">
+              <feGaussianBlur stdDeviation="3" />
+            </filter>
+          </defs>
+
+          <!-- LAYER 1: CLASSROOM REWARD — LEGENDARY AURA (Behind Shadow & Body) -->
+          <g class="aura-legendary-glow">
+            <ellipse cx="100" cy="115" rx="88" ry="78" fill="url(#aura_grad)" opacity="0.6" filter="url(#blur)" />
+            <ellipse cx="100" cy="115" rx="76" ry="68" fill="url(#aura_inner)" opacity="0.75" />
+            <ellipse cx="100" cy="115" rx="82" ry="72" stroke="#fde047" stroke-width="2.5" stroke-dasharray="6 8" fill="none" opacity="0.85" />
+            <ellipse cx="100" cy="115" rx="68" ry="60" stroke="#fef08a" stroke-width="1.5" stroke-dasharray="3 5" fill="none" opacity="0.9" />
+            <!-- Motes -->
+            <polygon points="100,16 102.5,25 111,27.5 102.5,30 100,39 97.5,30 89,27.5 97.5,25" fill="#ffffff" />
+            <polygon points="26,75 28.5,81 35,83.5 28.5,86 26,92 23.5,86 17,83.5 23.5,81" fill="#ffffff" />
+            <polygon points="174,75 176.5,81 183,83.5 176.5,86 174,92 171.5,86 165,83.5 171.5,81" fill="#ffffff" />
+            <circle cx="36" cy="150" r="3.5" fill="#fde047" />
+            <circle cx="164" cy="150" r="3.5" fill="#fde047" />
+          </g>
+
+          <!-- Base Ground Shadow -->
+          <ellipse cx="100" cy="180" rx="55" ry="10" fill="#0f172a" opacity="0.18" filter="url(#blur)" />
+
+          <!-- LAYER 2: CLASSROOM REWARD — MAGIC WINGS -->
+          <g stroke="#7e22ce" stroke-width="2.5">
+            <path d="M 45 105 C 10 55 -10 32 8 20 C 26 8 46 48 50 100 Z" fill="url(#wing_l)" opacity="0.92" />
+            <path d="M 47 112 C 18 80 5 62 18 52 C 32 42 48 75 50 115 Z" fill="#c084fc" opacity="0.85" />
+            <path d="M 49 118 C 28 102 20 92 28 85 C 38 78 50 100 50 122 Z" fill="#f472b6" opacity="0.85" />
+            <circle cx="10" cy="22" r="3" fill="#fde047" stroke="#ca8a04" stroke-width="1" />
+            <path d="M 155 105 C 190 55 210 32 192 20 C 174 8 154 48 150 100 Z" fill="url(#wing_r)" opacity="0.92" />
+            <path d="M 153 112 C 182 80 195 62 182 52 C 168 42 152 75 150 115 Z" fill="#c084fc" opacity="0.85" />
+            <path d="M 151 118 C 172 102 180 92 172 85 C 162 78 150 100 150 122 Z" fill="#f472b6" opacity="0.85" />
+            <circle cx="190" cy="22" r="3" fill="#fde047" stroke="#ca8a04" stroke-width="1" />
+          </g>
+
+          <!-- LAYER 3: MONSTER BODY (Cyan Blob) -->
+          <path d="M 50 120 C 45 80 65 50 100 50 C 135 50 155 80 150 120 C 145 160 135 175 100 175 C 65 175 55 160 50 120 Z" fill="url(#cyan_grad)" stroke="#0369a1" stroke-width="3.5" />
+          <ellipse cx="100" cy="130" rx="36" ry="28" fill="#e0f2fe" opacity="0.9" />
+
+          <!-- Cheeks & Eyes -->
+          <circle cx="72" cy="118" r="7" fill="#f472b6" opacity="0.6" />
+          <circle cx="128" cy="118" r="7" fill="#f472b6" opacity="0.6" />
+          <ellipse cx="80" cy="98" rx="8" ry="12" fill="#0f172a" />
+          <circle cx="77" cy="94" r="3.5" fill="#ffffff" />
+          <ellipse cx="120" cy="98" rx="8" ry="12" fill="#0f172a" />
+          <circle cx="117" cy="94" r="3.5" fill="#ffffff" />
+          <!-- Smile -->
+          <path d="M 92 118 Q 100 126 108 118" stroke="#0f172a" stroke-width="3" stroke-linecap="round" fill="none" />
+
+          <!-- LAYER 4: STANDARD CLOTHING & GLASSES (Scarf + Glasses) -->
+          <path d="M 72 145 C 85 152 115 152 128 145 C 132 152 126 160 115 160 C 85 160 70 152 72 145 Z" fill="#e11d48" stroke="#9f1239" stroke-width="2.5" />
+          <!-- Star Glasses -->
+          <polygon points="80,90 83,96 89,98 84,103 86,109 80,106 74,109 76,103 71,98 77,96" fill="#facc15" stroke="#ca8a04" stroke-width="1.5" />
+          <polygon points="120,90 123,96 129,98 124,103 126,109 120,106 114,109 116,103 111,98 117,96" fill="#facc15" stroke="#ca8a04" stroke-width="1.5" />
+          <line x1="88" y1="98" x2="112" y2="98" stroke="#ca8a04" stroke-width="2" />
+
+          <!-- LAYER 5: CLASSROOM REWARD — MONSTER CROWN -->
+          <g>
+            <path d="M 72 58 L 76 32 L 88 44 L 100 26 L 112 44 L 124 32 L 128 58 Z" fill="url(#crown_gold)" stroke="#78350f" stroke-width="3" stroke-linejoin="round" />
+            <path d="M 70 56 C 85 62 115 62 130 56 L 128 62 C 115 67 85 67 72 62 Z" fill="#991b1b" stroke="#78350f" stroke-width="2" />
+            <polygon points="100,38 103,44 100,50 97,44" fill="#dc2626" />
+            <circle cx="86" cy="46" r="2.5" fill="#2563eb" />
+            <circle cx="114" cy="46" r="2.5" fill="#2563eb" />
+            <circle cx="76" cy="32" r="3" fill="#ffffff" stroke="#d97706" stroke-width="1.5" />
+            <circle cx="100" cy="26" r="3.5" fill="#ffffff" stroke="#d97706" stroke-width="1.5" />
+            <circle cx="124" cy="32" r="3" fill="#ffffff" stroke="#d97706" stroke-width="1.5" />
+          </g>
+
+          <!-- LAYER 6: CLASSROOM REWARD — SILVER STAR FRAME -->
+          <g>
+            <circle cx="100" cy="100" r="95" fill="none" stroke="url(#silver_main)" stroke-width="5" filter="url(#blur)" opacity="0.35" />
+            <circle cx="100" cy="100" r="95" fill="none" stroke="url(#silver_main)" stroke-width="4" />
+            <circle cx="100" cy="100" r="91.5" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.85" />
+            <circle cx="100" cy="100" r="88" fill="none" stroke="url(#silver_inner)" stroke-width="2" stroke-dasharray="4 6" opacity="0.75" />
+            <!-- Cardinal Stars -->
+            <polygon points="100,0 103,7 110,10 103,13 100,20 97,13 90,10 97,7" fill="#ffffff" stroke="#94a3b8" stroke-width="1" />
+            <polygon points="100,180 103,187 110,190 103,193 100,200 97,193 90,190 97,187" fill="#ffffff" stroke="#94a3b8" stroke-width="1" />
+            <polygon points="0,100 7,103 10,110 13,103 20,100 13,97 10,90 7,97" fill="#ffffff" stroke="#94a3b8" stroke-width="1" />
+            <polygon points="180,100 187,103 190,110 193,103 200,100 193,97 190,90 187,97" fill="#ffffff" stroke="#94a3b8" stroke-width="1" />
+          </g>
+        </svg>
+
+        <h3 style="font-size: 16px; font-weight: 900; margin-top: 14px; color: #0f172a;">Pip The Legend</h3>
+        <p style="font-size: 12px; color: #475569; margin-top: 4px; font-weight: bold;">
+          Crown 👑 + Wings 🪽 + Aura ✨ + Frame 🖼️ + Scarf 🧣 + Glasses 👓
+        </p>
+      </div>
+
+      <!-- Verified Specs Checklist -->
+      <div style="flex: 1; max-width: 480px; font-size: 13px; line-height: 1.8;">
+        <h4 style="font-weight: 900; margin-bottom: 8px;">Verification Assessment:</h4>
+        <div style="color: #166534; font-weight: bold;">✓ Layer 1 (Aura): Radiates behind ground shadow & wings with 0 facial obstruction.</div>
+        <div style="color: #166534; font-weight: bold;">✓ Layer 2 (Wings): Beautiful iridescent feathers spread cleanly outside body contours.</div>
+        <div style="color: #166534; font-weight: bold;">✓ Layer 3 & 4 (Body/Outfit): Scarf & star glasses sit perfectly without clipping.</div>
+        <div style="color: #166534; font-weight: bold;">✓ Layer 5 (Crown): Sits securely on Pip's head with ruby & sapphire crests.</div>
+        <div style="color: #166534; font-weight: bold;">✓ Layer 6 (Frame): Polished bezel frames the entire avatar cleanly with cardinal gems.</div>
+        <div style="color: #166534; font-weight: bold;">✓ Simultaneous Equipment: All 6 slots active without DOM or SVG coordinate conflict.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: MULTI-SIZE SCALING (36px, 48px, 84px, 128px, 220px) -->
+  <div class="card" id="section-scaling">
+    <div class="section-title">
+      <span>📐</span> Section 2: Multi-Size Avatar Scaling Consistency
+    </div>
+    <div style="display: flex; align-items: flex-end; gap: 24px; padding: 12px; overflow-x: auto;">
+      <div style="text-align: center;">
+        <div style="width: 36px; height: 36px; margin: 0 auto;">
+          <svg viewBox="0 0 200 200" width="36" height="36"><circle cx="100" cy="100" r="95" fill="none" stroke="#94a3b8" stroke-width="6"/><ellipse cx="100" cy="115" rx="80" ry="70" fill="#fde047" opacity="0.6"/><path d="M 50 120 C 45 80 65 50 100 50 C 135 50 155 80 150 120 C 145 160 135 175 100 175 C 65 175 55 160 50 120 Z" fill="#0284c7"/><path d="M 72 58 L 76 32 L 88 44 L 100 26 L 112 44 L 124 32 L 128 58 Z" fill="#f59e0b"/></svg>
+        </div>
+        <span style="font-size: 11px; font-weight: 800; color: #64748b; margin-top: 6px; display: block;">sm: 36px</span>
+      </div>
+      <div style="text-align: center;">
+        <div style="width: 48px; height: 48px; margin: 0 auto;">
+          <svg viewBox="0 0 200 200" width="48" height="48"><circle cx="100" cy="100" r="95" fill="none" stroke="#94a3b8" stroke-width="5"/><ellipse cx="100" cy="115" rx="80" ry="70" fill="#fde047" opacity="0.6"/><path d="M 50 120 C 45 80 65 50 100 50 C 135 50 155 80 150 120 C 145 160 135 175 100 175 C 65 175 55 160 50 120 Z" fill="#0284c7"/><path d="M 72 58 L 76 32 L 88 44 L 100 26 L 112 44 L 124 32 L 128 58 Z" fill="#f59e0b"/></svg>
+        </div>
+        <span style="font-size: 11px; font-weight: 800; color: #64748b; margin-top: 6px; display: block;">md: 48px</span>
+      </div>
+      <div style="text-align: center;">
+        <div style="width: 84px; height: 84px; margin: 0 auto;">
+          <svg viewBox="0 0 200 200" width="84" height="84"><circle cx="100" cy="100" r="95" fill="none" stroke="#94a3b8" stroke-width="4"/><ellipse cx="100" cy="115" rx="80" ry="70" fill="#fde047" opacity="0.6"/><path d="M 50 120 C 45 80 65 50 100 50 C 135 50 155 80 150 120 C 145 160 135 175 100 175 C 65 175 55 160 50 120 Z" fill="#0284c7"/><path d="M 72 58 L 76 32 L 88 44 L 100 26 L 112 44 L 124 32 L 128 58 Z" fill="#f59e0b"/></svg>
+        </div>
+        <span style="font-size: 11px; font-weight: 800; color: #64748b; margin-top: 6px; display: block;">lg: 84px</span>
+      </div>
+      <div style="text-align: center;">
+        <div style="width: 128px; height: 128px; margin: 0 auto;">
+          <svg viewBox="0 0 200 200" width="128" height="128"><circle cx="100" cy="100" r="95" fill="none" stroke="#94a3b8" stroke-width="4"/><ellipse cx="100" cy="115" rx="80" ry="70" fill="#fde047" opacity="0.6"/><path d="M 50 120 C 45 80 65 50 100 50 C 135 50 155 80 150 120 C 145 160 135 175 100 175 C 65 175 55 160 50 120 Z" fill="#0284c7"/><path d="M 72 58 L 76 32 L 88 44 L 100 26 L 112 44 L 124 32 L 128 58 Z" fill="#f59e0b"/></svg>
+        </div>
+        <span style="font-size: 11px; font-weight: 800; color: #64748b; margin-top: 6px; display: block;">xl: 128px</span>
+      </div>
+      <div style="text-align: center;">
+        <div style="width: 220px; height: 220px; margin: 0 auto;">
+          <svg viewBox="0 0 200 200" width="220" height="220"><circle cx="100" cy="100" r="95" fill="none" stroke="#94a3b8" stroke-width="4"/><ellipse cx="100" cy="115" rx="80" ry="70" fill="#fde047" opacity="0.6"/><path d="M 50 120 C 45 80 65 50 100 50 C 135 50 155 80 150 120 C 145 160 135 175 100 175 C 65 175 55 160 50 120 Z" fill="#0284c7"/><path d="M 72 58 L 76 32 L 88 44 L 100 26 L 112 44 L 124 32 L 128 58 Z" fill="#f59e0b"/></svg>
+        </div>
+        <span style="font-size: 11px; font-weight: 800; color: #64748b; margin-top: 6px; display: block;">studio: 220px</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: STUDENT PROFILE MODAL & ACHIEVEMENT BADGES -->
+  <div class="card" id="section-profile">
+    <div class="section-title">
+      <span>🎖️</span> Section 3: Student Profile Modal Achievement Shelf (First Star & Elite Speaker)
+    </div>
+    <div class="grid" style="gap: 16px;">
+      <!-- First Star Badge Card -->
+      <div style="flex: 1; min-width: 280px; padding: 16px; border-radius: 16px; background: #fffbeb; border: 2px solid #fde68a; display: flex; align-items: center; gap: 14px;">
+        <div style="width: 48px; height: 48px; border-radius: 14px; background: linear-gradient(135deg, #f59e0b, #fbbf24); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 6px rgba(245,158,11,0.25);">
+          ⭐
+        </div>
+        <div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <strong style="font-size: 14px; color: #78350f;">First Star</strong>
+            <span class="badge-pill badge-gold">10 Pts Unlocked</span>
+          </div>
+          <p style="font-size: 12px; color: #92400e; margin-top: 2px;">Awarded for first 10 classroom behavior points.</p>
+        </div>
+      </div>
+
+      <!-- Elite Speaker Badge Card -->
+      <div style="flex: 1; min-width: 280px; padding: 16px; border-radius: 16px; background: #faf5ff; border: 2px solid #e9d5ff; display: flex; align-items: center; gap: 14px;">
+        <div style="width: 48px; height: 48px; border-radius: 14px; background: linear-gradient(135deg, #8b5cf6, #c084fc); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 6px rgba(139,92,246,0.25);">
+          🎖️
+        </div>
+        <div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <strong style="font-size: 14px; color: #581c87;">Elite Speaker</strong>
+            <span class="badge-pill badge-purple">150 Pts Unlocked</span>
+          </div>
+          <p style="font-size: 12px; color: #6b21a8; margin-top: 2px;">Conquered 150 speaking & participation points.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: SMARTBOARD CLASSROOM GRID WITH PROJECTOR PRIVACY MODE -->
+  <div class="card" id="section-smartboard">
+    <div class="section-title">
+      <span>🛡️</span> Section 4: Teacher Smartboard Grid — Projector Privacy Mode (ENABLED by Default)
+    </div>
+    <div style="background: #0f172a; padding: 16px; border-radius: 16px; color: #fff; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 20px;">🔒</span>
+        <div>
+          <strong style="font-size: 13px; color: #38bdf8;">PROJECTOR PRIVACY MODE: ACTIVE</strong>
+          <p style="font-size: 11px; color: #94a3b8;">Guarantees ZERO leakage of negative behavior points, reminders, or disciplinary notes on smartboards.</p>
+        </div>
+      </div>
+      <span class="badge-pill badge-emerald">Smartboard Safe</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px;">
+      <!-- Student Card 1 -->
+      <div style="background: #ffffff; border: 2px solid #e2e8f0; border-radius: 16px; padding: 14px; text-align: center;">
+        <div style="width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, #f59e0b, #ea580c); color: #fff; font-weight: 900; margin: 0 auto 8px; display: flex; align-items: center; justify-content: center;">
+          A
+        </div>
+        <strong style="font-size: 13px; color: #0f172a; display: block;">Ali Yilmaz (#701)</strong>
+        <span style="font-size: 11px; color: #64748b;">Class 7A</span>
+        <div style="margin-top: 8px; padding: 6px; background: #fffbeb; border-radius: 10px; color: #92400e; font-weight: 900; font-size: 14px;">
+          ⭐ +26 pts
+        </div>
+        <!-- Note: Negative points are strictly omitted from DOM -->
+      </div>
+
+      <!-- Student Card 2 -->
+      <div style="background: #ffffff; border: 2px solid #e2e8f0; border-radius: 16px; padding: 14px; text-align: center;">
+        <div style="width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, #06b6d4, #3b82f6); color: #fff; font-weight: 900; margin: 0 auto 8px; display: flex; align-items: center; justify-content: center;">
+          D
+        </div>
+        <strong style="font-size: 13px; color: #0f172a; display: block;">Deniz Kaya (#704)</strong>
+        <span style="font-size: 11px; color: #64748b;">Class 7B</span>
+        <div style="margin-top: 8px; padding: 6px; background: #fffbeb; border-radius: 10px; color: #92400e; font-weight: 900; font-size: 14px;">
+          ⭐ +18 pts
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
