@@ -182,3 +182,24 @@
     border-right-color: var(--border);
   }
 }
+
+/* Classroom Rewards Animations & Accessibility (Phase 3.4D) */
+@keyframes auraGentlePulse {
+  0%, 100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.aura-legendary-glow {
+  transform-origin: 100px 115px;
+  animation: auraGentlePulse 3s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aura-legendary-glow {
+    animation: none !important;
+  }
+}

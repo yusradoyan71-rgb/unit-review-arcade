@@ -16,6 +16,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useArcade } from '../../context/ArcadeContext';
+import { useGamification } from '../../context/GamificationContext';
 import { StudentClassroomService } from '../../services/studentClassroomService';
 import { MonsterAvatar } from '../monster/MonsterAvatar';
 import { MonsterService } from '../../services/monsterService';
@@ -42,7 +43,9 @@ import {
   Coins, 
   HelpCircle,
   Trophy,
-  RotateCcw
+  RotateCcw,
+  Check,
+  ShoppingBag
 } from 'lucide-react';
 
 // Authoritative 6 Milestone Rewards Catalog
@@ -56,12 +59,14 @@ const REWARD_MILESTONES: ClassroomRewardDefinition[] = [
 ];
 
 export const StudentMyClassroomScreen: React.FC = () => {
-  const { student, sessionToken } = useAuth();
+  const { student, sessionToken, updateStudentMonster } = useAuth();
   const { navigateTo } = useArcade();
+  const { updateProfileMonster } = useGamification();
 
   const [profile, setProfile] = useState<StudentClassroomProfileResponse | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isClaiming, setIsClaiming] = useState<string | null>(null);
+  const [isEquipping, setIsEquipping] = useState<string | null>(null);
   const [claimSuccessMessage, setClaimSuccessMessage] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'rewards' | 'feedback'>('rewards');
 
@@ -115,6 +120,35 @@ export const StudentMyClassroomScreen: React.FC = () => {
     }
   };
 
+  // Handle equipping or unequipping wearable classroom rewards
+  const handleToggleEquip = async (
+    cosmeticId: string,
+    slot: 'hat' | 'glasses' | 'clothing' | 'wings' | 'aura' | 'frame'
+  ) => {
+    setIsEquipping(cosmeticId);
+    try {
+      const currentEquipped = monsterConfig.accessories?.[slot];
+      const nextItem = currentEquipped === cosmeticId ? null : cosmeticId;
+
+      const result = await MonsterService.equipAccessory(
+        studentNumber,
+        sessionToken || undefined,
+        slot,
+        nextItem
+      );
+
+      if (result.success && result.monster) {
+        updateStudentMonster?.(result.monster);
+        updateProfileMonster?.(result.monster);
+        sounds.playTap();
+      }
+    } catch (e) {
+      console.warn('Failed to toggle equip:', e);
+    } finally {
+      setIsEquipping(null);
+    }
+  };
+
   const positivePoints = profile?.positivePoints ?? 0;
   const negativePoints = profile?.negativePoints ?? 0;
   const netPoints = profile?.netPoints ?? 0;
@@ -151,7 +185,12 @@ export const StudentMyClassroomScreen: React.FC = () => {
         {/* Left: Companion & Student Identity */}
         <div className="flex items-center gap-4">
           <div className="relative">
-            <MonsterAvatar config={monsterConfig} size={68} animate />
+            <MonsterAvatar
+              config={monsterConfig}
+              size={68}
+              animate
+              frame={monsterConfig.accessories?.frame}
+            />
             <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-amber-400 text-slate-900 flex items-center justify-center font-black text-xs shadow-xs border-2 border-white">
               ⭐
             </div>
@@ -437,13 +476,27 @@ export const StudentMyClassroomScreen: React.FC = () => {
 
           {/* All 6 Milestones Roadmap Grid */}
           <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <h3 className="text-xs font-black uppercase tracking-wider text-slate-500">
-                All Milestone Rewards
-              </h3>
-              <span className="text-[11px] text-slate-400">
-                Permanent Monster World cosmetics
-              </span>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <h3 className="text-xs font-black uppercase tracking-wider text-slate-500">
+                  All Milestone Rewards
+                </h3>
+                <span className="text-[11px] text-slate-400">
+                  Permanent Monster World cosmetics &amp; achievement badges
+                </span>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  sounds.playNavigate();
+                  navigateTo({ view: 'monster-world' });
+                }}
+                className="px-3 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-900 font-bold text-xs flex items-center gap-1.5 transition self-start sm:self-auto shadow-2xs"
+              >
+                <ShoppingBag className="w-3.5 h-3.5 text-amber-600" />
+                <span>Visit Monster World Wardrobe</span>
+              </button>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -452,6 +505,21 @@ export const StudentMyClassroomScreen: React.FC = () => {
                 const isClaimable = claimableRewards.some((c) => c.rewardId === milestone.id);
                 const isNext = nextMilestone?.rewardId === milestone.id;
                 const progressPct = Math.min(100, Math.round((positivePoints / milestone.requiredPoints) * 100));
+
+                const wearableSlot: 'hat' | 'wings' | 'aura' | 'frame' | null =
+                  milestone.cosmeticId === 'hat_monster_crown'
+                    ? 'hat'
+                    : milestone.cosmeticId === 'wings_magic'
+                    ? 'wings'
+                    : milestone.cosmeticId === 'aura_legendary'
+                    ? 'aura'
+                    : milestone.cosmeticId === 'frame_silver_star'
+                    ? 'frame'
+                    : null;
+
+                const isEquipped = wearableSlot
+                  ? monsterConfig.accessories?.[wearableSlot] === milestone.cosmeticId
+                  : false;
 
                 return (
                   <div
@@ -516,10 +584,48 @@ export const StudentMyClassroomScreen: React.FC = () => {
                     {/* Bottom: Progress Bar or Claim CTA */}
                     <div className="pt-2 border-t border-slate-100">
                       {isOwned ? (
-                        <div className="flex items-center justify-between text-[11px] text-emerald-700 font-bold">
-                          <span>Owned Permanently</span>
-                          <span className="text-[10px] text-emerald-600 font-mono">In Inventory</span>
-                        </div>
+                        wearableSlot ? (
+                          <div className="space-y-2">
+                            <div className="flex items-center justify-between text-[11px] text-emerald-700 font-bold">
+                              <span>Owned Permanently</span>
+                              <span className="text-[10px] text-emerald-600 font-mono">In Inventory</span>
+                            </div>
+                            <button
+                              type="button"
+                              disabled={isEquipping === milestone.cosmeticId}
+                              onClick={() => handleToggleEquip(milestone.cosmeticId, wearableSlot)}
+                              className={`w-full py-1.5 px-3 rounded-xl text-xs font-black transition flex items-center justify-center gap-1.5 ${
+                                isEquipped
+                                  ? 'bg-emerald-600 text-white shadow-xs hover:bg-emerald-700'
+                                  : 'bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200'
+                              }`}
+                            >
+                              {isEquipping === milestone.cosmeticId ? (
+                                <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                              ) : isEquipped ? (
+                                <>
+                                  <Check className="w-3.5 h-3.5" />
+                                  <span>Equipped</span>
+                                </>
+                              ) : (
+                                <>
+                                  <Sparkles className="w-3.5 h-3.5 text-indigo-500" />
+                                  <span>Equip to Companion</span>
+                                </>
+                              )}
+                            </button>
+                          </div>
+                        ) : (
+                          <div className="space-y-1">
+                            <div className="flex items-center justify-between text-[11px] text-emerald-700 font-bold">
+                              <span>Owned Permanently</span>
+                              <span className="text-[10px] text-emerald-600 font-mono">Badge Unlocked</span>
+                            </div>
+                            <p className="text-[10px] text-indigo-600 font-medium">
+                              Active on your Student Profile &amp; Achievements shelf
+                            </p>
+                          </div>
+                        )
                       ) : isClaimable ? (
                         <button
                           type="button"

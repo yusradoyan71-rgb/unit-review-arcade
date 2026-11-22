@@ -382,7 +382,7 @@ export class MonsterService {
   public static async equipAccessory(
     studentNumber: string,
     sessionToken: string | undefined,
-    slot: 'hat' | 'glasses' | 'clothing' | 'wings',
+    slot: 'hat' | 'glasses' | 'clothing' | 'wings' | 'aura' | 'frame',
     itemId: string | null
   ): Promise<{ success: boolean; monster: MonsterConfig; error?: string }> {
     const currentMonster = this.getMonster(studentNumber);

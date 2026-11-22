@@ -41,7 +41,7 @@ import {
 
 type MonsterWorldView = 'hub' | 'studio' | 'shop' | 'evolution';
 type StudioTab = 'color' | 'shape' | 'eyes' | 'mouth' | 'features' | 'patterns';
-type ShopCategoryFilter = 'all' | 'hat' | 'glasses' | 'clothing' | 'wings';
+type ShopCategoryFilter = 'all' | 'hat' | 'glasses' | 'clothing' | 'wings' | 'aura' | 'frame' | 'rewards';
 
 export const MonsterWorldScreen: React.FC = () => {
   const { navigateTo } = useArcade();
@@ -201,6 +201,13 @@ export const MonsterWorldScreen: React.FC = () => {
     setShopActionError(null);
     setShopActionSuccess(null);
 
+    if (item.isClassroomReward) {
+      sounds.playError();
+      setShopActionError('Classroom rewards are earned through classroom behavior points and cannot be bought with coins!');
+      setTimeout(() => setShopActionError(null), 4000);
+      return;
+    }
+
     const studentClass = student?.class || '';
     const result = await MonsterService.purchaseAccessory(
       studentNumber,
@@ -236,7 +243,7 @@ export const MonsterWorldScreen: React.FC = () => {
     const result = await MonsterService.equipAccessory(
       studentNumber,
       sessionToken || undefined,
-      item.category as 'hat' | 'glasses' | 'clothing' | 'wings',
+      item.category as 'hat' | 'glasses' | 'clothing' | 'wings' | 'aura' | 'frame',
       newId
     );
 
@@ -286,6 +293,7 @@ export const MonsterWorldScreen: React.FC = () => {
   // Filter Catalog
   const filteredShopItems = FUTURE_SHOP_CATALOG.filter((item) => {
     if (shopCategory === 'all') return true;
+    if (shopCategory === 'rewards') return Boolean(item.isClassroomReward);
     return item.category === shopCategory;
   });
 
@@ -1073,6 +1081,7 @@ export const MonsterWorldScreen: React.FC = () => {
                   size={170}
                   animate
                   equippedAccessories={previewAccessories}
+                  frame={previewAccessories.frame}
                   stage={milestone.stage}
                   evolutionTier={milestone.evolutionTier}
                 />
@@ -1084,6 +1093,8 @@ export const MonsterWorldScreen: React.FC = () => {
                 <div>Glasses: {previewAccessories.glasses || 'None'}</div>
                 <div>Clothing: {previewAccessories.clothing || 'None'}</div>
                 <div>Wings: {previewAccessories.wings || 'None'}</div>
+                <div>Aura: {previewAccessories.aura || 'None'}</div>
+                <div>Frame: {previewAccessories.frame || 'None'}</div>
               </div>
 
               <p className="mt-4 text-[11px] text-slate-600 font-medium p-2.5 rounded-xl bg-slate-50 border border-slate-200">
@@ -1105,6 +1116,16 @@ export const MonsterWorldScreen: React.FC = () => {
                   }`}
                 >
                   All Items
+                </button>
+                <button
+                  onClick={() => setShopCategory('rewards')}
+                  className={`px-3.5 py-1.5 rounded-xl text-xs font-black transition ${
+                    shopCategory === 'rewards'
+                      ? 'bg-amber-500 text-white shadow-sm'
+                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                  }`}
+                >
+                  🏆 Classroom Rewards
                 </button>
                 <button
                   onClick={() => setShopCategory('hat')}
@@ -1146,6 +1167,26 @@ export const MonsterWorldScreen: React.FC = () => {
                 >
                   🪽 Wings
                 </button>
+                <button
+                  onClick={() => setShopCategory('aura')}
+                  className={`px-3.5 py-1.5 rounded-xl text-xs font-black transition ${
+                    shopCategory === 'aura'
+                      ? 'bg-amber-500 text-white shadow-sm'
+                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                  }`}
+                >
+                  ✨ Auras
+                </button>
+                <button
+                  onClick={() => setShopCategory('frame')}
+                  className={`px-3.5 py-1.5 rounded-xl text-xs font-black transition ${
+                    shopCategory === 'frame'
+                      ? 'bg-amber-500 text-white shadow-sm'
+                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                  }`}
+                >
+                  🖼️ Frames
+                </button>
               </div>
 
               {/* Items Grid */}
@@ -1156,14 +1197,15 @@ export const MonsterWorldScreen: React.FC = () => {
                   const canAfford = coinBalance >= item.price;
 
                   // Rarity styling
-                  const rarityBadge =
-                    item.rarity === 'legendary'
-                      ? 'bg-rose-100 text-rose-800 border-rose-300'
-                      : item.rarity === 'epic'
-                      ? 'bg-purple-100 text-purple-800 border-purple-300'
-                      : item.rarity === 'rare'
-                      ? 'bg-sky-100 text-sky-800 border-sky-300'
-                      : 'bg-slate-100 text-slate-700 border-slate-300';
+                  const rarityBadge = item.isClassroomReward
+                    ? 'bg-amber-100 text-amber-900 border-amber-300'
+                    : item.rarity === 'legendary'
+                    ? 'bg-rose-100 text-rose-800 border-rose-300'
+                    : item.rarity === 'epic'
+                    ? 'bg-purple-100 text-purple-800 border-purple-300'
+                    : item.rarity === 'rare'
+                    ? 'bg-sky-100 text-sky-800 border-sky-300'
+                    : 'bg-slate-100 text-slate-700 border-slate-300';
 
                   return (
                     <div
@@ -1173,11 +1215,17 @@ export const MonsterWorldScreen: React.FC = () => {
                       <div>
                         <div className="flex items-center justify-between mb-2">
                           <span className={`px-2 py-0.5 rounded-md text-[10px] font-black uppercase border ${rarityBadge}`}>
-                            {item.rarity}
+                            {item.isClassroomReward ? '🏆 Classroom Reward' : item.rarity}
                           </span>
                           <span className="text-xs font-mono font-black text-amber-900 flex items-center gap-1">
-                            <Coins className="w-3.5 h-3.5 text-amber-500" />
-                            {item.price}
+                            {item.isClassroomReward ? (
+                              <span className="text-[10px] text-amber-700 font-bold">Milestone Reward</span>
+                            ) : (
+                              <>
+                                <Coins className="w-3.5 h-3.5 text-amber-500" />
+                                {item.price}
+                              </>
+                            )}
                           </span>
                         </div>
 
@@ -1187,6 +1235,8 @@ export const MonsterWorldScreen: React.FC = () => {
                           {item.category === 'glasses' && '👓'}
                           {item.category === 'clothing' && '🧣'}
                           {item.category === 'wings' && '🪽'}
+                          {item.category === 'aura' && '✨'}
+                          {item.category === 'frame' && '🖼️'}
                         </div>
 
                         <h4 className="font-black text-sm text-slate-900">{item.name}</h4>
@@ -1224,6 +1274,11 @@ export const MonsterWorldScreen: React.FC = () => {
                               <span>Equip</span>
                             )}
                           </button>
+                        ) : item.isClassroomReward ? (
+                          <div className="w-full py-2 px-1 rounded-xl bg-slate-100 border border-slate-200 text-slate-500 font-bold text-[11px] text-center flex items-center justify-center gap-1">
+                            <Lock className="w-3 h-3 text-slate-400" />
+                            <span>Locked • {item.requiredPoints} pts in My Classroom</span>
+                          </div>
                         ) : (
                           <button
                             type="button"

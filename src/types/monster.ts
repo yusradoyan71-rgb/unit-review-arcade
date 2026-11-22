@@ -59,10 +59,12 @@ export type MonsterPattern =
   | 'heart';      // Sweet heart patch on chest
 
 export interface MonsterAccessories {
-  hat?: string | null;       // e.g. 'hat_party', 'hat_crown', 'hat_wizard'
+  hat?: string | null;       // e.g. 'hat_party', 'hat_crown', 'hat_wizard', 'hat_monster_crown'
   glasses?: string | null;   // e.g. 'glasses_round', 'glasses_star', 'glasses_pixel'
   clothing?: string | null;  // e.g. 'cloth_bowtie', 'cloth_hero_cape', 'cloth_scarf'
-  wings?: string | null;     // e.g. 'wings_fairy', 'wings_cosmic_phoenix'
+  wings?: string | null;     // e.g. 'wings_fairy', 'wings_cosmic_phoenix', 'wings_magic'
+  aura?: string | null;      // e.g. 'aura_legendary'
+  frame?: string | null;     // e.g. 'frame_silver_star'
   owned?: string[];          // List of purchased / owned accessory IDs
 }
 
@@ -291,7 +293,7 @@ export function getMonsterMilestoneInfo(xp: number): MonsterMilestoneInfo {
 // ---------------------------------------------------------------------------
 
 export type ShopItemRarity = 'common' | 'rare' | 'epic' | 'legendary';
-export type ShopItemCategory = 'hat' | 'glasses' | 'clothing' | 'wings';
+export type ShopItemCategory = 'hat' | 'glasses' | 'clothing' | 'wings' | 'aura' | 'frame';
 
 export interface ShopItemPreview {
   id: string;
@@ -301,11 +303,66 @@ export interface ShopItemPreview {
   price: number;
   description: string;
   icon: string;
+  isClassroomReward?: boolean;
+  requiredPoints?: number;
 }
 
 export type ShopAccessoryItem = ShopItemPreview;
 
+/**
+ * Authoritative Classroom Behavior Reward Cosmetics (Phase 3.4D)
+ * Earned through classroom positive points and tracked via Class_RewardGrants.
+ * Never costs Monster Coins.
+ */
+export const CLASSROOM_REWARD_CATALOG: ShopItemPreview[] = [
+  {
+    id: 'frame_silver_star',
+    name: 'Silver Star Frame',
+    category: 'frame',
+    rarity: 'rare',
+    price: 0,
+    description: 'Polished silver star frame encasing your explorer portrait. Unlocked at 25 positive points!',
+    icon: 'Star',
+    isClassroomReward: true,
+    requiredPoints: 25,
+  },
+  {
+    id: 'hat_monster_crown',
+    name: 'Monster Crown',
+    category: 'hat',
+    rarity: 'epic',
+    price: 0,
+    description: 'Majestic golden imperial crown with sapphire and ruby gems. Unlocked at 50 positive points!',
+    icon: 'Crown',
+    isClassroomReward: true,
+    requiredPoints: 50,
+  },
+  {
+    id: 'wings_magic',
+    name: 'Magic Wings',
+    category: 'wings',
+    rarity: 'epic',
+    price: 0,
+    description: 'Ethereal iridescent wings pulsating with grammatical energy. Unlocked at 100 positive points!',
+    icon: 'Feather',
+    isClassroomReward: true,
+    requiredPoints: 100,
+  },
+  {
+    id: 'aura_legendary',
+    name: 'Legendary Aura',
+    category: 'aura',
+    rarity: 'legendary',
+    price: 0,
+    description: 'Radiant golden starlight aura surrounding your companion. Unlocked at 250 positive points!',
+    icon: 'Sparkles',
+    isClassroomReward: true,
+    requiredPoints: 250,
+  },
+];
+
 export const FUTURE_SHOP_CATALOG: ShopItemPreview[] = [
+  ...CLASSROOM_REWARD_CATALOG,
   // Common (50 - 90 Coins) — Accessible to every student within regular learning
   {
     id: 'hat_party',

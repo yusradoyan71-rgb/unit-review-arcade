@@ -17,7 +17,7 @@ import { MonsterService } from '../../services/monsterService';
 import { CoinService } from '../../services/coinService';
 import { sounds } from '../../services/soundEffects';
 import { getMonsterMilestoneInfo } from '../../types/monster';
-import type { AchievementCategory } from '../../types/gamification';
+import type { AchievementCategory, Achievement } from '../../types/gamification';
 import {
   X,
   Trophy,
@@ -40,6 +40,7 @@ import {
   Clock,
   RotateCw,
   Coins,
+  Star,
 } from 'lucide-react';
 
 const BADGE_ICONS: Record<string, React.ElementType> = {
@@ -57,6 +58,7 @@ const BADGE_ICONS: Record<string, React.ElementType> = {
   Medal,
   Award,
   Crown,
+  Star,
 };
 
 export const StudentProfileModal: React.FC = () => {
@@ -82,12 +84,49 @@ export const StudentProfileModal: React.FC = () => {
 
   if (!isProfileModalOpen) return null;
 
-  const achievements = profile?.achievements || [];
-  const filteredAchievements = activeTab === 'all'
-    ? achievements
-    : achievements.filter((a) => a.category === activeTab);
+  const ownedAccessories = monsterConfig.accessories?.owned || MonsterService.getOwnedAccessories(studentNumber);
 
-  const unlockedCount = achievements.filter((a) => Boolean(a.unlockedAt)).length;
+  // Classroom milestone badges
+  const classroomBadges: Achievement[] = [
+    {
+      id: 'badge_first_star',
+      title: 'First Star',
+      description: 'Earned 10 positive behavior points in English class.',
+      icon: 'Star',
+      category: 'milestone',
+      target: 10,
+      progress: ownedAccessories.includes('badge_first_star') ? 10 : 0,
+      unlockedAt: ownedAccessories.includes('badge_first_star')
+        ? (profile?.recentActivity?.[0]?.completedAt || '2026-10-15T09:30:00.000Z')
+        : null,
+    },
+    {
+      id: 'badge_elite_speaker',
+      title: 'Elite Speaker',
+      description: 'Earned 150 positive behavior points in English class.',
+      icon: 'Award',
+      category: 'milestone',
+      target: 150,
+      progress: ownedAccessories.includes('badge_elite_speaker') ? 150 : 0,
+      unlockedAt: ownedAccessories.includes('badge_elite_speaker')
+        ? (profile?.recentActivity?.[0]?.completedAt || '2026-10-15T09:30:00.000Z')
+        : null,
+    },
+  ];
+
+  const baseAchievements = profile?.achievements || [];
+  const mergedAchievements: Achievement[] = [...baseAchievements];
+  classroomBadges.forEach((cb) => {
+    if (!mergedAchievements.some((a) => a.id === cb.id)) {
+      mergedAchievements.push(cb);
+    }
+  });
+
+  const filteredAchievements = activeTab === 'all'
+    ? mergedAchievements
+    : mergedAchievements.filter((a) => a.category === activeTab);
+
+  const unlockedCount = mergedAchievements.filter((a) => Boolean(a.unlockedAt)).length;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-900/60 backdrop-blur-md overflow-y-auto">
@@ -162,6 +201,7 @@ export const StudentProfileModal: React.FC = () => {
                     config={monsterConfig}
                     size={64}
                     animate
+                    frame={monsterConfig.accessories?.frame}
                     stage={milestoneInfo.stage}
                     evolutionTier={milestoneInfo.evolutionTier}
                   />
@@ -349,7 +389,7 @@ export const StudentProfileModal: React.FC = () => {
                   BADGES & ACHIEVEMENTS
                 </h3>
                 <span className="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs font-mono font-bold">
-                  {unlockedCount} / {achievements.length}
+                  {unlockedCount} / {mergedAchievements.length}
                 </span>
               </div>
 

@@ -10,6 +10,7 @@ export interface MonsterAvatarProps {
   stage?: MonsterLifecycleStage;
   evolutionTier?: number;
   equippedAccessories?: MonsterAccessories;
+  frame?: string | null;
 }
 
 const SIZE_MAP = {
@@ -39,11 +40,19 @@ export const MonsterAvatar: React.FC<MonsterAvatarProps> = ({
   stage,
   evolutionTier: explicitTier,
   equippedAccessories,
+  frame,
 }) => {
   const pixelSize = typeof size === 'number' ? size : SIZE_MAP[size] || 48;
   const palette = COLOR_PALETTES[config.bodyColor] || COLOR_PALETTES.cyan;
   const gradientId = `monster_grad_${config.bodyColor}_${Math.random().toString(36).substring(2, 6)}`;
   const eggGradId = `egg_grad_${Math.random().toString(36).substring(2, 6)}`;
+  const auraGradId = `aura_glow_${Math.random().toString(36).substring(2, 6)}`;
+  const auraInnerGradId = `aura_inner_${Math.random().toString(36).substring(2, 6)}`;
+  const crownGradId = `crown_gold_${Math.random().toString(36).substring(2, 6)}`;
+  const wingGradLId = `wing_magic_l_${Math.random().toString(36).substring(2, 6)}`;
+  const wingGradRId = `wing_magic_r_${Math.random().toString(36).substring(2, 6)}`;
+  const silverFrameMainId = `silver_frame_main_${Math.random().toString(36).substring(2, 6)}`;
+  const silverFrameInnerId = `silver_frame_inner_${Math.random().toString(36).substring(2, 6)}`;
 
   // Determine stage and evolution tier
   // If neither stage nor evolutionTier is provided, we default to hatched Stage 1 (e.g. in Monster Studio)
@@ -59,6 +68,7 @@ export const MonsterAvatar: React.FC<MonsterAvatarProps> = ({
   else if (stage === 'apex_legend') tier = 4;
 
   const accessories: MonsterAccessories = equippedAccessories || config.accessories || {};
+  const activeFrame = frame || accessories.frame;
 
   return (
     <div
@@ -87,6 +97,45 @@ export const MonsterAvatar: React.FC<MonsterAvatarProps> = ({
           <filter id="shadow-blur" x="-20%" y="-20%" width="140%" height="140%">
             <feGaussianBlur stdDeviation="3" />
           </filter>
+
+          {/* Classroom Behavior Reward Gradients (Phase 3.4D) */}
+          <radialGradient id={auraGradId} cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#fef08a" stopOpacity="0.85" />
+            <stop offset="50%" stopColor="#f59e0b" stopOpacity="0.45" />
+            <stop offset="100%" stopColor="#d97706" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id={auraInnerGradId} cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" />
+            <stop offset="45%" stopColor="#fde047" stopOpacity="0.55" />
+            <stop offset="100%" stopColor="#ca8a04" stopOpacity="0" />
+          </radialGradient>
+          <linearGradient id={crownGradId} x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#fef08a" />
+            <stop offset="50%" stopColor="#f59e0b" />
+            <stop offset="100%" stopColor="#d97706" />
+          </linearGradient>
+          <linearGradient id={wingGradLId} x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#38bdf8" />
+            <stop offset="50%" stopColor="#c084fc" />
+            <stop offset="100%" stopColor="#ec4899" />
+          </linearGradient>
+          <linearGradient id={wingGradRId} x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#38bdf8" />
+            <stop offset="50%" stopColor="#c084fc" />
+            <stop offset="100%" stopColor="#ec4899" />
+          </linearGradient>
+          <linearGradient id={silverFrameMainId} x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#f8fafc" />
+            <stop offset="30%" stopColor="#94a3b8" />
+            <stop offset="60%" stopColor="#f1f5f9" />
+            <stop offset="85%" stopColor="#64748b" />
+            <stop offset="100%" stopColor="#cbd5e1" />
+          </linearGradient>
+          <linearGradient id={silverFrameInnerId} x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#ffffff" />
+            <stop offset="50%" stopColor="#cbd5e1" />
+            <stop offset="100%" stopColor="#94a3b8" />
+          </linearGradient>
         </defs>
 
         {/* ================================================================= */}
@@ -173,10 +222,83 @@ export const MonsterAvatar: React.FC<MonsterAvatarProps> = ({
           /* CASE 3: HATCHED MONSTER (TIERS 1 - 4 + ACCESSORIES)               */
           /* ================================================================= */
           <g>
+            {/* LAYER 1: CLASSROOM REWARD — LEGENDARY AURA (Behind Monster, Wings, and Shadow) */}
+            {accessories.aura === 'aura_legendary' && (
+              <g className="aura-legendary-glow select-none pointer-events-none">
+                {/* Outer shimmering energy field */}
+                <ellipse cx="100" cy="115" rx="88" ry="78" fill={`url(#${auraGradId})`} opacity="0.6" filter="url(#shadow-blur)" />
+                {/* Secondary warm gold pulsing halo */}
+                <ellipse cx="100" cy="115" rx="76" ry="68" fill={`url(#${auraInnerGradId})`} opacity="0.75" />
+                {/* Radiant energy rings */}
+                <ellipse cx="100" cy="115" rx="82" ry="72" stroke="#fde047" strokeWidth="2.5" strokeDasharray="6 8" fill="none" opacity="0.85" />
+                <ellipse cx="100" cy="115" rx="68" ry="60" stroke="#fef08a" strokeWidth="1.5" strokeDasharray="3 5" fill="none" opacity="0.9" />
+                {/* Mystical Starlight Motes */}
+                <g fill="#ffffff">
+                  {/* Top star sparkle */}
+                  <polygon points="100,16 102.5,25 111,27.5 102.5,30 100,39 97.5,30 89,27.5 97.5,25" />
+                  {/* Left star sparkle */}
+                  <polygon points="26,75 28.5,81 35,83.5 28.5,86 26,92 23.5,86 17,83.5 23.5,81" />
+                  {/* Right star sparkle */}
+                  <polygon points="174,75 176.5,81 183,83.5 176.5,86 174,92 171.5,86 165,83.5 171.5,81" />
+                  {/* Lower floating energy motes */}
+                  <circle cx="36" cy="150" r="3.5" fill="#fde047" />
+                  <circle cx="164" cy="150" r="3.5" fill="#fde047" />
+                  <circle cx="50" cy="45" r="2.5" fill="#fef08a" />
+                  <circle cx="150" cy="45" r="2.5" fill="#fef08a" />
+                </g>
+              </g>
+            )}
+
             {/* 1. Base Ground Shadow */}
             <ellipse cx="100" cy="180" rx="55" ry="10" fill="#0f172a" opacity="0.18" filter="url(#shadow-blur)" />
 
             {/* 2. ACCESSORY WINGS OR EVOLUTION WINGS (Behind body) */}
+            {/* LAYER 2: CLASSROOM REWARD — MAGIC WINGS */}
+            {accessories.wings === 'wings_magic' && (
+              <g stroke="#7e22ce" strokeWidth="2.5">
+                {/* Left Magic Wing Outer */}
+                <path
+                  d="M 45 105 C 10 55 -10 32 8 20 C 26 8 46 48 50 100 Z"
+                  fill={`url(#${wingGradLId})`}
+                  opacity="0.92"
+                />
+                {/* Left Inner Feathers */}
+                <path
+                  d="M 47 112 C 18 80 5 62 18 52 C 32 42 48 75 50 115 Z"
+                  fill="#c084fc"
+                  opacity="0.85"
+                />
+                <path
+                  d="M 49 118 C 28 102 20 92 28 85 C 38 78 50 100 50 122 Z"
+                  fill="#f472b6"
+                  opacity="0.85"
+                />
+                {/* Left Wing Starlight Vein */}
+                <path d="M 46 100 Q 18 50 12 28" stroke="#ffffff" strokeWidth="1.5" fill="none" opacity="0.9" />
+                <circle cx="10" cy="22" r="3" fill="#fde047" stroke="#ca8a04" strokeWidth="1" />
+
+                {/* Right Magic Wing Outer */}
+                <path
+                  d="M 155 105 C 190 55 210 32 192 20 C 174 8 154 48 150 100 Z"
+                  fill={`url(#${wingGradRId})`}
+                  opacity="0.92"
+                />
+                {/* Right Inner Feathers */}
+                <path
+                  d="M 153 112 C 182 80 195 62 182 52 C 168 42 152 75 150 115 Z"
+                  fill="#c084fc"
+                  opacity="0.85"
+                />
+                <path
+                  d="M 151 118 C 172 102 180 92 172 85 C 162 78 150 100 150 122 Z"
+                  fill="#f472b6"
+                  opacity="0.85"
+                />
+                {/* Right Wing Starlight Vein */}
+                <path d="M 154 100 Q 182 50 188 28" stroke="#ffffff" strokeWidth="1.5" fill="none" opacity="0.9" />
+                <circle cx="190" cy="22" r="3" fill="#fde047" stroke="#ca8a04" strokeWidth="1" />
+              </g>
+            )}
             {accessories.wings === 'wings_fairy' && (
               <g opacity="0.85">
                 <path d="M 45 105 C 15 70 5 45 25 35 C 45 25 55 60 50 100 Z" fill="#67e8f9" stroke="#0891b2" strokeWidth="2" opacity="0.85" />
@@ -613,6 +735,39 @@ export const MonsterAvatar: React.FC<MonsterAvatarProps> = ({
             )}
 
             {/* 13. ACCESSORY HAT LAYER */}
+            {/* LAYER 5: CLASSROOM REWARD — MONSTER CROWN (Positioned Above Head) */}
+            {accessories.hat === 'hat_monster_crown' && (
+              <g>
+                {/* Crown Arch Base / Velvet Rim */}
+                <ellipse cx="100" cy="58" rx="36" ry="8" fill="#e11d48" stroke="#881337" strokeWidth="2" />
+                <ellipse cx="100" cy="56" rx="34" ry="7" fill={`url(#${crownGradId})`} stroke="#b45309" strokeWidth="2.5" />
+                
+                {/* Golden Imperial Spikes */}
+                <polygon
+                  points="66,56 70,22 84,42 100,14 116,42 130,22 134,56"
+                  fill={`url(#${crownGradId})`}
+                  stroke="#b45309"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                />
+
+                {/* Royal Center Ruby Gem */}
+                <polygon points="100,28 106,37 100,46 94,37" fill="#ef4444" stroke="#991b1b" strokeWidth="1.5" />
+                <polygon points="100,31 103,37 100,43 97,37" fill="#fca5a5" />
+
+                {/* Flanking Sapphire Jewels */}
+                <circle cx="84" cy="42" r="3.5" fill="#3b82f6" stroke="#1d4ed8" strokeWidth="1.5" />
+                <circle cx="83" cy="41" r="1.2" fill="#ffffff" />
+                <circle cx="116" cy="42" r="3.5" fill="#3b82f6" stroke="#1d4ed8" strokeWidth="1.5" />
+                <circle cx="115" cy="41" r="1.2" fill="#ffffff" />
+
+                {/* Golden Pearls on Spike Tips */}
+                <circle cx="70" cy="22" r="4" fill="#fef08a" stroke="#ca8a04" strokeWidth="1.5" />
+                <circle cx="100" cy="14" r="5" fill="#fef08a" stroke="#ca8a04" strokeWidth="1.8" />
+                <circle cx="130" cy="22" r="4" fill="#fef08a" stroke="#ca8a04" strokeWidth="1.5" />
+              </g>
+            )}
+
             {accessories.hat === 'hat_party' && (
               <g>
                 <polygon points="82,62 100,16 118,62" fill="#f43f5e" stroke="#9f1239" strokeWidth="2" strokeLinejoin="round" />
@@ -645,6 +800,67 @@ export const MonsterAvatar: React.FC<MonsterAvatarProps> = ({
                 <polygon points="100,22 105,32 115,34 107,41 110,50 100,44 90,50 93,41 85,34 95,32" fill="#38bdf8" stroke="#0284c7" strokeWidth="1.5" />
                 <circle cx="68" cy="38" r="3" fill="#fde047" />
                 <circle cx="132" cy="38" r="3" fill="#fde047" />
+              </g>
+            )}
+
+            {/* LAYER 6: CLASSROOM REWARD — SILVER STAR FRAME (Surrounding Profile / Avatar) */}
+            {(accessories.frame === 'frame_silver_star' || activeFrame === 'frame_silver_star') && (
+              <g className="silver-star-frame-layer select-none pointer-events-none">
+                {/* Outer Silver Shadow Bezel */}
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="95"
+                  fill="none"
+                  stroke={`url(#${silverFrameMainId})`}
+                  strokeWidth="5"
+                  filter="url(#shadow-blur)"
+                  opacity="0.35"
+                />
+                {/* Main Polished Silver Ring */}
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="95"
+                  fill="none"
+                  stroke={`url(#${silverFrameMainId})`}
+                  strokeWidth="4"
+                />
+                {/* Bright Specular Highlight Rim */}
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="91.5"
+                  fill="none"
+                  stroke="#ffffff"
+                  strokeWidth="1.5"
+                  opacity="0.85"
+                />
+                {/* Decorative Inner Star-Dotted Ring */}
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="88"
+                  fill="none"
+                  stroke={`url(#${silverFrameInnerId})`}
+                  strokeWidth="2"
+                  strokeDasharray="4 6"
+                  opacity="0.75"
+                />
+
+                {/* 4 Cardinal Diamond Star Jewels */}
+                {/* Top Star */}
+                <polygon points="100,0 103,7 110,10 103,13 100,20 97,13 90,10 97,7" fill="#ffffff" stroke="#94a3b8" strokeWidth="1" />
+                <circle cx="100" cy="10" r="2.2" fill="#38bdf8" />
+                {/* Bottom Star */}
+                <polygon points="100,180 103,187 110,190 103,193 100,200 97,193 90,190 97,187" fill="#ffffff" stroke="#94a3b8" strokeWidth="1" />
+                <circle cx="100" cy="190" r="2.2" fill="#38bdf8" />
+                {/* Left Star */}
+                <polygon points="0,100 7,103 10,110 13,103 20,100 13,97 10,90 7,97" fill="#ffffff" stroke="#94a3b8" strokeWidth="1" />
+                <circle cx="10" cy="100" r="2.2" fill="#38bdf8" />
+                {/* Right Star */}
+                <polygon points="180,100 187,103 190,110 193,103 200,100 193,97 190,90 187,97" fill="#ffffff" stroke="#94a3b8" strokeWidth="1" />
+                <circle cx="190" cy="100" r="2.2" fill="#38bdf8" />
               </g>
             )}
           </g>

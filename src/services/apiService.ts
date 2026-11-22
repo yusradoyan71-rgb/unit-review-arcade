@@ -478,7 +478,7 @@ export class ApiService {
    */
   public static async equipAccessory(
     sessionToken: string,
-    slot: 'hat' | 'glasses' | 'clothing' | 'wings',
+    slot: 'hat' | 'glasses' | 'clothing' | 'wings' | 'aura' | 'frame',
     itemId: string | null
   ): Promise<MonsterApiResponse> {
     const apiUrl = this.getApiUrl();

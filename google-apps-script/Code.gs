@@ -8975,6 +8975,8 @@ function sanitizeMonsterConfig(input) {
     if (input.accessories.glasses) accessories.glasses = String(input.accessories.glasses).trim();
     if (input.accessories.clothing) accessories.clothing = String(input.accessories.clothing).trim();
     if (input.accessories.wings) accessories.wings = String(input.accessories.wings).trim();
+    if (input.accessories.aura) accessories.aura = String(input.accessories.aura).trim();
+    if (input.accessories.frame) accessories.frame = String(input.accessories.frame).trim();
     if (Array.isArray(input.accessories.owned)) {
       accessories.owned = input.accessories.owned.map(function(item) {
         return String(item).trim();
@@ -9430,7 +9432,7 @@ function handleStudentEquipAccessory(ss, payload) {
   }
 
   var slot = String(payload.slot || "").trim().toLowerCase();
-  var validSlots = ["hat", "glasses", "clothing", "wings"];
+  var validSlots = ["hat", "glasses", "clothing", "wings", "aura", "frame"];
   if (validSlots.indexOf(slot) === -1) {
     return createJsonResponse({
       success: false,
