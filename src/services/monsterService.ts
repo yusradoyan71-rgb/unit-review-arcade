@@ -426,4 +426,53 @@ export class MonsterService {
     const cached = this.updateCachedMonster(studentNumber, updatedMonster);
     return { success: true, monster: cached };
   }
+
+  /**
+   * Synchronizes classroom behavior reward grants into Monster World inventory (Phase 8/3.4C).
+   * Maps reward grants (e.g. hat_monster_crown, wings_magic, etc.) into monster accessories.owned.
+   * Guarantees:
+   * 1. Preserves existing owned items, XP, coins, and equipped items.
+   * 2. Prevents duplicate entries.
+   * 3. Safe in offline or guest environments.
+   */
+  public static syncClassroomRewardOwnership(
+    studentNumber: string,
+    unlockedRewards: Array<{ cosmeticId?: string; rewardId?: string } | string>
+  ): MonsterConfig {
+    const currentMonster = this.getMonster(studentNumber);
+    const existingOwned = currentMonster.accessories?.owned || [];
+    const ownedSet = new Set(existingOwned);
+
+    let changed = false;
+    unlockedRewards.forEach((rwd) => {
+      let cosmeticId = '';
+      if (typeof rwd === 'string') {
+        cosmeticId = rwd;
+      } else if (rwd && typeof rwd === 'object') {
+        cosmeticId = rwd.cosmeticId || rwd.rewardId || '';
+      }
+
+      if (cosmeticId && !ownedSet.has(cosmeticId)) {
+        ownedSet.add(cosmeticId);
+        changed = true;
+      }
+    });
+
+    if (!changed) {
+      return currentMonster;
+    }
+
+    const updatedAccessories: MonsterAccessories = {
+      ...currentMonster.accessories,
+      owned: Array.from(ownedSet),
+    };
+
+    const updatedMonster: MonsterConfig = {
+      ...currentMonster,
+      accessories: updatedAccessories,
+      updatedAt: new Date().toISOString(),
+    };
+
+    return this.updateCachedMonster(studentNumber, updatedMonster);
+  }
 }

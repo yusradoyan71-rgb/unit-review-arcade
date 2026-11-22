@@ -188,3 +188,68 @@ export interface ClassroomWeeklyReport {
   netTotal: number;
   transactionCount: number;
 }
+
+// ============================================================================
+// STUDENT CLASSROOM & REWARD OWNERSHIP TYPES (PHASE 3.4C)
+// ============================================================================
+
+export interface StudentClassroomFeedback {
+  categoryName: string;
+  categoryType: ClassroomCategoryType;
+  grossPoints: number;
+  timestamp: string;
+  note?: string;
+  isCorrection?: boolean;
+}
+
+export interface StudentUnlockedRewardGrant {
+  grantId: string;
+  rewardId: string;
+  rewardName: string;
+  cosmeticId: string;
+  type: string;
+  grantedAt: string;
+}
+
+export interface StudentClaimableReward {
+  rewardId: string;
+  name: string;
+  requiredPoints: number;
+  type: string;
+  cosmeticId: string;
+}
+
+export interface StudentClassroomProfileResponse {
+  success: boolean;
+  studentNumber?: string;
+  studentClass?: string;
+  academicYear?: string;
+  positivePoints?: number;
+  negativePoints?: number;
+  netPoints?: number;
+  unlockedRewards?: StudentUnlockedRewardGrant[];
+  nextMilestone?: ClassroomNextMilestone | null;
+  claimableRewards?: StudentClaimableReward[];
+  feedbackHistory?: StudentClassroomFeedback[];
+  isMaxMilestoneTier?: boolean;
+  error?: string;
+  code?: string;
+}
+
+export interface StudentClaimRewardPayload {
+  sessionToken: string;
+  rewardId: string;
+}
+
+export interface StudentClaimRewardResponse {
+  success: boolean;
+  grantId?: string;
+  rewardId?: string;
+  rewardName?: string;
+  cosmeticId?: string;
+  type?: string;
+  grantedAt?: string;
+  error?: string;
+  code?: string;
+}
+

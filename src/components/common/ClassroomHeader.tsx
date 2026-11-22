@@ -18,7 +18,8 @@ import {
   RotateCw,
   Award,
   Sparkles,
-  Coins
+  Coins,
+  Star
 } from 'lucide-react';
 import { CoinService } from '../../services/coinService';
 
@@ -156,6 +157,14 @@ export const ClassroomHeader: React.FC = () => {
                 </span>
               )}
 
+              {/* My Classroom Breadcrumb */}
+              {navigation.view === 'my-classroom' && (
+                <span className="px-2.5 py-1 rounded-lg bg-amber-50 text-amber-800 border border-amber-200 font-semibold text-xs flex items-center gap-1.5">
+                  <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-400" />
+                  My Classroom
+                </span>
+              )}
+
               {/* Teacher Panel Breadcrumb */}
               {navigation.view === 'teacher-panel' && (
                 <span className="px-2.5 py-1 rounded-lg bg-teal-50 text-teal-800 border border-teal-200 font-semibold text-xs flex items-center gap-1.5">
@@ -238,6 +247,26 @@ export const ClassroomHeader: React.FC = () => {
             <Sparkles className="w-4 h-4 text-rose-500" />
             <span className="hidden sm:inline">Games Zone</span>
           </button>
+
+          {/* My Classroom Behavior & Rewards Shortcut */}
+          {authMode === 'student' && (
+            <button
+              onClick={() => {
+                sounds.playNavigate();
+                navigateTo({ view: 'my-classroom' });
+              }}
+              title="My Classroom Behavior & Rewards"
+              aria-label="My Classroom"
+              className={`px-3 py-1.5 rounded-xl border transition-all flex items-center gap-1.5 text-xs font-bold ${
+                navigation.view === 'my-classroom'
+                  ? 'bg-amber-500 text-white border-amber-600 shadow-sm'
+                  : 'bg-amber-50 hover:bg-amber-100 border-amber-200 text-amber-900'
+              }`}
+            >
+              <Star className="w-4 h-4 fill-amber-400 text-amber-500" />
+              <span className="hidden sm:inline">My Classroom</span>
+            </button>
+          )}
 
           {/* Monster World & Coins Shortcut */}
           <button

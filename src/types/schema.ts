@@ -225,6 +225,7 @@ export type NavigationTarget =
   | { view: 'games-zone-play'; gameId: GamesZoneGameId; gradeId: GradeId; difficulty: GamesZoneDifficulty }
   | { view: 'monster-world' }
   | { view: 'general-english'; gradeId?: GradeId }
+  | { view: 'my-classroom' }
   | {
       view: 'general-english-play';
       gradeId: GradeId;

@@ -209,6 +209,15 @@ export const HomeScreen: React.FC = () => {
             </button>
             <button 
               onClick={() => {
+                sounds.playNavigate();
+                navigateTo({ view: 'my-classroom' });
+              }} 
+              className="px-3.5 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 font-bold text-xs border border-amber-200 flex items-center gap-1.5 whitespace-nowrap transition-colors"
+            >
+              <span>⭐</span> My Classroom
+            </button>
+            <button 
+              onClick={() => {
                 sounds.playTap();
                 openProfileModal();
               }} 

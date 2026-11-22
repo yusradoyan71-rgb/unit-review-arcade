@@ -27,6 +27,7 @@ import { GamesZoneContainer } from './components/gamesZone/GamesZoneContainer';
 import { MonsterWorldScreen } from './components/monster/MonsterWorldScreen';
 import { GeneralEnglishScreen } from './components/generalEnglish/GeneralEnglishScreen';
 import { GeneralEnglishGameContainer } from './components/generalEnglish/GeneralEnglishGameContainer';
+import { StudentMyClassroomScreen } from './components/classroom/StudentMyClassroomScreen';
 import { useAuth } from './context/AuthContext';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -227,6 +228,19 @@ const MainView: React.FC = () => {
               className="flex-1 flex flex-col"
             >
               <MonsterWorldScreen />
+            </motion.div>
+          )}
+
+          {navigation.view === 'my-classroom' && (
+            <motion.div
+              key="my-classroom"
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.25 }}
+              className="flex-1 flex flex-col"
+            >
+              <StudentMyClassroomScreen />
             </motion.div>
           )}
 
