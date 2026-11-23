@@ -21,6 +21,7 @@ import {
   Sliders, 
   Power
 } from 'lucide-react';
+import { CategoryIcon } from './CategoryIcon';
 
 interface PointCategoryManagerModalProps {
   isOpen: boolean;
@@ -437,9 +438,7 @@ export const PointCategoryManagerModal: React.FC<PointCategoryManagerModalProps>
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-slate-100 text-lg flex items-center justify-center shrink-0">
-                        {cat.icon || '🏷️'}
-                      </div>
+                      <CategoryIcon cat={cat} className="w-10 h-10 rounded-xl bg-slate-100 text-slate-700" />
                       <div>
                         <div className="flex items-center gap-2">
                           <h4 className="font-bold text-xs sm:text-sm text-slate-900">

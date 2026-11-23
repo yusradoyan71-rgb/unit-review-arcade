@@ -28,6 +28,7 @@ import {
   Star,
   ShieldAlert
 } from 'lucide-react';
+import { CategoryIcon, getCategoryDescription } from './CategoryIcon';
 
 interface QuickPointAwardModalProps {
   isOpen: boolean;
@@ -138,7 +139,7 @@ export const QuickPointAwardModal: React.FC<QuickPointAwardModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-xs animate-fade-in">
       <div 
-        className="w-full max-w-xl bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[92vh] animate-scale-up"
+        className="w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[92vh] animate-scale-up"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
@@ -202,16 +203,18 @@ export const QuickPointAwardModal: React.FC<QuickPointAwardModalProps> = ({
           )}
 
           {/* Section 1: Positive Categories (+1 to +3) */}
-          <div className="space-y-2.5">
+          <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-emerald-700 flex items-center gap-1.5">
-                <Star className="w-3.5 h-3.5 fill-emerald-500 text-emerald-600" />
+              <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-emerald-800 flex items-center gap-2">
+                <span className="w-5 h-5 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-700">
+                  <Star className="w-3.5 h-3.5 fill-emerald-600 text-emerald-600" />
+                </span>
                 <span>Positive Reinforcement (+1 to +3)</span>
               </h3>
-              <span className="text-[11px] text-slate-400 font-medium">Select one</span>
+              <span className="text-xs text-slate-400 font-medium">Select one behavior</span>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {positiveCategories.map((cat) => {
                 const isSelected = selectedCategoryId === cat.id;
                 return (
@@ -220,21 +223,35 @@ export const QuickPointAwardModal: React.FC<QuickPointAwardModalProps> = ({
                     type="button"
                     disabled={isSubmitting}
                     onClick={() => setSelectedCategoryId(cat.id)}
-                    className={`min-h-[52px] p-3 rounded-2xl border text-left transition-all flex items-center justify-between gap-2 ${
+                    className={`group relative p-3.5 sm:p-4 rounded-2xl border text-left transition-all flex flex-col justify-between gap-2.5 min-h-[52px] sm:min-h-[108px] focus:outline-hidden focus:ring-2 focus:ring-emerald-400 cursor-pointer ${
                       isSelected
-                        ? 'bg-emerald-50 border-emerald-500 ring-2 ring-emerald-400 shadow-sm'
-                        : 'bg-white hover:bg-slate-50 border-slate-200'
+                        ? 'bg-emerald-50/90 border-emerald-500 ring-2 ring-emerald-400 shadow-md scale-[1.01]'
+                        : 'bg-white hover:bg-slate-50/80 border-slate-200 hover:border-emerald-300 shadow-2xs hover:shadow-xs'
                     }`}
                   >
-                    <div className="flex items-center gap-2 overflow-hidden">
-                      <span className="text-lg shrink-0">{cat.icon || '🌟'}</span>
-                      <span className="text-xs font-bold text-slate-800 truncate leading-tight">
-                        {cat.name}
+                    <div className="flex items-start justify-between gap-2 w-full">
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <CategoryIcon
+                          cat={cat}
+                          className={
+                            isSelected
+                              ? 'bg-emerald-500 text-white shadow-xs'
+                              : 'bg-emerald-100 text-emerald-700 group-hover:bg-emerald-200/80'
+                          }
+                          iconClassName="w-5 h-5"
+                        />
+                        <span className="text-sm font-bold text-slate-900 leading-snug">
+                          {cat.name}
+                        </span>
+                      </div>
+                      <span className="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 font-black text-xs shrink-0 shadow-2xs">
+                        +{cat.defaultPoints}
                       </span>
                     </div>
-                    <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-black text-xs shrink-0">
-                      +{cat.defaultPoints}
-                    </span>
+
+                    <p className="text-xs text-slate-500 leading-relaxed font-normal">
+                      {getCategoryDescription(cat)}
+                    </p>
                   </button>
                 );
               })}
@@ -242,27 +259,29 @@ export const QuickPointAwardModal: React.FC<QuickPointAwardModalProps> = ({
           </div>
 
           {/* Section 2: Negative Categories (-1) */}
-          <div className="space-y-2.5 pt-2 border-t border-slate-100">
+          <div className="space-y-3 pt-3 border-t border-slate-100">
             <div className="flex items-center justify-between">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-rose-700 flex items-center gap-1.5">
-                <AlertTriangle className="w-3.5 h-3.5 text-rose-600" />
+              <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-rose-800 flex items-center gap-2">
+                <span className="w-5 h-5 rounded-lg bg-rose-100 flex items-center justify-center text-rose-700">
+                  <AlertTriangle className="w-3.5 h-3.5 text-rose-600" />
+                </span>
                 <span>Behavior Corrections (-1)</span>
               </h3>
               {isProjectorPrivacyMode && (
-                <span className="text-[10px] font-bold text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full flex items-center gap-1">
-                  <ShieldAlert className="w-3 h-3 text-amber-600" />
+                <span className="text-[11px] font-bold text-amber-800 bg-amber-50 border border-amber-200 px-2.5 py-0.5 rounded-full flex items-center gap-1.5 shadow-2xs">
+                  <ShieldAlert className="w-3.5 h-3.5 text-amber-600" />
                   <span>Privacy Mode Active</span>
                 </span>
               )}
             </div>
 
             {isProjectorPrivacyMode && (
-              <p className="text-[11px] text-slate-500 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-                🔒 Negative points reduce net balance but will not be shown on the projector screen or play loud alerts.
+              <p className="text-xs text-slate-600 bg-amber-50/60 p-3 rounded-xl border border-amber-200/60 leading-relaxed">
+                🔒 <strong>Projector Privacy Shield:</strong> Negative points reduce net balance but will not be shown on the screen or trigger sound alerts.
               </p>
             )}
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {negativeCategories.map((cat) => {
                 const isSelected = selectedCategoryId === cat.id;
                 return (
@@ -271,21 +290,35 @@ export const QuickPointAwardModal: React.FC<QuickPointAwardModalProps> = ({
                     type="button"
                     disabled={isSubmitting}
                     onClick={() => setSelectedCategoryId(cat.id)}
-                    className={`min-h-[52px] p-3 rounded-2xl border text-left transition-all flex items-center justify-between gap-2 ${
+                    className={`group relative p-3.5 sm:p-4 rounded-2xl border text-left transition-all flex flex-col justify-between gap-2.5 min-h-[52px] sm:min-h-[108px] focus:outline-hidden focus:ring-2 focus:ring-rose-400 cursor-pointer ${
                       isSelected
-                        ? 'bg-rose-50 border-rose-500 ring-2 ring-rose-400 shadow-sm'
-                        : 'bg-white hover:bg-slate-50 border-slate-200'
+                        ? 'bg-rose-50/90 border-rose-500 ring-2 ring-rose-400 shadow-md scale-[1.01]'
+                        : 'bg-white hover:bg-slate-50/80 border-slate-200 hover:border-rose-300 shadow-2xs hover:shadow-xs'
                     }`}
                   >
-                    <div className="flex items-center gap-2 overflow-hidden">
-                      <span className="text-lg shrink-0">{cat.icon || '⚠️'}</span>
-                      <span className="text-xs font-bold text-slate-800 truncate leading-tight">
-                        {cat.name}
+                    <div className="flex items-start justify-between gap-2 w-full">
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <CategoryIcon
+                          cat={cat}
+                          className={
+                            isSelected
+                              ? 'bg-rose-500 text-white shadow-xs'
+                              : 'bg-rose-100 text-rose-700 group-hover:bg-rose-200/80'
+                          }
+                          iconClassName="w-5 h-5"
+                        />
+                        <span className="text-sm font-bold text-slate-900 leading-snug">
+                          {cat.name}
+                        </span>
+                      </div>
+                      <span className="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 font-black text-xs shrink-0 shadow-2xs">
+                        {cat.defaultPoints}
                       </span>
                     </div>
-                    <span className="px-2 py-0.5 rounded-full bg-rose-100 text-rose-800 font-black text-xs shrink-0">
-                      {cat.defaultPoints}
-                    </span>
+
+                    <p className="text-xs text-slate-500 leading-relaxed font-normal">
+                      {getCategoryDescription(cat)}
+                    </p>
                   </button>
                 );
               })}
