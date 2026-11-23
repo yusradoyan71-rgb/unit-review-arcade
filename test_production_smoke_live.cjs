@@ -4,7 +4,7 @@
  */
 const https = require('https');
 
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwzMiiyoKbcb83Plv_TYay4VnXXOWh9ZmlPDes6_Z-Pahk3phpTB8sqYZN6dUiAy-etjw/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyvVyt2EjHS1Ru4KyGOcyyVxiLiRTXLj6JB5CEpZs0gkh1yZw2OnWR5Sjvxa1sacOHOew/exec';
 
 function sendRequest(url, payload) {
   return new Promise((resolve, reject) => {

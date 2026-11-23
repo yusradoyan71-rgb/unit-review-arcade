@@ -27,10 +27,11 @@ const STORAGE_API_KEY = 'unit_review_arcade_api_url';
 
 // Deployed Google Apps Script Web App URL (Production)
 export const DEFAULT_APPS_SCRIPT_URL =
-  'https://script.google.com/macros/s/AKfycbwzMiiyoKbcb83Plv_TYay4VnXXOWh9ZmlPDes6_Z-Pahk3phpTB8sqYZN6dUiAy-etjw/exec';
+  'https://script.google.com/macros/s/AKfycbyvVyt2EjHS1Ru4KyGOcyyVxiLiRTXLj6JB5CEpZs0gkh1yZw2OnWR5Sjvxa1sacOHOew/exec';
 
-// Secondary known production URL signature
+// Known production URL signatures for validation and migration
 export const KNOWN_PROD_URL_FRAGMENTS = [
+  'AKfycbyvVyt2EjHS1Ru4KyGOcyyVxiLiRTXLj6JB5CEpZs0gkh1yZw2OnWR5Sjvxa1sacOHOew',
   'AKfycbwzMiiyoKbcb83Plv_TYay4VnXXOWh9ZmlPDes6_Z-Pahk3phpTB8sqYZN6dUiAy-etjw',
   'AKfycbwPvdc7oI-1N738r_n_P_v-2T9N829bH9s27K2_JdE8R7Nf8N5yA0h0O7F_8s0V-f4'
 ];
@@ -107,7 +108,17 @@ export class ApiService {
 
     // Production mode: localStorage override (e.g. for self-hosted instances) -> envUrl -> DEFAULT_APPS_SCRIPT_URL
     if (storedUrl) {
-      return storedUrl;
+      // If the stored URL matches an outdated production URL fragment, purge it so client switches to the updated DEFAULT_APPS_SCRIPT_URL
+      if (this.isProductionUrl(storedUrl) && storedUrl !== DEFAULT_APPS_SCRIPT_URL) {
+        console.warn('⚠️ [Config] Purged outdated production API URL from localStorage.');
+        try {
+          localStorage.removeItem(STORAGE_API_KEY);
+        } catch {
+          // ignore
+        }
+      } else {
+        return storedUrl;
+      }
     }
 
     if (cleanEnvUrl) {
