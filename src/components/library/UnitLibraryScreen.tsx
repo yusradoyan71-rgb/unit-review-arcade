@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useArcade } from '../../context/ArcadeContext';
 import { useAuth } from '../../context/AuthContext';
+import { useTeacherAuth } from '../../context/TeacherAuthContext';
 import { usePersonalizedLearning } from '../../context/PersonalizedLearningContext';
 import type { GradeId, Unit } from '../../types/schema';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -97,7 +98,8 @@ const UNIT_THEMES = [
 ];
 
 export const UnitLibraryScreen: React.FC<UnitLibraryScreenProps> = ({ gradeId }) => {
-  const { student, authMode } = useAuth();
+  const { student } = useAuth();
+  const { isAuthenticated } = useTeacherAuth();
   const { 
     data, 
     goToHome, 
@@ -232,7 +234,7 @@ export const UnitLibraryScreen: React.FC<UnitLibraryScreenProps> = ({ gradeId })
             <span>Switch to General English</span>
           </button>
 
-          {authMode !== 'student' && (
+          {isAuthenticated && (
             <>
               <button
                 onClick={() => {
@@ -260,9 +262,9 @@ export const UnitLibraryScreen: React.FC<UnitLibraryScreenProps> = ({ gradeId })
 
       </div>
 
-      {/* QUICK UNIT CREATION INLINE MODAL (Teacher / Classroom Mode Only) */}
+      {/* QUICK UNIT CREATION INLINE MODAL (Authenticated Teacher Only) */}
       <AnimatePresence>
-        {isQuickCreateOpen && authMode !== 'student' && (
+        {isQuickCreateOpen && isAuthenticated && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
@@ -484,8 +486,8 @@ export const UnitLibraryScreen: React.FC<UnitLibraryScreenProps> = ({ gradeId })
                     <ChevronRight className="w-4 h-4" />
                   </button>
 
-                  {/* Teacher Inline Management Tools (Classroom Mode Only) */}
-                  {authMode !== 'student' && (
+                  {/* Teacher Inline Management Tools (Authenticated Teacher Only) */}
+                  {isAuthenticated && (
                     <div className="flex items-center justify-between pt-3 mt-3 border-t border-slate-200 text-xs text-slate-500">
                       <div className="flex items-center gap-1">
                         <Layers className="w-3.5 h-3.5 text-sky-600" />

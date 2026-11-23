@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useArcade } from '../../context/ArcadeContext';
 import { useAuth } from '../../context/AuthContext';
+import { useTeacherAuth } from '../../context/TeacherAuthContext';
 import { useGamification } from '../../context/GamificationContext';
 import type { GradeId, GameType } from '../../types/schema';
 import { GAME_TYPE_METADATA } from '../../types/schema';
@@ -41,7 +42,8 @@ const GAME_ICONS: Record<GameType, React.FC<{ className?: string }>> = {
 };
 
 export const UnitDashboardScreen: React.FC<UnitDashboardScreenProps> = ({ gradeId, unitId }) => {
-  const { student, authMode } = useAuth();
+  const { student } = useAuth();
+  const { isAuthenticated } = useTeacherAuth();
   const { 
     data, 
     goToGrade, 
@@ -173,7 +175,7 @@ export const UnitDashboardScreen: React.FC<UnitDashboardScreenProps> = ({ gradeI
             </span>
           </div>
 
-          {authMode !== 'student' && (
+          {isAuthenticated && (
             <div className="flex items-center gap-2">
               <button
                 onClick={() => {
@@ -201,9 +203,9 @@ export const UnitDashboardScreen: React.FC<UnitDashboardScreenProps> = ({ gradeI
 
       </div>
 
-      {/* QUICK ACTIVITY CREATION INLINE MODAL (Teacher / Classroom Mode Only) */}
+      {/* QUICK ACTIVITY CREATION INLINE MODAL (Authenticated Teacher Only) */}
       <AnimatePresence>
-        {isQuickCreateOpen && authMode !== 'student' && (
+        {isQuickCreateOpen && isAuthenticated && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
@@ -423,8 +425,8 @@ export const UnitDashboardScreen: React.FC<UnitDashboardScreenProps> = ({ gradeI
                     <span>{btnText}</span>
                   </button>
 
-                  {/* Teacher Inline Delete Action (Classroom Mode Only) */}
-                  {authMode !== 'student' && (
+                  {/* Teacher Inline Delete Action (Authenticated Teacher Only) */}
+                  {isAuthenticated && (
                     <div className="flex items-center justify-end pt-2 mt-2 border-t border-slate-100">
                       <button
                         onClick={() => {

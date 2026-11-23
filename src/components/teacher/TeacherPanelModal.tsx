@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useArcade } from '../../context/ArcadeContext';
+import { useTeacherAuth } from '../../context/TeacherAuthContext';
 import type { GradeId, Unit, GameType } from '../../types/schema';
 import { GAME_TYPE_METADATA } from '../../types/schema';
 import { motion } from 'framer-motion';
@@ -40,6 +41,8 @@ export const TeacherPanelModal: React.FC<TeacherPanelModalProps> = ({
   targetGradeId = 'grade-7',
   onClose,
 }) => {
+  const { isAuthenticated } = useTeacherAuth();
+  if (!isAuthenticated) return null;
   const { 
     data, 
     createUnit, 

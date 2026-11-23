@@ -10585,6 +10585,70 @@ function handleTeacherGetClassroomOverview(ss, payload) {
       }
     }
 
+    // Pre-aggregate student monsters in a single read (O(1) lookups)
+    var mSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.MONSTERS);
+    var monstersByStudent = {};
+    if (mSheet && mSheet.getLastRow() > 1) {
+      var mData = mSheet.getDataRange().getValues();
+      var mColMap = getSheetColumnMap(mSheet, CONFIG.MONSTER_HEADERS);
+      var msCol = mColMap["student_number"] - 1;
+      var nameCol = mColMap["monster_name"] - 1;
+      var shapeCol = mColMap["body_shape"] - 1;
+      var colorCol = mColMap["body_color"] - 1;
+      var eyeCol = mColMap["eye_type"] - 1;
+      var mouthCol = mColMap["mouth_type"] - 1;
+      var hornCol = mColMap["horn_type"] - 1;
+      var cheekCol = mColMap["cheek_type"] - 1;
+      var patternCol = mColMap["pattern"] - 1;
+      var accCol = mColMap["accessories_json"] - 1;
+      var updCol = mColMap["updated_at"] - 1;
+
+      for (var m = mData.length - 1; m >= 1; m--) {
+        var mRow = mData[m];
+        var mNum = String(mRow[msCol] || "").trim();
+        if (!mNum || monstersByStudent[mNum]) continue;
+
+        var accJson = String(mRow[accCol] || "{}");
+        var acc = {};
+        try { acc = JSON.parse(accJson); } catch (e) {}
+
+        monstersByStudent[mNum] = sanitizeMonsterConfig({
+          name: mRow[nameCol],
+          bodyShape: mRow[shapeCol],
+          bodyColor: mRow[colorCol],
+          eyeType: mRow[eyeCol],
+          mouthType: mRow[mouthCol],
+          hornType: mRow[hornCol],
+          cheekType: mRow[cheekCol],
+          pattern: mRow[patternCol],
+          accessories: acc,
+          updatedAt: mRow[updCol]
+        });
+      }
+    }
+
+    // Pre-aggregate student total XP from Attempts table in a single read (O(1) lookups)
+    var attemptsSheet = getSheetRobust(ss, CONFIG.SHEET_NAMES.ATTEMPTS);
+    var xpByStudent = {};
+    if (attemptsSheet && attemptsSheet.getLastRow() > 1) {
+      var aData = attemptsSheet.getDataRange().getValues();
+      var attColMap = getSheetColumnMap(attemptsSheet, CONFIG.ATTEMPT_HEADERS);
+      var asCol = attColMap["student_number"] - 1;
+      var aStatusCol = attColMap["status"] - 1;
+      var aXpCol = attColMap["xp_earned"] ? attColMap["xp_earned"] - 1 : -1;
+
+      for (var a = 1; a < aData.length; a++) {
+        var aRow = aData[a];
+        if (String(aRow[aStatusCol] || "").trim() !== "completed") continue;
+        var aNum = String(aRow[asCol] || "").trim();
+        if (!aNum) continue;
+
+        var xpVal = aXpCol >= 0 ? Number(aRow[aXpCol] || 0) : 0;
+        if (!xpByStudent[aNum]) xpByStudent[aNum] = 0;
+        xpByStudent[aNum] += (isNaN(xpVal) ? 0 : xpVal);
+      }
+    }
+
     for (var i = 1; i < sData.length; i++) {
       var row = sData[i];
       var sNum = String(row[sColMap["student_number"] - 1] || "").trim();
@@ -10620,6 +10684,56 @@ function handleTeacherGetClassroomOverview(ss, payload) {
         }
       }
 
+      var studentXp = xpByStudent[sNum] || 0;
+      var isHatched = studentXp >= 500;
+      var monsterStage = "egg";
+      var evoTier = 0;
+
+      if (studentXp >= 6000) {
+        monsterStage = "apex_legend";
+        evoTier = 4;
+      } else if (studentXp >= 3000) {
+        monsterStage = "titan";
+        evoTier = 3;
+      } else if (studentXp >= 1500) {
+        monsterStage = "adventurer";
+        evoTier = 2;
+      } else if (studentXp >= 500) {
+        monsterStage = "hatchling";
+        evoTier = 1;
+      } else if (studentXp >= 250) {
+        monsterStage = "cracking";
+        evoTier = 0;
+      }
+
+      var rawMonster = monstersByStudent[sNum] || JSON.parse(JSON.stringify(DEFAULT_MONSTER_DATA));
+      var studentMonster = sanitizeMonsterConfig(rawMonster);
+      if (!studentMonster.accessories) studentMonster.accessories = {};
+      if (!Array.isArray(studentMonster.accessories.owned)) studentMonster.accessories.owned = [];
+
+      var ownedAccMap = {};
+      for (var o = 0; o < studentMonster.accessories.owned.length; o++) {
+        ownedAccMap[studentMonster.accessories.owned[o]] = true;
+      }
+
+      var rewardCosmeticMap = {
+        "rwd_first_star": "badge_first_star",
+        "rwd_silver_star_frame": "frame_silver_star",
+        "rwd_monster_crown": "hat_monster_crown",
+        "rwd_magic_wings": "wings_magic",
+        "rwd_elite_speaker": "badge_elite_speaker",
+        "rwd_legendary_aura": "aura_legendary"
+      };
+
+      for (var gIdx = 0; gIdx < permRewards.grants.length; gIdx++) {
+        var grantRwdId = permRewards.grants[gIdx];
+        var cosId = rewardCosmeticMap[grantRwdId];
+        if (cosId && !ownedAccMap[cosId]) {
+          studentMonster.accessories.owned.push(cosId);
+          ownedAccMap[cosId] = true;
+        }
+      }
+
       studentList.push({
         studentNumber: sNum,
         fullName: String(row[sColMap["full_name"] - 1] || ""),
@@ -10629,8 +10743,12 @@ function handleTeacherGetClassroomOverview(ss, payload) {
         negativePoints: points.negativePoints,
         netPoints: points.netPoints,
         unlockedRewardCount: permRewards.grants.length,
-        unlockedRewards: permRewards.grants.map(function(g) { return g.rewardId; }),
-        nextMilestone: nextMilestone
+        unlockedRewards: permRewards.grants.map(function(g) { return typeof g === "object" && g && g.rewardId ? g.rewardId : g; }),
+        nextMilestone: nextMilestone,
+        monster: studentMonster,
+        monsterStage: monsterStage,
+        isHatched: isHatched,
+        evolutionTier: evoTier
       });
     }
   }

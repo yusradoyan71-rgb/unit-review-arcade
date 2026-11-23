@@ -11,6 +11,7 @@
 
 import React from 'react';
 import type { ClassroomStudentSummary } from '../../../../types/classroomPoints';
+import { MonsterAvatar } from '../../../monster/MonsterAvatar';
 import { 
   CheckCircle2, 
   Circle, 
@@ -66,20 +67,6 @@ export const ClassroomStudentGrid: React.FC<ClassroomStudentGridProps> = ({
   const selectedCount = selectedStudentNumbers.size;
   const isAllFilteredSelected = filteredStudents.length > 0 && 
     filteredStudents.every((s) => selectedStudentNumbers.has(s.studentNumber));
-
-  // Color palette helper for initials avatars
-  const getAvatarGradient = (studentNumber: string) => {
-    const charCode = studentNumber.charCodeAt(studentNumber.length - 1) || 0;
-    const gradients = [
-      'from-amber-400 to-orange-500',
-      'from-emerald-400 to-teal-500',
-      'from-sky-400 to-indigo-500',
-      'from-violet-400 to-purple-500',
-      'from-rose-400 to-pink-500',
-      'from-cyan-400 to-blue-500',
-    ];
-    return gradients[charCode % gradients.length];
-  };
 
   return (
     <div className="space-y-4">
@@ -210,7 +197,6 @@ export const ClassroomStudentGrid: React.FC<ClassroomStudentGridProps> = ({
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
           {filteredStudents.map((student) => {
             const isSelected = selectedStudentNumbers.has(student.studentNumber);
-            const avatarGrad = getAvatarGradient(student.studentNumber);
 
             return (
               <div
@@ -232,16 +218,28 @@ export const ClassroomStudentGrid: React.FC<ClassroomStudentGridProps> = ({
                 </div>
 
                 {/* Top Section: Avatar & Info */}
-                <div className="flex flex-col items-center text-center space-y-2 pt-1">
-                  {/* Avatar Bubble */}
-                  <div
-                    className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${avatarGrad} text-white font-black text-base flex items-center justify-center shadow-sm shrink-0 ring-2 ring-white`}
-                  >
-                    {student.fullName ? student.fullName.charAt(0).toUpperCase() : '#'}
+                <div className="flex flex-col items-center text-center space-y-1.5 pt-1">
+                  {/* Monster World Companion / Egg Avatar */}
+                  <div className="relative flex items-center justify-center shrink-0">
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-b from-indigo-50/60 via-white to-slate-100/80 border border-slate-200/70 flex items-center justify-center shadow-xs overflow-visible group-hover:scale-105 transition-transform duration-200">
+                      <MonsterAvatar
+                        config={student.monster || undefined}
+                        stage={student.monsterStage || (student.isHatched ? 'hatchling' : 'egg')}
+                        evolutionTier={student.evolutionTier !== undefined ? student.evolutionTier : (student.isHatched ? 1 : 0)}
+                        equippedAccessories={student.monster?.accessories}
+                        frame={student.monster?.accessories?.frame}
+                        size={52}
+                        className="shrink-0"
+                      />
+                    </div>
+                    {/* Companion / Egg Status Label */}
+                    <span className="absolute -bottom-1.5 px-2 py-0.5 rounded-full bg-slate-900/85 backdrop-blur-xs text-[9px] font-bold text-white shadow-xs border border-white/30 tracking-wider truncate max-w-[80px]">
+                      {student.isHatched ? (student.monster?.name || 'Hatched') : (student.monsterStage === 'cracking' ? 'Cracking' : 'Egg')}
+                    </span>
                   </div>
 
                   {/* Name and Number */}
-                  <div className="w-full px-1">
+                  <div className="w-full px-1 pt-0.5">
                     <h3 className="font-bold text-xs sm:text-sm text-slate-900 truncate leading-tight group-hover:text-indigo-600 transition-colors">
                       {student.fullName}
                     </h3>

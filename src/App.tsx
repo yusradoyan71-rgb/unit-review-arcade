@@ -33,7 +33,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 const MainView: React.FC = () => {
   const { navigation, navigateTo } = useArcade();
-  const { isDashboardOpen, closeDashboard, logout } = useTeacherAuth();
+  const { isDashboardOpen, closeDashboard, logout, isAuthenticated, openLoginModal } = useTeacherAuth();
   const { student } = useAuth();
 
   const [unauthView, setUnauthView] = useState<'welcome' | 'student-login' | 'teacher-login'>('welcome');
@@ -73,7 +73,16 @@ const MainView: React.FC = () => {
     }
   }, [student, isGuestMode]);
 
-  const isTeacherPanelOpen = navigation.view === 'teacher-panel';
+  // RBAC Guard: Teacher Panel requires active teacher authentication
+  const isTeacherPanelOpen = navigation.view === 'teacher-panel' && isAuthenticated;
+
+  // If unauthenticated user navigates to teacher-panel, redirect to home and prompt login
+  useEffect(() => {
+    if (navigation.view === 'teacher-panel' && !isAuthenticated) {
+      navigateTo({ view: 'home' });
+      openLoginModal();
+    }
+  }, [navigation.view, isAuthenticated, navigateTo, openLoginModal]);
 
   // Dedicated, standalone Teacher Monitoring Cockpit view
   // Isolates dashboard rendering completely; unmounts the arcade home screen and classroom header

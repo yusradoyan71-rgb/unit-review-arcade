@@ -8,6 +8,8 @@
  * 4. Teacher management and smartboard projector privacy controls
  */
 
+import type { MonsterConfig, MonsterLifecycleStage } from './monster';
+
 export type ClassroomCategoryType = 'positive' | 'negative' | 'correction';
 
 export interface ClassroomCategory {
@@ -54,6 +56,10 @@ export interface ClassroomStudentSummary {
   unlockedRewardCount: number;
   unlockedRewards: string[];
   nextMilestone: ClassroomNextMilestone | null;
+  monster?: MonsterConfig | null;
+  monsterStage?: MonsterLifecycleStage;
+  evolutionTier?: number;
+  isHatched?: boolean;
 }
 
 export interface ClassroomPointTransaction {

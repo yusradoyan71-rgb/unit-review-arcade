@@ -3,6 +3,7 @@ import type { ArcadeData, GradeId, Unit, Activity, NavigationTarget } from '../t
 import { StorageService } from '../services/storageService';
 import { sounds } from '../services/soundEffects';
 import { useAuth } from './AuthContext';
+import { useTeacherAuth } from './TeacherAuthContext';
 
 interface ToastMessage {
   id: string;
@@ -75,6 +76,7 @@ const ArcadeContext = createContext<ArcadeContextType | undefined>(undefined);
 
 export const ArcadeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { student } = useAuth();
+  const { isAuthenticated, openLoginModal } = useTeacherAuth();
   const [data, setData] = useState<ArcadeData>(() => StorageService.loadData());
   const [navigation, setNavigationState] = useState<NavigationTarget>(() => getInitialNavigation());
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
@@ -239,8 +241,12 @@ export const ArcadeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   const openTeacherPanel = useCallback((initialTab?: 'units' | 'activities' | 'backup' | 'tracking', targetGradeId?: GradeId) => {
     sounds.playTap();
+    if (!isAuthenticated) {
+      openLoginModal();
+      return;
+    }
     setNavigation({ view: 'teacher-panel', initialTab, targetGradeId });
-  }, [setNavigation]);
+  }, [setNavigation, isAuthenticated, openLoginModal]);
 
   // Active Grade / Active Unit derived
   const activeGradeId = useMemo<GradeId | null>(() => {
@@ -266,20 +272,28 @@ export const ArcadeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     return null;
   }, [navigation, activeUnit]);
 
-  // Data operations
+  // Data operations (RBAC Protected: Authenticated Teacher Only)
   const createUnit = useCallback(
     (gradeId: GradeId, unitData: Omit<Unit, 'id' | 'gradeId' | 'activities' | 'order' | 'createdAt' | 'updatedAt'>) => {
+      if (!isAuthenticated) {
+        addToast('Unauthorized: Teacher credentials required.', 'error');
+        throw new Error('Unauthorized');
+      }
       const created = StorageService.createUnit(gradeId, unitData);
       setData(StorageService.loadData());
       sounds.playSuccess();
       addToast(`Unit "${created.title}" successfully created!`, 'success');
       return created;
     },
-    [addToast]
+    [addToast, isAuthenticated]
   );
 
   const updateUnit = useCallback(
     (unitId: string, updates: Partial<Omit<Unit, 'id' | 'gradeId' | 'activities'>>) => {
+      if (!isAuthenticated) {
+        addToast('Unauthorized: Teacher credentials required.', 'error');
+        return;
+      }
       const updated = StorageService.updateUnit(unitId, updates);
       if (updated) {
         setData(StorageService.loadData());
@@ -287,11 +301,15 @@ export const ArcadeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         addToast('Unit details updated successfully!', 'success');
       }
     },
-    [addToast]
+    [addToast, isAuthenticated]
   );
 
   const deleteUnit = useCallback(
     (unitId: string) => {
+      if (!isAuthenticated) {
+        addToast('Unauthorized: Teacher credentials required.', 'error');
+        return;
+      }
       const deleted = StorageService.deleteUnit(unitId);
       if (deleted) {
         setData(StorageService.loadData());
@@ -299,16 +317,24 @@ export const ArcadeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         addToast('Unit deleted.', 'info');
       }
     },
-    [addToast]
+    [addToast, isAuthenticated]
   );
 
   const reorderUnits = useCallback((gradeId: GradeId, unitIds: string[]) => {
+    if (!isAuthenticated) {
+      addToast('Unauthorized: Teacher credentials required.', 'error');
+      return;
+    }
     StorageService.reorderUnits(gradeId, unitIds);
     setData(StorageService.loadData());
-  }, []);
+  }, [addToast, isAuthenticated]);
 
   const createActivity = useCallback(
     (unitId: string, activityData: Omit<Activity, 'id' | 'unitId' | 'order' | 'createdAt' | 'updatedAt'>) => {
+      if (!isAuthenticated) {
+        addToast('Unauthorized: Teacher credentials required.', 'error');
+        return null;
+      }
       const created = StorageService.createActivity(unitId, activityData);
       if (created) {
         setData(StorageService.loadData());
@@ -317,11 +343,15 @@ export const ArcadeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       }
       return created;
     },
-    [addToast]
+    [addToast, isAuthenticated]
   );
 
   const deleteActivity = useCallback(
     (unitId: string, activityId: string) => {
+      if (!isAuthenticated) {
+        addToast('Unauthorized: Teacher credentials required.', 'error');
+        return;
+      }
       const deleted = StorageService.deleteActivity(unitId, activityId);
       if (deleted) {
         setData(StorageService.loadData());
@@ -329,7 +359,7 @@ export const ArcadeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         addToast('Activity removed.', 'info');
       }
     },
-    [addToast]
+    [addToast, isAuthenticated]
   );
 
   const exportBackupJSON = useCallback(() => {
@@ -339,6 +369,10 @@ export const ArcadeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   const importBackupJSON = useCallback(
     (jsonStr: string) => {
+      if (!isAuthenticated) {
+        addToast('Unauthorized: Teacher credentials required.', 'error');
+        return false;
+      }
       const result = StorageService.importJSON(jsonStr);
       if (result.success && result.data) {
         setData(result.data);
@@ -351,15 +385,19 @@ export const ArcadeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         return false;
       }
     },
-    [addToast]
+    [addToast, isAuthenticated]
   );
 
   const resetAllData = useCallback(() => {
+    if (!isAuthenticated) {
+      addToast('Unauthorized: Teacher credentials required.', 'error');
+      return;
+    }
     const empty = StorageService.clearAllData();
     setData(empty);
     sounds.playTap();
     addToast('All unit and activity content cleared to empty state.', 'warning');
-  }, [addToast]);
+  }, [addToast, isAuthenticated]);
 
   return (
     <ArcadeContext.Provider

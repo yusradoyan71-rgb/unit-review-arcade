@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Teacher Dashboard — Classroom Points Monster Avatars</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background: #f8fafc; color: #1e293b; padding: 24px; }
+    
+    .cockpit-header {
+      background: linear-gradient(135deg, #1e1b4b, #312e81);
+      border-radius: 20px;
+      padding: 20px 24px;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 25px -5px rgba(30, 27, 75, 0.25);
+    }
+    .cockpit-title { font-size: 20px; font-weight: 900; letter-spacing: -0.02em; }
+    .cockpit-sub { font-size: 12px; color: #a5b4fc; margin-top: 3px; font-weight: 500; }
+    
+    .privacy-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0f172a;
+      border: 1.5px solid #38bdf8;
+      color: #38bdf8;
+      padding: 8px 14px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .privacy-dot { width: 8px; height: 8px; border-radius: 50%; background: #38bdf8; box-shadow: 0 0 8px #38bdf8; }
+
+    .controls-bar {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 12px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .tab-pills { display: flex; gap: 8px; }
+    .tab-btn {
+      padding: 6px 14px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      color: #64748b;
+      cursor: pointer;
+    }
+    .tab-btn.active {
+      background: #4f46e5;
+      color: #ffffff;
+      border-color: #4f46e5;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .student-card {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 18px;
+      padding: 16px;
+      position: relative;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      transition: all 0.2s;
+      display: flex;
+      flex-col: column;
+      justify-content: space-between;
+      text-align: center;
+    }
+    .student-card.selected {
+      background: #f5f3ff;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.4);
+    }
+
+    .check-circle {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .student-card.selected .check-circle {
+      border-color: #4f46e5;
+      background: #4f46e5;
+      color: #fff;
+      font-size: 11px;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      margin: 4px auto 8px;
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(238, 242, 255, 0.8), #ffffff, rgba(241, 245, 249, 0.9));
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    
+    .status-pill {
+      position: absolute;
+      bottom: -7px;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      background: rgba(15, 23, 42, 0.9);
+      color: #ffffff;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      white-space: nowrap;
+      text-transform: capitalize;
+    }
+
+    .student-name {
+      font-size: 13px;
+      font-weight: 800;
+      color: #0f172a;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 8px;
+    }
+    .student-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 2px;
+    }
+    .student-id { font-family: monospace; font-size: 10px; color: #94a3b8; }
+    .student-class {
+      font-size: 10px;
+      font-weight: 700;
+      background: #f1f5f9;
+      color: #475569;
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    .points-badge {
+      margin-top: 12px;
+      padding: 6px;
+      border-radius: 10px;
+      background: #fffbeb;
+      border: 1px solid #fef3c7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      color: #92400e;
+      font-weight: 900;
+      font-size: 14px;
+    }
+    .points-label { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #b45309; }
+
+    .quick-award-btn {
+      margin-top: 10px;
+      padding: 6px 12px;
+      border-radius: 10px;
+      background: #4f46e5;
+      color: #ffffff;
+      border: none;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    /* Gradients for SVGs */
+    svg { overflow: visible; }
+  </style>
+</head>
+<body>
+
+  <!-- COCKPIT HEADER -->
+  <div class="cockpit-header">
+    <div>
+      <div class="cockpit-title">Classroom Behavior Points & Rewards Cockpit</div>
+      <div class="cockpit-sub">Academic Year 2026-2027 • 59 Students Enrolled across Classes 7A, 7B, 8A, 8B</div>
+    </div>
+    <div class="privacy-badge">
+      <div class="privacy-dot"></div>
+      Projector Privacy Mode: ON
+    </div>
+  </div>
+
+  <!-- CONTROLS & CLASS FILTERS -->
+  <div class="controls-bar">
+    <div class="tab-pills">
+      <button class="tab-btn active">All Classes (59)</button>
+      <button class="tab-btn">Class 7A (15)</button>
+      <button class="tab-btn">Class 7B (15)</button>
+      <button class="tab-btn">Class 8A (15)</button>
+      <button class="tab-btn">Class 8B (14)</button>
+    </div>
+    <div style="font-size: 12px; font-weight: 700; color: #64748b;">
+      Showing 8 of 59 Students • Custom Monster Avatars Active
+    </div>
+  </div>
+
+  <!-- SVG SHARED DEFS -->
+  <svg width="0" height="0" style="position: absolute;">
+    <defs>
+      <linearGradient id="egg_cyan" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#38bdf8" />
+        <stop offset="100%" stop-color="#0284c7" />
+      </linearGradient>
+      <linearGradient id="egg_purple" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#c084fc" />
+        <stop offset="100%" stop-color="#7e22ce" />
+      </linearGradient>
+      <linearGradient id="egg_emerald" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#34d399" />
+        <stop offset="100%" stop-color="#059669" />
+      </linearGradient>
+      <linearGradient id="egg_amber" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#fbbf24" />
+        <stop offset="100%" stop-color="#d97706" />
+      </linearGradient>
+      <linearGradient id="egg_lime" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#a3e635" />
+        <stop offset="100%" stop-color="#65a30d" />
+      </linearGradient>
+      <linearGradient id="egg_pink" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#f472b6" />
+        <stop offset="100%" stop-color="#db2777" />
+      </linearGradient>
+      <linearGradient id="egg_indigo" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#818cf8" />
+        <stop offset="100%" stop-color="#4338ca" />
+      </linearGradient>
+      
+      <!-- Frame & Crown Gradients -->
+      <linearGradient id="crown_gold" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#fef08a" />
+        <stop offset="50%" stop-color="#f59e0b" />
+        <stop offset="100%" stop-color="#d97706" />
+      </linearGradient>
+      <linearGradient id="silver_frame" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#f8fafc" />
+        <stop offset="35%" stop-color="#94a3b8" />
+        <stop offset="70%" stop-color="#f1f5f9" />
+        <stop offset="100%" stop-color="#64748b" />
+      </linearGradient>
+      <radialGradient id="aura_glow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#fef08a" stop-opacity="0.85" />
+        <stop offset="60%" stop-color="#f59e0b" stop-opacity="0.35" />
+        <stop offset="100%" stop-color="#d97706" stop-opacity="0" />
+      </radialGradient>
+      <linearGradient id="magic_wings" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#38bdf8" />
+        <stop offset="50%" stop-color="#c084fc" />
+        <stop offset="100%" stop-color="#ec4899" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- STUDENT GRID WITH HATCHED MONSTERS & UNHATCHED EGGS -->
+  <div class="grid-container">
+
+    <!-- STUDENT 1: HATCHED MONSTER (Pip - Crown, Wings, Frame) -->
+    <div class="student-card selected">
+      <div class="check-circle">✓</div>
+      <div class="avatar-wrapper">
+        <svg viewBox="0 0 200 200" width="52" height="52">
+          <!-- Magic Wings -->
+          <path d="M 45 105 C 10 55 -10 32 8 20 C 26 8 46 48 50 100 Z" fill="url(#magic_wings)" opacity="0.9" stroke="#7e22ce" stroke-width="2" />
+          <path d="M 155 105 C 190 55 210 32 192 20 C 174 8 154 48 150 100 Z" fill="url(#magic_wings)" opacity="0.9" stroke="#7e22ce" stroke-width="2" />
+          <!-- Body: Cyan Blob -->
+          <path d="M 50 120 C 45 80 65 50 100 50 C 135 50 155 80 150 120 C 145 160 135 175 100 175 C 65 175 55 160 50 120 Z" fill="url(#egg_cyan)" stroke="#0369a1" stroke-width="3.5" />
+          <ellipse cx="100" cy="130" rx="34" ry="26" fill="#e0f2fe" opacity="0.9" />
+          <circle cx="78" cy="98" r="8" fill="#0f172a" /><circle cx="75" cy="94" r="3" fill="#fff" />
+          <circle cx="122" cy="98" r="8" fill="#0f172a" /><circle cx="119" cy="94" r="3" fill="#fff" />
+          <path d="M 92 118 Q 100 126 108 118" stroke="#0f172a" stroke-width="3" stroke-linecap="round" fill="none" />
+          <!-- Monster Crown -->
+          <path d="M 72 58 L 76 32 L 88 44 L 100 26 L 112 44 L 124 32 L 128 58 Z" fill="url(#crown_gold)" stroke="#78350f" stroke-width="2.5" />
+          <!-- Silver Star Frame -->
+          <circle cx="100" cy="100" r="95" fill="none" stroke="url(#silver_frame)" stroke-width="4.5" />
+          <circle cx="100" cy="100" r="91" fill="none" stroke="#fff" stroke-width="1.5" opacity="0.8" />
+        </svg>
+        <span class="status-pill">Pip 👑</span>
+      </div>
+      <div class="student-name">Ali Yilmaz</div>
+      <div class="student-meta">
+        <span class="student-id">#701</span>
+        <span class="student-class">7A</span>
+      </div>
+      <div class="points-badge">
+        <span>⭐</span> 30 <span class="points-label">pts</span>
+      </div>
+      <button class="quick-award-btn">⚡ Award</button>
+    </div>
+
+    <!-- STUDENT 2: HATCHED MONSTER (Mochi - Purple Fuzzy, Party Hat, Glasses) -->
+    <div class="student-card">
+      <div class="check-circle"></div>
+      <div class="avatar-wrapper">
+        <svg viewBox="0 0 200 200" width="52" height="52">
+          <!-- Body: Purple Fuzzy -->
+          <path d="M 50 115 C 40 75 70 45 100 45 C 130 45 160 75 150 115 C 155 155 130 175 100 175 C 70 175 45 155 50 115 Z" fill="url(#egg_purple)" stroke="#581c87" stroke-width="3.5" />
+          <circle cx="75" cy="100" r="9" fill="#0f172a" /><circle cx="72" cy="96" r="3" fill="#fff" />
+          <circle cx="125" cy="100" r="9" fill="#0f172a" /><circle cx="122" cy="96" r="3" fill="#fff" />
+          <path d="M 94 122 Q 100 128 106 122" stroke="#0f172a" stroke-width="3" stroke-linecap="round" fill="none" />
+          <!-- Round Glasses -->
+          <circle cx="75" cy="100" r="16" fill="none" stroke="#ca8a04" stroke-width="2.5" />
+          <circle cx="125" cy="100" r="16" fill="none" stroke="#ca8a04" stroke-width="2.5" />
+          <line x1="91" y1="100" x2="109" y2="100" stroke="#ca8a04" stroke-width="2.5" />
+          <!-- Party Hat -->
+          <polygon points="100,18 82,54 118,54" fill="#f43f5e" stroke="#9f1239" stroke-width="2" />
+          <circle cx="100" cy="16" r="4" fill="#fbbf24" />
+        </svg>
+        <span class="status-pill">Mochi</span>
+      </div>
+      <div class="student-name">Zeynep Demir</div>
+      <div class="student-meta">
+        <span class="student-id">#702</span>
+        <span class="student-class">7A</span>
+      </div>
+      <div class="points-badge">
+        <span>⭐</span> 24 <span class="points-label">pts</span>
+      </div>
+      <button class="quick-award-btn">⚡ Award</button>
+    </div>
+
+    <!-- STUDENT 3: UNHATCHED EGG (Cracking - Emerald Egg with Luminous Fissure) -->
+    <div class="student-card">
+      <div class="check-circle"></div>
+      <div class="avatar-wrapper">
+        <svg viewBox="0 0 200 200" width="52" height="52">
+          <!-- Nest -->
+          <path d="M 35 165 C 45 140 155 140 165 165 C 170 185 30 185 35 165 Z" fill="#312e81" opacity="0.6" />
+          <ellipse cx="100" cy="172" rx="68" ry="16" fill="#1e1b4b" stroke="#4338ca" stroke-width="2" />
+          <!-- Egg Body -->
+          <path d="M 100 35 C 145 35 168 85 168 135 C 168 175 140 180 100 180 C 60 180 32 175 32 135 C 32 85 55 35 100 35 Z" fill="url(#egg_emerald)" stroke="#065f46" stroke-width="3.5" />
+          <circle cx="75" cy="85" r="9" fill="#fdf4ff" opacity="0.4" />
+          <circle cx="125" cy="115" r="12" fill="#fdf4ff" opacity="0.4" />
+          <!-- Radiant Cracking Fissure -->
+          <path d="M 100 45 L 110 70 L 96 88 L 115 110 L 94 130 L 108 150 L 100 170" stroke="#fef08a" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+          <ellipse cx="75" cy="70" rx="14" ry="24" transform="rotate(-25 75 70)" fill="#ffffff" opacity="0.3" />
+        </svg>
+        <span class="status-pill" style="background: #065f46;">Cracking ✨</span>
+      </div>
+      <div class="student-name">Can Ozturk</div>
+      <div class="student-meta">
+        <span class="student-id">#703</span>
+        <span class="student-class">7A</span>
+      </div>
+      <div class="points-badge">
+        <span>⭐</span> 18 <span class="points-label">pts</span>
+      </div>
+      <button class="quick-award-btn">⚡ Award</button>
+    </div>
+
+    <!-- STUDENT 4: UNHATCHED EGG (Amber Egg in Crystal Nest) -->
+    <div class="student-card">
+      <div class="check-circle"></div>
+      <div class="avatar-wrapper">
+        <svg viewBox="0 0 200 200" width="52" height="52">
+          <!-- Nest -->
+          <path d="M 35 165 C 45 140 155 140 165 165 C 170 185 30 185 35 165 Z" fill="#312e81" opacity="0.6" />
+          <ellipse cx="100" cy="172" rx="68" ry="16" fill="#1e1b4b" stroke="#4338ca" stroke-width="2" />
+          <!-- Egg Body -->
+          <path d="M 100 35 C 145 35 168 85 168 135 C 168 175 140 180 100 180 C 60 180 32 175 32 135 C 32 85 55 35 100 35 Z" fill="url(#egg_amber)" stroke="#92400e" stroke-width="3.5" />
+          <circle cx="75" cy="85" r="9" fill="#fdf4ff" opacity="0.4" />
+          <circle cx="125" cy="115" r="12" fill="#fdf4ff" opacity="0.4" />
+          <ellipse cx="75" cy="70" rx="14" ry="24" transform="rotate(-25 75 70)" fill="#ffffff" opacity="0.3" />
+        </svg>
+        <span class="status-pill" style="background: #92400e;">Egg 🥚</span>
+      </div>
+      <div class="student-name">Elif Kaya</div>
+      <div class="student-meta">
+        <span class="student-id">#704</span>
+        <span class="student-class">7A</span>
+      </div>
+      <div class="points-badge">
+        <span>⭐</span> 14 <span class="points-label">pts</span>
+      </div>
+      <button class="quick-award-btn">⚡ Award</button>
+    </div>
+
+    <!-- STUDENT 5: HATCHED MONSTER (Sparky - Lime Sprout, Silver Frame) -->
+    <div class="student-card">
+      <div class="check-circle"></div>
+      <div class="avatar-wrapper">
+        <svg viewBox="0 0 200 200" width="52" height="52">
+          <!-- Body: Lime Sprout -->
+          <path d="M 60 120 C 50 80 65 55 100 55 C 135 55 150 80 140 120 C 135 160 130 175 100 175 C 70 175 65 160 60 120 Z" fill="url(#egg_lime)" stroke="#3f6212" stroke-width="3.5" />
+          <!-- Sprout leaves on head -->
+          <path d="M 100 55 C 85 30 75 40 85 50 Z" fill="#84cc16" stroke="#3f6212" stroke-width="2" />
+          <path d="M 100 55 C 115 30 125 40 115 50 Z" fill="#84cc16" stroke="#3f6212" stroke-width="2" />
+          <circle cx="80" cy="98" r="8" fill="#0f172a" /><circle cx="77" cy="94" r="3" fill="#fff" />
+          <circle cx="120" cy="98" r="8" fill="#0f172a" /><circle cx="117" cy="94" r="3" fill="#fff" />
+          <path d="M 94 116 Q 100 124 106 116" stroke="#0f172a" stroke-width="3" stroke-linecap="round" fill="none" />
+          <!-- Bowtie -->
+          <polygon points="90,140 100,146 90,152" fill="#ef4444" />
+          <polygon points="110,140 100,146 110,152" fill="#ef4444" />
+          <circle cx="100" cy="146" r="3" fill="#dc2626" />
+          <!-- Silver Frame -->
+          <circle cx="100" cy="100" r="95" fill="none" stroke="url(#silver_frame)" stroke-width="4.5" />
+        </svg>
+        <span class="status-pill">Sparky</span>
+      </div>
+      <div class="student-name">Burak Celik</div>
+      <div class="student-meta">
+        <span class="student-id">#721</span>
+        <span class="student-class">7B</span>
+      </div>
+      <div class="points-badge">
+        <span>⭐</span> 26 <span class="points-label">pts</span>
+      </div>
+      <button class="quick-award-btn">⚡ Award</button>
+    </div>
+
+    <!-- STUDENT 6: HATCHED MONSTER (Lumi - Legendary Aura + Crown) -->
+    <div class="student-card selected">
+      <div class="check-circle">✓</div>
+      <div class="avatar-wrapper">
+        <svg viewBox="0 0 200 200" width="52" height="52">
+          <!-- Legendary Aura Glow -->
+          <circle cx="100" cy="100" r="86" fill="url(#aura_glow)" />
+          <circle cx="100" cy="100" r="80" stroke="#fde047" stroke-width="2" stroke-dasharray="5 7" fill="none" />
+          <!-- Body: Pink Blob -->
+          <path d="M 50 120 C 45 80 65 50 100 50 C 135 50 155 80 150 120 C 145 160 135 175 100 175 C 65 175 55 160 50 120 Z" fill="url(#egg_pink)" stroke="#9d174d" stroke-width="3.5" />
+          <circle cx="78" cy="98" r="8" fill="#0f172a" /><circle cx="75" cy="94" r="3" fill="#fff" />
+          <circle cx="122" cy="98" r="8" fill="#0f172a" /><circle cx="119" cy="94" r="3" fill="#fff" />
+          <path d="M 92 118 Q 100 126 108 118" stroke="#0f172a" stroke-width="3" stroke-linecap="round" fill="none" />
+          <!-- Monster Crown -->
+          <path d="M 72 58 L 76 32 L 88 44 L 100 26 L 112 44 L 124 32 L 128 58 Z" fill="url(#crown_gold)" stroke="#78350f" stroke-width="2.5" />
+        </svg>
+        <span class="status-pill">Lumi ✨👑</span>
+      </div>
+      <div class="student-name">Selin Yurt</div>
+      <div class="student-meta">
+        <span class="student-id">#722</span>
+        <span class="student-class">7B</span>
+      </div>
+      <div class="points-badge">
+        <span>⭐</span> 36 <span class="points-label">pts</span>
+      </div>
+      <button class="quick-award-btn">⚡ Award</button>
+    </div>
+
+    <!-- STUDENT 7: UNHATCHED EGG (Pink Egg in Nest) -->
+    <div class="student-card">
+      <div class="check-circle"></div>
+      <div class="avatar-wrapper">
+        <svg viewBox="0 0 200 200" width="52" height="52">
+          <!-- Nest -->
+          <path d="M 35 165 C 45 140 155 140 165 165 C 170 185 30 185 35 165 Z" fill="#312e81" opacity="0.6" />
+          <ellipse cx="100" cy="172" rx="68" ry="16" fill="#1e1b4b" stroke="#4338ca" stroke-width="2" />
+          <!-- Egg Body -->
+          <path d="M 100 35 C 145 35 168 85 168 135 C 168 175 140 180 100 180 C 60 180 32 175 32 135 C 32 85 55 35 100 35 Z" fill="url(#egg_pink)" stroke="#9d174d" stroke-width="3.5" />
+          <circle cx="75" cy="85" r="9" fill="#fdf4ff" opacity="0.4" />
+          <circle cx="125" cy="115" r="12" fill="#fdf4ff" opacity="0.4" />
+          <ellipse cx="75" cy="70" rx="14" ry="24" transform="rotate(-25 75 70)" fill="#ffffff" opacity="0.3" />
+        </svg>
+        <span class="status-pill" style="background: #9d174d;">Egg 🥚</span>
+      </div>
+      <div class="student-name">Emre Koc</div>
+      <div class="student-meta">
+        <span class="student-id">#801</span>
+        <span class="student-class">8A</span>
+      </div>
+      <div class="points-badge">
+        <span>⭐</span> 10 <span class="points-label">pts</span>
+      </div>
+      <button class="quick-award-btn">⚡ Award</button>
+    </div>
+
+    <!-- STUDENT 8: HATCHED MONSTER (Nova - Indigo Star with Wings) -->
+    <div class="student-card">
+      <div class="check-circle"></div>
+      <div class="avatar-wrapper">
+        <svg viewBox="0 0 200 200" width="52" height="52">
+          <!-- Magic Wings -->
+          <path d="M 45 105 C 10 55 -10 32 8 20 C 26 8 46 48 50 100 Z" fill="url(#magic_wings)" opacity="0.9" stroke="#7e22ce" stroke-width="2" />
+          <path d="M 155 105 C 190 55 210 32 192 20 C 174 8 154 48 150 100 Z" fill="url(#magic_wings)" opacity="0.9" stroke="#7e22ce" stroke-width="2" />
+          <!-- Body: Indigo -->
+          <path d="M 50 120 C 45 80 65 50 100 50 C 135 50 155 80 150 120 C 145 160 135 175 100 175 C 65 175 55 160 50 120 Z" fill="url(#egg_indigo)" stroke="#3730a3" stroke-width="3.5" />
+          <circle cx="78" cy="98" r="8" fill="#0f172a" /><circle cx="75" cy="94" r="3" fill="#fff" />
+          <circle cx="122" cy="98" r="8" fill="#0f172a" /><circle cx="119" cy="94" r="3" fill="#fff" />
+          <path d="M 92 118 Q 100 126 108 118" stroke="#0f172a" stroke-width="3" stroke-linecap="round" fill="none" />
+        </svg>
+        <span class="status-pill">Nova 🪽</span>
+      </div>
+      <div class="student-name">Gamze Arslan</div>
+      <div class="student-meta">
+        <span class="student-id">#821</span>
+        <span class="student-class">8B</span>
+      </div>
+      <div class="points-badge">
+        <span>⭐</span> 22 <span class="points-label">pts</span>
+      </div>
+      <button class="quick-award-btn">⚡ Award</button>
+    </div>
+
+  </div>
+
+</body>
+</html>
+
