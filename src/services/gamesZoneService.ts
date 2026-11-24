@@ -54,11 +54,15 @@ export class GamesZoneService {
     if (difficulty === 'medium') base = 15;
     if (difficulty === 'hard') base = 20;
 
-    // Accuracy bonus
+    // Mathematical accuracy ceiling: accuracy cannot exceed (correctAnswers / totalQuestions) * 100
+    const maxPossibleAccuracy = totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0;
+    const effectiveAccuracy = Math.min(accuracyPercentage, maxPossibleAccuracy);
+
+    // Accuracy bonus: only awarded when effective accuracy earned meets criteria
     let bonus = 0;
-    if (accuracyPercentage >= 100) {
+    if (effectiveAccuracy >= 100) {
       bonus = 10;
-    } else if (accuracyPercentage >= 80) {
+    } else if (effectiveAccuracy >= 80) {
       bonus = 5;
     }
 

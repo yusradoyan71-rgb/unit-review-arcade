@@ -121,9 +121,8 @@ export const WordConnectGame: React.FC<WordConnectGameProps> = ({
   // Finish whole game session
   const finishSession = useCallback(
     (finalScore: number, finalWordsFound: number) => {
-      const totalPuzzles = puzzles.length || PUZZLES_PER_SESSION;
       const totalTargetWords = puzzles.reduce((acc, p) => acc + p.targetWords.length, 0) || 15;
-      const accuracy = Math.min(100, Math.round((finalWordsFound / totalTargetWords) * 100));
+      const accuracy = totalTargetWords > 0 ? Math.min(100, Math.round((finalWordsFound / totalTargetWords) * 100)) : 0;
       const durationSeconds = Math.max(1, Math.round((Date.now() - startTime) / 1000));
 
       const { xpEarned } = GamesZoneService.calculateXpEarned(
@@ -143,7 +142,7 @@ export const WordConnectGame: React.FC<WordConnectGameProps> = ({
         gradeId,
         difficulty,
         score: finalScore,
-        totalQuestions: totalPuzzles,
+        totalQuestions: totalTargetWords,
         correctAnswers: finalWordsFound,
         incorrectAnswers: Math.max(0, totalTargetWords - finalWordsFound),
         accuracyPercentage: accuracy,

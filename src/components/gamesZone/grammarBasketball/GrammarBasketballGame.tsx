@@ -91,6 +91,11 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
   const [incorrectCount, setIncorrectCount] = useState(0);
   const [basketsMade, setBasketsMade] = useState(0);
 
+  const correctCountRef = useRef(0);
+  const incorrectCountRef = useRef(0);
+  const scoreRef = useRef(0);
+  const livesRef = useRef(3);
+
   const startTimeRef = useRef(Date.now());
   const animFrameRef = useRef<number | null>(null);
   const svgRef = useRef<SVGSVGElement | null>(null);
@@ -123,6 +128,10 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
     setCorrectCount(0);
     setIncorrectCount(0);
     setBasketsMade(0);
+    correctCountRef.current = 0;
+    incorrectCountRef.current = 0;
+    scoreRef.current = 0;
+    livesRef.current = 3;
     setBall({
       x: BALL_START_X,
       y: BALL_START_Y,
@@ -137,8 +146,9 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
   const finishGame = useCallback(
     (finalCorrect: number, finalIncorrect: number, finalScore: number) => {
       const totalQ = questions.length || 10;
-      const evaluated = finalCorrect + finalIncorrect;
-      const accuracy = evaluated > 0 ? Math.round((finalCorrect / evaluated) * 100) : 0;
+      // Mathematical accuracy: actual correct answers divided by total questions
+      const accuracy = totalQ > 0 ? Math.round((finalCorrect / totalQ) * 100) : 0;
+      const effectiveIncorrect = Math.max(finalIncorrect, totalQ - finalCorrect);
       const duration = Math.max(1, Math.round((Date.now() - startTimeRef.current) / 1000));
 
       const { xpEarned } = GamesZoneService.calculateXpEarned(
@@ -160,7 +170,7 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
         score: finalScore,
         totalQuestions: totalQ,
         correctAnswers: finalCorrect,
-        incorrectAnswers: finalIncorrect,
+        incorrectAnswers: effectiveIncorrect,
         accuracyPercentage: accuracy,
         xpEarned,
         durationSeconds: duration,
@@ -175,9 +185,14 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
 
   // Advance to next question
   const advanceToNext = useCallback(
-    (currentCorrect: number, currentIncorrect: number, currentScore: number) => {
-      if (lives <= 0 || currentIndex + 1 >= questions.length) {
-        finishGame(currentCorrect, currentIncorrect, currentScore);
+    () => {
+      const curCorrect = correctCountRef.current;
+      const curIncorrect = incorrectCountRef.current;
+      const curScore = scoreRef.current;
+      const curLives = livesRef.current;
+
+      if (curLives <= 0 || currentIndex + 1 >= questions.length) {
+        finishGame(curCorrect, curIncorrect, curScore);
       } else {
         setCurrentIndex((i) => i + 1);
         setSelectedOption(null);
@@ -203,7 +218,7 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
         };
       }
     },
-    [currentIndex, questions.length, lives, finishGame]
+    [currentIndex, questions.length, finishGame]
   );
 
   // Calculate launch velocity vector from drag offset
@@ -348,6 +363,7 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
           if (!isMuted) sounds.playSuccess();
           setBasketsMade((b) => b + 1);
           setShotFeedback(feedbackMsg);
+          scoreRef.current += bonus;
           setScore((s) => s + bonus);
         }
 
@@ -375,7 +391,7 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
             // Conclude flight and advance
             setTimeout(() => {
               setIsBallInFlight(false);
-              advanceToNext(correctCount, incorrectCount, score);
+              advanceToNext();
             }, 1400);
           }
         } else {
@@ -391,7 +407,7 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
           }
           setTimeout(() => {
             setIsBallInFlight(false);
-            advanceToNext(correctCount, incorrectCount, score);
+            advanceToNext();
           }, 1100);
         }
 
@@ -432,8 +448,10 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
       if (!isMuted) sounds.playSuccess();
       const basePoints = 100 * streak;
       const nextScore = score + basePoints;
+      scoreRef.current = nextScore;
       setScore(nextScore);
       const nextCorrect = correctCount + 1;
+      correctCountRef.current = nextCorrect;
       setCorrectCount(nextCorrect);
       setStreak((s) => Math.min(5, s + 1));
 
@@ -445,15 +463,17 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
       if (!isMuted) sounds.playError();
       setStreak(1);
       const nextIncorrect = incorrectCount + 1;
+      incorrectCountRef.current = nextIncorrect;
       setIncorrectCount(nextIncorrect);
       const nextLives = lives - 1;
+      livesRef.current = nextLives;
       setLives(nextLives);
 
       // Show error feedback with pedagogical explanation
       setShotFeedback(`Incorrect Answer! Correct: "${currentQ.options[currentQ.correctOptionIndex]}"`);
 
       setTimeout(() => {
-        advanceToNext(correctCount, nextIncorrect, score);
+        advanceToNext();
       }, 2200);
     }
   };

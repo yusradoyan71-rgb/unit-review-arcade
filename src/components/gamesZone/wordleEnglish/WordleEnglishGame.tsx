@@ -98,7 +98,7 @@ export const WordleEnglishGame: React.FC<WordleEnglishGameProps> = ({
   const finishSession = useCallback(
     (finalSolved: number, finalScore: number) => {
       const totalRounds = items.length || ROUNDS_PER_SESSION;
-      const accuracy = Math.round((finalSolved / totalRounds) * 100);
+      const accuracy = totalRounds > 0 ? Math.round((finalSolved / totalRounds) * 100) : 0;
       const durationSeconds = Math.max(1, Math.round((Date.now() - startTime) / 1000));
 
       const { xpEarned } = GamesZoneService.calculateXpEarned(
@@ -120,7 +120,7 @@ export const WordleEnglishGame: React.FC<WordleEnglishGameProps> = ({
         score: finalScore,
         totalQuestions: totalRounds,
         correctAnswers: finalSolved,
-        incorrectAnswers: totalRounds - finalSolved,
+        incorrectAnswers: Math.max(0, totalRounds - finalSolved),
         accuracyPercentage: accuracy,
         xpEarned,
         durationSeconds,

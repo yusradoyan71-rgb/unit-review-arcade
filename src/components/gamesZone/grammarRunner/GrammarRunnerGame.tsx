@@ -93,8 +93,8 @@ export const GrammarRunnerGame: React.FC<GrammarRunnerGameProps> = ({
   const finishGame = useCallback(
     (finalCorrect: number, finalIncorrect: number, finalScore: number) => {
       const totalQ = questions.length || 10;
-      const evaluated = finalCorrect + finalIncorrect;
-      const accuracy = evaluated > 0 ? Math.round((finalCorrect / evaluated) * 100) : 0;
+      const accuracy = totalQ > 0 ? Math.round((finalCorrect / totalQ) * 100) : 0;
+      const effectiveIncorrect = Math.max(finalIncorrect, totalQ - finalCorrect);
       const duration = Math.max(1, Math.round((Date.now() - startTimeRef.current) / 1000));
 
       const { xpEarned } = GamesZoneService.calculateXpEarned(
@@ -116,7 +116,7 @@ export const GrammarRunnerGame: React.FC<GrammarRunnerGameProps> = ({
         score: finalScore,
         totalQuestions: totalQ,
         correctAnswers: finalCorrect,
-        incorrectAnswers: finalIncorrect,
+        incorrectAnswers: effectiveIncorrect,
         accuracyPercentage: accuracy,
         xpEarned,
         durationSeconds: duration,

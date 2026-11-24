@@ -27,6 +27,7 @@ import type {
 import { getQuestionsForGame } from '../../../data/gamesZone';
 import { MemoryMatchIcon } from './MemoryMatchIcons';
 import { sounds } from '../../../services/soundEffects';
+import { GamesZoneService } from '../../../services/gamesZoneService';
 
 interface MemoryCard {
   cardId: string;
@@ -296,6 +297,7 @@ export const MemoryMatchGame: React.FC<MemoryMatchGameProps> = ({
       completedAt: new Date().toISOString(),
     };
 
+    GamesZoneService.saveAttempt(record);
     onComplete(record);
   };
 

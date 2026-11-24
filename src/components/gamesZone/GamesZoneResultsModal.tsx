@@ -29,8 +29,16 @@ export const GamesZoneResultsModal: React.FC<GamesZoneResultsModalProps> = ({
 }) => {
   if (!isOpen || !attempt) return null;
 
-  const isPerfect = attempt.accuracyPercentage === 100;
-  const isPassed = attempt.accuracyPercentage >= 70;
+  // Consistent accuracy display: always based on correct answers divided by total questions
+  const displayAccuracy =
+    attempt.gameId === 'memory_match'
+      ? attempt.accuracyPercentage
+      : attempt.totalQuestions > 0
+      ? Math.round((attempt.correctAnswers / attempt.totalQuestions) * 100)
+      : attempt.accuracyPercentage;
+
+  const isPerfect = displayAccuracy === 100;
+  const isPassed = displayAccuracy >= 70;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm animate-fade-in selection:bg-cyan-500 selection:text-white">
@@ -82,14 +90,14 @@ export const GamesZoneResultsModal: React.FC<GamesZoneResultsModalProps> = ({
             </span>
             <span
               className={`text-xl font-black font-mono ${
-                attempt.accuracyPercentage >= 80
+                displayAccuracy >= 80
                   ? 'text-emerald-600'
-                  : attempt.accuracyPercentage >= 60
+                  : displayAccuracy >= 60
                   ? 'text-amber-600'
                   : 'text-rose-600'
               }`}
             >
-              {attempt.accuracyPercentage}%
+              {displayAccuracy}%
             </span>
           </div>
 
