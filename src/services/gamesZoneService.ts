@@ -10,6 +10,7 @@
  * alter unit progress, 49-activity curriculum metrics, or topic mastery.
  */
 
+import type { GradeId } from '../types/schema';
 import type {
   GamesZoneGameId,
   GamesZoneDifficulty,
@@ -20,6 +21,8 @@ import { ApiService } from './apiService.ts';
 const GAMES_ZONE_ATTEMPTS_PREFIX = 'ura_games_zone_attempts_';
 const GAMES_ZONE_DAILY_XP_PREFIX = 'ura_games_zone_daily_xp_';
 const GAMES_ZONE_STATS_PREFIX = 'ura_games_zone_stats_';
+const GAMES_ZONE_RECENT_QUESTIONS_PREFIX = 'ura_games_zone_recent_';
+const RECENT_WINDOW_SIZE = 30; // Max recent questions tracked per student/game/grade/diff
 
 export const MAX_DAILY_GAMES_ZONE_XP = 150; // Daily anti-farming XP cap
 
@@ -256,6 +259,71 @@ export class GamesZoneService {
       });
     } catch (e) {
       // Offline or network error - attempt is safely preserved locally
+    }
+  }
+
+  /**
+   * Retrieves recent question IDs for student/game/grade/difficulty.
+   */
+  public static getRecentQuestionIds(
+    studentNumber: string = 'guest',
+    gameId: GamesZoneGameId,
+    gradeId: GradeId,
+    difficulty: GamesZoneDifficulty
+  ): string[] {
+    try {
+      const studentKey = studentNumber || 'guest';
+      const storageKey = `${GAMES_ZONE_RECENT_QUESTIONS_PREFIX}${studentKey}_${gameId}_${gradeId}_${difficulty}`;
+      const raw = localStorage.getItem(storageKey);
+      if (!raw) return [];
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  }
+
+  /**
+   * Records newly encountered question IDs into the sliding FIFO window.
+   */
+  public static recordRecentQuestionIds(
+    studentNumber: string = 'guest',
+    gameId: GamesZoneGameId,
+    gradeId: GradeId,
+    difficulty: GamesZoneDifficulty,
+    questionIds: string[]
+  ): void {
+    if (!questionIds || questionIds.length === 0) return;
+    try {
+      const studentKey = studentNumber || 'guest';
+      const storageKey = `${GAMES_ZONE_RECENT_QUESTIONS_PREFIX}${studentKey}_${gameId}_${gradeId}_${difficulty}`;
+      const current = this.getRecentQuestionIds(studentKey, gameId, gradeId, difficulty);
+      // Prepend newest IDs and deduplicate preserving order
+      const combined = [...questionIds, ...current.filter((id) => !questionIds.includes(id))];
+      if (combined.length > RECENT_WINDOW_SIZE) {
+        combined.length = RECENT_WINDOW_SIZE;
+      }
+      localStorage.setItem(storageKey, JSON.stringify(combined));
+    } catch {
+      // Storage unavailable
+    }
+  }
+
+  /**
+   * Resets recent question history for testing or manual refresh.
+   */
+  public static clearRecentQuestionIds(
+    studentNumber: string = 'guest',
+    gameId: GamesZoneGameId,
+    gradeId: GradeId,
+    difficulty: GamesZoneDifficulty
+  ): void {
+    try {
+      const studentKey = studentNumber || 'guest';
+      const storageKey = `${GAMES_ZONE_RECENT_QUESTIONS_PREFIX}${studentKey}_${gameId}_${gradeId}_${difficulty}`;
+      localStorage.removeItem(storageKey);
+    } catch {
+      // Storage unavailable
     }
   }
 }

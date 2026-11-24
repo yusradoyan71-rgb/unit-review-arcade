@@ -169,9 +169,9 @@ export const VocabularyInvadersGame: React.FC<VocabularyInvadersGameProps> = ({
     [questions.length, studentNumber, difficulty, studentClass, gradeId, onComplete]
   );
 
-  // Initialize questions and telemetry
+  // Initialize questions and telemetry with recent history tracking
   useEffect(() => {
-    const pool = getQuestionsForGame('vocabulary_invaders', gradeId, difficulty, 10) as VocabularyInvadersItem[];
+    const pool = getQuestionsForGame('vocabulary_invaders', gradeId, difficulty, 10, studentNumber) as VocabularyInvadersItem[];
     setQuestions(pool);
     setCurrentIndex(0);
     setScore(0);
@@ -194,7 +194,7 @@ export const VocabularyInvadersGame: React.FC<VocabularyInvadersGameProps> = ({
     sim.explosions = [];
     sim.isWaveActive = false;
     sim.hitResolved = false;
-  }, [gradeId, difficulty]);
+  }, [gradeId, difficulty, studentNumber]);
 
   // Setup wave when index or questions change
   useEffect(() => {

@@ -63,9 +63,9 @@ export const WordNinjaGame: React.FC<WordNinjaGameProps> = ({
   const lastPointRef = useRef<{ x: number; y: number } | null>(null);
   const slicedInCurrentStrokeRef = useRef<Set<string>>(new Set());
 
-  // Load questions
+  // Load questions with recent history tracking
   useEffect(() => {
-    const pool = getQuestionsForGame('word_ninja', gradeId, difficulty, 10) as WordNinjaItem[];
+    const pool = getQuestionsForGame('word_ninja', gradeId, difficulty, 10, studentNumber) as WordNinjaItem[];
     setQuestions(pool);
     setCurrentIndex(0);
     setScore(0);
@@ -74,7 +74,7 @@ export const WordNinjaGame: React.FC<WordNinjaGameProps> = ({
     setCorrectCount(0);
     setIncorrectCount(0);
     startTimeRef.current = Date.now();
-  }, [gradeId, difficulty]);
+  }, [gradeId, difficulty, studentNumber]);
 
   // Spawn targets for current question
   const spawnTargetsForQuestion = useCallback((q: WordNinjaItem) => {

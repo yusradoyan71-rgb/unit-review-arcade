@@ -1,6 +1,11 @@
 /**
- * UNIT REVIEW ARCADE — GRAMMARRUNNERDATA DATA BANK
- * Refined for Turkish EFL Middle-School Pedagogy & School Safety Standards.
+ * UNIT REVIEW ARCADE — GRAMMAR RUNNER DATA BANK (PHASE 7A & MIXED CURRICULUM EXPANSION)
+ * 
+ * 480 validated unique questions (80 items per tier) across:
+ * - Grade 7: Easy (80), Medium (80), Hard (80)
+ * - Grade 8: Easy (80), Medium (80), Hard (80)
+ * 
+ * Mixed Curriculum: Turkish MEB English Units 1-10 + School English Curriculum.
  */
 
 import type { GrammarRunnerBank } from '../../types/gamesZone';
@@ -487,6 +492,486 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
         "correctLaneIndex": 0,
         "grammarTopic": "Comparative Adjectives",
         "explanation": "Add '-er' to short adjectives for comparatives with 'than'."
+      },
+      {
+        "id": "gr_g7_e_41",
+        "sentencePrompt": "She _____ very outgoing and makes friends quickly.",
+        "laneOptions": [
+          "is",
+          "are",
+          "am"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "To Be (Present)",
+        "explanation": "Third person singular subject takes 'is'."
+      },
+      {
+        "id": "gr_g7_e_42",
+        "sentencePrompt": "My parents _____ born in a small town near the mountains.",
+        "laneOptions": [
+          "was",
+          "were",
+          "is"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Past Simple (To Be)",
+        "explanation": "Plural subject takes 'were'."
+      },
+      {
+        "id": "gr_g7_e_43",
+        "sentencePrompt": "He usually _____ football with his classmates after school.",
+        "laneOptions": [
+          "playing",
+          "play",
+          "plays"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Present Simple",
+        "explanation": "Third person singular takes -s in Present Simple."
+      },
+      {
+        "id": "gr_g7_e_44",
+        "sentencePrompt": "Look! The children _____ a new sandcastle on the beach.",
+        "laneOptions": [
+          "are building",
+          "build",
+          "built"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Present Continuous",
+        "explanation": "'Look!' indicates action happening right now."
+      },
+      {
+        "id": "gr_g7_e_45",
+        "sentencePrompt": "Cheetahs are _____ than lions and can run up to 100 km/h.",
+        "laneOptions": [
+          "fastest",
+          "faster",
+          "more fast"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Comparative Adjectives",
+        "explanation": "One-syllable adjectives take -er in comparatives."
+      },
+      {
+        "id": "gr_g7_e_46",
+        "sentencePrompt": "Jupiter is the _____ planet in our solar system.",
+        "laneOptions": [
+          "more large",
+          "larger",
+          "largest"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Superlative Adjectives",
+        "explanation": "Use 'the largest' for the supreme degree."
+      },
+      {
+        "id": "gr_g7_e_47",
+        "sentencePrompt": "You _____ turn off the lights before leaving the classroom.",
+        "laneOptions": [
+          "must",
+          "mustn't",
+          "can't"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Modals of Obligation",
+        "explanation": "'Must' expresses a necessary rule or duty."
+      },
+      {
+        "id": "gr_g7_e_48",
+        "sentencePrompt": "We _____ go to school on Sundays because it's the weekend.",
+        "laneOptions": [
+          "doesn't",
+          "don't",
+          "aren't"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Present Simple Negative",
+        "explanation": "Plural subject 'We' takes 'don't'."
+      },
+      {
+        "id": "gr_g7_e_49",
+        "sentencePrompt": "_____ did you watch that exciting wildlife documentary?",
+        "laneOptions": [
+          "What",
+          "Who",
+          "When"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Question Words",
+        "explanation": "'When' asks about time."
+      },
+      {
+        "id": "gr_g7_e_50",
+        "sentencePrompt": "There _____ a new bakery next to the municipal library.",
+        "laneOptions": [
+          "is",
+          "are",
+          "were"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "There is / There are",
+        "explanation": "Singular noun 'a new bakery' takes 'is'."
+      },
+      {
+        "id": "gr_g7_e_51",
+        "sentencePrompt": "My sister has _____ curly hair and green eyes.",
+        "laneOptions": [
+          "get",
+          "got",
+          "getting"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Have / Has Got",
+        "explanation": "Third person singular takes 'has got'."
+      },
+      {
+        "id": "gr_g7_e_52",
+        "sentencePrompt": "They _____ to Ankara last Friday to visit Atatürk's Mausoleum.",
+        "laneOptions": [
+          "gone",
+          "go",
+          "went"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Past Simple Irregular",
+        "explanation": "Past tense of 'go' is 'went'."
+      },
+      {
+        "id": "gr_g7_e_53",
+        "sentencePrompt": "An elephant is _____ than a gazelle.",
+        "laneOptions": [
+          "heavier",
+          "heaviest",
+          "more heavy"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Comparative Adjectives",
+        "explanation": "Two-syllable ending in -y changes to -ier: heavier."
+      },
+      {
+        "id": "gr_g7_e_54",
+        "sentencePrompt": "We always celebrate Republic Day _____ the 29th of October.",
+        "laneOptions": [
+          "in",
+          "on",
+          "at"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Prepositions of Time",
+        "explanation": "Specific calendar dates take 'on'."
+      },
+      {
+        "id": "gr_g7_e_55",
+        "sentencePrompt": "He is interested _____ learning about distant solar planets.",
+        "laneOptions": [
+          "at",
+          "on",
+          "in"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Prepositional Phrases",
+        "explanation": "'Interested in' is the correct dependent preposition."
+      },
+      {
+        "id": "gr_g7_e_56",
+        "sentencePrompt": "You _____ feed wild animals in the nature reserve.",
+        "laneOptions": [
+          "mustn't",
+          "must",
+          "can"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Modals of Prohibition",
+        "explanation": "'Mustn't' expresses strict prohibition."
+      },
+      {
+        "id": "gr_g7_e_57",
+        "sentencePrompt": "How _____ spectators attended the national archery match?",
+        "laneOptions": [
+          "much",
+          "many",
+          "any"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Quantifiers",
+        "explanation": "Countable plural noun 'spectators' takes 'how many'."
+      },
+      {
+        "id": "gr_g7_e_58",
+        "sentencePrompt": "There isn't _____ orange juice left in the kitchen jug.",
+        "laneOptions": [
+          "many",
+          "some",
+          "any"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Some / Any",
+        "explanation": "Negative sentences take 'any' with uncountables."
+      },
+      {
+        "id": "gr_g7_e_59",
+        "sentencePrompt": "He was very tired, _____ he went to bed early.",
+        "laneOptions": [
+          "so",
+          "because",
+          "but"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Conjunctions of Result",
+        "explanation": "'So' introduces the logical consequence."
+      },
+      {
+        "id": "gr_g7_e_60",
+        "sentencePrompt": "She stayed at home _____ she had a bad fever.",
+        "laneOptions": [
+          "so",
+          "because",
+          "but"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Conjunctions of Cause",
+        "explanation": "'Because' introduces the reason."
+      },
+      {
+        "id": "gr_g7_e_61",
+        "sentencePrompt": "My grandfather _____ a famous scientist in the 1980s.",
+        "laneOptions": [
+          "is",
+          "were",
+          "was"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Past Simple To Be",
+        "explanation": "Singular subject takes 'was'."
+      },
+      {
+        "id": "gr_g7_e_62",
+        "sentencePrompt": "Did you _____ your homework before going out to play?",
+        "laneOptions": [
+          "finish",
+          "finished",
+          "finishing"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Past Simple Question",
+        "explanation": "After 'did', use the base form of the verb."
+      },
+      {
+        "id": "gr_g7_e_63",
+        "sentencePrompt": "The blue whale is the _____ animal in the entire ocean.",
+        "laneOptions": [
+          "bigger",
+          "biggest",
+          "most big"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Superlative Adjectives",
+        "explanation": "Superlative degree uses 'the biggest'."
+      },
+      {
+        "id": "gr_g7_e_64",
+        "sentencePrompt": "We _____ our grandparents every single summer holiday.",
+        "laneOptions": [
+          "visiting",
+          "visits",
+          "visit"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Present Simple Habit",
+        "explanation": "Plural subject 'We' takes base verb 'visit'."
+      },
+      {
+        "id": "gr_g7_e_65",
+        "sentencePrompt": "Listen! Someone _____ at the front door right now.",
+        "laneOptions": [
+          "is knocking",
+          "knocks",
+          "knocked"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Present Continuous",
+        "explanation": "Present action happening right now."
+      },
+      {
+        "id": "gr_g7_e_66",
+        "sentencePrompt": "He doesn't _____ meat because he is a vegetarian.",
+        "laneOptions": [
+          "eats",
+          "eat",
+          "ate"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Present Simple Negative",
+        "explanation": "After 'doesn't', use base verb 'eat'."
+      },
+      {
+        "id": "gr_g7_e_67",
+        "sentencePrompt": "A tortoise moves _____ than a wild cheetah.",
+        "laneOptions": [
+          "more slow",
+          "slowest",
+          "slower"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Comparative Adjectives",
+        "explanation": "Comparative of slow is slower."
+      },
+      {
+        "id": "gr_g7_e_68",
+        "sentencePrompt": "What time _____ your online English class start?",
+        "laneOptions": [
+          "does",
+          "do",
+          "is"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Present Simple Question",
+        "explanation": "Singular subject 'class' takes auxiliary 'does'."
+      },
+      {
+        "id": "gr_g7_e_69",
+        "sentencePrompt": "They were playing volleyball _____ the phone rang.",
+        "laneOptions": [
+          "while",
+          "when",
+          "during"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Past Continuous with When",
+        "explanation": "'When' introduces a sudden short interrupting action."
+      },
+      {
+        "id": "gr_g7_e_70",
+        "sentencePrompt": "_____ you ever seen an endangered sea turtle?",
+        "laneOptions": [
+          "Did",
+          "Has",
+          "Have"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Present Perfect",
+        "explanation": "Subject 'you' takes auxiliary 'Have'."
+      },
+      {
+        "id": "gr_g7_e_71",
+        "sentencePrompt": "She is _____ generous person I have ever met in school.",
+        "laneOptions": [
+          "the most",
+          "more",
+          "most"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Superlative Long Adjectives",
+        "explanation": "Long adjectives take 'the most'."
+      },
+      {
+        "id": "gr_g7_e_72",
+        "sentencePrompt": "Don't share your private password _____ anyone online.",
+        "laneOptions": [
+          "to",
+          "with",
+          "for"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Prepositions with Verbs",
+        "explanation": "'Share with' is the correct preposition."
+      },
+      {
+        "id": "gr_g7_e_73",
+        "sentencePrompt": "The solar system _____ eight major planets orbiting the Sun.",
+        "laneOptions": [
+          "having",
+          "have",
+          "has"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Present Simple Fact",
+        "explanation": "Singular subject 'solar system' takes 'has'."
+      },
+      {
+        "id": "gr_g7_e_74",
+        "sentencePrompt": "Yesterday afternoon, we _____ around the ancient lake.",
+        "laneOptions": [
+          "hiked",
+          "hike",
+          "hiking"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Past Simple Regular",
+        "explanation": "Past tense of regular verb 'hike' is 'hiked'."
+      },
+      {
+        "id": "gr_g7_e_75",
+        "sentencePrompt": "You _____ wear a sturdy helmet while riding your bicycle.",
+        "laneOptions": [
+          "shouldn't",
+          "should",
+          "can't"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Giving Advice",
+        "explanation": "'Should' gives positive safety advice."
+      },
+      {
+        "id": "gr_g7_e_76",
+        "sentencePrompt": "How _____ water do wild camels need during desert travel?",
+        "laneOptions": [
+          "any",
+          "many",
+          "much"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Quantifiers",
+        "explanation": "Uncountable noun 'water' takes 'how much'."
+      },
+      {
+        "id": "gr_g7_e_77",
+        "sentencePrompt": "Can you speak English _____ than your older brother?",
+        "laneOptions": [
+          "better",
+          "good",
+          "best"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Irregular Comparatives",
+        "explanation": "Comparative of 'good/well' is 'better'."
+      },
+      {
+        "id": "gr_g7_e_78",
+        "sentencePrompt": "They didn't _____ any wild wolves in the national park.",
+        "laneOptions": [
+          "saw",
+          "see",
+          "seen"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Past Simple Negative",
+        "explanation": "After 'didn't', use the base verb 'see'."
+      },
+      {
+        "id": "gr_g7_e_79",
+        "sentencePrompt": "The chemist's shop is located _____ the city library.",
+        "laneOptions": [
+          "among",
+          "between",
+          "opposite"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Prepositions of Place",
+        "explanation": "'Opposite' indicates directly across."
+      },
+      {
+        "id": "gr_g7_e_80",
+        "sentencePrompt": "I am going to _____ my science project this weekend.",
+        "laneOptions": [
+          "complete",
+          "completed",
+          "completing"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Future with Going To",
+        "explanation": "'Be going to' is followed by a base infinitive."
       }
     ],
     "medium": [
@@ -970,6 +1455,486 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
         "correctLaneIndex": 0,
         "grammarTopic": "Conjunctions",
         "explanation": "'But' shows contrast between two clauses."
+      },
+      {
+        "id": "gr_g7_m_41",
+        "sentencePrompt": "While my brother was studying, I _____ my mountain bike.",
+        "laneOptions": [
+          "washed",
+          "was washing",
+          "wash"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Past Continuous (While)",
+        "explanation": "Two simultaneous continuous actions in past."
+      },
+      {
+        "id": "gr_g7_m_42",
+        "sentencePrompt": "Mount Everest is _____ than any other mountain on Earth.",
+        "laneOptions": [
+          "more high",
+          "highest",
+          "higher"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Comparative Adjectives",
+        "explanation": "One-syllable comparative takes -er."
+      },
+      {
+        "id": "gr_g7_m_43",
+        "sentencePrompt": "He used to _____ basketball every weekend when he was younger.",
+        "laneOptions": [
+          "play",
+          "played",
+          "playing"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Used To + Base Verb",
+        "explanation": "'Used to' is followed by the bare base verb."
+      },
+      {
+        "id": "gr_g7_m_44",
+        "sentencePrompt": "If we protect national parks, endangered animals _____ survive.",
+        "laneOptions": [
+          "would",
+          "will",
+          "did"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "First Conditional",
+        "explanation": "Real conditional: If + present, will + base verb."
+      },
+      {
+        "id": "gr_g7_m_45",
+        "sentencePrompt": "She is capable of _____ complex science equations quickly.",
+        "laneOptions": [
+          "solved",
+          "solve",
+          "solving"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Preposition + Gerund",
+        "explanation": "Prepositions are followed by gerund (-ing)."
+      },
+      {
+        "id": "gr_g7_m_46",
+        "sentencePrompt": "The documentary was _____ interesting that we watched it twice.",
+        "laneOptions": [
+          "so",
+          "such",
+          "too"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "So ... That",
+        "explanation": "'So' is used before standalone adjectives."
+      },
+      {
+        "id": "gr_g7_m_47",
+        "sentencePrompt": "Neither my friend _____ I had ever visited the royal palace.",
+        "laneOptions": [
+          "or",
+          "nor",
+          "and"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Correlative Conjunctions",
+        "explanation": "'Neither' pairs with 'nor'."
+      },
+      {
+        "id": "gr_g7_m_48",
+        "sentencePrompt": "You ought _____ apologize for your clumsy behavior yesterday.",
+        "laneOptions": [
+          "with",
+          "for",
+          "to"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Ought To",
+        "explanation": "'Ought' requires particle 'to'."
+      },
+      {
+        "id": "gr_g7_m_49",
+        "sentencePrompt": "The fire station received an emergency call _____ midnight.",
+        "laneOptions": [
+          "at",
+          "on",
+          "in"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Prepositions of Time",
+        "explanation": "Clock times and 'midnight' take 'at'."
+      },
+      {
+        "id": "gr_g7_m_50",
+        "sentencePrompt": "Although it was raining heavily, the spectators _____ in the arena.",
+        "laneOptions": [
+          "stay",
+          "stayed",
+          "staying"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Concessions (Although)",
+        "explanation": "Expressing contrast in past narrative."
+      },
+      {
+        "id": "gr_g7_m_51",
+        "sentencePrompt": "Who _____ the telescope in the seventeenth century?",
+        "laneOptions": [
+          "invent",
+          "did invent",
+          "invented"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Subject Question",
+        "explanation": "Subject questions do not use auxiliary 'did'."
+      },
+      {
+        "id": "gr_g7_m_52",
+        "sentencePrompt": "By the time the rescue team arrived, the hikers _____ a safe shelter.",
+        "laneOptions": [
+          "had built",
+          "built",
+          "build"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Past Perfect",
+        "explanation": "Action completed before another past event."
+      },
+      {
+        "id": "gr_g7_m_53",
+        "sentencePrompt": "The municipality announced that the new art gallery _____ next month.",
+        "laneOptions": [
+          "opened",
+          "will open",
+          "opens"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Reported Future",
+        "explanation": "Planned future event."
+      },
+      {
+        "id": "gr_g7_m_54",
+        "sentencePrompt": "You had better _____ your seatbelt during extreme safari rides.",
+        "laneOptions": [
+          "fastening",
+          "to fasten",
+          "fasten"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Had Better + Bare Verb",
+        "explanation": "'Had better' takes a bare infinitive."
+      },
+      {
+        "id": "gr_g7_m_55",
+        "sentencePrompt": "She didn't use to _____ science fiction movies, but now she loves them.",
+        "laneOptions": [
+          "like",
+          "liked",
+          "liking"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Used To Negative",
+        "explanation": "Negative 'didn't use to' takes base verb."
+      },
+      {
+        "id": "gr_g7_m_56",
+        "sentencePrompt": "The solar panels generate electricity _____ the day is cloudy.",
+        "laneOptions": [
+          "despite",
+          "even if",
+          "because"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Conjunctions of Condition",
+        "explanation": "'Even if' introduces a concession."
+      },
+      {
+        "id": "gr_g7_m_57",
+        "sentencePrompt": "I haven't completed my biography presentation _____.",
+        "laneOptions": [
+          "just",
+          "already",
+          "yet"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Present Perfect with Yet",
+        "explanation": "'Yet' is used in negative sentences at the end."
+      },
+      {
+        "id": "gr_g7_m_58",
+        "sentencePrompt": "How long have you _____ a member of the school environmental club?",
+        "laneOptions": [
+          "been",
+          "be",
+          "was"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Present Perfect with How Long",
+        "explanation": "Past participle of 'be' is 'been'."
+      },
+      {
+        "id": "gr_g7_m_59",
+        "sentencePrompt": "He was looking forward to _____ the ancient museum ruins.",
+        "laneOptions": [
+          "visit",
+          "visiting",
+          "visited"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Look Forward To + -ing",
+        "explanation": "'To' is a preposition here, followed by gerund."
+      },
+      {
+        "id": "gr_g7_m_60",
+        "sentencePrompt": "The cheetah ran so swiftly _____ no prey could escape.",
+        "laneOptions": [
+          "than",
+          "as",
+          "that"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "So ... That Result",
+        "explanation": "Consecutive clause of result."
+      },
+      {
+        "id": "gr_g7_m_61",
+        "sentencePrompt": "Unless we reduce plastic waste, ocean wildlife _____ suffer severe damage.",
+        "laneOptions": [
+          "will",
+          "would",
+          "did"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Conditionals with Unless",
+        "explanation": "'Unless' means 'if not' in first conditional."
+      },
+      {
+        "id": "gr_g7_m_62",
+        "sentencePrompt": "They were walking through the forest when they suddenly _____ an injured eagle.",
+        "laneOptions": [
+          "were spotting",
+          "spotted",
+          "spot"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Past Simple Interruption",
+        "explanation": "Short completed past action."
+      },
+      {
+        "id": "gr_g7_m_63",
+        "sentencePrompt": "This public library is _____ modern than the one in my hometown.",
+        "laneOptions": [
+          "much",
+          "most",
+          "more"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Comparative of Long Adjectives",
+        "explanation": "Long adjectives take 'more' in comparatives."
+      },
+      {
+        "id": "gr_g7_m_64",
+        "sentencePrompt": "He had to stay after school in order to _____ his science experiment.",
+        "laneOptions": [
+          "finish",
+          "finishing",
+          "finished"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "In Order To + Infinitive",
+        "explanation": "Purpose connector takes base verb."
+      },
+      {
+        "id": "gr_g7_m_65",
+        "sentencePrompt": "We enjoyed _____ the British heritage exhibition last weekend.",
+        "laneOptions": [
+          "explore",
+          "exploring",
+          "explored"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Gerunds after Enjoy",
+        "explanation": "'Enjoy' is followed by a gerund (-ing)."
+      },
+      {
+        "id": "gr_g7_m_66",
+        "sentencePrompt": "The weather was sunny, _____ we decided to hike up the rocky hill.",
+        "laneOptions": [
+          "although",
+          "because",
+          "so"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Cause and Result (So)",
+        "explanation": "Result connector."
+      },
+      {
+        "id": "gr_g7_m_67",
+        "sentencePrompt": "Has your class _____ planted trees in the municipal park?",
+        "laneOptions": [
+          "ever",
+          "never",
+          "yet"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Present Perfect (Ever)",
+        "explanation": "'Ever' in questions asking about life experience."
+      },
+      {
+        "id": "gr_g7_m_68",
+        "sentencePrompt": "A chameleon uses camouflage _____ hide from dangerous predators.",
+        "laneOptions": [
+          "for",
+          "to",
+          "so"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Infinitive of Purpose",
+        "explanation": "'To + verb' expresses purpose."
+      },
+      {
+        "id": "gr_g7_m_69",
+        "sentencePrompt": "The spacecraft traveled beyond Earth's atmosphere _____ speed.",
+        "laneOptions": [
+          "with high",
+          "in high",
+          "at high"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Prepositional Collocations",
+        "explanation": "'At high speed' is the standard English phrase."
+      },
+      {
+        "id": "gr_g7_m_70",
+        "sentencePrompt": "You must avoid _____ personal passwords on public computers.",
+        "laneOptions": [
+          "saving",
+          "save",
+          "to save"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Verbs Followed by Gerund",
+        "explanation": "'Avoid' takes a gerund (-ing)."
+      },
+      {
+        "id": "gr_g7_m_71",
+        "sentencePrompt": "The students were listening carefully while the teacher _____ the experiment.",
+        "laneOptions": [
+          "explained",
+          "was explaining",
+          "explains"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Past Continuous (While)",
+        "explanation": "Simultaneous ongoing action in past."
+      },
+      {
+        "id": "gr_g7_m_72",
+        "sentencePrompt": "She is not old _____ to drive a motor vehicle legally.",
+        "laneOptions": [
+          "so",
+          "too",
+          "enough"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Adjective + Enough",
+        "explanation": "'Enough' follows the adjective."
+      },
+      {
+        "id": "gr_g7_m_73",
+        "sentencePrompt": "This is the planet _____ gravity keeps the moons in stable orbit.",
+        "laneOptions": [
+          "whose",
+          "which",
+          "where"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Relative Pronouns (Whose)",
+        "explanation": "Possessive relative pronoun."
+      },
+      {
+        "id": "gr_g7_m_74",
+        "sentencePrompt": "He succeeded in _____ the highest grade on the English exam.",
+        "laneOptions": [
+          "achieve",
+          "achieving",
+          "to achieve"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Preposition + Gerund",
+        "explanation": "'In' takes a gerund."
+      },
+      {
+        "id": "gr_g7_m_75",
+        "sentencePrompt": "Would you mind _____ the window? It feels chilly in the room.",
+        "laneOptions": [
+          "close",
+          "to close",
+          "closing"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Mind + Gerund",
+        "explanation": "'Would you mind' takes a gerund."
+      },
+      {
+        "id": "gr_g7_m_76",
+        "sentencePrompt": "They have lived in Britain _____ five memorable years.",
+        "laneOptions": [
+          "for",
+          "since",
+          "during"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "For vs Since",
+        "explanation": "'For' is used for duration."
+      },
+      {
+        "id": "gr_g7_m_77",
+        "sentencePrompt": "The museum guide told us _____ touch the ancient Roman statues.",
+        "laneOptions": [
+          "don't",
+          "not to",
+          "no"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Reported Imperatives",
+        "explanation": "Negative reported command: 'told us not to'."
+      },
+      {
+        "id": "gr_g7_m_78",
+        "sentencePrompt": "As soon as the alarm rang, the firefighters _____ the station.",
+        "laneOptions": [
+          "leave",
+          "were leaving",
+          "left"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Time Clauses (As Soon As)",
+        "explanation": "Immediate sequential past actions."
+      },
+      {
+        "id": "gr_g7_m_79",
+        "sentencePrompt": "I would rather travel by train _____ drive through dense traffic.",
+        "laneOptions": [
+          "than",
+          "to",
+          "from"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Would Rather ... Than",
+        "explanation": "'Would rather' takes 'than' with bare verbs."
+      },
+      {
+        "id": "gr_g7_m_80",
+        "sentencePrompt": "She spoke so quietly that _____ anyone could hear her explanation.",
+        "laneOptions": [
+          "hard",
+          "hardly",
+          "harder"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Adverb of Degree (Hardly)",
+        "explanation": "'Hardly' means barely or scarcely."
       }
     ],
     "hard": [
@@ -1453,6 +2418,486 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
         "correctLaneIndex": 0,
         "grammarTopic": "Prepositions + Gerund",
         "explanation": "Follow the preposition 'for' with the gerund form 'helping'."
+      },
+      {
+        "id": "gr_g7_h_41",
+        "sentencePrompt": "Had the environmentalists not intervened, the wetland _____ drained.",
+        "laneOptions": [
+          "had been",
+          "will be",
+          "would have been"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Third Conditional Result",
+        "explanation": "Unreal past condition result."
+      },
+      {
+        "id": "gr_g7_h_42",
+        "sentencePrompt": "Not only _____ the match, but they also broke the national record.",
+        "laneOptions": [
+          "did they win",
+          "they won",
+          "they did win"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Inversion with Negative Adverbials",
+        "explanation": "'Not only' at the start triggers question word order."
+      },
+      {
+        "id": "gr_g7_h_43",
+        "sentencePrompt": "The ancient manuscript is believed _____ written in the fourth century.",
+        "laneOptions": [
+          "to be",
+          "to have been",
+          "being"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Passive Reporting Verbs",
+        "explanation": "Past action with perfect passive infinitive."
+      },
+      {
+        "id": "gr_g7_h_44",
+        "sentencePrompt": "No sooner had the space shuttle launched _____ communications were restored.",
+        "laneOptions": [
+          "then",
+          "when",
+          "than"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Correlative Connectors (No Sooner)",
+        "explanation": "'No sooner' pairs strictly with 'than'."
+      },
+      {
+        "id": "gr_g7_h_45",
+        "sentencePrompt": "It is essential that every student _____ cybersecurity rules online.",
+        "laneOptions": [
+          "follow",
+          "follows",
+          "followed"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Present Subjunctive",
+        "explanation": "Formal subjunctive uses bare base verb."
+      },
+      {
+        "id": "gr_g7_h_46",
+        "sentencePrompt": "Under no circumstances _____ you reveal your authentication credentials.",
+        "laneOptions": [
+          "you should",
+          "should",
+          "ought"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Inversion for Emphasis",
+        "explanation": "Negative phrase at front triggers inversion."
+      },
+      {
+        "id": "gr_g7_h_47",
+        "sentencePrompt": "The biodiversity of the rainforest is far _____ than previously estimated.",
+        "laneOptions": [
+          "more rich",
+          "richest",
+          "richer"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Comparative with Intensifiers",
+        "explanation": "'Far' intensifies the comparative degree."
+      },
+      {
+        "id": "gr_g7_h_48",
+        "sentencePrompt": "Scarcely had the hikers reached the summit _____ the blizzard struck.",
+        "laneOptions": [
+          "when",
+          "than",
+          "then"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Correlative Connectors (Scarcely)",
+        "explanation": "'Scarcely' pairs strictly with 'when'."
+      },
+      {
+        "id": "gr_g7_h_49",
+        "sentencePrompt": "She would have finished her astronomy paper on time if she _____ more resources.",
+        "laneOptions": [
+          "has",
+          "had had",
+          "would have"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Third Conditional If-Clause",
+        "explanation": "Past unreal condition takes past perfect."
+      },
+      {
+        "id": "gr_g7_h_50",
+        "sentencePrompt": "The mayor was praised for having _____ the municipal recycling initiative.",
+        "laneOptions": [
+          "championing",
+          "champion",
+          "championed"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Perfect Gerund",
+        "explanation": "Having + past participle indicates completed action."
+      },
+      {
+        "id": "gr_g7_h_51",
+        "sentencePrompt": "_____ you to encounter an endangered predator, remain calm and back away.",
+        "laneOptions": [
+          "Were",
+          "Had",
+          "Should"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Inversion in Conditional",
+        "explanation": "'Were you to...' expresses formal hypothetical condition."
+      },
+      {
+        "id": "gr_g7_h_52",
+        "sentencePrompt": "Little _____ the researchers realize how significant their discovery would be.",
+        "laneOptions": [
+          "had",
+          "did",
+          "were"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Negative Inversion (Little)",
+        "explanation": "'Little' at front requires auxiliary inversion."
+      },
+      {
+        "id": "gr_g7_h_53",
+        "sentencePrompt": "The telescope is so powerful that distant nebulae are visible _____ detail.",
+        "laneOptions": [
+          "by great",
+          "with great",
+          "in great"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Prepositional Collocations",
+        "explanation": "'In great detail' is the standard English idiom."
+      },
+      {
+        "id": "gr_g7_h_54",
+        "sentencePrompt": "He spoke as if he _____ an eyewitness to the historic space landing.",
+        "laneOptions": [
+          "had been",
+          "is",
+          "has been"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "As If with Unreal Past",
+        "explanation": "'As if' takes past perfect for past unreal situations."
+      },
+      {
+        "id": "gr_g7_h_55",
+        "sentencePrompt": "Seldom _____ such extraordinary courage been displayed in wildlife rescue.",
+        "laneOptions": [
+          "is",
+          "has",
+          "was"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Inversion with Seldom",
+        "explanation": "'Seldom' at the front requires auxiliary inversion."
+      },
+      {
+        "id": "gr_g7_h_56",
+        "sentencePrompt": "The more energy we conserve today, the _____ our ecological footprint will be.",
+        "laneOptions": [
+          "more small",
+          "smallest",
+          "smaller"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "The More ... The More",
+        "explanation": "Parallel comparative structure."
+      },
+      {
+        "id": "gr_g7_h_57",
+        "sentencePrompt": "She insisted that the endangered habitat _____ strictly protected by law.",
+        "laneOptions": [
+          "be",
+          "is",
+          "was"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Subjunctive Passive",
+        "explanation": "'Insist that' takes base subjunctive 'be protected'."
+      },
+      {
+        "id": "gr_g7_h_58",
+        "sentencePrompt": "Had it not been for the swift evacuation, hundreds _____ perished in the quake.",
+        "laneOptions": [
+          "will have",
+          "might have",
+          "have"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Past Unreal Consequence",
+        "explanation": "Past modal perfect for hypothetical result."
+      },
+      {
+        "id": "gr_g7_h_59",
+        "sentencePrompt": "The ancient fortress walls are said to _____ rebuilt three times.",
+        "laneOptions": [
+          "being",
+          "be",
+          "have been"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Perfect Passive Infinitive",
+        "explanation": "Reporting past completed events."
+      },
+      {
+        "id": "gr_g7_h_60",
+        "sentencePrompt": "Hardly had the alarm sounded _____ the rescue crew mobilized.",
+        "laneOptions": [
+          "when",
+          "than",
+          "after"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Hardly ... When",
+        "explanation": "'Hardly' pairs strictly with 'when'."
+      },
+      {
+        "id": "gr_g7_h_61",
+        "sentencePrompt": "So fierce _____ the gale that ancient oak trees were uprooted across the park.",
+        "laneOptions": [
+          "is",
+          "was",
+          "were"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Inversion with So + Adjective",
+        "explanation": "'So + adjective' at front triggers inversion."
+      },
+      {
+        "id": "gr_g7_h_62",
+        "sentencePrompt": "The faster technology evolves, the _____ vigilant we must be online.",
+        "laneOptions": [
+          "much",
+          "most",
+          "more"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Double Comparative",
+        "explanation": "Comparative correlation uses 'the more'."
+      },
+      {
+        "id": "gr_g7_h_63",
+        "sentencePrompt": "It is high time the city council _____ strict limits on industrial carbon emissions.",
+        "laneOptions": [
+          "imposed",
+          "imposes",
+          "impose"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "High Time + Past Tense",
+        "explanation": "'It is high time' takes past tense for present urgency."
+      },
+      {
+        "id": "gr_g7_h_64",
+        "sentencePrompt": "Such _____ the beauty of the aurora that travelers stood in silent reverence.",
+        "laneOptions": [
+          "is",
+          "was",
+          "were"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Inversion with Such",
+        "explanation": "'Such was the beauty...' is the formal inversion."
+      },
+      {
+        "id": "gr_g7_h_65",
+        "sentencePrompt": "Had the satellite failed, global navigation systems _____ shut down.",
+        "laneOptions": [
+          "had",
+          "will have",
+          "would have"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Inverted Third Conditional",
+        "explanation": "Conditional inversion without 'if'."
+      },
+      {
+        "id": "gr_g7_h_66",
+        "sentencePrompt": "They recommended that the solar facility _____ expanded across the desert.",
+        "laneOptions": [
+          "be",
+          "is",
+          "was"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Subjunctive in Recommendations",
+        "explanation": "Formal base subjunctive."
+      },
+      {
+        "id": "gr_g7_h_67",
+        "sentencePrompt": "Only after reviewing the archaeological findings _____ the theory accepted.",
+        "laneOptions": [
+          "is",
+          "was",
+          "did"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Inversion with Only After",
+        "explanation": "'Only after' phrase triggers inversion."
+      },
+      {
+        "id": "gr_g7_h_68",
+        "sentencePrompt": "The scientist spoke with such conviction as to _____ all initial skepticism.",
+        "laneOptions": [
+          "dispelled",
+          "dispelling",
+          "dispel"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "So As To + Infinitive",
+        "explanation": "Result structure takes base verb."
+      },
+      {
+        "id": "gr_g7_h_69",
+        "sentencePrompt": "Never before _____ humanity witnessed such rapid technological transformation.",
+        "laneOptions": [
+          "has",
+          "is",
+          "had"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Inversion with Never Before",
+        "explanation": "Negative time adverbial requires auxiliary inversion."
+      },
+      {
+        "id": "gr_g7_h_70",
+        "sentencePrompt": "He walked with cautious steps lest he _____ alarm the resting lioness.",
+        "laneOptions": [
+          "would",
+          "should",
+          "could"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Lest + Should Clause",
+        "explanation": "'Lest' expresses precaution with 'should'."
+      },
+      {
+        "id": "gr_g7_h_71",
+        "sentencePrompt": "In no way _____ the student council be blamed for the rescheduled tournament.",
+        "laneOptions": [
+          "may",
+          "it can",
+          "can"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Negative Inversion",
+        "explanation": "Fronted negative triggers inversion."
+      },
+      {
+        "id": "gr_g7_h_72",
+        "sentencePrompt": "The historical documentary was praised _____ both compelling and objective.",
+        "laneOptions": [
+          "for being",
+          "to be",
+          "as being"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Prepositional Verb Complements",
+        "explanation": "'Praised for being' is standard idiom."
+      },
+      {
+        "id": "gr_g7_h_73",
+        "sentencePrompt": "Were the polar ice caps to melt completely, coastal cities _____ inundated.",
+        "laneOptions": [
+          "will be",
+          "would be",
+          "are"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Formal Second Conditional Inversion",
+        "explanation": "'Were ... to melt' takes 'would be'."
+      },
+      {
+        "id": "gr_g7_h_74",
+        "sentencePrompt": "She was on the verge of _____ her doctoral thesis when the grant was approved.",
+        "laneOptions": [
+          "to submit",
+          "submit",
+          "submitting"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "On the Verge of + Gerund",
+        "explanation": "Prepositional phrase takes gerund."
+      },
+      {
+        "id": "gr_g7_h_75",
+        "sentencePrompt": "Much as I admire his athletic skill, I _____ approve of his arrogant conduct.",
+        "laneOptions": [
+          "cannot",
+          "should not",
+          "might"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Concession with Much As",
+        "explanation": "'Much as' expresses concession."
+      },
+      {
+        "id": "gr_g7_h_76",
+        "sentencePrompt": "Should anyone inquire about the confidential report, _____ them to the director.",
+        "laneOptions": [
+          "referred",
+          "refer",
+          "referring"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Conditional Inversion with Imperative",
+        "explanation": "'Should anyone...' takes imperative in result."
+      },
+      {
+        "id": "gr_g7_h_77",
+        "sentencePrompt": "The environmental crisis is too critical _____ disregarded any longer.",
+        "laneOptions": [
+          "for be",
+          "being",
+          "to be"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Too ... To Be (Passive)",
+        "explanation": "'Too + adjective + to be + V3'."
+      },
+      {
+        "id": "gr_g7_h_78",
+        "sentencePrompt": "Had you alerted the safety warden immediately, the mishap _____ prevented.",
+        "laneOptions": [
+          "could have been",
+          "can be",
+          "was"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Third Conditional Passive",
+        "explanation": "Hypothetical past modal."
+      },
+      {
+        "id": "gr_g7_h_79",
+        "sentencePrompt": "Nowhere else in Britain _____ such majestic Gothic cathedrals be found.",
+        "laneOptions": [
+          "you can",
+          "can",
+          "are"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Inversion with Nowhere Else",
+        "explanation": "Negative locative triggers inversion."
+      },
+      {
+        "id": "gr_g7_h_80",
+        "sentencePrompt": "The discovery was attributed to her having _____ countless sleepless lab hours.",
+        "laneOptions": [
+          "devoting",
+          "devote",
+          "devoted"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Perfect Participle after Preposition",
+        "explanation": "Having + V3 shows completed contribution."
       }
     ]
   },
@@ -1938,6 +3383,486 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
         "correctLaneIndex": 0,
         "grammarTopic": "Correlative Conjunctions",
         "explanation": "'Both' is paired with 'and'."
+      },
+      {
+        "id": "gr_g8_e_41",
+        "sentencePrompt": "A true friend always _____ your secrets and never shares them.",
+        "laneOptions": [
+          "keeps",
+          "keep",
+          "keeping"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Present Simple Habit",
+        "explanation": "Singular subject takes third-person -s."
+      },
+      {
+        "id": "gr_g8_e_42",
+        "sentencePrompt": "I would rather _____ at home tonight than attend a crowded party.",
+        "laneOptions": [
+          "to stay",
+          "stay",
+          "staying"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Would Rather + Bare Verb",
+        "explanation": "'Would rather' takes a bare infinitive."
+      },
+      {
+        "id": "gr_g8_e_43",
+        "sentencePrompt": "She prefers drinking fresh herbal tea _____ iced coffee.",
+        "laneOptions": [
+          "from",
+          "than",
+          "to"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Prefer X to Y",
+        "explanation": "'Prefer' takes preposition 'to'."
+      },
+      {
+        "id": "gr_g8_e_44",
+        "sentencePrompt": "Would you like _____ come over to our house for dinner tonight?",
+        "laneOptions": [
+          "to",
+          "for",
+          "with"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Would You Like To",
+        "explanation": "Polite invitation structure."
+      },
+      {
+        "id": "gr_g8_e_45",
+        "sentencePrompt": "First, peel the potatoes and _____ them into thin slices.",
+        "laneOptions": [
+          "cuts",
+          "cut",
+          "cutting"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Imperatives in Recipes",
+        "explanation": "Recipe steps use imperative base verbs."
+      },
+      {
+        "id": "gr_g8_e_46",
+        "sentencePrompt": "Can you hold _____ a moment while I put you through to the manager?",
+        "laneOptions": [
+          "up",
+          "in",
+          "on"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Telephone Phrasal Verbs",
+        "explanation": "'Hold on' means wait on the line."
+      },
+      {
+        "id": "gr_g8_e_47",
+        "sentencePrompt": "He didn't answer his phone because the line was _____.",
+        "laneOptions": [
+          "busy",
+          "free",
+          "open"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Telephone Terms",
+        "explanation": "'Busy' or 'engaged' line."
+      },
+      {
+        "id": "gr_g8_e_48",
+        "sentencePrompt": "I always use a strong password to _____ my online social media account.",
+        "laneOptions": [
+          "protects",
+          "protect",
+          "protecting"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Infinitive of Purpose",
+        "explanation": "'To + base verb' expresses purpose."
+      },
+      {
+        "id": "gr_g8_e_49",
+        "sentencePrompt": "Paragliding is much _____ dangerous than playing table tennis.",
+        "laneOptions": [
+          "much",
+          "most",
+          "more"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Comparative of Long Adjectives",
+        "explanation": "Comparatives take 'more'."
+      },
+      {
+        "id": "gr_g8_e_50",
+        "sentencePrompt": "You must wear a protective helmet _____ you go skateboarding.",
+        "laneOptions": [
+          "when",
+          "until",
+          "unless"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Time Conjunctions",
+        "explanation": "'When' indicates the condition of time."
+      },
+      {
+        "id": "gr_g8_e_51",
+        "sentencePrompt": "The ancient castle was _____ in the twelfth century by Norman settlers.",
+        "laneOptions": [
+          "build",
+          "built",
+          "building"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Past Simple Passive",
+        "explanation": "Was + V3 for historic creation."
+      },
+      {
+        "id": "gr_g8_e_52",
+        "sentencePrompt": "Whose duty is it to _____ out the kitchen garbage tonight?",
+        "laneOptions": [
+          "took",
+          "taking",
+          "take"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Chores Phrasal Verbs",
+        "explanation": "'Take out the garbage' is the standard chore."
+      },
+      {
+        "id": "gr_g8_e_53",
+        "sentencePrompt": "My mother does the _____ every Saturday morning.",
+        "laneOptions": [
+          "laundry",
+          "dishes",
+          "dust"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Chores Collocations",
+        "explanation": "'Do the laundry' means washing clothes."
+      },
+      {
+        "id": "gr_g8_e_54",
+        "sentencePrompt": "Scientists in the university lab _____ a new vaccine last month.",
+        "laneOptions": [
+          "discover",
+          "discovered",
+          "discovering"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Past Simple Active",
+        "explanation": "Past completed action with time marker."
+      },
+      {
+        "id": "gr_g8_e_55",
+        "sentencePrompt": "An earthquake is a violent shaking of the Earth's _____.",
+        "laneOptions": [
+          "water",
+          "air",
+          "crust"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Natural Disaster Science",
+        "explanation": "Earthquakes occur in the Earth's crust."
+      },
+      {
+        "id": "gr_g8_e_56",
+        "sentencePrompt": "If an earthquake occurs, remember to drop, cover, and hold _____.",
+        "laneOptions": [
+          "on",
+          "up",
+          "in"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Disaster Safety Drill",
+        "explanation": "'Hold on' is part of the standard drill."
+      },
+      {
+        "id": "gr_g8_e_57",
+        "sentencePrompt": "We _____ to the cinema together yesterday afternoon.",
+        "laneOptions": [
+          "go",
+          "went",
+          "gone"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Past Simple Irregular",
+        "explanation": "Past tense of 'go' is 'went'."
+      },
+      {
+        "id": "gr_g8_e_58",
+        "sentencePrompt": "I can't count on him because he never keeps his _____.",
+        "laneOptions": [
+          "games",
+          "books",
+          "promises"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Friendship Collocations",
+        "explanation": "'Keep a promise' means staying true to words."
+      },
+      {
+        "id": "gr_g8_e_59",
+        "sentencePrompt": "How about _____ a barbecue in the back garden this Sunday?",
+        "laneOptions": [
+          "having",
+          "have",
+          "had"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Suggestions (How About)",
+        "explanation": "'How about' takes a gerund (-ing)."
+      },
+      {
+        "id": "gr_g8_e_60",
+        "sentencePrompt": "Why don't we _____ to the newly opened internet café?",
+        "laneOptions": [
+          "going",
+          "go",
+          "went"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Suggestions (Why Don't We)",
+        "explanation": "'Why don't we' takes base verb."
+      },
+      {
+        "id": "gr_g8_e_61",
+        "sentencePrompt": "She is very trendy; she always _____ fashionable clothes.",
+        "laneOptions": [
+          "wearing",
+          "wear",
+          "wears"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Present Simple Habit",
+        "explanation": "Third person singular takes -s."
+      },
+      {
+        "id": "gr_g8_e_62",
+        "sentencePrompt": "To prepare vegetable soup, boil the broth _____ twenty minutes.",
+        "laneOptions": [
+          "for",
+          "since",
+          "during"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Duration in Recipes",
+        "explanation": "'For' indicates duration of time."
+      },
+      {
+        "id": "gr_g8_e_63",
+        "sentencePrompt": "Before you fry the chicken, _____ it with garlic and herbs.",
+        "laneOptions": [
+          "seasons",
+          "season",
+          "seasoning"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Process Steps",
+        "explanation": "Imperative base verb."
+      },
+      {
+        "id": "gr_g8_e_64",
+        "sentencePrompt": "I am calling to make a flight reservation _____ Istanbul.",
+        "laneOptions": [
+          "on",
+          "at",
+          "to"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Prepositions with Travel",
+        "explanation": "'Flight to' indicates destination."
+      },
+      {
+        "id": "gr_g8_e_65",
+        "sentencePrompt": "Could you please speak louder? The connection is very _____.",
+        "laneOptions": [
+          "bad",
+          "clear",
+          "good"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Telephone Expressions",
+        "explanation": "'Bad connection' indicates poor line."
+      },
+      {
+        "id": "gr_g8_e_66",
+        "sentencePrompt": "Don't click on suspicious links _____ emails from strangers.",
+        "laneOptions": [
+          "on",
+          "in",
+          "at"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Internet Safety Rules",
+        "explanation": "Links contained 'in' emails."
+      },
+      {
+        "id": "gr_g8_e_67",
+        "sentencePrompt": "Trekking in the alpine mountains requires sturdy hiking _____.",
+        "laneOptions": [
+          "slippers",
+          "gloves",
+          "boots"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Adventure Equipment",
+        "explanation": "Boots are required for mountain trekking."
+      },
+      {
+        "id": "gr_g8_e_68",
+        "sentencePrompt": "This all-inclusive resort offers free meals and _____ rooms.",
+        "laneOptions": [
+          "comfortable",
+          "discomfort",
+          "comfortably"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Adjectives Modifying Nouns",
+        "explanation": "Adjective 'comfortable' describes rooms."
+      },
+      {
+        "id": "gr_g8_e_69",
+        "sentencePrompt": "My brother and I take _____ vacuuming the living room carpet.",
+        "laneOptions": [
+          "steps",
+          "turns",
+          "times"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Chores Idiom",
+        "explanation": "'Take turns' means alternating duties."
+      },
+      {
+        "id": "gr_g8_e_70",
+        "sentencePrompt": "Did Alexander Graham Bell _____ the telephone in 1876?",
+        "laneOptions": [
+          "inventing",
+          "invented",
+          "invent"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Past Simple Question",
+        "explanation": "Auxiliary 'did' takes base verb."
+      },
+      {
+        "id": "gr_g8_e_71",
+        "sentencePrompt": "A severe drought occurs when there is no _____ for months.",
+        "laneOptions": [
+          "rain",
+          "wind",
+          "snow"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Natural Forces Definition",
+        "explanation": "Drought is caused by lack of rain."
+      },
+      {
+        "id": "gr_g8_e_72",
+        "sentencePrompt": "We must prepare an emergency _____ before the storm hits.",
+        "laneOptions": [
+          "ticket",
+          "kit",
+          "book"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Disaster Preparedness",
+        "explanation": "'Emergency kit' contains survival supplies."
+      },
+      {
+        "id": "gr_g8_e_73",
+        "sentencePrompt": "He prefers playing acoustic guitar to _____ video games.",
+        "laneOptions": [
+          "played",
+          "play",
+          "playing"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Prefer X to Y (Parallel)",
+        "explanation": "Parallel gerund structure: playing to playing."
+      },
+      {
+        "id": "gr_g8_e_74",
+        "sentencePrompt": "Shall we _____ our science homework together in the library?",
+        "laneOptions": [
+          "do",
+          "doing",
+          "did"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Suggestions (Shall We)",
+        "explanation": "'Shall we' takes base verb."
+      },
+      {
+        "id": "gr_g8_e_75",
+        "sentencePrompt": "She didn't invite him to her birthday party _____ he was rude.",
+        "laneOptions": [
+          "so",
+          "because",
+          "but"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Conjunction of Reason",
+        "explanation": "'Because' gives the reason for refusal."
+      },
+      {
+        "id": "gr_g8_e_76",
+        "sentencePrompt": "Mix the flour, eggs, and sugar in a large ceramic _____.",
+        "laneOptions": [
+          "fork",
+          "plate",
+          "bowl"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Kitchen Utensils",
+        "explanation": "Mixing occurs inside a bowl."
+      },
+      {
+        "id": "gr_g8_e_77",
+        "sentencePrompt": "I'm afraid Mrs. Clark is not _____ at her desk right now.",
+        "laneOptions": [
+          "available",
+          "absent",
+          "busy"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Telephone Expressions",
+        "explanation": "'Not available' is polite business etiquette."
+      },
+      {
+        "id": "gr_g8_e_78",
+        "sentencePrompt": "Social media influencers often _____ videos to their followers.",
+        "laneOptions": [
+          "download",
+          "upload",
+          "delete"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Internet Vocabulary",
+        "explanation": "'Upload' means posting content online."
+      },
+      {
+        "id": "gr_g8_e_79",
+        "sentencePrompt": "Bungee jumping is considered one of the most _____ sports.",
+        "laneOptions": [
+          "tame",
+          "boring",
+          "dangerous"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Extreme Sports Vocabulary",
+        "explanation": "Bungee jumping is dangerous."
+      },
+      {
+        "id": "gr_g8_e_80",
+        "sentencePrompt": "The historic amphitheater was _____ by thousands of tourists.",
+        "laneOptions": [
+          "visited",
+          "visiting",
+          "visit"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Passive Voice",
+        "explanation": "Was + V3 in past passive."
       }
     ],
     "medium": [
@@ -2420,6 +4345,486 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
         "correctLaneIndex": 0,
         "grammarTopic": "Present Perfect (So Far)",
         "explanation": "'So far' indicates progress up to the present moment, requiring Present Perfect."
+      },
+      {
+        "id": "gr_g8_m_41",
+        "sentencePrompt": "I would rather eat homemade soup than _____ oily fast food.",
+        "laneOptions": [
+          "to order",
+          "order",
+          "ordering"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Would Rather Comparison",
+        "explanation": "Bare infinitive follows 'than'."
+      },
+      {
+        "id": "gr_g8_m_42",
+        "sentencePrompt": "She has been interested in robotics _____ she was ten years old.",
+        "laneOptions": [
+          "during",
+          "for",
+          "since"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Since with Past Clause",
+        "explanation": "'Since' introduces a specific starting point."
+      },
+      {
+        "id": "gr_g8_m_43",
+        "sentencePrompt": "The cake smells _____ delicious that everyone wants a slice.",
+        "laneOptions": [
+          "so",
+          "such",
+          "too"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "So + Adjective + That",
+        "explanation": "'So' precedes standalone adjective."
+      },
+      {
+        "id": "gr_g8_m_44",
+        "sentencePrompt": "If you encounter an emergency on the phone, _____ 112 immediately.",
+        "laneOptions": [
+          "dialing",
+          "dial",
+          "dialed"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "First Conditional Imperative",
+        "explanation": "Imperative in the result clause."
+      },
+      {
+        "id": "gr_g8_m_45",
+        "sentencePrompt": "The garlic and onions should be _____ in olive oil until golden.",
+        "laneOptions": [
+          "sauteing",
+          "saute",
+          "sauteed"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Passive with Modals",
+        "explanation": "Should be + V3."
+      },
+      {
+        "id": "gr_g8_m_46",
+        "sentencePrompt": "He refused the party invitation on the grounds _____ he was ill.",
+        "laneOptions": [
+          "that",
+          "of",
+          "for"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Formal Conjunctions",
+        "explanation": "'On the grounds that' introduces justification."
+      },
+      {
+        "id": "gr_g8_m_47",
+        "sentencePrompt": "Neither the teacher nor the students _____ aware of the network glitch.",
+        "laneOptions": [
+          "was",
+          "were",
+          "is"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Subject-Verb Agreement",
+        "explanation": "Verb agrees with nearest plural subject."
+      },
+      {
+        "id": "gr_g8_m_48",
+        "sentencePrompt": "By the time the firefighter arrived, the smoke _____ throughout the hall.",
+        "laneOptions": [
+          "spreads",
+          "spread",
+          "had spread"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Past Perfect Narrative",
+        "explanation": "Action preceding another past moment."
+      },
+      {
+        "id": "gr_g8_m_49",
+        "sentencePrompt": "She apologized for _____ forgotten her classmate's notebook.",
+        "laneOptions": [
+          "having",
+          "have",
+          "had"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Preposition + Perfect Gerund",
+        "explanation": "'For having forgotten'."
+      },
+      {
+        "id": "gr_g8_m_50",
+        "sentencePrompt": "The internet search engine was designed to _____ relevant results quickly.",
+        "laneOptions": [
+          "delivered",
+          "deliver",
+          "delivering"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Infinitive of Purpose",
+        "explanation": "Designed to + base verb."
+      },
+      {
+        "id": "gr_g8_m_51",
+        "sentencePrompt": "You had better _____ your computer files before updating the operating system.",
+        "laneOptions": [
+          "backing",
+          "to backup",
+          "backup"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Had Better + Bare Verb",
+        "explanation": "Advice with 'had better'."
+      },
+      {
+        "id": "gr_g8_m_52",
+        "sentencePrompt": "The severe flood caused _____ damage that whole bridges collapsed.",
+        "laneOptions": [
+          "so much",
+          "such",
+          "too much"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "So Much + Uncountable + That",
+        "explanation": "'So much damage that'."
+      },
+      {
+        "id": "gr_g8_m_53",
+        "sentencePrompt": "We were hiking through the ravine when suddenly rock fragments _____ down.",
+        "laneOptions": [
+          "were tumbling",
+          "tumbled",
+          "tumble"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Past Simple Interruption",
+        "explanation": "Short completed action."
+      },
+      {
+        "id": "gr_g8_m_54",
+        "sentencePrompt": "A reliable friend is someone upon _____ you can always depend.",
+        "laneOptions": [
+          "which",
+          "who",
+          "whom"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Preposition + Relative Pronoun",
+        "explanation": "Preposition 'upon' takes 'whom'."
+      },
+      {
+        "id": "gr_g8_m_55",
+        "sentencePrompt": "The historic site has been protected by UNESCO _____ several decades.",
+        "laneOptions": [
+          "for",
+          "since",
+          "during"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Duration (For)",
+        "explanation": "'For' indicates duration."
+      },
+      {
+        "id": "gr_g8_m_56",
+        "sentencePrompt": "He would rather study science than _____ video games all evening.",
+        "laneOptions": [
+          "to play",
+          "play",
+          "playing"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Parallel Bare Infinitives",
+        "explanation": "'Than play'."
+      },
+      {
+        "id": "gr_g8_m_57",
+        "sentencePrompt": "Unless we conserve water during summer, the municipality _____ introduce restrictions.",
+        "laneOptions": [
+          "did",
+          "would",
+          "will"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "First Conditional with Unless",
+        "explanation": "'Unless' takes present, result takes will."
+      },
+      {
+        "id": "gr_g8_m_58",
+        "sentencePrompt": "The chef explained that the meat _____ marinated overnight for best flavor.",
+        "laneOptions": [
+          "must be",
+          "has to",
+          "is"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Passive Obligation",
+        "explanation": "'Must be marinated'."
+      },
+      {
+        "id": "gr_g8_m_59",
+        "sentencePrompt": "She had no difficulty in _____ the online registration form.",
+        "laneOptions": [
+          "complete",
+          "completing",
+          "completed"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Have Difficulty In + Gerund",
+        "explanation": "'In' takes gerund."
+      },
+      {
+        "id": "gr_g8_m_60",
+        "sentencePrompt": "The tourist was astonished to discover _____ historic monuments in the old city.",
+        "laneOptions": [
+          "such",
+          "so much",
+          "so many"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "So Many + Plural Noun",
+        "explanation": "'So many' with countable plural."
+      },
+      {
+        "id": "gr_g8_m_61",
+        "sentencePrompt": "I am not accustomed to _____ up before sunrise for morning chores.",
+        "laneOptions": [
+          "waking",
+          "wake",
+          "woke"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Be Accustomed To + Gerund",
+        "explanation": "'To' is a preposition here."
+      },
+      {
+        "id": "gr_g8_m_62",
+        "sentencePrompt": "The seismologists warned that aftershocks _____ continue for days.",
+        "laneOptions": [
+          "must",
+          "might",
+          "ought"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Modals of Possibility",
+        "explanation": "'Might' expresses possibility."
+      },
+      {
+        "id": "gr_g8_m_63",
+        "sentencePrompt": "He spoke with such clarity that everybody _____ understand his instructions.",
+        "laneOptions": [
+          "may",
+          "can",
+          "could"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Past Ability in Result",
+        "explanation": "'Could' expresses past ability."
+      },
+      {
+        "id": "gr_g8_m_64",
+        "sentencePrompt": "You are supposed to _____ your hands thoroughly before handling food.",
+        "laneOptions": [
+          "wash",
+          "washing",
+          "washed"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Be Supposed To + Verb",
+        "explanation": "'Be supposed to' takes base verb."
+      },
+      {
+        "id": "gr_g8_m_65",
+        "sentencePrompt": "They decided to postpone the paragliding tournament _____ the turbulent wind.",
+        "laneOptions": [
+          "because",
+          "due to",
+          "although"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Prepositional Conjunction (Due To)",
+        "explanation": "'Due to' takes noun phrase."
+      },
+      {
+        "id": "gr_g8_m_66",
+        "sentencePrompt": "She has never _____ an extreme adventure sport before in her life.",
+        "laneOptions": [
+          "trying",
+          "try",
+          "tried"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Present Perfect (Never)",
+        "explanation": "'Has never + V3'."
+      },
+      {
+        "id": "gr_g8_m_67",
+        "sentencePrompt": "The scientist was honored for _____ the revolutionary solar cell.",
+        "laneOptions": [
+          "patenting",
+          "patent",
+          "patented"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Preposition + Gerund",
+        "explanation": "'For patenting'."
+      },
+      {
+        "id": "gr_g8_m_68",
+        "sentencePrompt": "If you _____ to Istanbul, be sure to visit the Blue Mosque and Topkapi Palace.",
+        "laneOptions": [
+          "will go",
+          "go",
+          "went"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Zero/First Conditional",
+        "explanation": "Present simple in conditional clause."
+      },
+      {
+        "id": "gr_g8_m_69",
+        "sentencePrompt": "He couldn't find his passport, _____ he had packed it in his carry-on bag.",
+        "laneOptions": [
+          "because",
+          "despite",
+          "though"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Concession at End",
+        "explanation": "'Though' expresses contrast."
+      },
+      {
+        "id": "gr_g8_m_70",
+        "sentencePrompt": "The recipe calls for three tablespoons of olive oil, _____ is rich in healthy fats.",
+        "laneOptions": [
+          "which",
+          "that",
+          "where"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Non-Defining Relative Clause",
+        "explanation": "'Which' refers to olive oil."
+      },
+      {
+        "id": "gr_g8_m_71",
+        "sentencePrompt": "She was excited about _____ the championship medal at school.",
+        "laneOptions": [
+          "win",
+          "winning",
+          "won"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Preposition + Gerund",
+        "explanation": "'About winning'."
+      },
+      {
+        "id": "gr_g8_m_72",
+        "sentencePrompt": "No matter how challenging the chore was, he _____ it conscientiously.",
+        "laneOptions": [
+          "completing",
+          "complete",
+          "completed"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Concessive Clause in Past",
+        "explanation": "Main clause takes past simple."
+      },
+      {
+        "id": "gr_g8_m_73",
+        "sentencePrompt": "The emergency shelter provided blankets and warm tea _____ the freezing survivors.",
+        "laneOptions": [
+          "to",
+          "for",
+          "at"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Provide Something To Someone",
+        "explanation": "'Provide to/for'."
+      },
+      {
+        "id": "gr_g8_m_74",
+        "sentencePrompt": "She didn't use to like spicy food, but now she _____ it frequently.",
+        "laneOptions": [
+          "ate",
+          "eats",
+          "eating"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Contrast with Present Habit",
+        "explanation": "Present simple 'eats'."
+      },
+      {
+        "id": "gr_g8_m_75",
+        "sentencePrompt": "How long has your father _____ as an aeronautical engineer?",
+        "laneOptions": [
+          "working",
+          "work",
+          "worked"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Present Perfect Duration",
+        "explanation": "'Has worked'."
+      },
+      {
+        "id": "gr_g8_m_76",
+        "sentencePrompt": "We had better leave for the airport now, _____ we will miss our flight.",
+        "laneOptions": [
+          "otherwise",
+          "unless",
+          "although"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Connector of Consequence",
+        "explanation": "'Otherwise' means or else."
+      },
+      {
+        "id": "gr_g8_m_77",
+        "sentencePrompt": "The archaeological excavation _____ by international university scholars.",
+        "laneOptions": [
+          "directed",
+          "was directed",
+          "was directing"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Past Simple Passive",
+        "explanation": "Was + past participle."
+      },
+      {
+        "id": "gr_g8_m_78",
+        "sentencePrompt": "He would prefer to cook at home rather than _____ at an expensive diner.",
+        "laneOptions": [
+          "dined",
+          "dining",
+          "dine"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Prefer Rather Than",
+        "explanation": "Bare verb follows 'rather than'."
+      },
+      {
+        "id": "gr_g8_m_79",
+        "sentencePrompt": "If natural disasters strike, emergency personnel _____ immediately.",
+        "laneOptions": [
+          "respond",
+          "will respond",
+          "responded"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Real Conditional",
+        "explanation": "Present habit or future certainty."
+      },
+      {
+        "id": "gr_g8_m_80",
+        "sentencePrompt": "She was tired after spending hours _____ the kitchen floor.",
+        "laneOptions": [
+          "mop",
+          "mopping",
+          "mopped"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Spend Time + Gerund",
+        "explanation": "Spend time doing something."
       }
     ],
     "hard": [
@@ -2942,6 +5347,486 @@ export const GRAMMAR_RUNNER_BANK: GrammarRunnerBank = {
         "grammarTopic": "Expressing Opinions (In my opinion)",
         "explanation": "\"In my opinion\" is the standard phrase to introduce personal viewpoints.",
         "contentVersion": 2
+      },
+      {
+        "id": "gr_g8_h_41",
+        "sentencePrompt": "I would much rather you _____ your friend directly instead of texting.",
+        "laneOptions": [
+          "calling",
+          "call",
+          "called"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Would Rather + Subject + Past",
+        "explanation": "'Would rather you called' expresses preference for someone else's action."
+      },
+      {
+        "id": "gr_g8_h_42",
+        "sentencePrompt": "Had the warning sirens sounded earlier, the residents _____ safely.",
+        "laneOptions": [
+          "would have evacuated",
+          "evacuated",
+          "will evacuate"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Inverted Third Conditional",
+        "explanation": "Past unreal conditional without 'if'."
+      },
+      {
+        "id": "gr_g8_h_43",
+        "sentencePrompt": "Not only did he prepare the banquet, but he also _____ the entire kitchen.",
+        "laneOptions": [
+          "cleans",
+          "cleaned",
+          "cleaning"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Parallel Past Narrative with Inversion",
+        "explanation": "Second clause maintains past tense."
+      },
+      {
+        "id": "gr_g8_h_44",
+        "sentencePrompt": "It is high time we _____ our computer passwords to ensure cybersecurity.",
+        "laneOptions": [
+          "changing",
+          "change",
+          "changed"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "It Is High Time + Past Subjunctive",
+        "explanation": "Urgent present necessity takes past tense."
+      },
+      {
+        "id": "gr_g8_h_45",
+        "sentencePrompt": "Under no circumstances should personal banking details _____ online.",
+        "laneOptions": [
+          "be shared",
+          "share",
+          "being shared"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Inversion with Passive Modal",
+        "explanation": "Should + be + V3."
+      },
+      {
+        "id": "gr_g8_h_46",
+        "sentencePrompt": "The more meticulously you plan the recipe, the _____ the result will be.",
+        "laneOptions": [
+          "best",
+          "better",
+          "more good"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Double Comparative",
+        "explanation": "The more ... the better."
+      },
+      {
+        "id": "gr_g8_h_47",
+        "sentencePrompt": "The research team was praised for having _____ the groundbreaking patent.",
+        "laneOptions": [
+          "securing",
+          "secure",
+          "secured"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Perfect Gerund",
+        "explanation": "Having + past participle."
+      },
+      {
+        "id": "gr_g8_h_48",
+        "sentencePrompt": "She spoke with such diplomatic courtesy _____ all tension vanished.",
+        "laneOptions": [
+          "that",
+          "as",
+          "than"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Such + Noun + That",
+        "explanation": "Result clause with 'that'."
+      },
+      {
+        "id": "gr_g8_h_49",
+        "sentencePrompt": "Were the earthquake to trigger a tsunami, coastal warnings _____ issued.",
+        "laneOptions": [
+          "will be",
+          "would be",
+          "are"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Formal Second Conditional Inversion",
+        "explanation": "Were ... to trigger -> would be."
+      },
+      {
+        "id": "gr_g8_h_50",
+        "sentencePrompt": "Scarcely had the phone line connected _____ the battery died.",
+        "laneOptions": [
+          "then",
+          "than",
+          "when"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Scarcely ... When",
+        "explanation": "'Scarcely' pairs strictly with 'when'."
+      },
+      {
+        "id": "gr_g8_h_51",
+        "sentencePrompt": "He acts as though he _____ the sole authority on extreme sports.",
+        "laneOptions": [
+          "were",
+          "is",
+          "has been"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "As Though with Subjunctive",
+        "explanation": "Subjunctive 'were' for hypothetical claim."
+      },
+      {
+        "id": "gr_g8_h_52",
+        "sentencePrompt": "No sooner had the recipe been published _____ it went viral worldwide.",
+        "laneOptions": [
+          "when",
+          "than",
+          "after"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "No Sooner ... Than",
+        "explanation": "'No sooner' pairs strictly with 'than'."
+      },
+      {
+        "id": "gr_g8_h_53",
+        "sentencePrompt": "The historic ruins are reported to _____ severely damaged in the tremor.",
+        "laneOptions": [
+          "being",
+          "be",
+          "have been"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Reporting Verbs with Perfect Passive",
+        "explanation": "Past event reported with perfect infinitive."
+      },
+      {
+        "id": "gr_g8_h_54",
+        "sentencePrompt": "Little _____ the internet users realize how their personal data was harvested.",
+        "laneOptions": [
+          "did",
+          "had",
+          "were"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Negative Inversion (Little)",
+        "explanation": "Fronted 'Little' requires auxiliary inversion."
+      },
+      {
+        "id": "gr_g8_h_55",
+        "sentencePrompt": "You had better not _____ that confidential document to unverified contacts.",
+        "laneOptions": [
+          "to send",
+          "send",
+          "sending"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Had Better Negative",
+        "explanation": "'Had better not' + bare verb."
+      },
+      {
+        "id": "gr_g8_h_56",
+        "sentencePrompt": "Seldom _____ such culinary excellence been achieved by a young apprentice.",
+        "laneOptions": [
+          "was",
+          "is",
+          "has"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Inversion with Seldom",
+        "explanation": "Auxiliary inversion with present perfect."
+      },
+      {
+        "id": "gr_g8_h_57",
+        "sentencePrompt": "She insisted that the laboratory protocol _____ strictly maintained.",
+        "laneOptions": [
+          "be",
+          "is",
+          "was"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Formal Subjunctive",
+        "explanation": "Base subjunctive 'be'."
+      },
+      {
+        "id": "gr_g8_h_58",
+        "sentencePrompt": "Had it not been for the sturdy helmet, the cyclist _____ head trauma.",
+        "laneOptions": [
+          "suffered",
+          "would have suffered",
+          "will suffer"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Third Conditional Inversion",
+        "explanation": "Hypothetical past consequence."
+      },
+      {
+        "id": "gr_g8_h_59",
+        "sentencePrompt": "The paragliding instructor demanded that each student _____ safety checks.",
+        "laneOptions": [
+          "performed",
+          "performs",
+          "perform"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Subjunctive with Demand",
+        "explanation": "Base form 'perform'."
+      },
+      {
+        "id": "gr_g8_h_60",
+        "sentencePrompt": "Hardly had the chef seasoned the soup _____ the VIP patrons arrived.",
+        "laneOptions": [
+          "when",
+          "than",
+          "then"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Hardly ... When",
+        "explanation": "Pairing 'hardly' with 'when'."
+      },
+      {
+        "id": "gr_g8_h_61",
+        "sentencePrompt": "So severe _____ the winter blizzard that all airport runways were closed.",
+        "laneOptions": [
+          "is",
+          "was",
+          "were"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Inversion with So + Adjective",
+        "explanation": "Fronted adjective triggers inversion."
+      },
+      {
+        "id": "gr_g8_h_62",
+        "sentencePrompt": "The older the architecture of the city, the _____ its historical value.",
+        "laneOptions": [
+          "more great",
+          "greatest",
+          "greater"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Parallel Comparative",
+        "explanation": "The older ... the greater."
+      },
+      {
+        "id": "gr_g8_h_63",
+        "sentencePrompt": "It is essential that every household _____ an emergency preparedness kit.",
+        "laneOptions": [
+          "assemble",
+          "assembles",
+          "assembled"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Formal Mandative Subjunctive",
+        "explanation": "'Essential that' takes base verb."
+      },
+      {
+        "id": "gr_g8_h_64",
+        "sentencePrompt": "Such _____ the ferocity of the hurricane that roofs were torn away.",
+        "laneOptions": [
+          "is",
+          "was",
+          "were"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Inversion with Such + Noun",
+        "explanation": "Fronted 'Such was...'."
+      },
+      {
+        "id": "gr_g8_h_65",
+        "sentencePrompt": "Had they checked the road conditions, they _____ trapped in the blizzard.",
+        "laneOptions": [
+          "will not be",
+          "were not",
+          "would not have been"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Third Conditional Negative",
+        "explanation": "Hypothetical past avoidance."
+      },
+      {
+        "id": "gr_g8_h_66",
+        "sentencePrompt": "The committee recommended that the national disaster fund _____ expanded.",
+        "laneOptions": [
+          "be",
+          "is",
+          "was"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Recommendation Subjunctive",
+        "explanation": "Base subjunctive 'be'."
+      },
+      {
+        "id": "gr_g8_h_67",
+        "sentencePrompt": "Only after verifying the caller's credentials _____ the transaction authorized.",
+        "laneOptions": [
+          "is",
+          "was",
+          "did"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Inversion with Only After",
+        "explanation": "Fronted phrase triggers inversion."
+      },
+      {
+        "id": "gr_g8_h_68",
+        "sentencePrompt": "He was accustomed to _____ high-altitude mountain trails in all seasons.",
+        "laneOptions": [
+          "trekked",
+          "trek",
+          "trekking"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Accustomed To + Gerund",
+        "explanation": "'To' as preposition takes gerund."
+      },
+      {
+        "id": "gr_g8_h_69",
+        "sentencePrompt": "Never before _____ such a powerful earthquake been recorded in this region.",
+        "laneOptions": [
+          "had",
+          "has",
+          "was"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Past Inversion (Never Before)",
+        "explanation": "Auxiliary inversion."
+      },
+      {
+        "id": "gr_g8_h_70",
+        "sentencePrompt": "He prepared the meal with utmost caution lest the delicate sauce _____ burn.",
+        "laneOptions": [
+          "would",
+          "should",
+          "could"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Lest Clause",
+        "explanation": "'Lest' takes 'should'."
+      },
+      {
+        "id": "gr_g8_h_71",
+        "sentencePrompt": "In no way _____ the volunteer team be faulted for the delayed rescue.",
+        "laneOptions": [
+          "may",
+          "it can",
+          "can"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Fronted Negative Inversion",
+        "explanation": "'In no way' requires inversion."
+      },
+      {
+        "id": "gr_g8_h_72",
+        "sentencePrompt": "The ancient fortress is believed to _____ occupied during the Crusades.",
+        "laneOptions": [
+          "have been",
+          "be",
+          "being"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Perfect Passive Infinitive",
+        "explanation": "Historical belief."
+      },
+      {
+        "id": "gr_g8_h_73",
+        "sentencePrompt": "Were the volcanic eruption to intensify, thousands _____ immediate relocation.",
+        "laneOptions": [
+          "will need",
+          "would need",
+          "needed"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Formal Conditional Inversion",
+        "explanation": "Were ... to intensify -> would need."
+      },
+      {
+        "id": "gr_g8_h_74",
+        "sentencePrompt": "She was on the verge of _____ her culinary championship title.",
+        "laneOptions": [
+          "to defend",
+          "defend",
+          "defending"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "On the Verge of + Gerund",
+        "explanation": "Prepositional phrase takes gerund."
+      },
+      {
+        "id": "gr_g8_h_75",
+        "sentencePrompt": "Much as we appreciate extreme thrills, safety _____ always take priority.",
+        "laneOptions": [
+          "must",
+          "can",
+          "might"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Concession with Obligation",
+        "explanation": "'Must' expresses imperative priority."
+      },
+      {
+        "id": "gr_g8_h_76",
+        "sentencePrompt": "Should anyone require emergency assistance, _____ this direct extension.",
+        "laneOptions": [
+          "dialed",
+          "dial",
+          "dialing"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Inversion with Imperative",
+        "explanation": "'Should anyone...' takes imperative."
+      },
+      {
+        "id": "gr_g8_h_77",
+        "sentencePrompt": "The historic monument is far too valuable _____ demolished for a highway.",
+        "laneOptions": [
+          "for be",
+          "being",
+          "to be"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Too ... To Be Passive",
+        "explanation": "Too valuable to be demolished."
+      },
+      {
+        "id": "gr_g8_h_78",
+        "sentencePrompt": "Had the scientist published the formula sooner, lives _____ saved.",
+        "laneOptions": [
+          "could have been",
+          "can be",
+          "were"
+        ],
+        "correctLaneIndex": 0,
+        "grammarTopic": "Modal Third Conditional Passive",
+        "explanation": "Could have been saved."
+      },
+      {
+        "id": "gr_g8_h_79",
+        "sentencePrompt": "Nowhere in Europe _____ such dramatic coastal cliffs be found.",
+        "laneOptions": [
+          "you can",
+          "can",
+          "are"
+        ],
+        "correctLaneIndex": 1,
+        "grammarTopic": "Inversion with Nowhere",
+        "explanation": "Fronted locative triggers inversion."
+      },
+      {
+        "id": "gr_g8_h_80",
+        "sentencePrompt": "The invention was credited to his having _____ years of dedicated research.",
+        "laneOptions": [
+          "investing",
+          "invest",
+          "invested"
+        ],
+        "correctLaneIndex": 2,
+        "grammarTopic": "Perfect Participle after Preposition",
+        "explanation": "Having + V3."
       }
     ]
   }

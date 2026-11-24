@@ -21,6 +21,7 @@ import type {
   WordConnectPuzzle,
   MemoryMatchSet,
 } from '../../types/gamesZone';
+import { GamesZoneService } from '../../services/gamesZoneService';
 
 import { WORD_NINJA_BANK } from './wordNinjaData.ts';
 import { GRAMMAR_RUNNER_BANK } from './grammarRunnerData.ts';
@@ -258,13 +259,15 @@ export function getAllGamesZoneCatalog(): GamesZoneGameMetadata[] {
 
 /**
  * Returns a randomized slice of questions for a chosen game, grade, and difficulty.
- * Defaults to 10 questions per gameplay session.
+ * Integrates recent-question avoidance: prioritizes questions not recently seen
+ * by the student in consecutive sessions, with graceful fallback on pool exhaustion.
  */
 export function getQuestionsForGame(
   gameId: GamesZoneGameId,
   gradeId: GradeId,
   difficulty: GamesZoneDifficulty,
-  count: number = 10
+  count: number = 10,
+  studentNumber: string = 'guest'
 ): (
   | WordNinjaItem
   | GrammarRunnerItem
@@ -314,12 +317,49 @@ export function getQuestionsForGame(
     return [];
   }
 
-  // Fisher-Yates shuffle copy
-  const shuffled = [...sourceBank];
-  for (let i = shuffled.length - 1; i > 0; i--) {
+  // 1. Fetch recently encountered question IDs
+  const recentIds = GamesZoneService.getRecentQuestionIds(studentNumber, gameId, gradeId, difficulty);
+  const recentSet = new Set(recentIds);
+
+  // 2. Separate into unseen and recently-seen pools
+  const unseen = sourceBank.filter((q) => !recentSet.has(q.id));
+  const seen = sourceBank.filter((q) => recentSet.has(q.id));
+
+  // 3. Shuffle unseen pool with Fisher-Yates
+  const shuffledUnseen = [...unseen];
+  for (let i = shuffledUnseen.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    [shuffledUnseen[i], shuffledUnseen[j]] = [shuffledUnseen[j], shuffledUnseen[i]];
   }
 
-  return shuffled.slice(0, Math.min(count, shuffled.length));
+  let selected: any[] = [];
+
+  if (shuffledUnseen.length >= count) {
+    selected = shuffledUnseen.slice(0, count);
+  } else {
+    // Unseen pool is smaller than count -> take all unseen, then fill from least recently seen (oldest first)
+    selected = [...shuffledUnseen];
+    const seenIndexMap = new Map<string, number>(recentIds.map((id, idx) => [id, idx]));
+    // Higher index in recentIds means it was seen further in the past (oldest)
+    const sortedSeen = [...seen].sort((a, b) => {
+      const idxA = seenIndexMap.get(a.id) ?? -1;
+      const idxB = seenIndexMap.get(b.id) ?? -1;
+      return idxB - idxA;
+    });
+    const needed = count - selected.length;
+    selected.push(...sortedSeen.slice(0, needed));
+  }
+
+  // 4. Record newly selected IDs into recent history
+  if (selected.length > 0) {
+    GamesZoneService.recordRecentQuestionIds(
+      studentNumber,
+      gameId,
+      gradeId,
+      difficulty,
+      selected.map((q) => q.id)
+    );
+  }
+
+  return selected;
 }

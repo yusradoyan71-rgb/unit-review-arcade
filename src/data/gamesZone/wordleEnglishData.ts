@@ -1,6 +1,11 @@
 /**
- * UNIT REVIEW ARCADE — WORDLEENGLISHDATA DATA BANK
- * Refined for Turkish EFL Middle-School Pedagogy & School Safety Standards.
+ * UNIT REVIEW ARCADE — WORDLE ENGLISH DATA BANK (PHASE 7A & MIXED CURRICULUM EXPANSION)
+ * 
+ * 480 validated unique words (80 items per tier) across:
+ * - Grade 7: Easy (80, 4-letter), Medium (80, 5-letter), Hard (80, 6-letter)
+ * - Grade 8: Easy (80, 4-letter), Medium (80, 5-letter), Hard (80, 6-letter)
+ * 
+ * Mixed Curriculum: Turkish MEB English Units 1-10 + School English Curriculum.
  */
 
 import type { WordleEnglishBank } from '../../types/gamesZone';
@@ -367,6 +372,366 @@ export const WORDLE_ENGLISH_BANK: WordleEnglishBank = {
         "exampleSentence": "The spring sunshine feels pleasantly warm.",
         "category": "Environment",
         "explanation": "WARM (Ilık, sıcak): Having a comfortable degree of mild heat. E.g.: \"The spring sunshine feels pleasantly warm.\""
+      },
+      {
+        "id": "we_g7_e_41",
+        "word": "CALM",
+        "clue": "Not nervous, angry, or upset; peaceful",
+        "turkishMeaning": "Sakin, huzurlu",
+        "exampleSentence": "He remained calm during the fire drill.",
+        "category": "Personality",
+        "explanation": "CALM (Sakin, huzurlu): Not nervous, angry, or upset; peaceful. E.g.: \"He remained calm during the fire drill.\""
+      },
+      {
+        "id": "we_g7_e_42",
+        "word": "KIND",
+        "clue": "Generous, helpful, and caring about other people",
+        "turkishMeaning": "Kibar, nazik",
+        "exampleSentence": "She was very kind to the new student.",
+        "category": "Personality",
+        "explanation": "KIND (Kibar, nazik): Generous, helpful, and caring about other people. E.g.: \"She was very kind to the new student.\""
+      },
+      {
+        "id": "we_g7_e_43",
+        "word": "BOLD",
+        "clue": "Brave and confident; not afraid to take risks",
+        "turkishMeaning": "Cesur, cüretkâr",
+        "exampleSentence": "The bold explorer entered the dark cave.",
+        "category": "Personality",
+        "explanation": "BOLD (Cesur, cüretkâr): Brave and confident; not afraid to take risks. E.g.: \"The bold explorer entered the dark cave.\""
+      },
+      {
+        "id": "we_g7_e_44",
+        "word": "WARM",
+        "clue": "Having a comfortable degree of heat or friendly",
+        "turkishMeaning": "Ilık / Samimi",
+        "exampleSentence": "We received a warm welcome in London.",
+        "category": "Personality & Climate",
+        "explanation": "WARM (Ilık / Samimi): Having a comfortable degree of heat or friendly. E.g.: \"We received a warm welcome in London.\""
+      },
+      {
+        "id": "we_g7_e_45",
+        "word": "GOAL",
+        "clue": "A point scored in football or an ambition",
+        "turkishMeaning": "Hedef / Gol",
+        "exampleSentence": "He scored the winning goal in the finals.",
+        "category": "Sports",
+        "explanation": "GOAL (Hedef / Gol): A point scored in football or an ambition. E.g.: \"He scored the winning goal in the finals.\""
+      },
+      {
+        "id": "we_g7_e_46",
+        "word": "BALL",
+        "clue": "A round object used in tennis, football, and golf",
+        "turkishMeaning": "Top",
+        "exampleSentence": "Kick the ball into the opponent's net.",
+        "category": "Sports",
+        "explanation": "BALL (Top): A round object used in tennis, football, and golf. E.g.: \"Kick the ball into the opponent's net.\""
+      },
+      {
+        "id": "we_g7_e_47",
+        "word": "RACE",
+        "clue": "A competition to see who is the fastest",
+        "turkishMeaning": "Yarış",
+        "exampleSentence": "She won the hundred-meter sprinting race.",
+        "category": "Sports",
+        "explanation": "RACE (Yarış): A competition to see who is the fastest. E.g.: \"She won the hundred-meter sprinting race.\""
+      },
+      {
+        "id": "we_g7_e_48",
+        "word": "TEAM",
+        "clue": "A group of players competing together on one side",
+        "turkishMeaning": "Takım",
+        "exampleSentence": "Our basketball team won the cup.",
+        "category": "Sports",
+        "explanation": "TEAM (Takım): A group of players competing together on one side. E.g.: \"Our basketball team won the cup.\""
+      },
+      {
+        "id": "we_g7_e_49",
+        "word": "BORN",
+        "clue": "Brought into life by birth",
+        "turkishMeaning": "Doğmuş",
+        "exampleSentence": "He was born in Ankara in 2011.",
+        "category": "Biographies",
+        "explanation": "BORN (Doğmuş): Brought into life by birth. E.g.: \"He was born in Ankara in 2011.\""
+      },
+      {
+        "id": "we_g7_e_50",
+        "word": "DIED",
+        "clue": "Stopped living; ceased life",
+        "turkishMeaning": "Vefat etti",
+        "exampleSentence": "The ancient scientist died centuries ago.",
+        "category": "Biographies",
+        "explanation": "DIED (Vefat etti): Stopped living; ceased life. E.g.: \"The ancient scientist died centuries ago.\""
+      },
+      {
+        "id": "we_g7_e_51",
+        "word": "PAST",
+        "clue": "The period of time before the present day",
+        "turkishMeaning": "Geçmiş",
+        "exampleSentence": "We study the past in our history class.",
+        "category": "Biographies",
+        "explanation": "PAST (Geçmiş): The period of time before the present day. E.g.: \"We study the past in our history class.\""
+      },
+      {
+        "id": "we_g7_e_52",
+        "word": "WILD",
+        "clue": "Living in natural conditions without human care",
+        "turkishMeaning": "Vahşi, doğal",
+        "exampleSentence": "Wild deer roam freely in the reserve.",
+        "category": "Wild Animals",
+        "explanation": "WILD (Vahşi, doğal): Living in natural conditions without human care. E.g.: \"Wild deer roam freely in the reserve.\""
+      },
+      {
+        "id": "we_g7_e_53",
+        "word": "LION",
+        "clue": "A large wild cat of the African savannah",
+        "turkishMeaning": "Aslan",
+        "exampleSentence": "The male lion has a thick golden mane.",
+        "category": "Wild Animals",
+        "explanation": "LION (Aslan): A large wild cat of the African savannah. E.g.: \"The male lion has a thick golden mane.\""
+      },
+      {
+        "id": "we_g7_e_54",
+        "word": "BEAR",
+        "clue": "A heavy wild mammal with thick fur and claws",
+        "turkishMeaning": "Ayı",
+        "exampleSentence": "The brown bear catches salmon in the river.",
+        "category": "Wild Animals",
+        "explanation": "BEAR (Ayı): A heavy wild mammal with thick fur and claws. E.g.: \"The brown bear catches salmon in the river.\""
+      },
+      {
+        "id": "we_g7_e_55",
+        "word": "WOLF",
+        "clue": "A wild carnivorous canine hunting in packs",
+        "turkishMeaning": "Kurt",
+        "exampleSentence": "A pack of wolves howled at the full moon.",
+        "category": "Wild Animals",
+        "explanation": "WOLF (Kurt): A wild carnivorous canine hunting in packs. E.g.: \"A pack of wolves howled at the full moon.\""
+      },
+      {
+        "id": "we_g7_e_56",
+        "word": "SHOW",
+        "clue": "A television program or theatrical performance",
+        "turkishMeaning": "Dizi, gösteri",
+        "exampleSentence": "My sister watches a quiz show at night.",
+        "category": "Television",
+        "explanation": "SHOW (Dizi, gösteri): A television program or theatrical performance. E.g.: \"My sister watches a quiz show at night.\""
+      },
+      {
+        "id": "we_g7_e_57",
+        "word": "NEWS",
+        "clue": "Information about recent events on television",
+        "turkishMeaning": "Haberler",
+        "exampleSentence": "My father watches the evening news at eight.",
+        "category": "Television",
+        "explanation": "NEWS (Haberler): Information about recent events on television. E.g.: \"My father watches the evening news at eight.\""
+      },
+      {
+        "id": "we_g7_e_58",
+        "word": "HOST",
+        "clue": "A person who introduces guests on a television show",
+        "turkishMeaning": "Sunucu",
+        "exampleSentence": "The host asked the actor funny questions.",
+        "category": "Television",
+        "explanation": "HOST (Sunucu): A person who introduces guests on a television show. E.g.: \"The host asked the actor funny questions.\""
+      },
+      {
+        "id": "we_g7_e_59",
+        "word": "FILM",
+        "clue": "A motion picture shown in cinemas or on TV",
+        "turkishMeaning": "Film",
+        "exampleSentence": "We watched an exciting action film together.",
+        "category": "Television",
+        "explanation": "FILM (Film): A motion picture shown in cinemas or on TV. E.g.: \"We watched an exciting action film together.\""
+      },
+      {
+        "id": "we_g7_e_60",
+        "word": "GIFT",
+        "clue": "A present given to someone on a special occasion",
+        "turkishMeaning": "Hediye",
+        "exampleSentence": "I wrapped a special gift for my best friend.",
+        "category": "Celebrations",
+        "explanation": "GIFT (Hediye): A present given to someone on a special occasion. E.g.: \"I wrapped a special gift for my best friend.\""
+      },
+      {
+        "id": "we_g7_e_61",
+        "word": "CARD",
+        "clue": "A piece of thick paper with a greeting message",
+        "turkishMeaning": "Tebrik kartı",
+        "exampleSentence": "She sent a colorful birthday card to her pal.",
+        "category": "Celebrations",
+        "explanation": "CARD (Tebrik kartı): A piece of thick paper with a greeting message. E.g.: \"She sent a colorful birthday card to her pal.\""
+      },
+      {
+        "id": "we_g7_e_62",
+        "word": "HOPE",
+        "clue": "A feeling of expectation and desire for the future",
+        "turkishMeaning": "Umut, ummak",
+        "exampleSentence": "I hope to study astrophysics at university.",
+        "category": "Dreams",
+        "explanation": "HOPE (Umut, ummak): A feeling of expectation and desire for the future. E.g.: \"I hope to study astrophysics at university.\""
+      },
+      {
+        "id": "we_g7_e_63",
+        "word": "WISH",
+        "clue": "A desire or hope for something to happen",
+        "turkishMeaning": "Dilek, dilemek",
+        "exampleSentence": "Make a wish before blowing out candles.",
+        "category": "Dreams",
+        "explanation": "WISH (Dilek, dilemek): A desire or hope for something to happen. E.g.: \"Make a wish before blowing out candles.\""
+      },
+      {
+        "id": "we_g7_e_64",
+        "word": "BANK",
+        "clue": "A financial building where people save money",
+        "turkishMeaning": "Banka",
+        "exampleSentence": "He deposited cash at the municipal bank.",
+        "category": "Public Buildings",
+        "explanation": "BANK (Banka): A financial building where people save money. E.g.: \"He deposited cash at the municipal bank.\""
+      },
+      {
+        "id": "we_g7_e_65",
+        "word": "MALL",
+        "clue": "A large enclosed building with many retail shops",
+        "turkishMeaning": "Alışveriş merkezi",
+        "exampleSentence": "We met our classmates at the shopping mall.",
+        "category": "Public Buildings",
+        "explanation": "MALL (Alışveriş merkezi): A large enclosed building with many retail shops. E.g.: \"We met our classmates at the shopping mall.\""
+      },
+      {
+        "id": "we_g7_e_66",
+        "word": "PARK",
+        "clue": "A large public green area for recreation",
+        "turkishMeaning": "Park",
+        "exampleSentence": "Children ride bicycles in the city park.",
+        "category": "Public Buildings",
+        "explanation": "PARK (Park): A large public green area for recreation. E.g.: \"Children ride bicycles in the city park.\""
+      },
+      {
+        "id": "we_g7_e_67",
+        "word": "CAFE",
+        "clue": "A small restaurant where drinks and snacks are sold",
+        "turkishMeaning": "Kafe",
+        "exampleSentence": "We ordered hot chocolate at the local cafe.",
+        "category": "Public Buildings",
+        "explanation": "CAFE (Kafe): A small restaurant where drinks and snacks are sold. E.g.: \"We ordered hot chocolate at the local cafe.\""
+      },
+      {
+        "id": "we_g7_e_68",
+        "word": "TREE",
+        "clue": "A tall perennial woody plant with leaves",
+        "turkishMeaning": "Ağaç",
+        "exampleSentence": "Students planted a pine tree in the park.",
+        "category": "Environment",
+        "explanation": "TREE (Ağaç): A tall perennial woody plant with leaves. E.g.: \"Students planted a pine tree in the park.\""
+      },
+      {
+        "id": "we_g7_e_69",
+        "word": "SAVE",
+        "clue": "To keep safe from harm or conserve resources",
+        "turkishMeaning": "Korumak, tasarruf etmek",
+        "exampleSentence": "Turn off taps to save freshwater supplies.",
+        "category": "Environment",
+        "explanation": "SAVE (Korumak, tasarruf etmek): To keep safe from harm or conserve resources. E.g.: \"Turn off taps to save freshwater supplies.\""
+      },
+      {
+        "id": "we_g7_e_70",
+        "word": "SOIL",
+        "clue": "The top layer of Earth where plants grow",
+        "turkishMeaning": "Toprak",
+        "exampleSentence": "Rich soil helps saplings grow sturdy roots.",
+        "category": "Environment",
+        "explanation": "SOIL (Toprak): The top layer of Earth where plants grow. E.g.: \"Rich soil helps saplings grow sturdy roots.\""
+      },
+      {
+        "id": "we_g7_e_71",
+        "word": "LEAF",
+        "clue": "A flat green structure growing from plant stems",
+        "turkishMeaning": "Yaprak",
+        "exampleSentence": "Autumn leaves fell softly from the oak tree.",
+        "category": "Environment",
+        "explanation": "LEAF (Yaprak): A flat green structure growing from plant stems. E.g.: \"Autumn leaves fell softly from the oak tree.\""
+      },
+      {
+        "id": "we_g7_e_72",
+        "word": "STAR",
+        "clue": "A luminous celestial sphere of plasma in space",
+        "turkishMeaning": "Yıldız",
+        "exampleSentence": "The North Star guides travelers at night.",
+        "category": "Planets",
+        "explanation": "STAR (Yıldız): A luminous celestial sphere of plasma in space. E.g.: \"The North Star guides travelers at night.\""
+      },
+      {
+        "id": "we_g7_e_73",
+        "word": "MOON",
+        "clue": "The natural satellite orbiting planet Earth",
+        "turkishMeaning": "Ay",
+        "exampleSentence": "The full moon shone brightly in the night sky.",
+        "category": "Planets",
+        "explanation": "MOON (Ay): The natural satellite orbiting planet Earth. E.g.: \"The full moon shone brightly in the night sky.\""
+      },
+      {
+        "id": "we_g7_e_74",
+        "word": "MARS",
+        "clue": "The fourth planet from the Sun, known as red planet",
+        "turkishMeaning": "Mars",
+        "exampleSentence": "Robotic rovers explore the dry surface of Mars.",
+        "category": "Planets",
+        "explanation": "MARS (Mars): The fourth planet from the Sun, known as red planet. E.g.: \"Robotic rovers explore the dry surface of Mars.\""
+      },
+      {
+        "id": "we_g7_e_75",
+        "word": "DATA",
+        "clue": "Facts and statistics stored on computer systems",
+        "turkishMeaning": "Veri, bilgi",
+        "exampleSentence": "Keep your private data secure online.",
+        "category": "Life Online",
+        "explanation": "DATA (Veri, bilgi): Facts and statistics stored on computer systems. E.g.: \"Keep your private data secure online.\""
+      },
+      {
+        "id": "we_g7_e_76",
+        "word": "SAFE",
+        "clue": "Protected from danger, harm, or digital risk",
+        "turkishMeaning": "Güvenli",
+        "exampleSentence": "Choose a safe password for your game account.",
+        "category": "Life Online",
+        "explanation": "SAFE (Güvenli): Protected from danger, harm, or digital risk. E.g.: \"Choose a safe password for your game account.\""
+      },
+      {
+        "id": "we_g7_e_77",
+        "word": "USER",
+        "clue": "A person who uses a computer or software service",
+        "turkishMeaning": "Kullanıcı",
+        "exampleSentence": "Each online user has a unique username.",
+        "category": "Life Online",
+        "explanation": "USER (Kullanıcı): A person who uses a computer or software service. E.g.: \"Each online user has a unique username.\""
+      },
+      {
+        "id": "we_g7_e_78",
+        "word": "HURT",
+        "clue": "To cause physical pain or injury to someone",
+        "turkishMeaning": "İncitmek / Yaralı",
+        "exampleSentence": "He hurt his knee while playing basketball.",
+        "category": "In and Out of Danger",
+        "explanation": "HURT (İncitmek / Yaralı): To cause physical pain or injury to someone. E.g.: \"He hurt his knee while playing basketball.\""
+      },
+      {
+        "id": "we_g7_e_79",
+        "word": "BURN",
+        "clue": "An injury caused by exposure to heat or fire",
+        "turkishMeaning": "Yanık",
+        "exampleSentence": "Run cold tap water over a minor heat burn.",
+        "category": "In and Out of Danger",
+        "explanation": "BURN (Yanık): An injury caused by exposure to heat or fire. E.g.: \"Run cold tap water over a minor heat burn.\""
+      },
+      {
+        "id": "we_g7_e_80",
+        "word": "HELP",
+        "clue": "Assistance or aid given to someone in need",
+        "turkishMeaning": "Yardım etmek",
+        "exampleSentence": "Dial emergency services when you need help.",
+        "category": "In and Out of Danger",
+        "explanation": "HELP (Yardım etmek): Assistance or aid given to someone in need. E.g.: \"Dial emergency services when you need help.\""
       }
     ],
     "medium": [
@@ -729,6 +1094,366 @@ export const WORDLE_ENGLISH_BANK: WordleEnglishBank = {
         "exampleSentence": "Our geography teacher spun the classroom globe.",
         "category": "Public Buildings",
         "explanation": "GLOBE (Küre, yerküre): A spherical representation of the Earth or the world. E.g.: \"Our geography teacher spun the classroom globe.\""
+      },
+      {
+        "id": "we_g7_m_41",
+        "word": "SMART",
+        "clue": "Having or showing a high degree of intelligence",
+        "turkishMeaning": "Zeki, akıllı",
+        "exampleSentence": "The smart student solved the equation swiftly.",
+        "category": "Personality",
+        "explanation": "SMART (Zeki, akıllı): Having or showing a high degree of intelligence. E.g.: \"The smart student solved the equation swiftly.\""
+      },
+      {
+        "id": "we_g7_m_42",
+        "word": "BRAVE",
+        "clue": "Ready to face danger or pain without showing fear",
+        "turkishMeaning": "Cesur",
+        "exampleSentence": "The brave firefighter rescued the trapped kitten.",
+        "category": "Personality",
+        "explanation": "BRAVE (Cesur): Ready to face danger or pain without showing fear. E.g.: \"The brave firefighter rescued the trapped kitten.\""
+      },
+      {
+        "id": "we_g7_m_43",
+        "word": "SHARP",
+        "clue": "Having a thin edge or quick at understanding",
+        "turkishMeaning": "Keskin / Zeki",
+        "exampleSentence": "She has a sharp mind for solving puzzles.",
+        "category": "Personality",
+        "explanation": "SHARP (Keskin / Zeki): Having a thin edge or quick at understanding. E.g.: \"She has a sharp mind for solving puzzles.\""
+      },
+      {
+        "id": "we_g7_m_44",
+        "word": "TRACK",
+        "clue": "A circular path for runners or a walking trail",
+        "turkishMeaning": "Pist / Patika",
+        "exampleSentence": "Athletes warmed up along the red gravel track.",
+        "category": "Sports",
+        "explanation": "TRACK (Pist / Patika): A circular path for runners or a walking trail. E.g.: \"Athletes warmed up along the red gravel track.\""
+      },
+      {
+        "id": "we_g7_m_45",
+        "word": "MEDAL",
+        "clue": "A metal disc given as a prize for winning",
+        "turkishMeaning": "Madalya",
+        "exampleSentence": "He earned a silver medal in the swim meet.",
+        "category": "Sports",
+        "explanation": "MEDAL (Madalya): A metal disc given as a prize for winning. E.g.: \"He earned a silver medal in the swim meet.\""
+      },
+      {
+        "id": "we_g7_m_46",
+        "word": "COACH",
+        "clue": "A person who trains an athletic sports team",
+        "turkishMeaning": "Antrenör",
+        "exampleSentence": "The coach designed winning tactics for Sunday.",
+        "category": "Sports",
+        "explanation": "COACH (Antrenör): A person who trains an athletic sports team. E.g.: \"The coach designed winning tactics for Sunday.\""
+      },
+      {
+        "id": "we_g7_m_47",
+        "word": "PITCH",
+        "clue": "A grass field used for playing football or rugby",
+        "turkishMeaning": "Saha",
+        "exampleSentence": "Rain drenched the grassy football pitch.",
+        "category": "Sports",
+        "explanation": "PITCH (Saha): A grass field used for playing football or rugby. E.g.: \"Rain drenched the grassy football pitch.\""
+      },
+      {
+        "id": "we_g7_m_48",
+        "word": "PRIZE",
+        "clue": "An award given to the winner of a contest",
+        "turkishMeaning": "Ödül",
+        "exampleSentence": "First prize went to the robotics invention.",
+        "category": "Biographies",
+        "explanation": "PRIZE (Ödül): An award given to the winner of a contest. E.g.: \"First prize went to the robotics invention.\""
+      },
+      {
+        "id": "we_g7_m_49",
+        "word": "EARLY",
+        "clue": "Happening near the beginning of a period or day",
+        "turkishMeaning": "Erken",
+        "exampleSentence": "He woke up early to study for his finals.",
+        "category": "Biographies",
+        "explanation": "EARLY (Erken): Happening near the beginning of a period or day. E.g.: \"He woke up early to study for his finals.\""
+      },
+      {
+        "id": "we_g7_m_50",
+        "word": "TIGER",
+        "clue": "A large wild striped predatory Asian feline",
+        "turkishMeaning": "Kaplan",
+        "exampleSentence": "The royal Bengal tiger prowled the jungle.",
+        "category": "Wild Animals",
+        "explanation": "TIGER (Kaplan): A large wild striped predatory Asian feline. E.g.: \"The royal Bengal tiger prowled the jungle.\""
+      },
+      {
+        "id": "we_g7_m_51",
+        "word": "EAGLE",
+        "clue": "A large bird of prey with keen eyesight and talons",
+        "turkishMeaning": "Kartal",
+        "exampleSentence": "The golden eagle circled above the alpine peaks.",
+        "category": "Wild Animals",
+        "explanation": "EAGLE (Kartal): A large bird of prey with keen eyesight and talons. E.g.: \"The golden eagle circled above the alpine peaks.\""
+      },
+      {
+        "id": "we_g7_m_52",
+        "word": "SHARK",
+        "clue": "A predatory marine fish with cartilaginous skeleton",
+        "turkishMeaning": "Köpekbalığı",
+        "exampleSentence": "The white shark patrolled deep ocean waters.",
+        "category": "Wild Animals",
+        "explanation": "SHARK (Köpekbalığı): A predatory marine fish with cartilaginous skeleton. E.g.: \"The white shark patrolled deep ocean waters.\""
+      },
+      {
+        "id": "we_g7_m_53",
+        "word": "WHALE",
+        "clue": "A massive marine mammal that surfaces to breathe",
+        "turkishMeaning": "Balina",
+        "exampleSentence": "The blue whale is Earth's largest mammal.",
+        "category": "Wild Animals",
+        "explanation": "WHALE (Balina): A massive marine mammal that surfaces to breathe. E.g.: \"The blue whale is Earth's largest mammal.\""
+      },
+      {
+        "id": "we_g7_m_54",
+        "word": "ZEBRA",
+        "clue": "A wild African equine with black and white stripes",
+        "turkishMeaning": "Zebra",
+        "exampleSentence": "A herd of zebras drank at the waterhole.",
+        "category": "Wild Animals",
+        "explanation": "ZEBRA (Zebra): A wild African equine with black and white stripes. E.g.: \"A herd of zebras drank at the waterhole.\""
+      },
+      {
+        "id": "we_g7_m_55",
+        "word": "SCENE",
+        "clue": "A sequence of continuous action in a film or show",
+        "turkishMeaning": "Sahne",
+        "exampleSentence": "The movie ended with an emotional farewell scene.",
+        "category": "Television",
+        "explanation": "SCENE (Sahne): A sequence of continuous action in a film or show. E.g.: \"The movie ended with an emotional farewell scene.\""
+      },
+      {
+        "id": "we_g7_m_56",
+        "word": "ACTOR",
+        "clue": "A person who portrays a character in films or plays",
+        "turkishMeaning": "Oyuncu",
+        "exampleSentence": "The young actor delivered an impressive monologue.",
+        "category": "Television",
+        "explanation": "ACTOR (Oyuncu): A person who portrays a character in films or plays. E.g.: \"The young actor delivered an impressive monologue.\""
+      },
+      {
+        "id": "we_g7_m_57",
+        "word": "DRAMA",
+        "clue": "A serious play or television show depicting conflict",
+        "turkishMeaning": "Dram, tiyatro",
+        "exampleSentence": "We watched an engaging historical school drama.",
+        "category": "Television",
+        "explanation": "DRAMA (Dram, tiyatro): A serious play or television show depicting conflict. E.g.: \"We watched an engaging historical school drama.\""
+      },
+      {
+        "id": "we_g7_m_58",
+        "word": "EVENT",
+        "clue": "A planned public or social celebration occasion",
+        "turkishMeaning": "Etkinlik",
+        "exampleSentence": "Our graduation festival was an unforgettable event.",
+        "category": "Celebrations",
+        "explanation": "EVENT (Etkinlik): A planned public or social celebration occasion. E.g.: \"Our graduation festival was an unforgettable event.\""
+      },
+      {
+        "id": "we_g7_m_59",
+        "word": "PARTY",
+        "clue": "A social gathering for celebration and fun",
+        "turkishMeaning": "Parti",
+        "exampleSentence": "Classmates danced happily at the farewell party.",
+        "category": "Celebrations",
+        "explanation": "PARTY (Parti): A social gathering for celebration and fun. E.g.: \"Classmates danced happily at the farewell party.\""
+      },
+      {
+        "id": "we_g7_m_60",
+        "word": "GUEST",
+        "clue": "A person who is invited to visit someone's home",
+        "turkishMeaning": "Misafir",
+        "exampleSentence": "Greet each guest with a warm and polite smile.",
+        "category": "Celebrations",
+        "explanation": "GUEST (Misafir): A person who is invited to visit someone's home. E.g.: \"Greet each guest with a warm and polite smile.\""
+      },
+      {
+        "id": "we_g7_m_61",
+        "word": "DREAM",
+        "clue": "A series of thoughts or ambitions for the future",
+        "turkishMeaning": "Rüya, hayal",
+        "exampleSentence": "Her dream is to become a marine biologist.",
+        "category": "Dreams",
+        "explanation": "DREAM (Rüya, hayal): A series of thoughts or ambitions for the future. E.g.: \"Her dream is to become a marine biologist.\""
+      },
+      {
+        "id": "we_g7_m_62",
+        "word": "PEACE",
+        "clue": "Freedom from disturbance, hostility, or warfare",
+        "turkishMeaning": "Barış, huzur",
+        "exampleSentence": "Nations strive to maintain international peace.",
+        "category": "Dreams",
+        "explanation": "PEACE (Barış, huzur): Freedom from disturbance, hostility, or warfare. E.g.: \"Nations strive to maintain international peace.\""
+      },
+      {
+        "id": "we_g7_m_63",
+        "word": "PLAZA",
+        "clue": "A public square or marketplace in an urban center",
+        "turkishMeaning": "Meydan, çarşı",
+        "exampleSentence": "Musicians performed in the central town plaza.",
+        "category": "Public Buildings",
+        "explanation": "PLAZA (Meydan, çarşı): A public square or marketplace in an urban center. E.g.: \"Musicians performed in the central town plaza.\""
+      },
+      {
+        "id": "we_g7_m_64",
+        "word": "HOTEL",
+        "clue": "An establishment providing accommodation for guests",
+        "turkishMeaning": "Otel",
+        "exampleSentence": "Tourists booked rooms at a historic seaside hotel.",
+        "category": "Public Buildings",
+        "explanation": "HOTEL (Otel): An establishment providing accommodation for guests. E.g.: \"Tourists booked rooms at a historic seaside hotel.\""
+      },
+      {
+        "id": "we_g7_m_65",
+        "word": "CLOTH",
+        "clue": "Woven or felted fabric used for garments",
+        "turkishMeaning": "Kumaş",
+        "exampleSentence": "Tailors sew suits from fine woolen cloth.",
+        "category": "Public Buildings",
+        "explanation": "CLOTH (Kumaş): Woven or felted fabric used for garments. E.g.: \"Tailors sew suits from fine woolen cloth.\""
+      },
+      {
+        "id": "we_g7_m_66",
+        "word": "STORE",
+        "clue": "A retail shop where goods are kept and sold",
+        "turkishMeaning": "Mağaza",
+        "exampleSentence": "The sports store sells durable hiking gear.",
+        "category": "Public Buildings",
+        "explanation": "STORE (Mağaza): A retail shop where goods are kept and sold. E.g.: \"The sports store sells durable hiking gear.\""
+      },
+      {
+        "id": "we_g7_m_67",
+        "word": "CLEAN",
+        "clue": "Free from dirt, pollution, or chemical stains",
+        "turkishMeaning": "Temiz, temizlemek",
+        "exampleSentence": "Keep your neighborhood parks clean and tidy.",
+        "category": "Environment",
+        "explanation": "CLEAN (Temiz, temizlemek): Free from dirt, pollution, or chemical stains. E.g.: \"Keep your neighborhood parks clean and tidy.\""
+      },
+      {
+        "id": "we_g7_m_68",
+        "word": "PLANT",
+        "clue": "A living organism that absorbs water through roots",
+        "turkishMeaning": "Bitki / Dikmek",
+        "exampleSentence": "Volunteers plant saplings along the hillside.",
+        "category": "Environment",
+        "explanation": "PLANT (Bitki / Dikmek): A living organism that absorbs water through roots. E.g.: \"Volunteers plant saplings along the hillside.\""
+      },
+      {
+        "id": "we_g7_m_69",
+        "word": "WATER",
+        "clue": "A transparent odorless liquid vital for life",
+        "turkishMeaning": "Su",
+        "exampleSentence": "Drink pure water to maintain physical energy.",
+        "category": "Environment",
+        "explanation": "WATER (Su): A transparent odorless liquid vital for life. E.g.: \"Drink pure water to maintain physical energy.\""
+      },
+      {
+        "id": "we_g7_m_70",
+        "word": "SOLAR",
+        "clue": "Relating to or derived from the radiant Sun",
+        "turkishMeaning": "Güneş ile ilgili",
+        "exampleSentence": "Solar panels supply green power to schools.",
+        "category": "Environment",
+        "explanation": "SOLAR (Güneş ile ilgili): Relating to or derived from the radiant Sun. E.g.: \"Solar panels supply green power to schools.\""
+      },
+      {
+        "id": "we_g7_m_71",
+        "word": "ORBIT",
+        "clue": "The curved gravitational path of a celestial body",
+        "turkishMeaning": "Yörünge",
+        "exampleSentence": "Satellites orbit Earth every ninety minutes.",
+        "category": "Planets",
+        "explanation": "ORBIT (Yörünge): The curved gravitational path of a celestial body. E.g.: \"Satellites orbit Earth every ninety minutes.\""
+      },
+      {
+        "id": "we_g7_m_72",
+        "word": "EARTH",
+        "clue": "The third planet from the Sun; our terrestrial home",
+        "turkishMeaning": "Dünya",
+        "exampleSentence": "Earth is the only planet known to host life.",
+        "category": "Planets",
+        "explanation": "EARTH (Dünya): The third planet from the Sun; our terrestrial home. E.g.: \"Earth is the only planet known to host life.\""
+      },
+      {
+        "id": "we_g7_m_73",
+        "word": "SPACE",
+        "clue": "The boundless three-dimensional expanse of the cosmos",
+        "turkishMeaning": "Uzay",
+        "exampleSentence": "Astronauts float weightlessly in outer space.",
+        "category": "Planets",
+        "explanation": "SPACE (Uzay): The boundless three-dimensional expanse of the cosmos. E.g.: \"Astronauts float weightlessly in outer space.\""
+      },
+      {
+        "id": "we_g7_m_74",
+        "word": "PROBE",
+        "clue": "An unmanned robotic spacecraft exploring space",
+        "turkishMeaning": "Sonda",
+        "exampleSentence": "The space probe sent back photos of Saturn's rings.",
+        "category": "Planets",
+        "explanation": "PROBE (Sonda): An unmanned robotic spacecraft exploring space. E.g.: \"The space probe sent back photos of Saturn's rings.\""
+      },
+      {
+        "id": "we_g7_m_75",
+        "word": "LOGON",
+        "clue": "The act of logging into a secure computer account",
+        "turkishMeaning": "Giriş yapmak",
+        "exampleSentence": "Always logoff properly after each online session.",
+        "category": "Life Online",
+        "explanation": "LOGON (Giriş yapmak): The act of logging into a secure computer account. E.g.: \"Always logoff properly after each online session.\""
+      },
+      {
+        "id": "we_g7_m_76",
+        "word": "CLICK",
+        "clue": "To press and release a mouse button or link",
+        "turkishMeaning": "Tıklamak",
+        "exampleSentence": "Never click on suspicious web links from strangers.",
+        "category": "Life Online",
+        "explanation": "CLICK (Tıklamak): To press and release a mouse button or link. E.g.: \"Never click on suspicious web links from strangers.\""
+      },
+      {
+        "id": "we_g7_m_77",
+        "word": "SHARE",
+        "clue": "To distribute or post digital files with friends",
+        "turkishMeaning": "Paylaşmak",
+        "exampleSentence": "Share study notes responsibly with your group.",
+        "category": "Life Online",
+        "explanation": "SHARE (Paylaşmak): To distribute or post digital files with friends. E.g.: \"Share study notes responsibly with your group.\""
+      },
+      {
+        "id": "we_g7_m_78",
+        "word": "FIRST",
+        "clue": "Preceding all others in time, order, or importance",
+        "turkishMeaning": "İlk, birinci",
+        "exampleSentence": "First aid should be delivered without delay.",
+        "category": "In and Out of Danger",
+        "explanation": "FIRST (İlk, birinci): Preceding all others in time, order, or importance. E.g.: \"First aid should be delivered without delay.\""
+      },
+      {
+        "id": "we_g7_m_79",
+        "word": "ALERT",
+        "clue": "Quick to notice danger or an emergency warning",
+        "turkishMeaning": "Alarm / Uyanık",
+        "exampleSentence": "The weather alert warned hikers of heavy snow.",
+        "category": "In and Out of Danger",
+        "explanation": "ALERT (Alarm / Uyanık): Quick to notice danger or an emergency warning. E.g.: \"The weather alert warned hikers of heavy snow.\""
+      },
+      {
+        "id": "we_g7_m_80",
+        "word": "STORM",
+        "clue": "Violent weather with gales, rain, or thunder",
+        "turkishMeaning": "Fırtına",
+        "exampleSentence": "The mountain storm forced travelers to take shelter.",
+        "category": "In and Out of Danger",
+        "explanation": "STORM (Fırtına): Violent weather with gales, rain, or thunder. E.g.: \"The mountain storm forced travelers to take shelter.\""
       }
     ],
     "hard": [
@@ -1092,6 +1817,366 @@ export const WORDLE_ENGLISH_BANK: WordleEnglishBank = {
         "exampleSentence": "The ancient forest is home to hundreds of species.",
         "category": "Wild Animals",
         "explanation": "FOREST (Orman): A large area covered chiefly with trees and undergrowth. E.g.: \"The ancient forest is home to hundreds of species.\""
+      },
+      {
+        "id": "we_g7_h_41",
+        "word": "POLITE",
+        "clue": "Having or showing courteous and respectful behavior",
+        "turkishMeaning": "Kibar, saygılı",
+        "exampleSentence": "A polite greeting sets a positive classroom tone.",
+        "category": "Personality",
+        "explanation": "POLITE (Kibar, saygılı): Having or showing courteous and respectful behavior. E.g.: \"A polite greeting sets a positive classroom tone.\""
+      },
+      {
+        "id": "we_g7_h_42",
+        "word": "HONEST",
+        "clue": "Free of deceit and untruthfulness; sincere",
+        "turkishMeaning": "Dürüst",
+        "exampleSentence": "An honest student never cheats on examinations.",
+        "category": "Personality",
+        "explanation": "HONEST (Dürüst): Free of deceit and untruthfulness; sincere. E.g.: \"An honest student never cheats on examinations.\""
+      },
+      {
+        "id": "we_g7_h_43",
+        "word": "STABLE",
+        "clue": "Firmly established and not likely to change or fail",
+        "turkishMeaning": "Dengeli, istikrarlı",
+        "exampleSentence": "A stable friendship withstands occasional disagreements.",
+        "category": "Personality",
+        "explanation": "STABLE (Dengeli, istikrarlı): Firmly established and not likely to change or fail. E.g.: \"A stable friendship withstands occasional disagreements.\""
+      },
+      {
+        "id": "we_g7_h_44",
+        "word": "SPORTS",
+        "clue": "Athletic activities requiring skill and physical prowess",
+        "turkishMeaning": "Sporlar",
+        "exampleSentence": "School sports promote health and mutual respect.",
+        "category": "Sports",
+        "explanation": "SPORTS (Sporlar): Athletic activities requiring skill and physical prowess. E.g.: \"School sports promote health and mutual respect.\""
+      },
+      {
+        "id": "we_g7_h_45",
+        "word": "PLAYER",
+        "clue": "A person taking part in an athletic sporting game",
+        "turkishMeaning": "Oyuncu",
+        "exampleSentence": "The tennis player served five consecutive aces.",
+        "category": "Sports",
+        "explanation": "PLAYER (Oyuncu): A person taking part in an athletic sporting game. E.g.: \"The tennis player served five consecutive aces.\""
+      },
+      {
+        "id": "we_g7_h_46",
+        "word": "ARCHER",
+        "clue": "A person who shoots arrows with a bow at targets",
+        "turkishMeaning": "Okçu",
+        "exampleSentence": "The archer hit the center yellow bullseye.",
+        "category": "Sports",
+        "explanation": "ARCHER (Okçu): A person who shoots arrows with a bow at targets. E.g.: \"The archer hit the center yellow bullseye.\""
+      },
+      {
+        "id": "we_g7_h_47",
+        "word": "LEAGUE",
+        "clue": "A collection of sports teams that compete together",
+        "turkishMeaning": "Lig",
+        "exampleSentence": "Our soccer club advanced to the national league.",
+        "category": "Sports",
+        "explanation": "LEAGUE (Lig): A collection of sports teams that compete together. E.g.: \"Our soccer club advanced to the national league.\""
+      },
+      {
+        "id": "we_g7_h_48",
+        "word": "CAREER",
+        "clue": "An occupation undertaken for a significant life period",
+        "turkishMeaning": "Kariyer",
+        "exampleSentence": "She pursued a successful scientific research career.",
+        "category": "Biographies",
+        "explanation": "CAREER (Kariyer): An occupation undertaken for a significant life period. E.g.: \"She pursued a successful scientific research career.\""
+      },
+      {
+        "id": "we_g7_h_49",
+        "word": "FAMOUS",
+        "clue": "Known and recognized by numerous people worldwide",
+        "turkishMeaning": "Ünlü",
+        "exampleSentence": "The famous inventor shared his patent insights.",
+        "category": "Biographies",
+        "explanation": "FAMOUS (Ünlü): Known and recognized by numerous people worldwide. E.g.: \"The famous inventor shared his patent insights.\""
+      },
+      {
+        "id": "we_g7_h_50",
+        "word": "HONOUR",
+        "clue": "High respect, great esteem, or a public tribute",
+        "turkishMeaning": "Onur, şeref",
+        "exampleSentence": "Winning the championship brought great honour.",
+        "category": "Biographies",
+        "explanation": "HONOUR (Onur, şeref): High respect, great esteem, or a public tribute. E.g.: \"Winning the championship brought great honour.\""
+      },
+      {
+        "id": "we_g7_h_51",
+        "word": "JUNGLE",
+        "clue": "An area of dense tropical forest with wild tangled trees",
+        "turkishMeaning": "Balta girmemiş orman",
+        "exampleSentence": "Tigers prowl through the shadowed tropical jungle.",
+        "category": "Wild Animals",
+        "explanation": "JUNGLE (Balta girmemiş orman): An area of dense tropical forest with wild tangled trees. E.g.: \"Tigers prowl through the shadowed tropical jungle.\""
+      },
+      {
+        "id": "we_g7_h_52",
+        "word": "MONKEY",
+        "clue": "A wild primate with a long tail living in tree branches",
+        "turkishMeaning": "Maymun",
+        "exampleSentence": "The nimble monkey swung gracefully between vines.",
+        "category": "Wild Animals",
+        "explanation": "MONKEY (Maymun): A wild primate with a long tail living in tree branches. E.g.: \"The nimble monkey swung gracefully between vines.\""
+      },
+      {
+        "id": "we_g7_h_53",
+        "word": "FALCON",
+        "clue": "A bird of prey with long pointed wings and sharp talons",
+        "turkishMeaning": "Doğan, şahin",
+        "exampleSentence": "The peregrine falcon dives at extraordinary speeds.",
+        "category": "Wild Animals",
+        "explanation": "FALCON (Doğan, şahin): A bird of prey with long pointed wings and sharp talons. E.g.: \"The peregrine falcon dives at extraordinary speeds.\""
+      },
+      {
+        "id": "we_g7_h_54",
+        "word": "SAFARI",
+        "clue": "An expedition to observe wild animals in habitats",
+        "turkishMeaning": "Safari",
+        "exampleSentence": "Tourists photographed giraffes on a wildlife safari.",
+        "category": "Wild Animals",
+        "explanation": "SAFARI (Safari): An expedition to observe wild animals in habitats. E.g.: \"Tourists photographed giraffes on a wildlife safari.\""
+      },
+      {
+        "id": "we_g7_h_55",
+        "word": "SERIES",
+        "clue": "A set of television episodes featuring the same cast",
+        "turkishMeaning": "Dizi",
+        "exampleSentence": "The documentary series explored ocean coral reefs.",
+        "category": "Television",
+        "explanation": "SERIES (Dizi): A set of television episodes featuring the same cast. E.g.: \"The documentary series explored ocean coral reefs.\""
+      },
+      {
+        "id": "we_g7_h_56",
+        "word": "AUTHOR",
+        "clue": "A writer of a book, article, or television report",
+        "turkishMeaning": "Yazar",
+        "exampleSentence": "The author signed copies of her new history book.",
+        "category": "Television",
+        "explanation": "AUTHOR (Yazar): A writer of a book, article, or television report. E.g.: \"The author signed copies of her new history book.\""
+      },
+      {
+        "id": "we_g7_h_57",
+        "word": "CAMERA",
+        "clue": "A device for recording visual images or videos",
+        "turkishMeaning": "Kamera",
+        "exampleSentence": "The television camera zoomed in on the presenter.",
+        "category": "Television",
+        "explanation": "CAMERA (Kamera): A device for recording visual images or videos. E.g.: \"The television camera zoomed in on the presenter.\""
+      },
+      {
+        "id": "we_g7_h_58",
+        "word": "SCREEN",
+        "clue": "The flat surface on a television showing pictures",
+        "turkishMeaning": "Ekran",
+        "exampleSentence": "We watched the match on a large classroom screen.",
+        "category": "Television",
+        "explanation": "SCREEN (Ekran): The flat surface on a television showing pictures. E.g.: \"We watched the match on a large classroom screen.\""
+      },
+      {
+        "id": "we_g7_h_59",
+        "word": "STREAM",
+        "clue": "A continuous flow of data or a small forest brook",
+        "turkishMeaning": "Akış / Dere",
+        "exampleSentence": "Students stream educational lectures from the web.",
+        "category": "Television & Environment",
+        "explanation": "STREAM (Akış / Dere): A continuous flow of data or a small forest brook. E.g.: \"Students stream educational lectures from the web.\""
+      },
+      {
+        "id": "we_g7_h_60",
+        "word": "CANDLE",
+        "clue": "A cylinder of wax with a wick burned for light",
+        "turkishMeaning": "Mum",
+        "exampleSentence": "Blow out every birthday candle in a single breath.",
+        "category": "Celebrations",
+        "explanation": "CANDLE (Mum): A cylinder of wax with a wick burned for light. E.g.: \"Blow out every birthday candle in a single breath.\""
+      },
+      {
+        "id": "we_g7_h_61",
+        "word": "BANNER",
+        "clue": "A long strip of cloth bearing a festive slogan",
+        "turkishMeaning": "Pankart, afiş",
+        "exampleSentence": "They hung a welcome banner across the doorway.",
+        "category": "Celebrations",
+        "explanation": "BANNER (Pankart, afiş): A long strip of cloth bearing a festive slogan. E.g.: \"They hung a welcome banner across the doorway.\""
+      },
+      {
+        "id": "we_g7_h_62",
+        "word": "PARADE",
+        "clue": "A public procession celebrating a special occasion",
+        "turkishMeaning": "Geçit töreni",
+        "exampleSentence": "Musicians marched in the Republic Day parade.",
+        "category": "Celebrations",
+        "explanation": "PARADE (Geçit töreni): A public procession celebrating a special occasion. E.g.: \"Musicians marched in the Republic Day parade.\""
+      },
+      {
+        "id": "we_g7_h_63",
+        "word": "INVITE",
+        "clue": "To request the presence or company of someone",
+        "turkishMeaning": "Davet etmek",
+        "exampleSentence": "Be sure to invite your study group to the party.",
+        "category": "Celebrations",
+        "explanation": "INVITE (Davet etmek): To request the presence or company of someone. E.g.: \"Be sure to invite your study group to the party.\""
+      },
+      {
+        "id": "we_g7_h_64",
+        "word": "FUTURE",
+        "clue": "The period of time that will come after present",
+        "turkishMeaning": "Gelecek",
+        "exampleSentence": "Renewable energy will power cities in the future.",
+        "category": "Dreams",
+        "explanation": "FUTURE (Gelecek): The period of time that will come after present. E.g.: \"Renewable energy will power cities in the future.\""
+      },
+      {
+        "id": "we_g7_h_65",
+        "word": "FLYING",
+        "clue": "Moving through air using wings or an aircraft",
+        "turkishMeaning": "Uçuş, uçma",
+        "exampleSentence": "He dreamed of flying among planetary constellations.",
+        "category": "Dreams",
+        "explanation": "FLYING (Uçuş, uçma): Moving through air using wings or an aircraft. E.g.: \"He dreamed of flying among planetary constellations.\""
+      },
+      {
+        "id": "we_g7_h_66",
+        "word": "MUSEUM",
+        "clue": "A building displaying historical and artistic objects",
+        "turkishMeaning": "Müze",
+        "exampleSentence": "The municipal museum displays ancient Roman coins.",
+        "category": "Public Buildings",
+        "explanation": "MUSEUM (Müze): A building displaying historical and artistic objects. E.g.: \"The municipal museum displays ancient Roman coins.\""
+      },
+      {
+        "id": "we_g7_h_67",
+        "word": "MARKET",
+        "clue": "An open-air area where food and merchandise are sold",
+        "turkishMeaning": "Pazar, çarşı",
+        "exampleSentence": "We bought fresh organic peaches at the market.",
+        "category": "Public Buildings",
+        "explanation": "MARKET (Pazar, çarşı): An open-air area where food and merchandise are sold. E.g.: \"We bought fresh organic peaches at the market.\""
+      },
+      {
+        "id": "we_g7_h_68",
+        "word": "BRIDGE",
+        "clue": "A structure carrying a roadway across a river",
+        "turkishMeaning": "Köprü",
+        "exampleSentence": "Tourists photographed Tower Bridge over the Thames.",
+        "category": "Public Buildings & Britain",
+        "explanation": "BRIDGE (Köprü): A structure carrying a roadway across a river. E.g.: \"Tourists photographed Tower Bridge over the Thames.\""
+      },
+      {
+        "id": "we_g7_h_69",
+        "word": "STREET",
+        "clue": "A public road in a city flanked by buildings",
+        "turkishMeaning": "Sokak, cadde",
+        "exampleSentence": "Street lamps illuminated the historic paved lane.",
+        "category": "Public Buildings",
+        "explanation": "STREET (Sokak, cadde): A public road in a city flanked by buildings. E.g.: \"Street lamps illuminated the historic paved lane.\""
+      },
+      {
+        "id": "we_g7_h_70",
+        "word": "NATURE",
+        "clue": "The physical world collective, plants, animals, land",
+        "turkishMeaning": "Doğa",
+        "exampleSentence": "Spend weekends in nature away from city noise.",
+        "category": "Environment",
+        "explanation": "NATURE (Doğa): The physical world collective, plants, animals, land. E.g.: \"Spend weekends in nature away from city noise.\""
+      },
+      {
+        "id": "we_g7_h_71",
+        "word": "FOREST",
+        "clue": "A large area covered chiefly with trees and undergrowth",
+        "turkishMeaning": "Orman",
+        "exampleSentence": "Protect old-growth forests from commercial logging.",
+        "category": "Environment",
+        "explanation": "FOREST (Orman): A large area covered chiefly with trees and undergrowth. E.g.: \"Protect old-growth forests from commercial logging.\""
+      },
+      {
+        "id": "we_g7_h_72",
+        "word": "PLANET",
+        "clue": "A celestial body moving in elliptical orbit around a star",
+        "turkishMeaning": "Gezegen",
+        "exampleSentence": "Jupiter is the largest planet in our solar family.",
+        "category": "Planets",
+        "explanation": "PLANET (Gezegen): A celestial body moving in elliptical orbit around a star. E.g.: \"Jupiter is the largest planet in our solar family.\""
+      },
+      {
+        "id": "we_g7_h_73",
+        "word": "SATURN",
+        "clue": "The sixth planet from the Sun, surrounded by rings",
+        "turkishMeaning": "Satürn",
+        "exampleSentence": "Saturn possesses thousands of beautiful icy rings.",
+        "category": "Planets",
+        "explanation": "SATURN (Satürn): The sixth planet from the Sun, surrounded by rings. E.g.: \"Saturn possesses thousands of beautiful icy rings.\""
+      },
+      {
+        "id": "we_g7_h_74",
+        "word": "ONLINE",
+        "clue": "Connected to or available through digital internet",
+        "turkishMeaning": "Çevrim içi",
+        "exampleSentence": "Never post personal phone numbers when online.",
+        "category": "Life Online",
+        "explanation": "ONLINE (Çevrim içi): Connected to or available through digital internet. E.g.: \"Never post personal phone numbers when online.\""
+      },
+      {
+        "id": "we_g7_h_75",
+        "word": "BROWSE",
+        "clue": "To survey goods or navigate through internet web pages",
+        "turkishMeaning": "Göz atmak / Gezinmek",
+        "exampleSentence": "Browse reliable scientific websites for project data.",
+        "category": "Life Online",
+        "explanation": "BROWSE (Göz atmak / Gezinmek): To survey goods or navigate through internet web pages. E.g.: \"Browse reliable scientific websites for project data.\""
+      },
+      {
+        "id": "we_g7_h_76",
+        "word": "SAFETY",
+        "clue": "The condition of being protected from danger or harm",
+        "turkishMeaning": "Güvenlik",
+        "exampleSentence": "Follow classroom laboratory safety regulations.",
+        "category": "In and Out of Danger",
+        "explanation": "SAFETY (Güvenlik): The condition of being protected from danger or harm. E.g.: \"Follow classroom laboratory safety regulations.\""
+      },
+      {
+        "id": "we_g7_h_77",
+        "word": "RESCUE",
+        "clue": "To save someone from a dangerous or distressing situation",
+        "turkishMeaning": "Kurtarmak",
+        "exampleSentence": "Coastguards rescue stranded sailors during storms.",
+        "category": "In and Out of Danger",
+        "explanation": "RESCUE (Kurtarmak): To save someone from a dangerous or distressing situation. E.g.: \"Coastguards rescue stranded sailors during storms.\""
+      },
+      {
+        "id": "we_g7_h_78",
+        "word": "HEALTH",
+        "clue": "The state of being free from illness or injury",
+        "turkishMeaning": "Sağlık",
+        "exampleSentence": "Regular exercise maintains physical cardiovascular health.",
+        "category": "In and Out of Danger",
+        "explanation": "HEALTH (Sağlık): The state of being free from illness or injury. E.g.: \"Regular exercise maintains physical cardiovascular health.\""
+      },
+      {
+        "id": "we_g7_h_79",
+        "word": "DOCTOR",
+        "clue": "A qualified medical practitioner who treats the sick",
+        "turkishMeaning": "Doktor",
+        "exampleSentence": "The doctor prescribed soothing syrup for the cough.",
+        "category": "In and Out of Danger",
+        "explanation": "DOCTOR (Doktor): A qualified medical practitioner who treats the sick. E.g.: \"The doctor prescribed soothing syrup for the cough.\""
+      },
+      {
+        "id": "we_g7_h_80",
+        "word": "CASTLE",
+        "clue": "A large historic fortified stronghold with towers",
+        "turkishMeaning": "Kale, şato",
+        "exampleSentence": "Windsor Castle stands proud in the English valley.",
+        "category": "Britain",
+        "explanation": "CASTLE (Kale, şato): A large historic fortified stronghold with towers. E.g.: \"Windsor Castle stands proud in the English valley.\""
       }
     ]
   },
@@ -1456,6 +2541,366 @@ export const WORDLE_ENGLISH_BANK: WordleEnglishBank = {
         "exampleSentence": "The forest fire was extinguished by brave firefighters.",
         "category": "Natural Forces",
         "explanation": "FIRE (Yangın, ateş): Combustion or burning in which substances produce flame. E.g.: \"The forest fire was extinguished by brave firefighters.\""
+      },
+      {
+        "id": "we_g8_e_41",
+        "word": "MATE",
+        "clue": "A fellow member, close companion, or school pal",
+        "turkishMeaning": "Arkadaş, dost",
+        "exampleSentence": "He introduced his study mate to the teacher.",
+        "category": "Friendship",
+        "explanation": "MATE (Arkadaş, dost): A fellow member, close companion, or school pal. E.g.: \"He introduced his study mate to the teacher.\""
+      },
+      {
+        "id": "we_g8_e_42",
+        "word": "TRUE",
+        "clue": "In accordance with fact or steadfast and loyal",
+        "turkishMeaning": "Doğru, sadık",
+        "exampleSentence": "A true companion stands by you through difficulties.",
+        "category": "Friendship",
+        "explanation": "TRUE (Doğru, sadık): In accordance with fact or steadfast and loyal. E.g.: \"A true companion stands by you through difficulties.\""
+      },
+      {
+        "id": "we_g8_e_43",
+        "word": "PEER",
+        "clue": "A person of the same age, status, or social grade",
+        "turkishMeaning": "Akran",
+        "exampleSentence": "Peer tutoring helps classmates master algebra.",
+        "category": "Teen Life",
+        "explanation": "PEER (Akran): A person of the same age, status, or social grade. E.g.: \"Peer tutoring helps classmates master algebra.\""
+      },
+      {
+        "id": "we_g8_e_44",
+        "word": "BUSY",
+        "clue": "Actively doing something or an engaged phone line",
+        "turkishMeaning": "Meşgul",
+        "exampleSentence": "Her phone line was busy so I called later.",
+        "category": "Phone",
+        "explanation": "BUSY (Meşgul): Actively doing something or an engaged phone line. E.g.: \"Her phone line was busy so I called later.\""
+      },
+      {
+        "id": "we_g8_e_45",
+        "word": "CALL",
+        "clue": "To telephone someone or speak loudly to them",
+        "turkishMeaning": "Aramak / Çağrı",
+        "exampleSentence": "I will call you after my tennis lesson finishes.",
+        "category": "Phone",
+        "explanation": "CALL (Aramak / Çağrı): To telephone someone or speak loudly to them. E.g.: \"I will call you after my tennis lesson finishes.\""
+      },
+      {
+        "id": "we_g8_e_46",
+        "word": "RING",
+        "clue": "The chime of a phone or a round enclosure",
+        "turkishMeaning": "Çalmak / Yüzük",
+        "exampleSentence": "Let the phone ring four times before hanging up.",
+        "category": "Phone",
+        "explanation": "RING (Çalmak / Yüzük): The chime of a phone or a round enclosure. E.g.: \"Let the phone ring four times before hanging up.\""
+      },
+      {
+        "id": "we_g8_e_47",
+        "word": "LINE",
+        "clue": "A telephone connection circuit or a written queue",
+        "turkishMeaning": "Hat / Sıra",
+        "exampleSentence": "The phone line was clear and we heard clearly.",
+        "category": "Phone",
+        "explanation": "LINE (Hat / Sıra): A telephone connection circuit or a written queue. E.g.: \"The phone line was clear and we heard clearly.\""
+      },
+      {
+        "id": "we_g8_e_48",
+        "word": "BOIL",
+        "clue": "To heat liquid until bubbles break on the surface",
+        "turkishMeaning": "Kaynatmak",
+        "exampleSentence": "Boil water in the kettle before making mint tea.",
+        "category": "Kitchen",
+        "explanation": "BOIL (Kaynatmak): To heat liquid until bubbles break on the surface. E.g.: \"Boil water in the kettle before making mint tea.\""
+      },
+      {
+        "id": "we_g8_e_49",
+        "word": "BAKE",
+        "clue": "To cook food in an enclosed oven using dry heat",
+        "turkishMeaning": "Fırında pişirmek",
+        "exampleSentence": "Bake the apple pie for forty minutes until crisp.",
+        "category": "Kitchen",
+        "explanation": "BAKE (Fırında pişirmek): To cook food in an enclosed oven using dry heat. E.g.: \"Bake the apple pie for forty minutes until crisp.\""
+      },
+      {
+        "id": "we_g8_e_50",
+        "word": "CHOP",
+        "clue": "To cut food into pieces with repeated sharp blows",
+        "turkishMeaning": "Doğramak",
+        "exampleSentence": "Chop the parsley finely with a chef's knife.",
+        "category": "Kitchen",
+        "explanation": "CHOP (Doğramak): To cut food into pieces with repeated sharp blows. E.g.: \"Chop the parsley finely with a chef's knife.\""
+      },
+      {
+        "id": "we_g8_e_51",
+        "word": "PEEL",
+        "clue": "To strip the skin or outer covering off fruit",
+        "turkishMeaning": "Soymak",
+        "exampleSentence": "Peel three yellow lemons for the dessert glaze.",
+        "category": "Kitchen",
+        "explanation": "PEEL (Soymak): To strip the skin or outer covering off fruit. E.g.: \"Peel three yellow lemons for the dessert glaze.\""
+      },
+      {
+        "id": "we_g8_e_52",
+        "word": "POUR",
+        "clue": "To cause liquid to flow from a jug in a stream",
+        "turkishMeaning": "Dökmek",
+        "exampleSentence": "Pour fresh milk into the mixing bowl slowly.",
+        "category": "Kitchen",
+        "explanation": "POUR (Dökmek): To cause liquid to flow from a jug in a stream. E.g.: \"Pour fresh milk into the mixing bowl slowly.\""
+      },
+      {
+        "id": "we_g8_e_53",
+        "word": "STIR",
+        "clue": "To mix ingredients by moving a spoon in circles",
+        "turkishMeaning": "Karıştırmak",
+        "exampleSentence": "Stir the creamy soup so it does not stick to pans.",
+        "category": "Kitchen",
+        "explanation": "STIR (Karıştırmak): To mix ingredients by moving a spoon in circles. E.g.: \"Stir the creamy soup so it does not stick to pans.\""
+      },
+      {
+        "id": "we_g8_e_54",
+        "word": "DISH",
+        "clue": "A shallow container or a particular food recipe",
+        "turkishMeaning": "Yemek / Tabak",
+        "exampleSentence": "Pasta with tomato basil is his favorite dish.",
+        "category": "Kitchen",
+        "explanation": "DISH (Yemek / Tabak): A shallow container or a particular food recipe. E.g.: \"Pasta with tomato basil is his favorite dish.\""
+      },
+      {
+        "id": "we_g8_e_55",
+        "word": "FORK",
+        "clue": "A dining utensil with two or more prongs",
+        "turkishMeaning": "Çatal",
+        "exampleSentence": "Eat the garden salad with a stainless steel fork.",
+        "category": "Kitchen",
+        "explanation": "FORK (Çatal): A dining utensil with two or more prongs. E.g.: \"Eat the garden salad with a stainless steel fork.\""
+      },
+      {
+        "id": "we_g8_e_56",
+        "word": "BOWL",
+        "clue": "A round deep dish used for holding food or soup",
+        "turkishMeaning": "Kase",
+        "exampleSentence": "Whisk the egg yolks together in a mixing bowl.",
+        "category": "Kitchen",
+        "explanation": "BOWL (Kase): A round deep dish used for holding food or soup. E.g.: \"Whisk the egg yolks together in a mixing bowl.\""
+      },
+      {
+        "id": "we_g8_e_57",
+        "word": "HIKE",
+        "clue": "A long brisk walk in the country or over mountains",
+        "turkishMeaning": "Doğa yürüyüşü",
+        "exampleSentence": "We went on an alpine hike across forest ridges.",
+        "category": "Adventures",
+        "explanation": "HIKE (Doğa yürüyüşü): A long brisk walk in the country or over mountains. E.g.: \"We went on an alpine hike across forest ridges.\""
+      },
+      {
+        "id": "we_g8_e_58",
+        "word": "ROPE",
+        "clue": "A strong thick cord used for climbing and securing",
+        "turkishMeaning": "Halat, ip",
+        "exampleSentence": "Check your climbing rope before ascending rocks.",
+        "category": "Adventures",
+        "explanation": "ROPE (Halat, ip): A strong thick cord used for climbing and securing. E.g.: \"Check your climbing rope before ascending rocks.\""
+      },
+      {
+        "id": "we_g8_e_59",
+        "word": "TENT",
+        "clue": "A portable fabric shelter supported by poles and pegs",
+        "turkishMeaning": "Çadır",
+        "exampleSentence": "Campers pitched their canvas tent by the stream.",
+        "category": "Adventures",
+        "explanation": "TENT (Çadır): A portable fabric shelter supported by poles and pegs. E.g.: \"Campers pitched their canvas tent by the stream.\""
+      },
+      {
+        "id": "we_g8_e_60",
+        "word": "CAMP",
+        "clue": "A place with tents or huts where holidaymakers stay",
+        "turkishMeaning": "Kamp yapmak",
+        "exampleSentence": "We set up camp under the starry mountain sky.",
+        "category": "Adventures",
+        "explanation": "CAMP (Kamp yapmak): A place with tents or huts where holidaymakers stay. E.g.: \"We set up camp under the starry mountain sky.\""
+      },
+      {
+        "id": "we_g8_e_61",
+        "word": "TRIP",
+        "clue": "A journey or excursion, especially for holiday fun",
+        "turkishMeaning": "Gezi, yolculuk",
+        "exampleSentence": "Our school trip to Cappadocia was unforgettable.",
+        "category": "Tourism",
+        "explanation": "TRIP (Gezi, yolculuk): A journey or excursion, especially for holiday fun. E.g.: \"Our school trip to Cappadocia was unforgettable.\""
+      },
+      {
+        "id": "we_g8_e_62",
+        "word": "TOUR",
+        "clue": "A journey for pleasure in which several places are visited",
+        "turkishMeaning": "Tur, gezinti",
+        "exampleSentence": "The tourist took a guided walking tour of Ephesus.",
+        "category": "Tourism",
+        "explanation": "TOUR (Tur, gezinti): A journey for pleasure in which several places are visited. E.g.: \"The tourist took a guided walking tour of Ephesus.\""
+      },
+      {
+        "id": "we_g8_e_63",
+        "word": "STAY",
+        "clue": "To reside temporarily at a hotel or resort",
+        "turkishMeaning": "Kalmak, konaklamak",
+        "exampleSentence": "Guests stay in cozy stone bungalows by the beach.",
+        "category": "Tourism",
+        "explanation": "STAY (Kalmak, konaklamak): To reside temporarily at a hotel or resort. E.g.: \"Guests stay in cozy stone bungalows by the beach.\""
+      },
+      {
+        "id": "we_g8_e_64",
+        "word": "VIEW",
+        "clue": "The visible prospect seen from an elevated location",
+        "turkishMeaning": "Manzara",
+        "exampleSentence": "The summit hotel offers a panoramic sea view.",
+        "category": "Tourism",
+        "explanation": "VIEW (Manzara): The visible prospect seen from an elevated location. E.g.: \"The summit hotel offers a panoramic sea view.\""
+      },
+      {
+        "id": "we_g8_e_65",
+        "word": "CITY",
+        "clue": "A large human settlement with extensive buildings",
+        "turkishMeaning": "Şehir",
+        "exampleSentence": "Istanbul is a vibrant historic bridge city.",
+        "category": "Tourism",
+        "explanation": "CITY (Şehir): A large human settlement with extensive buildings. E.g.: \"Istanbul is a vibrant historic bridge city.\""
+      },
+      {
+        "id": "we_g8_e_66",
+        "word": "DUST",
+        "clue": "To wipe fine dry powder off furniture and shelves",
+        "turkishMeaning": "Tozunu almak",
+        "exampleSentence": "Dust the library bookshelves every Saturday.",
+        "category": "Chores",
+        "explanation": "DUST (Tozunu almak): To wipe fine dry powder off furniture and shelves. E.g.: \"Dust the library bookshelves every Saturday.\""
+      },
+      {
+        "id": "we_g8_e_67",
+        "word": "WASH",
+        "clue": "To clean garments, dishes, or hands with water",
+        "turkishMeaning": "Yıkamak",
+        "exampleSentence": "Wash your hands thoroughly before preparing meals.",
+        "category": "Chores",
+        "explanation": "WASH (Yıkamak): To clean garments, dishes, or hands with water. E.g.: \"Wash your hands thoroughly before preparing meals.\""
+      },
+      {
+        "id": "we_g8_e_68",
+        "word": "IRON",
+        "clue": "To smooth garments with a heated electrical press",
+        "turkishMeaning": "Ütülemek",
+        "exampleSentence": "Iron your school uniform shirts on Sunday evening.",
+        "category": "Chores",
+        "explanation": "IRON (Ütülemek): To smooth garments with a heated electrical press. E.g.: \"Iron your school uniform shirts on Sunday evening.\""
+      },
+      {
+        "id": "we_g8_e_69",
+        "word": "MEND",
+        "clue": "To repair something that is broken or torn",
+        "turkishMeaning": "Onarmak, tamir etmek",
+        "exampleSentence": "She helped mend the ripped backpack strap cleanly.",
+        "category": "Chores",
+        "explanation": "MEND (Onarmak, tamir etmek): To repair something that is broken or torn. E.g.: \"She helped mend the ripped backpack strap cleanly.\""
+      },
+      {
+        "id": "we_g8_e_70",
+        "word": "ATOM",
+        "clue": "The smallest particle of a chemical element",
+        "turkishMeaning": "Atom",
+        "exampleSentence": "Atoms combine to form complex organic molecules.",
+        "category": "Science",
+        "explanation": "ATOM (Atom): The smallest particle of a chemical element. E.g.: \"Atoms combine to form complex organic molecules.\""
+      },
+      {
+        "id": "we_g8_e_71",
+        "word": "CELL",
+        "clue": "The microscopic structural unit of living organisms",
+        "turkishMeaning": "Hücre",
+        "exampleSentence": "Living plant cells contain chlorophyll organelles.",
+        "category": "Science",
+        "explanation": "CELL (Hücre): The microscopic structural unit of living organisms. E.g.: \"Living plant cells contain chlorophyll organelles.\""
+      },
+      {
+        "id": "we_g8_e_72",
+        "word": "TEST",
+        "clue": "A procedure to verify the quality or truth of a fact",
+        "turkishMeaning": "Test, deney",
+        "exampleSentence": "The laboratory test confirmed the chemical theory.",
+        "category": "Science",
+        "explanation": "TEST (Test, deney): A procedure to verify the quality or truth of a fact. E.g.: \"The laboratory test confirmed the chemical theory.\""
+      },
+      {
+        "id": "we_g8_e_73",
+        "word": "MIND",
+        "clue": "The element of thought, memory, and cognitive feeling",
+        "turkishMeaning": "Zihin / Akıl",
+        "exampleSentence": "Puzzles stimulate analytical logic in the mind.",
+        "category": "Science",
+        "explanation": "MIND (Zihin / Akıl): The element of thought, memory, and cognitive feeling. E.g.: \"Puzzles stimulate analytical logic in the mind.\""
+      },
+      {
+        "id": "we_g8_e_74",
+        "word": "WAVE",
+        "clue": "A moving ridge of ocean water or sound vibration",
+        "turkishMeaning": "Dalga",
+        "exampleSentence": "A tidal wave crested against coastal stone seawalls.",
+        "category": "Natural Forces",
+        "explanation": "WAVE (Dalga): A moving ridge of ocean water or sound vibration. E.g.: \"A tidal wave crested against coastal stone seawalls.\""
+      },
+      {
+        "id": "we_g8_e_75",
+        "word": "WIND",
+        "clue": "The perceptible natural movement of atmospheric air",
+        "turkishMeaning": "Rüzgar",
+        "exampleSentence": "Strong wind spun the coastal electricity turbines.",
+        "category": "Natural Forces",
+        "explanation": "WIND (Rüzgar): The perceptible natural movement of atmospheric air. E.g.: \"Strong wind spun the coastal electricity turbines.\""
+      },
+      {
+        "id": "we_g8_e_76",
+        "word": "RAIN",
+        "clue": "Moisture condensed from atmospheric vapor falling in drops",
+        "turkishMeaning": "Yağmur",
+        "exampleSentence": "Monsoon rain quenched the parched desert valley.",
+        "category": "Natural Forces",
+        "explanation": "RAIN (Yağmur): Moisture condensed from atmospheric vapor falling in drops. E.g.: \"Monsoon rain quenched the parched desert valley.\""
+      },
+      {
+        "id": "we_g8_e_77",
+        "word": "SNOW",
+        "clue": "Atmospheric water vapor frozen into ice crystals",
+        "turkishMeaning": "Kar",
+        "exampleSentence": "Fresh snow blanked the ski slopes overnight.",
+        "category": "Natural Forces",
+        "explanation": "SNOW (Kar): Atmospheric water vapor frozen into ice crystals. E.g.: \"Fresh snow blanked the ski slopes overnight.\""
+      },
+      {
+        "id": "we_g8_e_78",
+        "word": "ROCK",
+        "clue": "The solid mineral material forming Earth's crust",
+        "turkishMeaning": "Kaya",
+        "exampleSentence": "Huge rocks tumbled during the mountain tremor.",
+        "category": "Natural Forces",
+        "explanation": "ROCK (Kaya): The solid mineral material forming Earth's crust. E.g.: \"Huge rocks tumbled during the mountain tremor.\""
+      },
+      {
+        "id": "we_g8_e_79",
+        "word": "FIRE",
+        "clue": "Combustion producing heat, smoke, and blazing flames",
+        "turkishMeaning": "Yangın, ateş",
+        "exampleSentence": "Never leave an open camp fire burning unattended.",
+        "category": "Natural Forces",
+        "explanation": "FIRE (Yangın, ateş): Combustion producing heat, smoke, and blazing flames. E.g.: \"Never leave an open camp fire burning unattended.\""
+      },
+      {
+        "id": "we_g8_e_80",
+        "word": "LAND",
+        "clue": "The solid part of the surface of the Earth",
+        "turkishMeaning": "Kara, toprak",
+        "exampleSentence": "Dry land cracked during the prolonged drought.",
+        "category": "Natural Forces",
+        "explanation": "LAND (Kara, toprak): The solid part of the surface of the Earth. E.g.: \"Dry land cracked during the prolonged drought.\""
       }
     ],
     "medium": [
@@ -1819,6 +3264,366 @@ export const WORDLE_ENGLISH_BANK: WordleEnglishBank = {
         "exampleSentence": "Science fiction books often imagine friendly alien beings.",
         "category": "Science",
         "explanation": "ALIEN (Uzaylı / Yabancı): Supposed extraterrestrial life or something completely strange. E.g.: \"Science fiction books often imagine friendly alien beings.\""
+      },
+      {
+        "id": "we_g8_m_41",
+        "word": "LOYAL",
+        "clue": "Giving or showing firm and constant support to peers",
+        "turkishMeaning": "Sadık, vefalı",
+        "exampleSentence": "A loyal companion never abandons you in trouble.",
+        "category": "Friendship",
+        "explanation": "LOYAL (Sadık, vefalı): Giving or showing firm and constant support to peers. E.g.: \"A loyal companion never abandons you in trouble.\""
+      },
+      {
+        "id": "we_g8_m_42",
+        "word": "SHARE",
+        "clue": "To distribute among others or express thoughts freely",
+        "turkishMeaning": "Paylaşmak",
+        "exampleSentence": "True friends share their hopes and anxieties.",
+        "category": "Friendship",
+        "explanation": "SHARE (Paylaşmak): To distribute among others or express thoughts freely. E.g.: \"True friends share their hopes and anxieties.\""
+      },
+      {
+        "id": "we_g8_m_43",
+        "word": "TRUST",
+        "clue": "Firm belief in the reliability and truth of someone",
+        "turkishMeaning": "Güven, güvenmek",
+        "exampleSentence": "Trust is earned through consistent honesty and care.",
+        "category": "Friendship",
+        "explanation": "TRUST (Güven, güvenmek): Firm belief in the reliability and truth of someone. E.g.: \"Trust is earned through consistent honesty and care.\""
+      },
+      {
+        "id": "we_g8_m_44",
+        "word": "TREND",
+        "clue": "A general direction in which teen fashion develops",
+        "turkishMeaning": "Akım, eğilim",
+        "exampleSentence": "Casual sneakers are a dominant fashion trend.",
+        "category": "Teen Life",
+        "explanation": "TREND (Akım, eğilim): A general direction in which teen fashion develops. E.g.: \"Casual sneakers are a dominant fashion trend.\""
+      },
+      {
+        "id": "we_g8_m_45",
+        "word": "HABIT",
+        "clue": "A settled or regular tendency practiced daily",
+        "turkishMeaning": "Alışkanlık",
+        "exampleSentence": "Daily reading is a beneficial intellectual habit.",
+        "category": "Teen Life",
+        "explanation": "HABIT (Alışkanlık): A settled or regular tendency practiced daily. E.g.: \"Daily reading is a beneficial intellectual habit.\""
+      },
+      {
+        "id": "we_g8_m_46",
+        "word": "PHONE",
+        "clue": "An electronic device used to converse with distant people",
+        "turkishMeaning": "Telefon",
+        "exampleSentence": "She answered the ringing phone after two chimes.",
+        "category": "Phone",
+        "explanation": "PHONE (Telefon): An electronic device used to converse with distant people. E.g.: \"She answered the ringing phone after two chimes.\""
+      },
+      {
+        "id": "we_g8_m_47",
+        "word": "CALLS",
+        "clue": "Makes telephone calls or shouts to someone",
+        "turkishMeaning": "Aramalar",
+        "exampleSentence": "He makes brief calls to his family every evening.",
+        "category": "Phone",
+        "explanation": "CALLS (Aramalar): Makes telephone calls or shouts to someone. E.g.: \"He makes brief calls to his family every evening.\""
+      },
+      {
+        "id": "we_g8_m_48",
+        "word": "REPLY",
+        "clue": "To give a spoken or written answer to someone",
+        "turkishMeaning": "Cevap vermek",
+        "exampleSentence": "Reply promptly to your study partner's text message.",
+        "category": "Phone",
+        "explanation": "REPLY (Cevap vermek): To give a spoken or written answer to someone. E.g.: \"Reply promptly to your study partner's text message.\""
+      },
+      {
+        "id": "we_g8_m_49",
+        "word": "VOICE",
+        "clue": "The sound produced in a person's larynx during speech",
+        "turkishMeaning": "Ses",
+        "exampleSentence": "His calm voice reassured the anxious caller.",
+        "category": "Phone",
+        "explanation": "VOICE (Ses): The sound produced in a person's larynx during speech. E.g.: \"His calm voice reassured the anxious caller.\""
+      },
+      {
+        "id": "we_g8_m_50",
+        "word": "INBOX",
+        "clue": "An electronic folder where received emails are saved",
+        "turkishMeaning": "Gelen kutusu",
+        "exampleSentence": "Check your student email inbox for class bulletins.",
+        "category": "Internet",
+        "explanation": "INBOX (Gelen kutusu): An electronic folder where received emails are saved. E.g.: \"Check your student email inbox for class bulletins.\""
+      },
+      {
+        "id": "we_g8_m_51",
+        "word": "LOGIN",
+        "clue": "The credentials or act of entering a secure system",
+        "turkishMeaning": "Giriş yapmak",
+        "exampleSentence": "Keep your computer login credentials private.",
+        "category": "Internet",
+        "explanation": "LOGIN (Giriş yapmak): The credentials or act of entering a secure system. E.g.: \"Keep your computer login credentials private.\""
+      },
+      {
+        "id": "we_g8_m_52",
+        "word": "CYBER",
+        "clue": "Relating to electronic communication and internet networks",
+        "turkishMeaning": "Siber",
+        "exampleSentence": "Cyber safety guidelines protect student accounts.",
+        "category": "Internet",
+        "explanation": "CYBER (Siber): Relating to electronic communication and internet networks. E.g.: \"Cyber safety guidelines protect student accounts.\""
+      },
+      {
+        "id": "we_g8_m_53",
+        "word": "SPICE",
+        "clue": "An aromatic vegetable substance used to season dishes",
+        "turkishMeaning": "Baharat",
+        "exampleSentence": "Cumin is an essential fragrant spice in lentil soup.",
+        "category": "Kitchen",
+        "explanation": "SPICE (Baharat): An aromatic vegetable substance used to season dishes. E.g.: \"Cumin is an essential fragrant spice in lentil soup.\""
+      },
+      {
+        "id": "we_g8_m_54",
+        "word": "GRILL",
+        "clue": "A device on a cooker radiating heat downwards",
+        "turkishMeaning": "Izgara yapmak",
+        "exampleSentence": "Grill seasoned salmon fillets for eight minutes.",
+        "category": "Kitchen",
+        "explanation": "GRILL (Izgara yapmak): A device on a cooker radiating heat downwards. E.g.: \"Grill seasoned salmon fillets for eight minutes.\""
+      },
+      {
+        "id": "we_g8_m_55",
+        "word": "ROAST",
+        "clue": "To cook meat or vegetables in an oven with dry heat",
+        "turkishMeaning": "Fırında kızartmak",
+        "exampleSentence": "Roast potatoes until they are golden and crispy.",
+        "category": "Kitchen",
+        "explanation": "ROAST (Fırında kızartmak): To cook meat or vegetables in an oven with dry heat. E.g.: \"Roast potatoes until they are golden and crispy.\""
+      },
+      {
+        "id": "we_g8_m_56",
+        "word": "SLICE",
+        "clue": "A thin broad piece of food cut from a larger cake",
+        "turkishMeaning": "Dilim, dilimlemek",
+        "exampleSentence": "Cut the freshly baked bread into thin even slices.",
+        "category": "Kitchen",
+        "explanation": "SLICE (Dilim, dilimlemek): A thin broad piece of food cut from a larger cake. E.g.: \"Cut the freshly baked bread into thin even slices.\""
+      },
+      {
+        "id": "we_g8_m_57",
+        "word": "DRAIN",
+        "clue": "To remove water from food using a colander",
+        "turkishMeaning": "Süzmek",
+        "exampleSentence": "Drain the boiled spaghetti thoroughly before sauce.",
+        "category": "Kitchen",
+        "explanation": "DRAIN (Süzmek): To remove water from food using a colander. E.g.: \"Drain the boiled spaghetti thoroughly before sauce.\""
+      },
+      {
+        "id": "we_g8_m_58",
+        "word": "TASTE",
+        "clue": "The sensation of flavor perceived in the mouth",
+        "turkishMeaning": "Tat, tatmak",
+        "exampleSentence": "Taste the stew and adjust the salt if necessary.",
+        "category": "Kitchen",
+        "explanation": "TASTE (Tat, tatmak): The sensation of flavor perceived in the mouth. E.g.: \"Taste the stew and adjust the salt if necessary.\""
+      },
+      {
+        "id": "we_g8_m_59",
+        "word": "SPOON",
+        "clue": "An implement with a shallow bowl used for eating soup",
+        "turkishMeaning": "Kaşık",
+        "exampleSentence": "Eat the warm chicken broth with a soup spoon.",
+        "category": "Kitchen",
+        "explanation": "SPOON (Kaşık): An implement with a shallow bowl used for eating soup. E.g.: \"Eat the warm chicken broth with a soup spoon.\""
+      },
+      {
+        "id": "we_g8_m_60",
+        "word": "PLATE",
+        "clue": "A flat dish from which food is eaten or served",
+        "turkishMeaning": "Tabak",
+        "exampleSentence": "Arrange the grilled chicken skewers on a warm plate.",
+        "category": "Kitchen",
+        "explanation": "PLATE (Tabak): A flat dish from which food is eaten or served. E.g.: \"Arrange the grilled chicken skewers on a warm plate.\""
+      },
+      {
+        "id": "we_g8_m_61",
+        "word": "KNIFE",
+        "clue": "An instrument with a cutting blade and a handle",
+        "turkishMeaning": "Bıçak",
+        "exampleSentence": "Chop vegetables carefully using a sharp chef knife.",
+        "category": "Kitchen",
+        "explanation": "KNIFE (Bıçak): An instrument with a cutting blade and a handle. E.g.: \"Chop vegetables carefully using a sharp chef knife.\""
+      },
+      {
+        "id": "we_g8_m_62",
+        "word": "CABIN",
+        "clue": "A small wooden shelter erected in wilderness forests",
+        "turkishMeaning": "Dağ kulübesi",
+        "exampleSentence": "The mountaineers spent the night in an alpine cabin.",
+        "category": "Adventures",
+        "explanation": "CABIN (Dağ kulübesi): A small wooden shelter erected in wilderness forests. E.g.: \"The mountaineers spent the night in an alpine cabin.\""
+      },
+      {
+        "id": "we_g8_m_63",
+        "word": "KAYAK",
+        "clue": "A narrow watercraft propelled by a double-bladed paddle",
+        "turkishMeaning": "Kano",
+        "exampleSentence": "Paddlers steered their sleek kayak through river bends.",
+        "category": "Adventures",
+        "explanation": "KAYAK (Kano): A narrow watercraft propelled by a double-bladed paddle. E.g.: \"Paddlers steered their sleek kayak through river bends.\""
+      },
+      {
+        "id": "we_g8_m_64",
+        "word": "CLIMB",
+        "clue": "To ascend mountains or steep rocks using limbs",
+        "turkishMeaning": "Tırmanmak",
+        "exampleSentence": "Athletes climb vertical rock faces with chalked hands.",
+        "category": "Adventures",
+        "explanation": "CLIMB (Tırmanmak): To ascend mountains or steep rocks using limbs. E.g.: \"Athletes climb vertical rock faces with chalked hands.\""
+      },
+      {
+        "id": "we_g8_m_65",
+        "word": "BEACH",
+        "clue": "A strip of sand or shingle along an ocean coast",
+        "turkishMeaning": "Plaj, sahil",
+        "exampleSentence": "Tourists sunbathed along the Mediterranean beach.",
+        "category": "Tourism",
+        "explanation": "BEACH (Plaj, sahil): A strip of sand or shingle along an ocean coast. E.g.: \"Tourists sunbathed along the Mediterranean beach.\""
+      },
+      {
+        "id": "we_g8_m_66",
+        "word": "HOTEL",
+        "clue": "An establishment providing accommodation for guests",
+        "turkishMeaning": "Otel",
+        "exampleSentence": "Book comfortable hotel rooms before holiday peak.",
+        "category": "Tourism",
+        "explanation": "HOTEL (Otel): An establishment providing accommodation for guests. E.g.: \"Book comfortable hotel rooms before holiday peak.\""
+      },
+      {
+        "id": "we_g8_m_67",
+        "word": "GUIDE",
+        "clue": "A person who shows the way to tourists at landmarks",
+        "turkishMeaning": "Rehber",
+        "exampleSentence": "The licensed guide explained the history of Troy.",
+        "category": "Tourism",
+        "explanation": "GUIDE (Rehber): A person who shows the way to tourists at landmarks. E.g.: \"The licensed guide explained the history of Troy.\""
+      },
+      {
+        "id": "we_g8_m_68",
+        "word": "LODGE",
+        "clue": "A small house at the gates of a park or ski resort",
+        "turkishMeaning": "Dağ evi, pansiyon",
+        "exampleSentence": "The alpine ski lodge welcomed frozen hikers warmly.",
+        "category": "Tourism",
+        "explanation": "LODGE (Dağ evi, pansiyon): A small house at the gates of a park or ski resort. E.g.: \"The alpine ski lodge welcomed frozen hikers warmly.\""
+      },
+      {
+        "id": "we_g8_m_69",
+        "word": "CHORE",
+        "clue": "A routine household task such as sweeping or dishes",
+        "turkishMeaning": "Ev işi",
+        "exampleSentence": "Vacuuming the living room carpet is his weekly chore.",
+        "category": "Chores",
+        "explanation": "CHORE (Ev işi): A routine household task such as sweeping or dishes. E.g.: \"Vacuuming the living room carpet is his weekly chore.\""
+      },
+      {
+        "id": "we_g8_m_70",
+        "word": "SWEEP",
+        "clue": "To clean floor tiles by brushing away dirt with brooms",
+        "turkishMeaning": "Süpürmek",
+        "exampleSentence": "Sweep the kitchen tiles after cooking dinner.",
+        "category": "Chores",
+        "explanation": "SWEEP (Süpürmek): To clean floor tiles by brushing away dirt with brooms. E.g.: \"Sweep the kitchen tiles after cooking dinner.\""
+      },
+      {
+        "id": "we_g8_m_71",
+        "word": "SCRUB",
+        "clue": "To rub surfaces hard with a brush and soapy water",
+        "turkishMeaning": "Ovalamak",
+        "exampleSentence": "Scrub the cooking pots until all grease vanishes.",
+        "category": "Chores",
+        "explanation": "SCRUB (Ovalamak): To rub surfaces hard with a brush and soapy water. E.g.: \"Scrub the cooking pots until all grease vanishes.\""
+      },
+      {
+        "id": "we_g8_m_72",
+        "word": "FORCE",
+        "clue": "Strength or energy as an attribute of physical motion",
+        "turkishMeaning": "Kuvvet, güç",
+        "exampleSentence": "Gravitational force binds planets to solar orbits.",
+        "category": "Science",
+        "explanation": "FORCE (Kuvvet, güç): Strength or energy as an attribute of physical motion. E.g.: \"Gravitational force binds planets to solar orbits.\""
+      },
+      {
+        "id": "we_g8_m_73",
+        "word": "LIGHT",
+        "clue": "The natural agent that stimulates sight; electromagnetic",
+        "turkishMeaning": "Işık",
+        "exampleSentence": "Sunlight supplies photosynthetic energy to plants.",
+        "category": "Science",
+        "explanation": "LIGHT (Işık): The natural agent that stimulates sight; electromagnetic. E.g.: \"Sunlight supplies photosynthetic energy to plants.\""
+      },
+      {
+        "id": "we_g8_m_74",
+        "word": "RADAR",
+        "clue": "A system for detecting objects by using radio waves",
+        "turkishMeaning": "Radar",
+        "exampleSentence": "Airport radar tracks incoming passenger flights.",
+        "category": "Science",
+        "explanation": "RADAR (Radar): A system for detecting objects by using radio waves. E.g.: \"Airport radar tracks incoming passenger flights.\""
+      },
+      {
+        "id": "we_g8_m_75",
+        "word": "STEAM",
+        "clue": "The vapor into which water is converted when boiled",
+        "turkishMeaning": "Buhar",
+        "exampleSentence": "Steam rose in fragrant plumes from the hot saucepan.",
+        "category": "Science",
+        "explanation": "STEAM (Buhar): The vapor into which water is converted when boiled. E.g.: \"Steam rose in fragrant plumes from the hot saucepan.\""
+      },
+      {
+        "id": "we_g8_m_76",
+        "word": "FLOOD",
+        "clue": "An overflow of a large amount of water beyond limits",
+        "turkishMeaning": "Sel, su baskını",
+        "exampleSentence": "Flash floods submerged streets following cloudbursts.",
+        "category": "Natural Forces",
+        "explanation": "FLOOD (Sel, su baskını): An overflow of a large amount of water beyond limits. E.g.: \"Flash floods submerged streets following cloudbursts.\""
+      },
+      {
+        "id": "we_g8_m_77",
+        "word": "EARTH",
+        "clue": "The planet on which we live; the world",
+        "turkishMeaning": "Dünya",
+        "exampleSentence": "Tectonic faults fracture deep within the solid Earth.",
+        "category": "Natural Forces",
+        "explanation": "EARTH (Dünya): The planet on which we live; the world. E.g.: \"Tectonic faults fracture deep within the solid Earth.\""
+      },
+      {
+        "id": "we_g8_m_78",
+        "word": "CRUST",
+        "clue": "The outermost solid rocky shell of our planet",
+        "turkishMeaning": "Yer kabuğu",
+        "exampleSentence": "Seismic tremors rupture faults inside Earth's crust.",
+        "category": "Natural Forces",
+        "explanation": "CRUST (Yer kabuğu): The outermost solid rocky shell of our planet. E.g.: \"Seismic tremors rupture faults inside Earth's crust.\""
+      },
+      {
+        "id": "we_g8_m_79",
+        "word": "FAULT",
+        "clue": "An extended fracture in the rock formations of Earth",
+        "turkishMeaning": "Fay hattı",
+        "exampleSentence": "The North Anatolian fault slip produced temblors.",
+        "category": "Natural Forces",
+        "explanation": "FAULT (Fay hattı): An extended fracture in the rock formations of Earth. E.g.: \"The North Anatolian fault slip produced temblors.\""
+      },
+      {
+        "id": "we_g8_m_80",
+        "word": "SMOKE",
+        "clue": "A visible suspension of carbon particles in the air",
+        "turkishMeaning": "Duman",
+        "exampleSentence": "Volcanic smoke billowed high above the mountain cone.",
+        "category": "Natural Forces",
+        "explanation": "SMOKE (Duman): A visible suspension of carbon particles in the air. E.g.: \"Volcanic smoke billowed high above the mountain cone.\""
       }
     ],
     "hard": [
@@ -2182,6 +3987,366 @@ export const WORDLE_ENGLISH_BANK: WordleEnglishBank = {
         "exampleSentence": "Einstein formulated the revolutionary theory of relativity.",
         "category": "Science",
         "explanation": "THEORY (Teori, kuram): A well-substantiated scientific explanation of natural facts. E.g.: \"Einstein formulated the revolutionary theory of relativity.\""
+      },
+      {
+        "id": "we_g8_h_41",
+        "word": "SECRET",
+        "clue": "Not known or seen by others; private confidence",
+        "turkishMeaning": "Sır, gizli",
+        "exampleSentence": "Keep your companion's personal secret faithfully.",
+        "category": "Friendship",
+        "explanation": "SECRET (Sır, gizli): Not known or seen by others; private confidence. E.g.: \"Keep your companion's personal secret faithfully.\""
+      },
+      {
+        "id": "we_g8_h_42",
+        "word": "CARING",
+        "clue": "Displaying kindness and concern for other people",
+        "turkishMeaning": "Şefkatli, ilgili",
+        "exampleSentence": "A caring friend offers comfort during stressful weeks.",
+        "category": "Friendship",
+        "explanation": "CARING (Şefkatli, ilgili): Displaying kindness and concern for other people. E.g.: \"A caring friend offers comfort during stressful weeks.\""
+      },
+      {
+        "id": "we_g8_h_43",
+        "word": "LISTEN",
+        "clue": "To give one's attention to a sound or someone speaking",
+        "turkishMeaning": "Dinlemek",
+        "exampleSentence": "Listen patiently before formulating your response.",
+        "category": "Friendship",
+        "explanation": "LISTEN (Dinlemek): To give one's attention to a sound or someone speaking. E.g.: \"Listen patiently before formulating your response.\""
+      },
+      {
+        "id": "we_g8_h_44",
+        "word": "SOCIAL",
+        "clue": "Relating to society, human fellowship, and interaction",
+        "turkishMeaning": "Sosyal",
+        "exampleSentence": "Social activities develop teenage communication skills.",
+        "category": "Teen Life",
+        "explanation": "SOCIAL (Sosyal): Relating to society, human fellowship, and interaction. E.g.: \"Social activities develop teenage communication skills.\""
+      },
+      {
+        "id": "we_g8_h_45",
+        "word": "TRENDY",
+        "clue": "Very fashionable or responsive to modern trends",
+        "turkishMeaning": "Modaya uygun",
+        "exampleSentence": "She wore trendy casual streetwear to the school fair.",
+        "category": "Teen Life",
+        "explanation": "TRENDY (Modaya uygun): Very fashionable or responsive to modern trends. E.g.: \"She wore trendy casual streetwear to the school fair.\""
+      },
+      {
+        "id": "we_g8_h_46",
+        "word": "MOBILE",
+        "clue": "Able to be moved easily; relating to smartphones",
+        "turkishMeaning": "Taşınabilir / Mobil",
+        "exampleSentence": "Smart mobile phones access digital class encyclopedias.",
+        "category": "Phone",
+        "explanation": "MOBILE (Taşınabilir / Mobil): Able to be moved easily; relating to smartphones. E.g.: \"Smart mobile phones access digital class encyclopedias.\""
+      },
+      {
+        "id": "we_g8_h_47",
+        "word": "HANGUP",
+        "clue": "To end a telephone call by replacing the receiver",
+        "turkishMeaning": "Telefonu kapatmak",
+        "exampleSentence": "Do not hangup abruptly while the speaker is talking.",
+        "category": "Phone",
+        "explanation": "HANGUP (Telefonu kapatmak): To end a telephone call by replacing the receiver. E.g.: \"Do not hangup abruptly while the speaker is talking.\""
+      },
+      {
+        "id": "we_g8_h_48",
+        "word": "SIGNAL",
+        "clue": "An electrical impulse or radio transmission waves",
+        "turkishMeaning": "Sinyal",
+        "exampleSentence": "The cellular mobile signal was strong in the valley.",
+        "category": "Phone",
+        "explanation": "SIGNAL (Sinyal): An electrical impulse or radio transmission waves. E.g.: \"The cellular mobile signal was strong in the valley.\""
+      },
+      {
+        "id": "we_g8_h_49",
+        "word": "REPEAT",
+        "clue": "To say or do something again for clarification",
+        "turkishMeaning": "Tekrarlamak",
+        "exampleSentence": "Could you repeat that telephone number once more?",
+        "category": "Phone",
+        "explanation": "REPEAT (Tekrarlamak): To say or do something again for clarification. E.g.: \"Could you repeat that telephone number once more?\""
+      },
+      {
+        "id": "we_g8_h_50",
+        "word": "BROWSE",
+        "clue": "To search for information in internet web databases",
+        "turkishMeaning": "Göz atmak / Gezinmek",
+        "exampleSentence": "Browse accredited academic libraries for science data.",
+        "category": "Internet",
+        "explanation": "BROWSE (Göz atmak / Gezinmek): To search for information in internet web databases. E.g.: \"Browse accredited academic libraries for science data.\""
+      },
+      {
+        "id": "we_g8_h_51",
+        "word": "UPLOAD",
+        "clue": "To transfer digital files from a client to a server",
+        "turkishMeaning": "Yüklemek",
+        "exampleSentence": "Upload your completed science presentation by five.",
+        "category": "Internet",
+        "explanation": "UPLOAD (Yüklemek): To transfer digital files from a client to a server. E.g.: \"Upload your completed science presentation by five.\""
+      },
+      {
+        "id": "we_g8_h_52",
+        "word": "ONLINE",
+        "clue": "Connected to or available via the global internet",
+        "turkishMeaning": "Çevrim içi",
+        "exampleSentence": "Exercise vigilance whenever entering credentials online.",
+        "category": "Internet",
+        "explanation": "ONLINE (Çevrim içi): Connected to or available via the global internet. E.g.: \"Exercise vigilance whenever entering credentials online.\""
+      },
+      {
+        "id": "we_g8_h_53",
+        "word": "SEARCH",
+        "clue": "To look for information in web databases or engines",
+        "turkishMeaning": "Aramak, araştırmak",
+        "exampleSentence": "Search reliable sources when drafting biology reports.",
+        "category": "Internet",
+        "explanation": "SEARCH (Aramak, araştırmak): To look for information in web databases or engines. E.g.: \"Search reliable sources when drafting biology reports.\""
+      },
+      {
+        "id": "we_g8_h_54",
+        "word": "RECIPE",
+        "clue": "A set of culinary instructions for preparing a dish",
+        "turkishMeaning": "Yemek tarifi",
+        "exampleSentence": "Follow the traditional Italian pasta sauce recipe.",
+        "category": "Kitchen",
+        "explanation": "RECIPE (Yemek tarifi): A set of culinary instructions for preparing a dish. E.g.: \"Follow the traditional Italian pasta sauce recipe.\""
+      },
+      {
+        "id": "we_g8_h_55",
+        "word": "SEASON",
+        "clue": "To add salt, herbs, or pepper to enhance flavor",
+        "turkishMeaning": "Baharatlamak",
+        "exampleSentence": "Season the roast vegetables with rosemary and oil.",
+        "category": "Kitchen",
+        "explanation": "SEASON (Baharatlamak): To add salt, herbs, or pepper to enhance flavor. E.g.: \"Season the roast vegetables with rosemary and oil.\""
+      },
+      {
+        "id": "we_g8_h_56",
+        "word": "WHISKS",
+        "clue": "Culinary utensils beat eggs and cream into foams",
+        "turkishMeaning": "Çırpıcılar",
+        "exampleSentence": "The chef whisks egg whites until stiff peaks form.",
+        "category": "Kitchen",
+        "explanation": "WHISKS (Çırpıcılar): Culinary utensils beat eggs and cream into foams. E.g.: \"The chef whisks egg whites until stiff peaks form.\""
+      },
+      {
+        "id": "we_g8_h_57",
+        "word": "STRAIN",
+        "clue": "Kitchen strainer bowl draining boiled pasta liquids",
+        "turkishMeaning": "Süzmek",
+        "exampleSentence": "Strain boiled macaroni into a stainless steel bowl.",
+        "category": "Kitchen",
+        "explanation": "STRAIN (Süzmek): Kitchen strainer bowl draining boiled pasta liquids. E.g.: \"Strain boiled macaroni into a stainless steel bowl.\""
+      },
+      {
+        "id": "we_g8_h_58",
+        "word": "BAKING",
+        "clue": "The craft of cooking bread or pastry in hot ovens",
+        "turkishMeaning": "Fırında pişirme",
+        "exampleSentence": "Baking fresh sourdough bread requires yeast patience.",
+        "category": "Kitchen",
+        "explanation": "BAKING (Fırında pişirme): The craft of cooking bread or pastry in hot ovens. E.g.: \"Baking fresh sourdough bread requires yeast patience.\""
+      },
+      {
+        "id": "we_g8_h_59",
+        "word": "BOILED",
+        "clue": "Cooked in water heated to one hundred Celsius",
+        "turkishMeaning": "Haşlanmış",
+        "exampleSentence": "Serve boiled garden peas alongside the roast potato.",
+        "category": "Kitchen",
+        "explanation": "BOILED (Haşlanmış): Cooked in water heated to one hundred Celsius. E.g.: \"Serve boiled garden peas alongside the roast potato.\""
+      },
+      {
+        "id": "we_g8_h_60",
+        "word": "PANTRY",
+        "clue": "A small room or cupboard where foodstuffs are stored",
+        "turkishMeaning": "Kiler",
+        "exampleSentence": "Store dried grains and canned tomatoes in the pantry.",
+        "category": "Kitchen",
+        "explanation": "PANTRY (Kiler): A small room or cupboard where foodstuffs are stored. E.g.: \"Store dried grains and canned tomatoes in the pantry.\""
+      },
+      {
+        "id": "we_g8_h_61",
+        "word": "ALPINE",
+        "clue": "Relating to high mountain peaks and alpine glaciers",
+        "turkishMeaning": "Alplere özgü, dağlık",
+        "exampleSentence": "Alpine mountaineers carried ropes across the pass.",
+        "category": "Adventures",
+        "explanation": "ALPINE (Alplere özgü, dağlık): Relating to high mountain peaks and alpine glaciers. E.g.: \"Alpine mountaineers carried ropes across the pass.\""
+      },
+      {
+        "id": "we_g8_h_62",
+        "word": "SAFETY",
+        "clue": "The condition of being secure from hazard or peril",
+        "turkishMeaning": "Güvenlik",
+        "exampleSentence": "Wear your climbing helmet to maximize route safety.",
+        "category": "Adventures",
+        "explanation": "SAFETY (Güvenlik): The condition of being secure from hazard or peril. E.g.: \"Wear your climbing helmet to maximize route safety.\""
+      },
+      {
+        "id": "we_g8_h_63",
+        "word": "HELMET",
+        "clue": "A hard protective hat worn by adventurers and riders",
+        "turkishMeaning": "Kask",
+        "exampleSentence": "Fasten your bicycle helmet chin strap snugly.",
+        "category": "Adventures",
+        "explanation": "HELMET (Kask): A hard protective hat worn by adventurers and riders. E.g.: \"Fasten your bicycle helmet chin strap snugly.\""
+      },
+      {
+        "id": "we_g8_h_64",
+        "word": "FLIGHT",
+        "clue": "A journey made by an aircraft or hot-air balloon",
+        "turkishMeaning": "Uçuş",
+        "exampleSentence": "Our hot-air balloon flight over Goreme was magical.",
+        "category": "Adventures",
+        "explanation": "FLIGHT (Uçuş): A journey made by an aircraft or hot-air balloon. E.g.: \"Our hot-air balloon flight over Goreme was magical.\""
+      },
+      {
+        "id": "we_g8_h_65",
+        "word": "TRAVEL",
+        "clue": "To go from one place to another over a distance",
+        "turkishMeaning": "Seyahat etmek",
+        "exampleSentence": "Traveling broadens teenage understanding of cultures.",
+        "category": "Tourism",
+        "explanation": "TRAVEL (Seyahat etmek): To go from one place to another over a distance. E.g.: \"Traveling broadens teenage understanding of cultures.\""
+      },
+      {
+        "id": "we_g8_h_66",
+        "word": "RESORT",
+        "clue": "A commercial holiday hotel with extensive amenities",
+        "turkishMeaning": "Tatil köyü",
+        "exampleSentence": "The beach resort offered windsurfing lessons daily.",
+        "category": "Tourism",
+        "explanation": "RESORT (Tatil köyü): A commercial holiday hotel with extensive amenities. E.g.: \"The beach resort offered windsurfing lessons daily.\""
+      },
+      {
+        "id": "we_g8_h_67",
+        "word": "TICKET",
+        "clue": "A printed or digital voucher entitling entry or travel",
+        "turkishMeaning": "Bilet",
+        "exampleSentence": "Keep your flight boarding ticket in your coat pocket.",
+        "category": "Tourism",
+        "explanation": "TICKET (Bilet): A printed or digital voucher entitling entry or travel. E.g.: \"Keep your flight boarding ticket in your coat pocket.\""
+      },
+      {
+        "id": "we_g8_h_68",
+        "word": "CHORES",
+        "clue": "Routine domestic tasks required to keep homes tidy",
+        "turkishMeaning": "Ev işleri",
+        "exampleSentence": "Sharing chores equitably prevents family friction.",
+        "category": "Chores",
+        "explanation": "CHORES (Ev işleri): Routine domestic tasks required to keep homes tidy. E.g.: \"Sharing chores equitably prevents family friction.\""
+      },
+      {
+        "id": "we_g8_h_69",
+        "word": "VACUUM",
+        "clue": "To clean rugs and carpets with an electric cleaner",
+        "turkishMeaning": "Süpürmek (elektrikli)",
+        "exampleSentence": "Vacuum the bedroom rug before the visitors arrive.",
+        "category": "Chores",
+        "explanation": "VACUUM (Süpürmek (elektrikli)): To clean rugs and carpets with an electric cleaner. E.g.: \"Vacuum the bedroom rug before the visitors arrive.\""
+      },
+      {
+        "id": "we_g8_h_70",
+        "word": "TIDIED",
+        "clue": "Arranged things neatly in their proper places",
+        "turkishMeaning": "Düzenledi",
+        "exampleSentence": "She tidied her study desk before starting revision.",
+        "category": "Chores",
+        "explanation": "TIDIED (Düzenledi): Arranged things neatly in their proper places. E.g.: \"She tidied her study desk before starting revision.\""
+      },
+      {
+        "id": "we_g8_h_71",
+        "word": "METHOD",
+        "clue": "A particular procedure for accomplishing scientific tasks",
+        "turkishMeaning": "Yöntem",
+        "exampleSentence": "Follow the scientific method to test hypotheses.",
+        "category": "Science",
+        "explanation": "METHOD (Yöntem): A particular procedure for accomplishing scientific tasks. E.g.: \"Follow the scientific method to test hypotheses.\""
+      },
+      {
+        "id": "we_g8_h_72",
+        "word": "THEORY",
+        "clue": "A system of ideas intended to explain phenomena",
+        "turkishMeaning": "Teori, kuram",
+        "exampleSentence": "Einstein's theory of relativity revolutionized physics.",
+        "category": "Science",
+        "explanation": "THEORY (Teori, kuram): A system of ideas intended to explain phenomena. E.g.: \"Einstein's theory of relativity revolutionized physics.\""
+      },
+      {
+        "id": "we_g8_h_73",
+        "word": "RESULT",
+        "clue": "A consequence, effect, or outcome of an experiment",
+        "turkishMeaning": "Sonuç",
+        "exampleSentence": "The experimental result proved our hypothesis valid.",
+        "category": "Science",
+        "explanation": "RESULT (Sonuç): A consequence, effect, or outcome of an experiment. E.g.: \"The experimental result proved our hypothesis valid.\""
+      },
+      {
+        "id": "we_g8_h_74",
+        "word": "QUAKES",
+        "clue": "Sudden violent tremors of the ground; earthquakes",
+        "turkishMeaning": "Depremler",
+        "exampleSentence": "Severe quakes require robust structural engineering.",
+        "category": "Natural Forces",
+        "explanation": "QUAKES (Depremler): Sudden violent tremors of the ground; earthquakes. E.g.: \"Severe quakes require robust structural engineering.\""
+      },
+      {
+        "id": "we_g8_h_75",
+        "word": "TREMOR",
+        "clue": "An involuntary vibration or a slight earthquake shake",
+        "turkishMeaning": "Sarsıntı",
+        "exampleSentence": "Seismologists detected a minor tremor near the fault.",
+        "category": "Natural Forces",
+        "explanation": "TREMOR (Sarsıntı): An involuntary vibration or a slight earthquake shake. E.g.: \"Seismologists detected a minor tremor near the fault.\""
+      },
+      {
+        "id": "we_g8_h_76",
+        "word": "DAMAGE",
+        "clue": "Physical harm that impairs the value of structures",
+        "turkishMeaning": "Hasar, zarar",
+        "exampleSentence": "The earthquake caused structural damage to masonry.",
+        "category": "Natural Forces",
+        "explanation": "DAMAGE (Hasar, zarar): Physical harm that impairs the value of structures. E.g.: \"The earthquake caused structural damage to masonry.\""
+      },
+      {
+        "id": "we_g8_h_77",
+        "word": "RESCUE",
+        "clue": "To save someone from dangerous or catastrophic ruins",
+        "turkishMeaning": "Kurtarmak",
+        "exampleSentence": "Rescue teams deployed sniffer dogs into the ruins.",
+        "category": "Natural Forces",
+        "explanation": "RESCUE (Kurtarmak): To save someone from dangerous or catastrophic ruins. E.g.: \"Rescue teams deployed sniffer dogs into the ruins.\""
+      },
+      {
+        "id": "we_g8_h_78",
+        "word": "DEBRIS",
+        "clue": "Scattered fragments of wreckage after destruction",
+        "turkishMeaning": "Enkaz, kalıntı",
+        "exampleSentence": "Clear heavy debris carefully to find survivors.",
+        "category": "Natural Forces",
+        "explanation": "DEBRIS (Enkaz, kalıntı): Scattered fragments of wreckage after destruction. E.g.: \"Clear heavy debris carefully to find survivors.\""
+      },
+      {
+        "id": "we_g8_h_79",
+        "word": "DRILLS",
+        "clue": "Regular training exercises rehearsing safety moves",
+        "turkishMeaning": "Tatbikatlar",
+        "exampleSentence": "Classroom earthquake drills prepare students for temblors.",
+        "category": "Natural Forces",
+        "explanation": "DRILLS (Tatbikatlar): Regular training exercises rehearsing safety moves. E.g.: \"Classroom earthquake drills prepare students for temblors.\""
+      },
+      {
+        "id": "we_g8_h_80",
+        "word": "NATURE",
+        "clue": "The phenomena of the physical world collectively",
+        "turkishMeaning": "Doğa",
+        "exampleSentence": "Study nature to understand Earth's delicate balances.",
+        "category": "Natural Forces",
+        "explanation": "NATURE (Doğa): The phenomena of the physical world collectively. E.g.: \"Study nature to understand Earth's delicate balances.\""
       }
     ]
   }

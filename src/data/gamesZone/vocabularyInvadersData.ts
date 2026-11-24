@@ -1,6 +1,11 @@
 /**
- * UNIT REVIEW ARCADE — VOCABULARYINVADERSDATA DATA BANK
- * Refined for Turkish EFL Middle-School Pedagogy & School Safety Standards.
+ * UNIT REVIEW ARCADE — VOCABULARY INVADERS DATA BANK (PHASE 7A & MIXED CURRICULUM EXPANSION)
+ * 
+ * 480 validated unique clues (80 items per tier) across:
+ * - Grade 7: Easy (80), Medium (80), Hard (80)
+ * - Grade 8: Easy (80), Medium (80), Hard (80)
+ * 
+ * Mixed Curriculum: Turkish MEB English Units 1-10 + School English Curriculum.
  */
 
 import type { VocabularyInvadersBank } from '../../types/gamesZone';
@@ -502,6 +507,526 @@ export const VOCABULARY_INVADERS_BANK: VocabularyInvadersBank = {
         ],
         "wordCategory": "Planets",
         "explanation": "Mars is known as the Red Planet because of iron oxide on its surface."
+      },
+      {
+        "id": "vi_g7_e_41",
+        "prompt": "Blast \"A person who never changes their mind easily even when wrong\"",
+        "targetWord": "Stubborn",
+        "distractorWords": [
+          "Easygoing",
+          "Flexible",
+          "Polite"
+        ],
+        "wordCategory": "Personality Traits",
+        "explanation": "Stubborn people cling firmly to their own opinions.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_42",
+        "prompt": "Blast \"Someone who lacks physical coordination and frequently drops objects\"",
+        "targetWord": "Clumsy",
+        "distractorWords": [
+          "Graceful",
+          "Cautious",
+          "Careful"
+        ],
+        "wordCategory": "Personality Traits",
+        "explanation": "Clumsy individuals often bump into furniture.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_43",
+        "prompt": "Blast \"The person who directs play and enforces rules during sports matches\"",
+        "targetWord": "Referee",
+        "distractorWords": [
+          "Spectator",
+          "Goalkeeper",
+          "Captain"
+        ],
+        "wordCategory": "Sports",
+        "explanation": "A referee enforces fair play on the field.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_44",
+        "prompt": "Blast \"The sports ground where athletes run sprinting and hurdle races\"",
+        "targetWord": "Running track",
+        "distractorWords": [
+          "Basketball court",
+          "Boxing ring",
+          "Swimming pool"
+        ],
+        "wordCategory": "Sports",
+        "explanation": "Running tracks are oval circuits for track events.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_45",
+        "prompt": "Blast \"A historic milestone of finishing high school or university studies\"",
+        "targetWord": "Graduation",
+        "distractorWords": [
+          "Retirement",
+          "Promotion",
+          "Vacation"
+        ],
+        "wordCategory": "Biographies",
+        "explanation": "Graduation marks successful academic completion.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_46",
+        "prompt": "Blast \"The professional life path and occupation of a dedicated person\"",
+        "targetWord": "Career",
+        "distractorWords": [
+          "Hobby",
+          "Pastime",
+          "Chore"
+        ],
+        "wordCategory": "Biographies",
+        "explanation": "A career represents one's lifelong professional journey.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_47",
+        "prompt": "Blast \"An animal that eats only fresh green plants and tree leaves\"",
+        "targetWord": "Herbivore",
+        "distractorWords": [
+          "Carnivore",
+          "Predator",
+          "Parasite"
+        ],
+        "wordCategory": "Wild Animals",
+        "explanation": "Herbivores consume vegetation exclusively.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_48",
+        "prompt": "Blast \"An animal that is hunted and eaten by wild predators\"",
+        "targetWord": "Prey",
+        "distractorWords": [
+          "Hunter",
+          "Carnivore",
+          "Parasite"
+        ],
+        "wordCategory": "Wild Animals",
+        "explanation": "Prey species are hunted by larger predators.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_49",
+        "prompt": "Blast \"A humorous television sitcom that makes viewers laugh out loud\"",
+        "targetWord": "Comedy show",
+        "distractorWords": [
+          "Tragedy",
+          "News",
+          "Documentary"
+        ],
+        "wordCategory": "Television",
+        "explanation": "Comedy shows feature amusing sketches and jokes.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_50",
+        "prompt": "Blast \"The complete number of people watching a television program\"",
+        "targetWord": "Audience",
+        "distractorWords": [
+          "Cast",
+          "Crew",
+          "Sponsors"
+        ],
+        "wordCategory": "Television",
+        "explanation": "The audience consists of all viewers watching a broadcast.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_51",
+        "prompt": "Blast \"A card inviting friends to a birthday or anniversary party\"",
+        "targetWord": "Invitation card",
+        "distractorWords": [
+          "Menu",
+          "Bill",
+          "Receipt"
+        ],
+        "wordCategory": "Celebrations",
+        "explanation": "Invitation cards ask guests to attend festive parties.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_52",
+        "prompt": "Blast \"A festive party celebrating the completion of school studies\"",
+        "targetWord": "Graduation party",
+        "distractorWords": [
+          "Funeral",
+          "Meeting",
+          "Conference"
+        ],
+        "wordCategory": "Celebrations",
+        "explanation": "Graduation parties celebrate academic milestones.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_53",
+        "prompt": "Blast \"A person who claims to see future events through crystal balls\"",
+        "targetWord": "Fortune teller",
+        "distractorWords": [
+          "Scientist",
+          "Historian",
+          "Librarian"
+        ],
+        "wordCategory": "Dreams",
+        "explanation": "Fortune tellers claim to divine future destinies.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_54",
+        "prompt": "Blast \"A tranquil world where nations cooperate without violence or war\"",
+        "targetWord": "Peaceful world",
+        "distractorWords": [
+          "Battleground",
+          "Chaos",
+          "Conflict"
+        ],
+        "wordCategory": "Dreams",
+        "explanation": "A peaceful world thrives without warfare.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_55",
+        "prompt": "Blast \"A municipal store where freshly baked baguettes and rolls are sold\"",
+        "targetWord": "Bakery",
+        "distractorWords": [
+          "Pharmacy",
+          "Butcher",
+          "Jeweler"
+        ],
+        "wordCategory": "Public Buildings",
+        "explanation": "Bakeries prepare and sell fresh loaves daily.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_56",
+        "prompt": "Blast \"A public place displaying famous sculptures, paintings, and drawings\"",
+        "targetWord": "Art gallery",
+        "distractorWords": [
+          "Hospital",
+          "Bus stop",
+          "Supermarket"
+        ],
+        "wordCategory": "Public Buildings",
+        "explanation": "Art galleries exhibit visual artistic masterpieces.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_57",
+        "prompt": "Blast \"The civic hall where the elected mayor and town council work\"",
+        "targetWord": "Municipality",
+        "distractorWords": [
+          "Post office",
+          "Police station",
+          "Bank"
+        ],
+        "wordCategory": "Public Buildings",
+        "explanation": "The municipality oversees local urban administration.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_58",
+        "prompt": "Blast \"The contamination of fresh air with toxic factory chemicals and smoke\"",
+        "targetWord": "Air pollution",
+        "distractorWords": [
+          "Reforestation",
+          "Conservation",
+          "Purification"
+        ],
+        "wordCategory": "Environment",
+        "explanation": "Air pollution damages lung health in urban centers.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_59",
+        "prompt": "Blast \"Clean renewable power captured from blowing atmospheric wind\"",
+        "targetWord": "Wind energy",
+        "distractorWords": [
+          "Coal energy",
+          "Diesel power",
+          "Nuclear waste"
+        ],
+        "wordCategory": "Environment",
+        "explanation": "Wind turbines convert kinetic wind into electricity.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_60",
+        "prompt": "Blast \"The vast collection of eight planets orbiting our central Sun\"",
+        "targetWord": "Solar system",
+        "distractorWords": [
+          "Asteroid belt",
+          "Constellation",
+          "Galaxy"
+        ],
+        "wordCategory": "Planets",
+        "explanation": "The solar system includes the Sun and orbiting worlds.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_61",
+        "prompt": "Blast \"A trained human explorer who conducts research in outer space\"",
+        "targetWord": "Astronaut",
+        "distractorWords": [
+          "Pilot",
+          "Sailor",
+          "Diver"
+        ],
+        "wordCategory": "Planets",
+        "explanation": "Astronauts travel aboard orbiters and space stations.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_62",
+        "prompt": "Blast \"A private alphanumeric code that protects your personal email account\"",
+        "targetWord": "Secret password",
+        "distractorWords": [
+          "Username",
+          "Web link",
+          "Search term"
+        ],
+        "wordCategory": "Life Online",
+        "explanation": "Passwords protect accounts against unauthorized intruders.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_63",
+        "prompt": "Blast \"Software designed to detect, quarantine, and eliminate computer malware\"",
+        "targetWord": "Antivirus program",
+        "distractorWords": [
+          "Spam email",
+          "Computer worm",
+          "Trojan horse"
+        ],
+        "wordCategory": "Life Online",
+        "explanation": "Antiviruses protect system storage from digital infections.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_64",
+        "prompt": "Blast \"The iconic Gothic clock tower located by the River Thames in London\"",
+        "targetWord": "Big Ben",
+        "distractorWords": [
+          "Tower Bridge",
+          "Eiffel Tower",
+          "Colosseum"
+        ],
+        "wordCategory": "Britain",
+        "explanation": "Big Ben is London's world-famous clock tower landmark.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_65",
+        "prompt": "Blast \"The official London residence and working headquarters of the British monarch\"",
+        "targetWord": "Buckingham Palace",
+        "distractorWords": [
+          "Windsor Castle",
+          "Kensington",
+          "Balmoral"
+        ],
+        "wordCategory": "Britain",
+        "explanation": "Buckingham Palace hosts British royal state functions.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_66",
+        "prompt": "Blast \"A portable box containing bandages, antiseptic, and gauze for wounds\"",
+        "targetWord": "First aid kit",
+        "distractorWords": [
+          "Toolbox",
+          "Pencil case",
+          "Lunchbox"
+        ],
+        "wordCategory": "In and Out of Danger",
+        "explanation": "First aid kits treat minor injuries immediately.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_67",
+        "prompt": "Blast \"A high-visibility safety garment worn by roadside cyclists at night\"",
+        "targetWord": "Reflective vest",
+        "distractorWords": [
+          "Heavy coat",
+          "Silk scarf",
+          "Cotton shirt"
+        ],
+        "wordCategory": "In and Out of Danger",
+        "explanation": "Reflective vests reflect headlights to warn motorists.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_68",
+        "prompt": "Blast \"Someone with an athletic, strong, and muscular physique\"",
+        "targetWord": "Well-built",
+        "distractorWords": [
+          "Frail",
+          "Plump",
+          "Skinny"
+        ],
+        "wordCategory": "Appearance",
+        "explanation": "Well-built describes athletic, muscular individuals.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_69",
+        "prompt": "Blast \"Hair of a light golden, yellowish, or flaxen hue\"",
+        "targetWord": "Blonde hair",
+        "distractorWords": [
+          "Auburn hair",
+          "Dark hair",
+          "Grey hair"
+        ],
+        "wordCategory": "Appearance",
+        "explanation": "Blonde hair is pale yellow or golden.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_70",
+        "prompt": "Blast \"The swift African feline known as the fastest land mammal on Earth\"",
+        "targetWord": "Cheetah",
+        "distractorWords": [
+          "Hyena",
+          "Leopard",
+          "Lion"
+        ],
+        "wordCategory": "Wild Animals",
+        "explanation": "Cheetahs can sprint up to 100 km/h across open savannah.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_71",
+        "prompt": "Blast \"A tropical reptile that changes skin pigmentation to match foliage\"",
+        "targetWord": "Chameleon",
+        "distractorWords": [
+          "Iguana",
+          "Gecko",
+          "Crocodile"
+        ],
+        "wordCategory": "Wild Animals",
+        "explanation": "Chameleons alter skin colors for camouflage and mood.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_72",
+        "prompt": "Blast \"A television commercial broadcast during breaks to advertise goods\"",
+        "targetWord": "Advertisement",
+        "distractorWords": [
+          "Soundtrack",
+          "Headline",
+          "Subtitle"
+        ],
+        "wordCategory": "Television",
+        "explanation": "Advertisements persuade consumers to buy products.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_73",
+        "prompt": "Blast \"A television series where animated cartoon characters go on adventures\"",
+        "targetWord": "Animation",
+        "distractorWords": [
+          "Soap opera",
+          "News debate",
+          "Documentary"
+        ],
+        "wordCategory": "Television",
+        "explanation": "Animations bring hand-drawn or digital characters to life.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_74",
+        "prompt": "Blast \"The colorful explosive shells launched into night skies during festivals\"",
+        "targetWord": "Fireworks",
+        "distractorWords": [
+          "Flares",
+          "Torches",
+          "Lanterns"
+        ],
+        "wordCategory": "Celebrations",
+        "explanation": "Fireworks create vibrant bursts of light across holiday skies.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_75",
+        "prompt": "Blast \"Long paper ribbons unrolled across party tables for decoration\"",
+        "targetWord": "Streamers",
+        "distractorWords": [
+          "Confetti",
+          "Posters",
+          "Banners"
+        ],
+        "wordCategory": "Celebrations",
+        "explanation": "Streamers add colorful festive charm to party rooms.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_76",
+        "prompt": "Blast \"An ambition to travel across planetary systems aboard starships\"",
+        "targetWord": "Space voyage",
+        "distractorWords": [
+          "Submarine dive",
+          "Cave trek",
+          "Desert safari"
+        ],
+        "wordCategory": "Dreams",
+        "explanation": "Space voyages explore cosmic frontiers beyond Earth.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_77",
+        "prompt": "Blast \"The public shop where doctors' medicine prescriptions are prepared\"",
+        "targetWord": "Chemist",
+        "distractorWords": [
+          "Bakery",
+          "Florist",
+          "Bookshop"
+        ],
+        "wordCategory": "Public Buildings",
+        "explanation": "Chemists dispense certified pharmaceuticals to patients.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_78",
+        "prompt": "Blast \"The massive destruction of forest trees for cattle grazing and timber\"",
+        "targetWord": "Deforestation",
+        "distractorWords": [
+          "Gardening",
+          "Reforestation",
+          "Agriculture"
+        ],
+        "wordCategory": "Environment",
+        "explanation": "Deforestation robs endangered wildlife of natural tree canopies.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_79",
+        "prompt": "Blast \"A natural celestial satellite orbiting planet Earth once a month\"",
+        "targetWord": "Moon",
+        "distractorWords": [
+          "Mars",
+          "Venus",
+          "Jupiter"
+        ],
+        "wordCategory": "Planets",
+        "explanation": "The Moon exerts gravitational pull creating ocean tides.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_e_80",
+        "prompt": "Blast \"The emergency vehicle with sirens that carries injured patients to hospitals\"",
+        "targetWord": "Ambulance",
+        "distractorWords": [
+          "Fire engine",
+          "Patrol car",
+          "Garbage truck"
+        ],
+        "wordCategory": "In and Out of Danger",
+        "explanation": "Ambulances provide rapid emergency hospital transport.",
+        "contentVersion": 2
       }
     ],
     "medium": [
@@ -988,6 +1513,526 @@ export const VOCABULARY_INVADERS_BANK: VocabularyInvadersBank = {
         ],
         "wordCategory": "Planets",
         "explanation": "Saturn is world-famous for its prominent and expansive planetary ring system."
+      },
+      {
+        "id": "vi_g7_m_41",
+        "prompt": "Blast \"A massive moving sheet of alpine ice that carves glacial valleys\"",
+        "targetWord": "Glacier",
+        "distractorWords": [
+          "Avalanche",
+          "Landslide",
+          "Torrent"
+        ],
+        "wordCategory": "Earth Science",
+        "explanation": "Glaciers reshape mountain topography over millennia.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_42",
+        "prompt": "Blast \"The annual seasonal journey of migratory birds seeking warmer climates\"",
+        "targetWord": "Migration",
+        "distractorWords": [
+          "Hibernation",
+          "Adaptation",
+          "Camouflage"
+        ],
+        "wordCategory": "Animal Behavior",
+        "explanation": "Migration helps birds find abundant food supplies in winter.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_43",
+        "prompt": "Blast \"The prolonged winter dormancy of woodland animals with reduced heart rates\"",
+        "targetWord": "Hibernation",
+        "distractorWords": [
+          "Estivation",
+          "Grooming",
+          "Molting"
+        ],
+        "wordCategory": "Animal Behavior",
+        "explanation": "Hibernation conserves vital metabolic energy in freezing conditions.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_44",
+        "prompt": "Blast \"The scientific branch studying planets, distant stars, and cosmological galaxies\"",
+        "targetWord": "Astronomy",
+        "distractorWords": [
+          "Astrology",
+          "Geology",
+          "Meteorology"
+        ],
+        "wordCategory": "Science",
+        "explanation": "Astronomy investigates cosmological origins and star systems.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_45",
+        "prompt": "Blast \"A glowing trail of light produced when a meteoroid enters Earth's atmosphere\"",
+        "targetWord": "Shooting star",
+        "distractorWords": [
+          "Comet",
+          "Nebula",
+          "Supernova"
+        ],
+        "wordCategory": "Space",
+        "explanation": "Shooting stars or meteors burn up due to atmospheric friction.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_46",
+        "prompt": "Blast \"A frozen ball of ice and cosmic dust that sprouts a brilliant luminous tail\"",
+        "targetWord": "Comet",
+        "distractorWords": [
+          "Asteroid",
+          "Pulsar",
+          "Quasar"
+        ],
+        "wordCategory": "Space",
+        "explanation": "Comets outgas visible tails when warmed by solar radiation.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_47",
+        "prompt": "Blast \"The atmospheric shield in the stratosphere filtering deadly solar UV rays\"",
+        "targetWord": "Ozone layer",
+        "distractorWords": [
+          "Greenhouse gas",
+          "Smog",
+          "Acid rain"
+        ],
+        "wordCategory": "Environment",
+        "explanation": "The ozone layer protects terrestrial life from ultraviolet rays.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_48",
+        "prompt": "Blast \"Renewable clean electricity produced by water rushing through hydro dams\"",
+        "targetWord": "Hydroelectric energy",
+        "distractorWords": [
+          "Fossil fuel",
+          "Coal combustion",
+          "Biomass energy"
+        ],
+        "wordCategory": "Environment",
+        "explanation": "Hydroelectric power harnesses kinetic river volume.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_49",
+        "prompt": "Blast \"The illegal hunting or capturing of protected animals in national reserves\"",
+        "targetWord": "Poaching",
+        "distractorWords": [
+          "Foraging",
+          "Shepherding",
+          "Tracking"
+        ],
+        "wordCategory": "Conservation",
+        "explanation": "Poaching decimates vulnerable rhinoceros and elephant populations.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_50",
+        "prompt": "Blast \"A person who remains tranquil and calm while enduring annoying delays\"",
+        "targetWord": "Patient",
+        "distractorWords": [
+          "Impulsive",
+          "Restless",
+          "Aggressive"
+        ],
+        "wordCategory": "Personality",
+        "explanation": "Patient people avoid losing their temper during delays.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_51",
+        "prompt": "Blast \"The Olympic discipline of jumping from a diving board into a deep pool\"",
+        "targetWord": "Diving",
+        "distractorWords": [
+          "Rowing",
+          "Sailing",
+          "Water polo"
+        ],
+        "wordCategory": "Sports",
+        "explanation": "Diving judges acrobatic flips, body control, and clean entry.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_52",
+        "prompt": "Blast \"A winter sport where athletes slide down ice runs lying on a small sled\"",
+        "targetWord": "Luge",
+        "distractorWords": [
+          "Curling",
+          "Bobsleigh",
+          "Skeleton"
+        ],
+        "wordCategory": "Sports",
+        "explanation": "Luge sledders reach speeds exceeding 120 km/h.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_53",
+        "prompt": "Blast \"The famous British monarch residence in the Berkshire countryside\"",
+        "targetWord": "Windsor Castle",
+        "distractorWords": [
+          "Hampton Court",
+          "Kew Palace",
+          "Edinburgh Castle"
+        ],
+        "wordCategory": "Britain",
+        "explanation": "Windsor Castle is the oldest inhabited royal fortress.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_54",
+        "prompt": "Blast \"The historical underground railway system serving London commuters\"",
+        "targetWord": "London Underground",
+        "distractorWords": [
+          "Eurostar",
+          "Docklands Tram",
+          "Crossrail"
+        ],
+        "wordCategory": "Britain",
+        "explanation": "The London Underground or Tube carries millions of daily commuters.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_55",
+        "prompt": "Blast \"The emergency procedure delivering chest compressions to cardiac victims\"",
+        "targetWord": "CPR technique",
+        "distractorWords": [
+          "Blood test",
+          "X-ray scan",
+          "Stethoscope test"
+        ],
+        "wordCategory": "First Aid",
+        "explanation": "CPR circulates oxygenated blood when natural pulse stops.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_56",
+        "prompt": "Blast \"Malicious software that encrypts user disks and demands extortion fees\"",
+        "targetWord": "Ransomware",
+        "distractorWords": [
+          "Adware",
+          "Freeware",
+          "Shareware"
+        ],
+        "wordCategory": "Life Online",
+        "explanation": "Ransomware locks vital system files until victims pay ransom.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_57",
+        "prompt": "Blast \"Deceptive fraudulent emails designed to steal banking usernames and pins\"",
+        "targetWord": "Phishing email",
+        "distractorWords": [
+          "Spam digest",
+          "Newsletter",
+          "Chat message"
+        ],
+        "wordCategory": "Life Online",
+        "explanation": "Phishing lures recipients into entering credentials on fake portals.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_58",
+        "prompt": "Blast \"The cumulative trail of digital data left behind by web activities\"",
+        "targetWord": "Digital footprint",
+        "distractorWords": [
+          "Firewall log",
+          "Proxy server",
+          "IP gateway"
+        ],
+        "wordCategory": "Life Online",
+        "explanation": "Digital footprints document web browsing patterns permanently.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_59",
+        "prompt": "Blast \"A person who handles fragile laboratory equipment with utmost care\"",
+        "targetWord": "Cautious",
+        "distractorWords": [
+          "Reckless",
+          "Careless",
+          "Hasty"
+        ],
+        "wordCategory": "Personality",
+        "explanation": "Cautious experimenters avoid dangerous laboratory accidents.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_60",
+        "prompt": "Blast \"The high-altitude sporting jump using an inflatable ram-air canopy\"",
+        "targetWord": "Paragliding",
+        "distractorWords": [
+          "Kiteboarding",
+          "Windsurfing",
+          "Surfing"
+        ],
+        "wordCategory": "Sports",
+        "explanation": "Paragliders glide gracefully along mountain thermal airflows.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_61",
+        "prompt": "Blast \"A television talk show where a host interviews cultural celebrities\"",
+        "targetWord": "Talk show",
+        "distractorWords": [
+          "Action movie",
+          "Cartoon short",
+          "Horror film"
+        ],
+        "wordCategory": "Television",
+        "explanation": "Talk shows explore biographies, books, and cultural trends.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_62",
+        "prompt": "Blast \"A celebration commemorating exactly twenty-five years of married devotion\"",
+        "targetWord": "Silver jubilee",
+        "distractorWords": [
+          "Golden jubilee",
+          "Centenary",
+          "Decade"
+        ],
+        "wordCategory": "Celebrations",
+        "explanation": "Silver jubilees honor a quarter-century of shared life.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_63",
+        "prompt": "Blast \"A scientific prediction of atmospheric temperature, rainfall, and wind\"",
+        "targetWord": "Weather forecast",
+        "distractorWords": [
+          "Horoscope",
+          "Urban myth",
+          "Old rumor"
+        ],
+        "wordCategory": "Dreams & Predictions",
+        "explanation": "Weather forecasts utilize satellite meteorological barometry.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_64",
+        "prompt": "Blast \"The municipal building where legal cases, judges, and juries convene\"",
+        "targetWord": "Courthouse",
+        "distractorWords": [
+          "City bank",
+          "Sorting office",
+          "Police barracks"
+        ],
+        "wordCategory": "Public Buildings",
+        "explanation": "Courthouses administer constitutional legal justice.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_65",
+        "prompt": "Blast \"Subterranean biological fuel formed from ancient carbonized vegetation\"",
+        "targetWord": "Fossil fuel",
+        "distractorWords": [
+          "Geothermal heat",
+          "Solar radiation",
+          "Wind current"
+        ],
+        "wordCategory": "Environment",
+        "explanation": "Fossil fuels release heavy carbon dioxide emissions.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_66",
+        "prompt": "Blast \"The theoretical curved path taken by an orbit probe around a planet\"",
+        "targetWord": "Orbital trajectory",
+        "distractorWords": [
+          "Equator line",
+          "Latitude line",
+          "Greenwich meridian"
+        ],
+        "wordCategory": "Planets",
+        "explanation": "Orbital trajectories calculate interplanetary spacecraft routes.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_67",
+        "prompt": "Blast \"A defensive security system monitoring incoming and outgoing network packets\"",
+        "targetWord": "Firewall",
+        "distractorWords": [
+          "Modem",
+          "Ethernet hub",
+          "Keyboard driver"
+        ],
+        "wordCategory": "Life Online",
+        "explanation": "Firewalls block unauthorized traffic according to security rules.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_68",
+        "prompt": "Blast \"An unexpected violent oceanic storm with rotating cyclone winds\"",
+        "targetWord": "Hurricane",
+        "distractorWords": [
+          "Gentle breeze",
+          "Morning mist",
+          "Summer drizzle"
+        ],
+        "wordCategory": "In and Out of Danger",
+        "explanation": "Hurricanes batter coastal communities with storm surges.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_69",
+        "prompt": "Blast \"A middle-school student who always shares their notes with sick classmates\"",
+        "targetWord": "Helpful",
+        "distractorWords": [
+          "Spiteful",
+          "Jealous",
+          "Aloof"
+        ],
+        "wordCategory": "Personality",
+        "explanation": "Helpful classmates provide generous academic encouragement.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_70",
+        "prompt": "Blast \"The track and field event where an athlete throws a heavy metal sphere\"",
+        "targetWord": "Shot put",
+        "distractorWords": [
+          "Javelin throw",
+          "Discus throw",
+          "Pole vault"
+        ],
+        "wordCategory": "Sports",
+        "explanation": "Shot put tests explosive throwing power from a circular ring.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_71",
+        "prompt": "Blast \"The British national museum in London housing global cultural treasures\"",
+        "targetWord": "British Museum",
+        "distractorWords": [
+          "Tate Modern",
+          "National Gallery",
+          "Victoria and Albert"
+        ],
+        "wordCategory": "Britain",
+        "explanation": "The British Museum curates historical antiquities from world cultures.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_72",
+        "prompt": "Blast \"The emergency splint applied to keep fractured arm bones stationary\"",
+        "targetWord": "Medical splint",
+        "distractorWords": [
+          "Stethoscope",
+          "Elastic plaster",
+          "Thermometer"
+        ],
+        "wordCategory": "First Aid",
+        "explanation": "Splints prevent bone displacement during emergency evacuation.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_73",
+        "prompt": "Blast \"The unauthorized alteration of a social media profile by a hacker\"",
+        "targetWord": "Account hijacking",
+        "distractorWords": [
+          "Data syncing",
+          "Profile caching",
+          "Cloud backing"
+        ],
+        "wordCategory": "Life Online",
+        "explanation": "Account hijacking locks legitimate users out of profiles.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_74",
+        "prompt": "Blast \"A television documentary series exploring underwater coral habitats\"",
+        "targetWord": "Nature series",
+        "distractorWords": [
+          "Sitcom episode",
+          "Telenovela",
+          "Quiz contest"
+        ],
+        "wordCategory": "Television",
+        "explanation": "Nature series broadcast high-definition marine ecology footage.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_75",
+        "prompt": "Blast \"A golden anniversary celebrating fifty years of dedicated marriage\"",
+        "targetWord": "Golden jubilee",
+        "distractorWords": [
+          "Silver jubilee",
+          "Centenary",
+          "Prom night"
+        ],
+        "wordCategory": "Celebrations",
+        "explanation": "Golden jubilees celebrate fifty glorious years of union.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_76",
+        "prompt": "Blast \"A long-term civic ambition to build zero-emission carbon-neutral cities\"",
+        "targetWord": "Eco-city dream",
+        "distractorWords": [
+          "Urban sprawl",
+          "Industrial slum",
+          "Strip development"
+        ],
+        "wordCategory": "Dreams",
+        "explanation": "Eco-cities integrate solar architecture with green parks.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_77",
+        "prompt": "Blast \"The municipal headquarters where incoming letters and parcels are sorted\"",
+        "targetWord": "Sorting depot",
+        "distractorWords": [
+          "Central bank",
+          "City jail",
+          "Firehouse"
+        ],
+        "wordCategory": "Public Buildings",
+        "explanation": "Sorting depots dispatch neighborhood post across city wards.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_78",
+        "prompt": "Blast \"The conversion of discarded plastic beverage bottles into textile fibers\"",
+        "targetWord": "Plastic upcycling",
+        "distractorWords": [
+          "Incineration",
+          "Landfill burial",
+          "River dumping"
+        ],
+        "wordCategory": "Environment",
+        "explanation": "Upcycling transforms waste plastic into fleece sweaters.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_79",
+        "prompt": "Blast \"The rocky outer crust and upper mantle layer of a terrestrial world\"",
+        "targetWord": "Lithosphere",
+        "distractorWords": [
+          "Atmosphere",
+          "Hydrosphere",
+          "Stratosphere"
+        ],
+        "wordCategory": "Planets",
+        "explanation": "The lithosphere constitutes the solid brittle crust of planets.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_m_80",
+        "prompt": "Blast \"The urgent safety evacuation of residents from coastal flood plains\"",
+        "targetWord": "Emergency evacuation",
+        "distractorWords": [
+          "Holiday excursion",
+          "School picnic",
+          "Shopping trip"
+        ],
+        "wordCategory": "In and Out of Danger",
+        "explanation": "Emergency evacuations transport threatened citizens to safe shelters.",
+        "contentVersion": 2
       }
     ],
     "hard": [
@@ -1474,6 +2519,526 @@ export const VOCABULARY_INVADERS_BANK: VocabularyInvadersBank = {
         ],
         "wordCategory": "Wild Animals & Law",
         "explanation": "A hunting ban legally outlaws the chasing or killing of wildlife."
+      },
+      {
+        "id": "vi_g7_h_41",
+        "prompt": "Blast \"The biological capacity of an ecosystem to recover following severe shocks\"",
+        "targetWord": "Ecosystem resilience",
+        "distractorWords": [
+          "Species extinction",
+          "Resource depletion",
+          "Biological decay"
+        ],
+        "wordCategory": "Advanced Ecology",
+        "explanation": "Resilient ecosystems regenerate biodiversity after wildfires.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_42",
+        "prompt": "Blast \"A symbiotic biological relationship where both interacting species benefit\"",
+        "targetWord": "Mutualism",
+        "distractorWords": [
+          "Parasitism",
+          "Predation",
+          "Amensalism"
+        ],
+        "wordCategory": "Advanced Ecology",
+        "explanation": "Mutualism unites flowering plants with pollinating honeybees.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_43",
+        "prompt": "Blast \"The astronomical boundary around a black hole beyond which nothing escapes\"",
+        "targetWord": "Event horizon",
+        "distractorWords": [
+          "Accretion disc",
+          "Photon sphere",
+          "Ergosphere"
+        ],
+        "wordCategory": "Astrophysics",
+        "explanation": "The event horizon marks the cosmic point of no gravitational return.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_44",
+        "prompt": "Blast \"The colossal explosion of a massive dying star liberating tremendous energy\"",
+        "targetWord": "Supernova",
+        "distractorWords": [
+          "Protostar",
+          "White dwarf",
+          "Brown dwarf"
+        ],
+        "wordCategory": "Astrophysics",
+        "explanation": "Supernovae seed the cosmos with heavy elements synthesized in cores.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_45",
+        "prompt": "Blast \"The gradual degradation of fertile agricultural soil into barren dryland\"",
+        "targetWord": "Desertification",
+        "distractorWords": [
+          "Reforestation",
+          "Afforestation",
+          "Humus building"
+        ],
+        "wordCategory": "Environmental Science",
+        "explanation": "Desertification threatens food security across arid border zones.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_46",
+        "prompt": "Blast \"The increasing concentration of heavy metals upward through trophic chains\"",
+        "targetWord": "Bioaccumulation",
+        "distractorWords": [
+          "Biomagnification",
+          "Biodegradation",
+          "Eutrophication"
+        ],
+        "wordCategory": "Environmental Science",
+        "explanation": "Bioaccumulation concentrates mercury inside apex marine predators.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_47",
+        "prompt": "Blast \"An individual who demonstrates genuine selfless dedication to others\"",
+        "targetWord": "Altruistic",
+        "distractorWords": [
+          "Egoistic",
+          "Narcissistic",
+          "Opportunistic"
+        ],
+        "wordCategory": "Character Philosophy",
+        "explanation": "Altruistic philanthropists donate wealth to build schools.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_48",
+        "prompt": "Blast \"A character trait marked by extreme meticulousness and high integrity\"",
+        "targetWord": "Scrupulous",
+        "distractorWords": [
+          "Careless",
+          "Negligent",
+          "Superficial"
+        ],
+        "wordCategory": "Character Philosophy",
+        "explanation": "Scrupulous scientists verify experimental datasets exhaustively.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_49",
+        "prompt": "Blast \"The historic Neolithic megalithic stone circle standing on Salisbury Plain\"",
+        "targetWord": "Stonehenge",
+        "distractorWords": [
+          "Avebury Ring",
+          "Hadrian's Wall",
+          "Carnac Stones"
+        ],
+        "wordCategory": "British Heritage",
+        "explanation": "Stonehenge demonstrates ancient solar alignment engineering.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_50",
+        "prompt": "Blast \"An automated external medical device that delivers therapeutic electric shocks\"",
+        "targetWord": "Defibrillator",
+        "distractorWords": [
+          "Sphygmomanometer",
+          "Dialysis pump",
+          "Endoscope"
+        ],
+        "wordCategory": "Emergency Medicine",
+        "explanation": "Defibrillators restore regular rhythm during cardiac arrhythmias.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_51",
+        "prompt": "Blast \"Covert surveillance software that logs every keystroke struck by users\"",
+        "targetWord": "Keylogger",
+        "distractorWords": [
+          "Packet sniffer",
+          "DNS resolver",
+          "Subnet mask"
+        ],
+        "wordCategory": "Cybersecurity",
+        "explanation": "Keyloggers record banking passwords without victim awareness.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_52",
+        "prompt": "Blast \"A deceptive web portal engineered to harvest corporate intranet logins\"",
+        "targetWord": "Spoofed portal",
+        "distractorWords": [
+          "Encrypted gateway",
+          "Secure enclave",
+          "Firewall hub"
+        ],
+        "wordCategory": "Cybersecurity",
+        "explanation": "Spoofed portals visually mimic enterprise login prompts.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_53",
+        "prompt": "Blast \"The Olympic competition testing athletes across ten track and field disciplines\"",
+        "targetWord": "Decathlon",
+        "distractorWords": [
+          "Pentathlon",
+          "Heptathlon",
+          "Triathlon"
+        ],
+        "wordCategory": "Olympic Athletics",
+        "explanation": "The decathlon crowns the ultimate all-round male track champion.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_54",
+        "prompt": "Blast \"An equestrian sporting event testing the absolute obedience and grace of horses\"",
+        "targetWord": "Dressage",
+        "distractorWords": [
+          "Showjumping",
+          "Polo match",
+          "Steeplechase"
+        ],
+        "wordCategory": "Olympic Equestrian",
+        "explanation": "Dressage evaluates precise geometric maneuvers and equine elegance.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_55",
+        "prompt": "Blast \"The cinematic editing technique alternating between concurrent scenes\"",
+        "targetWord": "Cross-cutting",
+        "distractorWords": [
+          "Jump cut",
+          "Wipe transition",
+          "Dissolve"
+        ],
+        "wordCategory": "Cinematography",
+        "explanation": "Cross-cutting builds simultaneous suspense across parallel plots.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_56",
+        "prompt": "Blast \"The milestone centenary honoring exactly one hundred years of institutional life\"",
+        "targetWord": "Centenary jubilee",
+        "distractorWords": [
+          "Bicentenary",
+          "Sesquicentennial",
+          "Millennium"
+        ],
+        "wordCategory": "Civic Celebrations",
+        "explanation": "Centenaries commemorate one hundred years of heritage.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_57",
+        "prompt": "Blast \"An aspirational vision of united planetary diplomacy among galactic civilizations\"",
+        "targetWord": "Cosmic federation",
+        "distractorWords": [
+          "Feudal hegemony",
+          "Colonial empire",
+          "Isolationism"
+        ],
+        "wordCategory": "Cosmic Speculation",
+        "explanation": "Cosmic federations imagine peaceful interstellar alliances.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_58",
+        "prompt": "Blast \"The historical civic repository preserving ancient municipal parchments and rolls\"",
+        "targetWord": "Civic archives",
+        "distractorWords": [
+          "Bank vault",
+          "Town registry",
+          "Chancellery"
+        ],
+        "wordCategory": "Civic Architecture",
+        "explanation": "Archives protect priceless historical charters from fire and damp.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_59",
+        "prompt": "Blast \"The unsustainable withdrawal of groundwater from deep subsurface aquifers\"",
+        "targetWord": "Aquifer overdraft",
+        "distractorWords": [
+          "Ground recharge",
+          "Percolation",
+          "Desalination"
+        ],
+        "wordCategory": "Hydrology",
+        "explanation": "Aquifer overdraft causes land subsidence and dried municipal wells.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_60",
+        "prompt": "Blast \"A home engineered to maintain thermal comfort using passive solar gains\"",
+        "targetWord": "Passive solar house",
+        "distractorWords": [
+          "Drafty tenement",
+          "Suburban tract",
+          "Mobile shelter"
+        ],
+        "wordCategory": "Sustainable Architecture",
+        "explanation": "Passive solar homes cut winter heating demands by ninety percent.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_61",
+        "prompt": "Blast \"The theoretical singularity at the core of a collapsed black hole\"",
+        "targetWord": "Gravitational singularity",
+        "distractorWords": [
+          "Event horizon",
+          "Photon ring",
+          "Accretion flare"
+        ],
+        "wordCategory": "Theoretical Physics",
+        "explanation": "Gravitational singularities harbor infinite mass density at zero volume.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_62",
+        "prompt": "Blast \"The cosmological stretching of light wavelengths emitted by distant galaxies\"",
+        "targetWord": "Cosmic redshift",
+        "distractorWords": [
+          "Doppler blueshift",
+          "Spectral absorption",
+          "Wave diffraction"
+        ],
+        "wordCategory": "Cosmology",
+        "explanation": "Cosmic redshift demonstrates the relentless expansion of spacetime.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_63",
+        "prompt": "Blast \"Public-key encryption algorithm mathematically pairing private and public keys\"",
+        "targetWord": "Asymmetric encryption",
+        "distractorWords": [
+          "Caesar cipher",
+          "Base64 encoding",
+          "Plaintext hashing"
+        ],
+        "wordCategory": "Cryptographic Science",
+        "explanation": "Asymmetric encryption shields electronic banking transactions globally.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_64",
+        "prompt": "Blast \"The scientific examination of digital media to unearth computer intrusion proofs\"",
+        "targetWord": "Digital forensics",
+        "distractorWords": [
+          "Social engineering",
+          "Port scanning",
+          "Buffer overflow"
+        ],
+        "wordCategory": "Cybercrime Investigation",
+        "explanation": "Digital forensics recovers encrypted traces left by cybercriminals.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_65",
+        "prompt": "Blast \"The Roman stone frontier fortification constructed across northern Britain\"",
+        "targetWord": "Hadrian's Wall",
+        "distractorWords": [
+          "Antonine Wall",
+          "Offa's Dyke",
+          "Danelaw Line"
+        ],
+        "wordCategory": "British Roman History",
+        "explanation": "Hadrian's Wall marked the northwest boundary of the Roman Empire.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_66",
+        "prompt": "Blast \"The urgent surgical alleviation of pressurized air inside pleural cavities\"",
+        "targetWord": "Needle thoracostomy",
+        "distractorWords": [
+          "Tracheostomy",
+          "Splinting",
+          "Venipuncture"
+        ],
+        "wordCategory": "Wilderness Medicine",
+        "explanation": "Needle thoracostomy relieves tension pneumothorax in injured hikers.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_67",
+        "prompt": "Blast \"The dangerous dropping of core body heat below thirty-five degrees Celsius\"",
+        "targetWord": "Severe hypothermia",
+        "distractorWords": [
+          "Heat hyperpyrexia",
+          "Dehydration",
+          "Sunstroke"
+        ],
+        "wordCategory": "Emergency Medicine",
+        "explanation": "Severe hypothermia induces shivering cessation and mental stupor.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_68",
+        "prompt": "Blast \"A binding statutory enactment passed by municipal city councils\"",
+        "targetWord": "City ordinance",
+        "distractorWords": [
+          "Federal treaty",
+          "Cabinet decree",
+          "Monarch charter"
+        ],
+        "wordCategory": "Civic Governance",
+        "explanation": "City ordinances regulate recycling standards and municipal zoning.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_69",
+        "prompt": "Blast \"A complex interwoven network of primary producers, herbivores, and predators\"",
+        "targetWord": "Food web",
+        "distractorWords": [
+          "Monoculture",
+          "Biomass block",
+          "Trophic stack"
+        ],
+        "wordCategory": "Advanced Ecology",
+        "explanation": "Food webs depict multispecies feeding links across biotic communities.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_70",
+        "prompt": "Blast \"The scientific rehabilitation of contaminated post-industrial wastelands\"",
+        "targetWord": "Habitat remediation",
+        "distractorWords": [
+          "Strip mining",
+          "Slag dumping",
+          "Deforestation"
+        ],
+        "wordCategory": "Environmental Science",
+        "explanation": "Habitat remediation purges toxic pollutants to re-establish flora.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_71",
+        "prompt": "Blast \"The grand structural filaments of galaxy superclusters tracing cosmic voids\"",
+        "targetWord": "Cosmic web",
+        "distractorWords": [
+          "Oort envelope",
+          "Kuiper ring",
+          "Van Allen belt"
+        ],
+        "wordCategory": "Cosmology",
+        "explanation": "The cosmic web maps dark matter filaments spanning the universe.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_72",
+        "prompt": "Blast \"The psychological resilience to endure setbacks without yielding to despair\"",
+        "targetWord": "Fortitude",
+        "distractorWords": [
+          "Fragility",
+          "Cowardice",
+          "Apathy"
+        ],
+        "wordCategory": "Moral Philosophy",
+        "explanation": "Fortitude sustains pioneers through severe arctic expeditions.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_73",
+        "prompt": "Blast \"The Olympic long-distance cycling race traversing rugged alpine passes\"",
+        "targetWord": "Road cycling classic",
+        "distractorWords": [
+          "Velodrome sprint",
+          "BMX park",
+          "Cyclocross"
+        ],
+        "wordCategory": "Sports Science",
+        "explanation": "Alpine road cycling classics test aerobic lung capacity and endurance.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_74",
+        "prompt": "Blast \"The formal investigative exposé unmasking environmental corruption\"",
+        "targetWord": "Investigative documentary",
+        "distractorWords": [
+          "Reality soap",
+          "Sketch comedy",
+          "Televangelism"
+        ],
+        "wordCategory": "Journalism",
+        "explanation": "Investigative documentaries confront industrial water polluters.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_75",
+        "prompt": "Blast \"A historic bicentenary celebrating two hundred years of municipal democracy\"",
+        "targetWord": "Bicentenary celebration",
+        "distractorWords": [
+          "Centenary",
+          "Decade",
+          "Sesquicentenary"
+        ],
+        "wordCategory": "Civic Celebrations",
+        "explanation": "Bicentenaries commemorate two full centuries of civic development.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_76",
+        "prompt": "Blast \"The international treaty designating Antarctica as a peaceful scientific reserve\"",
+        "targetWord": "Antarctic Treaty",
+        "distractorWords": [
+          "Kyoto Protocol",
+          "Paris Accord",
+          "Geneva Convention"
+        ],
+        "wordCategory": "International Law",
+        "explanation": "The Antarctic Treaty bars military exercises and mineral extraction.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_77",
+        "prompt": "Blast \"The geological fault line slip causing sudden horizontal crust displacement\"",
+        "targetWord": "Strike-slip fault",
+        "distractorWords": [
+          "Normal dip",
+          "Reverse thrust",
+          "Rift basin"
+        ],
+        "wordCategory": "Geophysics",
+        "explanation": "Strike-slip faults like the North Anatolian trigger seismic ruptures.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_78",
+        "prompt": "Blast \"An architectural building certified with net-zero carbon lifecycle metrics\"",
+        "targetWord": "Zero-carbon building",
+        "distractorWords": [
+          "Concrete brutalism",
+          "Energy sink",
+          "Steel furnace"
+        ],
+        "wordCategory": "Green Architecture",
+        "explanation": "Zero-carbon buildings generate all operational power on-site.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_79",
+        "prompt": "Blast \"The hypothetical elementary particle mediating gravitational quantum forces\"",
+        "targetWord": "Graviton",
+        "distractorWords": [
+          "Higgs boson",
+          "Gluon",
+          "Z-boson"
+        ],
+        "wordCategory": "Quantum Field Theory",
+        "explanation": "Gravitons are hypothesized massless spin-2 bosons mediating gravity.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g7_h_80",
+        "prompt": "Blast \"The legal safeguard protecting wildlife sanctuaries against commercial logging\"",
+        "targetWord": "Sanctuary protection",
+        "distractorWords": [
+          "Mineral claim",
+          "Timber concession",
+          "Zoning waiver"
+        ],
+        "wordCategory": "Environmental Law",
+        "explanation": "Sanctuary protection safeguards primary old-growth forests permanently.",
+        "contentVersion": 2
       }
     ]
   },
@@ -1959,6 +3524,526 @@ export const VOCABULARY_INVADERS_BANK: VocabularyInvadersBank = {
         ],
         "wordCategory": "Cooking",
         "explanation": "Whisking beats or stirs eggs or batter with rapid, light strokes."
+      },
+      {
+        "id": "vi_g8_e_41",
+        "prompt": "Blast \"A loyal middle-school friend who always stands by you through difficulties\"",
+        "targetWord": "Best friend",
+        "distractorWords": [
+          "Rival",
+          "Stranger",
+          "Foe"
+        ],
+        "wordCategory": "Friendship",
+        "explanation": "A best friend supports you through thick and thin.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_42",
+        "prompt": "Blast \"The shared reliance and faith placed in a companion's spoken honesty\"",
+        "targetWord": "Mutual trust",
+        "distractorWords": [
+          "Suspicion",
+          "Jealousy",
+          "Betrayal"
+        ],
+        "wordCategory": "Friendship",
+        "explanation": "Mutual trust forms the solid bedrock of true friendship.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_43",
+        "prompt": "Blast \"A balanced teenage lifestyle combining school studies with active exercise\"",
+        "targetWord": "Healthy lifestyle",
+        "distractorWords": [
+          "Sedentary habit",
+          "Careless diet",
+          "Lazy routine"
+        ],
+        "wordCategory": "Teen Life",
+        "explanation": "Healthy lifestyles foster energetic physical and mental growth.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_44",
+        "prompt": "Blast \"Comfortable casual clothing worn by teenagers during weekend outings\"",
+        "targetWord": "Casual outfit",
+        "distractorWords": [
+          "Formal tuxedo",
+          "Graduation robe",
+          "School uniform"
+        ],
+        "wordCategory": "Teen Life",
+        "explanation": "Casual outfits include comfortable t-shirts and denim jeans.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_45",
+        "prompt": "Blast \"A kitchen utensil with small perforations used to drain cooked pasta\"",
+        "targetWord": "Colander",
+        "distractorWords": [
+          "Skillet",
+          "Saucepan",
+          "Baking dish"
+        ],
+        "wordCategory": "Kitchen",
+        "explanation": "Colanders drain boiling water away from boiled pasta.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_46",
+        "prompt": "Blast \"The cooking method of browning diced vegetables in hot butter or oil\"",
+        "targetWord": "Sautéing",
+        "distractorWords": [
+          "Boiling",
+          "Freezing",
+          "Steaming"
+        ],
+        "wordCategory": "Kitchen",
+        "explanation": "Sautéing cooks ingredients rapidly over medium-high heat.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_47",
+        "prompt": "Blast \"The polite phone expression meaning to connect a caller to another line\"",
+        "targetWord": "Put through",
+        "distractorWords": [
+          "Hang up",
+          "Cut off",
+          "Engage line"
+        ],
+        "wordCategory": "Phone",
+        "explanation": "Operators put callers through to desired school offices.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_48",
+        "prompt": "Blast \"An automated phone recording left when the recipient is unavailable\"",
+        "targetWord": "Voicemail message",
+        "distractorWords": [
+          "Dial tone",
+          "Busy beep",
+          "Ringtone chime"
+        ],
+        "wordCategory": "Phone",
+        "explanation": "Voicemail messages allow callers to state their business.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_49",
+        "prompt": "Blast \"An online community board where members exchange advice and answers\"",
+        "targetWord": "Discussion forum",
+        "distractorWords": [
+          "Spam folder",
+          "Trash can",
+          "Pop-up ad"
+        ],
+        "wordCategory": "Internet",
+        "explanation": "Discussion forums connect students sharing mutual learning goals.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_50",
+        "prompt": "Blast \"The unique electronic address used to access a specific webpage\"",
+        "targetWord": "Web address",
+        "distractorWords": [
+          "File size",
+          "Screen pixel",
+          "Password pin"
+        ],
+        "wordCategory": "Internet",
+        "explanation": "A web address or URL directs browsers to target websites.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_51",
+        "prompt": "Blast \"The thrilling extreme water sport navigating wild river rapids in rafts\"",
+        "targetWord": "White-water rafting",
+        "distractorWords": [
+          "Pool swimming",
+          "Paddleboarding",
+          "Snorkeling"
+        ],
+        "wordCategory": "Adventures",
+        "explanation": "White-water rafting steers rubber rafts down raging river torrents.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_52",
+        "prompt": "Blast \"An adventurous leap from high bridges suspended by an elastic ankle cord\"",
+        "targetWord": "Bungee jumping",
+        "distractorWords": [
+          "Paragliding",
+          "Windsurfing",
+          "Trekking"
+        ],
+        "wordCategory": "Adventures",
+        "explanation": "Bungee jumping offers an exhilarating freefall thrill.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_53",
+        "prompt": "Blast \"A holiday complex that includes comfortable rooms, meals, and sports\"",
+        "targetWord": "All-inclusive resort",
+        "distractorWords": [
+          "Budget campsite",
+          "Roadside motel",
+          "Youth hostel"
+        ],
+        "wordCategory": "Tourism",
+        "explanation": "All-inclusive resorts cater to families seeking carefree vacations.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_54",
+        "prompt": "Blast \"A traditional ceramic plate or magnet bought to remember a lovely vacation\"",
+        "targetWord": "Holiday souvenir",
+        "distractorWords": [
+          "Boarding card",
+          "Luggage tag",
+          "Transit visa"
+        ],
+        "wordCategory": "Tourism",
+        "explanation": "Holiday souvenirs recall delightful travel destinations.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_55",
+        "prompt": "Blast \"The household chore of removing dust from living room rugs with a machine\"",
+        "targetWord": "Vacuuming carpets",
+        "distractorWords": [
+          "Ironing shirts",
+          "Dusting blinds",
+          "Mopping tile"
+        ],
+        "wordCategory": "Chores",
+        "explanation": "Vacuuming extracts dirt and crumbs from household rugs.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_56",
+        "prompt": "Blast \"The chore of using a hot iron to press wrinkles out of cotton garments\"",
+        "targetWord": "Ironing clothes",
+        "distractorWords": [
+          "Washing dishes",
+          "Taking out trash",
+          "Sweeping yard"
+        ],
+        "wordCategory": "Chores",
+        "explanation": "Ironing leaves shirts crisp and presentable for school.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_57",
+        "prompt": "Blast \"An optical laboratory instrument magnifying microscopic living cells\"",
+        "targetWord": "Compound microscope",
+        "distractorWords": [
+          "Star telescope",
+          "Field binocular",
+          "Survey compass"
+        ],
+        "wordCategory": "Science",
+        "explanation": "Microscopes reveal bacteria, amoebas, and cellular walls.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_58",
+        "prompt": "Blast \"The celebrated Turkish scientist awarded the Nobel Prize in Chemistry\"",
+        "targetWord": "Aziz Sancar",
+        "distractorWords": [
+          "Cahit Arf",
+          "Ali Kuscu",
+          "Piri Reis"
+        ],
+        "wordCategory": "Science",
+        "explanation": "Prof. Aziz Sancar unraveled human DNA repair mechanisms.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_59",
+        "prompt": "Blast \"The violent shaking of Earth's crust caused by tectonic plate faulting\"",
+        "targetWord": "Earthquake tremor",
+        "distractorWords": [
+          "Tornado funnel",
+          "Desert drought",
+          "Hailstorm shower"
+        ],
+        "wordCategory": "Natural Forces",
+        "explanation": "Earthquakes shake terrain when crustal stress fractures suddenly.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_60",
+        "prompt": "Blast \"The safety drill command instructing students to crouch under sturdy desks\"",
+        "targetWord": "Drop, cover, hold",
+        "distractorWords": [
+          "Run to windows",
+          "Use elevators",
+          "Call out loud"
+        ],
+        "wordCategory": "Natural Forces",
+        "explanation": "Drop, cover, and hold guards heads from collapsing classroom tiles.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_61",
+        "prompt": "Blast \"A classmate who keeps promises and never spreads harmful rumors\"",
+        "targetWord": "Reliable friend",
+        "distractorWords": [
+          "Gossiper",
+          "Sycophant",
+          "Deceiver"
+        ],
+        "wordCategory": "Friendship",
+        "explanation": "Reliable friends preserve confidences with loyalty.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_62",
+        "prompt": "Blast \"Sharing identical artistic and athletic pastimes with close companions\"",
+        "targetWord": "Shared interests",
+        "distractorWords": [
+          "Bitter rivalry",
+          "Envy",
+          "Hostility"
+        ],
+        "wordCategory": "Friendship",
+        "explanation": "Shared interests bond teenagers through collaborative hobbies.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_63",
+        "prompt": "Blast \"Participating in school soccer, volleyball, or cross-country teams\"",
+        "targetWord": "School sports",
+        "distractorWords": [
+          "Truancy",
+          "Daydreaming",
+          "Procrastination"
+        ],
+        "wordCategory": "Teen Life",
+        "explanation": "School sports teach team camaraderie and physical grit.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_64",
+        "prompt": "Blast \"Trendy modern footwear popular among teenagers during school events\"",
+        "targetWord": "Sneakers",
+        "distractorWords": [
+          "Leather boots",
+          "Slippers",
+          "Sandals"
+        ],
+        "wordCategory": "Teen Life",
+        "explanation": "Sneakers provide athletic support and stylish urban appeal.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_65",
+        "prompt": "Blast \"A kitchen utensil used to peel outer skins from potatoes and carrots\"",
+        "targetWord": "Vegetable peeler",
+        "distractorWords": [
+          "Soup ladle",
+          "Egg whisk",
+          "Meat cleaver"
+        ],
+        "wordCategory": "Kitchen",
+        "explanation": "Peelers slice away paper-thin peels without wasting vegetable flesh.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_66",
+        "prompt": "Blast \"The baking technique of cooking bread in a dry preheated oven\"",
+        "targetWord": "Oven baking",
+        "distractorWords": [
+          "Deep frying",
+          "Boiling",
+          "Microwaving"
+        ],
+        "wordCategory": "Kitchen",
+        "explanation": "Oven baking cooks crusty artisanal loaves evenly.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_67",
+        "prompt": "Blast \"A phone call that gets disconnected abruptly due to poor signal\"",
+        "targetWord": "Dropped call",
+        "distractorWords": [
+          "Clear line",
+          "Speed dial",
+          "Hold queue"
+        ],
+        "wordCategory": "Phone",
+        "explanation": "Dropped calls happen when mobile cellular signals fade.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_68",
+        "prompt": "Blast \"An urgent phone inquiry seeking information about upcoming LGS exams\"",
+        "targetWord": "Examination inquiry",
+        "distractorWords": [
+          "Sales pitch",
+          "Robocall",
+          "Wrong number"
+        ],
+        "wordCategory": "Phone",
+        "explanation": "Examination inquiries clarify registration deadlines.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_69",
+        "prompt": "Blast \"A malicious email attachment carrying a disguised computer virus\"",
+        "targetWord": "Infected file",
+        "distractorWords": [
+          "Plain text",
+          "Verified receipt",
+          "Digital invoice"
+        ],
+        "wordCategory": "Internet",
+        "explanation": "Infected attachments compromise computers when opened.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_70",
+        "prompt": "Blast \"The process of retrieving digital files from the web onto local drives\"",
+        "targetWord": "File downloading",
+        "distractorWords": [
+          "File uploading",
+          "Screen sharing",
+          "Live streaming"
+        ],
+        "wordCategory": "Internet",
+        "explanation": "Downloading stores internet media on local computers.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_71",
+        "prompt": "Blast \"Long backcountry mountain walking over scenic unpaved pathways\"",
+        "targetWord": "Alpine trekking",
+        "distractorWords": [
+          "City strolling",
+          "Window shopping",
+          "Bus touring"
+        ],
+        "wordCategory": "Adventures",
+        "explanation": "Alpine trekking challenges physical endurance over mountain ridges.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_72",
+        "prompt": "Blast \"A historical amphitheater recognized by UNESCO as world cultural heritage\"",
+        "targetWord": "Heritage site",
+        "distractorWords": [
+          "Theme resort",
+          "Modern cinema",
+          "Strip mall"
+        ],
+        "wordCategory": "Tourism",
+        "explanation": "UNESCO heritage sites protect irreplaceable human cultural history.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_73",
+        "prompt": "Blast \"Taking turns with siblings to wash and dry dinner plates and cups\"",
+        "targetWord": "Doing the dishes",
+        "distractorWords": [
+          "Mowing lawn",
+          "Walking puppy",
+          "Making beds"
+        ],
+        "wordCategory": "Chores",
+        "explanation": "Doing the dishes leaves kitchen sinks sparkling clean.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_74",
+        "prompt": "Blast \"The methodical laboratory testing of a scientific hypothesis\"",
+        "targetWord": "Controlled experiment",
+        "distractorWords": [
+          "Wild speculation",
+          "Superstition",
+          "Guesswork"
+        ],
+        "wordCategory": "Science",
+        "explanation": "Controlled experiments test predictions through measured variables.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_75",
+        "prompt": "Blast \"A violent spinning column of air extending from thunderclouds to ground\"",
+        "targetWord": "Tornado twister",
+        "distractorWords": [
+          "Fog bank",
+          "Warm breeze",
+          "Gentle shower"
+        ],
+        "wordCategory": "Natural Forces",
+        "explanation": "Tornadoes flatten structures with terrifying rotating gales.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_76",
+        "prompt": "Blast \"Someone who listens with warmth when you discuss your worries\"",
+        "targetWord": "Empathetic listener",
+        "distractorWords": [
+          "Cold critic",
+          "Harsh cynic",
+          "Mocking peer"
+        ],
+        "wordCategory": "Friendship",
+        "explanation": "Empathetic listeners provide emotional comfort and solace.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_77",
+        "prompt": "Blast \"Youth engagement in local community cleanups and animal shelter care\"",
+        "targetWord": "Youth volunteering",
+        "distractorWords": [
+          "Apathy",
+          "Vandalism",
+          "Complacency"
+        ],
+        "wordCategory": "Teen Life",
+        "explanation": "Youth volunteering instills social responsibility and empathy.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_78",
+        "prompt": "Blast \"Adding savory spices like cumin, black pepper, and oregano to dishes\"",
+        "targetWord": "Herb seasoning",
+        "distractorWords": [
+          "Water dilution",
+          "Quick freezing",
+          "Air drying"
+        ],
+        "wordCategory": "Kitchen",
+        "explanation": "Herb seasonings impart rich regional aromas to savory soups.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_79",
+        "prompt": "Blast \"A phone line that signals busy beeps because another call is active\"",
+        "targetWord": "Engaged line",
+        "distractorWords": [
+          "Open extension",
+          "Toll-free line",
+          "Direct dial"
+        ],
+        "wordCategory": "Phone",
+        "explanation": "Engaged lines indicate that the recipient is talking to someone else.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_e_80",
+        "prompt": "Blast \"The catastrophic sea wave generated by undersea seismic dislocations\"",
+        "targetWord": "Tsunami wave",
+        "distractorWords": [
+          "River ripple",
+          "Gentle tide",
+          "Lake swell"
+        ],
+        "wordCategory": "Natural Forces",
+        "explanation": "Tsunamis strike coastlines with massive hydraulic momentum.",
+        "contentVersion": 2
       }
     ],
     "medium": [
@@ -2442,6 +4527,526 @@ export const VOCABULARY_INVADERS_BANK: VocabularyInvadersBank = {
         ],
         "wordCategory": "Natural Forces & Safety",
         "explanation": "An emergency kit contains essential supplies needed during a disaster."
+      },
+      {
+        "id": "vi_g8_m_41",
+        "prompt": "Blast \"A precise digital instrument measuring cooking ingredients to the gram\"",
+        "targetWord": "Electronic scale",
+        "distractorWords": [
+          "Measuring tape",
+          "Barometer",
+          "Hydrometer"
+        ],
+        "wordCategory": "Culinary Science",
+        "explanation": "Electronic scales ensure exact baker's percentages in pastries.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_42",
+        "prompt": "Blast \"The biological fermentation of dough driven by living yeast colonies\"",
+        "targetWord": "Yeast fermentation",
+        "distractorWords": [
+          "Thermal freezing",
+          "Acid pickling",
+          "Sugar coating"
+        ],
+        "wordCategory": "Culinary Science",
+        "explanation": "Yeast fermentation produces carbon dioxide that leavens bread.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_43",
+        "prompt": "Blast \"An enterprise telecommunications hub routing hundreds of internal extensions\"",
+        "targetWord": "PBX switchboard",
+        "distractorWords": [
+          "Signal booster",
+          "Wireless mouse",
+          "Audio mixer"
+        ],
+        "wordCategory": "Telecommunications",
+        "explanation": "PBX switchboards coordinate corporate and municipal phone traffic.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_44",
+        "prompt": "Blast \"The encrypted short-range wireless standard linking headphones and phones\"",
+        "targetWord": "Bluetooth protocol",
+        "distractorWords": [
+          "Ethernet cable",
+          "Coaxial wire",
+          "Optical fiber"
+        ],
+        "wordCategory": "Technology",
+        "explanation": "Bluetooth provides encrypted wireless connectivity over ten meters.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_45",
+        "prompt": "Blast \"High-altitude mountaineering across crevasse fields using crampons and axes\"",
+        "targetWord": "Glacier expedition",
+        "distractorWords": [
+          "Trail jogging",
+          "Hill walking",
+          "Nordic stroll"
+        ],
+        "wordCategory": "Adventures",
+        "explanation": "Glacier expeditions traverse treacherous ice bridges on safety ropes.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_46",
+        "prompt": "Blast \"Responsible tourism that conserves natural ecosystems and sustains locals\"",
+        "targetWord": "Sustainable ecotourism",
+        "distractorWords": [
+          "Mass commercialism",
+          "Habitat dumping",
+          "Overdevelopment"
+        ],
+        "wordCategory": "Tourism",
+        "explanation": "Ecotourism balances visitor access with wilderness preservation.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_47",
+        "prompt": "Blast \"The comprehensive cleaning of ovens, baseboards, and window tracks\"",
+        "targetWord": "Deep household cleaning",
+        "distractorWords": [
+          "Surface dusting",
+          "Quick tidying",
+          "Room airing"
+        ],
+        "wordCategory": "Chores",
+        "explanation": "Deep cleaning scrubs stubborn grease from domestic appliances.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_48",
+        "prompt": "Blast \"The biological branch mapping chromosomes, genetic alleles, and heredity\"",
+        "targetWord": "Molecular genetics",
+        "distractorWords": [
+          "Gross anatomy",
+          "Paleontology",
+          "Meteorology"
+        ],
+        "wordCategory": "Science",
+        "explanation": "Molecular genetics decodes DNA sequences controlling heredity.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_49",
+        "prompt": "Blast \"The summit depression of an eruptive mountain venting gases and ash\"",
+        "targetWord": "Volcanic caldera",
+        "distractorWords": [
+          "Limestone sinkhole",
+          "Glacial moraine",
+          "Alluvial fan"
+        ],
+        "wordCategory": "Natural Forces",
+        "explanation": "Volcanic calderas collapse inwards after massive magma eruptions.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_50",
+        "prompt": "Blast \"A profound lifelong friendship founded on mutual values and integrity\"",
+        "targetWord": "Deep camaraderie",
+        "distractorWords": [
+          "Passing rivalry",
+          "Fickle alliance",
+          "Superficial tie"
+        ],
+        "wordCategory": "Friendship",
+        "explanation": "Deep camaraderie endures decades through unwavering shared values.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_51",
+        "prompt": "Blast \"Youth dedication to tree planting and neighborhood social welfare projects\"",
+        "targetWord": "Civic service",
+        "distractorWords": [
+          "Idleness",
+          "Antisocial behavior",
+          "Self-absorption"
+        ],
+        "wordCategory": "Teen Life",
+        "explanation": "Civic service channels teenage optimism into community renewal.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_52",
+        "prompt": "Blast \"The culinary technique of frying battered fish submerged in boiling oil\"",
+        "targetWord": "Deep fat frying",
+        "distractorWords": [
+          "Gentle braising",
+          "Pot roasting",
+          "Water poaching"
+        ],
+        "wordCategory": "Culinary Arts",
+        "explanation": "Deep fat frying seals moisture inside golden crispy crusts.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_53",
+        "prompt": "Blast \"An automated phone repository preserving caller messages during absences\"",
+        "targetWord": "Voicemail inbox",
+        "distractorWords": [
+          "Conference bridge",
+          "Intercom bell",
+          "Speed dialer"
+        ],
+        "wordCategory": "Telecommunications",
+        "explanation": "Voicemail inboxes archive spoken messages until retrieved.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_54",
+        "prompt": "Blast \"A decentralized immutable digital ledger chaining authenticated data blocks\"",
+        "targetWord": "Blockchain ledger",
+        "distractorWords": [
+          "Temporary cache",
+          "Local clipboard",
+          "Static cookie"
+        ],
+        "wordCategory": "Technology",
+        "explanation": "Blockchain ledgers prevent retrospective data falsification.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_55",
+        "prompt": "Blast \"The extreme adventure sport of descending technical river canyons on ropes\"",
+        "targetWord": "Canyoning descent",
+        "distractorWords": [
+          "Kayaking race",
+          "Snorkel swim",
+          "Pond paddle"
+        ],
+        "wordCategory": "Adventures",
+        "explanation": "Canyoning negotiates vertical water chutes and deep rock pools.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_56",
+        "prompt": "Blast \"The careful architectural restoration of ancient Roman amphitheater ruins\"",
+        "targetWord": "Heritage conservation",
+        "distractorWords": [
+          "Site demolition",
+          "Modern quarrying",
+          "Urban paving"
+        ],
+        "wordCategory": "Tourism",
+        "explanation": "Heritage conservation preserves ancient stonework against weathering.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_57",
+        "prompt": "Blast \"The domestic separation of cardboard, glass, and compostable organic waste\"",
+        "targetWord": "Waste stream sorting",
+        "distractorWords": [
+          "Garbage burning",
+          "Open dumping",
+          "River littering"
+        ],
+        "wordCategory": "Chores",
+        "explanation": "Waste stream sorting diverts reclaimable goods from landfills.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_58",
+        "prompt": "Blast \"The biological conversion of carbon dioxide and sunlight into carbohydrates\"",
+        "targetWord": "Photosynthesis cycle",
+        "distractorWords": [
+          "Cellular decay",
+          "Lactic fermentation",
+          "Acid oxidation"
+        ],
+        "wordCategory": "Science",
+        "explanation": "Photosynthesis supplies oxygen and chemical energy to Earth's biosphere.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_59",
+        "prompt": "Blast \"A catastrophic undersea megathrust displacement generating giant surges\"",
+        "targetWord": "Megatsunami surge",
+        "distractorWords": [
+          "Spring tide",
+          "Surface ripple",
+          "River eddy"
+        ],
+        "wordCategory": "Natural Forces",
+        "explanation": "Megatsunamis engulf shorelines with terrifying hydraulic forces.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_60",
+        "prompt": "Blast \"Constructive peer advice delivered with kindness and honest intent\"",
+        "targetWord": "Constructive feedback",
+        "distractorWords": [
+          "Sarcastic taunt",
+          "Bitter mockery",
+          "Petty insult"
+        ],
+        "wordCategory": "Friendship",
+        "explanation": "Constructive feedback helps companions improve without resentment.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_61",
+        "prompt": "Blast \"Balancing demanding school test revisions with athletic training sessions\"",
+        "targetWord": "Academic time management",
+        "distractorWords": [
+          "Chronic procrastination",
+          "Aimless scrolling",
+          "Sleep deprivation"
+        ],
+        "wordCategory": "Teen Life",
+        "explanation": "Time management allocates structured hours for study and rest.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_62",
+        "prompt": "Blast \"Simmering meat stock over low heat until reduced to a rich glaze\"",
+        "targetWord": "Sauce reduction",
+        "distractorWords": [
+          "Water dilution",
+          "Fast chilling",
+          "Foam aeration"
+        ],
+        "wordCategory": "Culinary Arts",
+        "explanation": "Sauce reductions concentrate aromatic flavors and collagen richness.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_63",
+        "prompt": "Blast \"A multi-party audiovisual conference conducted over digital telecom links\"",
+        "targetWord": "Teleconference session",
+        "distractorWords": [
+          "Megaphone shout",
+          "Intercom buzz",
+          "Morse signal"
+        ],
+        "wordCategory": "Telecommunications",
+        "explanation": "Teleconferences unite international research teams seamlessly.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_64",
+        "prompt": "Blast \"Encrypted cloud server storage allowing real-time multi-device file syncing\"",
+        "targetWord": "Cloud synchronization",
+        "distractorWords": [
+          "Local floppy",
+          "Magnetic tape",
+          "Internal ROM"
+        ],
+        "wordCategory": "Technology",
+        "explanation": "Cloud synchronization keeps digital study notes available anywhere.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_65",
+        "prompt": "Blast \"Backcountry wilderness navigation using topographic maps and magnetic compasses\"",
+        "targetWord": "Orienteering challenge",
+        "distractorWords": [
+          "Pavement walk",
+          "Guided carriage",
+          "Mall stroll"
+        ],
+        "wordCategory": "Adventures",
+        "explanation": "Orienteering tests speed and navigational acumen across wild terrain.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_66",
+        "prompt": "Blast \"A travel itinerary focused on regional cheeses, vine-ripened olives, and honey\"",
+        "targetWord": "Gastronomic journey",
+        "distractorWords": [
+          "Gambling trip",
+          "Airport transit",
+          "Factory tour"
+        ],
+        "wordCategory": "Tourism",
+        "explanation": "Gastronomic journeys celebrate traditional culinary crafts.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_67",
+        "prompt": "Blast \"Scrubbing calcified mineral scale from electric water kettles with citric acid\"",
+        "targetWord": "Kettle descaling",
+        "distractorWords": [
+          "Stove polishing",
+          "Floor waxing",
+          "Window tinting"
+        ],
+        "wordCategory": "Chores",
+        "explanation": "Descaling restores rapid boiling efficiency to electric kettles.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_68",
+        "prompt": "Blast \"The negatively charged subatomic particle orbiting atomic nuclei in shells\"",
+        "targetWord": "Atomic electron",
+        "distractorWords": [
+          "Nuclear proton",
+          "Atomic neutron",
+          "Cosmic photon"
+        ],
+        "wordCategory": "Science",
+        "explanation": "Electrons mediate chemical reactions and electrical currents.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_69",
+        "prompt": "Blast \"A prolonged regional rainfall deficiency drying up farmland soils and crops\"",
+        "targetWord": "Agricultural drought",
+        "distractorWords": [
+          "Flash torrent",
+          "Hail squall",
+          "Morning dew"
+        ],
+        "wordCategory": "Natural Forces",
+        "explanation": "Droughts deplete agricultural harvests and stress civic reservoirs.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_70",
+        "prompt": "Blast \"Standing up with moral courage beside an ally targeted by playground bullies\"",
+        "targetWord": "Ally solidarity",
+        "distractorWords": [
+          "Bystander silence",
+          "Cowardly retreat",
+          "Mocking laughter"
+        ],
+        "wordCategory": "Friendship",
+        "explanation": "Solidarity shields vulnerable classmates from intimidation.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_71",
+        "prompt": "Blast \"Setting a strict evening curfew on phone notifications to ensure sleep\"",
+        "targetWord": "Digital screen curfew",
+        "distractorWords": [
+          "Night binging",
+          "Midnight gaming",
+          "Phone addiction"
+        ],
+        "wordCategory": "Teen Life",
+        "explanation": "Screen curfews protect adolescent circadian rhythms and sleep.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_72",
+        "prompt": "Blast \"The smooth suspension of olive oil droplets into vinegar using egg yolk\"",
+        "targetWord": "Sauce emulsion",
+        "distractorWords": [
+          "Curdled split",
+          "Thermal scorch",
+          "Sugar crystal"
+        ],
+        "wordCategory": "Culinary Science",
+        "explanation": "Egg yolk lecithin bonds oil and water into silky mayonnaise.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_73",
+        "prompt": "Blast \"An automated telephonic system directing callers through touch-tone keypad menus\"",
+        "targetWord": "IVR phone system",
+        "distractorWords": [
+          "Rotary dial",
+          "Manual plugboard",
+          "Telegraph key"
+        ],
+        "wordCategory": "Telecommunications",
+        "explanation": "IVR systems route citizen calls to specialized city municipal desks.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_74",
+        "prompt": "Blast \"An advanced computational artificial intelligence model processing text\"",
+        "targetWord": "Neural language model",
+        "distractorWords": [
+          "Simple calculator",
+          "Mechanical clock",
+          "Analog meter"
+        ],
+        "wordCategory": "Technology",
+        "explanation": "Neural language models analyze syntactical linguistic contexts.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_75",
+        "prompt": "Blast \"The extreme exploration of subterranean limestone cave networks on safety ropes\"",
+        "targetWord": "Spelunking expedition",
+        "distractorWords": [
+          "Beach walk",
+          "Park stroll",
+          "Hill scramble"
+        ],
+        "wordCategory": "Adventures",
+        "explanation": "Spelunking traverses subterranean passages with headlamps.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_76",
+        "prompt": "Blast \"Staying at working olive and citrus farmsteads to experience rural village life\"",
+        "targetWord": "Agritourism holiday",
+        "distractorWords": [
+          "Airport layover",
+          "Casino stay",
+          "Cruise voyage"
+        ],
+        "wordCategory": "Tourism",
+        "explanation": "Agritourism supports rural agrarian economies and cultural heritage.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_77",
+        "prompt": "Blast \"Eliminating kitchen pathogens on prep boards with safe antibacterial sanitizers\"",
+        "targetWord": "Surface sanitization",
+        "distractorWords": [
+          "Water splashing",
+          "Dry wiping",
+          "Flour dusting"
+        ],
+        "wordCategory": "Chores",
+        "explanation": "Surface sanitization prevents foodborne bacterial cross-contamination.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_78",
+        "prompt": "Blast \"A substance that accelerates a chemical reaction without being consumed itself\"",
+        "targetWord": "Chemical catalyst",
+        "distractorWords": [
+          "Passive solvent",
+          "Precipitate",
+          "Solute salt"
+        ],
+        "wordCategory": "Science",
+        "explanation": "Catalysts lower reaction activation barriers in industrial chemistry.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_79",
+        "prompt": "Blast \"A sudden dangerous hillside landslide composed of saturated mud and debris\"",
+        "targetWord": "Mudflow torrent",
+        "distractorWords": [
+          "Gentle dusting",
+          "Leaf fall",
+          "Snow flurry"
+        ],
+        "wordCategory": "Natural Forces",
+        "explanation": "Mudflows engulf roadways following intense torrential downpours.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_m_80",
+        "prompt": "Blast \"Listening with heartfelt empathy when a close classmate shares grief\"",
+        "targetWord": "Compassionate presence",
+        "distractorWords": [
+          "Callous indifference",
+          "Dismissive shrug",
+          "Harsh retort"
+        ],
+        "wordCategory": "Friendship",
+        "explanation": "Compassionate presence comforts friends through painful emotional trials.",
+        "contentVersion": 2
       }
     ],
     "hard": [
@@ -2929,6 +5534,526 @@ export const VOCABULARY_INVADERS_BANK: VocabularyInvadersBank = {
         ],
         "wordCategory": "Natural Forces & Safety",
         "explanation": "An emergency whistle produces a piercing acoustic signal audible across long distances to rescue teams."
+      },
+      {
+        "id": "vi_g8_h_41",
+        "prompt": "Blast \"The culinary technique encapsulating flavorful liquids inside alginate skin\"",
+        "targetWord": "Spherification",
+        "distractorWords": [
+          "Sublimation",
+          "Solidification",
+          "Dehydration"
+        ],
+        "wordCategory": "Molecular Gastronomy",
+        "explanation": "Spherification creates delicate liquid pearls that burst in the mouth.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_42",
+        "prompt": "Blast \"The chemical browning reaction between amino acids and reducing sugars\"",
+        "targetWord": "Maillard reaction",
+        "distractorWords": [
+          "Caramelization",
+          "Fermentation",
+          "Pyrolysis"
+        ],
+        "wordCategory": "Food Science",
+        "explanation": "The Maillard reaction generates complex roasted aromas in seared foods.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_43",
+        "prompt": "Blast \"High-capacity fiber-optic technology transmitting multiple light channels\"",
+        "targetWord": "Optical multiplexing",
+        "distractorWords": [
+          "Copper analog",
+          "Shortwave beacon",
+          "Morse pulse"
+        ],
+        "wordCategory": "Telecommunications",
+        "explanation": "Optical multiplexing conveys terabits of telephonic data across oceans.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_44",
+        "prompt": "Blast \"A rigorous security architecture requiring continuous verification of all tokens\"",
+        "targetWord": "Zero-trust model",
+        "distractorWords": [
+          "Open perimeter",
+          "Default allowance",
+          "Legacy gateway"
+        ],
+        "wordCategory": "Cybersecurity",
+        "explanation": "Zero-trust treats all network traffic as potentially hostile.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_45",
+        "prompt": "Blast \"An unassisted ski expedition hauling gear across polar continental ice sheets\"",
+        "targetWord": "Polar traverse",
+        "distractorWords": [
+          "Motorized transit",
+          "Helicopter lift",
+          "Dog mushing"
+        ],
+        "wordCategory": "Extreme Expeditions",
+        "explanation": "Polar traverses demand superhuman cardiovascular and mental endurance.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_46",
+        "prompt": "Blast \"The maximum tourist quota a delicate cultural site can host without damage\"",
+        "targetWord": "Ecological carrying capacity",
+        "distractorWords": [
+          "Unregulated influx",
+          "Commercial overtourism",
+          "Mass exploitation"
+        ],
+        "wordCategory": "Tourism Management",
+        "explanation": "Carrying capacity thresholds shield historical ruins from wear.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_47",
+        "prompt": "Blast \"Using specialized micro-organisms to metabolize domestic ground pollutants\"",
+        "targetWord": "Bioremediation process",
+        "distractorWords": [
+          "Chemical bleaching",
+          "Deep landfilling",
+          "Soil incinerating"
+        ],
+        "wordCategory": "Household Science",
+        "explanation": "Bioremediation detoxifies contaminated soils using friendly microbes.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_48",
+        "prompt": "Blast \"Targeted RNA-guided endonuclease technology allowing precise gene edits\"",
+        "targetWord": "CRISPR gene editing",
+        "distractorWords": [
+          "Centrifugal separation",
+          "Gel electrophoresis",
+          "Mass spectrometry"
+        ],
+        "wordCategory": "Biotechnology",
+        "explanation": "CRISPR-Cas9 edits specific nucleotide pairs in living organisms.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_49",
+        "prompt": "Blast \"Superheated volcanic currents of incandescent gas and rock rushing downhill\"",
+        "targetWord": "Pyroclastic flow",
+        "distractorWords": [
+          "Lava stream",
+          "Basalt seep",
+          "Mud lahar"
+        ],
+        "wordCategory": "Volcanology",
+        "explanation": "Pyroclastic flows reach speeds exceeding 700 km/h with lethal heat.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_50",
+        "prompt": "Blast \"Steadfast loyalty between lifelong friends that withstands trials and time\"",
+        "targetWord": "Enduring fidelity",
+        "distractorWords": [
+          "Transitory acquaintance",
+          "Superficial alliance",
+          "Fickle companionship"
+        ],
+        "wordCategory": "Ethics in Friendship",
+        "explanation": "Enduring fidelity anchors deep lifelong human companionship.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_51",
+        "prompt": "Blast \"The cognitive self-control to forgo immediate treats for significant goals\"",
+        "targetWord": "Delayed gratification",
+        "distractorWords": [
+          "Impulsive indulgence",
+          "Instant reward",
+          "Short-sightedness"
+        ],
+        "wordCategory": "Developmental Psychology",
+        "explanation": "Delayed gratification predicts academic and professional achievement.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_52",
+        "prompt": "Blast \"The gentle thermal setting of custard proteins over a simmering water bath\"",
+        "targetWord": "Water bath coagulation",
+        "distractorWords": [
+          "Flash searing",
+          "Scorching",
+          "Charring"
+        ],
+        "wordCategory": "Culinary Physics",
+        "explanation": "Bain-marie water baths cook delicate egg custards without curdling.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_53",
+        "prompt": "Blast \"Constellations of low-orbiting satellites relaying global high-speed telecom\"",
+        "targetWord": "LEO satellite mesh",
+        "distractorWords": [
+          "Geostationary dish",
+          "Copper wire",
+          "Radio mast"
+        ],
+        "wordCategory": "Telecommunications",
+        "explanation": "LEO constellations provide low-latency communications worldwide.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_54",
+        "prompt": "Blast \"A mathematical algorithm transforming arbitrary data into a fixed digest\"",
+        "targetWord": "Cryptographic hash",
+        "distractorWords": [
+          "Plaintext string",
+          "Random seed",
+          "Symmetric key"
+        ],
+        "wordCategory": "Cryptography",
+        "explanation": "Cryptographic hashes verify data authenticity and tamper-resistance.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_55",
+        "prompt": "Blast \"Ascending towering sheer granite rock faces without safety ropes or harnesses\"",
+        "targetWord": "Free solo climbing",
+        "distractorWords": [
+          "Aid climbing",
+          "Top-rope climbing",
+          "Bouldering"
+        ],
+        "wordCategory": "Extreme Expeditions",
+        "explanation": "Free solo climbing demands absolute focus where slips result in death.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_56",
+        "prompt": "Blast \"Rehabilitating historic urban districts while safeguarding local residents\"",
+        "targetWord": "Inclusive heritage renewal",
+        "distractorWords": [
+          "Commercial displacement",
+          "Gentrification",
+          "Site demolition"
+        ],
+        "wordCategory": "Urban Tourism",
+        "explanation": "Inclusive renewal revitalizes heritage quarters without pricing out locals.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_57",
+        "prompt": "Blast \"Neutralizing hazardous domestic drain clogs using enzymatic biodigesters\"",
+        "targetWord": "Enzymatic drain cleaning",
+        "distractorWords": [
+          "Acid corrosion",
+          "Thermal melting",
+          "Mechanical blasting"
+        ],
+        "wordCategory": "Household Chemistry",
+        "explanation": "Enzymatic cleaners dissolve grease deposits without eroding plumbing pipes.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_58",
+        "prompt": "Blast \"The instantaneous quantum correlation connecting twin entangled particles\"",
+        "targetWord": "Quantum entanglement",
+        "distractorWords": [
+          "Thermal agitation",
+          "Diffraction",
+          "Wave refraction"
+        ],
+        "wordCategory": "Quantum Physics",
+        "explanation": "Quantum entanglement binds particle states regardless of spatial distance.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_59",
+        "prompt": "Blast \"The temporary transformation of solid saturated soil into fluid mud during quakes\"",
+        "targetWord": "Soil liquefaction",
+        "distractorWords": [
+          "Fault scarping",
+          "Bedrock shearing",
+          "Plate subduction"
+        ],
+        "wordCategory": "Seismology",
+        "explanation": "Liquefaction causes buildings to tilt and sink during severe temblors.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_60",
+        "prompt": "Blast \"Delivering heartfelt moral truth to an errant friend with tactful compassion\"",
+        "targetWord": "Compassionate candor",
+        "distractorWords": [
+          "Flattering sycophancy",
+          "Deceitful praise",
+          "Harsh condemnation"
+        ],
+        "wordCategory": "Ethics in Friendship",
+        "explanation": "Compassionate candor steers friends away from mistakes with affection.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_61",
+        "prompt": "Blast \"The reflective cognitive ability to assess and refine one's own study habits\"",
+        "targetWord": "Metacognitive reflection",
+        "distractorWords": [
+          "Rote memorization",
+          "Passive hearing",
+          "Distracted skimming"
+        ],
+        "wordCategory": "Cognitive Psychology",
+        "explanation": "Metacognitive reflection enables students to diagnose learning hurdles.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_62",
+        "prompt": "Blast \"The harmonious equilibrium between acidity, sweetness, salinity, and umami\"",
+        "targetWord": "Harmonic flavor balance",
+        "distractorWords": [
+          "Palate fatigue",
+          "Flavor monotony",
+          "Sensory clatter"
+        ],
+        "wordCategory": "Sensory Gastronomy",
+        "explanation": "Master chefs balance five taste dimensions into memorable gastronomic art.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_63",
+        "prompt": "Blast \"Telecommunications scrubbing centers filtering malicious volumetric packets\"",
+        "targetWord": "DDoS mitigation scrub",
+        "distractorWords": [
+          "Packet sniffing",
+          "Port exploitation",
+          "Brute-force script"
+        ],
+        "wordCategory": "Cybersecurity",
+        "explanation": "DDoS scrubbing cleans server traffic during massive botnet attacks.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_64",
+        "prompt": "Blast \"Decentralized algorithmic consensus establishing truth across distributed nodes\"",
+        "targetWord": "Byzantine consensus",
+        "distractorWords": [
+          "Arbitrary polling",
+          "Central dictate",
+          "Local override"
+        ],
+        "wordCategory": "Distributed Computing",
+        "explanation": "Byzantine consensus ensures network agreement despite faulty nodes.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_65",
+        "prompt": "Blast \"Exploring submerged subterranean cave labyrinths with rebreather apparatus\"",
+        "targetWord": "Cave diving exploration",
+        "distractorWords": [
+          "Surface paddling",
+          "Snorkel touring",
+          "Tide wading"
+        ],
+        "wordCategory": "Extreme Expeditions",
+        "explanation": "Cave divers navigate submerged flooded caverns in total darkness.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_66",
+        "prompt": "Blast \"Safeguarding living oral storytelling traditions and ancestral music epics\"",
+        "targetWord": "Intangible cultural heritage",
+        "distractorWords": [
+          "Archaeological ruin",
+          "Monument stone",
+          "Carved obelisk"
+        ],
+        "wordCategory": "Cultural Anthropology",
+        "explanation": "Intangible heritage preserves living cultural wisdom and oral lore.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_67",
+        "prompt": "Blast \"The high ratio of heat energy delivered relative to electrical kilowatt input\"",
+        "targetWord": "Heat pump efficiency",
+        "distractorWords": [
+          "Resistance loss",
+          "Heat leakage",
+          "Thermal waste"
+        ],
+        "wordCategory": "Household Energy Science",
+        "explanation": "Modern heat pumps extract three kilowatts of heat per kilowatt of input.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_68",
+        "prompt": "Blast \"The thermonuclear fusion synthesis of light hydrogen into helium nuclei\"",
+        "targetWord": "Stellar nuclear fusion",
+        "distractorWords": [
+          "Nuclear fission",
+          "Alpha radiation",
+          "Radiative decay"
+        ],
+        "wordCategory": "Nuclear Astrophysics",
+        "explanation": "Stellar fusion powers stars and releases radiant electromagnetic energy.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_69",
+        "prompt": "Blast \"The tectonic zone where dense oceanic lithosphere dives into the mantle\"",
+        "targetWord": "Subduction trench",
+        "distractorWords": [
+          "Transform fault",
+          "Continental rift",
+          "Mid-ocean ridge"
+        ],
+        "wordCategory": "Geophysics",
+        "explanation": "Subduction trenches unleash devastating deep-focus megathrust temblors.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_70",
+        "prompt": "Blast \"An elevated philosophical friendship aimed at mutual virtue and moral growth\"",
+        "targetWord": "Virtue friendship",
+        "distractorWords": [
+          "Utilitarian alliance",
+          "Pleasure association",
+          "Convenient tie"
+        ],
+        "wordCategory": "Classical Philosophy",
+        "explanation": "Aristotle deemed virtue friendships the highest form of human alliance.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_71",
+        "prompt": "Blast \"Cultivating stoic mental calmness and lucidity during critical examinations\"",
+        "targetWord": "Emotional equanimity",
+        "distractorWords": [
+          "Hysterical panic",
+          "Nervous despair",
+          "Mental paralysis"
+        ],
+        "wordCategory": "Mental Discipline",
+        "explanation": "Equanimity preserves cognitive sharpness under high-stakes pressures.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_72",
+        "prompt": "Blast \"The controlled thermal breakdown of sucrose into rich amber caramel flavors\"",
+        "targetWord": "Pyrolytic caramelization",
+        "distractorWords": [
+          "Acid coagulation",
+          "Denaturation",
+          "Curdling"
+        ],
+        "wordCategory": "Culinary Chemistry",
+        "explanation": "Caramelization transforms basic table sugars into rich nutty caramels.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_73",
+        "prompt": "Blast \"High-frequency directional microwave beams linking mountaintop telecom dishes\"",
+        "targetWord": "Point-to-point microwave link",
+        "distractorWords": [
+          "Omnidirectional mast",
+          "Copper line",
+          "Shortwave wire"
+        ],
+        "wordCategory": "Telecommunications",
+        "explanation": "Directional microwave links bridge rugged mountain passes without cables.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_74",
+        "prompt": "Blast \"Cryptographic mathematical protocol proving possession of secrets without revealing them\"",
+        "targetWord": "Zero-knowledge proof",
+        "distractorWords": [
+          "Plaintext leak",
+          "Public broadcast",
+          "Brute-force crack"
+        ],
+        "wordCategory": "Cryptography",
+        "explanation": "Zero-knowledge proofs verify identity while keeping credentials confidential.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_75",
+        "prompt": "Blast \"Climbing high Himalayan summits without using supplemental bottled oxygen\"",
+        "targetWord": "Alpine-style oxygenless climb",
+        "distractorWords": [
+          "Assisted siege",
+          "Helicopter drop",
+          "Fixed rope tow"
+        ],
+        "wordCategory": "Extreme Expeditions",
+        "explanation": "Oxygenless Himalayan ascents test the purest limits of human altitude grit.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_76",
+        "prompt": "Blast \"The surgical unearthing and preservation of fragile ancient papyrus scrolls\"",
+        "targetWord": "Papyrus micro-excavation",
+        "distractorWords": [
+          "Industrial digging",
+          "Bulldozer scraping",
+          "Heavy quarrying"
+        ],
+        "wordCategory": "Archaeological Science",
+        "explanation": "Micro-excavation preserves carbonized manuscripts with microscopic tweezers.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_77",
+        "prompt": "Blast \"Synthesizing non-toxic compostable bioplastics from renewable maize starch\"",
+        "targetWord": "Biopolymer synthesis",
+        "distractorWords": [
+          "Petroleum cracking",
+          "Plastic incinerating",
+          "Slag dumping"
+        ],
+        "wordCategory": "Green Chemistry",
+        "explanation": "Biopolymers degrade naturally in compost heaps without toxic residues.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_78",
+        "prompt": "Blast \"The hypothetical massless gauge boson predicted to mediate gravity\"",
+        "targetWord": "Graviton particle",
+        "distractorWords": [
+          "Higgs boson",
+          "Gluon boson",
+          "Tau neutrino"
+        ],
+        "wordCategory": "Quantum Field Theory",
+        "explanation": "Graviton particles are hypothesized to mediate quantum gravitational force.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_79",
+        "prompt": "Blast \"Deciphering recurrence intervals of historic earthquakes from fault trenches\"",
+        "targetWord": "Paleoseismological dating",
+        "distractorWords": [
+          "Tree ring scraping",
+          "Barometer logging",
+          "Satellite mapping"
+        ],
+        "wordCategory": "Paleoseismology",
+        "explanation": "Paleoseismic trenching reconstructs prehistoric fault ruptures accurately.",
+        "contentVersion": 2
+      },
+      {
+        "id": "vi_g8_h_80",
+        "prompt": "Blast \"The unwavering commitment to moral honesty and ethical principles in all things\"",
+        "targetWord": "Unyielding integrity",
+        "distractorWords": [
+          "Calculated expediency",
+          "Opportunism",
+          "Hypocritical pretense"
+        ],
+        "wordCategory": "Character Ethics",
+        "explanation": "Integrity demands unyielding alignment between moral values and deeds.",
+        "contentVersion": 2
       }
     ]
   }

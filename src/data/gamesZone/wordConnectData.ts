@@ -1,3 +1,13 @@
+/**
+ * UNIT REVIEW ARCADE — WORD CONNECT DATA BANK (PHASE 7A & MIXED CURRICULUM EXPANSION)
+ * 
+ * 480 validated unique puzzles (80 items per tier) across:
+ * - Grade 7: Easy (80, 4-letter wheels), Medium (80, 5-letter wheels), Hard (80, 6-letter wheels)
+ * - Grade 8: Easy (80, 4-letter wheels), Medium (80, 5-letter wheels), Hard (80, 6-letter wheels)
+ * 
+ * Mixed Curriculum: Turkish MEB English Units 1-10 + School English Curriculum.
+ */
+
 import type { WordConnectBank } from '../../types/gamesZone';
 
 export const WORD_CONNECT_BANK: WordConnectBank = {
@@ -1113,6 +1123,958 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "category": "Wild Animals",
         "theme": "Canine",
         "explanation": "Connect letters W, O, L, F to form: WOLF, OWL, FLOW, LOW."
+      },
+      {
+        "id": "wc_g7_e_41",
+        "availableLetters": [
+          "C",
+          "A",
+          "R",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "CARE",
+            "turkishMeaning": "Bakım, önemseme"
+          },
+          {
+            "word": "EAR",
+            "turkishMeaning": "Kulak"
+          },
+          {
+            "word": "ERA",
+            "turkishMeaning": "Dönem"
+          },
+          {
+            "word": "ARC",
+            "turkishMeaning": "Yay"
+          }
+        ],
+        "category": "Personality",
+        "theme": "Kindness & Empathy",
+        "explanation": "Connect letters C, A, R, E to form: CARE, EAR, ERA, ARC."
+      },
+      {
+        "id": "wc_g7_e_42",
+        "availableLetters": [
+          "K",
+          "I",
+          "N",
+          "D"
+        ],
+        "targetWords": [
+          {
+            "word": "KIND",
+            "turkishMeaning": "Kibar, nazik"
+          },
+          {
+            "word": "INK",
+            "turkishMeaning": "Mürekkep"
+          },
+          {
+            "word": "KID",
+            "turkishMeaning": "Çocuk"
+          }
+        ],
+        "category": "Personality",
+        "theme": "Friendliness",
+        "explanation": "Connect letters K, I, N, D to form: KIND, INK, KID."
+      },
+      {
+        "id": "wc_g7_e_43",
+        "availableLetters": [
+          "C",
+          "A",
+          "L",
+          "M"
+        ],
+        "targetWords": [
+          {
+            "word": "CALM",
+            "turkishMeaning": "Sakin"
+          },
+          {
+            "word": "CAM",
+            "turkishMeaning": "Kamera kamı"
+          }
+        ],
+        "category": "Personality",
+        "theme": "Tranquil Spirit",
+        "explanation": "Connect letters C, A, L, M to form: CALM, CAM."
+      },
+      {
+        "id": "wc_g7_e_44",
+        "availableLetters": [
+          "S",
+          "W",
+          "I",
+          "M"
+        ],
+        "targetWords": [
+          {
+            "word": "SWIM",
+            "turkishMeaning": "Yüzmek"
+          }
+        ],
+        "category": "Sports",
+        "theme": "Water Athletics",
+        "explanation": "Connect letters S, W, I, M to form: SWIM."
+      },
+      {
+        "id": "wc_g7_e_45",
+        "availableLetters": [
+          "G",
+          "O",
+          "A",
+          "L"
+        ],
+        "targetWords": [
+          {
+            "word": "GOAL",
+            "turkishMeaning": "Hedef, gol"
+          },
+          {
+            "word": "LOG",
+            "turkishMeaning": "Kütük"
+          }
+        ],
+        "category": "Sports",
+        "theme": "Field Success",
+        "explanation": "Connect letters G, O, A, L to form: GOAL, LOG."
+      },
+      {
+        "id": "wc_g7_e_46",
+        "availableLetters": [
+          "T",
+          "E",
+          "A",
+          "M"
+        ],
+        "targetWords": [
+          {
+            "word": "TEAM",
+            "turkishMeaning": "Takım"
+          },
+          {
+            "word": "MET",
+            "turkishMeaning": "Buluştu"
+          },
+          {
+            "word": "TEA",
+            "turkishMeaning": "Çay"
+          },
+          {
+            "word": "EAT",
+            "turkishMeaning": "Yemek"
+          }
+        ],
+        "category": "Sports",
+        "theme": "Cooperation",
+        "explanation": "Connect letters T, E, A, M to form: TEAM, MET, TEA, EAT."
+      },
+      {
+        "id": "wc_g7_e_47",
+        "availableLetters": [
+          "B",
+          "A",
+          "L",
+          "L"
+        ],
+        "targetWords": [
+          {
+            "word": "BALL",
+            "turkishMeaning": "Top"
+          },
+          {
+            "word": "ALL",
+            "turkishMeaning": "Hepsi"
+          },
+          {
+            "word": "LAB",
+            "turkishMeaning": "Laboratuvar"
+          }
+        ],
+        "category": "Sports",
+        "theme": "Ball Games",
+        "explanation": "Connect letters B, A, L, L to form: BALL, ALL, LAB."
+      },
+      {
+        "id": "wc_g7_e_48",
+        "availableLetters": [
+          "R",
+          "A",
+          "C",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "RACE",
+            "turkishMeaning": "Yarış"
+          },
+          {
+            "word": "CAR",
+            "turkishMeaning": "Araba"
+          },
+          {
+            "word": "ERA",
+            "turkishMeaning": "Çağ"
+          },
+          {
+            "word": "ARC",
+            "turkishMeaning": "Yay"
+          }
+        ],
+        "category": "Sports",
+        "theme": "Athletic Speed",
+        "explanation": "Connect letters R, A, C, E to form: RACE, CAR, ERA, ARC."
+      },
+      {
+        "id": "wc_g7_e_49",
+        "availableLetters": [
+          "W",
+          "I",
+          "N",
+          "S"
+        ],
+        "targetWords": [
+          {
+            "word": "WINS",
+            "turkishMeaning": "Kazanır"
+          },
+          {
+            "word": "WIN",
+            "turkishMeaning": "Kazanmak"
+          },
+          {
+            "word": "SIN",
+            "turkishMeaning": "Kusur"
+          }
+        ],
+        "category": "Sports",
+        "theme": "Victory",
+        "explanation": "Connect letters W, I, N, S to form: WINS, WIN, SIN."
+      },
+      {
+        "id": "wc_g7_e_50",
+        "availableLetters": [
+          "F",
+          "A",
+          "S",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "FAST",
+            "turkishMeaning": "Hızlı"
+          },
+          {
+            "word": "FAT",
+            "turkishMeaning": "Kilolu"
+          },
+          {
+            "word": "SAT",
+            "turkishMeaning": "Oturdu"
+          }
+        ],
+        "category": "Sports",
+        "theme": "Speed & Agility",
+        "explanation": "Connect letters F, A, S, T to form: FAST, FAT, SAT."
+      },
+      {
+        "id": "wc_g7_e_51",
+        "availableLetters": [
+          "P",
+          "A",
+          "S",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "PAST",
+            "turkishMeaning": "Geçmiş"
+          },
+          {
+            "word": "TAP",
+            "turkishMeaning": "Musluk"
+          },
+          {
+            "word": "PAT",
+            "turkishMeaning": "Okşamak"
+          }
+        ],
+        "category": "Biographies",
+        "theme": "History & Heritage",
+        "explanation": "Connect letters P, A, S, T to form: PAST, TAP, PAT."
+      },
+      {
+        "id": "wc_g7_e_52",
+        "availableLetters": [
+          "L",
+          "I",
+          "F",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "LIFE",
+            "turkishMeaning": "Hayat"
+          },
+          {
+            "word": "LIE",
+            "turkishMeaning": "Yalan / Uzanmak"
+          }
+        ],
+        "category": "Biographies",
+        "theme": "Biography Journeys",
+        "explanation": "Connect letters L, I, F, E to form: LIFE, LIE."
+      },
+      {
+        "id": "wc_g7_e_53",
+        "availableLetters": [
+          "W",
+          "I",
+          "L",
+          "D"
+        ],
+        "targetWords": [
+          {
+            "word": "WILD",
+            "turkishMeaning": "Vahşi"
+          },
+          {
+            "word": "LID",
+            "turkishMeaning": "Kapak"
+          }
+        ],
+        "category": "Wild Animals",
+        "theme": "Nature Habitats",
+        "explanation": "Connect letters W, I, L, D to form: WILD, LID."
+      },
+      {
+        "id": "wc_g7_e_54",
+        "availableLetters": [
+          "L",
+          "I",
+          "O",
+          "N"
+        ],
+        "targetWords": [
+          {
+            "word": "LION",
+            "turkishMeaning": "Aslan"
+          },
+          {
+            "word": "OIL",
+            "turkishMeaning": "Yağ"
+          },
+          {
+            "word": "ION",
+            "turkishMeaning": "İyon"
+          }
+        ],
+        "category": "Wild Animals",
+        "theme": "Savannah Kings",
+        "explanation": "Connect letters L, I, O, N to form: LION, OIL, ION."
+      },
+      {
+        "id": "wc_g7_e_55",
+        "availableLetters": [
+          "B",
+          "E",
+          "A",
+          "R"
+        ],
+        "targetWords": [
+          {
+            "word": "BEAR",
+            "turkishMeaning": "Ayı"
+          },
+          {
+            "word": "BARE",
+            "turkishMeaning": "Çıplak"
+          },
+          {
+            "word": "EAR",
+            "turkishMeaning": "Kulak"
+          },
+          {
+            "word": "BAR",
+            "turkishMeaning": "Engel"
+          }
+        ],
+        "category": "Wild Animals",
+        "theme": "Alpine Fauna",
+        "explanation": "Connect letters B, E, A, R to form: BEAR, BARE, EAR, BAR."
+      },
+      {
+        "id": "wc_g7_e_56",
+        "availableLetters": [
+          "W",
+          "O",
+          "L",
+          "F"
+        ],
+        "targetWords": [
+          {
+            "word": "WOLF",
+            "turkishMeaning": "Kurt"
+          },
+          {
+            "word": "FLOW",
+            "turkishMeaning": "Akış"
+          },
+          {
+            "word": "LOW",
+            "turkishMeaning": "Alçak"
+          },
+          {
+            "word": "OWL",
+            "turkishMeaning": "Baykuş"
+          }
+        ],
+        "category": "Wild Animals",
+        "theme": "Forest Predators",
+        "explanation": "Connect letters W, O, L, F to form: WOLF, FLOW, LOW, OWL."
+      },
+      {
+        "id": "wc_g7_e_57",
+        "availableLetters": [
+          "D",
+          "E",
+          "E",
+          "R"
+        ],
+        "targetWords": [
+          {
+            "word": "DEER",
+            "turkishMeaning": "Geyik"
+          },
+          {
+            "word": "RED",
+            "turkishMeaning": "Kırmızı"
+          }
+        ],
+        "category": "Wild Animals",
+        "theme": "Woodland Animals",
+        "explanation": "Connect letters D, E, E, R to form: DEER, RED."
+      },
+      {
+        "id": "wc_g7_e_58",
+        "availableLetters": [
+          "S",
+          "H",
+          "O",
+          "W"
+        ],
+        "targetWords": [
+          {
+            "word": "SHOW",
+            "turkishMeaning": "Gösteri"
+          },
+          {
+            "word": "HOW",
+            "turkishMeaning": "Nasıl"
+          },
+          {
+            "word": "WHO",
+            "turkishMeaning": "Kim"
+          }
+        ],
+        "category": "Television",
+        "theme": "Broadcast Media",
+        "explanation": "Connect letters S, H, O, W to form: SHOW, HOW, WHO."
+      },
+      {
+        "id": "wc_g7_e_59",
+        "availableLetters": [
+          "N",
+          "E",
+          "W",
+          "S"
+        ],
+        "targetWords": [
+          {
+            "word": "NEWS",
+            "turkishMeaning": "Haberler"
+          },
+          {
+            "word": "SEW",
+            "turkishMeaning": "Dikmek"
+          }
+        ],
+        "category": "Television",
+        "theme": "Current Events",
+        "explanation": "Connect letters N, E, W, S to form: NEWS, SEW."
+      },
+      {
+        "id": "wc_g7_e_60",
+        "availableLetters": [
+          "F",
+          "I",
+          "L",
+          "M"
+        ],
+        "targetWords": [
+          {
+            "word": "FILM",
+            "turkishMeaning": "Film"
+          }
+        ],
+        "category": "Television",
+        "theme": "Cinema Arts",
+        "explanation": "Connect letters F, I, L, M to form: FILM."
+      },
+      {
+        "id": "wc_g7_e_61",
+        "availableLetters": [
+          "G",
+          "I",
+          "F",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "GIFT",
+            "turkishMeaning": "Hediye"
+          },
+          {
+            "word": "FIT",
+            "turkishMeaning": "Uygun, zinde"
+          },
+          {
+            "word": "FIG",
+            "turkishMeaning": "İncir"
+          }
+        ],
+        "category": "Celebrations",
+        "theme": "Presents",
+        "explanation": "Connect letters G, I, F, T to form: GIFT, FIT, FIG."
+      },
+      {
+        "id": "wc_g7_e_62",
+        "availableLetters": [
+          "C",
+          "A",
+          "R",
+          "D"
+        ],
+        "targetWords": [
+          {
+            "word": "CARD",
+            "turkishMeaning": "Kart"
+          },
+          {
+            "word": "CAR",
+            "turkishMeaning": "Araba"
+          },
+          {
+            "word": "ARC",
+            "turkishMeaning": "Kavis"
+          }
+        ],
+        "category": "Celebrations",
+        "theme": "Greeting Notes",
+        "explanation": "Connect letters C, A, R, D to form: CARD, CAR, ARC."
+      },
+      {
+        "id": "wc_g7_e_63",
+        "availableLetters": [
+          "H",
+          "O",
+          "P",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "HOPE",
+            "turkishMeaning": "Umut"
+          },
+          {
+            "word": "HOP",
+            "turkishMeaning": "Zıplamak"
+          }
+        ],
+        "category": "Dreams",
+        "theme": "Future Wishes",
+        "explanation": "Connect letters H, O, P, E to form: HOPE, HOP."
+      },
+      {
+        "id": "wc_g7_e_64",
+        "availableLetters": [
+          "W",
+          "I",
+          "S",
+          "H"
+        ],
+        "targetWords": [
+          {
+            "word": "WISH",
+            "turkishMeaning": "Dilek"
+          }
+        ],
+        "category": "Dreams",
+        "theme": "Aspirations",
+        "explanation": "Connect letters W, I, S, H to form: WISH."
+      },
+      {
+        "id": "wc_g7_e_65",
+        "availableLetters": [
+          "S",
+          "T",
+          "A",
+          "R"
+        ],
+        "targetWords": [
+          {
+            "word": "STAR",
+            "turkishMeaning": "Yıldız"
+          },
+          {
+            "word": "ARTS",
+            "turkishMeaning": "Sanatlar"
+          },
+          {
+            "word": "ART",
+            "turkishMeaning": "Sanat"
+          },
+          {
+            "word": "RAT",
+            "turkishMeaning": "Sıçan"
+          },
+          {
+            "word": "TAR",
+            "turkishMeaning": "Katran"
+          }
+        ],
+        "category": "Planets",
+        "theme": "Astronomy",
+        "explanation": "Connect letters S, T, A, R to form: STAR, ARTS, ART, RAT, TAR."
+      },
+      {
+        "id": "wc_g7_e_66",
+        "availableLetters": [
+          "M",
+          "O",
+          "O",
+          "N"
+        ],
+        "targetWords": [
+          {
+            "word": "MOON",
+            "turkishMeaning": "Ay"
+          }
+        ],
+        "category": "Planets",
+        "theme": "Night Sky",
+        "explanation": "Connect letters M, O, O, N to form: MOON."
+      },
+      {
+        "id": "wc_g7_e_67",
+        "availableLetters": [
+          "M",
+          "A",
+          "R",
+          "S"
+        ],
+        "targetWords": [
+          {
+            "word": "MARS",
+            "turkishMeaning": "Mars"
+          },
+          {
+            "word": "ARMS",
+            "turkishMeaning": "Kollar"
+          },
+          {
+            "word": "ARM",
+            "turkishMeaning": "Kol"
+          },
+          {
+            "word": "RAM",
+            "turkishMeaning": "Koç"
+          }
+        ],
+        "category": "Planets",
+        "theme": "Red Planet",
+        "explanation": "Connect letters M, A, R, S to form: MARS, ARMS, ARM, RAM."
+      },
+      {
+        "id": "wc_g7_e_68",
+        "availableLetters": [
+          "P",
+          "A",
+          "R",
+          "K"
+        ],
+        "targetWords": [
+          {
+            "word": "PARK",
+            "turkishMeaning": "Park"
+          }
+        ],
+        "category": "Public Buildings",
+        "theme": "Recreation",
+        "explanation": "Connect letters P, A, R, K to form: PARK."
+      },
+      {
+        "id": "wc_g7_e_69",
+        "availableLetters": [
+          "B",
+          "A",
+          "N",
+          "K"
+        ],
+        "targetWords": [
+          {
+            "word": "BANK",
+            "turkishMeaning": "Banka"
+          },
+          {
+            "word": "BAN",
+            "turkishMeaning": "Yasak"
+          }
+        ],
+        "category": "Public Buildings",
+        "theme": "Town Finance",
+        "explanation": "Connect letters B, A, N, K to form: BANK, BAN."
+      },
+      {
+        "id": "wc_g7_e_70",
+        "availableLetters": [
+          "M",
+          "A",
+          "L",
+          "L"
+        ],
+        "targetWords": [
+          {
+            "word": "MALL",
+            "turkishMeaning": "Alışveriş merkezi"
+          },
+          {
+            "word": "ALL",
+            "turkishMeaning": "Hepsi"
+          }
+        ],
+        "category": "Public Buildings",
+        "theme": "City Shopping",
+        "explanation": "Connect letters M, A, L, L to form: MALL, ALL."
+      },
+      {
+        "id": "wc_g7_e_71",
+        "availableLetters": [
+          "C",
+          "A",
+          "F",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "CAFE",
+            "turkishMeaning": "Kafe"
+          },
+          {
+            "word": "FACE",
+            "turkishMeaning": "Yüz"
+          }
+        ],
+        "category": "Public Buildings",
+        "theme": "Social Spots",
+        "explanation": "Connect letters C, A, F, E to form: CAFE, FACE."
+      },
+      {
+        "id": "wc_g7_e_72",
+        "availableLetters": [
+          "S",
+          "A",
+          "V",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "SAVE",
+            "turkishMeaning": "Korumak, kurtarmak"
+          },
+          {
+            "word": "VASE",
+            "turkishMeaning": "Vazo"
+          }
+        ],
+        "category": "Environment",
+        "theme": "Conservation",
+        "explanation": "Connect letters S, A, V, E to form: SAVE, VASE."
+      },
+      {
+        "id": "wc_g7_e_73",
+        "availableLetters": [
+          "T",
+          "R",
+          "E",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "TREE",
+            "turkishMeaning": "Ağaç"
+          }
+        ],
+        "category": "Environment",
+        "theme": "Forestry",
+        "explanation": "Connect letters T, R, E, E to form: TREE."
+      },
+      {
+        "id": "wc_g7_e_74",
+        "availableLetters": [
+          "S",
+          "O",
+          "I",
+          "L"
+        ],
+        "targetWords": [
+          {
+            "word": "SOIL",
+            "turkishMeaning": "Toprak"
+          },
+          {
+            "word": "OIL",
+            "turkishMeaning": "Yağ"
+          }
+        ],
+        "category": "Environment",
+        "theme": "Earth & Agriculture",
+        "explanation": "Connect letters S, O, I, L to form: SOIL, OIL."
+      },
+      {
+        "id": "wc_g7_e_75",
+        "availableLetters": [
+          "L",
+          "E",
+          "A",
+          "F"
+        ],
+        "targetWords": [
+          {
+            "word": "LEAF",
+            "turkishMeaning": "Yaprak"
+          },
+          {
+            "word": "ALE",
+            "turkishMeaning": "Mayalı içecek"
+          }
+        ],
+        "category": "Environment",
+        "theme": "Botany",
+        "explanation": "Connect letters L, E, A, F to form: LEAF, ALE."
+      },
+      {
+        "id": "wc_g7_e_76",
+        "availableLetters": [
+          "D",
+          "A",
+          "T",
+          "A"
+        ],
+        "targetWords": [
+          {
+            "word": "DATA",
+            "turkishMeaning": "Veri"
+          }
+        ],
+        "category": "Life Online",
+        "theme": "Cyber Information",
+        "explanation": "Connect letters D, A, T, A to form: DATA."
+      },
+      {
+        "id": "wc_g7_e_77",
+        "availableLetters": [
+          "S",
+          "A",
+          "F",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "SAFE",
+            "turkishMeaning": "Güvenli"
+          }
+        ],
+        "category": "Life Online",
+        "theme": "Online Security",
+        "explanation": "Connect letters S, A, F, E to form: SAFE."
+      },
+      {
+        "id": "wc_g7_e_78",
+        "availableLetters": [
+          "U",
+          "S",
+          "E",
+          "R"
+        ],
+        "targetWords": [
+          {
+            "word": "USER",
+            "turkishMeaning": "Kullanıcı"
+          },
+          {
+            "word": "SURE",
+            "turkishMeaning": "Emin"
+          },
+          {
+            "word": "USE",
+            "turkishMeaning": "Kullanmak"
+          }
+        ],
+        "category": "Life Online",
+        "theme": "Digital Accounts",
+        "explanation": "Connect letters U, S, E, R to form: USER, SURE, USE."
+      },
+      {
+        "id": "wc_g7_e_79",
+        "availableLetters": [
+          "H",
+          "E",
+          "L",
+          "P"
+        ],
+        "targetWords": [
+          {
+            "word": "HELP",
+            "turkishMeaning": "Yardım"
+          }
+        ],
+        "category": "In and Out of Danger",
+        "theme": "Safety Assistance",
+        "explanation": "Connect letters H, E, L, P to form: HELP."
+      },
+      {
+        "id": "wc_g7_e_80",
+        "availableLetters": [
+          "B",
+          "U",
+          "R",
+          "N"
+        ],
+        "targetWords": [
+          {
+            "word": "BURN",
+            "turkishMeaning": "Yanık"
+          },
+          {
+            "word": "RUN",
+            "turkishMeaning": "Koşmak"
+          },
+          {
+            "word": "RUB",
+            "turkishMeaning": "Ovalamak"
+          },
+          {
+            "word": "URN",
+            "turkishMeaning": "Vazo"
+          }
+        ],
+        "category": "In and Out of Danger",
+        "theme": "First Aid Care",
+        "explanation": "Connect letters B, U, R, N to form: BURN, RUN, RUB, URN."
       }
     ],
     "medium": [
@@ -2550,6 +3512,1294 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "category": "Celebrations",
         "theme": "Lantern",
         "explanation": "Connect letters C, A, N, D, L, E to form: CANDLE, LANCE, LAND, LANE, CAN."
+      },
+      {
+        "id": "wc_g7_m_41",
+        "availableLetters": [
+          "S",
+          "M",
+          "A",
+          "R",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "SMART",
+            "turkishMeaning": "Zeki"
+          },
+          {
+            "word": "STAR",
+            "turkishMeaning": "Yıldız"
+          },
+          {
+            "word": "RAMS",
+            "turkishMeaning": "Koçlar"
+          },
+          {
+            "word": "ART",
+            "turkishMeaning": "Sanat"
+          },
+          {
+            "word": "MAT",
+            "turkishMeaning": "Paspas"
+          },
+          {
+            "word": "ARM",
+            "turkishMeaning": "Kol"
+          }
+        ],
+        "category": "Personality",
+        "theme": "Intelligence",
+        "explanation": "Connect letters S, M, A, R, T to form: SMART, STAR, RAMS, ART, MAT, ARM."
+      },
+      {
+        "id": "wc_g7_m_42",
+        "availableLetters": [
+          "B",
+          "R",
+          "A",
+          "V",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "BRAVE",
+            "turkishMeaning": "Cesur"
+          },
+          {
+            "word": "BEAR",
+            "turkishMeaning": "Ayı"
+          },
+          {
+            "word": "BARE",
+            "turkishMeaning": "Yalın"
+          },
+          {
+            "word": "BAR",
+            "turkishMeaning": "Bar"
+          },
+          {
+            "word": "EAR",
+            "turkishMeaning": "Kulak"
+          }
+        ],
+        "category": "Personality",
+        "theme": "Courage",
+        "explanation": "Connect letters B, R, A, V, E to form: BRAVE, BEAR, BARE, BAR, EAR."
+      },
+      {
+        "id": "wc_g7_m_43",
+        "availableLetters": [
+          "T",
+          "R",
+          "A",
+          "C",
+          "K"
+        ],
+        "targetWords": [
+          {
+            "word": "TRACK",
+            "turkishMeaning": "Pist, iz"
+          },
+          {
+            "word": "CART",
+            "turkishMeaning": "Araba"
+          },
+          {
+            "word": "ACT",
+            "turkishMeaning": "Eylem"
+          },
+          {
+            "word": "CAT",
+            "turkishMeaning": "Kedi"
+          },
+          {
+            "word": "ART",
+            "turkishMeaning": "Sanat"
+          }
+        ],
+        "category": "Sports",
+        "theme": "Athletic Courses",
+        "explanation": "Connect letters T, R, A, C, K to form: TRACK, CART, ACT, CAT, ART."
+      },
+      {
+        "id": "wc_g7_m_44",
+        "availableLetters": [
+          "M",
+          "E",
+          "D",
+          "A",
+          "L"
+        ],
+        "targetWords": [
+          {
+            "word": "MEDAL",
+            "turkishMeaning": "Madalya"
+          },
+          {
+            "word": "DEAL",
+            "turkishMeaning": "Anlaşma"
+          },
+          {
+            "word": "MALE",
+            "turkishMeaning": "Erkek"
+          },
+          {
+            "word": "LEAD",
+            "turkishMeaning": "Önderlik"
+          },
+          {
+            "word": "DAM",
+            "turkishMeaning": "Baraj"
+          }
+        ],
+        "category": "Sports",
+        "theme": "Podium Honors",
+        "explanation": "Connect letters M, E, D, A, L to form: MEDAL, DEAL, MALE, LEAD, DAM."
+      },
+      {
+        "id": "wc_g7_m_45",
+        "availableLetters": [
+          "C",
+          "O",
+          "A",
+          "C",
+          "H"
+        ],
+        "targetWords": [
+          {
+            "word": "COACH",
+            "turkishMeaning": "Antrenör"
+          }
+        ],
+        "category": "Sports",
+        "theme": "Team Training",
+        "explanation": "Connect letters C, O, A, C, H to form: COACH."
+      },
+      {
+        "id": "wc_g7_m_46",
+        "availableLetters": [
+          "P",
+          "I",
+          "T",
+          "C",
+          "H"
+        ],
+        "targetWords": [
+          {
+            "word": "PITCH",
+            "turkishMeaning": "Futbol sahası"
+          },
+          {
+            "word": "CHIP",
+            "turkishMeaning": "Çip"
+          },
+          {
+            "word": "TIP",
+            "turkishMeaning": "İpucu"
+          },
+          {
+            "word": "PIT",
+            "turkishMeaning": "Çukur"
+          },
+          {
+            "word": "HIT",
+            "turkishMeaning": "Vurmak"
+          }
+        ],
+        "category": "Sports",
+        "theme": "Football Grounds",
+        "explanation": "Connect letters P, I, T, C, H to form: PITCH, CHIP, TIP, PIT, HIT."
+      },
+      {
+        "id": "wc_g7_m_47",
+        "availableLetters": [
+          "P",
+          "R",
+          "I",
+          "Z",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "PRIZE",
+            "turkishMeaning": "Ödül"
+          },
+          {
+            "word": "RIPE",
+            "turkishMeaning": "Olgun"
+          },
+          {
+            "word": "ZIP",
+            "turkishMeaning": "Fermuar"
+          },
+          {
+            "word": "PIE",
+            "turkishMeaning": "Turta"
+          }
+        ],
+        "category": "Biographies",
+        "theme": "Scientific Honors",
+        "explanation": "Connect letters P, R, I, Z, E to form: PRIZE, RIPE, ZIP, PIE."
+      },
+      {
+        "id": "wc_g7_m_48",
+        "availableLetters": [
+          "E",
+          "A",
+          "R",
+          "L",
+          "Y"
+        ],
+        "targetWords": [
+          {
+            "word": "EARLY",
+            "turkishMeaning": "Erken"
+          },
+          {
+            "word": "YEAR",
+            "turkishMeaning": "Yıl"
+          },
+          {
+            "word": "REAL",
+            "turkishMeaning": "Gerçek"
+          },
+          {
+            "word": "EAR",
+            "turkishMeaning": "Kulak"
+          },
+          {
+            "word": "RAY",
+            "turkishMeaning": "Işın"
+          }
+        ],
+        "category": "Biographies",
+        "theme": "Early Life",
+        "explanation": "Connect letters E, A, R, L, Y to form: EARLY, YEAR, REAL, EAR, RAY."
+      },
+      {
+        "id": "wc_g7_m_49",
+        "availableLetters": [
+          "T",
+          "I",
+          "G",
+          "E",
+          "R"
+        ],
+        "targetWords": [
+          {
+            "word": "TIGER",
+            "turkishMeaning": "Kaplan"
+          },
+          {
+            "word": "TIRE",
+            "turkishMeaning": "Lastik / Yorulmak"
+          },
+          {
+            "word": "GRIT",
+            "turkishMeaning": "Cesaret"
+          },
+          {
+            "word": "TIE",
+            "turkishMeaning": "Kravat"
+          }
+        ],
+        "category": "Wild Animals",
+        "theme": "Jungle Apex",
+        "explanation": "Connect letters T, I, G, E, R to form: TIGER, TIRE, GRIT, TIE."
+      },
+      {
+        "id": "wc_g7_m_50",
+        "availableLetters": [
+          "E",
+          "A",
+          "G",
+          "L",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "EAGLE",
+            "turkishMeaning": "Kartal"
+          },
+          {
+            "word": "GALE",
+            "turkishMeaning": "Fırtına"
+          },
+          {
+            "word": "AGE",
+            "turkishMeaning": "Yaş"
+          },
+          {
+            "word": "LEG",
+            "turkishMeaning": "Bacak"
+          }
+        ],
+        "category": "Wild Animals",
+        "theme": "Birds of Prey",
+        "explanation": "Connect letters E, A, G, L, E to form: EAGLE, GALE, AGE, LEG."
+      },
+      {
+        "id": "wc_g7_m_51",
+        "availableLetters": [
+          "S",
+          "H",
+          "A",
+          "R",
+          "K"
+        ],
+        "targetWords": [
+          {
+            "word": "SHARK",
+            "turkishMeaning": "Köpekbalığı"
+          },
+          {
+            "word": "ASH",
+            "turkishMeaning": "Kül"
+          },
+          {
+            "word": "ARK",
+            "turkishMeaning": "Gemi"
+          }
+        ],
+        "category": "Wild Animals",
+        "theme": "Ocean Hunters",
+        "explanation": "Connect letters S, H, A, R, K to form: SHARK, ASH, ARK."
+      },
+      {
+        "id": "wc_g7_m_52",
+        "availableLetters": [
+          "W",
+          "H",
+          "A",
+          "L",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "WHALE",
+            "turkishMeaning": "Balina"
+          },
+          {
+            "word": "HEAL",
+            "turkishMeaning": "İyileşmek"
+          },
+          {
+            "word": "ALE",
+            "turkishMeaning": "Bira"
+          }
+        ],
+        "category": "Wild Animals",
+        "theme": "Marine Giants",
+        "explanation": "Connect letters W, H, A, L, E to form: WHALE, HEAL, ALE."
+      },
+      {
+        "id": "wc_g7_m_53",
+        "availableLetters": [
+          "Z",
+          "E",
+          "B",
+          "R",
+          "A"
+        ],
+        "targetWords": [
+          {
+            "word": "ZEBRA",
+            "turkishMeaning": "Zebra"
+          },
+          {
+            "word": "BEAR",
+            "turkishMeaning": "Ayı"
+          },
+          {
+            "word": "BARE",
+            "turkishMeaning": "Yalın"
+          },
+          {
+            "word": "BAR",
+            "turkishMeaning": "Çubuk"
+          },
+          {
+            "word": "EAR",
+            "turkishMeaning": "Kulak"
+          }
+        ],
+        "category": "Wild Animals",
+        "theme": "Savannah Grazers",
+        "explanation": "Connect letters Z, E, B, R, A to form: ZEBRA, BEAR, BARE, BAR, EAR."
+      },
+      {
+        "id": "wc_g7_m_54",
+        "availableLetters": [
+          "S",
+          "C",
+          "E",
+          "N",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "SCENE",
+            "turkishMeaning": "Sahne"
+          },
+          {
+            "word": "SEEN",
+            "turkishMeaning": "Görüldü"
+          },
+          {
+            "word": "SEE",
+            "turkishMeaning": "Görmek"
+          }
+        ],
+        "category": "Television",
+        "theme": "Film Production",
+        "explanation": "Connect letters S, C, E, N, E to form: SCENE, SEEN, SEE."
+      },
+      {
+        "id": "wc_g7_m_55",
+        "availableLetters": [
+          "A",
+          "C",
+          "T",
+          "O",
+          "R"
+        ],
+        "targetWords": [
+          {
+            "word": "ACTOR",
+            "turkishMeaning": "Oyuncu"
+          },
+          {
+            "word": "COAT",
+            "turkishMeaning": "Palto"
+          },
+          {
+            "word": "CAT",
+            "turkishMeaning": "Kedi"
+          },
+          {
+            "word": "OAT",
+            "turkishMeaning": "Yulaf"
+          },
+          {
+            "word": "ROT",
+            "turkishMeaning": "Çürümek"
+          }
+        ],
+        "category": "Television",
+        "theme": "Drama Cast",
+        "explanation": "Connect letters A, C, T, O, R to form: ACTOR, COAT, CAT, OAT, ROT."
+      },
+      {
+        "id": "wc_g7_m_56",
+        "availableLetters": [
+          "D",
+          "R",
+          "A",
+          "M",
+          "A"
+        ],
+        "targetWords": [
+          {
+            "word": "DRAMA",
+            "turkishMeaning": "Tiyatro, dram"
+          },
+          {
+            "word": "ARM",
+            "turkishMeaning": "Kol"
+          },
+          {
+            "word": "RAM",
+            "turkishMeaning": "Koç"
+          },
+          {
+            "word": "MAD",
+            "turkishMeaning": "Kızgın"
+          }
+        ],
+        "category": "Television",
+        "theme": "Theatrical Arts",
+        "explanation": "Connect letters D, R, A, M, A to form: DRAMA, ARM, RAM, MAD."
+      },
+      {
+        "id": "wc_g7_m_57",
+        "availableLetters": [
+          "E",
+          "V",
+          "E",
+          "N",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "EVENT",
+            "turkishMeaning": "Etkinlik"
+          },
+          {
+            "word": "EVEN",
+            "turkishMeaning": "Çift / Hatta"
+          },
+          {
+            "word": "NET",
+            "turkishMeaning": "Ağ"
+          },
+          {
+            "word": "TEN",
+            "turkishMeaning": "On"
+          }
+        ],
+        "category": "Celebrations",
+        "theme": "Milestone Gatherings",
+        "explanation": "Connect letters E, V, E, N, T to form: EVENT, EVEN, NET, TEN."
+      },
+      {
+        "id": "wc_g7_m_58",
+        "availableLetters": [
+          "P",
+          "A",
+          "R",
+          "T",
+          "Y"
+        ],
+        "targetWords": [
+          {
+            "word": "PARTY",
+            "turkishMeaning": "Parti"
+          },
+          {
+            "word": "PART",
+            "turkishMeaning": "Bölüm"
+          },
+          {
+            "word": "TRAP",
+            "turkishMeaning": "Tuzak"
+          },
+          {
+            "word": "PAY",
+            "turkishMeaning": "Ödemek"
+          },
+          {
+            "word": "RAY",
+            "turkishMeaning": "Işın"
+          }
+        ],
+        "category": "Celebrations",
+        "theme": "Social Festivities",
+        "explanation": "Connect letters P, A, R, T, Y to form: PARTY, PART, TRAP, PAY, RAY."
+      },
+      {
+        "id": "wc_g7_m_59",
+        "availableLetters": [
+          "G",
+          "U",
+          "E",
+          "S",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "GUEST",
+            "turkishMeaning": "Misafir"
+          },
+          {
+            "word": "GUT",
+            "turkishMeaning": "Bağırsak"
+          },
+          {
+            "word": "SET",
+            "turkishMeaning": "Set"
+          }
+        ],
+        "category": "Celebrations",
+        "theme": "Hospitality",
+        "explanation": "Connect letters G, U, E, S, T to form: GUEST, GUT, SET."
+      },
+      {
+        "id": "wc_g7_m_60",
+        "availableLetters": [
+          "D",
+          "R",
+          "E",
+          "A",
+          "M"
+        ],
+        "targetWords": [
+          {
+            "word": "DREAM",
+            "turkishMeaning": "Rüya, hayal"
+          },
+          {
+            "word": "MADE",
+            "turkishMeaning": "Yaptı"
+          },
+          {
+            "word": "DARE",
+            "turkishMeaning": "Cesaret etmek"
+          },
+          {
+            "word": "READ",
+            "turkishMeaning": "Okumak"
+          },
+          {
+            "word": "RED",
+            "turkishMeaning": "Kırmızı"
+          },
+          {
+            "word": "EAR",
+            "turkishMeaning": "Kulak"
+          }
+        ],
+        "category": "Dreams",
+        "theme": "Future Visions",
+        "explanation": "Connect letters D, R, E, A, M to form: DREAM, MADE, DARE, READ, RED, EAR."
+      },
+      {
+        "id": "wc_g7_m_61",
+        "availableLetters": [
+          "P",
+          "E",
+          "A",
+          "C",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "PEACE",
+            "turkishMeaning": "Barış, huzur"
+          },
+          {
+            "word": "CAPE",
+            "turkishMeaning": "Pelerin"
+          },
+          {
+            "word": "PACE",
+            "turkishMeaning": "Adım, tempo"
+          },
+          {
+            "word": "APE",
+            "turkishMeaning": "İribaş maymun"
+          },
+          {
+            "word": "CAP",
+            "turkishMeaning": "Şapka"
+          }
+        ],
+        "category": "Dreams",
+        "theme": "Harmony",
+        "explanation": "Connect letters P, E, A, C, E to form: PEACE, CAPE, PACE, APE, CAP."
+      },
+      {
+        "id": "wc_g7_m_62",
+        "availableLetters": [
+          "P",
+          "L",
+          "A",
+          "Z",
+          "A"
+        ],
+        "targetWords": [
+          {
+            "word": "PLAZA",
+            "turkishMeaning": "Meydan"
+          },
+          {
+            "word": "LAP",
+            "turkishMeaning": "Tur"
+          }
+        ],
+        "category": "Public Buildings",
+        "theme": "City Squares",
+        "explanation": "Connect letters P, L, A, Z, A to form: PLAZA, LAP."
+      },
+      {
+        "id": "wc_g7_m_63",
+        "availableLetters": [
+          "H",
+          "O",
+          "T",
+          "E",
+          "L"
+        ],
+        "targetWords": [
+          {
+            "word": "HOTEL",
+            "turkishMeaning": "Otel"
+          },
+          {
+            "word": "HOLE",
+            "turkishMeaning": "Delik"
+          },
+          {
+            "word": "LET",
+            "turkishMeaning": "İzin vermek"
+          },
+          {
+            "word": "HOT",
+            "turkishMeaning": "Sıcak"
+          },
+          {
+            "word": "THE",
+            "turkishMeaning": "Belirtme"
+          }
+        ],
+        "category": "Public Buildings",
+        "theme": "Accommodation",
+        "explanation": "Connect letters H, O, T, E, L to form: HOTEL, HOLE, LET, HOT, THE."
+      },
+      {
+        "id": "wc_g7_m_64",
+        "availableLetters": [
+          "S",
+          "T",
+          "O",
+          "R",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "STORE",
+            "turkishMeaning": "Mağaza"
+          },
+          {
+            "word": "ROSE",
+            "turkishMeaning": "Gül"
+          },
+          {
+            "word": "REST",
+            "turkishMeaning": "Dinlenmek"
+          },
+          {
+            "word": "SORE",
+            "turkishMeaning": "Ağrılı"
+          },
+          {
+            "word": "SET",
+            "turkishMeaning": "Set"
+          }
+        ],
+        "category": "Public Buildings",
+        "theme": "Commercial Shops",
+        "explanation": "Connect letters S, T, O, R, E to form: STORE, ROSE, REST, SORE, SET."
+      },
+      {
+        "id": "wc_g7_m_65",
+        "availableLetters": [
+          "C",
+          "L",
+          "E",
+          "A",
+          "N"
+        ],
+        "targetWords": [
+          {
+            "word": "CLEAN",
+            "turkishMeaning": "Temiz"
+          },
+          {
+            "word": "LANE",
+            "turkishMeaning": "Şerit"
+          },
+          {
+            "word": "LEAN",
+            "turkishMeaning": "Dayanmak"
+          },
+          {
+            "word": "CAN",
+            "turkishMeaning": "Kutu / Yapabilmek"
+          }
+        ],
+        "category": "Environment",
+        "theme": "Purity",
+        "explanation": "Connect letters C, L, E, A, N to form: CLEAN, LANE, LEAN, CAN."
+      },
+      {
+        "id": "wc_g7_m_66",
+        "availableLetters": [
+          "P",
+          "L",
+          "A",
+          "N",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "PLANT",
+            "turkishMeaning": "Bitki"
+          },
+          {
+            "word": "PLAN",
+            "turkishMeaning": "Plan"
+          },
+          {
+            "word": "PANT",
+            "turkishMeaning": "Solumak"
+          },
+          {
+            "word": "TAP",
+            "turkishMeaning": "Musluk"
+          },
+          {
+            "word": "PAN",
+            "turkishMeaning": "Tava"
+          }
+        ],
+        "category": "Environment",
+        "theme": "Vegetation",
+        "explanation": "Connect letters P, L, A, N, T to form: PLANT, PLAN, PANT, TAP, PAN."
+      },
+      {
+        "id": "wc_g7_m_67",
+        "availableLetters": [
+          "W",
+          "A",
+          "T",
+          "E",
+          "R"
+        ],
+        "targetWords": [
+          {
+            "word": "WATER",
+            "turkishMeaning": "Su"
+          },
+          {
+            "word": "TEAR",
+            "turkishMeaning": "Gözyaşı"
+          },
+          {
+            "word": "WEAR",
+            "turkishMeaning": "Giymek"
+          },
+          {
+            "word": "RATE",
+            "turkishMeaning": "Oran"
+          },
+          {
+            "word": "WET",
+            "turkishMeaning": "Islak"
+          },
+          {
+            "word": "RAW",
+            "turkishMeaning": "Çiğ"
+          }
+        ],
+        "category": "Environment",
+        "theme": "Vital Hydration",
+        "explanation": "Connect letters W, A, T, E, R to form: WATER, TEAR, WEAR, RATE, WET, RAW."
+      },
+      {
+        "id": "wc_g7_m_68",
+        "availableLetters": [
+          "S",
+          "O",
+          "L",
+          "A",
+          "R"
+        ],
+        "targetWords": [
+          {
+            "word": "SOLAR",
+            "turkishMeaning": "Güneş ile ilgili"
+          },
+          {
+            "word": "ORAL",
+            "turkishMeaning": "Sözlü"
+          },
+          {
+            "word": "OAR",
+            "turkishMeaning": "Kürek"
+          }
+        ],
+        "category": "Environment",
+        "theme": "Sun Energy",
+        "explanation": "Connect letters S, O, L, A, R to form: SOLAR, ORAL, OAR."
+      },
+      {
+        "id": "wc_g7_m_69",
+        "availableLetters": [
+          "O",
+          "R",
+          "B",
+          "I",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "ORBIT",
+            "turkishMeaning": "Yörünge"
+          },
+          {
+            "word": "RIOT",
+            "turkishMeaning": "İsyan"
+          },
+          {
+            "word": "BIT",
+            "turkishMeaning": "Parça"
+          },
+          {
+            "word": "RIB",
+            "turkishMeaning": "Kaburga"
+          }
+        ],
+        "category": "Planets",
+        "theme": "Celestial Physics",
+        "explanation": "Connect letters O, R, B, I, T to form: ORBIT, RIOT, BIT, RIB."
+      },
+      {
+        "id": "wc_g7_m_70",
+        "availableLetters": [
+          "E",
+          "A",
+          "R",
+          "T",
+          "H"
+        ],
+        "targetWords": [
+          {
+            "word": "EARTH",
+            "turkishMeaning": "Dünya"
+          },
+          {
+            "word": "HEART",
+            "turkishMeaning": "Kalp"
+          },
+          {
+            "word": "HEAT",
+            "turkishMeaning": "Isı"
+          },
+          {
+            "word": "HATE",
+            "turkishMeaning": "Nefret"
+          },
+          {
+            "word": "HEAR",
+            "turkishMeaning": "Duymak"
+          },
+          {
+            "word": "ART",
+            "turkishMeaning": "Sanat"
+          }
+        ],
+        "category": "Planets",
+        "theme": "Living Terrestrial",
+        "explanation": "Connect letters E, A, R, T, H to form: EARTH, HEART, HEAT, HATE, HEAR, ART."
+      },
+      {
+        "id": "wc_g7_m_71",
+        "availableLetters": [
+          "S",
+          "P",
+          "A",
+          "C",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "SPACE",
+            "turkishMeaning": "Uzay"
+          },
+          {
+            "word": "CAPE",
+            "turkishMeaning": "Pelerin"
+          },
+          {
+            "word": "PACE",
+            "turkishMeaning": "Tempo"
+          },
+          {
+            "word": "APE",
+            "turkishMeaning": "Maymun"
+          },
+          {
+            "word": "CAP",
+            "turkishMeaning": "Kep"
+          }
+        ],
+        "category": "Planets",
+        "theme": "Cosmic Frontier",
+        "explanation": "Connect letters S, P, A, C, E to form: SPACE, CAPE, PACE, APE, CAP."
+      },
+      {
+        "id": "wc_g7_m_72",
+        "availableLetters": [
+          "P",
+          "R",
+          "O",
+          "B",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "PROBE",
+            "turkishMeaning": "Sonda"
+          },
+          {
+            "word": "ROPE",
+            "turkishMeaning": "Halat"
+          },
+          {
+            "word": "ROB",
+            "turkishMeaning": "Soymak"
+          },
+          {
+            "word": "ORE",
+            "turkishMeaning": "Cevher"
+          }
+        ],
+        "category": "Planets",
+        "theme": "Space Explorers",
+        "explanation": "Connect letters P, R, O, B, E to form: PROBE, ROPE, ROB, ORE."
+      },
+      {
+        "id": "wc_g7_m_73",
+        "availableLetters": [
+          "C",
+          "L",
+          "I",
+          "C",
+          "K"
+        ],
+        "targetWords": [
+          {
+            "word": "CLICK",
+            "turkishMeaning": "Tıklamak"
+          }
+        ],
+        "category": "Life Online",
+        "theme": "Digital Navigation",
+        "explanation": "Connect letters C, L, I, C, K to form: CLICK."
+      },
+      {
+        "id": "wc_g7_m_74",
+        "availableLetters": [
+          "S",
+          "H",
+          "A",
+          "R",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "SHARE",
+            "turkishMeaning": "Paylaşmak"
+          },
+          {
+            "word": "HEAR",
+            "turkishMeaning": "İşitmek"
+          },
+          {
+            "word": "HARE",
+            "turkishMeaning": "Yaban tavşanı"
+          },
+          {
+            "word": "EAR",
+            "turkishMeaning": "Kulak"
+          },
+          {
+            "word": "ASH",
+            "turkishMeaning": "Kül"
+          }
+        ],
+        "category": "Life Online",
+        "theme": "Social Exchange",
+        "explanation": "Connect letters S, H, A, R, E to form: SHARE, HEAR, HARE, EAR, ASH."
+      },
+      {
+        "id": "wc_g7_m_75",
+        "availableLetters": [
+          "F",
+          "I",
+          "R",
+          "S",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "FIRST",
+            "turkishMeaning": "İlk, birinci"
+          },
+          {
+            "word": "FIST",
+            "turkishMeaning": "Yumruk"
+          },
+          {
+            "word": "STIR",
+            "turkishMeaning": "Karıştırmak"
+          },
+          {
+            "word": "FIT",
+            "turkishMeaning": "Uygun"
+          },
+          {
+            "word": "SIT",
+            "turkishMeaning": "Oturmak"
+          }
+        ],
+        "category": "In and Out of Danger",
+        "theme": "Primary Action",
+        "explanation": "Connect letters F, I, R, S, T to form: FIRST, FIST, STIR, FIT, SIT."
+      },
+      {
+        "id": "wc_g7_m_76",
+        "availableLetters": [
+          "A",
+          "L",
+          "E",
+          "R",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "ALERT",
+            "turkishMeaning": "Uyarı, tetikte"
+          },
+          {
+            "word": "LATER",
+            "turkishMeaning": "Sonra"
+          },
+          {
+            "word": "ALTER",
+            "turkishMeaning": "Değiştirmek"
+          },
+          {
+            "word": "TALE",
+            "turkishMeaning": "Masal"
+          },
+          {
+            "word": "RATE",
+            "turkishMeaning": "Oran"
+          },
+          {
+            "word": "LATE",
+            "turkishMeaning": "Geç"
+          }
+        ],
+        "category": "In and Out of Danger",
+        "theme": "Emergency Warnings",
+        "explanation": "Connect letters A, L, E, R, T to form: ALERT, LATER, ALTER, TALE, RATE, LATE."
+      },
+      {
+        "id": "wc_g7_m_77",
+        "availableLetters": [
+          "S",
+          "T",
+          "O",
+          "R",
+          "M"
+        ],
+        "targetWords": [
+          {
+            "word": "STORM",
+            "turkishMeaning": "Fırtına"
+          },
+          {
+            "word": "MOST",
+            "turkishMeaning": "En çok"
+          },
+          {
+            "word": "SORT",
+            "turkishMeaning": "Ayıklamak"
+          }
+        ],
+        "category": "In and Out of Danger",
+        "theme": "Severe Weather",
+        "explanation": "Connect letters S, T, O, R, M to form: STORM, MOST, SORT."
+      },
+      {
+        "id": "wc_g7_m_78",
+        "availableLetters": [
+          "G",
+          "U",
+          "A",
+          "R",
+          "D"
+        ],
+        "targetWords": [
+          {
+            "word": "GUARD",
+            "turkishMeaning": "Korumak"
+          },
+          {
+            "word": "RUG",
+            "turkishMeaning": "Kilim"
+          },
+          {
+            "word": "RAG",
+            "turkishMeaning": "Bez"
+          }
+        ],
+        "category": "In and Out of Danger",
+        "theme": "Protection",
+        "explanation": "Connect letters G, U, A, R, D to form: GUARD, RUG, RAG."
+      },
+      {
+        "id": "wc_g7_m_79",
+        "availableLetters": [
+          "H",
+          "A",
+          "T",
+          "C",
+          "H"
+        ],
+        "targetWords": [
+          {
+            "word": "HATCH",
+            "turkishMeaning": "Yumurtadan çıkmak"
+          },
+          {
+            "word": "CHAT",
+            "turkishMeaning": "Sohbet"
+          },
+          {
+            "word": "ACT",
+            "turkishMeaning": "Eylem"
+          },
+          {
+            "word": "CAT",
+            "turkishMeaning": "Kedi"
+          },
+          {
+            "word": "HAT",
+            "turkishMeaning": "Şapka"
+          }
+        ],
+        "category": "Wild Animals",
+        "theme": "Avian Life",
+        "explanation": "Connect letters H, A, T, C, H to form: HATCH, CHAT, ACT, CAT, HAT."
+      },
+      {
+        "id": "wc_g7_m_80",
+        "availableLetters": [
+          "P",
+          "O",
+          "I",
+          "N",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "POINT",
+            "turkishMeaning": "Nokta / Puan"
+          },
+          {
+            "word": "PIN",
+            "turkishMeaning": "İğne"
+          },
+          {
+            "word": "TIN",
+            "turkishMeaning": "Teneke"
+          },
+          {
+            "word": "PIT",
+            "turkishMeaning": "Çukur"
+          },
+          {
+            "word": "POT",
+            "turkishMeaning": "Tencere"
+          }
+        ],
+        "category": "Sports",
+        "theme": "Scoring Systems",
+        "explanation": "Connect letters P, O, I, N, T to form: POINT, PIN, TIN, PIT, POT."
       }
     ],
     "hard": [
@@ -4173,6 +6423,1450 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "category": "Environment",
         "theme": "Botanics",
         "explanation": "Connect letters G, A, R, D, E, N, S to form: GARDEN, GARDENS, DANGER, READ, DEAR, RED."
+      },
+      {
+        "id": "wc_g7_h_41",
+        "availableLetters": [
+          "P",
+          "O",
+          "L",
+          "I",
+          "T",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "POLITE",
+            "turkishMeaning": "Kibar"
+          },
+          {
+            "word": "PILOT",
+            "turkishMeaning": "Pilot"
+          },
+          {
+            "word": "POLE",
+            "turkishMeaning": "Kutup"
+          },
+          {
+            "word": "TOIL",
+            "turkishMeaning": "Zahmet"
+          },
+          {
+            "word": "PLOT",
+            "turkishMeaning": "Komplo"
+          },
+          {
+            "word": "TOP",
+            "turkishMeaning": "Zirve"
+          },
+          {
+            "word": "LIP",
+            "turkishMeaning": "Dudak"
+          }
+        ],
+        "category": "Personality",
+        "theme": "Manners",
+        "explanation": "Connect letters P, O, L, I, T, E to form: POLITE, PILOT, POLE, TOIL, PLOT, TOP, LIP."
+      },
+      {
+        "id": "wc_g7_h_42",
+        "availableLetters": [
+          "H",
+          "O",
+          "N",
+          "E",
+          "S",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "HONEST",
+            "turkishMeaning": "Dürüst"
+          },
+          {
+            "word": "STONE",
+            "turkishMeaning": "Taş"
+          },
+          {
+            "word": "NOSE",
+            "turkishMeaning": "Burun"
+          },
+          {
+            "word": "NEST",
+            "turkishMeaning": "Yuva"
+          },
+          {
+            "word": "SHOE",
+            "turkishMeaning": "Ayakkabı"
+          },
+          {
+            "word": "HOT",
+            "turkishMeaning": "Sıcak"
+          },
+          {
+            "word": "NET",
+            "turkishMeaning": "Ağ"
+          }
+        ],
+        "category": "Personality",
+        "theme": "Truthfulness",
+        "explanation": "Connect letters H, O, N, E, S, T to form: HONEST, STONE, NOSE, NEST, SHOE, HOT, NET."
+      },
+      {
+        "id": "wc_g7_h_43",
+        "availableLetters": [
+          "S",
+          "T",
+          "A",
+          "B",
+          "L",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "STABLE",
+            "turkishMeaning": "İstikrarlı"
+          },
+          {
+            "word": "TABLE",
+            "turkishMeaning": "Masa"
+          },
+          {
+            "word": "BEAST",
+            "turkishMeaning": "Canavar"
+          },
+          {
+            "word": "LEAST",
+            "turkishMeaning": "En az"
+          },
+          {
+            "word": "ABLE",
+            "turkishMeaning": "Yetenekli"
+          },
+          {
+            "word": "BATS",
+            "turkishMeaning": "Yarasalar"
+          }
+        ],
+        "category": "Personality",
+        "theme": "Firm Character",
+        "explanation": "Connect letters S, T, A, B, L, E to form: STABLE, TABLE, BEAST, LEAST, ABLE, BATS."
+      },
+      {
+        "id": "wc_g7_h_44",
+        "availableLetters": [
+          "S",
+          "P",
+          "O",
+          "R",
+          "T",
+          "S"
+        ],
+        "targetWords": [
+          {
+            "word": "SPORTS",
+            "turkishMeaning": "Sporlar"
+          },
+          {
+            "word": "SPOTS",
+            "turkishMeaning": "Noktalar"
+          },
+          {
+            "word": "POSTS",
+            "turkishMeaning": "Gönderiler"
+          },
+          {
+            "word": "STOPS",
+            "turkishMeaning": "Duraklar"
+          },
+          {
+            "word": "PORT",
+            "turkishMeaning": "Liman"
+          },
+          {
+            "word": "SPOT",
+            "turkishMeaning": "Leke"
+          }
+        ],
+        "category": "Sports",
+        "theme": "Athletic Contests",
+        "explanation": "Connect letters S, P, O, R, T, S to form: SPORTS, SPOTS, POSTS, STOPS, PORT, SPOT."
+      },
+      {
+        "id": "wc_g7_h_45",
+        "availableLetters": [
+          "P",
+          "L",
+          "A",
+          "Y",
+          "E",
+          "R"
+        ],
+        "targetWords": [
+          {
+            "word": "PLAYER",
+            "turkishMeaning": "Oyuncu"
+          },
+          {
+            "word": "EARLY",
+            "turkishMeaning": "Erken"
+          },
+          {
+            "word": "REPAY",
+            "turkishMeaning": "Geri ödemek"
+          },
+          {
+            "word": "PEAR",
+            "turkishMeaning": "Armut"
+          },
+          {
+            "word": "PALE",
+            "turkishMeaning": "Solgun"
+          },
+          {
+            "word": "RAY",
+            "turkishMeaning": "Işın"
+          }
+        ],
+        "category": "Sports",
+        "theme": "Athletes",
+        "explanation": "Connect letters P, L, A, Y, E, R to form: PLAYER, EARLY, REPAY, PEAR, PALE, RAY."
+      },
+      {
+        "id": "wc_g7_h_46",
+        "availableLetters": [
+          "A",
+          "R",
+          "C",
+          "H",
+          "E",
+          "R"
+        ],
+        "targetWords": [
+          {
+            "word": "ARCHER",
+            "turkishMeaning": "Okçu"
+          },
+          {
+            "word": "REACH",
+            "turkishMeaning": "Ulaşmak"
+          },
+          {
+            "word": "RACE",
+            "turkishMeaning": "Yarış"
+          },
+          {
+            "word": "HEAR",
+            "turkishMeaning": "Duymak"
+          },
+          {
+            "word": "CARE",
+            "turkishMeaning": "Önemsemek"
+          },
+          {
+            "word": "CAR",
+            "turkishMeaning": "Araba"
+          }
+        ],
+        "category": "Sports",
+        "theme": "Archery Skills",
+        "explanation": "Connect letters A, R, C, H, E, R to form: ARCHER, REACH, RACE, HEAR, CARE, CAR."
+      },
+      {
+        "id": "wc_g7_h_47",
+        "availableLetters": [
+          "L",
+          "E",
+          "A",
+          "G",
+          "U",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "LEAGUE",
+            "turkishMeaning": "Lig"
+          },
+          {
+            "word": "EAGLE",
+            "turkishMeaning": "Kartal"
+          },
+          {
+            "word": "GLUE",
+            "turkishMeaning": "Yapıştırıcı"
+          },
+          {
+            "word": "GALE",
+            "turkishMeaning": "Fırtına"
+          },
+          {
+            "word": "AGE",
+            "turkishMeaning": "Yaş"
+          }
+        ],
+        "category": "Sports",
+        "theme": "Tournaments",
+        "explanation": "Connect letters L, E, A, G, U, E to form: LEAGUE, EAGLE, GLUE, GALE, AGE."
+      },
+      {
+        "id": "wc_g7_h_48",
+        "availableLetters": [
+          "C",
+          "A",
+          "R",
+          "E",
+          "E",
+          "R"
+        ],
+        "targetWords": [
+          {
+            "word": "CAREER",
+            "turkishMeaning": "Kariyer"
+          },
+          {
+            "word": "CARE",
+            "turkishMeaning": "Özen"
+          },
+          {
+            "word": "RACE",
+            "turkishMeaning": "Yarış"
+          },
+          {
+            "word": "EAR",
+            "turkishMeaning": "Kulak"
+          }
+        ],
+        "category": "Biographies",
+        "theme": "Professional Life",
+        "explanation": "Connect letters C, A, R, E, E, R to form: CAREER, CARE, RACE, EAR."
+      },
+      {
+        "id": "wc_g7_h_49",
+        "availableLetters": [
+          "F",
+          "A",
+          "M",
+          "O",
+          "U",
+          "S"
+        ],
+        "targetWords": [
+          {
+            "word": "FAMOUS",
+            "turkishMeaning": "Ünlü"
+          },
+          {
+            "word": "FOAM",
+            "turkishMeaning": "Köpük"
+          },
+          {
+            "word": "SUM",
+            "turkishMeaning": "Toplam"
+          }
+        ],
+        "category": "Biographies",
+        "theme": "Renown",
+        "explanation": "Connect letters F, A, M, O, U, S to form: FAMOUS, FOAM, SUM."
+      },
+      {
+        "id": "wc_g7_h_50",
+        "availableLetters": [
+          "J",
+          "U",
+          "N",
+          "G",
+          "L",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "JUNGLE",
+            "turkishMeaning": "Balta girmemiş orman"
+          },
+          {
+            "word": "GLUE",
+            "turkishMeaning": "Tutkal"
+          },
+          {
+            "word": "LUNG",
+            "turkishMeaning": "Akciğer"
+          },
+          {
+            "word": "GUN",
+            "turkishMeaning": "Silah"
+          },
+          {
+            "word": "LEG",
+            "turkishMeaning": "Bacak"
+          }
+        ],
+        "category": "Wild Animals",
+        "theme": "Tropical Habitats",
+        "explanation": "Connect letters J, U, N, G, L, E to form: JUNGLE, GLUE, LUNG, GUN, LEG."
+      },
+      {
+        "id": "wc_g7_h_51",
+        "availableLetters": [
+          "M",
+          "O",
+          "N",
+          "K",
+          "E",
+          "Y"
+        ],
+        "targetWords": [
+          {
+            "word": "MONKEY",
+            "turkishMeaning": "Maymun"
+          },
+          {
+            "word": "MONEY",
+            "turkishMeaning": "Para"
+          },
+          {
+            "word": "YOKE",
+            "turkishMeaning": "Boyunduruk"
+          },
+          {
+            "word": "ONE",
+            "turkishMeaning": "Bir"
+          },
+          {
+            "word": "KEY",
+            "turkishMeaning": "Anahtar"
+          }
+        ],
+        "category": "Wild Animals",
+        "theme": "Tree Primates",
+        "explanation": "Connect letters M, O, N, K, E, Y to form: MONKEY, MONEY, YOKE, ONE, KEY."
+      },
+      {
+        "id": "wc_g7_h_52",
+        "availableLetters": [
+          "F",
+          "A",
+          "L",
+          "C",
+          "O",
+          "N"
+        ],
+        "targetWords": [
+          {
+            "word": "FALCON",
+            "turkishMeaning": "Doğan, şahin"
+          },
+          {
+            "word": "LOAN",
+            "turkishMeaning": "Borç"
+          },
+          {
+            "word": "COAL",
+            "turkishMeaning": "Kömür"
+          },
+          {
+            "word": "CAN",
+            "turkishMeaning": "Kutu"
+          },
+          {
+            "word": "FAN",
+            "turkishMeaning": "Vantilatör"
+          }
+        ],
+        "category": "Wild Animals",
+        "theme": "Avian Predators",
+        "explanation": "Connect letters F, A, L, C, O, N to form: FALCON, LOAN, COAL, CAN, FAN."
+      },
+      {
+        "id": "wc_g7_h_53",
+        "availableLetters": [
+          "S",
+          "A",
+          "F",
+          "A",
+          "R",
+          "I"
+        ],
+        "targetWords": [
+          {
+            "word": "SAFARI",
+            "turkishMeaning": "Safari"
+          },
+          {
+            "word": "FAIR",
+            "turkishMeaning": "Adil"
+          },
+          {
+            "word": "AIR",
+            "turkishMeaning": "Hava"
+          },
+          {
+            "word": "FAR",
+            "turkishMeaning": "Uzak"
+          }
+        ],
+        "category": "Wild Animals",
+        "theme": "Wild Expeditions",
+        "explanation": "Connect letters S, A, F, A, R, I to form: SAFARI, FAIR, AIR, FAR."
+      },
+      {
+        "id": "wc_g7_h_54",
+        "availableLetters": [
+          "S",
+          "E",
+          "R",
+          "I",
+          "E",
+          "S"
+        ],
+        "targetWords": [
+          {
+            "word": "SERIES",
+            "turkishMeaning": "Dizi"
+          },
+          {
+            "word": "SEER",
+            "turkishMeaning": "Kâhin"
+          },
+          {
+            "word": "SIRE",
+            "turkishMeaning": "Efendi"
+          },
+          {
+            "word": "SEE",
+            "turkishMeaning": "Görmek"
+          }
+        ],
+        "category": "Television",
+        "theme": "Broadcast Episodes",
+        "explanation": "Connect letters S, E, R, I, E, S to form: SERIES, SEER, SIRE, SEE."
+      },
+      {
+        "id": "wc_g7_h_55",
+        "availableLetters": [
+          "A",
+          "U",
+          "T",
+          "H",
+          "O",
+          "R"
+        ],
+        "targetWords": [
+          {
+            "word": "AUTHOR",
+            "turkishMeaning": "Yazar"
+          },
+          {
+            "word": "HART",
+            "turkishMeaning": "Erkek geyik"
+          },
+          {
+            "word": "HUT",
+            "turkishMeaning": "Kulübe"
+          },
+          {
+            "word": "OAT",
+            "turkishMeaning": "Yulaf"
+          },
+          {
+            "word": "HOT",
+            "turkishMeaning": "Sıcak"
+          }
+        ],
+        "category": "Television",
+        "theme": "Writers",
+        "explanation": "Connect letters A, U, T, H, O, R to form: AUTHOR, HART, HUT, OAT, HOT."
+      },
+      {
+        "id": "wc_g7_h_56",
+        "availableLetters": [
+          "C",
+          "A",
+          "M",
+          "E",
+          "R",
+          "A"
+        ],
+        "targetWords": [
+          {
+            "word": "CAMERA",
+            "turkishMeaning": "Kamera"
+          },
+          {
+            "word": "CREAM",
+            "turkishMeaning": "Krema"
+          },
+          {
+            "word": "ACRE",
+            "turkishMeaning": "Dönüm"
+          },
+          {
+            "word": "RACE",
+            "turkishMeaning": "Yarış"
+          },
+          {
+            "word": "CRAM",
+            "turkishMeaning": "Tıkıştırmak"
+          },
+          {
+            "word": "CAR",
+            "turkishMeaning": "Araba"
+          }
+        ],
+        "category": "Television",
+        "theme": "Studio Equipment",
+        "explanation": "Connect letters C, A, M, E, R, A to form: CAMERA, CREAM, ACRE, RACE, CRAM, CAR."
+      },
+      {
+        "id": "wc_g7_h_57",
+        "availableLetters": [
+          "S",
+          "C",
+          "R",
+          "E",
+          "E",
+          "N"
+        ],
+        "targetWords": [
+          {
+            "word": "SCREEN",
+            "turkishMeaning": "Ekran"
+          },
+          {
+            "word": "SCENE",
+            "turkishMeaning": "Sahne"
+          },
+          {
+            "word": "SEEN",
+            "turkishMeaning": "Görüldü"
+          },
+          {
+            "word": "SEE",
+            "turkishMeaning": "Görmek"
+          }
+        ],
+        "category": "Television",
+        "theme": "Display Technology",
+        "explanation": "Connect letters S, C, R, E, E, N to form: SCREEN, SCENE, SEEN, SEE."
+      },
+      {
+        "id": "wc_g7_h_58",
+        "availableLetters": [
+          "S",
+          "T",
+          "R",
+          "E",
+          "A",
+          "M"
+        ],
+        "targetWords": [
+          {
+            "word": "STREAM",
+            "turkishMeaning": "Akış, dere"
+          },
+          {
+            "word": "MASTER",
+            "turkishMeaning": "Usta"
+          },
+          {
+            "word": "SMART",
+            "turkishMeaning": "Akıllı"
+          },
+          {
+            "word": "STEAM",
+            "turkishMeaning": "Buhar"
+          },
+          {
+            "word": "TEAM",
+            "turkishMeaning": "Takım"
+          },
+          {
+            "word": "MEAT",
+            "turkishMeaning": "Et"
+          }
+        ],
+        "category": "Television & Environment",
+        "theme": "Continuous Flow",
+        "explanation": "Connect letters S, T, R, E, A, M to form: STREAM, MASTER, SMART, STEAM, TEAM, MEAT."
+      },
+      {
+        "id": "wc_g7_h_59",
+        "availableLetters": [
+          "C",
+          "A",
+          "N",
+          "D",
+          "L",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "CANDLE",
+            "turkishMeaning": "Mum"
+          },
+          {
+            "word": "CLEAN",
+            "turkishMeaning": "Temiz"
+          },
+          {
+            "word": "DANCE",
+            "turkishMeaning": "Dans"
+          },
+          {
+            "word": "LANE",
+            "turkishMeaning": "Şerit"
+          },
+          {
+            "word": "LAND",
+            "turkishMeaning": "Kara"
+          }
+        ],
+        "category": "Celebrations",
+        "theme": "Party Lights",
+        "explanation": "Connect letters C, A, N, D, L, E to form: CANDLE, CLEAN, DANCE, LANE, LAND."
+      },
+      {
+        "id": "wc_g7_h_60",
+        "availableLetters": [
+          "B",
+          "A",
+          "N",
+          "N",
+          "E",
+          "R"
+        ],
+        "targetWords": [
+          {
+            "word": "BANNER",
+            "turkishMeaning": "Pankart"
+          },
+          {
+            "word": "BARE",
+            "turkishMeaning": "Yalın"
+          },
+          {
+            "word": "BARN",
+            "turkishMeaning": "Ahır"
+          },
+          {
+            "word": "NEAR",
+            "turkishMeaning": "Yakın"
+          },
+          {
+            "word": "BAR",
+            "turkishMeaning": "Çubuk"
+          }
+        ],
+        "category": "Celebrations",
+        "theme": "Festival Signs",
+        "explanation": "Connect letters B, A, N, N, E, R to form: BANNER, BARE, BARN, NEAR, BAR."
+      },
+      {
+        "id": "wc_g7_h_61",
+        "availableLetters": [
+          "P",
+          "A",
+          "R",
+          "A",
+          "D",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "PARADE",
+            "turkishMeaning": "Geçit töreni"
+          },
+          {
+            "word": "DEAR",
+            "turkishMeaning": "Sevgili"
+          },
+          {
+            "word": "DARE",
+            "turkishMeaning": "Cesaret"
+          },
+          {
+            "word": "PEAR",
+            "turkishMeaning": "Armut"
+          },
+          {
+            "word": "PAD",
+            "turkishMeaning": "Ped"
+          },
+          {
+            "word": "RED",
+            "turkishMeaning": "Kırmızı"
+          }
+        ],
+        "category": "Celebrations",
+        "theme": "Civic Pageantry",
+        "explanation": "Connect letters P, A, R, A, D, E to form: PARADE, DEAR, DARE, PEAR, PAD, RED."
+      },
+      {
+        "id": "wc_g7_h_62",
+        "availableLetters": [
+          "I",
+          "N",
+          "V",
+          "I",
+          "T",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "INVITE",
+            "turkishMeaning": "Davet etmek"
+          },
+          {
+            "word": "TIE",
+            "turkishMeaning": "Bağ"
+          },
+          {
+            "word": "TIN",
+            "turkishMeaning": "Teneke"
+          },
+          {
+            "word": "NET",
+            "turkishMeaning": "Ağ"
+          }
+        ],
+        "category": "Celebrations",
+        "theme": "Invitations",
+        "explanation": "Connect letters I, N, V, I, T, E to form: INVITE, TIE, TIN, NET."
+      },
+      {
+        "id": "wc_g7_h_63",
+        "availableLetters": [
+          "F",
+          "U",
+          "T",
+          "U",
+          "R",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "FUTURE",
+            "turkishMeaning": "Gelecek"
+          },
+          {
+            "word": "TRUE",
+            "turkishMeaning": "Doğru"
+          },
+          {
+            "word": "FUR",
+            "turkishMeaning": "Kürk"
+          }
+        ],
+        "category": "Dreams",
+        "theme": "Tomorrow's World",
+        "explanation": "Connect letters F, U, T, U, R, E to form: FUTURE, TRUE, FUR."
+      },
+      {
+        "id": "wc_g7_h_64",
+        "availableLetters": [
+          "F",
+          "L",
+          "Y",
+          "I",
+          "N",
+          "G"
+        ],
+        "targetWords": [
+          {
+            "word": "FLYING",
+            "turkishMeaning": "Uçan"
+          },
+          {
+            "word": "FLY",
+            "turkishMeaning": "Uçmak"
+          },
+          {
+            "word": "FIG",
+            "turkishMeaning": "İncir"
+          },
+          {
+            "word": "GIN",
+            "turkishMeaning": "Cırgır"
+          }
+        ],
+        "category": "Dreams",
+        "theme": "Aero Ambition",
+        "explanation": "Connect letters F, L, Y, I, N, G to form: FLYING, FLY, FIG, GIN."
+      },
+      {
+        "id": "wc_g7_h_65",
+        "availableLetters": [
+          "M",
+          "U",
+          "S",
+          "E",
+          "U",
+          "M"
+        ],
+        "targetWords": [
+          {
+            "word": "MUSEUM",
+            "turkishMeaning": "Müze"
+          },
+          {
+            "word": "MUSE",
+            "turkishMeaning": "Esinlenmek"
+          },
+          {
+            "word": "SUM",
+            "turkishMeaning": "Toplam"
+          }
+        ],
+        "category": "Public Buildings",
+        "theme": "Cultural Antiquities",
+        "explanation": "Connect letters M, U, S, E, U, M to form: MUSEUM, MUSE, SUM."
+      },
+      {
+        "id": "wc_g7_h_66",
+        "availableLetters": [
+          "M",
+          "A",
+          "R",
+          "K",
+          "E",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "MARKET",
+            "turkishMeaning": "Pazar, çarşı"
+          },
+          {
+            "word": "MAKE",
+            "turkishMeaning": "Yapmak"
+          },
+          {
+            "word": "TAKE",
+            "turkishMeaning": "Almak"
+          },
+          {
+            "word": "TEAM",
+            "turkishMeaning": "Takım"
+          },
+          {
+            "word": "MEAT",
+            "turkishMeaning": "Et"
+          },
+          {
+            "word": "MATE",
+            "turkishMeaning": "Dost"
+          }
+        ],
+        "category": "Public Buildings",
+        "theme": "Local Trade",
+        "explanation": "Connect letters M, A, R, K, E, T to form: MARKET, MAKE, TAKE, TEAM, MEAT, MATE."
+      },
+      {
+        "id": "wc_g7_h_67",
+        "availableLetters": [
+          "B",
+          "R",
+          "I",
+          "D",
+          "G",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "BRIDGE",
+            "turkishMeaning": "Köprü"
+          },
+          {
+            "word": "BIRD",
+            "turkishMeaning": "Kuş"
+          },
+          {
+            "word": "RIDE",
+            "turkishMeaning": "Binmek"
+          },
+          {
+            "word": "GRID",
+            "turkishMeaning": "Şebeke"
+          },
+          {
+            "word": "BIG",
+            "turkishMeaning": "Büyük"
+          },
+          {
+            "word": "RED",
+            "turkishMeaning": "Kırmızı"
+          }
+        ],
+        "category": "Public Buildings",
+        "theme": "Engineering Spans",
+        "explanation": "Connect letters B, R, I, D, G, E to form: BRIDGE, BIRD, RIDE, GRID, BIG, RED."
+      },
+      {
+        "id": "wc_g7_h_68",
+        "availableLetters": [
+          "S",
+          "T",
+          "R",
+          "E",
+          "E",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "STREET",
+            "turkishMeaning": "Cadde"
+          },
+          {
+            "word": "TREE",
+            "turkishMeaning": "Ağaç"
+          },
+          {
+            "word": "REST",
+            "turkishMeaning": "Dinlenmek"
+          },
+          {
+            "word": "SET",
+            "turkishMeaning": "Set"
+          }
+        ],
+        "category": "Public Buildings",
+        "theme": "City Thoroughfares",
+        "explanation": "Connect letters S, T, R, E, E, T to form: STREET, TREE, REST, SET."
+      },
+      {
+        "id": "wc_g7_h_69",
+        "availableLetters": [
+          "N",
+          "A",
+          "T",
+          "U",
+          "R",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "NATURE",
+            "turkishMeaning": "Doğa"
+          },
+          {
+            "word": "TRUE",
+            "turkishMeaning": "Doğru"
+          },
+          {
+            "word": "RATE",
+            "turkishMeaning": "Oran"
+          },
+          {
+            "word": "NEAR",
+            "turkishMeaning": "Yakın"
+          },
+          {
+            "word": "EAR",
+            "turkishMeaning": "Kulak"
+          }
+        ],
+        "category": "Environment",
+        "theme": "Living Biosphere",
+        "explanation": "Connect letters N, A, T, U, R, E to form: NATURE, TRUE, RATE, NEAR, EAR."
+      },
+      {
+        "id": "wc_g7_h_70",
+        "availableLetters": [
+          "F",
+          "O",
+          "R",
+          "E",
+          "S",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "FOREST",
+            "turkishMeaning": "Orman"
+          },
+          {
+            "word": "STORE",
+            "turkishMeaning": "Mağaza"
+          },
+          {
+            "word": "FROST",
+            "turkishMeaning": "Don"
+          },
+          {
+            "word": "FORTE",
+            "turkishMeaning": "Güçlü yan"
+          },
+          {
+            "word": "FORT",
+            "turkishMeaning": "Kale"
+          },
+          {
+            "word": "REST",
+            "turkishMeaning": "Dinlenmek"
+          }
+        ],
+        "category": "Environment",
+        "theme": "Canopy Habitats",
+        "explanation": "Connect letters F, O, R, E, S, T to form: FOREST, STORE, FROST, FORTE, FORT, REST."
+      },
+      {
+        "id": "wc_g7_h_71",
+        "availableLetters": [
+          "P",
+          "L",
+          "A",
+          "N",
+          "E",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "PLANET",
+            "turkishMeaning": "Gezegen"
+          },
+          {
+            "word": "PLANT",
+            "turkishMeaning": "Bitki"
+          },
+          {
+            "word": "PLANE",
+            "turkishMeaning": "Uçak"
+          },
+          {
+            "word": "PLATE",
+            "turkishMeaning": "Tabak"
+          },
+          {
+            "word": "LEAP",
+            "turkishMeaning": "Sıçramak"
+          },
+          {
+            "word": "PALE",
+            "turkishMeaning": "Solgun"
+          }
+        ],
+        "category": "Planets",
+        "theme": "Orbital Worlds",
+        "explanation": "Connect letters P, L, A, N, E, T to form: PLANET, PLANT, PLANE, PLATE, LEAP, PALE."
+      },
+      {
+        "id": "wc_g7_h_72",
+        "availableLetters": [
+          "S",
+          "A",
+          "T",
+          "U",
+          "R",
+          "N"
+        ],
+        "targetWords": [
+          {
+            "word": "SATURN",
+            "turkishMeaning": "Satürn"
+          },
+          {
+            "word": "STAR",
+            "turkishMeaning": "Yıldız"
+          },
+          {
+            "word": "RUST",
+            "turkishMeaning": "Pas"
+          },
+          {
+            "word": "RUNS",
+            "turkishMeaning": "Koşular"
+          },
+          {
+            "word": "ART",
+            "turkishMeaning": "Sanat"
+          },
+          {
+            "word": "SUN",
+            "turkishMeaning": "Güneş"
+          }
+        ],
+        "category": "Planets",
+        "theme": "Ringed Worlds",
+        "explanation": "Connect letters S, A, T, U, R, N to form: SATURN, STAR, RUST, RUNS, ART, SUN."
+      },
+      {
+        "id": "wc_g7_h_73",
+        "availableLetters": [
+          "O",
+          "N",
+          "L",
+          "I",
+          "N",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "ONLINE",
+            "turkishMeaning": "Çevrim içi"
+          },
+          {
+            "word": "LINE",
+            "turkishMeaning": "Çizgi"
+          },
+          {
+            "word": "LION",
+            "turkishMeaning": "Aslan"
+          },
+          {
+            "word": "ONE",
+            "turkishMeaning": "Bir"
+          },
+          {
+            "word": "INN",
+            "turkishMeaning": "Han"
+          }
+        ],
+        "category": "Life Online",
+        "theme": "Connected Net",
+        "explanation": "Connect letters O, N, L, I, N, E to form: ONLINE, LINE, LION, ONE, INN."
+      },
+      {
+        "id": "wc_g7_h_74",
+        "availableLetters": [
+          "B",
+          "R",
+          "O",
+          "W",
+          "S",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "BROWSE",
+            "turkishMeaning": "Gezinmek"
+          },
+          {
+            "word": "ROSE",
+            "turkishMeaning": "Gül"
+          },
+          {
+            "word": "SORE",
+            "turkishMeaning": "Ağrılı"
+          },
+          {
+            "word": "BOW",
+            "turkishMeaning": "Yay"
+          },
+          {
+            "word": "ROW",
+            "turkishMeaning": "Kürek çekmek"
+          }
+        ],
+        "category": "Life Online",
+        "theme": "Web Exploration",
+        "explanation": "Connect letters B, R, O, W, S, E to form: BROWSE, ROSE, SORE, BOW, ROW."
+      },
+      {
+        "id": "wc_g7_h_75",
+        "availableLetters": [
+          "S",
+          "A",
+          "F",
+          "E",
+          "T",
+          "Y"
+        ],
+        "targetWords": [
+          {
+            "word": "SAFETY",
+            "turkishMeaning": "Güvenlik"
+          },
+          {
+            "word": "SAFE",
+            "turkishMeaning": "Güvenli"
+          },
+          {
+            "word": "FATE",
+            "turkishMeaning": "Kader"
+          },
+          {
+            "word": "FAST",
+            "turkishMeaning": "Hızlı"
+          },
+          {
+            "word": "EASY",
+            "turkishMeaning": "Kolay"
+          },
+          {
+            "word": "SAY",
+            "turkishMeaning": "Söylemek"
+          }
+        ],
+        "category": "In and Out of Danger",
+        "theme": "Risk Prevention",
+        "explanation": "Connect letters S, A, F, E, T, Y to form: SAFETY, SAFE, FATE, FAST, EASY, SAY."
+      },
+      {
+        "id": "wc_g7_h_76",
+        "availableLetters": [
+          "R",
+          "E",
+          "S",
+          "C",
+          "U",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "RESCUE",
+            "turkishMeaning": "Kurtarmak"
+          },
+          {
+            "word": "CURE",
+            "turkishMeaning": "Tedavi"
+          },
+          {
+            "word": "SEE",
+            "turkishMeaning": "Görmek"
+          },
+          {
+            "word": "SUE",
+            "turkishMeaning": "Dava açmak"
+          }
+        ],
+        "category": "In and Out of Danger",
+        "theme": "Emergency Salvation",
+        "explanation": "Connect letters R, E, S, C, U, E to form: RESCUE, CURE, SEE, SUE."
+      },
+      {
+        "id": "wc_g7_h_77",
+        "availableLetters": [
+          "H",
+          "E",
+          "A",
+          "L",
+          "T",
+          "H"
+        ],
+        "targetWords": [
+          {
+            "word": "HEALTH",
+            "turkishMeaning": "Sağlık"
+          },
+          {
+            "word": "HEAL",
+            "turkishMeaning": "İyileşmek"
+          },
+          {
+            "word": "HEAT",
+            "turkishMeaning": "Isı"
+          },
+          {
+            "word": "HATE",
+            "turkishMeaning": "Nefret"
+          },
+          {
+            "word": "LATE",
+            "turkishMeaning": "Geç"
+          }
+        ],
+        "category": "In and Out of Danger",
+        "theme": "Wellbeing",
+        "explanation": "Connect letters H, E, A, L, T, H to form: HEALTH, HEAL, HEAT, HATE, LATE."
+      },
+      {
+        "id": "wc_g7_h_78",
+        "availableLetters": [
+          "D",
+          "O",
+          "C",
+          "T",
+          "O",
+          "R"
+        ],
+        "targetWords": [
+          {
+            "word": "DOCTOR",
+            "turkishMeaning": "Doktor"
+          },
+          {
+            "word": "ROOT",
+            "turkishMeaning": "Kök"
+          },
+          {
+            "word": "DOOR",
+            "turkishMeaning": "Kapı"
+          },
+          {
+            "word": "ROD",
+            "turkishMeaning": "Çubuk"
+          },
+          {
+            "word": "DOT",
+            "turkishMeaning": "Nokta"
+          }
+        ],
+        "category": "In and Out of Danger",
+        "theme": "Medical Care",
+        "explanation": "Connect letters D, O, C, T, O, R to form: DOCTOR, ROOT, DOOR, ROD, DOT."
+      },
+      {
+        "id": "wc_g7_h_79",
+        "availableLetters": [
+          "C",
+          "A",
+          "S",
+          "T",
+          "L",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "CASTLE",
+            "turkishMeaning": "Şato, kale"
+          },
+          {
+            "word": "SCALE",
+            "turkishMeaning": "Ölçek"
+          },
+          {
+            "word": "LATE",
+            "turkishMeaning": "Geç"
+          },
+          {
+            "word": "SALE",
+            "turkishMeaning": "Satış"
+          },
+          {
+            "word": "CASE",
+            "turkishMeaning": "Kasa"
+          },
+          {
+            "word": "EAST",
+            "turkishMeaning": "Doğu"
+          }
+        ],
+        "category": "Britain",
+        "theme": "Royal Strongholds",
+        "explanation": "Connect letters C, A, S, T, L, E to form: CASTLE, SCALE, LATE, SALE, CASE, EAST."
+      },
+      {
+        "id": "wc_g7_h_80",
+        "availableLetters": [
+          "G",
+          "A",
+          "L",
+          "A",
+          "X",
+          "Y"
+        ],
+        "targetWords": [
+          {
+            "word": "GALAXY",
+            "turkishMeaning": "Galaksi"
+          },
+          {
+            "word": "LAG",
+            "turkishMeaning": "Gecikme"
+          }
+        ],
+        "category": "Planets",
+        "theme": "Cosmic Systems",
+        "explanation": "Connect letters G, A, L, A, X, Y to form: GALAXY, LAG."
       }
     ]
   },
@@ -5278,6 +8972,950 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "category": "Teen Life",
         "theme": "Pop Songs",
         "explanation": "Connect letters S, O, N, G, S to form: SONG, SONGS, SON."
+      },
+      {
+        "id": "wc_g8_e_41",
+        "availableLetters": [
+          "M",
+          "A",
+          "T",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "MATE",
+            "turkishMeaning": "Dost"
+          },
+          {
+            "word": "TEAM",
+            "turkishMeaning": "Takım"
+          },
+          {
+            "word": "MEAT",
+            "turkishMeaning": "Et"
+          },
+          {
+            "word": "TAME",
+            "turkishMeaning": "Evcil"
+          },
+          {
+            "word": "EAT",
+            "turkishMeaning": "Yemek"
+          },
+          {
+            "word": "TEA",
+            "turkishMeaning": "Çay"
+          }
+        ],
+        "category": "Friendship",
+        "theme": "Allies",
+        "explanation": "Connect letters M, A, T, E to form: MATE, TEAM, MEAT, TAME, EAT, TEA."
+      },
+      {
+        "id": "wc_g8_e_42",
+        "availableLetters": [
+          "T",
+          "R",
+          "U",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "TRUE",
+            "turkishMeaning": "Doğru"
+          },
+          {
+            "word": "RUE",
+            "turkishMeaning": "Pişman olmak"
+          }
+        ],
+        "category": "Friendship",
+        "theme": "Loyalty",
+        "explanation": "Connect letters T, R, U, E to form: TRUE, RUE."
+      },
+      {
+        "id": "wc_g8_e_43",
+        "availableLetters": [
+          "P",
+          "E",
+          "E",
+          "R"
+        ],
+        "targetWords": [
+          {
+            "word": "PEER",
+            "turkishMeaning": "Akran"
+          }
+        ],
+        "category": "Teen Life",
+        "theme": "Classmates",
+        "explanation": "Connect letters P, E, E, R to form: PEER."
+      },
+      {
+        "id": "wc_g8_e_44",
+        "availableLetters": [
+          "B",
+          "U",
+          "S",
+          "Y"
+        ],
+        "targetWords": [
+          {
+            "word": "BUSY",
+            "turkishMeaning": "Meşgul"
+          },
+          {
+            "word": "BUY",
+            "turkishMeaning": "Satın almak"
+          },
+          {
+            "word": "BUS",
+            "turkishMeaning": "Otobüs"
+          }
+        ],
+        "category": "Phone",
+        "theme": "Active Calls",
+        "explanation": "Connect letters B, U, S, Y to form: BUSY, BUY, BUS."
+      },
+      {
+        "id": "wc_g8_e_45",
+        "availableLetters": [
+          "C",
+          "A",
+          "L",
+          "L"
+        ],
+        "targetWords": [
+          {
+            "word": "CALL",
+            "turkishMeaning": "Aramak"
+          },
+          {
+            "word": "ALL",
+            "turkishMeaning": "Hepsi"
+          }
+        ],
+        "category": "Phone",
+        "theme": "Phone Connections",
+        "explanation": "Connect letters C, A, L, L to form: CALL, ALL."
+      },
+      {
+        "id": "wc_g8_e_46",
+        "availableLetters": [
+          "R",
+          "I",
+          "N",
+          "G"
+        ],
+        "targetWords": [
+          {
+            "word": "RING",
+            "turkishMeaning": "Çalmak"
+          },
+          {
+            "word": "GRIN",
+            "turkishMeaning": "Sırıtmak"
+          },
+          {
+            "word": "GIN",
+            "turkishMeaning": "Cırgır"
+          },
+          {
+            "word": "RIG",
+            "turkishMeaning": "Donatmak"
+          }
+        ],
+        "category": "Phone",
+        "theme": "Phone Bells",
+        "explanation": "Connect letters R, I, N, G to form: RING, GRIN, GIN, RIG."
+      },
+      {
+        "id": "wc_g8_e_47",
+        "availableLetters": [
+          "L",
+          "I",
+          "N",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "LINE",
+            "turkishMeaning": "Hat"
+          },
+          {
+            "word": "LIE",
+            "turkishMeaning": "Yalan / Uzanmak"
+          }
+        ],
+        "category": "Phone",
+        "theme": "Audio Links",
+        "explanation": "Connect letters L, I, N, E to form: LINE, LIE."
+      },
+      {
+        "id": "wc_g8_e_48",
+        "availableLetters": [
+          "B",
+          "O",
+          "I",
+          "L"
+        ],
+        "targetWords": [
+          {
+            "word": "BOIL",
+            "turkishMeaning": "Kaynatmak"
+          },
+          {
+            "word": "OIL",
+            "turkishMeaning": "Yağ"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Boiling Liquids",
+        "explanation": "Connect letters B, O, I, L to form: BOIL, OIL."
+      },
+      {
+        "id": "wc_g8_e_49",
+        "availableLetters": [
+          "B",
+          "A",
+          "K",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "BAKE",
+            "turkishMeaning": "Fırınlamak"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Oven Craft",
+        "explanation": "Connect letters B, A, K, E to form: BAKE."
+      },
+      {
+        "id": "wc_g8_e_50",
+        "availableLetters": [
+          "C",
+          "H",
+          "O",
+          "P"
+        ],
+        "targetWords": [
+          {
+            "word": "CHOP",
+            "turkishMeaning": "Doğramak"
+          },
+          {
+            "word": "HOP",
+            "turkishMeaning": "Zıplamak"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Knife Skills",
+        "explanation": "Connect letters C, H, O, P to form: CHOP, HOP."
+      },
+      {
+        "id": "wc_g8_e_51",
+        "availableLetters": [
+          "P",
+          "E",
+          "E",
+          "L"
+        ],
+        "targetWords": [
+          {
+            "word": "PEEL",
+            "turkishMeaning": "Soymak"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Vegetable Prep",
+        "explanation": "Connect letters P, E, E, L to form: PEEL."
+      },
+      {
+        "id": "wc_g8_e_52",
+        "availableLetters": [
+          "P",
+          "O",
+          "U",
+          "R"
+        ],
+        "targetWords": [
+          {
+            "word": "POUR",
+            "turkishMeaning": "Dökmek"
+          },
+          {
+            "word": "OUR",
+            "turkishMeaning": "Bizim"
+          },
+          {
+            "word": "PRO",
+            "turkishMeaning": "Profesyonel"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Sauce Pouring",
+        "explanation": "Connect letters P, O, U, R to form: POUR, OUR, PRO."
+      },
+      {
+        "id": "wc_g8_e_53",
+        "availableLetters": [
+          "S",
+          "T",
+          "I",
+          "R"
+        ],
+        "targetWords": [
+          {
+            "word": "STIR",
+            "turkishMeaning": "Karıştırmak"
+          },
+          {
+            "word": "SIT",
+            "turkishMeaning": "Oturmak"
+          },
+          {
+            "word": "SIR",
+            "turkishMeaning": "Beyefendi"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Mixing Soups",
+        "explanation": "Connect letters S, T, I, R to form: STIR, SIT, SIR."
+      },
+      {
+        "id": "wc_g8_e_54",
+        "availableLetters": [
+          "D",
+          "I",
+          "S",
+          "H"
+        ],
+        "targetWords": [
+          {
+            "word": "DISH",
+            "turkishMeaning": "Tabak, yemek"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Main Courses",
+        "explanation": "Connect letters D, I, S, H to form: DISH."
+      },
+      {
+        "id": "wc_g8_e_55",
+        "availableLetters": [
+          "F",
+          "O",
+          "R",
+          "K"
+        ],
+        "targetWords": [
+          {
+            "word": "FORK",
+            "turkishMeaning": "Çatal"
+          },
+          {
+            "word": "FOR",
+            "turkishMeaning": "İçin"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Cutlery",
+        "explanation": "Connect letters F, O, R, K to form: FORK, FOR."
+      },
+      {
+        "id": "wc_g8_e_56",
+        "availableLetters": [
+          "B",
+          "O",
+          "W",
+          "L"
+        ],
+        "targetWords": [
+          {
+            "word": "BOWL",
+            "turkishMeaning": "Kase"
+          },
+          {
+            "word": "BLOW",
+            "turkishMeaning": "Üflemek"
+          },
+          {
+            "word": "LOW",
+            "turkishMeaning": "Düşük"
+          },
+          {
+            "word": "OWL",
+            "turkishMeaning": "Baykuş"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Dinnerware",
+        "explanation": "Connect letters B, O, W, L to form: BOWL, BLOW, LOW, OWL."
+      },
+      {
+        "id": "wc_g8_e_57",
+        "availableLetters": [
+          "H",
+          "I",
+          "K",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "HIKE",
+            "turkishMeaning": "Yürüyüş"
+          }
+        ],
+        "category": "Adventures",
+        "theme": "Mountain Trails",
+        "explanation": "Connect letters H, I, K, E to form: HIKE."
+      },
+      {
+        "id": "wc_g8_e_58",
+        "availableLetters": [
+          "R",
+          "O",
+          "P",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "ROPE",
+            "turkishMeaning": "Halat"
+          },
+          {
+            "word": "PORE",
+            "turkishMeaning": "Gözenek"
+          },
+          {
+            "word": "PRO",
+            "turkishMeaning": "Uzman"
+          }
+        ],
+        "category": "Adventures",
+        "theme": "Climbing Cords",
+        "explanation": "Connect letters R, O, P, E to form: ROPE, PORE, PRO."
+      },
+      {
+        "id": "wc_g8_e_59",
+        "availableLetters": [
+          "T",
+          "E",
+          "N",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "TENT",
+            "turkishMeaning": "Çadır"
+          },
+          {
+            "word": "NET",
+            "turkishMeaning": "Ağ"
+          },
+          {
+            "word": "TEN",
+            "turkishMeaning": "On"
+          }
+        ],
+        "category": "Adventures",
+        "theme": "Camping Shelters",
+        "explanation": "Connect letters T, E, N, T to form: TENT, NET, TEN."
+      },
+      {
+        "id": "wc_g8_e_60",
+        "availableLetters": [
+          "C",
+          "A",
+          "M",
+          "P"
+        ],
+        "targetWords": [
+          {
+            "word": "CAMP",
+            "turkishMeaning": "Kamp"
+          },
+          {
+            "word": "CAP",
+            "turkishMeaning": "Kep"
+          },
+          {
+            "word": "MAP",
+            "turkishMeaning": "Harita"
+          }
+        ],
+        "category": "Adventures",
+        "theme": "Outdoor Camps",
+        "explanation": "Connect letters C, A, M, P to form: CAMP, CAP, MAP."
+      },
+      {
+        "id": "wc_g8_e_61",
+        "availableLetters": [
+          "T",
+          "R",
+          "I",
+          "P"
+        ],
+        "targetWords": [
+          {
+            "word": "TRIP",
+            "turkishMeaning": "Gezi"
+          },
+          {
+            "word": "TIP",
+            "turkishMeaning": "İpucu"
+          },
+          {
+            "word": "RIP",
+            "turkishMeaning": "Yırtmak"
+          },
+          {
+            "word": "PIT",
+            "turkishMeaning": "Çukur"
+          }
+        ],
+        "category": "Tourism",
+        "theme": "Holidays",
+        "explanation": "Connect letters T, R, I, P to form: TRIP, TIP, RIP, PIT."
+      },
+      {
+        "id": "wc_g8_e_62",
+        "availableLetters": [
+          "T",
+          "O",
+          "U",
+          "R"
+        ],
+        "targetWords": [
+          {
+            "word": "TOUR",
+            "turkishMeaning": "Tur"
+          },
+          {
+            "word": "OUR",
+            "turkishMeaning": "Bizim"
+          },
+          {
+            "word": "ROT",
+            "turkishMeaning": "Çürümek"
+          },
+          {
+            "word": "OUT",
+            "turkishMeaning": "Dışarı"
+          }
+        ],
+        "category": "Tourism",
+        "theme": "Sightseeing",
+        "explanation": "Connect letters T, O, U, R to form: TOUR, OUR, ROT, OUT."
+      },
+      {
+        "id": "wc_g8_e_63",
+        "availableLetters": [
+          "S",
+          "T",
+          "A",
+          "Y"
+        ],
+        "targetWords": [
+          {
+            "word": "STAY",
+            "turkishMeaning": "Kalmak"
+          },
+          {
+            "word": "SAY",
+            "turkishMeaning": "Söylemek"
+          }
+        ],
+        "category": "Tourism",
+        "theme": "Hotels",
+        "explanation": "Connect letters S, T, A, Y to form: STAY, SAY."
+      },
+      {
+        "id": "wc_g8_e_64",
+        "availableLetters": [
+          "V",
+          "I",
+          "E",
+          "W"
+        ],
+        "targetWords": [
+          {
+            "word": "VIEW",
+            "turkishMeaning": "Manzara"
+          }
+        ],
+        "category": "Tourism",
+        "theme": "Scenic Panoramas",
+        "explanation": "Connect letters V, I, E, W to form: VIEW."
+      },
+      {
+        "id": "wc_g8_e_65",
+        "availableLetters": [
+          "C",
+          "I",
+          "T",
+          "Y"
+        ],
+        "targetWords": [
+          {
+            "word": "CITY",
+            "turkishMeaning": "Şehir"
+          }
+        ],
+        "category": "Tourism",
+        "theme": "Urban Centers",
+        "explanation": "Connect letters C, I, T, Y to form: CITY."
+      },
+      {
+        "id": "wc_g8_e_66",
+        "availableLetters": [
+          "D",
+          "U",
+          "S",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "DUST",
+            "turkishMeaning": "Toz almak"
+          }
+        ],
+        "category": "Chores",
+        "theme": "Surface Tidying",
+        "explanation": "Connect letters D, U, S, T to form: DUST."
+      },
+      {
+        "id": "wc_g8_e_67",
+        "availableLetters": [
+          "W",
+          "A",
+          "S",
+          "H"
+        ],
+        "targetWords": [
+          {
+            "word": "WASH",
+            "turkishMeaning": "Yıkamak"
+          },
+          {
+            "word": "SAW",
+            "turkishMeaning": "Gördü"
+          }
+        ],
+        "category": "Chores",
+        "theme": "Cleanliness",
+        "explanation": "Connect letters W, A, S, H to form: WASH, SAW."
+      },
+      {
+        "id": "wc_g8_e_68",
+        "availableLetters": [
+          "I",
+          "R",
+          "O",
+          "N"
+        ],
+        "targetWords": [
+          {
+            "word": "IRON",
+            "turkishMeaning": "Ütülemek"
+          },
+          {
+            "word": "NOR",
+            "turkishMeaning": "Ne de"
+          }
+        ],
+        "category": "Chores",
+        "theme": "Garment Care",
+        "explanation": "Connect letters I, R, O, N to form: IRON, NOR."
+      },
+      {
+        "id": "wc_g8_e_69",
+        "availableLetters": [
+          "M",
+          "E",
+          "N",
+          "D"
+        ],
+        "targetWords": [
+          {
+            "word": "MEND",
+            "turkishMeaning": "Onarmak"
+          },
+          {
+            "word": "MEN",
+            "turkishMeaning": "Erkekler"
+          },
+          {
+            "word": "END",
+            "turkishMeaning": "Son"
+          }
+        ],
+        "category": "Chores",
+        "theme": "Repairs",
+        "explanation": "Connect letters M, E, N, D to form: MEND, MEN, END."
+      },
+      {
+        "id": "wc_g8_e_70",
+        "availableLetters": [
+          "A",
+          "T",
+          "O",
+          "M"
+        ],
+        "targetWords": [
+          {
+            "word": "ATOM",
+            "turkishMeaning": "Atom"
+          },
+          {
+            "word": "MAT",
+            "turkishMeaning": "Paspas"
+          },
+          {
+            "word": "OAT",
+            "turkishMeaning": "Yulaf"
+          }
+        ],
+        "category": "Science",
+        "theme": "Microscopic Physics",
+        "explanation": "Connect letters A, T, O, M to form: ATOM, MAT, OAT."
+      },
+      {
+        "id": "wc_g8_e_71",
+        "availableLetters": [
+          "C",
+          "E",
+          "L",
+          "L"
+        ],
+        "targetWords": [
+          {
+            "word": "CELL",
+            "turkishMeaning": "Hücre"
+          }
+        ],
+        "category": "Science",
+        "theme": "Biology Units",
+        "explanation": "Connect letters C, E, L, L to form: CELL."
+      },
+      {
+        "id": "wc_g8_e_72",
+        "availableLetters": [
+          "T",
+          "E",
+          "S",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "TEST",
+            "turkishMeaning": "Test, deney"
+          },
+          {
+            "word": "SET",
+            "turkishMeaning": "Set"
+          }
+        ],
+        "category": "Science",
+        "theme": "Laboratory Trials",
+        "explanation": "Connect letters T, E, S, T to form: TEST, SET."
+      },
+      {
+        "id": "wc_g8_e_73",
+        "availableLetters": [
+          "M",
+          "I",
+          "N",
+          "D"
+        ],
+        "targetWords": [
+          {
+            "word": "MIND",
+            "turkishMeaning": "Zihin"
+          },
+          {
+            "word": "DIM",
+            "turkishMeaning": "Loş"
+          }
+        ],
+        "category": "Science",
+        "theme": "Cognitive Power",
+        "explanation": "Connect letters M, I, N, D to form: MIND, DIM."
+      },
+      {
+        "id": "wc_g8_e_74",
+        "availableLetters": [
+          "W",
+          "A",
+          "V",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "WAVE",
+            "turkishMeaning": "Dalga"
+          }
+        ],
+        "category": "Natural Forces",
+        "theme": "Ocean Currents",
+        "explanation": "Connect letters W, A, V, E to form: WAVE."
+      },
+      {
+        "id": "wc_g8_e_75",
+        "availableLetters": [
+          "W",
+          "I",
+          "N",
+          "D"
+        ],
+        "targetWords": [
+          {
+            "word": "WIND",
+            "turkishMeaning": "Rüzgar"
+          },
+          {
+            "word": "WIN",
+            "turkishMeaning": "Kazanmak"
+          }
+        ],
+        "category": "Natural Forces",
+        "theme": "Atmospheric Drafts",
+        "explanation": "Connect letters W, I, N, D to form: WIND, WIN."
+      },
+      {
+        "id": "wc_g8_e_76",
+        "availableLetters": [
+          "R",
+          "A",
+          "I",
+          "N"
+        ],
+        "targetWords": [
+          {
+            "word": "RAIN",
+            "turkishMeaning": "Yağmur"
+          },
+          {
+            "word": "RAN",
+            "turkishMeaning": "Koştu"
+          },
+          {
+            "word": "AIR",
+            "turkishMeaning": "Hava"
+          }
+        ],
+        "category": "Natural Forces",
+        "theme": "Precipitation",
+        "explanation": "Connect letters R, A, I, N to form: RAIN, RAN, AIR."
+      },
+      {
+        "id": "wc_g8_e_77",
+        "availableLetters": [
+          "S",
+          "N",
+          "O",
+          "W"
+        ],
+        "targetWords": [
+          {
+            "word": "SNOW",
+            "turkishMeaning": "Kar"
+          },
+          {
+            "word": "NOW",
+            "turkishMeaning": "Şimdi"
+          },
+          {
+            "word": "SON",
+            "turkishMeaning": "Oğul"
+          },
+          {
+            "word": "WON",
+            "turkishMeaning": "Kazandı"
+          }
+        ],
+        "category": "Natural Forces",
+        "theme": "Winter Flurries",
+        "explanation": "Connect letters S, N, O, W to form: SNOW, NOW, SON, WON."
+      },
+      {
+        "id": "wc_g8_e_78",
+        "availableLetters": [
+          "R",
+          "O",
+          "C",
+          "K"
+        ],
+        "targetWords": [
+          {
+            "word": "ROCK",
+            "turkishMeaning": "Kaya"
+          },
+          {
+            "word": "CORK",
+            "turkishMeaning": "Mantar"
+          }
+        ],
+        "category": "Natural Forces",
+        "theme": "Tectonic Geology",
+        "explanation": "Connect letters R, O, C, K to form: ROCK, CORK."
+      },
+      {
+        "id": "wc_g8_e_79",
+        "availableLetters": [
+          "F",
+          "I",
+          "R",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "FIRE",
+            "turkishMeaning": "Ateş"
+          },
+          {
+            "word": "RIFE",
+            "turkishMeaning": "Yaygın"
+          },
+          {
+            "word": "REF",
+            "turkishMeaning": "Hakem"
+          },
+          {
+            "word": "FIR",
+            "turkishMeaning": "Köknar"
+          }
+        ],
+        "category": "Natural Forces",
+        "theme": "Combustion",
+        "explanation": "Connect letters F, I, R, E to form: FIRE, RIFE, REF, FIR."
+      },
+      {
+        "id": "wc_g8_e_80",
+        "availableLetters": [
+          "L",
+          "A",
+          "N",
+          "D"
+        ],
+        "targetWords": [
+          {
+            "word": "LAND",
+            "turkishMeaning": "Kara"
+          },
+          {
+            "word": "AND",
+            "turkishMeaning": "Ve"
+          },
+          {
+            "word": "LAD",
+            "turkishMeaning": "Delikanlı"
+          }
+        ],
+        "category": "Natural Forces",
+        "theme": "Terrestrial Grounds",
+        "explanation": "Connect letters L, A, N, D to form: LAND, AND, LAD."
       }
     ],
     "medium": [
@@ -6606,6 +11244,1151 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "category": "In The Kitchen",
         "theme": "Silverware",
         "explanation": "Connect letters S, P, O, O, N, S to form: SPOON, SPOONS, SOON, SON."
+      },
+      {
+        "id": "wc_g8_m_41",
+        "availableLetters": [
+          "L",
+          "O",
+          "Y",
+          "A",
+          "L"
+        ],
+        "targetWords": [
+          {
+            "word": "LOYAL",
+            "turkishMeaning": "Sadık"
+          },
+          {
+            "word": "ALLOY",
+            "turkishMeaning": "Alaşım"
+          },
+          {
+            "word": "LAY",
+            "turkishMeaning": "Sermek"
+          }
+        ],
+        "category": "Friendship",
+        "theme": "Steadfast Friends",
+        "explanation": "Connect letters L, O, Y, A, L to form: LOYAL, ALLOY, LAY."
+      },
+      {
+        "id": "wc_g8_m_42",
+        "availableLetters": [
+          "S",
+          "H",
+          "A",
+          "R",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "SHARE",
+            "turkishMeaning": "Paylaşmak"
+          },
+          {
+            "word": "HEAR",
+            "turkishMeaning": "Duymak"
+          },
+          {
+            "word": "HARE",
+            "turkishMeaning": "Tavşan"
+          },
+          {
+            "word": "EAR",
+            "turkishMeaning": "Kulak"
+          },
+          {
+            "word": "ASH",
+            "turkishMeaning": "Kül"
+          }
+        ],
+        "category": "Friendship",
+        "theme": "Open Dialogue",
+        "explanation": "Connect letters S, H, A, R, E to form: SHARE, HEAR, HARE, EAR, ASH."
+      },
+      {
+        "id": "wc_g8_m_43",
+        "availableLetters": [
+          "T",
+          "R",
+          "U",
+          "S",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "TRUST",
+            "turkishMeaning": "Güven"
+          },
+          {
+            "word": "RUST",
+            "turkishMeaning": "Pas"
+          }
+        ],
+        "category": "Friendship",
+        "theme": "Honesty",
+        "explanation": "Connect letters T, R, U, S, T to form: TRUST, RUST."
+      },
+      {
+        "id": "wc_g8_m_44",
+        "availableLetters": [
+          "T",
+          "R",
+          "E",
+          "N",
+          "D"
+        ],
+        "targetWords": [
+          {
+            "word": "TREND",
+            "turkishMeaning": "Akım"
+          },
+          {
+            "word": "RENT",
+            "turkishMeaning": "Kira"
+          },
+          {
+            "word": "RED",
+            "turkishMeaning": "Kırmızı"
+          },
+          {
+            "word": "END",
+            "turkishMeaning": "Son"
+          },
+          {
+            "word": "NET",
+            "turkishMeaning": "Ağ"
+          }
+        ],
+        "category": "Teen Life",
+        "theme": "Fashion Directions",
+        "explanation": "Connect letters T, R, E, N, D to form: TREND, RENT, RED, END, NET."
+      },
+      {
+        "id": "wc_g8_m_45",
+        "availableLetters": [
+          "H",
+          "A",
+          "B",
+          "I",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "HABIT",
+            "turkishMeaning": "Alışkanlık"
+          },
+          {
+            "word": "BAIT",
+            "turkishMeaning": "Yem"
+          },
+          {
+            "word": "BATH",
+            "turkishMeaning": "Banyo"
+          },
+          {
+            "word": "BAT",
+            "turkishMeaning": "Yarasa"
+          },
+          {
+            "word": "HAT",
+            "turkishMeaning": "Şapka"
+          },
+          {
+            "word": "BIT",
+            "turkishMeaning": "Parça"
+          }
+        ],
+        "category": "Teen Life",
+        "theme": "Daily Routines",
+        "explanation": "Connect letters H, A, B, I, T to form: HABIT, BAIT, BATH, BAT, HAT, BIT."
+      },
+      {
+        "id": "wc_g8_m_46",
+        "availableLetters": [
+          "P",
+          "H",
+          "O",
+          "N",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "PHONE",
+            "turkishMeaning": "Telefon"
+          },
+          {
+            "word": "HOPE",
+            "turkishMeaning": "Umut"
+          },
+          {
+            "word": "OPEN",
+            "turkishMeaning": "Açık"
+          },
+          {
+            "word": "ONE",
+            "turkishMeaning": "Bir"
+          },
+          {
+            "word": "HEN",
+            "turkishMeaning": "Tavuk"
+          },
+          {
+            "word": "PEN",
+            "turkishMeaning": "Kalem"
+          }
+        ],
+        "category": "Phone",
+        "theme": "Voice Relays",
+        "explanation": "Connect letters P, H, O, N, E to form: PHONE, HOPE, OPEN, ONE, HEN, PEN."
+      },
+      {
+        "id": "wc_g8_m_47",
+        "availableLetters": [
+          "R",
+          "E",
+          "P",
+          "L",
+          "Y"
+        ],
+        "targetWords": [
+          {
+            "word": "REPLY",
+            "turkishMeaning": "Cevap"
+          },
+          {
+            "word": "PLY",
+            "turkishMeaning": "Kat"
+          }
+        ],
+        "category": "Phone",
+        "theme": "Text Answers",
+        "explanation": "Connect letters R, E, P, L, Y to form: REPLY, PLY."
+      },
+      {
+        "id": "wc_g8_m_48",
+        "availableLetters": [
+          "V",
+          "O",
+          "I",
+          "C",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "VOICE",
+            "turkishMeaning": "Ses"
+          },
+          {
+            "word": "VICE",
+            "turkishMeaning": "Kusur"
+          },
+          {
+            "word": "ICE",
+            "turkishMeaning": "Buz"
+          }
+        ],
+        "category": "Phone",
+        "theme": "Spoken Tone",
+        "explanation": "Connect letters V, O, I, C, E to form: VOICE, VICE, ICE."
+      },
+      {
+        "id": "wc_g8_m_49",
+        "availableLetters": [
+          "I",
+          "N",
+          "B",
+          "O",
+          "X"
+        ],
+        "targetWords": [
+          {
+            "word": "INBOX",
+            "turkishMeaning": "Gelen kutusu"
+          },
+          {
+            "word": "BOX",
+            "turkishMeaning": "Kutu"
+          },
+          {
+            "word": "NIX",
+            "turkishMeaning": "İptal"
+          }
+        ],
+        "category": "Internet",
+        "theme": "Email Inboxes",
+        "explanation": "Connect letters I, N, B, O, X to form: INBOX, BOX, NIX."
+      },
+      {
+        "id": "wc_g8_m_50",
+        "availableLetters": [
+          "S",
+          "P",
+          "I",
+          "C",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "SPICE",
+            "turkishMeaning": "Baharat"
+          },
+          {
+            "word": "EPIC",
+            "turkishMeaning": "Destansı"
+          },
+          {
+            "word": "PIES",
+            "turkishMeaning": "Turtalar"
+          },
+          {
+            "word": "PIE",
+            "turkishMeaning": "Turta"
+          },
+          {
+            "word": "SIP",
+            "turkishMeaning": "Yudum"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Culinary Seasoning",
+        "explanation": "Connect letters S, P, I, C, E to form: SPICE, EPIC, PIES, PIE, SIP."
+      },
+      {
+        "id": "wc_g8_m_51",
+        "availableLetters": [
+          "G",
+          "R",
+          "I",
+          "L",
+          "L"
+        ],
+        "targetWords": [
+          {
+            "word": "GRILL",
+            "turkishMeaning": "Izgara"
+          },
+          {
+            "word": "GIRL",
+            "turkishMeaning": "Kız"
+          },
+          {
+            "word": "ILL",
+            "turkishMeaning": "Hasta"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Charcoal Grilling",
+        "explanation": "Connect letters G, R, I, L, L to form: GRILL, GIRL, ILL."
+      },
+      {
+        "id": "wc_g8_m_52",
+        "availableLetters": [
+          "R",
+          "O",
+          "A",
+          "S",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "ROAST",
+            "turkishMeaning": "Fırın kızartma"
+          },
+          {
+            "word": "STAR",
+            "turkishMeaning": "Yıldız"
+          },
+          {
+            "word": "SORT",
+            "turkishMeaning": "Tür"
+          },
+          {
+            "word": "OATS",
+            "turkishMeaning": "Yulaf"
+          },
+          {
+            "word": "ART",
+            "turkishMeaning": "Sanat"
+          },
+          {
+            "word": "OAT",
+            "turkishMeaning": "Yulaf"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Oven Roasting",
+        "explanation": "Connect letters R, O, A, S, T to form: ROAST, STAR, SORT, OATS, ART, OAT."
+      },
+      {
+        "id": "wc_g8_m_53",
+        "availableLetters": [
+          "S",
+          "L",
+          "I",
+          "C",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "SLICE",
+            "turkishMeaning": "Dilim"
+          },
+          {
+            "word": "LICE",
+            "turkishMeaning": "Bitler"
+          },
+          {
+            "word": "ICE",
+            "turkishMeaning": "Buz"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Bread Slices",
+        "explanation": "Connect letters S, L, I, C, E to form: SLICE, LICE, ICE."
+      },
+      {
+        "id": "wc_g8_m_54",
+        "availableLetters": [
+          "D",
+          "R",
+          "A",
+          "I",
+          "N"
+        ],
+        "targetWords": [
+          {
+            "word": "DRAIN",
+            "turkishMeaning": "Süzmek"
+          },
+          {
+            "word": "RAIN",
+            "turkishMeaning": "Yağmur"
+          },
+          {
+            "word": "RAID",
+            "turkishMeaning": "Baskın"
+          },
+          {
+            "word": "AIR",
+            "turkishMeaning": "Hava"
+          },
+          {
+            "word": "AID",
+            "turkishMeaning": "Yardım"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Colander Draining",
+        "explanation": "Connect letters D, R, A, I, N to form: DRAIN, RAIN, RAID, AIR, AID."
+      },
+      {
+        "id": "wc_g8_m_55",
+        "availableLetters": [
+          "T",
+          "A",
+          "S",
+          "T",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "TASTE",
+            "turkishMeaning": "Tat"
+          },
+          {
+            "word": "STATE",
+            "turkishMeaning": "Durum"
+          },
+          {
+            "word": "SEAT",
+            "turkishMeaning": "Koltuk"
+          },
+          {
+            "word": "EAST",
+            "turkishMeaning": "Doğu"
+          },
+          {
+            "word": "SET",
+            "turkishMeaning": "Set"
+          },
+          {
+            "word": "TEA",
+            "turkishMeaning": "Çay"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Flavor Profiles",
+        "explanation": "Connect letters T, A, S, T, E to form: TASTE, STATE, SEAT, EAST, SET, TEA."
+      },
+      {
+        "id": "wc_g8_m_56",
+        "availableLetters": [
+          "S",
+          "P",
+          "O",
+          "O",
+          "N"
+        ],
+        "targetWords": [
+          {
+            "word": "SPOON",
+            "turkishMeaning": "Kaşık"
+          },
+          {
+            "word": "SOON",
+            "turkishMeaning": "Yakında"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Soup Spoons",
+        "explanation": "Connect letters S, P, O, O, N to form: SPOON, SOON."
+      },
+      {
+        "id": "wc_g8_m_57",
+        "availableLetters": [
+          "P",
+          "L",
+          "A",
+          "T",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "PLATE",
+            "turkishMeaning": "Tabak"
+          },
+          {
+            "word": "PLEAT",
+            "turkishMeaning": "Pile"
+          },
+          {
+            "word": "LEAP",
+            "turkishMeaning": "Sıçramak"
+          },
+          {
+            "word": "PALE",
+            "turkishMeaning": "Solgun"
+          },
+          {
+            "word": "LATE",
+            "turkishMeaning": "Geç"
+          },
+          {
+            "word": "TAP",
+            "turkishMeaning": "Musluk"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Dinnerware",
+        "explanation": "Connect letters P, L, A, T, E to form: PLATE, PLEAT, LEAP, PALE, LATE, TAP."
+      },
+      {
+        "id": "wc_g8_m_58",
+        "availableLetters": [
+          "K",
+          "N",
+          "I",
+          "F",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "KNIFE",
+            "turkishMeaning": "Bıçak"
+          },
+          {
+            "word": "FINE",
+            "turkishMeaning": "Güzel"
+          },
+          {
+            "word": "INK",
+            "turkishMeaning": "Mürekkep"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Cutlery",
+        "explanation": "Connect letters K, N, I, F, E to form: KNIFE, FINE, INK."
+      },
+      {
+        "id": "wc_g8_m_59",
+        "availableLetters": [
+          "C",
+          "A",
+          "B",
+          "I",
+          "N"
+        ],
+        "targetWords": [
+          {
+            "word": "CABIN",
+            "turkishMeaning": "Kulübe"
+          },
+          {
+            "word": "CAN",
+            "turkishMeaning": "Kutu"
+          },
+          {
+            "word": "BAN",
+            "turkishMeaning": "Yasak"
+          }
+        ],
+        "category": "Adventures",
+        "theme": "Forest Shelters",
+        "explanation": "Connect letters C, A, B, I, N to form: CABIN, CAN, BAN."
+      },
+      {
+        "id": "wc_g8_m_60",
+        "availableLetters": [
+          "K",
+          "A",
+          "Y",
+          "A",
+          "K"
+        ],
+        "targetWords": [
+          {
+            "word": "KAYAK",
+            "turkishMeaning": "Kano"
+          },
+          {
+            "word": "YAK",
+            "turkishMeaning": "Tibet öküzü"
+          }
+        ],
+        "category": "Adventures",
+        "theme": "River Watercraft",
+        "explanation": "Connect letters K, A, Y, A, K to form: KAYAK, YAK."
+      },
+      {
+        "id": "wc_g8_m_61",
+        "availableLetters": [
+          "C",
+          "L",
+          "I",
+          "M",
+          "B"
+        ],
+        "targetWords": [
+          {
+            "word": "CLIMB",
+            "turkishMeaning": "Tırmanmak"
+          }
+        ],
+        "category": "Adventures",
+        "theme": "Rock Ascent",
+        "explanation": "Connect letters C, L, I, M, B to form: CLIMB."
+      },
+      {
+        "id": "wc_g8_m_62",
+        "availableLetters": [
+          "B",
+          "E",
+          "A",
+          "C",
+          "H"
+        ],
+        "targetWords": [
+          {
+            "word": "BEACH",
+            "turkishMeaning": "Plaj"
+          },
+          {
+            "word": "EACH",
+            "turkishMeaning": "Her biri"
+          },
+          {
+            "word": "ACHE",
+            "turkishMeaning": "Ağrı"
+          }
+        ],
+        "category": "Tourism",
+        "theme": "Coastal Shores",
+        "explanation": "Connect letters B, E, A, C, H to form: BEACH, EACH, ACHE."
+      },
+      {
+        "id": "wc_g8_m_63",
+        "availableLetters": [
+          "G",
+          "U",
+          "I",
+          "D",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "GUIDE",
+            "turkishMeaning": "Rehber"
+          },
+          {
+            "word": "DIG",
+            "turkishMeaning": "Kazmak"
+          },
+          {
+            "word": "DUE",
+            "turkishMeaning": "Vadesi gelmiş"
+          }
+        ],
+        "category": "Tourism",
+        "theme": "Tour Leaders",
+        "explanation": "Connect letters G, U, I, D, E to form: GUIDE, DIG, DUE."
+      },
+      {
+        "id": "wc_g8_m_64",
+        "availableLetters": [
+          "R",
+          "E",
+          "S",
+          "O",
+          "R",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "RESORT",
+            "turkishMeaning": "Tatil yeri"
+          },
+          {
+            "word": "ROSE",
+            "turkishMeaning": "Gül"
+          },
+          {
+            "word": "REST",
+            "turkishMeaning": "Dinlenme"
+          },
+          {
+            "word": "SORE",
+            "turkishMeaning": "Yara"
+          },
+          {
+            "word": "SET",
+            "turkishMeaning": "Set"
+          }
+        ],
+        "category": "Tourism",
+        "theme": "Holiday Centres",
+        "explanation": "Connect letters R, E, S, O, R, T to form: RESORT, ROSE, REST, SORE, SET."
+      },
+      {
+        "id": "wc_g8_m_65",
+        "availableLetters": [
+          "C",
+          "H",
+          "O",
+          "R",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "CHORE",
+            "turkishMeaning": "Ev işi"
+          },
+          {
+            "word": "HERO",
+            "turkishMeaning": "Kahraman"
+          },
+          {
+            "word": "ECHO",
+            "turkishMeaning": "Yankı"
+          },
+          {
+            "word": "CORE",
+            "turkishMeaning": "Çekirdek"
+          }
+        ],
+        "category": "Chores",
+        "theme": "Household Tasks",
+        "explanation": "Connect letters C, H, O, R, E to form: CHORE, HERO, ECHO, CORE."
+      },
+      {
+        "id": "wc_g8_m_66",
+        "availableLetters": [
+          "S",
+          "W",
+          "E",
+          "E",
+          "P"
+        ],
+        "targetWords": [
+          {
+            "word": "SWEEP",
+            "turkishMeaning": "Süpürmek"
+          },
+          {
+            "word": "WEEP",
+            "turkishMeaning": "Ağlamak"
+          },
+          {
+            "word": "SEE",
+            "turkishMeaning": "Görmek"
+          }
+        ],
+        "category": "Chores",
+        "theme": "Floor Cleaning",
+        "explanation": "Connect letters S, W, E, E, P to form: SWEEP, WEEP, SEE."
+      },
+      {
+        "id": "wc_g8_m_67",
+        "availableLetters": [
+          "S",
+          "C",
+          "R",
+          "U",
+          "B"
+        ],
+        "targetWords": [
+          {
+            "word": "SCRUB",
+            "turkishMeaning": "Ovalamak"
+          },
+          {
+            "word": "CURB",
+            "turkishMeaning": "Kaldırım kenarı"
+          },
+          {
+            "word": "RUB",
+            "turkishMeaning": "Ovmak"
+          }
+        ],
+        "category": "Chores",
+        "theme": "Pot Cleaning",
+        "explanation": "Connect letters S, C, R, U, B to form: SCRUB, CURB, RUB."
+      },
+      {
+        "id": "wc_g8_m_68",
+        "availableLetters": [
+          "F",
+          "O",
+          "R",
+          "C",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "FORCE",
+            "turkishMeaning": "Kuvvet"
+          },
+          {
+            "word": "CORE",
+            "turkishMeaning": "Çekirdek"
+          },
+          {
+            "word": "FORE",
+            "turkishMeaning": "Ön"
+          }
+        ],
+        "category": "Science",
+        "theme": "Physical Mechanics",
+        "explanation": "Connect letters F, O, R, C, E to form: FORCE, CORE, FORE."
+      },
+      {
+        "id": "wc_g8_m_69",
+        "availableLetters": [
+          "L",
+          "I",
+          "G",
+          "H",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "LIGHT",
+            "turkishMeaning": "Işık"
+          },
+          {
+            "word": "HIT",
+            "turkishMeaning": "Vurmak"
+          },
+          {
+            "word": "LIT",
+            "turkishMeaning": "Aydınlandı"
+          }
+        ],
+        "category": "Science",
+        "theme": "Optics",
+        "explanation": "Connect letters L, I, G, H, T to form: LIGHT, HIT, LIT."
+      },
+      {
+        "id": "wc_g8_m_70",
+        "availableLetters": [
+          "R",
+          "A",
+          "D",
+          "A",
+          "R"
+        ],
+        "targetWords": [
+          {
+            "word": "RADAR",
+            "turkishMeaning": "Radar"
+          }
+        ],
+        "category": "Science",
+        "theme": "Radio Detection",
+        "explanation": "Connect letters R, A, D, A, R to form: RADAR."
+      },
+      {
+        "id": "wc_g8_m_71",
+        "availableLetters": [
+          "S",
+          "T",
+          "E",
+          "A",
+          "M"
+        ],
+        "targetWords": [
+          {
+            "word": "STEAM",
+            "turkishMeaning": "Buhar"
+          },
+          {
+            "word": "MEAT",
+            "turkishMeaning": "Et"
+          },
+          {
+            "word": "TEAM",
+            "turkishMeaning": "Takım"
+          },
+          {
+            "word": "MATE",
+            "turkishMeaning": "Dost"
+          },
+          {
+            "word": "EAT",
+            "turkishMeaning": "Yemek"
+          },
+          {
+            "word": "TEA",
+            "turkishMeaning": "Çay"
+          }
+        ],
+        "category": "Science",
+        "theme": "Thermodynamics",
+        "explanation": "Connect letters S, T, E, A, M to form: STEAM, MEAT, TEAM, MATE, EAT, TEA."
+      },
+      {
+        "id": "wc_g8_m_72",
+        "availableLetters": [
+          "F",
+          "L",
+          "O",
+          "O",
+          "D"
+        ],
+        "targetWords": [
+          {
+            "word": "FLOOD",
+            "turkishMeaning": "Sel"
+          }
+        ],
+        "category": "Natural Forces",
+        "theme": "Water Inundation",
+        "explanation": "Connect letters F, L, O, O, D to form: FLOOD."
+      },
+      {
+        "id": "wc_g8_m_73",
+        "availableLetters": [
+          "C",
+          "R",
+          "U",
+          "S",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "CRUST",
+            "turkishMeaning": "Yer kabuğu"
+          },
+          {
+            "word": "RUST",
+            "turkishMeaning": "Pas"
+          },
+          {
+            "word": "CUT",
+            "turkishMeaning": "Kesmek"
+          }
+        ],
+        "category": "Natural Forces",
+        "theme": "Earth Layers",
+        "explanation": "Connect letters C, R, U, S, T to form: CRUST, RUST, CUT."
+      },
+      {
+        "id": "wc_g8_m_74",
+        "availableLetters": [
+          "F",
+          "A",
+          "U",
+          "L",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "FAULT",
+            "turkishMeaning": "Fay hattı"
+          },
+          {
+            "word": "FAT",
+            "turkishMeaning": "Şişman"
+          }
+        ],
+        "category": "Natural Forces",
+        "theme": "Tectonic Breaks",
+        "explanation": "Connect letters F, A, U, L, T to form: FAULT, FAT."
+      },
+      {
+        "id": "wc_g8_m_75",
+        "availableLetters": [
+          "S",
+          "M",
+          "O",
+          "K",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "SMOKE",
+            "turkishMeaning": "Duman"
+          },
+          {
+            "word": "SOME",
+            "turkishMeaning": "Bazı"
+          }
+        ],
+        "category": "Natural Forces",
+        "theme": "Volcanic Ash",
+        "explanation": "Connect letters S, M, O, K, E to form: SMOKE, SOME."
+      },
+      {
+        "id": "wc_g8_m_76",
+        "availableLetters": [
+          "S",
+          "H",
+          "A",
+          "K",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "SHAKE",
+            "turkishMeaning": "Sallamak"
+          },
+          {
+            "word": "ASH",
+            "turkishMeaning": "Kül"
+          },
+          {
+            "word": "ASK",
+            "turkishMeaning": "Sormak"
+          }
+        ],
+        "category": "Natural Forces",
+        "theme": "Seismic Motion",
+        "explanation": "Connect letters S, H, A, K, E to form: SHAKE, ASH, ASK."
+      },
+      {
+        "id": "wc_g8_m_77",
+        "availableLetters": [
+          "Q",
+          "U",
+          "A",
+          "K",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "QUAKE",
+            "turkishMeaning": "Deprem"
+          }
+        ],
+        "category": "Natural Forces",
+        "theme": "Ground Tremors",
+        "explanation": "Connect letters Q, U, A, K, E to form: QUAKE."
+      },
+      {
+        "id": "wc_g8_m_78",
+        "availableLetters": [
+          "G",
+          "L",
+          "O",
+          "V",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "GLOVE",
+            "turkishMeaning": "Eldiven"
+          },
+          {
+            "word": "LOVE",
+            "turkishMeaning": "Sevgi"
+          },
+          {
+            "word": "LOG",
+            "turkishMeaning": "Kütük"
+          }
+        ],
+        "category": "Chores & Safety",
+        "theme": "Protective Gear",
+        "explanation": "Connect letters G, L, O, V, E to form: GLOVE, LOVE, LOG."
+      },
+      {
+        "id": "wc_g8_m_79",
+        "availableLetters": [
+          "P",
+          "A",
+          "S",
+          "T",
+          "A"
+        ],
+        "targetWords": [
+          {
+            "word": "PASTA",
+            "turkishMeaning": "Makarna"
+          },
+          {
+            "word": "PAST",
+            "turkishMeaning": "Geçmiş"
+          },
+          {
+            "word": "TAP",
+            "turkishMeaning": "Musluk"
+          },
+          {
+            "word": "PAT",
+            "turkishMeaning": "Okşamak"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Italian Cuisine",
+        "explanation": "Connect letters P, A, S, T, A to form: PASTA, PAST, TAP, PAT."
+      },
+      {
+        "id": "wc_g8_m_80",
+        "availableLetters": [
+          "F",
+          "L",
+          "A",
+          "S",
+          "H"
+        ],
+        "targetWords": [
+          {
+            "word": "FLASH",
+            "turkishMeaning": "Şimşek / Flaş"
+          },
+          {
+            "word": "HALF",
+            "turkishMeaning": "Yarım"
+          },
+          {
+            "word": "ASH",
+            "turkishMeaning": "Kül"
+          }
+        ],
+        "category": "Natural Forces",
+        "theme": "Lightning",
+        "explanation": "Connect letters F, L, A, S, H to form: FLASH, HALF, ASH."
       }
     ],
     "hard": [
@@ -8111,6 +13894,1446 @@ export const WORD_CONNECT_BANK: WordConnectBank = {
         "category": "Science",
         "theme": "Scientific Theory",
         "explanation": "Connect letters T, H, E, O, R, Y to form: THEORY, OTHER, HERO, THEY, HOT."
+      },
+      {
+        "id": "wc_g8_h_41",
+        "availableLetters": [
+          "S",
+          "E",
+          "C",
+          "R",
+          "E",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "SECRET",
+            "turkishMeaning": "Sır"
+          },
+          {
+            "word": "ERECT",
+            "turkishMeaning": "Dikmek"
+          },
+          {
+            "word": "RESET",
+            "turkishMeaning": "Sıfırlamak"
+          },
+          {
+            "word": "TREE",
+            "turkishMeaning": "Ağaç"
+          },
+          {
+            "word": "SEE",
+            "turkishMeaning": "Görmek"
+          },
+          {
+            "word": "SET",
+            "turkishMeaning": "Set"
+          }
+        ],
+        "category": "Friendship",
+        "theme": "Confidentiality",
+        "explanation": "Connect letters S, E, C, R, E, T to form: SECRET, ERECT, RESET, TREE, SEE, SET."
+      },
+      {
+        "id": "wc_g8_h_42",
+        "availableLetters": [
+          "C",
+          "A",
+          "R",
+          "I",
+          "N",
+          "G"
+        ],
+        "targetWords": [
+          {
+            "word": "CARING",
+            "turkishMeaning": "İlgili, şefkatli"
+          },
+          {
+            "word": "GRAIN",
+            "turkishMeaning": "Tahıl"
+          },
+          {
+            "word": "RAIN",
+            "turkishMeaning": "Yağmur"
+          },
+          {
+            "word": "RING",
+            "turkishMeaning": "Halka"
+          },
+          {
+            "word": "GAIN",
+            "turkishMeaning": "Kazanmak"
+          },
+          {
+            "word": "AIR",
+            "turkishMeaning": "Hava"
+          }
+        ],
+        "category": "Friendship",
+        "theme": "Empathy",
+        "explanation": "Connect letters C, A, R, I, N, G to form: CARING, GRAIN, RAIN, RING, GAIN, AIR."
+      },
+      {
+        "id": "wc_g8_h_43",
+        "availableLetters": [
+          "L",
+          "I",
+          "S",
+          "T",
+          "E",
+          "N"
+        ],
+        "targetWords": [
+          {
+            "word": "LISTEN",
+            "turkishMeaning": "Dinlemek"
+          },
+          {
+            "word": "SILENT",
+            "turkishMeaning": "Sessiz"
+          },
+          {
+            "word": "INLET",
+            "turkishMeaning": "Koy"
+          },
+          {
+            "word": "NEST",
+            "turkishMeaning": "Yuva"
+          },
+          {
+            "word": "LINE",
+            "turkishMeaning": "Çizgi"
+          },
+          {
+            "word": "NET",
+            "turkishMeaning": "Ağ"
+          }
+        ],
+        "category": "Friendship",
+        "theme": "Active Listening",
+        "explanation": "Connect letters L, I, S, T, E, N to form: LISTEN, SILENT, INLET, NEST, LINE, NET."
+      },
+      {
+        "id": "wc_g8_h_44",
+        "availableLetters": [
+          "S",
+          "O",
+          "C",
+          "I",
+          "A",
+          "L"
+        ],
+        "targetWords": [
+          {
+            "word": "SOCIAL",
+            "turkishMeaning": "Sosyal"
+          },
+          {
+            "word": "COAL",
+            "turkishMeaning": "Kömür"
+          },
+          {
+            "word": "SAIL",
+            "turkishMeaning": "Yelken"
+          },
+          {
+            "word": "SOIL",
+            "turkishMeaning": "Toprak"
+          },
+          {
+            "word": "OIL",
+            "turkishMeaning": "Yağ"
+          }
+        ],
+        "category": "Teen Life",
+        "theme": "Youth Community",
+        "explanation": "Connect letters S, O, C, I, A, L to form: SOCIAL, COAL, SAIL, SOIL, OIL."
+      },
+      {
+        "id": "wc_g8_h_45",
+        "availableLetters": [
+          "T",
+          "R",
+          "E",
+          "N",
+          "D",
+          "Y"
+        ],
+        "targetWords": [
+          {
+            "word": "TRENDY",
+            "turkishMeaning": "Moda"
+          },
+          {
+            "word": "TREND",
+            "turkishMeaning": "Akım"
+          },
+          {
+            "word": "RENT",
+            "turkishMeaning": "Kira"
+          },
+          {
+            "word": "RED",
+            "turkishMeaning": "Kırmızı"
+          },
+          {
+            "word": "DRY",
+            "turkishMeaning": "Kuru"
+          }
+        ],
+        "category": "Teen Life",
+        "theme": "Style Choices",
+        "explanation": "Connect letters T, R, E, N, D, Y to form: TRENDY, TREND, RENT, RED, DRY."
+      },
+      {
+        "id": "wc_g8_h_46",
+        "availableLetters": [
+          "M",
+          "O",
+          "B",
+          "I",
+          "L",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "MOBILE",
+            "turkishMeaning": "Taşınabilir"
+          },
+          {
+            "word": "BOIL",
+            "turkishMeaning": "Kaynamak"
+          },
+          {
+            "word": "LOBE",
+            "turkishMeaning": "Lob"
+          },
+          {
+            "word": "MILE",
+            "turkishMeaning": "Mil"
+          },
+          {
+            "word": "OIL",
+            "turkishMeaning": "Yağ"
+          }
+        ],
+        "category": "Phone",
+        "theme": "Cellular Devices",
+        "explanation": "Connect letters M, O, B, I, L, E to form: MOBILE, BOIL, LOBE, MILE, OIL."
+      },
+      {
+        "id": "wc_g8_h_47",
+        "availableLetters": [
+          "S",
+          "I",
+          "G",
+          "N",
+          "A",
+          "L"
+        ],
+        "targetWords": [
+          {
+            "word": "SIGNAL",
+            "turkishMeaning": "Sinyal"
+          },
+          {
+            "word": "ALIGN",
+            "turkishMeaning": "Hizalamak"
+          },
+          {
+            "word": "SLAIN",
+            "turkishMeaning": "Öldürülmüş"
+          },
+          {
+            "word": "GAIN",
+            "turkishMeaning": "Kazanım"
+          },
+          {
+            "word": "SIGN",
+            "turkishMeaning": "İşaret"
+          },
+          {
+            "word": "SAIL",
+            "turkishMeaning": "Yelken"
+          }
+        ],
+        "category": "Phone",
+        "theme": "Telecommunication",
+        "explanation": "Connect letters S, I, G, N, A, L to form: SIGNAL, ALIGN, SLAIN, GAIN, SIGN, SAIL."
+      },
+      {
+        "id": "wc_g8_h_48",
+        "availableLetters": [
+          "R",
+          "E",
+          "P",
+          "E",
+          "A",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "REPEAT",
+            "turkishMeaning": "Tekrarlamak"
+          },
+          {
+            "word": "PEAR",
+            "turkishMeaning": "Armut"
+          },
+          {
+            "word": "TEAR",
+            "turkishMeaning": "Yırtmak"
+          },
+          {
+            "word": "RATE",
+            "turkishMeaning": "Oran"
+          },
+          {
+            "word": "EAT",
+            "turkishMeaning": "Yemek"
+          }
+        ],
+        "category": "Phone",
+        "theme": "Clarity in Speech",
+        "explanation": "Connect letters R, E, P, E, A, T to form: REPEAT, PEAR, TEAR, RATE, EAT."
+      },
+      {
+        "id": "wc_g8_h_49",
+        "availableLetters": [
+          "U",
+          "P",
+          "L",
+          "O",
+          "A",
+          "D"
+        ],
+        "targetWords": [
+          {
+            "word": "UPLOAD",
+            "turkishMeaning": "Yüklemek"
+          },
+          {
+            "word": "LOAD",
+            "turkishMeaning": "Yük"
+          },
+          {
+            "word": "LOUD",
+            "turkishMeaning": "Yüksek sesli"
+          },
+          {
+            "word": "PAD",
+            "turkishMeaning": "Ped"
+          },
+          {
+            "word": "LAD",
+            "turkishMeaning": "Delikanlı"
+          }
+        ],
+        "category": "Internet",
+        "theme": "File Sharing",
+        "explanation": "Connect letters U, P, L, O, A, D to form: UPLOAD, LOAD, LOUD, PAD, LAD."
+      },
+      {
+        "id": "wc_g8_h_50",
+        "availableLetters": [
+          "S",
+          "E",
+          "A",
+          "R",
+          "C",
+          "H"
+        ],
+        "targetWords": [
+          {
+            "word": "SEARCH",
+            "turkishMeaning": "Aramak"
+          },
+          {
+            "word": "CHASE",
+            "turkishMeaning": "Kovalamak"
+          },
+          {
+            "word": "SHARE",
+            "turkishMeaning": "Paylaşmak"
+          },
+          {
+            "word": "HEAR",
+            "turkishMeaning": "Duymak"
+          },
+          {
+            "word": "EACH",
+            "turkishMeaning": "Her biri"
+          },
+          {
+            "word": "CAR",
+            "turkishMeaning": "Araba"
+          }
+        ],
+        "category": "Internet",
+        "theme": "Web Inquiries",
+        "explanation": "Connect letters S, E, A, R, C, H to form: SEARCH, CHASE, SHARE, HEAR, EACH, CAR."
+      },
+      {
+        "id": "wc_g8_h_51",
+        "availableLetters": [
+          "R",
+          "E",
+          "C",
+          "I",
+          "P",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "RECIPE",
+            "turkishMeaning": "Tarif"
+          },
+          {
+            "word": "PIECE",
+            "turkishMeaning": "Parça"
+          },
+          {
+            "word": "PRICE",
+            "turkishMeaning": "Fiyat"
+          },
+          {
+            "word": "PIER",
+            "turkishMeaning": "İskele"
+          },
+          {
+            "word": "RIPE",
+            "turkishMeaning": "Olgun"
+          },
+          {
+            "word": "PIE",
+            "turkishMeaning": "Turta"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Cooking Directions",
+        "explanation": "Connect letters R, E, C, I, P, E to form: RECIPE, PIECE, PRICE, PIER, RIPE, PIE."
+      },
+      {
+        "id": "wc_g8_h_52",
+        "availableLetters": [
+          "S",
+          "E",
+          "A",
+          "S",
+          "O",
+          "N"
+        ],
+        "targetWords": [
+          {
+            "word": "SEASON",
+            "turkishMeaning": "Baharatlamak / Mevsim"
+          },
+          {
+            "word": "NOSE",
+            "turkishMeaning": "Burun"
+          },
+          {
+            "word": "SONS",
+            "turkishMeaning": "Oğullar"
+          },
+          {
+            "word": "SEA",
+            "turkishMeaning": "Deniz"
+          },
+          {
+            "word": "ONE",
+            "turkishMeaning": "Bir"
+          },
+          {
+            "word": "SON",
+            "turkishMeaning": "Oğul"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Flavoring Meals",
+        "explanation": "Connect letters S, E, A, S, O, N to form: SEASON, NOSE, SONS, SEA, ONE, SON."
+      },
+      {
+        "id": "wc_g8_h_53",
+        "availableLetters": [
+          "B",
+          "A",
+          "K",
+          "I",
+          "N",
+          "G"
+        ],
+        "targetWords": [
+          {
+            "word": "BAKING",
+            "turkishMeaning": "Fırınlama"
+          },
+          {
+            "word": "BANK",
+            "turkishMeaning": "Banka"
+          },
+          {
+            "word": "GAIN",
+            "turkishMeaning": "Kazanmak"
+          },
+          {
+            "word": "BIG",
+            "turkishMeaning": "Büyük"
+          },
+          {
+            "word": "BAG",
+            "turkishMeaning": "Çanta"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Artisanal Breads",
+        "explanation": "Connect letters B, A, K, I, N, G to form: BAKING, BANK, GAIN, BIG, BAG."
+      },
+      {
+        "id": "wc_g8_h_54",
+        "availableLetters": [
+          "B",
+          "O",
+          "I",
+          "L",
+          "E",
+          "D"
+        ],
+        "targetWords": [
+          {
+            "word": "BOILED",
+            "turkishMeaning": "Haşlanmış"
+          },
+          {
+            "word": "BOIL",
+            "turkishMeaning": "Kaynatmak"
+          },
+          {
+            "word": "IDLE",
+            "turkishMeaning": "Boşta"
+          },
+          {
+            "word": "BOLD",
+            "turkishMeaning": "Cesur"
+          },
+          {
+            "word": "BED",
+            "turkishMeaning": "Yatak"
+          },
+          {
+            "word": "OIL",
+            "turkishMeaning": "Yağ"
+          },
+          {
+            "word": "LID",
+            "turkishMeaning": "Kapak"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Boiling Food",
+        "explanation": "Connect letters B, O, I, L, E, D to form: BOILED, BOIL, IDLE, BOLD, BED, OIL, LID."
+      },
+      {
+        "id": "wc_g8_h_55",
+        "availableLetters": [
+          "P",
+          "A",
+          "N",
+          "T",
+          "R",
+          "Y"
+        ],
+        "targetWords": [
+          {
+            "word": "PANTRY",
+            "turkishMeaning": "Kiler"
+          },
+          {
+            "word": "PARTY",
+            "turkishMeaning": "Parti"
+          },
+          {
+            "word": "PRAY",
+            "turkishMeaning": "Dua etmek"
+          },
+          {
+            "word": "TRAY",
+            "turkishMeaning": "Tepsi"
+          },
+          {
+            "word": "YARN",
+            "turkishMeaning": "İplik"
+          },
+          {
+            "word": "PAY",
+            "turkishMeaning": "Ödemek"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Food Storage",
+        "explanation": "Connect letters P, A, N, T, R, Y to form: PANTRY, PARTY, PRAY, TRAY, YARN, PAY."
+      },
+      {
+        "id": "wc_g8_h_56",
+        "availableLetters": [
+          "A",
+          "L",
+          "P",
+          "I",
+          "N",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "ALPINE",
+            "turkishMeaning": "Dağlık"
+          },
+          {
+            "word": "PLANE",
+            "turkishMeaning": "Uçak"
+          },
+          {
+            "word": "PANEL",
+            "turkishMeaning": "Panel"
+          },
+          {
+            "word": "LINE",
+            "turkishMeaning": "Hat"
+          },
+          {
+            "word": "PALE",
+            "turkishMeaning": "Solgun"
+          },
+          {
+            "word": "PEN",
+            "turkishMeaning": "Kalem"
+          }
+        ],
+        "category": "Adventures",
+        "theme": "Mountain Climbs",
+        "explanation": "Connect letters A, L, P, I, N, E to form: ALPINE, PLANE, PANEL, LINE, PALE, PEN."
+      },
+      {
+        "id": "wc_g8_h_57",
+        "availableLetters": [
+          "H",
+          "E",
+          "L",
+          "M",
+          "E",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "HELMET",
+            "turkishMeaning": "Kask"
+          },
+          {
+            "word": "MEET",
+            "turkishMeaning": "Buluşmak"
+          },
+          {
+            "word": "MELT",
+            "turkishMeaning": "Erimak"
+          },
+          {
+            "word": "THEME",
+            "turkishMeaning": "Tema"
+          },
+          {
+            "word": "HEEL",
+            "turkishMeaning": "Topuk"
+          },
+          {
+            "word": "LET",
+            "turkishMeaning": "İzin vermek"
+          }
+        ],
+        "category": "Adventures",
+        "theme": "Safety Gear",
+        "explanation": "Connect letters H, E, L, M, E, T to form: HELMET, MEET, MELT, THEME, HEEL, LET."
+      },
+      {
+        "id": "wc_g8_h_58",
+        "availableLetters": [
+          "F",
+          "L",
+          "I",
+          "G",
+          "H",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "FLIGHT",
+            "turkishMeaning": "Uçuş"
+          },
+          {
+            "word": "LIGHT",
+            "turkishMeaning": "Işık"
+          },
+          {
+            "word": "GIFT",
+            "turkishMeaning": "Hediye"
+          },
+          {
+            "word": "LIFT",
+            "turkishMeaning": "Kaldırmak"
+          },
+          {
+            "word": "HIT",
+            "turkishMeaning": "Vurmak"
+          },
+          {
+            "word": "FIG",
+            "turkishMeaning": "İncir"
+          }
+        ],
+        "category": "Adventures",
+        "theme": "Aero Sports",
+        "explanation": "Connect letters F, L, I, G, H, T to form: FLIGHT, LIGHT, GIFT, LIFT, HIT, FIG."
+      },
+      {
+        "id": "wc_g8_h_59",
+        "availableLetters": [
+          "T",
+          "R",
+          "A",
+          "V",
+          "E",
+          "L"
+        ],
+        "targetWords": [
+          {
+            "word": "TRAVEL",
+            "turkishMeaning": "Seyahat"
+          },
+          {
+            "word": "ALERT",
+            "turkishMeaning": "Alarm"
+          },
+          {
+            "word": "LATER",
+            "turkishMeaning": "Sonra"
+          },
+          {
+            "word": "RATE",
+            "turkishMeaning": "Oran"
+          },
+          {
+            "word": "TEAR",
+            "turkishMeaning": "Gözyaşı"
+          },
+          {
+            "word": "ART",
+            "turkishMeaning": "Sanat"
+          }
+        ],
+        "category": "Tourism",
+        "theme": "Journeys",
+        "explanation": "Connect letters T, R, A, V, E, L to form: TRAVEL, ALERT, LATER, RATE, TEAR, ART."
+      },
+      {
+        "id": "wc_g8_h_60",
+        "availableLetters": [
+          "T",
+          "I",
+          "C",
+          "K",
+          "E",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "TICKET",
+            "turkishMeaning": "Bilet"
+          },
+          {
+            "word": "KITE",
+            "turkishMeaning": "Uçurtma"
+          }
+        ],
+        "category": "Tourism",
+        "theme": "Boarding Passes",
+        "explanation": "Connect letters T, I, C, K, E, T to form: TICKET, KITE."
+      },
+      {
+        "id": "wc_g8_h_61",
+        "availableLetters": [
+          "C",
+          "H",
+          "O",
+          "R",
+          "E",
+          "S"
+        ],
+        "targetWords": [
+          {
+            "word": "CHORES",
+            "turkishMeaning": "Ev işleri"
+          },
+          {
+            "word": "SHORE",
+            "turkishMeaning": "Sahil"
+          },
+          {
+            "word": "SCORE",
+            "turkishMeaning": "Skor"
+          },
+          {
+            "word": "HORSE",
+            "turkishMeaning": "At"
+          },
+          {
+            "word": "ROSE",
+            "turkishMeaning": "Gül"
+          },
+          {
+            "word": "HERO",
+            "turkishMeaning": "Kahraman"
+          },
+          {
+            "word": "CORE",
+            "turkishMeaning": "Çekirdek"
+          }
+        ],
+        "category": "Chores",
+        "theme": "Household Duty",
+        "explanation": "Connect letters C, H, O, R, E, S to form: CHORES, SHORE, SCORE, HORSE, ROSE, HERO, CORE."
+      },
+      {
+        "id": "wc_g8_h_62",
+        "availableLetters": [
+          "V",
+          "A",
+          "C",
+          "U",
+          "U",
+          "M"
+        ],
+        "targetWords": [
+          {
+            "word": "VACUUM",
+            "turkishMeaning": "Elektrikli süpürge"
+          }
+        ],
+        "category": "Chores",
+        "theme": "Carpet Cleaning",
+        "explanation": "Connect letters V, A, C, U, U, M to form: VACUUM."
+      },
+      {
+        "id": "wc_g8_h_63",
+        "availableLetters": [
+          "M",
+          "E",
+          "T",
+          "H",
+          "O",
+          "D"
+        ],
+        "targetWords": [
+          {
+            "word": "METHOD",
+            "turkishMeaning": "Yöntem"
+          },
+          {
+            "word": "HOME",
+            "turkishMeaning": "Ev"
+          },
+          {
+            "word": "MOTE",
+            "turkishMeaning": "Zerre"
+          },
+          {
+            "word": "THEM",
+            "turkishMeaning": "Onları"
+          },
+          {
+            "word": "HOT",
+            "turkishMeaning": "Sıcak"
+          }
+        ],
+        "category": "Science",
+        "theme": "Scientific Inquiries",
+        "explanation": "Connect letters M, E, T, H, O, D to form: METHOD, HOME, MOTE, THEM, HOT."
+      },
+      {
+        "id": "wc_g8_h_64",
+        "availableLetters": [
+          "T",
+          "H",
+          "E",
+          "O",
+          "R",
+          "Y"
+        ],
+        "targetWords": [
+          {
+            "word": "THEORY",
+            "turkishMeaning": "Teori"
+          },
+          {
+            "word": "HERO",
+            "turkishMeaning": "Kahraman"
+          },
+          {
+            "word": "THEY",
+            "turkishMeaning": "Onlar"
+          },
+          {
+            "word": "HOT",
+            "turkishMeaning": "Sıcak"
+          }
+        ],
+        "category": "Science",
+        "theme": "Explanations",
+        "explanation": "Connect letters T, H, E, O, R, Y to form: THEORY, HERO, THEY, HOT."
+      },
+      {
+        "id": "wc_g8_h_65",
+        "availableLetters": [
+          "R",
+          "E",
+          "S",
+          "U",
+          "L",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "RESULT",
+            "turkishMeaning": "Sonuç"
+          },
+          {
+            "word": "RUSTLE",
+            "turkishMeaning": "Hışırtı"
+          },
+          {
+            "word": "LUSTER",
+            "turkishMeaning": "Parlaklık"
+          },
+          {
+            "word": "RULE",
+            "turkishMeaning": "Kural"
+          },
+          {
+            "word": "RUST",
+            "turkishMeaning": "Pas"
+          },
+          {
+            "word": "SURE",
+            "turkishMeaning": "Emin"
+          }
+        ],
+        "category": "Science",
+        "theme": "Data Findings",
+        "explanation": "Connect letters R, E, S, U, L, T to form: RESULT, RUSTLE, LUSTER, RULE, RUST, SURE."
+      },
+      {
+        "id": "wc_g8_h_66",
+        "availableLetters": [
+          "T",
+          "R",
+          "E",
+          "M",
+          "O",
+          "R"
+        ],
+        "targetWords": [
+          {
+            "word": "TREMOR",
+            "turkishMeaning": "Sarsıntı"
+          },
+          {
+            "word": "TERM",
+            "turkishMeaning": "Dönem"
+          },
+          {
+            "word": "MORE",
+            "turkishMeaning": "Daha fazla"
+          },
+          {
+            "word": "ROTE",
+            "turkishMeaning": "Ezber"
+          }
+        ],
+        "category": "Natural Forces",
+        "theme": "Seismic Shakes",
+        "explanation": "Connect letters T, R, E, M, O, R to form: TREMOR, TERM, MORE, ROTE."
+      },
+      {
+        "id": "wc_g8_h_67",
+        "availableLetters": [
+          "D",
+          "A",
+          "M",
+          "A",
+          "G",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "DAMAGE",
+            "turkishMeaning": "Hasar"
+          },
+          {
+            "word": "AGED",
+            "turkishMeaning": "Yaşlı"
+          },
+          {
+            "word": "GAME",
+            "turkishMeaning": "Oyun"
+          },
+          {
+            "word": "MADE",
+            "turkishMeaning": "Yaptı"
+          },
+          {
+            "word": "MAD",
+            "turkishMeaning": "Kızgın"
+          }
+        ],
+        "category": "Natural Forces",
+        "theme": "Destruction",
+        "explanation": "Connect letters D, A, M, A, G, E to form: DAMAGE, AGED, GAME, MADE, MAD."
+      },
+      {
+        "id": "wc_g8_h_68",
+        "availableLetters": [
+          "R",
+          "E",
+          "S",
+          "C",
+          "U",
+          "E"
+        ],
+        "targetWords": [
+          {
+            "word": "RESCUE",
+            "turkishMeaning": "Kurtarmak"
+          },
+          {
+            "word": "CURE",
+            "turkishMeaning": "Tedavi"
+          },
+          {
+            "word": "SUE",
+            "turkishMeaning": "Dava açmak"
+          },
+          {
+            "word": "SEE",
+            "turkishMeaning": "Görmek"
+          }
+        ],
+        "category": "Natural Forces",
+        "theme": "Relief Missions",
+        "explanation": "Connect letters R, E, S, C, U, E to form: RESCUE, CURE, SUE, SEE."
+      },
+      {
+        "id": "wc_g8_h_69",
+        "availableLetters": [
+          "D",
+          "E",
+          "B",
+          "R",
+          "I",
+          "S"
+        ],
+        "targetWords": [
+          {
+            "word": "DEBRIS",
+            "turkishMeaning": "Enkaz"
+          },
+          {
+            "word": "BRIDE",
+            "turkishMeaning": "Gelin"
+          },
+          {
+            "word": "BIRDS",
+            "turkishMeaning": "Kuşlar"
+          },
+          {
+            "word": "BIRD",
+            "turkishMeaning": "Kuş"
+          },
+          {
+            "word": "RIDE",
+            "turkishMeaning": "Binmek"
+          },
+          {
+            "word": "RED",
+            "turkishMeaning": "Kırmızı"
+          }
+        ],
+        "category": "Natural Forces",
+        "theme": "Rubble",
+        "explanation": "Connect letters D, E, B, R, I, S to form: DEBRIS, BRIDE, BIRDS, BIRD, RIDE, RED."
+      },
+      {
+        "id": "wc_g8_h_70",
+        "availableLetters": [
+          "C",
+          "O",
+          "U",
+          "N",
+          "T",
+          "S"
+        ],
+        "targetWords": [
+          {
+            "word": "COUNTS",
+            "turkishMeaning": "Sayar"
+          },
+          {
+            "word": "SNOUT",
+            "turkishMeaning": "Burun"
+          },
+          {
+            "word": "NUT",
+            "turkishMeaning": "Fındık"
+          },
+          {
+            "word": "SUN",
+            "turkishMeaning": "Güneş"
+          },
+          {
+            "word": "OUT",
+            "turkishMeaning": "Dışarı"
+          }
+        ],
+        "category": "Friendship",
+        "theme": "Dependability",
+        "explanation": "Connect letters C, O, U, N, T, S to form: COUNTS, SNOUT, NUT, SUN, OUT."
+      },
+      {
+        "id": "wc_g8_h_71",
+        "availableLetters": [
+          "C",
+          "O",
+          "O",
+          "K",
+          "E",
+          "R"
+        ],
+        "targetWords": [
+          {
+            "word": "COOKER",
+            "turkishMeaning": "Ocak"
+          },
+          {
+            "word": "COOK",
+            "turkishMeaning": "Pişirmek"
+          },
+          {
+            "word": "CORE",
+            "turkishMeaning": "Çekirdek"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Cooking Appliances",
+        "explanation": "Connect letters C, O, O, K, E, R to form: COOKER, COOK, CORE."
+      },
+      {
+        "id": "wc_g8_h_72",
+        "availableLetters": [
+          "B",
+          "U",
+          "T",
+          "T",
+          "E",
+          "R"
+        ],
+        "targetWords": [
+          {
+            "word": "BUTTER",
+            "turkishMeaning": "Tereyağı"
+          },
+          {
+            "word": "TRUE",
+            "turkishMeaning": "Doğru"
+          },
+          {
+            "word": "TUBE",
+            "turkishMeaning": "Tüp"
+          },
+          {
+            "word": "TUB",
+            "turkishMeaning": "Küvet"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Dairy Ingredients",
+        "explanation": "Connect letters B, U, T, T, E, R to form: BUTTER, TRUE, TUBE, TUB."
+      },
+      {
+        "id": "wc_g8_h_73",
+        "availableLetters": [
+          "B",
+          "L",
+          "E",
+          "N",
+          "D",
+          "S"
+        ],
+        "targetWords": [
+          {
+            "word": "BLENDS",
+            "turkishMeaning": "Karıştırır"
+          },
+          {
+            "word": "BEND",
+            "turkishMeaning": "Bükmek"
+          },
+          {
+            "word": "LEND",
+            "turkishMeaning": "Ödünç vermek"
+          },
+          {
+            "word": "SEND",
+            "turkishMeaning": "Göndermek"
+          },
+          {
+            "word": "BED",
+            "turkishMeaning": "Yatak"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Smoothie Blends",
+        "explanation": "Connect letters B, L, E, N, D, S to form: BLENDS, BEND, LEND, SEND, BED."
+      },
+      {
+        "id": "wc_g8_h_74",
+        "availableLetters": [
+          "S",
+          "A",
+          "U",
+          "C",
+          "E",
+          "S"
+        ],
+        "targetWords": [
+          {
+            "word": "SAUCES",
+            "turkishMeaning": "Soslar"
+          },
+          {
+            "word": "CAUSE",
+            "turkishMeaning": "Sebep"
+          },
+          {
+            "word": "CASE",
+            "turkishMeaning": "Kasa"
+          },
+          {
+            "word": "SEA",
+            "turkishMeaning": "Deniz"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Savory Dressings",
+        "explanation": "Connect letters S, A, U, C, E, S to form: SAUCES, CAUSE, CASE, SEA."
+      },
+      {
+        "id": "wc_g8_h_75",
+        "availableLetters": [
+          "F",
+          "O",
+          "R",
+          "U",
+          "M",
+          "S"
+        ],
+        "targetWords": [
+          {
+            "word": "FORUMS",
+            "turkishMeaning": "Forumlar"
+          },
+          {
+            "word": "FROM",
+            "turkishMeaning": "-den"
+          },
+          {
+            "word": "SOUR",
+            "turkishMeaning": "Ekşi"
+          },
+          {
+            "word": "SUM",
+            "turkishMeaning": "Toplam"
+          },
+          {
+            "word": "FOR",
+            "turkishMeaning": "İçin"
+          }
+        ],
+        "category": "Internet",
+        "theme": "Online Discussions",
+        "explanation": "Connect letters F, O, R, U, M, S to form: FORUMS, FROM, SOUR, SUM, FOR."
+      },
+      {
+        "id": "wc_g8_h_76",
+        "availableLetters": [
+          "C",
+          "Y",
+          "C",
+          "L",
+          "E",
+          "S"
+        ],
+        "targetWords": [
+          {
+            "word": "CYCLES",
+            "turkishMeaning": "Döngüler"
+          }
+        ],
+        "category": "Science",
+        "theme": "Earth Cycles",
+        "explanation": "Connect letters C, Y, C, L, E, S to form: CYCLES."
+      },
+      {
+        "id": "wc_g8_h_77",
+        "availableLetters": [
+          "P",
+          "L",
+          "A",
+          "T",
+          "E",
+          "S"
+        ],
+        "targetWords": [
+          {
+            "word": "PLATES",
+            "turkishMeaning": "Tabaklar / Levhalar"
+          },
+          {
+            "word": "PASTEL",
+            "turkishMeaning": "Pastel"
+          },
+          {
+            "word": "PETAL",
+            "turkishMeaning": "Taçyaprak"
+          },
+          {
+            "word": "LEAST",
+            "turkishMeaning": "En az"
+          },
+          {
+            "word": "TALE",
+            "turkishMeaning": "Masal"
+          },
+          {
+            "word": "SALT",
+            "turkishMeaning": "Tuz"
+          }
+        ],
+        "category": "Natural Forces",
+        "theme": "Tectonic Plates",
+        "explanation": "Connect letters P, L, A, T, E, S to form: PLATES, PASTEL, PETAL, LEAST, TALE, SALT."
+      },
+      {
+        "id": "wc_g8_h_78",
+        "availableLetters": [
+          "F",
+          "O",
+          "R",
+          "E",
+          "S",
+          "T"
+        ],
+        "targetWords": [
+          {
+            "word": "FOREST",
+            "turkishMeaning": "Orman"
+          },
+          {
+            "word": "FROST",
+            "turkishMeaning": "Don"
+          },
+          {
+            "word": "STORE",
+            "turkishMeaning": "Mağaza"
+          },
+          {
+            "word": "REST",
+            "turkishMeaning": "Dinlenmek"
+          },
+          {
+            "word": "FORT",
+            "turkishMeaning": "Hisar"
+          }
+        ],
+        "category": "Environment",
+        "theme": "Canopy Habitats",
+        "explanation": "Connect letters F, O, R, E, S, T to form: FOREST, FROST, STORE, REST, FORT."
+      },
+      {
+        "id": "wc_g8_h_79",
+        "availableLetters": [
+          "M",
+          "O",
+          "D",
+          "E",
+          "R",
+          "N"
+        ],
+        "targetWords": [
+          {
+            "word": "MODERN",
+            "turkishMeaning": "Modern"
+          },
+          {
+            "word": "DRONE",
+            "turkishMeaning": "Dron"
+          },
+          {
+            "word": "NODE",
+            "turkishMeaning": "Düğüm"
+          },
+          {
+            "word": "RED",
+            "turkishMeaning": "Kırmızı"
+          },
+          {
+            "word": "ONE",
+            "turkishMeaning": "Bir"
+          }
+        ],
+        "category": "Tourism",
+        "theme": "City Architecture",
+        "explanation": "Connect letters M, O, D, E, R, N to form: MODERN, DRONE, NODE, RED, ONE."
+      },
+      {
+        "id": "wc_g8_h_80",
+        "availableLetters": [
+          "G",
+          "A",
+          "R",
+          "L",
+          "I",
+          "C"
+        ],
+        "targetWords": [
+          {
+            "word": "GARLIC",
+            "turkishMeaning": "Sarımsak"
+          },
+          {
+            "word": "CIGAR",
+            "turkishMeaning": "Puro"
+          },
+          {
+            "word": "GIRL",
+            "turkishMeaning": "Kız"
+          },
+          {
+            "word": "AIR",
+            "turkishMeaning": "Hava"
+          }
+        ],
+        "category": "Kitchen",
+        "theme": "Aromatic Flavors",
+        "explanation": "Connect letters G, A, R, L, I, C to form: GARLIC, CIGAR, GIRL, AIR."
       }
     ]
   }

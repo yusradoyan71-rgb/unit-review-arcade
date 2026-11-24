@@ -103,9 +103,9 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
     shotResolved: false,
   });
 
-  // Load questions
+  // Load questions with recent history tracking & option shuffling
   useEffect(() => {
-    const pool = getQuestionsForGame('grammar_basketball', gradeId, difficulty, 10) as GrammarBasketballItem[];
+    const pool = getQuestionsForGame('grammar_basketball', gradeId, difficulty, 10, studentNumber) as GrammarBasketballItem[];
     const randomized = pool.map((q) => shuffleQuestionOptions(q));
     setQuestions(randomized);
     setCurrentIndex(0);
@@ -131,7 +131,7 @@ export const GrammarBasketballGame: React.FC<GrammarBasketballGameProps> = ({
       radius: BALL_RADIUS,
     });
     startTimeRef.current = Date.now();
-  }, [gradeId, difficulty]);
+  }, [gradeId, difficulty, studentNumber]);
 
   // Finish session
   const finishGame = useCallback(

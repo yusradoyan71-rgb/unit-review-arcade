@@ -10,6 +10,7 @@ import { getQuestionsForGame } from '../../../data/gamesZone';
 import { GamesZoneService } from '../../../services/gamesZoneService';
 import { sounds } from '../../../services/soundEffects';
 import { evaluateWordleGuess, type TileStatus } from './wordleEvaluator.ts';
+import { isValidDictionaryWord } from '../../../data/gamesZone/wordConnectDictionary.ts';
 
 interface WordleEnglishGameProps {
   gradeId: GradeId;
@@ -57,6 +58,7 @@ export const WordleEnglishGame: React.FC<WordleEnglishGameProps> = ({
   const [isSolved, setIsSolved] = useState(false);
   const [shakeRow, setShakeRow] = useState(false);
   const [showClue, setShowClue] = useState(false);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   // Stats across the session
   const [solvedCount, setSolvedCount] = useState(0);
@@ -64,11 +66,11 @@ export const WordleEnglishGame: React.FC<WordleEnglishGameProps> = ({
   const [score, setScore] = useState(0);
   const [startTime] = useState(Date.now());
 
-  // Load 5 items for this session
+  // Load 5 items for this session with recent history tracking
   useEffect(() => {
-    const raw = getQuestionsForGame('wordle_english', gradeId, difficulty, ROUNDS_PER_SESSION);
+    const raw = getQuestionsForGame('wordle_english', gradeId, difficulty, ROUNDS_PER_SESSION, studentNumber);
     setItems(raw as WordleEnglishItem[]);
-  }, [gradeId, difficulty]);
+  }, [gradeId, difficulty, studentNumber]);
 
   const currentItem = items[roundIndex] || null;
   const wordLength = currentItem ? currentItem.word.length : (difficulty === 'easy' ? 4 : difficulty === 'medium' ? 5 : 6);
@@ -140,6 +142,18 @@ export const WordleEnglishGame: React.FC<WordleEnglishGameProps> = ({
       setShakeRow(true);
       if (!isMuted) sounds.playError();
       setTimeout(() => setShakeRow(false), 500);
+      return;
+    }
+
+    // Validate guess against English dictionary
+    if (!isValidDictionaryWord(currentGuess) && currentGuess !== currentItem.word) {
+      setShakeRow(true);
+      setToastMessage(`"${currentGuess}" is not in the word list`);
+      if (!isMuted) sounds.playError();
+      setTimeout(() => {
+        setShakeRow(false);
+        setToastMessage(null);
+      }, 1500);
       return;
     }
 
@@ -306,6 +320,13 @@ export const WordleEnglishGame: React.FC<WordleEnglishGameProps> = ({
               <strong className="font-bold">Turkish Clue:</strong> {currentItem.turkishMeaning}
             </p>
           </div>
+        </div>
+      )}
+
+      {/* Toast Alert for invalid dictionary words */}
+      {toastMessage && (
+        <div className="w-full bg-rose-50 border-2 border-rose-300 text-rose-800 text-xs font-black rounded-xl p-2.5 text-center shadow-sm animate-shake">
+          {toastMessage}
         </div>
       )}
 

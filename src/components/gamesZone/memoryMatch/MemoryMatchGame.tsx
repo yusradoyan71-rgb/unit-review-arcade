@@ -98,8 +98,8 @@ export const MemoryMatchGame: React.FC<MemoryMatchGameProps> = ({
     hasReportedRef.current = false;
     sessionStartTimeRef.current = Date.now();
 
-    // Fetch a set for this grade and difficulty
-    const sets = getQuestionsForGame('memory_match', gradeId, difficulty, 1) as MemoryMatchSet[];
+    // Fetch a set for this grade and difficulty with recent history tracking
+    const sets = getQuestionsForGame('memory_match', gradeId, difficulty, 1, studentNumber) as MemoryMatchSet[];
     const chosenSet = sets && sets.length > 0 ? sets[0] : null;
 
     if (!chosenSet || !chosenSet.pairs || chosenSet.pairs.length === 0) {
@@ -152,7 +152,7 @@ export const MemoryMatchGame: React.FC<MemoryMatchGameProps> = ({
     setMaxStreak(0);
     setSecondsElapsed(0);
     setIsCompleted(false);
-  }, [gradeId, difficulty]);
+  }, [gradeId, difficulty, studentNumber]);
 
   // Initial load
   useEffect(() => {

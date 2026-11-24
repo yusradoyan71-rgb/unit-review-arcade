@@ -61,9 +61,9 @@ export const SentenceTowerGame: React.FC<SentenceTowerGameProps> = ({
 
   const startTimeRef = useRef(Date.now());
 
-  // Load questions
+  // Load questions with recent history tracking
   useEffect(() => {
-    const pool = getQuestionsForGame('sentence_tower', gradeId, difficulty, 10) as SentenceTowerItem[];
+    const pool = getQuestionsForGame('sentence_tower', gradeId, difficulty, 10, studentNumber) as SentenceTowerItem[];
     setQuestions(pool);
     setCurrentIndex(0);
     setScore(0);
@@ -73,13 +73,18 @@ export const SentenceTowerGame: React.FC<SentenceTowerGameProps> = ({
     setIncorrectCount(0);
     setTowerFloors([]);
     startTimeRef.current = Date.now();
-  }, [gradeId, difficulty]);
+  }, [gradeId, difficulty, studentNumber]);
 
-  // Set up word blocks for current question
+  // Set up word blocks for current question with runtime block scrambling
   const loadQuestionBlocks = useCallback((q: SentenceTowerItem) => {
     if (!q) return;
-    const blocks = q.scrambledWords.map((word, idx) => ({
-      id: `word_${idx}_${word}_${Date.now()}`,
+    const wordsCopy = [...q.scrambledWords];
+    for (let i = wordsCopy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [wordsCopy[i], wordsCopy[j]] = [wordsCopy[j], wordsCopy[i]];
+    }
+    const blocks = wordsCopy.map((word, idx) => ({
+      id: `word_${idx}_${word}_${Date.now()}_${Math.random().toString(36).substring(2, 5)}`,
       text: word,
     }));
     setAvailableWords(blocks);

@@ -21,6 +21,22 @@ interface GrammarRunnerGameProps {
   isMuted: boolean;
 }
 
+// Runtime shuffling for Grammar Runner 3-lane options
+function shuffleGrammarRunnerItem(item: GrammarRunnerItem): GrammarRunnerItem {
+  const options = [...item.laneOptions];
+  const correctText = options[item.correctLaneIndex];
+  for (let i = options.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [options[i], options[j]] = [options[j], options[i]];
+  }
+  const newIndex = options.indexOf(correctText) as 0 | 1 | 2;
+  return {
+    ...item,
+    laneOptions: options as [string, string, string],
+    correctLaneIndex: newIndex,
+  };
+}
+
 export const GrammarRunnerGame: React.FC<GrammarRunnerGameProps> = ({
   gradeId,
   difficulty,
@@ -52,10 +68,11 @@ export const GrammarRunnerGame: React.FC<GrammarRunnerGameProps> = ({
   const approachSpeed = difficulty === 'hard' ? 0.34 : difficulty === 'medium' ? 0.26 : 0.18;
   const animFrameRef = useRef<number | null>(null);
 
-  // Load questions
+  // Load questions with runtime lane randomization & recent history avoidance
   useEffect(() => {
-    const pool = getQuestionsForGame('grammar_runner', gradeId, difficulty, 10) as GrammarRunnerItem[];
-    setQuestions(pool);
+    const pool = getQuestionsForGame('grammar_runner', gradeId, difficulty, 10, studentNumber) as GrammarRunnerItem[];
+    const randomized = pool.map(shuffleGrammarRunnerItem);
+    setQuestions(randomized);
     setCurrentIndex(0);
     setCurrentLane(1);
     setGateProgress(0);
@@ -65,7 +82,7 @@ export const GrammarRunnerGame: React.FC<GrammarRunnerGameProps> = ({
     setCorrectCount(0);
     setIncorrectCount(0);
     startTimeRef.current = Date.now();
-  }, [gradeId, difficulty]);
+  }, [gradeId, difficulty, studentNumber]);
 
   // Reset gate progress when question changes
   useEffect(() => {

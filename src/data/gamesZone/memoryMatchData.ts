@@ -1,18 +1,11 @@
 /**
- * UNIT REVIEW ARCADE — MEMORY MATCH DATA BANK (PHASE 11)
- * Version: 11.0.0
+ * UNIT REVIEW ARCADE — MEMORY MATCH DATA BANK (PHASE 7A & MIXED CURRICULUM EXPANSION)
  * 
- * 240 validated curriculum-aligned memory matching challenges:
- * - Grade 7: Easy (40 sets x 4 pairs), Medium (40 sets x 6 pairs), Hard (40 sets x 8 pairs)
- * - Grade 8: Easy (40 sets x 4 pairs), Medium (40 sets x 6 pairs), Hard (40 sets x 8 pairs)
+ * 480 validated curriculum-aligned memory matching challenges (80 sets per tier):
+ * - Grade 7: Easy (80 sets x 4 pairs), Medium (80 sets x 6 pairs), Hard (80 sets x 8 pairs)
+ * - Grade 8: Easy (80 sets x 4 pairs), Medium (80 sets x 6 pairs), Hard (80 sets x 8 pairs)
  * 
- * Covering 3 Educational Matching Modes:
- * - Mode A: Word & Meaning (English word <-> Turkish translation)
- * - Mode B: Word & Definition (English word <-> English definition)
- * - Mode C: Word & Picture (English word <-> Reusable offline vector asset)
- * 
- * Aligned strictly to Turkish MEB English Curriculum & LGS outcomes.
- * Structured for direct compatibility with upcoming Activity Creator.
+ * Mixed Curriculum: Turkish MEB English Units 1-10 + School English Curriculum.
  */
 
 import type { MemoryMatchBank } from '../../types/gamesZone';
@@ -2059,6 +2052,1966 @@ export const MEMORY_MATCH_BANK: MemoryMatchBank = {
           }
         ],
         "contentVersion": 1
+      },
+      {
+        "id": "mm_g7_e_41",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Appearance & Personality",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_41_1",
+            "leftText": "generous",
+            "rightText": "cömert",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Appearance & Personality",
+            "explanation": "\"generous\" translates to \"cömert\" in Turkish (Appearance & Personality)."
+          },
+          {
+            "pairId": "p_mm_g7_e_41_2",
+            "leftText": "punctual",
+            "rightText": "dakik",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Appearance & Personality",
+            "explanation": "\"punctual\" translates to \"dakik\" in Turkish (Appearance & Personality)."
+          },
+          {
+            "pairId": "p_mm_g7_e_41_3",
+            "leftText": "stubborn",
+            "rightText": "inatçı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Appearance & Personality",
+            "explanation": "\"stubborn\" translates to \"inatçı\" in Turkish (Appearance & Personality)."
+          },
+          {
+            "pairId": "p_mm_g7_e_41_4",
+            "leftText": "outgoing",
+            "rightText": "sosyal",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Appearance & Personality",
+            "explanation": "\"outgoing\" translates to \"sosyal\" in Turkish (Appearance & Personality)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_42",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Appearance & Personality",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_42_1",
+            "leftText": "clumsy",
+            "rightText": "sakar",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Appearance & Personality",
+            "explanation": "\"clumsy\" translates to \"sakar\" in Turkish (Appearance & Personality)."
+          },
+          {
+            "pairId": "p_mm_g7_e_42_2",
+            "leftText": "honest",
+            "rightText": "dürüst",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Appearance & Personality",
+            "explanation": "\"honest\" translates to \"dürüst\" in Turkish (Appearance & Personality)."
+          },
+          {
+            "pairId": "p_mm_g7_e_42_3",
+            "leftText": "selfish",
+            "rightText": "bencil",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Appearance & Personality",
+            "explanation": "\"selfish\" translates to \"bencil\" in Turkish (Appearance & Personality)."
+          },
+          {
+            "pairId": "p_mm_g7_e_42_4",
+            "leftText": "plump",
+            "rightText": "tombul",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Appearance & Personality",
+            "explanation": "\"plump\" translates to \"tombul\" in Turkish (Appearance & Personality)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_43",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_definition",
+        "topic": "Appearance & Personality",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_43_1",
+            "leftText": "generous",
+            "rightText": "willing to share and give freely",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Appearance & Personality",
+            "explanation": "\"generous\": willing to share and give freely (Appearance & Personality)."
+          },
+          {
+            "pairId": "p_mm_g7_e_43_2",
+            "leftText": "punctual",
+            "rightText": "arriving exactly on time",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Appearance & Personality",
+            "explanation": "\"punctual\": arriving exactly on time (Appearance & Personality)."
+          },
+          {
+            "pairId": "p_mm_g7_e_43_3",
+            "leftText": "stubborn",
+            "rightText": "refusing to change one's mind",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Appearance & Personality",
+            "explanation": "\"stubborn\": refusing to change one's mind (Appearance & Personality)."
+          },
+          {
+            "pairId": "p_mm_g7_e_43_4",
+            "leftText": "honest",
+            "rightText": "always telling the truth",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Appearance & Personality",
+            "explanation": "\"honest\": always telling the truth (Appearance & Personality)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_44",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Sports",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_44_1",
+            "leftText": "spectator",
+            "rightText": "seyirci",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Sports",
+            "explanation": "\"spectator\" translates to \"seyirci\" in Turkish (Sports)."
+          },
+          {
+            "pairId": "p_mm_g7_e_44_2",
+            "leftText": "referee",
+            "rightText": "hakem",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Sports",
+            "explanation": "\"referee\" translates to \"hakem\" in Turkish (Sports)."
+          },
+          {
+            "pairId": "p_mm_g7_e_44_3",
+            "leftText": "archery",
+            "rightText": "okçuluk",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Sports",
+            "explanation": "\"archery\" translates to \"okçuluk\" in Turkish (Sports)."
+          },
+          {
+            "pairId": "p_mm_g7_e_44_4",
+            "leftText": "medal",
+            "rightText": "madalya",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Sports",
+            "explanation": "\"medal\" translates to \"madalya\" in Turkish (Sports)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_45",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Sports",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_45_1",
+            "leftText": "equipment",
+            "rightText": "ekipman",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Sports",
+            "explanation": "\"equipment\" translates to \"ekipman\" in Turkish (Sports)."
+          },
+          {
+            "pairId": "p_mm_g7_e_45_2",
+            "leftText": "indoor",
+            "rightText": "kapalı alan",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Sports",
+            "explanation": "\"indoor\" translates to \"kapalı alan\" in Turkish (Sports)."
+          },
+          {
+            "pairId": "p_mm_g7_e_45_3",
+            "leftText": "outdoor",
+            "rightText": "açık alan",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Sports",
+            "explanation": "\"outdoor\" translates to \"açık alan\" in Turkish (Sports)."
+          },
+          {
+            "pairId": "p_mm_g7_e_45_4",
+            "leftText": "coach",
+            "rightText": "antrenör",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Sports",
+            "explanation": "\"coach\" translates to \"antrenör\" in Turkish (Sports)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_46",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_definition",
+        "topic": "Sports",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_46_1",
+            "leftText": "spectator",
+            "rightText": "a person watching a game",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Sports",
+            "explanation": "\"spectator\": a person watching a game (Sports)."
+          },
+          {
+            "pairId": "p_mm_g7_e_46_2",
+            "leftText": "referee",
+            "rightText": "an official who enforces rules",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Sports",
+            "explanation": "\"referee\": an official who enforces rules (Sports)."
+          },
+          {
+            "pairId": "p_mm_g7_e_46_3",
+            "leftText": "archery",
+            "rightText": "shooting arrows with a bow",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Sports",
+            "explanation": "\"archery\": shooting arrows with a bow (Sports)."
+          },
+          {
+            "pairId": "p_mm_g7_e_46_4",
+            "leftText": "medal",
+            "rightText": "a metal award given to winners",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Sports",
+            "explanation": "\"medal\": a metal award given to winners (Sports)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_47",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Biographies",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_47_1",
+            "leftText": "graduate",
+            "rightText": "mezun olmak",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Biographies",
+            "explanation": "\"graduate\" translates to \"mezun olmak\" in Turkish (Biographies)."
+          },
+          {
+            "pairId": "p_mm_g7_e_47_2",
+            "leftText": "invent",
+            "rightText": "icat etmek",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Biographies",
+            "explanation": "\"invent\" translates to \"icat etmek\" in Turkish (Biographies)."
+          },
+          {
+            "pairId": "p_mm_g7_e_47_3",
+            "leftText": "discover",
+            "rightText": "keşfetmek",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Biographies",
+            "explanation": "\"discover\" translates to \"keşfetmek\" in Turkish (Biographies)."
+          },
+          {
+            "pairId": "p_mm_g7_e_47_4",
+            "leftText": "achievement",
+            "rightText": "başarı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Biographies",
+            "explanation": "\"achievement\" translates to \"başarı\" in Turkish (Biographies)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_48",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Biographies",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_48_1",
+            "leftText": "career",
+            "rightText": "kariyer",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Biographies",
+            "explanation": "\"career\" translates to \"kariyer\" in Turkish (Biographies)."
+          },
+          {
+            "pairId": "p_mm_g7_e_48_2",
+            "leftText": "award",
+            "rightText": "ödül",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Biographies",
+            "explanation": "\"award\" translates to \"ödül\" in Turkish (Biographies)."
+          },
+          {
+            "pairId": "p_mm_g7_e_48_3",
+            "leftText": "marry",
+            "rightText": "evlenmek",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Biographies",
+            "explanation": "\"marry\" translates to \"evlenmek\" in Turkish (Biographies)."
+          },
+          {
+            "pairId": "p_mm_g7_e_48_4",
+            "leftText": "born",
+            "rightText": "doğmuş",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Biographies",
+            "explanation": "\"born\" translates to \"doğmuş\" in Turkish (Biographies)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_49",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Wild Animals",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_49_1",
+            "leftText": "carnivore",
+            "rightText": "etobur",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Wild Animals",
+            "explanation": "\"carnivore\" translates to \"etobur\" in Turkish (Wild Animals)."
+          },
+          {
+            "pairId": "p_mm_g7_e_49_2",
+            "leftText": "herbivore",
+            "rightText": "otobur",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Wild Animals",
+            "explanation": "\"herbivore\" translates to \"otobur\" in Turkish (Wild Animals)."
+          },
+          {
+            "pairId": "p_mm_g7_e_49_3",
+            "leftText": "predator",
+            "rightText": "yırtıcı avcı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Wild Animals",
+            "explanation": "\"predator\" translates to \"yırtıcı avcı\" in Turkish (Wild Animals)."
+          },
+          {
+            "pairId": "p_mm_g7_e_49_4",
+            "leftText": "prey",
+            "rightText": "av",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Wild Animals",
+            "explanation": "\"prey\" translates to \"av\" in Turkish (Wild Animals)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_50",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Wild Animals",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_50_1",
+            "leftText": "habitat",
+            "rightText": "doğal yaşam alanı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Wild Animals",
+            "explanation": "\"habitat\" translates to \"doğal yaşam alanı\" in Turkish (Wild Animals)."
+          },
+          {
+            "pairId": "p_mm_g7_e_50_2",
+            "leftText": "extinct",
+            "rightText": "nesli tükenmiş",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Wild Animals",
+            "explanation": "\"extinct\" translates to \"nesli tükenmiş\" in Turkish (Wild Animals)."
+          },
+          {
+            "pairId": "p_mm_g7_e_50_3",
+            "leftText": "endangered",
+            "rightText": "nesli tehlikede",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Wild Animals",
+            "explanation": "\"endangered\" translates to \"nesli tehlikede\" in Turkish (Wild Animals)."
+          },
+          {
+            "pairId": "p_mm_g7_e_50_4",
+            "leftText": "cage",
+            "rightText": "kafes",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Wild Animals",
+            "explanation": "\"cage\" translates to \"kafes\" in Turkish (Wild Animals)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_51",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_definition",
+        "topic": "Wild Animals",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_51_1",
+            "leftText": "carnivore",
+            "rightText": "an animal that eats meat",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Wild Animals",
+            "explanation": "\"carnivore\": an animal that eats meat (Wild Animals)."
+          },
+          {
+            "pairId": "p_mm_g7_e_51_2",
+            "leftText": "herbivore",
+            "rightText": "an animal that eats plants",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Wild Animals",
+            "explanation": "\"herbivore\": an animal that eats plants (Wild Animals)."
+          },
+          {
+            "pairId": "p_mm_g7_e_51_3",
+            "leftText": "predator",
+            "rightText": "an animal that hunts others",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Wild Animals",
+            "explanation": "\"predator\": an animal that hunts others (Wild Animals)."
+          },
+          {
+            "pairId": "p_mm_g7_e_51_4",
+            "leftText": "habitat",
+            "rightText": "the natural home of an animal",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Wild Animals",
+            "explanation": "\"habitat\": the natural home of an animal (Wild Animals)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_52",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Television",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_52_1",
+            "leftText": "documentary",
+            "rightText": "belgesel",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Television",
+            "explanation": "\"documentary\" translates to \"belgesel\" in Turkish (Television)."
+          },
+          {
+            "pairId": "p_mm_g7_e_52_2",
+            "leftText": "sitcom",
+            "rightText": "durum komedisi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Television",
+            "explanation": "\"sitcom\" translates to \"durum komedisi\" in Turkish (Television)."
+          },
+          {
+            "pairId": "p_mm_g7_e_52_3",
+            "leftText": "commercial",
+            "rightText": "reklam",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Television",
+            "explanation": "\"commercial\" translates to \"reklam\" in Turkish (Television)."
+          },
+          {
+            "pairId": "p_mm_g7_e_52_4",
+            "leftText": "audience",
+            "rightText": "seyirci kitlesi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Television",
+            "explanation": "\"audience\" translates to \"seyirci kitlesi\" in Turkish (Television)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_53",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Television",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_53_1",
+            "leftText": "director",
+            "rightText": "yönetmen",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Television",
+            "explanation": "\"director\" translates to \"yönetmen\" in Turkish (Television)."
+          },
+          {
+            "pairId": "p_mm_g7_e_53_2",
+            "leftText": "series",
+            "rightText": "dizi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Television",
+            "explanation": "\"series\" translates to \"dizi\" in Turkish (Television)."
+          },
+          {
+            "pairId": "p_mm_g7_e_53_3",
+            "leftText": "channel",
+            "rightText": "kanal",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Television",
+            "explanation": "\"channel\" translates to \"kanal\" in Turkish (Television)."
+          },
+          {
+            "pairId": "p_mm_g7_e_53_4",
+            "leftText": "remote control",
+            "rightText": "uzaktan kumanda",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Television",
+            "explanation": "\"remote control\" translates to \"uzaktan kumanda\" in Turkish (Television)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_54",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Celebrations",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_54_1",
+            "leftText": "invitation",
+            "rightText": "davetiye",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Celebrations",
+            "explanation": "\"invitation\" translates to \"davetiye\" in Turkish (Celebrations)."
+          },
+          {
+            "pairId": "p_mm_g7_e_54_2",
+            "leftText": "wrap",
+            "rightText": "hediye paketlemek",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Celebrations",
+            "explanation": "\"wrap\" translates to \"hediye paketlemek\" in Turkish (Celebrations)."
+          },
+          {
+            "pairId": "p_mm_g7_e_54_3",
+            "leftText": "guest",
+            "rightText": "misafir",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Celebrations",
+            "explanation": "\"guest\" translates to \"misafir\" in Turkish (Celebrations)."
+          },
+          {
+            "pairId": "p_mm_g7_e_54_4",
+            "leftText": "decorate",
+            "rightText": "süslemek",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Celebrations",
+            "explanation": "\"decorate\" translates to \"süslemek\" in Turkish (Celebrations)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_55",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Celebrations",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_55_1",
+            "leftText": "anniversary",
+            "rightText": "yıl dönümü",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Celebrations",
+            "explanation": "\"anniversary\" translates to \"yıl dönümü\" in Turkish (Celebrations)."
+          },
+          {
+            "pairId": "p_mm_g7_e_55_2",
+            "leftText": "fireworks",
+            "rightText": "havai fişekler",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Celebrations",
+            "explanation": "\"fireworks\" translates to \"havai fişekler\" in Turkish (Celebrations)."
+          },
+          {
+            "pairId": "p_mm_g7_e_55_3",
+            "leftText": "candle",
+            "rightText": "mum",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Celebrations",
+            "explanation": "\"candle\" translates to \"mum\" in Turkish (Celebrations)."
+          },
+          {
+            "pairId": "p_mm_g7_e_55_4",
+            "leftText": "streamer",
+            "rightText": "parti şeridi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Celebrations",
+            "explanation": "\"streamer\" translates to \"parti şeridi\" in Turkish (Celebrations)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_56",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Dreams",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_56_1",
+            "leftText": "fortune teller",
+            "rightText": "falcı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Dreams",
+            "explanation": "\"fortune teller\" translates to \"falcı\" in Turkish (Dreams)."
+          },
+          {
+            "pairId": "p_mm_g7_e_56_2",
+            "leftText": "peaceful",
+            "rightText": "huzurlu, barışçıl",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Dreams",
+            "explanation": "\"peaceful\" translates to \"huzurlu, barışçıl\" in Turkish (Dreams)."
+          },
+          {
+            "pairId": "p_mm_g7_e_56_3",
+            "leftText": "space travel",
+            "rightText": "uzay seyahati",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Dreams",
+            "explanation": "\"space travel\" translates to \"uzay seyahati\" in Turkish (Dreams)."
+          },
+          {
+            "pairId": "p_mm_g7_e_56_4",
+            "leftText": "predict",
+            "rightText": "tahmin etmek",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Dreams",
+            "explanation": "\"predict\" translates to \"tahmin etmek\" in Turkish (Dreams)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_57",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Dreams",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_57_1",
+            "leftText": "future",
+            "rightText": "gelecek",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Dreams",
+            "explanation": "\"future\" translates to \"gelecek\" in Turkish (Dreams)."
+          },
+          {
+            "pairId": "p_mm_g7_e_57_2",
+            "leftText": "career",
+            "rightText": "meslek kariyeri",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Dreams",
+            "explanation": "\"career\" translates to \"meslek kariyeri\" in Turkish (Dreams)."
+          },
+          {
+            "pairId": "p_mm_g7_e_57_3",
+            "leftText": "successful",
+            "rightText": "başarılı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Dreams",
+            "explanation": "\"successful\" translates to \"başarılı\" in Turkish (Dreams)."
+          },
+          {
+            "pairId": "p_mm_g7_e_57_4",
+            "leftText": "hope",
+            "rightText": "umut etmek",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Dreams",
+            "explanation": "\"hope\" translates to \"umut etmek\" in Turkish (Dreams)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_58",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Public Buildings",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_58_1",
+            "leftText": "municipality",
+            "rightText": "belediye",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Public Buildings",
+            "explanation": "\"municipality\" translates to \"belediye\" in Turkish (Public Buildings)."
+          },
+          {
+            "pairId": "p_mm_g7_e_58_2",
+            "leftText": "chemist",
+            "rightText": "eczane",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Public Buildings",
+            "explanation": "\"chemist\" translates to \"eczane\" in Turkish (Public Buildings)."
+          },
+          {
+            "pairId": "p_mm_g7_e_58_3",
+            "leftText": "bakery",
+            "rightText": "fırın",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Public Buildings",
+            "explanation": "\"bakery\" translates to \"fırın\" in Turkish (Public Buildings)."
+          },
+          {
+            "pairId": "p_mm_g7_e_58_4",
+            "leftText": "art gallery",
+            "rightText": "sanat galerisi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Public Buildings",
+            "explanation": "\"art gallery\" translates to \"sanat galerisi\" in Turkish (Public Buildings)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_59",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Public Buildings",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_59_1",
+            "leftText": "fire station",
+            "rightText": "itfaiye",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Public Buildings",
+            "explanation": "\"fire station\" translates to \"itfaiye\" in Turkish (Public Buildings)."
+          },
+          {
+            "pairId": "p_mm_g7_e_59_2",
+            "leftText": "police station",
+            "rightText": "polis karakolu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Public Buildings",
+            "explanation": "\"police station\" translates to \"polis karakolu\" in Turkish (Public Buildings)."
+          },
+          {
+            "pairId": "p_mm_g7_e_59_3",
+            "leftText": "library",
+            "rightText": "kütüphane",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Public Buildings",
+            "explanation": "\"library\" translates to \"kütüphane\" in Turkish (Public Buildings)."
+          },
+          {
+            "pairId": "p_mm_g7_e_59_4",
+            "leftText": "city hall",
+            "rightText": "belediye sarayı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Public Buildings",
+            "explanation": "\"city hall\" translates to \"belediye sarayı\" in Turkish (Public Buildings)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_60",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_definition",
+        "topic": "Public Buildings",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_60_1",
+            "leftText": "chemist",
+            "rightText": "a shop that sells medicines",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Public Buildings",
+            "explanation": "\"chemist\": a shop that sells medicines (Public Buildings)."
+          },
+          {
+            "pairId": "p_mm_g7_e_60_2",
+            "leftText": "bakery",
+            "rightText": "a place where bread is baked",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Public Buildings",
+            "explanation": "\"bakery\": a place where bread is baked (Public Buildings)."
+          },
+          {
+            "pairId": "p_mm_g7_e_60_3",
+            "leftText": "library",
+            "rightText": "a building where books are borrowed",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Public Buildings",
+            "explanation": "\"library\": a building where books are borrowed (Public Buildings)."
+          },
+          {
+            "pairId": "p_mm_g7_e_60_4",
+            "leftText": "municipality",
+            "rightText": "local city council government",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Public Buildings",
+            "explanation": "\"municipality\": local city council government (Public Buildings)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_61",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Environment",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_61_1",
+            "leftText": "solar energy",
+            "rightText": "güneş enerjisi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Environment",
+            "explanation": "\"solar energy\" translates to \"güneş enerjisi\" in Turkish (Environment)."
+          },
+          {
+            "pairId": "p_mm_g7_e_61_2",
+            "leftText": "recycle",
+            "rightText": "geri dönüştürmek",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Environment",
+            "explanation": "\"recycle\" translates to \"geri dönüştürmek\" in Turkish (Environment)."
+          },
+          {
+            "pairId": "p_mm_g7_e_61_3",
+            "leftText": "pollution",
+            "rightText": "kirlilik",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Environment",
+            "explanation": "\"pollution\" translates to \"kirlilik\" in Turkish (Environment)."
+          },
+          {
+            "pairId": "p_mm_g7_e_61_4",
+            "leftText": "deforestation",
+            "rightText": "orman katliamı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Environment",
+            "explanation": "\"deforestation\" translates to \"orman katliamı\" in Turkish (Environment)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_62",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Environment",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_62_1",
+            "leftText": "global warming",
+            "rightText": "küresel ısınma",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Environment",
+            "explanation": "\"global warming\" translates to \"küresel ısınma\" in Turkish (Environment)."
+          },
+          {
+            "pairId": "p_mm_g7_e_62_2",
+            "leftText": "eco-friendly",
+            "rightText": "çevre dostu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Environment",
+            "explanation": "\"eco-friendly\" translates to \"çevre dostu\" in Turkish (Environment)."
+          },
+          {
+            "pairId": "p_mm_g7_e_62_3",
+            "leftText": "litter",
+            "rightText": "çöp atmak",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Environment",
+            "explanation": "\"litter\" translates to \"çöp atmak\" in Turkish (Environment)."
+          },
+          {
+            "pairId": "p_mm_g7_e_62_4",
+            "leftText": "save",
+            "rightText": "tasarruf etmek",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Environment",
+            "explanation": "\"save\" translates to \"tasarruf etmek\" in Turkish (Environment)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_63",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_definition",
+        "topic": "Environment",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_63_1",
+            "leftText": "solar energy",
+            "rightText": "power captured from the Sun",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Environment",
+            "explanation": "\"solar energy\": power captured from the Sun (Environment)."
+          },
+          {
+            "pairId": "p_mm_g7_e_63_2",
+            "leftText": "recycle",
+            "rightText": "reusing waste materials",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Environment",
+            "explanation": "\"recycle\": reusing waste materials (Environment)."
+          },
+          {
+            "pairId": "p_mm_g7_e_63_3",
+            "leftText": "pollution",
+            "rightText": "harmful contamination of nature",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Environment",
+            "explanation": "\"pollution\": harmful contamination of nature (Environment)."
+          },
+          {
+            "pairId": "p_mm_g7_e_63_4",
+            "leftText": "deforestation",
+            "rightText": "cutting down vast forest tracts",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Environment",
+            "explanation": "\"deforestation\": cutting down vast forest tracts (Environment)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_64",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Planets",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_64_1",
+            "leftText": "satellite",
+            "rightText": "uydu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Planets",
+            "explanation": "\"satellite\" translates to \"uydu\" in Turkish (Planets)."
+          },
+          {
+            "pairId": "p_mm_g7_e_64_2",
+            "leftText": "orbit",
+            "rightText": "yörünge",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Planets",
+            "explanation": "\"orbit\" translates to \"yörünge\" in Turkish (Planets)."
+          },
+          {
+            "pairId": "p_mm_g7_e_64_3",
+            "leftText": "solar system",
+            "rightText": "güneş sistemi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Planets",
+            "explanation": "\"solar system\" translates to \"güneş sistemi\" in Turkish (Planets)."
+          },
+          {
+            "pairId": "p_mm_g7_e_64_4",
+            "leftText": "astronaut",
+            "rightText": "astronot",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Planets",
+            "explanation": "\"astronaut\" translates to \"astronot\" in Turkish (Planets)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_65",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Planets",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_65_1",
+            "leftText": "telescope",
+            "rightText": "teleskop",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Planets",
+            "explanation": "\"telescope\" translates to \"teleskop\" in Turkish (Planets)."
+          },
+          {
+            "pairId": "p_mm_g7_e_65_2",
+            "leftText": "surface",
+            "rightText": "yüzey",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Planets",
+            "explanation": "\"surface\" translates to \"yüzey\" in Turkish (Planets)."
+          },
+          {
+            "pairId": "p_mm_g7_e_65_3",
+            "leftText": "gravity",
+            "rightText": "yer çekimi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Planets",
+            "explanation": "\"gravity\" translates to \"yer çekimi\" in Turkish (Planets)."
+          },
+          {
+            "pairId": "p_mm_g7_e_65_4",
+            "leftText": "atmosphere",
+            "rightText": "atmosfer",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Planets",
+            "explanation": "\"atmosphere\" translates to \"atmosfer\" in Turkish (Planets)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_66",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_definition",
+        "topic": "Planets",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_66_1",
+            "leftText": "orbit",
+            "rightText": "curved path of a celestial body",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Planets",
+            "explanation": "\"orbit\": curved path of a celestial body (Planets)."
+          },
+          {
+            "pairId": "p_mm_g7_e_66_2",
+            "leftText": "astronaut",
+            "rightText": "a person traveling into space",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Planets",
+            "explanation": "\"astronaut\": a person traveling into space (Planets)."
+          },
+          {
+            "pairId": "p_mm_g7_e_66_3",
+            "leftText": "telescope",
+            "rightText": "instrument to view distant stars",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Planets",
+            "explanation": "\"telescope\": instrument to view distant stars (Planets)."
+          },
+          {
+            "pairId": "p_mm_g7_e_66_4",
+            "leftText": "satellite",
+            "rightText": "body orbiting a planet",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Planets",
+            "explanation": "\"satellite\": body orbiting a planet (Planets)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_67",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Life Online",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_67_1",
+            "leftText": "password",
+            "rightText": "şifre",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Life Online",
+            "explanation": "\"password\" translates to \"şifre\" in Turkish (Life Online)."
+          },
+          {
+            "pairId": "p_mm_g7_e_67_2",
+            "leftText": "download",
+            "rightText": "indirmek",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Life Online",
+            "explanation": "\"download\" translates to \"indirmek\" in Turkish (Life Online)."
+          },
+          {
+            "pairId": "p_mm_g7_e_67_3",
+            "leftText": "upload",
+            "rightText": "karşıya yüklemek",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Life Online",
+            "explanation": "\"upload\" translates to \"karşıya yüklemek\" in Turkish (Life Online)."
+          },
+          {
+            "pairId": "p_mm_g7_e_67_4",
+            "leftText": "antivirus",
+            "rightText": "virüsten koruma",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Life Online",
+            "explanation": "\"antivirus\" translates to \"virüsten koruma\" in Turkish (Life Online)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_68",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Life Online",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_68_1",
+            "leftText": "hacker",
+            "rightText": "bilgisayar korsanı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Life Online",
+            "explanation": "\"hacker\" translates to \"bilgisayar korsanı\" in Turkish (Life Online)."
+          },
+          {
+            "pairId": "p_mm_g7_e_68_2",
+            "leftText": "secure",
+            "rightText": "güvenli",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Life Online",
+            "explanation": "\"secure\" translates to \"güvenli\" in Turkish (Life Online)."
+          },
+          {
+            "pairId": "p_mm_g7_e_68_3",
+            "leftText": "account",
+            "rightText": "hesap",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Life Online",
+            "explanation": "\"account\" translates to \"hesap\" in Turkish (Life Online)."
+          },
+          {
+            "pairId": "p_mm_g7_e_68_4",
+            "leftText": "username",
+            "rightText": "kullanıcı adı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Life Online",
+            "explanation": "\"username\" translates to \"kullanıcı adı\" in Turkish (Life Online)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_69",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_definition",
+        "topic": "Life Online",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_69_1",
+            "leftText": "password",
+            "rightText": "secret code to access an account",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Life Online",
+            "explanation": "\"password\": secret code to access an account (Life Online)."
+          },
+          {
+            "pairId": "p_mm_g7_e_69_2",
+            "leftText": "download",
+            "rightText": "copying files from the internet",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Life Online",
+            "explanation": "\"download\": copying files from the internet (Life Online)."
+          },
+          {
+            "pairId": "p_mm_g7_e_69_3",
+            "leftText": "antivirus",
+            "rightText": "software protecting against malware",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Life Online",
+            "explanation": "\"antivirus\": software protecting against malware (Life Online)."
+          },
+          {
+            "pairId": "p_mm_g7_e_69_4",
+            "leftText": "hacker",
+            "rightText": "unauthorized computer intruder",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Life Online",
+            "explanation": "\"hacker\": unauthorized computer intruder (Life Online)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_70",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "In and Out of Danger",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_70_1",
+            "leftText": "first aid kit",
+            "rightText": "ilk yardım çantası",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "In and Out of Danger",
+            "explanation": "\"first aid kit\" translates to \"ilk yardım çantası\" in Turkish (In and Out of Danger)."
+          },
+          {
+            "pairId": "p_mm_g7_e_70_2",
+            "leftText": "ambulance",
+            "rightText": "ambulans",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "In and Out of Danger",
+            "explanation": "\"ambulance\" translates to \"ambulans\" in Turkish (In and Out of Danger)."
+          },
+          {
+            "pairId": "p_mm_g7_e_70_3",
+            "leftText": "rescue",
+            "rightText": "kurtarmak",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "In and Out of Danger",
+            "explanation": "\"rescue\" translates to \"kurtarmak\" in Turkish (In and Out of Danger)."
+          },
+          {
+            "pairId": "p_mm_g7_e_70_4",
+            "leftText": "emergency",
+            "rightText": "acil durum",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "In and Out of Danger",
+            "explanation": "\"emergency\" translates to \"acil durum\" in Turkish (In and Out of Danger)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_71",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "In and Out of Danger",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_71_1",
+            "leftText": "helmet",
+            "rightText": "kask",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "In and Out of Danger",
+            "explanation": "\"helmet\" translates to \"kask\" in Turkish (In and Out of Danger)."
+          },
+          {
+            "pairId": "p_mm_g7_e_71_2",
+            "leftText": "reflective vest",
+            "rightText": "reflektörlü yelek",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "In and Out of Danger",
+            "explanation": "\"reflective vest\" translates to \"reflektörlü yelek\" in Turkish (In and Out of Danger)."
+          },
+          {
+            "pairId": "p_mm_g7_e_71_3",
+            "leftText": "bandage",
+            "rightText": "sargı bezi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "In and Out of Danger",
+            "explanation": "\"bandage\" translates to \"sargı bezi\" in Turkish (In and Out of Danger)."
+          },
+          {
+            "pairId": "p_mm_g7_e_71_4",
+            "leftText": "injury",
+            "rightText": "yaralanma",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "In and Out of Danger",
+            "explanation": "\"injury\" translates to \"yaralanma\" in Turkish (In and Out of Danger)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_72",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Britain",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_72_1",
+            "leftText": "Big Ben",
+            "rightText": "Londra saat kulesi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Britain",
+            "explanation": "\"Big Ben\" translates to \"Londra saat kulesi\" in Turkish (Britain)."
+          },
+          {
+            "pairId": "p_mm_g7_e_72_2",
+            "leftText": "Buckingham Palace",
+            "rightText": "Kraliyet sarayı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Britain",
+            "explanation": "\"Buckingham Palace\" translates to \"Kraliyet sarayı\" in Turkish (Britain)."
+          },
+          {
+            "pairId": "p_mm_g7_e_72_3",
+            "leftText": "River Thames",
+            "rightText": "Thames nehri",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Britain",
+            "explanation": "\"River Thames\" translates to \"Thames nehri\" in Turkish (Britain)."
+          },
+          {
+            "pairId": "p_mm_g7_e_72_4",
+            "leftText": "landmark",
+            "rightText": "tarihi simge yapı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Britain",
+            "explanation": "\"landmark\" translates to \"tarihi simge yapı\" in Turkish (Britain)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_73",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_definition",
+        "topic": "Britain",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_73_1",
+            "leftText": "Big Ben",
+            "rightText": "iconic London clock tower landmark",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Britain",
+            "explanation": "\"Big Ben\": iconic London clock tower landmark (Britain)."
+          },
+          {
+            "pairId": "p_mm_g7_e_73_2",
+            "leftText": "Buckingham Palace",
+            "rightText": "official residence of British monarch",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Britain",
+            "explanation": "\"Buckingham Palace\": official residence of British monarch (Britain)."
+          },
+          {
+            "pairId": "p_mm_g7_e_73_3",
+            "leftText": "River Thames",
+            "rightText": "river flowing through London",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Britain",
+            "explanation": "\"River Thames\": river flowing through London (Britain)."
+          },
+          {
+            "pairId": "p_mm_g7_e_73_4",
+            "leftText": "landmark",
+            "rightText": "a famous historical feature",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Britain",
+            "explanation": "\"landmark\": a famous historical feature (Britain)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_74",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Day Out",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_74_1",
+            "leftText": "amusement park",
+            "rightText": "lunapark",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Day Out",
+            "explanation": "\"amusement park\" translates to \"lunapark\" in Turkish (Day Out)."
+          },
+          {
+            "pairId": "p_mm_g7_e_74_2",
+            "leftText": "roller coaster",
+            "rightText": "hız treni",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Day Out",
+            "explanation": "\"roller coaster\" translates to \"hız treni\" in Turkish (Day Out)."
+          },
+          {
+            "pairId": "p_mm_g7_e_74_3",
+            "leftText": "aquarium",
+            "rightText": "akvaryum",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Day Out",
+            "explanation": "\"aquarium\" translates to \"akvaryum\" in Turkish (Day Out)."
+          },
+          {
+            "pairId": "p_mm_g7_e_74_4",
+            "leftText": "ticket",
+            "rightText": "bilet",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Day Out",
+            "explanation": "\"ticket\" translates to \"bilet\" in Turkish (Day Out)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_75",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Teen World",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_75_1",
+            "leftText": "stylish",
+            "rightText": "şık, tarz",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Teen World",
+            "explanation": "\"stylish\" translates to \"şık, tarz\" in Turkish (Teen World)."
+          },
+          {
+            "pairId": "p_mm_g7_e_75_2",
+            "leftText": "friendly",
+            "rightText": "arkadaş canlısı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Teen World",
+            "explanation": "\"friendly\" translates to \"arkadaş canlısı\" in Turkish (Teen World)."
+          },
+          {
+            "pairId": "p_mm_g7_e_75_3",
+            "leftText": "casual",
+            "rightText": "rahat günlük giyim",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Teen World",
+            "explanation": "\"casual\" translates to \"rahat günlük giyim\" in Turkish (Teen World)."
+          },
+          {
+            "pairId": "p_mm_g7_e_75_4",
+            "leftText": "active",
+            "rightText": "hareketli",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Teen World",
+            "explanation": "\"active\" translates to \"hareketli\" in Turkish (Teen World)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_76",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Wild & Dangerous",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_76_1",
+            "leftText": "venomous",
+            "rightText": "zehirli",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Wild & Dangerous",
+            "explanation": "\"venomous\" translates to \"zehirli\" in Turkish (Wild & Dangerous)."
+          },
+          {
+            "pairId": "p_mm_g7_e_76_2",
+            "leftText": "sting",
+            "rightText": "sokmak",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Wild & Dangerous",
+            "explanation": "\"sting\" translates to \"sokmak\" in Turkish (Wild & Dangerous)."
+          },
+          {
+            "pairId": "p_mm_g7_e_76_3",
+            "leftText": "predator",
+            "rightText": "yırtıcı hayvan",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Wild & Dangerous",
+            "explanation": "\"predator\" translates to \"yırtıcı hayvan\" in Turkish (Wild & Dangerous)."
+          },
+          {
+            "pairId": "p_mm_g7_e_76_4",
+            "leftText": "wilderness",
+            "rightText": "vahşi doğa",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Wild & Dangerous",
+            "explanation": "\"wilderness\" translates to \"vahşi doğa\" in Turkish (Wild & Dangerous)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_77",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Daily School Life",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_77_1",
+            "leftText": "timetable",
+            "rightText": "ders programı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Daily School Life",
+            "explanation": "\"timetable\" translates to \"ders programı\" in Turkish (Daily School Life)."
+          },
+          {
+            "pairId": "p_mm_g7_e_77_2",
+            "leftText": "laboratory",
+            "rightText": "laboratuvar",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Daily School Life",
+            "explanation": "\"laboratory\" translates to \"laboratuvar\" in Turkish (Daily School Life)."
+          },
+          {
+            "pairId": "p_mm_g7_e_77_3",
+            "leftText": "dictionary",
+            "rightText": "sözlük",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Daily School Life",
+            "explanation": "\"dictionary\" translates to \"sözlük\" in Turkish (Daily School Life)."
+          },
+          {
+            "pairId": "p_mm_g7_e_77_4",
+            "leftText": "classmate",
+            "rightText": "sınıf arkadaşı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Daily School Life",
+            "explanation": "\"classmate\" translates to \"sınıf arkadaşı\" in Turkish (Daily School Life)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_78",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Weather & Seasons",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_78_1",
+            "leftText": "sunny",
+            "rightText": "güneşli",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Weather & Seasons",
+            "explanation": "\"sunny\" translates to \"güneşli\" in Turkish (Weather & Seasons)."
+          },
+          {
+            "pairId": "p_mm_g7_e_78_2",
+            "leftText": "rainy",
+            "rightText": "yağmurlu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Weather & Seasons",
+            "explanation": "\"rainy\" translates to \"yağmurlu\" in Turkish (Weather & Seasons)."
+          },
+          {
+            "pairId": "p_mm_g7_e_78_3",
+            "leftText": "stormy",
+            "rightText": "fırtınalı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Weather & Seasons",
+            "explanation": "\"stormy\" translates to \"fırtınalı\" in Turkish (Weather & Seasons)."
+          },
+          {
+            "pairId": "p_mm_g7_e_78_4",
+            "leftText": "freezing",
+            "rightText": "dondurucu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Weather & Seasons",
+            "explanation": "\"freezing\" translates to \"dondurucu\" in Turkish (Weather & Seasons)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_79",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Hobbies & Leisure",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_79_1",
+            "leftText": "painting",
+            "rightText": "resim yapma",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Hobbies & Leisure",
+            "explanation": "\"painting\" translates to \"resim yapma\" in Turkish (Hobbies & Leisure)."
+          },
+          {
+            "pairId": "p_mm_g7_e_79_2",
+            "leftText": "pottery",
+            "rightText": "çömlekçilik",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Hobbies & Leisure",
+            "explanation": "\"pottery\" translates to \"çömlekçilik\" in Turkish (Hobbies & Leisure)."
+          },
+          {
+            "pairId": "p_mm_g7_e_79_3",
+            "leftText": "gardening",
+            "rightText": "bahçe işleri",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Hobbies & Leisure",
+            "explanation": "\"gardening\" translates to \"bahçe işleri\" in Turkish (Hobbies & Leisure)."
+          },
+          {
+            "pairId": "p_mm_g7_e_79_4",
+            "leftText": "cycling",
+            "rightText": "bisiklete binme",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Hobbies & Leisure",
+            "explanation": "\"cycling\" translates to \"bisiklete binme\" in Turkish (Hobbies & Leisure)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_e_80",
+        "grade": "grade-7",
+        "difficulty": "easy",
+        "mode": "word_definition",
+        "topic": "Appearance Traits",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_e_80_1",
+            "leftText": "outgoing",
+            "rightText": "friendly and socially energetic",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Appearance Traits",
+            "explanation": "\"outgoing\": friendly and socially energetic (Appearance Traits)."
+          },
+          {
+            "pairId": "p_mm_g7_e_80_2",
+            "leftText": "shy",
+            "rightText": "nervous around unfamiliar people",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Appearance Traits",
+            "explanation": "\"shy\": nervous around unfamiliar people (Appearance Traits)."
+          },
+          {
+            "pairId": "p_mm_g7_e_80_3",
+            "leftText": "punctual",
+            "rightText": "never late for an appointment",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Appearance Traits",
+            "explanation": "\"punctual\": never late for an appointment (Appearance Traits)."
+          },
+          {
+            "pairId": "p_mm_g7_e_80_4",
+            "leftText": "clumsy",
+            "rightText": "dropping items accidentally",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "easy",
+            "topic": "Appearance Traits",
+            "explanation": "\"clumsy\": dropping items accidentally (Appearance Traits)."
+          }
+        ]
       }
     ],
     "medium": [
@@ -4921,6 +6874,2766 @@ export const MEMORY_MATCH_BANK: MemoryMatchBank = {
           }
         ],
         "contentVersion": 1
+      },
+      {
+        "id": "mm_g7_m_41",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Appearance & Personality",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_41_1",
+            "leftText": "stubborn",
+            "rightText": "inatçı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Appearance & Personality",
+            "explanation": "\"stubborn\" translates to \"inatçı\" in Turkish (Appearance & Personality)."
+          },
+          {
+            "pairId": "p_mm_g7_m_41_2",
+            "leftText": "outgoing",
+            "rightText": "canayakın",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Appearance & Personality",
+            "explanation": "\"outgoing\" translates to \"canayakın\" in Turkish (Appearance & Personality)."
+          },
+          {
+            "pairId": "p_mm_g7_m_41_3",
+            "leftText": "generous",
+            "rightText": "cömert",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Appearance & Personality",
+            "explanation": "\"generous\" translates to \"cömert\" in Turkish (Appearance & Personality)."
+          },
+          {
+            "pairId": "p_mm_g7_m_41_4",
+            "leftText": "punctual",
+            "rightText": "dakik",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Appearance & Personality",
+            "explanation": "\"punctual\" translates to \"dakik\" in Turkish (Appearance & Personality)."
+          },
+          {
+            "pairId": "p_mm_g7_m_41_5",
+            "leftText": "clumsy",
+            "rightText": "sakar",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Appearance & Personality",
+            "explanation": "\"clumsy\" translates to \"sakar\" in Turkish (Appearance & Personality)."
+          },
+          {
+            "pairId": "p_mm_g7_m_41_6",
+            "leftText": "well-built",
+            "rightText": "yapılı, kaslı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Appearance & Personality",
+            "explanation": "\"well-built\" translates to \"yapılı, kaslı\" in Turkish (Appearance & Personality)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_42",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_definition",
+        "topic": "Appearance & Personality",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_42_1",
+            "leftText": "stubborn",
+            "rightText": "refusing to change one's mind",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Appearance & Personality",
+            "explanation": "\"stubborn\": refusing to change one's mind (Appearance & Personality)."
+          },
+          {
+            "pairId": "p_mm_g7_m_42_2",
+            "leftText": "outgoing",
+            "rightText": "friendly and confident in groups",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Appearance & Personality",
+            "explanation": "\"outgoing\": friendly and confident in groups (Appearance & Personality)."
+          },
+          {
+            "pairId": "p_mm_g7_m_42_3",
+            "leftText": "generous",
+            "rightText": "willing to share possessions",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Appearance & Personality",
+            "explanation": "\"generous\": willing to share possessions (Appearance & Personality)."
+          },
+          {
+            "pairId": "p_mm_g7_m_42_4",
+            "leftText": "punctual",
+            "rightText": "arriving precisely on schedule",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Appearance & Personality",
+            "explanation": "\"punctual\": arriving precisely on schedule (Appearance & Personality)."
+          },
+          {
+            "pairId": "p_mm_g7_m_42_5",
+            "leftText": "clumsy",
+            "rightText": "moving awkwardly and dropping things",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Appearance & Personality",
+            "explanation": "\"clumsy\": moving awkwardly and dropping things (Appearance & Personality)."
+          },
+          {
+            "pairId": "p_mm_g7_m_42_6",
+            "leftText": "well-built",
+            "rightText": "having a strong athletic body",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Appearance & Personality",
+            "explanation": "\"well-built\": having a strong athletic body (Appearance & Personality)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_43",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Sports & Contests",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_43_1",
+            "leftText": "spectator",
+            "rightText": "stadyum seyircisi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Sports & Contests",
+            "explanation": "\"spectator\" translates to \"stadyum seyircisi\" in Turkish (Sports & Contests)."
+          },
+          {
+            "pairId": "p_mm_g7_m_43_2",
+            "leftText": "referee",
+            "rightText": "maç hakemi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Sports & Contests",
+            "explanation": "\"referee\" translates to \"maç hakemi\" in Turkish (Sports & Contests)."
+          },
+          {
+            "pairId": "p_mm_g7_m_43_3",
+            "leftText": "archery",
+            "rightText": "okçuluk sporu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Sports & Contests",
+            "explanation": "\"archery\" translates to \"okçuluk sporu\" in Turkish (Sports & Contests)."
+          },
+          {
+            "pairId": "p_mm_g7_m_43_4",
+            "leftText": "equipment",
+            "rightText": "spor malzemesi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Sports & Contests",
+            "explanation": "\"equipment\" translates to \"spor malzemesi\" in Turkish (Sports & Contests)."
+          },
+          {
+            "pairId": "p_mm_g7_m_43_5",
+            "leftText": "gold medal",
+            "rightText": "altın madalya",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Sports & Contests",
+            "explanation": "\"gold medal\" translates to \"altın madalya\" in Turkish (Sports & Contests)."
+          },
+          {
+            "pairId": "p_mm_g7_m_43_6",
+            "leftText": "coach",
+            "rightText": "antrenör",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Sports & Contests",
+            "explanation": "\"coach\" translates to \"antrenör\" in Turkish (Sports & Contests)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_44",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_definition",
+        "topic": "Sports & Contests",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_44_1",
+            "leftText": "spectator",
+            "rightText": "a person viewing a match",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Sports & Contests",
+            "explanation": "\"spectator\": a person viewing a match (Sports & Contests)."
+          },
+          {
+            "pairId": "p_mm_g7_m_44_2",
+            "leftText": "referee",
+            "rightText": "official in charge of sports rules",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Sports & Contests",
+            "explanation": "\"referee\": official in charge of sports rules (Sports & Contests)."
+          },
+          {
+            "pairId": "p_mm_g7_m_44_3",
+            "leftText": "archery",
+            "rightText": "shooting arrows at bullseyes",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Sports & Contests",
+            "explanation": "\"archery\": shooting arrows at bullseyes (Sports & Contests)."
+          },
+          {
+            "pairId": "p_mm_g7_m_44_4",
+            "leftText": "equipment",
+            "rightText": "necessary gear for activities",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Sports & Contests",
+            "explanation": "\"equipment\": necessary gear for activities (Sports & Contests)."
+          },
+          {
+            "pairId": "p_mm_g7_m_44_5",
+            "leftText": "gold medal",
+            "rightText": "prize for first place winner",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Sports & Contests",
+            "explanation": "\"gold medal\": prize for first place winner (Sports & Contests)."
+          },
+          {
+            "pairId": "p_mm_g7_m_44_6",
+            "leftText": "coach",
+            "rightText": "person training sports athletes",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Sports & Contests",
+            "explanation": "\"coach\": person training sports athletes (Sports & Contests)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_45",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Biographies & Milestones",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_45_1",
+            "leftText": "graduate",
+            "rightText": "üniversiteden mezun olmak",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Biographies & Milestones",
+            "explanation": "\"graduate\" translates to \"üniversiteden mezun olmak\" in Turkish (Biographies & Milestones)."
+          },
+          {
+            "pairId": "p_mm_g7_m_45_2",
+            "leftText": "invent",
+            "rightText": "yeni aygıt icat etmek",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Biographies & Milestones",
+            "explanation": "\"invent\" translates to \"yeni aygıt icat etmek\" in Turkish (Biographies & Milestones)."
+          },
+          {
+            "pairId": "p_mm_g7_m_45_3",
+            "leftText": "discover",
+            "rightText": "keşif yapmak",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Biographies & Milestones",
+            "explanation": "\"discover\" translates to \"keşif yapmak\" in Turkish (Biographies & Milestones)."
+          },
+          {
+            "pairId": "p_mm_g7_m_45_4",
+            "leftText": "career",
+            "rightText": "meslek hayatı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Biographies & Milestones",
+            "explanation": "\"career\" translates to \"meslek hayatı\" in Turkish (Biographies & Milestones)."
+          },
+          {
+            "pairId": "p_mm_g7_m_45_5",
+            "leftText": "achievement",
+            "rightText": "büyük başarı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Biographies & Milestones",
+            "explanation": "\"achievement\" translates to \"büyük başarı\" in Turkish (Biographies & Milestones)."
+          },
+          {
+            "pairId": "p_mm_g7_m_45_6",
+            "leftText": "scholarship",
+            "rightText": "öğrenim bursu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Biographies & Milestones",
+            "explanation": "\"scholarship\" translates to \"öğrenim bursu\" in Turkish (Biographies & Milestones)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_46",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Wild Animals & Habitats",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_46_1",
+            "leftText": "carnivore",
+            "rightText": "etçil hayvan",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Wild Animals & Habitats",
+            "explanation": "\"carnivore\" translates to \"etçil hayvan\" in Turkish (Wild Animals & Habitats)."
+          },
+          {
+            "pairId": "p_mm_g7_m_46_2",
+            "leftText": "herbivore",
+            "rightText": "otçul hayvan",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Wild Animals & Habitats",
+            "explanation": "\"herbivore\" translates to \"otçul hayvan\" in Turkish (Wild Animals & Habitats)."
+          },
+          {
+            "pairId": "p_mm_g7_m_46_3",
+            "leftText": "predator",
+            "rightText": "avcı yırtıcı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Wild Animals & Habitats",
+            "explanation": "\"predator\" translates to \"avcı yırtıcı\" in Turkish (Wild Animals & Habitats)."
+          },
+          {
+            "pairId": "p_mm_g7_m_46_4",
+            "leftText": "prey",
+            "rightText": "avlanan canlı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Wild Animals & Habitats",
+            "explanation": "\"prey\" translates to \"avlanan canlı\" in Turkish (Wild Animals & Habitats)."
+          },
+          {
+            "pairId": "p_mm_g7_m_46_5",
+            "leftText": "habitat",
+            "rightText": "doğal yaşam alanı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Wild Animals & Habitats",
+            "explanation": "\"habitat\" translates to \"doğal yaşam alanı\" in Turkish (Wild Animals & Habitats)."
+          },
+          {
+            "pairId": "p_mm_g7_m_46_6",
+            "leftText": "extinct",
+            "rightText": "soyu tükenmiş",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Wild Animals & Habitats",
+            "explanation": "\"extinct\" translates to \"soyu tükenmiş\" in Turkish (Wild Animals & Habitats)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_47",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_definition",
+        "topic": "Wild Animals & Habitats",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_47_1",
+            "leftText": "carnivore",
+            "rightText": "animal feeding solely on meat",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Wild Animals & Habitats",
+            "explanation": "\"carnivore\": animal feeding solely on meat (Wild Animals & Habitats)."
+          },
+          {
+            "pairId": "p_mm_g7_m_47_2",
+            "leftText": "herbivore",
+            "rightText": "animal feeding solely on plants",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Wild Animals & Habitats",
+            "explanation": "\"herbivore\": animal feeding solely on plants (Wild Animals & Habitats)."
+          },
+          {
+            "pairId": "p_mm_g7_m_47_3",
+            "leftText": "predator",
+            "rightText": "animal that hunts other wildlife",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Wild Animals & Habitats",
+            "explanation": "\"predator\": animal that hunts other wildlife (Wild Animals & Habitats)."
+          },
+          {
+            "pairId": "p_mm_g7_m_47_4",
+            "leftText": "prey",
+            "rightText": "animal targeted by wild hunters",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Wild Animals & Habitats",
+            "explanation": "\"prey\": animal targeted by wild hunters (Wild Animals & Habitats)."
+          },
+          {
+            "pairId": "p_mm_g7_m_47_5",
+            "leftText": "habitat",
+            "rightText": "natural living environment",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Wild Animals & Habitats",
+            "explanation": "\"habitat\": natural living environment (Wild Animals & Habitats)."
+          },
+          {
+            "pairId": "p_mm_g7_m_47_6",
+            "leftText": "extinct",
+            "rightText": "no longer having living specimens",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Wild Animals & Habitats",
+            "explanation": "\"extinct\": no longer having living specimens (Wild Animals & Habitats)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_48",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Television & Media",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_48_1",
+            "leftText": "documentary",
+            "rightText": "bilgilendirici belgesel",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Television & Media",
+            "explanation": "\"documentary\" translates to \"bilgilendirici belgesel\" in Turkish (Television & Media)."
+          },
+          {
+            "pairId": "p_mm_g7_m_48_2",
+            "leftText": "sitcom",
+            "rightText": "durum komedisi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Television & Media",
+            "explanation": "\"sitcom\" translates to \"durum komedisi\" in Turkish (Television & Media)."
+          },
+          {
+            "pairId": "p_mm_g7_m_48_3",
+            "leftText": "commercial",
+            "rightText": "televizyon reklamı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Television & Media",
+            "explanation": "\"commercial\" translates to \"televizyon reklamı\" in Turkish (Television & Media)."
+          },
+          {
+            "pairId": "p_mm_g7_m_48_4",
+            "leftText": "audience",
+            "rightText": "izleyici topluluğu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Television & Media",
+            "explanation": "\"audience\" translates to \"izleyici topluluğu\" in Turkish (Television & Media)."
+          },
+          {
+            "pairId": "p_mm_g7_m_48_5",
+            "leftText": "director",
+            "rightText": "film yönetmeni",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Television & Media",
+            "explanation": "\"director\" translates to \"film yönetmeni\" in Turkish (Television & Media)."
+          },
+          {
+            "pairId": "p_mm_g7_m_48_6",
+            "leftText": "episode",
+            "rightText": "dizi bölümü",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Television & Media",
+            "explanation": "\"episode\" translates to \"dizi bölümü\" in Turkish (Television & Media)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_49",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Celebrations & Festivals",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_49_1",
+            "leftText": "invitation",
+            "rightText": "davet mektubu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Celebrations & Festivals",
+            "explanation": "\"invitation\" translates to \"davet mektubu\" in Turkish (Celebrations & Festivals)."
+          },
+          {
+            "pairId": "p_mm_g7_m_49_2",
+            "leftText": "anniversary",
+            "rightText": "kutlama yıl dönümü",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Celebrations & Festivals",
+            "explanation": "\"anniversary\" translates to \"kutlama yıl dönümü\" in Turkish (Celebrations & Festivals)."
+          },
+          {
+            "pairId": "p_mm_g7_m_49_3",
+            "leftText": "fireworks",
+            "rightText": "gökyüzü havai fişekleri",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Celebrations & Festivals",
+            "explanation": "\"fireworks\" translates to \"gökyüzü havai fişekleri\" in Turkish (Celebrations & Festivals)."
+          },
+          {
+            "pairId": "p_mm_g7_m_49_4",
+            "leftText": "wrapping paper",
+            "rightText": "hediye kaplama kağıdı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Celebrations & Festivals",
+            "explanation": "\"wrapping paper\" translates to \"hediye kaplama kağıdı\" in Turkish (Celebrations & Festivals)."
+          },
+          {
+            "pairId": "p_mm_g7_m_49_5",
+            "leftText": "guest",
+            "rightText": "davetli misafir",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Celebrations & Festivals",
+            "explanation": "\"guest\" translates to \"davetli misafir\" in Turkish (Celebrations & Festivals)."
+          },
+          {
+            "pairId": "p_mm_g7_m_49_6",
+            "leftText": "celebrate",
+            "rightText": "şenlikle kutlamak",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Celebrations & Festivals",
+            "explanation": "\"celebrate\" translates to \"şenlikle kutlamak\" in Turkish (Celebrations & Festivals)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_50",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Dreams & Future",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_50_1",
+            "leftText": "fortune teller",
+            "rightText": "gelecek falcısı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Dreams & Future",
+            "explanation": "\"fortune teller\" translates to \"gelecek falcısı\" in Turkish (Dreams & Future)."
+          },
+          {
+            "pairId": "p_mm_g7_m_50_2",
+            "leftText": "peaceful",
+            "rightText": "huzur dolu, savaşsız",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Dreams & Future",
+            "explanation": "\"peaceful\" translates to \"huzur dolu, savaşsız\" in Turkish (Dreams & Future)."
+          },
+          {
+            "pairId": "p_mm_g7_m_50_3",
+            "leftText": "space voyage",
+            "rightText": "gezegenler arası yolculuk",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Dreams & Future",
+            "explanation": "\"space voyage\" translates to \"gezegenler arası yolculuk\" in Turkish (Dreams & Future)."
+          },
+          {
+            "pairId": "p_mm_g7_m_50_4",
+            "leftText": "predict",
+            "rightText": "geleceği öngörmek",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Dreams & Future",
+            "explanation": "\"predict\" translates to \"geleceği öngörmek\" in Turkish (Dreams & Future)."
+          },
+          {
+            "pairId": "p_mm_g7_m_50_5",
+            "leftText": "career goal",
+            "rightText": "mesleki hedef",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Dreams & Future",
+            "explanation": "\"career goal\" translates to \"mesleki hedef\" in Turkish (Dreams & Future)."
+          },
+          {
+            "pairId": "p_mm_g7_m_50_6",
+            "leftText": "ambition",
+            "rightText": "büyük arzu, emel",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Dreams & Future",
+            "explanation": "\"ambition\" translates to \"büyük arzu, emel\" in Turkish (Dreams & Future)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_51",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Public Buildings & Services",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_51_1",
+            "leftText": "municipality",
+            "rightText": "belediye başkanlığı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Public Buildings & Services",
+            "explanation": "\"municipality\" translates to \"belediye başkanlığı\" in Turkish (Public Buildings & Services)."
+          },
+          {
+            "pairId": "p_mm_g7_m_51_2",
+            "leftText": "chemist",
+            "rightText": "ilaç eczanesi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Public Buildings & Services",
+            "explanation": "\"chemist\" translates to \"ilaç eczanesi\" in Turkish (Public Buildings & Services)."
+          },
+          {
+            "pairId": "p_mm_g7_m_51_3",
+            "leftText": "bakery",
+            "rightText": "ekmek fırını",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Public Buildings & Services",
+            "explanation": "\"bakery\" translates to \"ekmek fırını\" in Turkish (Public Buildings & Services)."
+          },
+          {
+            "pairId": "p_mm_g7_m_51_4",
+            "leftText": "art gallery",
+            "rightText": "resim heykel galerisi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Public Buildings & Services",
+            "explanation": "\"art gallery\" translates to \"resim heykel galerisi\" in Turkish (Public Buildings & Services)."
+          },
+          {
+            "pairId": "p_mm_g7_m_51_5",
+            "leftText": "fire station",
+            "rightText": "itfaiye merkezi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Public Buildings & Services",
+            "explanation": "\"fire station\" translates to \"itfaiye merkezi\" in Turkish (Public Buildings & Services)."
+          },
+          {
+            "pairId": "p_mm_g7_m_51_6",
+            "leftText": "courthouse",
+            "rightText": "adliye sarayı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Public Buildings & Services",
+            "explanation": "\"courthouse\" translates to \"adliye sarayı\" in Turkish (Public Buildings & Services)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_52",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_definition",
+        "topic": "Public Buildings & Services",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_52_1",
+            "leftText": "municipality",
+            "rightText": "local civic government offices",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Public Buildings & Services",
+            "explanation": "\"municipality\": local civic government offices (Public Buildings & Services)."
+          },
+          {
+            "pairId": "p_mm_g7_m_52_2",
+            "leftText": "chemist",
+            "rightText": "shop dispensing medical remedies",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Public Buildings & Services",
+            "explanation": "\"chemist\": shop dispensing medical remedies (Public Buildings & Services)."
+          },
+          {
+            "pairId": "p_mm_g7_m_52_3",
+            "leftText": "bakery",
+            "rightText": "shop preparing and baking bread",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Public Buildings & Services",
+            "explanation": "\"bakery\": shop preparing and baking bread (Public Buildings & Services)."
+          },
+          {
+            "pairId": "p_mm_g7_m_52_4",
+            "leftText": "art gallery",
+            "rightText": "venue exhibiting fine artworks",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Public Buildings & Services",
+            "explanation": "\"art gallery\": venue exhibiting fine artworks (Public Buildings & Services)."
+          },
+          {
+            "pairId": "p_mm_g7_m_52_5",
+            "leftText": "fire station",
+            "rightText": "headquarters for fire trucks",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Public Buildings & Services",
+            "explanation": "\"fire station\": headquarters for fire trucks (Public Buildings & Services)."
+          },
+          {
+            "pairId": "p_mm_g7_m_52_6",
+            "leftText": "courthouse",
+            "rightText": "building where judicial trials occur",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Public Buildings & Services",
+            "explanation": "\"courthouse\": building where judicial trials occur (Public Buildings & Services)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_53",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Environment & Conservation",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_53_1",
+            "leftText": "solar energy",
+            "rightText": "güneş enerjisi paneli",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Environment & Conservation",
+            "explanation": "\"solar energy\" translates to \"güneş enerjisi paneli\" in Turkish (Environment & Conservation)."
+          },
+          {
+            "pairId": "p_mm_g7_m_53_2",
+            "leftText": "recycling bin",
+            "rightText": "geri dönüşüm kutusu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Environment & Conservation",
+            "explanation": "\"recycling bin\" translates to \"geri dönüşüm kutusu\" in Turkish (Environment & Conservation)."
+          },
+          {
+            "pairId": "p_mm_g7_m_53_3",
+            "leftText": "air pollution",
+            "rightText": "hava kirliliği gazları",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Environment & Conservation",
+            "explanation": "\"air pollution\" translates to \"hava kirliliği gazları\" in Turkish (Environment & Conservation)."
+          },
+          {
+            "pairId": "p_mm_g7_m_53_4",
+            "leftText": "deforestation",
+            "rightText": "orman alanlarının yok edilmesi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Environment & Conservation",
+            "explanation": "\"deforestation\" translates to \"orman alanlarının yok edilmesi\" in Turkish (Environment & Conservation)."
+          },
+          {
+            "pairId": "p_mm_g7_m_53_5",
+            "leftText": "ozone layer",
+            "rightText": "stratosfer ozon tabakası",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Environment & Conservation",
+            "explanation": "\"ozone layer\" translates to \"stratosfer ozon tabakası\" in Turkish (Environment & Conservation)."
+          },
+          {
+            "pairId": "p_mm_g7_m_53_6",
+            "leftText": "eco-friendly",
+            "rightText": "doğaya zarar vermeyen",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Environment & Conservation",
+            "explanation": "\"eco-friendly\" translates to \"doğaya zarar vermeyen\" in Turkish (Environment & Conservation)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_54",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_definition",
+        "topic": "Environment & Conservation",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_54_1",
+            "leftText": "solar energy",
+            "rightText": "electricity produced from sunlight",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Environment & Conservation",
+            "explanation": "\"solar energy\": electricity produced from sunlight (Environment & Conservation)."
+          },
+          {
+            "pairId": "p_mm_g7_m_54_2",
+            "leftText": "recycling bin",
+            "rightText": "container separating reusable waste",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Environment & Conservation",
+            "explanation": "\"recycling bin\": container separating reusable waste (Environment & Conservation)."
+          },
+          {
+            "pairId": "p_mm_g7_m_54_3",
+            "leftText": "air pollution",
+            "rightText": "toxic particulates in atmospheric air",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Environment & Conservation",
+            "explanation": "\"air pollution\": toxic particulates in atmospheric air (Environment & Conservation)."
+          },
+          {
+            "pairId": "p_mm_g7_m_54_4",
+            "leftText": "deforestation",
+            "rightText": "destruction of primary forests",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Environment & Conservation",
+            "explanation": "\"deforestation\": destruction of primary forests (Environment & Conservation)."
+          },
+          {
+            "pairId": "p_mm_g7_m_54_5",
+            "leftText": "ozone layer",
+            "rightText": "stratospheric layer filtering UV rays",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Environment & Conservation",
+            "explanation": "\"ozone layer\": stratospheric layer filtering UV rays (Environment & Conservation)."
+          },
+          {
+            "pairId": "p_mm_g7_m_54_6",
+            "leftText": "eco-friendly",
+            "rightText": "designed not to harm ecosystems",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Environment & Conservation",
+            "explanation": "\"eco-friendly\": designed not to harm ecosystems (Environment & Conservation)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_55",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Planets & Space Exploration",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_55_1",
+            "leftText": "satellite",
+            "rightText": "yapay veya doğal uydu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Planets & Space Exploration",
+            "explanation": "\"satellite\" translates to \"yapay veya doğal uydu\" in Turkish (Planets & Space Exploration)."
+          },
+          {
+            "pairId": "p_mm_g7_m_55_2",
+            "leftText": "planetary orbit",
+            "rightText": "eliptik gezegen yörüngesi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Planets & Space Exploration",
+            "explanation": "\"planetary orbit\" translates to \"eliptik gezegen yörüngesi\" in Turkish (Planets & Space Exploration)."
+          },
+          {
+            "pairId": "p_mm_g7_m_55_3",
+            "leftText": "solar system",
+            "rightText": "güneş gezegen sistemi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Planets & Space Exploration",
+            "explanation": "\"solar system\" translates to \"güneş gezegen sistemi\" in Turkish (Planets & Space Exploration)."
+          },
+          {
+            "pairId": "p_mm_g7_m_55_4",
+            "leftText": "astronaut",
+            "rightText": "uzay yürüyüşü astronotu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Planets & Space Exploration",
+            "explanation": "\"astronaut\" translates to \"uzay yürüyüşü astronotu\" in Turkish (Planets & Space Exploration)."
+          },
+          {
+            "pairId": "p_mm_g7_m_55_5",
+            "leftText": "telescope",
+            "rightText": "gözlem teleskobu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Planets & Space Exploration",
+            "explanation": "\"telescope\" translates to \"gözlem teleskobu\" in Turkish (Planets & Space Exploration)."
+          },
+          {
+            "pairId": "p_mm_g7_m_55_6",
+            "leftText": "surface gravity",
+            "rightText": "yüzey yer çekimi kuvveti",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Planets & Space Exploration",
+            "explanation": "\"surface gravity\" translates to \"yüzey yer çekimi kuvveti\" in Turkish (Planets & Space Exploration)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_56",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_definition",
+        "topic": "Planets & Space Exploration",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_56_1",
+            "leftText": "satellite",
+            "rightText": "body orbiting a larger planet",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Planets & Space Exploration",
+            "explanation": "\"satellite\": body orbiting a larger planet (Planets & Space Exploration)."
+          },
+          {
+            "pairId": "p_mm_g7_m_56_2",
+            "leftText": "planetary orbit",
+            "rightText": "gravitational path around a star",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Planets & Space Exploration",
+            "explanation": "\"planetary orbit\": gravitational path around a star (Planets & Space Exploration)."
+          },
+          {
+            "pairId": "p_mm_g7_m_56_3",
+            "leftText": "solar system",
+            "rightText": "the Sun and all orbiting bodies",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Planets & Space Exploration",
+            "explanation": "\"solar system\": the Sun and all orbiting bodies (Planets & Space Exploration)."
+          },
+          {
+            "pairId": "p_mm_g7_m_56_4",
+            "leftText": "astronaut",
+            "rightText": "space explorer riding spacecraft",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Planets & Space Exploration",
+            "explanation": "\"astronaut\": space explorer riding spacecraft (Planets & Space Exploration)."
+          },
+          {
+            "pairId": "p_mm_g7_m_56_5",
+            "leftText": "telescope",
+            "rightText": "instrument magnifying distant stars",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Planets & Space Exploration",
+            "explanation": "\"telescope\": instrument magnifying distant stars (Planets & Space Exploration)."
+          },
+          {
+            "pairId": "p_mm_g7_m_56_6",
+            "leftText": "surface gravity",
+            "rightText": "attractive force pulling objects down",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Planets & Space Exploration",
+            "explanation": "\"surface gravity\": attractive force pulling objects down (Planets & Space Exploration)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_57",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Life Online & Cybersecurity",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_57_1",
+            "leftText": "secret password",
+            "rightText": "gizli hesap şifresi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Life Online & Cybersecurity",
+            "explanation": "\"secret password\" translates to \"gizli hesap şifresi\" in Turkish (Life Online & Cybersecurity)."
+          },
+          {
+            "pairId": "p_mm_g7_m_57_2",
+            "leftText": "antivirus software",
+            "rightText": "virüs koruma yazılımı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Life Online & Cybersecurity",
+            "explanation": "\"antivirus software\" translates to \"virüs koruma yazılımı\" in Turkish (Life Online & Cybersecurity)."
+          },
+          {
+            "pairId": "p_mm_g7_m_57_3",
+            "leftText": "downloading",
+            "rightText": "internetten dosya indirme",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Life Online & Cybersecurity",
+            "explanation": "\"downloading\" translates to \"internetten dosya indirme\" in Turkish (Life Online & Cybersecurity)."
+          },
+          {
+            "pairId": "p_mm_g7_m_57_4",
+            "leftText": "hacker",
+            "rightText": "ağ korsanı siber suçlu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Life Online & Cybersecurity",
+            "explanation": "\"hacker\" translates to \"ağ korsanı siber suçlu\" in Turkish (Life Online & Cybersecurity)."
+          },
+          {
+            "pairId": "p_mm_g7_m_57_5",
+            "leftText": "firewall",
+            "rightText": "güvenlik duvarı kalkanı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Life Online & Cybersecurity",
+            "explanation": "\"firewall\" translates to \"güvenlik duvarı kalkanı\" in Turkish (Life Online & Cybersecurity)."
+          },
+          {
+            "pairId": "p_mm_g7_m_57_6",
+            "leftText": "digital footprint",
+            "rightText": "dijital ayak izi verisi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Life Online & Cybersecurity",
+            "explanation": "\"digital footprint\" translates to \"dijital ayak izi verisi\" in Turkish (Life Online & Cybersecurity)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_58",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_definition",
+        "topic": "Life Online & Cybersecurity",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_58_1",
+            "leftText": "secret password",
+            "rightText": "confidential code authenticating logins",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Life Online & Cybersecurity",
+            "explanation": "\"secret password\": confidential code authenticating logins (Life Online & Cybersecurity)."
+          },
+          {
+            "pairId": "p_mm_g7_m_58_2",
+            "leftText": "antivirus software",
+            "rightText": "program eliminating computer viruses",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Life Online & Cybersecurity",
+            "explanation": "\"antivirus software\": program eliminating computer viruses (Life Online & Cybersecurity)."
+          },
+          {
+            "pairId": "p_mm_g7_m_58_3",
+            "leftText": "downloading",
+            "rightText": "receiving files from remote servers",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Life Online & Cybersecurity",
+            "explanation": "\"downloading\": receiving files from remote servers (Life Online & Cybersecurity)."
+          },
+          {
+            "pairId": "p_mm_g7_m_58_4",
+            "leftText": "hacker",
+            "rightText": "unauthorized computer system intruder",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Life Online & Cybersecurity",
+            "explanation": "\"hacker\": unauthorized computer system intruder (Life Online & Cybersecurity)."
+          },
+          {
+            "pairId": "p_mm_g7_m_58_5",
+            "leftText": "firewall",
+            "rightText": "network security packet filter",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Life Online & Cybersecurity",
+            "explanation": "\"firewall\": network security packet filter (Life Online & Cybersecurity)."
+          },
+          {
+            "pairId": "p_mm_g7_m_58_6",
+            "leftText": "digital footprint",
+            "rightText": "data trail left by online activities",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Life Online & Cybersecurity",
+            "explanation": "\"digital footprint\": data trail left by online activities (Life Online & Cybersecurity)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_59",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "In and Out of Danger",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_59_1",
+            "leftText": "first aid kit",
+            "rightText": "acil ilk yardım seti",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "In and Out of Danger",
+            "explanation": "\"first aid kit\" translates to \"acil ilk yardım seti\" in Turkish (In and Out of Danger)."
+          },
+          {
+            "pairId": "p_mm_g7_m_59_2",
+            "leftText": "paramedic",
+            "rightText": "acil sağlık teknisyeni",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "In and Out of Danger",
+            "explanation": "\"paramedic\" translates to \"acil sağlık teknisyeni\" in Turkish (In and Out of Danger)."
+          },
+          {
+            "pairId": "p_mm_g7_m_59_3",
+            "leftText": "emergency siren",
+            "rightText": "canavar düdüğü sireni",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "In and Out of Danger",
+            "explanation": "\"emergency siren\" translates to \"canavar düdüğü sireni\" in Turkish (In and Out of Danger)."
+          },
+          {
+            "pairId": "p_mm_g7_m_59_4",
+            "leftText": "safety helmet",
+            "rightText": "koruyucu bisiklet kaskı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "In and Out of Danger",
+            "explanation": "\"safety helmet\" translates to \"koruyucu bisiklet kaskı\" in Turkish (In and Out of Danger)."
+          },
+          {
+            "pairId": "p_mm_g7_m_59_5",
+            "leftText": "reflective vest",
+            "rightText": "fosforlu reflektör yelek",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "In and Out of Danger",
+            "explanation": "\"reflective vest\" translates to \"fosforlu reflektör yelek\" in Turkish (In and Out of Danger)."
+          },
+          {
+            "pairId": "p_mm_g7_m_59_6",
+            "leftText": "fracture splint",
+            "rightText": "kırık tespit ateli",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "In and Out of Danger",
+            "explanation": "\"fracture splint\" translates to \"kırık tespit ateli\" in Turkish (In and Out of Danger)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_60",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_definition",
+        "topic": "In and Out of Danger",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_60_1",
+            "leftText": "first aid kit",
+            "rightText": "supplies for initial injury care",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "In and Out of Danger",
+            "explanation": "\"first aid kit\": supplies for initial injury care (In and Out of Danger)."
+          },
+          {
+            "pairId": "p_mm_g7_m_60_2",
+            "leftText": "paramedic",
+            "rightText": "emergency healthcare responder",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "In and Out of Danger",
+            "explanation": "\"paramedic\": emergency healthcare responder (In and Out of Danger)."
+          },
+          {
+            "pairId": "p_mm_g7_m_60_3",
+            "leftText": "emergency siren",
+            "rightText": "loud auditory alert signal",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "In and Out of Danger",
+            "explanation": "\"emergency siren\": loud auditory alert signal (In and Out of Danger)."
+          },
+          {
+            "pairId": "p_mm_g7_m_60_4",
+            "leftText": "safety helmet",
+            "rightText": "impact-absorbing head protection",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "In and Out of Danger",
+            "explanation": "\"safety helmet\": impact-absorbing head protection (In and Out of Danger)."
+          },
+          {
+            "pairId": "p_mm_g7_m_60_5",
+            "leftText": "reflective vest",
+            "rightText": "garment reflecting vehicle headlights",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "In and Out of Danger",
+            "explanation": "\"reflective vest\": garment reflecting vehicle headlights (In and Out of Danger)."
+          },
+          {
+            "pairId": "p_mm_g7_m_60_6",
+            "leftText": "fracture splint",
+            "rightText": "device immobilizing fractured bones",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "In and Out of Danger",
+            "explanation": "\"fracture splint\": device immobilizing fractured bones (In and Out of Danger)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_61",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Britain & Culture",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_61_1",
+            "leftText": "Big Ben",
+            "rightText": "Londra parlamento saat kulesi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Britain & Culture",
+            "explanation": "\"Big Ben\" translates to \"Londra parlamento saat kulesi\" in Turkish (Britain & Culture)."
+          },
+          {
+            "pairId": "p_mm_g7_m_61_2",
+            "leftText": "Buckingham Palace",
+            "rightText": "İngiliz kraliyet sarayı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Britain & Culture",
+            "explanation": "\"Buckingham Palace\" translates to \"İngiliz kraliyet sarayı\" in Turkish (Britain & Culture)."
+          },
+          {
+            "pairId": "p_mm_g7_m_61_3",
+            "leftText": "River Thames",
+            "rightText": "Londra merkezinden geçen nehir",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Britain & Culture",
+            "explanation": "\"River Thames\" translates to \"Londra merkezinden geçen nehir\" in Turkish (Britain & Culture)."
+          },
+          {
+            "pairId": "p_mm_g7_m_61_4",
+            "leftText": "Tower Bridge",
+            "rightText": "açılır kapanır tarihi köprü",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Britain & Culture",
+            "explanation": "\"Tower Bridge\" translates to \"açılır kapanır tarihi köprü\" in Turkish (Britain & Culture)."
+          },
+          {
+            "pairId": "p_mm_g7_m_61_5",
+            "leftText": "Stonehenge",
+            "rightText": "tarih öncesi dikili taşlar",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Britain & Culture",
+            "explanation": "\"Stonehenge\" translates to \"tarih öncesi dikili taşlar\" in Turkish (Britain & Culture)."
+          },
+          {
+            "pairId": "p_mm_g7_m_61_6",
+            "leftText": "London Underground",
+            "rightText": "metro raylı ulaşım ağı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Britain & Culture",
+            "explanation": "\"London Underground\" translates to \"metro raylı ulaşım ağı\" in Turkish (Britain & Culture)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_62",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_definition",
+        "topic": "Britain & Culture",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_62_1",
+            "leftText": "Big Ben",
+            "rightText": "famed Westminster clock tower",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Britain & Culture",
+            "explanation": "\"Big Ben\": famed Westminster clock tower (Britain & Culture)."
+          },
+          {
+            "pairId": "p_mm_g7_m_62_2",
+            "leftText": "Buckingham Palace",
+            "rightText": "administrative London royal home",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Britain & Culture",
+            "explanation": "\"Buckingham Palace\": administrative London royal home (Britain & Culture)."
+          },
+          {
+            "pairId": "p_mm_g7_m_62_3",
+            "leftText": "River Thames",
+            "rightText": "principal waterway of London",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Britain & Culture",
+            "explanation": "\"River Thames\": principal waterway of London (Britain & Culture)."
+          },
+          {
+            "pairId": "p_mm_g7_m_62_4",
+            "leftText": "Tower Bridge",
+            "rightText": "iconic bascule bridge over Thames",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Britain & Culture",
+            "explanation": "\"Tower Bridge\": iconic bascule bridge over Thames (Britain & Culture)."
+          },
+          {
+            "pairId": "p_mm_g7_m_62_5",
+            "leftText": "Stonehenge",
+            "rightText": "prehistoric megalithic monument",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Britain & Culture",
+            "explanation": "\"Stonehenge\": prehistoric megalithic monument (Britain & Culture)."
+          },
+          {
+            "pairId": "p_mm_g7_m_62_6",
+            "leftText": "London Underground",
+            "rightText": "rapid rail transit beneath London",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Britain & Culture",
+            "explanation": "\"London Underground\": rapid rail transit beneath London (Britain & Culture)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_63",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Nature & Wildlife Adaptations",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_63_1",
+            "leftText": "migration",
+            "rightText": "mevsimlik kuş göçü",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Nature & Wildlife Adaptations",
+            "explanation": "\"migration\" translates to \"mevsimlik kuş göçü\" in Turkish (Nature & Wildlife Adaptations)."
+          },
+          {
+            "pairId": "p_mm_g7_m_63_2",
+            "leftText": "hibernation",
+            "rightText": "kış uykusuna yatma",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Nature & Wildlife Adaptations",
+            "explanation": "\"hibernation\" translates to \"kış uykusuna yatma\" in Turkish (Nature & Wildlife Adaptations)."
+          },
+          {
+            "pairId": "p_mm_g7_m_63_3",
+            "leftText": "camouflage",
+            "rightText": "çevreye uyum kamuflajı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Nature & Wildlife Adaptations",
+            "explanation": "\"camouflage\" translates to \"çevreye uyum kamuflajı\" in Turkish (Nature & Wildlife Adaptations)."
+          },
+          {
+            "pairId": "p_mm_g7_m_63_4",
+            "leftText": "predator",
+            "rightText": "avcı yırtıcı hayvan",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Nature & Wildlife Adaptations",
+            "explanation": "\"predator\" translates to \"avcı yırtıcı hayvan\" in Turkish (Nature & Wildlife Adaptations)."
+          },
+          {
+            "pairId": "p_mm_g7_m_63_5",
+            "leftText": "endangered",
+            "rightText": "nesli tükenme sınırında",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Nature & Wildlife Adaptations",
+            "explanation": "\"endangered\" translates to \"nesli tükenme sınırında\" in Turkish (Nature & Wildlife Adaptations)."
+          },
+          {
+            "pairId": "p_mm_g7_m_63_6",
+            "leftText": "coral reef",
+            "rightText": "deniz mercan resifi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Nature & Wildlife Adaptations",
+            "explanation": "\"coral reef\" translates to \"deniz mercan resifi\" in Turkish (Nature & Wildlife Adaptations)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_64",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_definition",
+        "topic": "Nature & Wildlife Adaptations",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_64_1",
+            "leftText": "migration",
+            "rightText": "seasonal movement of wildlife flocks",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Nature & Wildlife Adaptations",
+            "explanation": "\"migration\": seasonal movement of wildlife flocks (Nature & Wildlife Adaptations)."
+          },
+          {
+            "pairId": "p_mm_g7_m_64_2",
+            "leftText": "hibernation",
+            "rightText": "state of minimal winter metabolism",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Nature & Wildlife Adaptations",
+            "explanation": "\"hibernation\": state of minimal winter metabolism (Nature & Wildlife Adaptations)."
+          },
+          {
+            "pairId": "p_mm_g7_m_64_3",
+            "leftText": "camouflage",
+            "rightText": "blending coloration concealing animals",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Nature & Wildlife Adaptations",
+            "explanation": "\"camouflage\": blending coloration concealing animals (Nature & Wildlife Adaptations)."
+          },
+          {
+            "pairId": "p_mm_g7_m_64_4",
+            "leftText": "predator",
+            "rightText": "animal hunting other creatures",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Nature & Wildlife Adaptations",
+            "explanation": "\"predator\": animal hunting other creatures (Nature & Wildlife Adaptations)."
+          },
+          {
+            "pairId": "p_mm_g7_m_64_5",
+            "leftText": "endangered",
+            "rightText": "species facing imminent extinction risk",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Nature & Wildlife Adaptations",
+            "explanation": "\"endangered\": species facing imminent extinction risk (Nature & Wildlife Adaptations)."
+          },
+          {
+            "pairId": "p_mm_g7_m_64_6",
+            "leftText": "coral reef",
+            "rightText": "calcium-based underwater biomes",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Nature & Wildlife Adaptations",
+            "explanation": "\"coral reef\": calcium-based underwater biomes (Nature & Wildlife Adaptations)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_65",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Sports Disciplines & Rules",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_65_1",
+            "leftText": "hurdles",
+            "rightText": "engelli koşu yarışları",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Sports Disciplines & Rules",
+            "explanation": "\"hurdles\" translates to \"engelli koşu yarışları\" in Turkish (Sports Disciplines & Rules)."
+          },
+          {
+            "pairId": "p_mm_g7_m_65_2",
+            "leftText": "gymnastics",
+            "rightText": "jimnastik hareketleri",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Sports Disciplines & Rules",
+            "explanation": "\"gymnastics\" translates to \"jimnastik hareketleri\" in Turkish (Sports Disciplines & Rules)."
+          },
+          {
+            "pairId": "p_mm_g7_m_65_3",
+            "leftText": "badminton",
+            "rightText": "tüytop raketi oyunu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Sports Disciplines & Rules",
+            "explanation": "\"badminton\" translates to \"tüytop raketi oyunu\" in Turkish (Sports Disciplines & Rules)."
+          },
+          {
+            "pairId": "p_mm_g7_m_65_4",
+            "leftText": "referee",
+            "rightText": "kuralları uygulayan hakem",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Sports Disciplines & Rules",
+            "explanation": "\"referee\" translates to \"kuralları uygulayan hakem\" in Turkish (Sports Disciplines & Rules)."
+          },
+          {
+            "pairId": "p_mm_g7_m_65_5",
+            "leftText": "spectator",
+            "rightText": "müsabaka tribün seyircisi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Sports Disciplines & Rules",
+            "explanation": "\"spectator\" translates to \"müsabaka tribün seyircisi\" in Turkish (Sports Disciplines & Rules)."
+          },
+          {
+            "pairId": "p_mm_g7_m_65_6",
+            "leftText": "tournament",
+            "rightText": "şampiyona turnuvası",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Sports Disciplines & Rules",
+            "explanation": "\"tournament\" translates to \"şampiyona turnuvası\" in Turkish (Sports Disciplines & Rules)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_66",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Technology & Innovation",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_66_1",
+            "leftText": "invention",
+            "rightText": "çığır açan buluş",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Technology & Innovation",
+            "explanation": "\"invention\" translates to \"çığır açan buluş\" in Turkish (Technology & Innovation)."
+          },
+          {
+            "pairId": "p_mm_g7_m_66_2",
+            "leftText": "scientific lab",
+            "rightText": "araştırma laboratuvarı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Technology & Innovation",
+            "explanation": "\"scientific lab\" translates to \"araştırma laboratuvarı\" in Turkish (Technology & Innovation)."
+          },
+          {
+            "pairId": "p_mm_g7_m_66_3",
+            "leftText": "experiment",
+            "rightText": "kontrollü bilim deneyi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Technology & Innovation",
+            "explanation": "\"experiment\" translates to \"kontrollü bilim deneyi\" in Turkish (Technology & Innovation)."
+          },
+          {
+            "pairId": "p_mm_g7_m_66_4",
+            "leftText": "engineer",
+            "rightText": "mühendislik uzmanı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Technology & Innovation",
+            "explanation": "\"engineer\" translates to \"mühendislik uzmanı\" in Turkish (Technology & Innovation)."
+          },
+          {
+            "pairId": "p_mm_g7_m_66_5",
+            "leftText": "patent",
+            "rightText": "resmi buluş belgesi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Technology & Innovation",
+            "explanation": "\"patent\" translates to \"resmi buluş belgesi\" in Turkish (Technology & Innovation)."
+          },
+          {
+            "pairId": "p_mm_g7_m_66_6",
+            "leftText": "battery",
+            "rightText": "yeniden doldurulabilir pil",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Technology & Innovation",
+            "explanation": "\"battery\" translates to \"yeniden doldurulabilir pil\" in Turkish (Technology & Innovation)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_67",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Civic Life & Buildings",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_67_1",
+            "leftText": "city hall",
+            "rightText": "kent belediye binası",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Civic Life & Buildings",
+            "explanation": "\"city hall\" translates to \"kent belediye binası\" in Turkish (Civic Life & Buildings)."
+          },
+          {
+            "pairId": "p_mm_g7_m_67_2",
+            "leftText": "sorting office",
+            "rightText": "posta ayrım merkezi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Civic Life & Buildings",
+            "explanation": "\"sorting office\" translates to \"posta ayrım merkezi\" in Turkish (Civic Life & Buildings)."
+          },
+          {
+            "pairId": "p_mm_g7_m_67_3",
+            "leftText": "police station",
+            "rightText": "polis karakol merkezi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Civic Life & Buildings",
+            "explanation": "\"police station\" translates to \"polis karakol merkezi\" in Turkish (Civic Life & Buildings)."
+          },
+          {
+            "pairId": "p_mm_g7_m_67_4",
+            "leftText": "public library",
+            "rightText": "halka açık kütüphane",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Civic Life & Buildings",
+            "explanation": "\"public library\" translates to \"halka açık kütüphane\" in Turkish (Civic Life & Buildings)."
+          },
+          {
+            "pairId": "p_mm_g7_m_67_5",
+            "leftText": "pharmacy",
+            "rightText": "ilaç sağlayan eczane",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Civic Life & Buildings",
+            "explanation": "\"pharmacy\" translates to \"ilaç sağlayan eczane\" in Turkish (Civic Life & Buildings)."
+          },
+          {
+            "pairId": "p_mm_g7_m_67_6",
+            "leftText": "art gallery",
+            "rightText": "resim sergisi galerisi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Civic Life & Buildings",
+            "explanation": "\"art gallery\" translates to \"resim sergisi galerisi\" in Turkish (Civic Life & Buildings)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_68",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Earth Sciences & Disasters",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_68_1",
+            "leftText": "glacier",
+            "rightText": "vadi buzul kütlesi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Earth Sciences & Disasters",
+            "explanation": "\"glacier\" translates to \"vadi buzul kütlesi\" in Turkish (Earth Sciences & Disasters)."
+          },
+          {
+            "pairId": "p_mm_g7_m_68_2",
+            "leftText": "avalanche",
+            "rightText": "dağ kar çığı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Earth Sciences & Disasters",
+            "explanation": "\"avalanche\" translates to \"dağ kar çığı\" in Turkish (Earth Sciences & Disasters)."
+          },
+          {
+            "pairId": "p_mm_g7_m_68_3",
+            "leftText": "hurricane",
+            "rightText": "okyanus tropikal kasırgası",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Earth Sciences & Disasters",
+            "explanation": "\"hurricane\" translates to \"okyanus tropikal kasırgası\" in Turkish (Earth Sciences & Disasters)."
+          },
+          {
+            "pairId": "p_mm_g7_m_68_4",
+            "leftText": "volcano",
+            "rightText": "lav püskürten yanardağ",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Earth Sciences & Disasters",
+            "explanation": "\"volcano\" translates to \"lav püskürten yanardağ\" in Turkish (Earth Sciences & Disasters)."
+          },
+          {
+            "pairId": "p_mm_g7_m_68_5",
+            "leftText": "flood",
+            "rightText": "şiddetli nehir taşkını",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Earth Sciences & Disasters",
+            "explanation": "\"flood\" translates to \"şiddetli nehir taşkını\" in Turkish (Earth Sciences & Disasters)."
+          },
+          {
+            "pairId": "p_mm_g7_m_68_6",
+            "leftText": "drought",
+            "rightText": "kuraklık ve susuzluk",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Earth Sciences & Disasters",
+            "explanation": "\"drought\" translates to \"kuraklık ve susuzluk\" in Turkish (Earth Sciences & Disasters)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_69",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Feelings & Relationships",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_69_1",
+            "leftText": "supportive",
+            "rightText": "destekleyici ve yardımsever",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Feelings & Relationships",
+            "explanation": "\"supportive\" translates to \"destekleyici ve yardımsever\" in Turkish (Feelings & Relationships)."
+          },
+          {
+            "pairId": "p_mm_g7_m_69_2",
+            "leftText": "trustworthy",
+            "rightText": "güvenilir ve sadık",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Feelings & Relationships",
+            "explanation": "\"trustworthy\" translates to \"güvenilir ve sadık\" in Turkish (Feelings & Relationships)."
+          },
+          {
+            "pairId": "p_mm_g7_m_69_3",
+            "leftText": "generous",
+            "rightText": "eliaçık ve cömert",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Feelings & Relationships",
+            "explanation": "\"generous\" translates to \"eliaçık ve cömert\" in Turkish (Feelings & Relationships)."
+          },
+          {
+            "pairId": "p_mm_g7_m_69_4",
+            "leftText": "sympathetic",
+            "rightText": "halden anlayan sevecen",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Feelings & Relationships",
+            "explanation": "\"sympathetic\" translates to \"halden anlayan sevecen\" in Turkish (Feelings & Relationships)."
+          },
+          {
+            "pairId": "p_mm_g7_m_69_5",
+            "leftText": "patient",
+            "rightText": "sabırlı ve sakin",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Feelings & Relationships",
+            "explanation": "\"patient\" translates to \"sabırlı ve sakin\" in Turkish (Feelings & Relationships)."
+          },
+          {
+            "pairId": "p_mm_g7_m_69_6",
+            "leftText": "cheerful",
+            "rightText": "neşeli ve hayat dolu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Feelings & Relationships",
+            "explanation": "\"cheerful\" translates to \"neşeli ve hayat dolu\" in Turkish (Feelings & Relationships)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_70",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_definition",
+        "topic": "Feelings & Relationships",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_70_1",
+            "leftText": "supportive",
+            "rightText": "giving encouragement and assistance",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Feelings & Relationships",
+            "explanation": "\"supportive\": giving encouragement and assistance (Feelings & Relationships)."
+          },
+          {
+            "pairId": "p_mm_g7_m_70_2",
+            "leftText": "trustworthy",
+            "rightText": "worthy of confidence and faith",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Feelings & Relationships",
+            "explanation": "\"trustworthy\": worthy of confidence and faith (Feelings & Relationships)."
+          },
+          {
+            "pairId": "p_mm_g7_m_70_3",
+            "leftText": "generous",
+            "rightText": "freely sharing resources with peers",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Feelings & Relationships",
+            "explanation": "\"generous\": freely sharing resources with peers (Feelings & Relationships)."
+          },
+          {
+            "pairId": "p_mm_g7_m_70_4",
+            "leftText": "sympathetic",
+            "rightText": "showing understanding for hardships",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Feelings & Relationships",
+            "explanation": "\"sympathetic\": showing understanding for hardships (Feelings & Relationships)."
+          },
+          {
+            "pairId": "p_mm_g7_m_70_5",
+            "leftText": "patient",
+            "rightText": "bearing delays without anger",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Feelings & Relationships",
+            "explanation": "\"patient\": bearing delays without anger (Feelings & Relationships)."
+          },
+          {
+            "pairId": "p_mm_g7_m_70_6",
+            "leftText": "cheerful",
+            "rightText": "radiating optimism and good spirits",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Feelings & Relationships",
+            "explanation": "\"cheerful\": radiating optimism and good spirits (Feelings & Relationships)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_71",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Online Safety & Habits",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_71_1",
+            "leftText": "cyberbullying",
+            "rightText": "siber zorbalık yapma",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Online Safety & Habits",
+            "explanation": "\"cyberbullying\" translates to \"siber zorbalık yapma\" in Turkish (Online Safety & Habits)."
+          },
+          {
+            "pairId": "p_mm_g7_m_71_2",
+            "leftText": "privacy setting",
+            "rightText": "gizlilik ayar koruması",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Online Safety & Habits",
+            "explanation": "\"privacy setting\" translates to \"gizlilik ayar koruması\" in Turkish (Online Safety & Habits)."
+          },
+          {
+            "pairId": "p_mm_g7_m_71_3",
+            "leftText": "firewall",
+            "rightText": "ağ güvenlik duvarı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Online Safety & Habits",
+            "explanation": "\"firewall\" translates to \"ağ güvenlik duvarı\" in Turkish (Online Safety & Habits)."
+          },
+          {
+            "pairId": "p_mm_g7_m_71_4",
+            "leftText": "malicious link",
+            "rightText": "zararlı internet bağlantısı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Online Safety & Habits",
+            "explanation": "\"malicious link\" translates to \"zararlı internet bağlantısı\" in Turkish (Online Safety & Habits)."
+          },
+          {
+            "pairId": "p_mm_g7_m_71_5",
+            "leftText": "secure browser",
+            "rightText": "güvenli web tarayıcısı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Online Safety & Habits",
+            "explanation": "\"secure browser\" translates to \"güvenli web tarayıcısı\" in Turkish (Online Safety & Habits)."
+          },
+          {
+            "pairId": "p_mm_g7_m_71_6",
+            "leftText": "online gaming",
+            "rightText": "çevrim içi takım oyunu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Online Safety & Habits",
+            "explanation": "\"online gaming\" translates to \"çevrim içi takım oyunu\" in Turkish (Online Safety & Habits)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_72",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "School Life & Studies",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_72_1",
+            "leftText": "curriculum",
+            "rightText": "öğretim ders müfredatı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "School Life & Studies",
+            "explanation": "\"curriculum\" translates to \"öğretim ders müfredatı\" in Turkish (School Life & Studies)."
+          },
+          {
+            "pairId": "p_mm_g7_m_72_2",
+            "leftText": "assignment",
+            "rightText": "öğrenci ev ödevi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "School Life & Studies",
+            "explanation": "\"assignment\" translates to \"öğrenci ev ödevi\" in Turkish (School Life & Studies)."
+          },
+          {
+            "pairId": "p_mm_g7_m_72_3",
+            "leftText": "examination",
+            "rightText": "yazılı sınav testi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "School Life & Studies",
+            "explanation": "\"examination\" translates to \"yazılı sınav testi\" in Turkish (School Life & Studies)."
+          },
+          {
+            "pairId": "p_mm_g7_m_72_4",
+            "leftText": "attendance",
+            "rightText": "derse düzenli katılım",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "School Life & Studies",
+            "explanation": "\"attendance\" translates to \"derse düzenli katılım\" in Turkish (School Life & Studies)."
+          },
+          {
+            "pairId": "p_mm_g7_m_72_5",
+            "leftText": "presentation",
+            "rightText": "sözlü konu sunumu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "School Life & Studies",
+            "explanation": "\"presentation\" translates to \"sözlü konu sunumu\" in Turkish (School Life & Studies)."
+          },
+          {
+            "pairId": "p_mm_g7_m_72_6",
+            "leftText": "achievement",
+            "rightText": "akademik okul başarısı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "School Life & Studies",
+            "explanation": "\"achievement\" translates to \"akademik okul başarısı\" in Turkish (School Life & Studies)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_73",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Health & Emergencies",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_73_1",
+            "leftText": "antiseptic",
+            "rightText": "mikrop kırıcı solüsyon",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Health & Emergencies",
+            "explanation": "\"antiseptic\" translates to \"mikrop kırıcı solüsyon\" in Turkish (Health & Emergencies)."
+          },
+          {
+            "pairId": "p_mm_g7_m_73_2",
+            "leftText": "bandage",
+            "rightText": "steril yara sargısı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Health & Emergencies",
+            "explanation": "\"bandage\" translates to \"steril yara sargısı\" in Turkish (Health & Emergencies)."
+          },
+          {
+            "pairId": "p_mm_g7_m_73_3",
+            "leftText": "thermometer",
+            "rightText": "vücut ısısı termometresi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Health & Emergencies",
+            "explanation": "\"thermometer\" translates to \"vücut ısısı termometresi\" in Turkish (Health & Emergencies)."
+          },
+          {
+            "pairId": "p_mm_g7_m_73_4",
+            "leftText": "paramedic",
+            "rightText": "acil servis personeli",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Health & Emergencies",
+            "explanation": "\"paramedic\" translates to \"acil servis personeli\" in Turkish (Health & Emergencies)."
+          },
+          {
+            "pairId": "p_mm_g7_m_73_5",
+            "leftText": "stethoscope",
+            "rightText": "kalp dinleme aleti",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Health & Emergencies",
+            "explanation": "\"stethoscope\" translates to \"kalp dinleme aleti\" in Turkish (Health & Emergencies)."
+          },
+          {
+            "pairId": "p_mm_g7_m_73_6",
+            "leftText": "recovery",
+            "rightText": "hastalıktan iyileşme süreci",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Health & Emergencies",
+            "explanation": "\"recovery\" translates to \"hastalıktan iyileşme süreci\" in Turkish (Health & Emergencies)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_74",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Urban Spaces & Transport",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_74_1",
+            "leftText": "pedestrian",
+            "rightText": "yaya kaldırım yolcusu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Urban Spaces & Transport",
+            "explanation": "\"pedestrian\" translates to \"yaya kaldırım yolcusu\" in Turkish (Urban Spaces & Transport)."
+          },
+          {
+            "pairId": "p_mm_g7_m_74_2",
+            "leftText": "traffic lights",
+            "rightText": "trafik işaret lambaları",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Urban Spaces & Transport",
+            "explanation": "\"traffic lights\" translates to \"trafik işaret lambaları\" in Turkish (Urban Spaces & Transport)."
+          },
+          {
+            "pairId": "p_mm_g7_m_74_3",
+            "leftText": "subway train",
+            "rightText": "yeraltı metro treni",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Urban Spaces & Transport",
+            "explanation": "\"subway train\" translates to \"yeraltı metro treni\" in Turkish (Urban Spaces & Transport)."
+          },
+          {
+            "pairId": "p_mm_g7_m_74_4",
+            "leftText": "bus terminal",
+            "rightText": "otogar yolcu terminali",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Urban Spaces & Transport",
+            "explanation": "\"bus terminal\" translates to \"otogar yolcu terminali\" in Turkish (Urban Spaces & Transport)."
+          },
+          {
+            "pairId": "p_mm_g7_m_74_5",
+            "leftText": "crosswalk",
+            "rightText": "yaya geçidi çizgileri",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Urban Spaces & Transport",
+            "explanation": "\"crosswalk\" translates to \"yaya geçidi çizgileri\" in Turkish (Urban Spaces & Transport)."
+          },
+          {
+            "pairId": "p_mm_g7_m_74_6",
+            "leftText": "bicycle lane",
+            "rightText": "korumalı bisiklet yolu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Urban Spaces & Transport",
+            "explanation": "\"bicycle lane\" translates to \"korumalı bisiklet yolu\" in Turkish (Urban Spaces & Transport)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_75",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Future Careers & Dreams",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_75_1",
+            "leftText": "astronomer",
+            "rightText": "uzay bilimci gökbilimci",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Future Careers & Dreams",
+            "explanation": "\"astronomer\" translates to \"uzay bilimci gökbilimci\" in Turkish (Future Careers & Dreams)."
+          },
+          {
+            "pairId": "p_mm_g7_m_75_2",
+            "leftText": "software coder",
+            "rightText": "bilgisayar yazılımcısı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Future Careers & Dreams",
+            "explanation": "\"software coder\" translates to \"bilgisayar yazılımcısı\" in Turkish (Future Careers & Dreams)."
+          },
+          {
+            "pairId": "p_mm_g7_m_75_3",
+            "leftText": "marine biologist",
+            "rightText": "deniz biyolojisi uzmanı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Future Careers & Dreams",
+            "explanation": "\"marine biologist\" translates to \"deniz biyolojisi uzmanı\" in Turkish (Future Careers & Dreams)."
+          },
+          {
+            "pairId": "p_mm_g7_m_75_4",
+            "leftText": "architect",
+            "rightText": "bina tasarım mimarı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Future Careers & Dreams",
+            "explanation": "\"architect\" translates to \"bina tasarım mimarı\" in Turkish (Future Careers & Dreams)."
+          },
+          {
+            "pairId": "p_mm_g7_m_75_5",
+            "leftText": "pilot",
+            "rightText": "uçak seyrüsefer pilotu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Future Careers & Dreams",
+            "explanation": "\"pilot\" translates to \"uçak seyrüsefer pilotu\" in Turkish (Future Careers & Dreams)."
+          },
+          {
+            "pairId": "p_mm_g7_m_75_6",
+            "leftText": "inventor",
+            "rightText": "mucit bilim insanı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Future Careers & Dreams",
+            "explanation": "\"inventor\" translates to \"mucit bilim insanı\" in Turkish (Future Careers & Dreams)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_76",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Celebrations & Heritage",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_76_1",
+            "leftText": "centenary",
+            "rightText": "yüzüncü yıl dönümü",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Celebrations & Heritage",
+            "explanation": "\"centenary\" translates to \"yüzüncü yıl dönümü\" in Turkish (Celebrations & Heritage)."
+          },
+          {
+            "pairId": "p_mm_g7_m_76_2",
+            "leftText": "festival",
+            "rightText": "kültürel halk festivali",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Celebrations & Heritage",
+            "explanation": "\"festival\" translates to \"kültürel halk festivali\" in Turkish (Celebrations & Heritage)."
+          },
+          {
+            "pairId": "p_mm_g7_m_76_3",
+            "leftText": "procession",
+            "rightText": "bayram tören alayı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Celebrations & Heritage",
+            "explanation": "\"procession\" translates to \"bayram tören alayı\" in Turkish (Celebrations & Heritage)."
+          },
+          {
+            "pairId": "p_mm_g7_m_76_4",
+            "leftText": "traditional costume",
+            "rightText": "yöresel halk giysisi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Celebrations & Heritage",
+            "explanation": "\"traditional costume\" translates to \"yöresel halk giysisi\" in Turkish (Celebrations & Heritage)."
+          },
+          {
+            "pairId": "p_mm_g7_m_76_5",
+            "leftText": "invitation",
+            "rightText": "resmi davet kartı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Celebrations & Heritage",
+            "explanation": "\"invitation\" translates to \"resmi davet kartı\" in Turkish (Celebrations & Heritage)."
+          },
+          {
+            "pairId": "p_mm_g7_m_76_6",
+            "leftText": "commemoration",
+            "rightText": "anma merasimi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Celebrations & Heritage",
+            "explanation": "\"commemoration\" translates to \"anma merasimi\" in Turkish (Celebrations & Heritage)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_77",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Wild & Dangerous Predators",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_77_1",
+            "leftText": "falcon",
+            "rightText": "hızlı uçan avcı doğan",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Wild & Dangerous Predators",
+            "explanation": "\"falcon\" translates to \"hızlı uçan avcı doğan\" in Turkish (Wild & Dangerous Predators)."
+          },
+          {
+            "pairId": "p_mm_g7_m_77_2",
+            "leftText": "wolf pack",
+            "rightText": "birlikte avlanan kurt sürüsü",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Wild & Dangerous Predators",
+            "explanation": "\"wolf pack\" translates to \"birlikte avlanan kurt sürüsü\" in Turkish (Wild & Dangerous Predators)."
+          },
+          {
+            "pairId": "p_mm_g7_m_77_3",
+            "leftText": "rattlesnake",
+            "rightText": "zehirli çıngıraklı yılan",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Wild & Dangerous Predators",
+            "explanation": "\"rattlesnake\" translates to \"zehirli çıngıraklı yılan\" in Turkish (Wild & Dangerous Predators)."
+          },
+          {
+            "pairId": "p_mm_g7_m_77_4",
+            "leftText": "grizzly bear",
+            "rightText": "iri boz ayı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Wild & Dangerous Predators",
+            "explanation": "\"grizzly bear\" translates to \"iri boz ayı\" in Turkish (Wild & Dangerous Predators)."
+          },
+          {
+            "pairId": "p_mm_g7_m_77_5",
+            "leftText": "scorpion",
+            "rightText": "kıskançlı zehirli akrep",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Wild & Dangerous Predators",
+            "explanation": "\"scorpion\" translates to \"kıskançlı zehirli akrep\" in Turkish (Wild & Dangerous Predators)."
+          },
+          {
+            "pairId": "p_mm_g7_m_77_6",
+            "leftText": "leopard",
+            "rightText": "benekli yırtıcı leopar",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Wild & Dangerous Predators",
+            "explanation": "\"leopard\" translates to \"benekli yırtıcı leopar\" in Turkish (Wild & Dangerous Predators)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_78",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Solar System Mechanics",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_78_1",
+            "leftText": "celestial body",
+            "rightText": "göksel cisim göktaşı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Solar System Mechanics",
+            "explanation": "\"celestial body\" translates to \"göksel cisim göktaşı\" in Turkish (Solar System Mechanics)."
+          },
+          {
+            "pairId": "p_mm_g7_m_78_2",
+            "leftText": "lunar eclipse",
+            "rightText": "tam ay tutulması olayı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Solar System Mechanics",
+            "explanation": "\"lunar eclipse\" translates to \"tam ay tutulması olayı\" in Turkish (Solar System Mechanics)."
+          },
+          {
+            "pairId": "p_mm_g7_m_78_3",
+            "leftText": "solar flare",
+            "rightText": "güneş patlaması alevi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Solar System Mechanics",
+            "explanation": "\"solar flare\" translates to \"güneş patlaması alevi\" in Turkish (Solar System Mechanics)."
+          },
+          {
+            "pairId": "p_mm_g7_m_78_4",
+            "leftText": "asteroid belt",
+            "rightText": "göktaşı kuşağı kuşağı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Solar System Mechanics",
+            "explanation": "\"asteroid belt\" translates to \"göktaşı kuşağı kuşağı\" in Turkish (Solar System Mechanics)."
+          },
+          {
+            "pairId": "p_mm_g7_m_78_5",
+            "leftText": "space rover",
+            "rightText": "yüzey araştırma robotu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Solar System Mechanics",
+            "explanation": "\"space rover\" translates to \"yüzey araştırma robotu\" in Turkish (Solar System Mechanics)."
+          },
+          {
+            "pairId": "p_mm_g7_m_78_6",
+            "leftText": "cosmic dust",
+            "rightText": "yıldızlararası uzay tozu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Solar System Mechanics",
+            "explanation": "\"cosmic dust\" translates to \"yıldızlararası uzay tozu\" in Turkish (Solar System Mechanics)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_79",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Environmental Ecology",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_79_1",
+            "leftText": "biodiversity",
+            "rightText": "biyolojik tür çeşitliliği",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Environmental Ecology",
+            "explanation": "\"biodiversity\" translates to \"biyolojik tür çeşitliliği\" in Turkish (Environmental Ecology)."
+          },
+          {
+            "pairId": "p_mm_g7_m_79_2",
+            "leftText": "conservation",
+            "rightText": "doğa koruma hareketi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Environmental Ecology",
+            "explanation": "\"conservation\" translates to \"doğa koruma hareketi\" in Turkish (Environmental Ecology)."
+          },
+          {
+            "pairId": "p_mm_g7_m_79_3",
+            "leftText": "fossil fuel",
+            "rightText": "fosil yakıt kömür petrol",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Environmental Ecology",
+            "explanation": "\"fossil fuel\" translates to \"fosil yakıt kömür petrol\" in Turkish (Environmental Ecology)."
+          },
+          {
+            "pairId": "p_mm_g7_m_79_4",
+            "leftText": "renewable energy",
+            "rightText": "yenilenebilir temiz enerji",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Environmental Ecology",
+            "explanation": "\"renewable energy\" translates to \"yenilenebilir temiz enerji\" in Turkish (Environmental Ecology)."
+          },
+          {
+            "pairId": "p_mm_g7_m_79_5",
+            "leftText": "greenhouse effect",
+            "rightText": "sera gazı ısınma etkisi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Environmental Ecology",
+            "explanation": "\"greenhouse effect\" translates to \"sera gazı ısınma etkisi\" in Turkish (Environmental Ecology)."
+          },
+          {
+            "pairId": "p_mm_g7_m_79_6",
+            "leftText": "compost",
+            "rightText": "organik gübre yapımı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Environmental Ecology",
+            "explanation": "\"compost\" translates to \"organik gübre yapımı\" in Turkish (Environmental Ecology)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_m_80",
+        "grade": "grade-7",
+        "difficulty": "medium",
+        "mode": "word_definition",
+        "topic": "Environmental Ecology",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_m_80_1",
+            "leftText": "biodiversity",
+            "rightText": "variety of living organisms in an area",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Environmental Ecology",
+            "explanation": "\"biodiversity\": variety of living organisms in an area (Environmental Ecology)."
+          },
+          {
+            "pairId": "p_mm_g7_m_80_2",
+            "leftText": "conservation",
+            "rightText": "prevention of wasteful use of resources",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Environmental Ecology",
+            "explanation": "\"conservation\": prevention of wasteful use of resources (Environmental Ecology)."
+          },
+          {
+            "pairId": "p_mm_g7_m_80_3",
+            "leftText": "fossil fuel",
+            "rightText": "hydrocarbon fuel formed from organisms",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Environmental Ecology",
+            "explanation": "\"fossil fuel\": hydrocarbon fuel formed from organisms (Environmental Ecology)."
+          },
+          {
+            "pairId": "p_mm_g7_m_80_4",
+            "leftText": "renewable energy",
+            "rightText": "energy collected from natural sources",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Environmental Ecology",
+            "explanation": "\"renewable energy\": energy collected from natural sources (Environmental Ecology)."
+          },
+          {
+            "pairId": "p_mm_g7_m_80_5",
+            "leftText": "greenhouse effect",
+            "rightText": "warming caused by atmospheric gases",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Environmental Ecology",
+            "explanation": "\"greenhouse effect\": warming caused by atmospheric gases (Environmental Ecology)."
+          },
+          {
+            "pairId": "p_mm_g7_m_80_6",
+            "leftText": "compost",
+            "rightText": "decayed organic matter used as fertilizer",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "medium",
+            "topic": "Environmental Ecology",
+            "explanation": "\"compost\": decayed organic matter used as fertilizer (Environmental Ecology)."
+          }
+        ]
       }
     ],
     "hard": [
@@ -8603,6 +13316,3566 @@ export const MEMORY_MATCH_BANK: MemoryMatchBank = {
           }
         ],
         "contentVersion": 1
+      },
+      {
+        "id": "mm_g7_h_41",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Advanced Ecology & Systems",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_41_1",
+            "leftText": "resilience",
+            "rightText": "ekolojik dayanıklılık",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Advanced Ecology & Systems",
+            "explanation": "\"resilience\" translates to \"ekolojik dayanıklılık\" in Turkish (Advanced Ecology & Systems)."
+          },
+          {
+            "pairId": "p_mm_g7_h_41_2",
+            "leftText": "mutualism",
+            "rightText": "karşılıklı yarar ortaklığı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Advanced Ecology & Systems",
+            "explanation": "\"mutualism\" translates to \"karşılıklı yarar ortaklığı\" in Turkish (Advanced Ecology & Systems)."
+          },
+          {
+            "pairId": "p_mm_g7_h_41_3",
+            "leftText": "eutrophication",
+            "rightText": "sularda aşırı alg patlaması",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Advanced Ecology & Systems",
+            "explanation": "\"eutrophication\" translates to \"sularda aşırı alg patlaması\" in Turkish (Advanced Ecology & Systems)."
+          },
+          {
+            "pairId": "p_mm_g7_h_41_4",
+            "leftText": "bioaccumulation",
+            "rightText": "toksinlerin besin zincirinde birikmesi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Advanced Ecology & Systems",
+            "explanation": "\"bioaccumulation\" translates to \"toksinlerin besin zincirinde birikmesi\" in Turkish (Advanced Ecology & Systems)."
+          },
+          {
+            "pairId": "p_mm_g7_h_41_5",
+            "leftText": "desertification",
+            "rightText": "çölleşme ve kuraklaşma",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Advanced Ecology & Systems",
+            "explanation": "\"desertification\" translates to \"çölleşme ve kuraklaşma\" in Turkish (Advanced Ecology & Systems)."
+          },
+          {
+            "pairId": "p_mm_g7_h_41_6",
+            "leftText": "trophic web",
+            "rightText": "beslenme etkileşim ağı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Advanced Ecology & Systems",
+            "explanation": "\"trophic web\" translates to \"beslenme etkileşim ağı\" in Turkish (Advanced Ecology & Systems)."
+          },
+          {
+            "pairId": "p_mm_g7_h_41_7",
+            "leftText": "aquifer",
+            "rightText": "yeraltı su tabakası",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Advanced Ecology & Systems",
+            "explanation": "\"aquifer\" translates to \"yeraltı su tabakası\" in Turkish (Advanced Ecology & Systems)."
+          },
+          {
+            "pairId": "p_mm_g7_h_41_8",
+            "leftText": "restoration",
+            "rightText": "ekosistem onarımı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Advanced Ecology & Systems",
+            "explanation": "\"restoration\" translates to \"ekosistem onarımı\" in Turkish (Advanced Ecology & Systems)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_42",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_definition",
+        "topic": "Advanced Ecology & Systems",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_42_1",
+            "leftText": "resilience",
+            "rightText": "capacity of an ecosystem to recover",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Advanced Ecology & Systems",
+            "explanation": "\"resilience\": capacity of an ecosystem to recover (Advanced Ecology & Systems)."
+          },
+          {
+            "pairId": "p_mm_g7_h_42_2",
+            "leftText": "mutualism",
+            "rightText": "symbiosis benefiting both species",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Advanced Ecology & Systems",
+            "explanation": "\"mutualism\": symbiosis benefiting both species (Advanced Ecology & Systems)."
+          },
+          {
+            "pairId": "p_mm_g7_h_42_3",
+            "leftText": "eutrophication",
+            "rightText": "suffocating algal blooms in waterways",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Advanced Ecology & Systems",
+            "explanation": "\"eutrophication\": suffocating algal blooms in waterways (Advanced Ecology & Systems)."
+          },
+          {
+            "pairId": "p_mm_g7_h_42_4",
+            "leftText": "bioaccumulation",
+            "rightText": "concentration of toxins up food chains",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Advanced Ecology & Systems",
+            "explanation": "\"bioaccumulation\": concentration of toxins up food chains (Advanced Ecology & Systems)."
+          },
+          {
+            "pairId": "p_mm_g7_h_42_5",
+            "leftText": "desertification",
+            "rightText": "degradation of fertile soil into desert",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Advanced Ecology & Systems",
+            "explanation": "\"desertification\": degradation of fertile soil into desert (Advanced Ecology & Systems)."
+          },
+          {
+            "pairId": "p_mm_g7_h_42_6",
+            "leftText": "trophic web",
+            "rightText": "complex network of predator-prey links",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Advanced Ecology & Systems",
+            "explanation": "\"trophic web\": complex network of predator-prey links (Advanced Ecology & Systems)."
+          },
+          {
+            "pairId": "p_mm_g7_h_42_7",
+            "leftText": "aquifer",
+            "rightText": "underground reservoir of fresh water",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Advanced Ecology & Systems",
+            "explanation": "\"aquifer\": underground reservoir of fresh water (Advanced Ecology & Systems)."
+          },
+          {
+            "pairId": "p_mm_g7_h_42_8",
+            "leftText": "restoration",
+            "rightText": "rehabilitating damaged ecological areas",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Advanced Ecology & Systems",
+            "explanation": "\"restoration\": rehabilitating damaged ecological areas (Advanced Ecology & Systems)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_43",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Astrophysics & Space Science",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_43_1",
+            "leftText": "event horizon",
+            "rightText": "kara delik olay ufku",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Astrophysics & Space Science",
+            "explanation": "\"event horizon\" translates to \"kara delik olay ufku\" in Turkish (Astrophysics & Space Science)."
+          },
+          {
+            "pairId": "p_mm_g7_h_43_2",
+            "leftText": "supernova",
+            "rightText": "yıldız patlaması süpernova",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Astrophysics & Space Science",
+            "explanation": "\"supernova\" translates to \"yıldız patlaması süpernova\" in Turkish (Astrophysics & Space Science)."
+          },
+          {
+            "pairId": "p_mm_g7_h_43_3",
+            "leftText": "singularity",
+            "rightText": "sonsuz yoğunluklu tekillik",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Astrophysics & Space Science",
+            "explanation": "\"singularity\" translates to \"sonsuz yoğunluklu tekillik\" in Turkish (Astrophysics & Space Science)."
+          },
+          {
+            "pairId": "p_mm_g7_h_43_4",
+            "leftText": "redshift",
+            "rightText": "evren genişlemesi kırmızıya kayma",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Astrophysics & Space Science",
+            "explanation": "\"redshift\" translates to \"evren genişlemesi kırmızıya kayma\" in Turkish (Astrophysics & Space Science)."
+          },
+          {
+            "pairId": "p_mm_g7_h_43_5",
+            "leftText": "cosmic web",
+            "rightText": "galaksi ağ dizilimi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Astrophysics & Space Science",
+            "explanation": "\"cosmic web\" translates to \"galaksi ağ dizilimi\" in Turkish (Astrophysics & Space Science)."
+          },
+          {
+            "pairId": "p_mm_g7_h_43_6",
+            "leftText": "light-year",
+            "rightText": "ışık yılı mesafe birimi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Astrophysics & Space Science",
+            "explanation": "\"light-year\" translates to \"ışık yılı mesafe birimi\" in Turkish (Astrophysics & Space Science)."
+          },
+          {
+            "pairId": "p_mm_g7_h_43_7",
+            "leftText": "accretion disk",
+            "rightText": "gaz parçacık yığılma diski",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Astrophysics & Space Science",
+            "explanation": "\"accretion disk\" translates to \"gaz parçacık yığılma diski\" in Turkish (Astrophysics & Space Science)."
+          },
+          {
+            "pairId": "p_mm_g7_h_43_8",
+            "leftText": "nebula",
+            "rightText": "yıldız doğumevi gaz bulutu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Astrophysics & Space Science",
+            "explanation": "\"nebula\" translates to \"yıldız doğumevi gaz bulutu\" in Turkish (Astrophysics & Space Science)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_44",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_definition",
+        "topic": "Astrophysics & Space Science",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_44_1",
+            "leftText": "event horizon",
+            "rightText": "boundary of no return in black holes",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Astrophysics & Space Science",
+            "explanation": "\"event horizon\": boundary of no return in black holes (Astrophysics & Space Science)."
+          },
+          {
+            "pairId": "p_mm_g7_h_44_2",
+            "leftText": "supernova",
+            "rightText": "cataclysmic explosion of a dying star",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Astrophysics & Space Science",
+            "explanation": "\"supernova\": cataclysmic explosion of a dying star (Astrophysics & Space Science)."
+          },
+          {
+            "pairId": "p_mm_g7_h_44_3",
+            "leftText": "singularity",
+            "rightText": "point of infinite mass density in spacetime",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Astrophysics & Space Science",
+            "explanation": "\"singularity\": point of infinite mass density in spacetime (Astrophysics & Space Science)."
+          },
+          {
+            "pairId": "p_mm_g7_h_44_4",
+            "leftText": "redshift",
+            "rightText": "displacement of light toward red wavelengths",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Astrophysics & Space Science",
+            "explanation": "\"redshift\": displacement of light toward red wavelengths (Astrophysics & Space Science)."
+          },
+          {
+            "pairId": "p_mm_g7_h_44_5",
+            "leftText": "cosmic web",
+            "rightText": "large-scale structural filaments of cosmos",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Astrophysics & Space Science",
+            "explanation": "\"cosmic web\": large-scale structural filaments of cosmos (Astrophysics & Space Science)."
+          },
+          {
+            "pairId": "p_mm_g7_h_44_6",
+            "leftText": "light-year",
+            "rightText": "distance light travels in one vacuum year",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Astrophysics & Space Science",
+            "explanation": "\"light-year\": distance light travels in one vacuum year (Astrophysics & Space Science)."
+          },
+          {
+            "pairId": "p_mm_g7_h_44_7",
+            "leftText": "accretion disk",
+            "rightText": "matter spiraling inward around mass",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Astrophysics & Space Science",
+            "explanation": "\"accretion disk\": matter spiraling inward around mass (Astrophysics & Space Science)."
+          },
+          {
+            "pairId": "p_mm_g7_h_44_8",
+            "leftText": "nebula",
+            "rightText": "interstellar cloud of gas and star dust",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Astrophysics & Space Science",
+            "explanation": "\"nebula\": interstellar cloud of gas and star dust (Astrophysics & Space Science)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_45",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Character Ethics & Philosophy",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_45_1",
+            "leftText": "altruistic",
+            "rightText": "özgecil, başkasını düşünen",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Character Ethics & Philosophy",
+            "explanation": "\"altruistic\" translates to \"özgecil, başkasını düşünen\" in Turkish (Character Ethics & Philosophy)."
+          },
+          {
+            "pairId": "p_mm_g7_h_45_2",
+            "leftText": "scrupulous",
+            "rightText": "son derece titiz ve dürüst",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Character Ethics & Philosophy",
+            "explanation": "\"scrupulous\" translates to \"son derece titiz ve dürüst\" in Turkish (Character Ethics & Philosophy)."
+          },
+          {
+            "pairId": "p_mm_g7_h_45_3",
+            "leftText": "fortitude",
+            "rightText": "ruhsak güç ve dayanıklılık",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Character Ethics & Philosophy",
+            "explanation": "\"fortitude\" translates to \"ruhsak güç ve dayanıklılık\" in Turkish (Character Ethics & Philosophy)."
+          },
+          {
+            "pairId": "p_mm_g7_h_45_4",
+            "leftText": "integrity",
+            "rightText": "ahlaki dürüstlük ve erdem",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Character Ethics & Philosophy",
+            "explanation": "\"integrity\" translates to \"ahlaki dürüstlük ve erdem\" in Turkish (Character Ethics & Philosophy)."
+          },
+          {
+            "pairId": "p_mm_g7_h_45_5",
+            "leftText": "equanimity",
+            "rightText": "baskı anında zihinsel sükunet",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Character Ethics & Philosophy",
+            "explanation": "\"equanimity\" translates to \"baskı anında zihinsel sükunet\" in Turkish (Character Ethics & Philosophy)."
+          },
+          {
+            "pairId": "p_mm_g7_h_45_6",
+            "leftText": "perseverance",
+            "rightText": "zorluklara karşı azim ve sebat",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Character Ethics & Philosophy",
+            "explanation": "\"perseverance\" translates to \"zorluklara karşı azim ve sebat\" in Turkish (Character Ethics & Philosophy)."
+          },
+          {
+            "pairId": "p_mm_g7_h_45_7",
+            "leftText": "empathy",
+            "rightText": "başkalarının duygusunu anlama",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Character Ethics & Philosophy",
+            "explanation": "\"empathy\" translates to \"başkalarının duygusunu anlama\" in Turkish (Character Ethics & Philosophy)."
+          },
+          {
+            "pairId": "p_mm_g7_h_45_8",
+            "leftText": "magnanimous",
+            "rightText": "yüce gönüllü, affedici",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Character Ethics & Philosophy",
+            "explanation": "\"magnanimous\" translates to \"yüce gönüllü, affedici\" in Turkish (Character Ethics & Philosophy)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_46",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_definition",
+        "topic": "Character Ethics & Philosophy",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_46_1",
+            "leftText": "altruistic",
+            "rightText": "selflessly devoted to welfare of others",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Character Ethics & Philosophy",
+            "explanation": "\"altruistic\": selflessly devoted to welfare of others (Character Ethics & Philosophy)."
+          },
+          {
+            "pairId": "p_mm_g7_h_46_2",
+            "leftText": "scrupulous",
+            "rightText": "showing thorough adherence to ethics",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Character Ethics & Philosophy",
+            "explanation": "\"scrupulous\": showing thorough adherence to ethics (Character Ethics & Philosophy)."
+          },
+          {
+            "pairId": "p_mm_g7_h_46_3",
+            "leftText": "fortitude",
+            "rightText": "courage in enduring pain or adversity",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Character Ethics & Philosophy",
+            "explanation": "\"fortitude\": courage in enduring pain or adversity (Character Ethics & Philosophy)."
+          },
+          {
+            "pairId": "p_mm_g7_h_46_4",
+            "leftText": "integrity",
+            "rightText": "steadfast adherence to moral codes",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Character Ethics & Philosophy",
+            "explanation": "\"integrity\": steadfast adherence to moral codes (Character Ethics & Philosophy)."
+          },
+          {
+            "pairId": "p_mm_g7_h_46_5",
+            "leftText": "equanimity",
+            "rightText": "mental calmness under high-stakes stress",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Character Ethics & Philosophy",
+            "explanation": "\"equanimity\": mental calmness under high-stakes stress (Character Ethics & Philosophy)."
+          },
+          {
+            "pairId": "p_mm_g7_h_46_6",
+            "leftText": "perseverance",
+            "rightText": "persistence in doing something despite odds",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Character Ethics & Philosophy",
+            "explanation": "\"perseverance\": persistence in doing something despite odds (Character Ethics & Philosophy)."
+          },
+          {
+            "pairId": "p_mm_g7_h_46_7",
+            "leftText": "empathy",
+            "rightText": "ability to understand another's emotions",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Character Ethics & Philosophy",
+            "explanation": "\"empathy\": ability to understand another's emotions (Character Ethics & Philosophy)."
+          },
+          {
+            "pairId": "p_mm_g7_h_46_8",
+            "leftText": "magnanimous",
+            "rightText": "generous and forgiving toward rivals",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Character Ethics & Philosophy",
+            "explanation": "\"magnanimous\": generous and forgiving toward rivals (Character Ethics & Philosophy)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_47",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Cybersecurity & Cryptography",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_47_1",
+            "leftText": "asymmetric cipher",
+            "rightText": "çift anahtarlı kripto şifresi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cybersecurity & Cryptography",
+            "explanation": "\"asymmetric cipher\" translates to \"çift anahtarlı kripto şifresi\" in Turkish (Cybersecurity & Cryptography)."
+          },
+          {
+            "pairId": "p_mm_g7_h_47_2",
+            "leftText": "keylogger",
+            "rightText": "klavye tuş vuruşu casusu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cybersecurity & Cryptography",
+            "explanation": "\"keylogger\" translates to \"klavye tuş vuruşu casusu\" in Turkish (Cybersecurity & Cryptography)."
+          },
+          {
+            "pairId": "p_mm_g7_h_47_3",
+            "leftText": "spoofed portal",
+            "rightText": "sahte kimlik avı sitesi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cybersecurity & Cryptography",
+            "explanation": "\"spoofed portal\" translates to \"sahte kimlik avı sitesi\" in Turkish (Cybersecurity & Cryptography)."
+          },
+          {
+            "pairId": "p_mm_g7_h_47_4",
+            "leftText": "zero-trust",
+            "rightText": "sürekli kimlik doğrulama mimarisi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cybersecurity & Cryptography",
+            "explanation": "\"zero-trust\" translates to \"sürekli kimlik doğrulama mimarisi\" in Turkish (Cybersecurity & Cryptography)."
+          },
+          {
+            "pairId": "p_mm_g7_h_47_5",
+            "leftText": "digital forensics",
+            "rightText": "adli bilişim delil incelemesi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cybersecurity & Cryptography",
+            "explanation": "\"digital forensics\" translates to \"adli bilişim delil incelemesi\" in Turkish (Cybersecurity & Cryptography)."
+          },
+          {
+            "pairId": "p_mm_g7_h_47_6",
+            "leftText": "firewall",
+            "rightText": "ağ trafiği güvenlik kalkanı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cybersecurity & Cryptography",
+            "explanation": "\"firewall\" translates to \"ağ trafiği güvenlik kalkanı\" in Turkish (Cybersecurity & Cryptography)."
+          },
+          {
+            "pairId": "p_mm_g7_h_47_7",
+            "leftText": "ransomware",
+            "rightText": "dosya şifreleyen fidye yazılımı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cybersecurity & Cryptography",
+            "explanation": "\"ransomware\" translates to \"dosya şifreleyen fidye yazılımı\" in Turkish (Cybersecurity & Cryptography)."
+          },
+          {
+            "pairId": "p_mm_g7_h_47_8",
+            "leftText": "hash function",
+            "rightText": "kriptografik özet fonksiyonu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cybersecurity & Cryptography",
+            "explanation": "\"hash function\" translates to \"kriptografik özet fonksiyonu\" in Turkish (Cybersecurity & Cryptography)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_48",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_definition",
+        "topic": "Cybersecurity & Cryptography",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_48_1",
+            "leftText": "asymmetric cipher",
+            "rightText": "encryption using paired private-public keys",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cybersecurity & Cryptography",
+            "explanation": "\"asymmetric cipher\": encryption using paired private-public keys (Cybersecurity & Cryptography)."
+          },
+          {
+            "pairId": "p_mm_g7_h_48_2",
+            "leftText": "keylogger",
+            "rightText": "malware recording typed keystrokes",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cybersecurity & Cryptography",
+            "explanation": "\"keylogger\": malware recording typed keystrokes (Cybersecurity & Cryptography)."
+          },
+          {
+            "pairId": "p_mm_g7_h_48_3",
+            "leftText": "spoofed portal",
+            "rightText": "fraudulent page imitating genuine logins",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cybersecurity & Cryptography",
+            "explanation": "\"spoofed portal\": fraudulent page imitating genuine logins (Cybersecurity & Cryptography)."
+          },
+          {
+            "pairId": "p_mm_g7_h_48_4",
+            "leftText": "zero-trust",
+            "rightText": "security requiring continuous verification",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cybersecurity & Cryptography",
+            "explanation": "\"zero-trust\": security requiring continuous verification (Cybersecurity & Cryptography)."
+          },
+          {
+            "pairId": "p_mm_g7_h_48_5",
+            "leftText": "digital forensics",
+            "rightText": "scientific investigation of cyber evidence",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cybersecurity & Cryptography",
+            "explanation": "\"digital forensics\": scientific investigation of cyber evidence (Cybersecurity & Cryptography)."
+          },
+          {
+            "pairId": "p_mm_g7_h_48_6",
+            "leftText": "firewall",
+            "rightText": "system filtering unauthorized network packets",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cybersecurity & Cryptography",
+            "explanation": "\"firewall\": system filtering unauthorized network packets (Cybersecurity & Cryptography)."
+          },
+          {
+            "pairId": "p_mm_g7_h_48_7",
+            "leftText": "ransomware",
+            "rightText": "software encrypting data to demand ransoms",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cybersecurity & Cryptography",
+            "explanation": "\"ransomware\": software encrypting data to demand ransoms (Cybersecurity & Cryptography)."
+          },
+          {
+            "pairId": "p_mm_g7_h_48_8",
+            "leftText": "hash function",
+            "rightText": "algorithm converting data into fixed digests",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cybersecurity & Cryptography",
+            "explanation": "\"hash function\": algorithm converting data into fixed digests (Cybersecurity & Cryptography)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_49",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Wilderness First Aid & Trauma",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_49_1",
+            "leftText": "defibrillator",
+            "rightText": "elektroşok cihazı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Wilderness First Aid & Trauma",
+            "explanation": "\"defibrillator\" translates to \"elektroşok cihazı\" in Turkish (Wilderness First Aid & Trauma)."
+          },
+          {
+            "pairId": "p_mm_g7_h_49_2",
+            "leftText": "hypothermia",
+            "rightText": "vücut ısısının ölümcül düşüşü",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Wilderness First Aid & Trauma",
+            "explanation": "\"hypothermia\" translates to \"vücut ısısının ölümcül düşüşü\" in Turkish (Wilderness First Aid & Trauma)."
+          },
+          {
+            "pairId": "p_mm_g7_h_49_3",
+            "leftText": "thoracostomy",
+            "rightText": "göğüs dekompresyon iğnesi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Wilderness First Aid & Trauma",
+            "explanation": "\"thoracostomy\" translates to \"göğüs dekompresyon iğnesi\" in Turkish (Wilderness First Aid & Trauma)."
+          },
+          {
+            "pairId": "p_mm_g7_h_49_4",
+            "leftText": "tourniquet",
+            "rightText": "kanama durdurucu sıkma bandı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Wilderness First Aid & Trauma",
+            "explanation": "\"tourniquet\" translates to \"kanama durdurucu sıkma bandı\" in Turkish (Wilderness First Aid & Trauma)."
+          },
+          {
+            "pairId": "p_mm_g7_h_49_5",
+            "leftText": "immobilization",
+            "rightText": "kırık kemik sabitleme",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Wilderness First Aid & Trauma",
+            "explanation": "\"immobilization\" translates to \"kırık kemik sabitleme\" in Turkish (Wilderness First Aid & Trauma)."
+          },
+          {
+            "pairId": "p_mm_g7_h_49_6",
+            "leftText": "antidote",
+            "rightText": "zehirlenmeye karşı panzehir",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Wilderness First Aid & Trauma",
+            "explanation": "\"antidote\" translates to \"zehirlenmeye karşı panzehir\" in Turkish (Wilderness First Aid & Trauma)."
+          },
+          {
+            "pairId": "p_mm_g7_h_49_7",
+            "leftText": "sterilization",
+            "rightText": "tıbbi alet mikrop arındırma",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Wilderness First Aid & Trauma",
+            "explanation": "\"sterilization\" translates to \"tıbbi alet mikrop arındırma\" in Turkish (Wilderness First Aid & Trauma)."
+          },
+          {
+            "pairId": "p_mm_g7_h_49_8",
+            "leftText": "concussion",
+            "rightText": "beyin sarsıntısı travması",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Wilderness First Aid & Trauma",
+            "explanation": "\"concussion\" translates to \"beyin sarsıntısı travması\" in Turkish (Wilderness First Aid & Trauma)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_50",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_definition",
+        "topic": "Wilderness First Aid & Trauma",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_50_1",
+            "leftText": "defibrillator",
+            "rightText": "device delivering therapeutic shocks to hearts",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Wilderness First Aid & Trauma",
+            "explanation": "\"defibrillator\": device delivering therapeutic shocks to hearts (Wilderness First Aid & Trauma)."
+          },
+          {
+            "pairId": "p_mm_g7_h_50_2",
+            "leftText": "hypothermia",
+            "rightText": "dangerously low internal body temperature",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Wilderness First Aid & Trauma",
+            "explanation": "\"hypothermia\": dangerously low internal body temperature (Wilderness First Aid & Trauma)."
+          },
+          {
+            "pairId": "p_mm_g7_h_50_3",
+            "leftText": "thoracostomy",
+            "rightText": "urgent needle relief of chest pressures",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Wilderness First Aid & Trauma",
+            "explanation": "\"thoracostomy\": urgent needle relief of chest pressures (Wilderness First Aid & Trauma)."
+          },
+          {
+            "pairId": "p_mm_g7_h_50_4",
+            "leftText": "tourniquet",
+            "rightText": "tight bandage compressing bleeding vessels",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Wilderness First Aid & Trauma",
+            "explanation": "\"tourniquet\": tight bandage compressing bleeding vessels (Wilderness First Aid & Trauma)."
+          },
+          {
+            "pairId": "p_mm_g7_h_50_5",
+            "leftText": "immobilization",
+            "rightText": "securing injured limbs to prevent motion",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Wilderness First Aid & Trauma",
+            "explanation": "\"immobilization\": securing injured limbs to prevent motion (Wilderness First Aid & Trauma)."
+          },
+          {
+            "pairId": "p_mm_g7_h_50_6",
+            "leftText": "antidote",
+            "rightText": "medicine neutralizing hazardous toxins",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Wilderness First Aid & Trauma",
+            "explanation": "\"antidote\": medicine neutralizing hazardous toxins (Wilderness First Aid & Trauma)."
+          },
+          {
+            "pairId": "p_mm_g7_h_50_7",
+            "leftText": "sterilization",
+            "rightText": "eliminating viable micro-organisms on tools",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Wilderness First Aid & Trauma",
+            "explanation": "\"sterilization\": eliminating viable micro-organisms on tools (Wilderness First Aid & Trauma)."
+          },
+          {
+            "pairId": "p_mm_g7_h_50_8",
+            "leftText": "concussion",
+            "rightText": "traumatic brain injury from blunt blows",
+            "mode": "word_definition",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Wilderness First Aid & Trauma",
+            "explanation": "\"concussion\": traumatic brain injury from blunt blows (Wilderness First Aid & Trauma)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_51",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "British History & Constitutional Sites",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_51_1",
+            "leftText": "Palace of Westminster",
+            "rightText": "Britanya parlamento sarayı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "British History & Constitutional Sites",
+            "explanation": "\"Palace of Westminster\" translates to \"Britanya parlamento sarayı\" in Turkish (British History & Constitutional Sites)."
+          },
+          {
+            "pairId": "p_mm_g7_h_51_2",
+            "leftText": "Hadrian's Wall",
+            "rightText": "kuzey Roma sınır suru",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "British History & Constitutional Sites",
+            "explanation": "\"Hadrian's Wall\" translates to \"kuzey Roma sınır suru\" in Turkish (British History & Constitutional Sites)."
+          },
+          {
+            "pairId": "p_mm_g7_h_51_3",
+            "leftText": "Stonehenge",
+            "rightText": "tarih öncesi gizemli dikilitaşlar",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "British History & Constitutional Sites",
+            "explanation": "\"Stonehenge\" translates to \"tarih öncesi gizemli dikilitaşlar\" in Turkish (British History & Constitutional Sites)."
+          },
+          {
+            "pairId": "p_mm_g7_h_51_4",
+            "leftText": "diplomatic protocol",
+            "rightText": "uluslararası elçilik nezaket kuralları",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "British History & Constitutional Sites",
+            "explanation": "\"diplomatic protocol\" translates to \"uluslararası elçilik nezaket kuralları\" in Turkish (British History & Constitutional Sites)."
+          },
+          {
+            "pairId": "p_mm_g7_h_51_5",
+            "leftText": "Buckingham Palace",
+            "rightText": "hükümdar çalışma sarayı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "British History & Constitutional Sites",
+            "explanation": "\"Buckingham Palace\" translates to \"hükümdar çalışma sarayı\" in Turkish (British History & Constitutional Sites)."
+          },
+          {
+            "pairId": "p_mm_g7_h_51_6",
+            "leftText": "Tower of London",
+            "rightText": "tarihi kale ve kraliyet zindanı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "British History & Constitutional Sites",
+            "explanation": "\"Tower of London\" translates to \"tarihi kale ve kraliyet zindanı\" in Turkish (British History & Constitutional Sites)."
+          },
+          {
+            "pairId": "p_mm_g7_h_51_7",
+            "leftText": "Magna Carta",
+            "rightText": "tarihi özgürlükler fermanı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "British History & Constitutional Sites",
+            "explanation": "\"Magna Carta\" translates to \"tarihi özgürlükler fermanı\" in Turkish (British History & Constitutional Sites)."
+          },
+          {
+            "pairId": "p_mm_g7_h_51_8",
+            "leftText": "Westminster Abbey",
+            "rightText": "kraliyet taç giyme katedrali",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "British History & Constitutional Sites",
+            "explanation": "\"Westminster Abbey\" translates to \"kraliyet taç giyme katedrali\" in Turkish (British History & Constitutional Sites)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_52",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Olympic Track & Athletic Science",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_52_1",
+            "leftText": "decathlon",
+            "rightText": "onlu atletizm yarışması",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Olympic Track & Athletic Science",
+            "explanation": "\"decathlon\" translates to \"onlu atletizm yarışması\" in Turkish (Olympic Track & Athletic Science)."
+          },
+          {
+            "pairId": "p_mm_g7_h_52_2",
+            "leftText": "dressage",
+            "rightText": "at terbiyesi ve uyum sanatı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Olympic Track & Athletic Science",
+            "explanation": "\"dressage\" translates to \"at terbiyesi ve uyum sanatı\" in Turkish (Olympic Track & Athletic Science)."
+          },
+          {
+            "pairId": "p_mm_g7_h_52_3",
+            "leftText": "pole vault",
+            "rightText": "sırıkla yüksek atlama",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Olympic Track & Athletic Science",
+            "explanation": "\"pole vault\" translates to \"sırıkla yüksek atlama\" in Turkish (Olympic Track & Athletic Science)."
+          },
+          {
+            "pairId": "p_mm_g7_h_52_4",
+            "leftText": "steeplechase",
+            "rightText": "engelli ve hendekli su koşusu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Olympic Track & Athletic Science",
+            "explanation": "\"steeplechase\" translates to \"engelli ve hendekli su koşusu\" in Turkish (Olympic Track & Athletic Science)."
+          },
+          {
+            "pairId": "p_mm_g7_h_52_5",
+            "leftText": "biomechanics",
+            "rightText": "sporcu vücut hareket fiziği",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Olympic Track & Athletic Science",
+            "explanation": "\"biomechanics\" translates to \"sporcu vücut hareket fiziği\" in Turkish (Olympic Track & Athletic Science)."
+          },
+          {
+            "pairId": "p_mm_g7_h_52_6",
+            "leftText": "aerobic endurance",
+            "rightText": "oksijenli dayanıklılık kapasitesi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Olympic Track & Athletic Science",
+            "explanation": "\"aerobic endurance\" translates to \"oksijenli dayanıklılık kapasitesi\" in Turkish (Olympic Track & Athletic Science)."
+          },
+          {
+            "pairId": "p_mm_g7_h_52_7",
+            "leftText": "hurdles sprint",
+            "rightText": "hızlı engelli koşu parkuru",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Olympic Track & Athletic Science",
+            "explanation": "\"hurdles sprint\" translates to \"hızlı engelli koşu parkuru\" in Turkish (Olympic Track & Athletic Science)."
+          },
+          {
+            "pairId": "p_mm_g7_h_52_8",
+            "leftText": "discus throw",
+            "rightText": "ağır disk fırlatma müsabakası",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Olympic Track & Athletic Science",
+            "explanation": "\"discus throw\" translates to \"ağır disk fırlatma müsabakası\" in Turkish (Olympic Track & Athletic Science)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_53",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Cinematography & Broadcast Arts",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_53_1",
+            "leftText": "cross-cutting",
+            "rightText": "eşzamanlı paralel kurgu tekniği",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cinematography & Broadcast Arts",
+            "explanation": "\"cross-cutting\" translates to \"eşzamanlı paralel kurgu tekniği\" in Turkish (Cinematography & Broadcast Arts)."
+          },
+          {
+            "pairId": "p_mm_g7_h_53_2",
+            "leftText": "investigative expose",
+            "rightText": "yolsuzluk ortaya çıkaran belgesel",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cinematography & Broadcast Arts",
+            "explanation": "\"investigative expose\" translates to \"yolsuzluk ortaya çıkaran belgesel\" in Turkish (Cinematography & Broadcast Arts)."
+          },
+          {
+            "pairId": "p_mm_g7_h_53_3",
+            "leftText": "storyboard",
+            "rightText": "çekim öncesi sahne çizim planı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cinematography & Broadcast Arts",
+            "explanation": "\"storyboard\" translates to \"çekim öncesi sahne çizim planı\" in Turkish (Cinematography & Broadcast Arts)."
+          },
+          {
+            "pairId": "p_mm_g7_h_53_4",
+            "leftText": "soundtrack",
+            "rightText": "film özgün müzik bestesi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cinematography & Broadcast Arts",
+            "explanation": "\"soundtrack\" translates to \"film özgün müzik bestesi\" in Turkish (Cinematography & Broadcast Arts)."
+          },
+          {
+            "pairId": "p_mm_g7_h_53_5",
+            "leftText": "cinematographer",
+            "rightText": "görüntü yönetmeni ustası",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cinematography & Broadcast Arts",
+            "explanation": "\"cinematographer\" translates to \"görüntü yönetmeni ustası\" in Turkish (Cinematography & Broadcast Arts)."
+          },
+          {
+            "pairId": "p_mm_g7_h_53_6",
+            "leftText": "monologue",
+            "rightText": "tek kişilik tiyatro konuşması",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cinematography & Broadcast Arts",
+            "explanation": "\"monologue\" translates to \"tek kişilik tiyatro konuşması\" in Turkish (Cinematography & Broadcast Arts)."
+          },
+          {
+            "pairId": "p_mm_g7_h_53_7",
+            "leftText": "voiceover",
+            "rightText": "arka plan dış ses anlatımı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cinematography & Broadcast Arts",
+            "explanation": "\"voiceover\" translates to \"arka plan dış ses anlatımı\" in Turkish (Cinematography & Broadcast Arts)."
+          },
+          {
+            "pairId": "p_mm_g7_h_53_8",
+            "leftText": "premiere",
+            "rightText": "film ilk gösterim galası",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cinematography & Broadcast Arts",
+            "explanation": "\"premiere\" translates to \"film ilk gösterim galası\" in Turkish (Cinematography & Broadcast Arts)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_54",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Sustainable Civic Architecture",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_54_1",
+            "leftText": "passive solar house",
+            "rightText": "güneşle ısınan yalıtımlı konut",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Sustainable Civic Architecture",
+            "explanation": "\"passive solar house\" translates to \"güneşle ısınan yalıtımlı konut\" in Turkish (Sustainable Civic Architecture)."
+          },
+          {
+            "pairId": "p_mm_g7_h_54_2",
+            "leftText": "zero-carbon building",
+            "rightText": "sıfır karbon salınımlı yapı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Sustainable Civic Architecture",
+            "explanation": "\"zero-carbon building\" translates to \"sıfır karbon salınımlı yapı\" in Turkish (Sustainable Civic Architecture)."
+          },
+          {
+            "pairId": "p_mm_g7_h_54_3",
+            "leftText": "geothermal heat",
+            "rightText": "yer altı jeotermal ısı enerjisi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Sustainable Civic Architecture",
+            "explanation": "\"geothermal heat\" translates to \"yer altı jeotermal ısı enerjisi\" in Turkish (Sustainable Civic Architecture)."
+          },
+          {
+            "pairId": "p_mm_g7_h_54_4",
+            "leftText": "rainwater harvesting",
+            "rightText": "çatı yağmur suyu toplama deposu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Sustainable Civic Architecture",
+            "explanation": "\"rainwater harvesting\" translates to \"çatı yağmur suyu toplama deposu\" in Turkish (Sustainable Civic Architecture)."
+          },
+          {
+            "pairId": "p_mm_g7_h_54_5",
+            "leftText": "district heating",
+            "rightText": "merkezi mahalle ısıtma sistemi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Sustainable Civic Architecture",
+            "explanation": "\"district heating\" translates to \"merkezi mahalle ısıtma sistemi\" in Turkish (Sustainable Civic Architecture)."
+          },
+          {
+            "pairId": "p_mm_g7_h_54_6",
+            "leftText": "green roof",
+            "rightText": "bitkilendirilmiş yeşil çatı örtüsü",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Sustainable Civic Architecture",
+            "explanation": "\"green roof\" translates to \"bitkilendirilmiş yeşil çatı örtüsü\" in Turkish (Sustainable Civic Architecture)."
+          },
+          {
+            "pairId": "p_mm_g7_h_54_7",
+            "leftText": "photovoltaic panel",
+            "rightText": "güneş ışığı elektrik paneli",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Sustainable Civic Architecture",
+            "explanation": "\"photovoltaic panel\" translates to \"güneş ışığı elektrik paneli\" in Turkish (Sustainable Civic Architecture)."
+          },
+          {
+            "pairId": "p_mm_g7_h_54_8",
+            "leftText": "aerogel insulation",
+            "rightText": "ileri düzey hava jeli yalıtımı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Sustainable Civic Architecture",
+            "explanation": "\"aerogel insulation\" translates to \"ileri düzey hava jeli yalıtımı\" in Turkish (Sustainable Civic Architecture)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_55",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Marine Biology & Oceanography",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_55_1",
+            "leftText": "trench",
+            "rightText": "derin okyanus çukuru",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Marine Biology & Oceanography",
+            "explanation": "\"trench\" translates to \"derin okyanus çukuru\" in Turkish (Marine Biology & Oceanography)."
+          },
+          {
+            "pairId": "p_mm_g7_h_55_2",
+            "leftText": "bioluminescence",
+            "rightText": "canlıların kendi ışığını üretmesi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Marine Biology & Oceanography",
+            "explanation": "\"bioluminescence\" translates to \"canlıların kendi ışığını üretmesi\" in Turkish (Marine Biology & Oceanography)."
+          },
+          {
+            "pairId": "p_mm_g7_h_55_3",
+            "leftText": "hydrothermal vent",
+            "rightText": "deniz tabanı sıcak su bacası",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Marine Biology & Oceanography",
+            "explanation": "\"hydrothermal vent\" translates to \"deniz tabanı sıcak su bacası\" in Turkish (Marine Biology & Oceanography)."
+          },
+          {
+            "pairId": "p_mm_g7_h_55_4",
+            "leftText": "phytoplankton",
+            "rightText": "oksijen üreten mikroskobik algler",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Marine Biology & Oceanography",
+            "explanation": "\"phytoplankton\" translates to \"oksijen üreten mikroskobik algler\" in Turkish (Marine Biology & Oceanography)."
+          },
+          {
+            "pairId": "p_mm_g7_h_55_5",
+            "leftText": "abyssal zone",
+            "rightText": "okyanusun karanlık derin katmanı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Marine Biology & Oceanography",
+            "explanation": "\"abyssal zone\" translates to \"okyanusun karanlık derin katmanı\" in Turkish (Marine Biology & Oceanography)."
+          },
+          {
+            "pairId": "p_mm_g7_h_55_6",
+            "leftText": "pelagic species",
+            "rightText": "açık deniz yüzücü canlıları",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Marine Biology & Oceanography",
+            "explanation": "\"pelagic species\" translates to \"açık deniz yüzücü canlıları\" in Turkish (Marine Biology & Oceanography)."
+          },
+          {
+            "pairId": "p_mm_g7_h_55_7",
+            "leftText": "salinity",
+            "rightText": "deniz suyu tuzluluk oranı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Marine Biology & Oceanography",
+            "explanation": "\"salinity\" translates to \"deniz suyu tuzluluk oranı\" in Turkish (Marine Biology & Oceanography)."
+          },
+          {
+            "pairId": "p_mm_g7_h_55_8",
+            "leftText": "apex predator",
+            "rightText": "besin zinciri tepesindeki avcı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Marine Biology & Oceanography",
+            "explanation": "\"apex predator\" translates to \"besin zinciri tepesindeki avcı\" in Turkish (Marine Biology & Oceanography)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_56",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Meteorology & Extreme Weather",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_56_1",
+            "leftText": "cyclone",
+            "rightText": "dönen tropikal hava fırtınası",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Meteorology & Extreme Weather",
+            "explanation": "\"cyclone\" translates to \"dönen tropikal hava fırtınası\" in Turkish (Meteorology & Extreme Weather)."
+          },
+          {
+            "pairId": "p_mm_g7_h_56_2",
+            "leftText": "barometric pressure",
+            "rightText": "hava basıncı ölçüm değeri",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Meteorology & Extreme Weather",
+            "explanation": "\"barometric pressure\" translates to \"hava basıncı ölçüm değeri\" in Turkish (Meteorology & Extreme Weather)."
+          },
+          {
+            "pairId": "p_mm_g7_h_56_3",
+            "leftText": "anemometer",
+            "rightText": "rüzgar hızı ölçen sayaç",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Meteorology & Extreme Weather",
+            "explanation": "\"anemometer\" translates to \"rüzgar hızı ölçen sayaç\" in Turkish (Meteorology & Extreme Weather)."
+          },
+          {
+            "pairId": "p_mm_g7_h_56_4",
+            "leftText": "supercell",
+            "rightText": "şiddetli hortum fırtına hücresi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Meteorology & Extreme Weather",
+            "explanation": "\"supercell\" translates to \"şiddetli hortum fırtına hücresi\" in Turkish (Meteorology & Extreme Weather)."
+          },
+          {
+            "pairId": "p_mm_g7_h_56_5",
+            "leftText": "precipitation",
+            "rightText": "atmosferik yağış miktarı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Meteorology & Extreme Weather",
+            "explanation": "\"precipitation\" translates to \"atmosferik yağış miktarı\" in Turkish (Meteorology & Extreme Weather)."
+          },
+          {
+            "pairId": "p_mm_g7_h_56_6",
+            "leftText": "jet stream",
+            "rightText": "yüksek irtifa hızlı rüzgar akımı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Meteorology & Extreme Weather",
+            "explanation": "\"jet stream\" translates to \"yüksek irtifa hızlı rüzgar akımı\" in Turkish (Meteorology & Extreme Weather)."
+          },
+          {
+            "pairId": "p_mm_g7_h_56_7",
+            "leftText": "microburst",
+            "rightText": "ani aşağı yönlü hava patlaması",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Meteorology & Extreme Weather",
+            "explanation": "\"microburst\" translates to \"ani aşağı yönlü hava patlaması\" in Turkish (Meteorology & Extreme Weather)."
+          },
+          {
+            "pairId": "p_mm_g7_h_56_8",
+            "leftText": "permafrost",
+            "rightText": "sürekli donmuş kutup toprağı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Meteorology & Extreme Weather",
+            "explanation": "\"permafrost\" translates to \"sürekli donmuş kutup toprağı\" in Turkish (Meteorology & Extreme Weather)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_57",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Ancient Civilizations & Archaeology",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_57_1",
+            "leftText": "excavation",
+            "rightText": "arkeolojik kazı alanı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Ancient Civilizations & Archaeology",
+            "explanation": "\"excavation\" translates to \"arkeolojik kazı alanı\" in Turkish (Ancient Civilizations & Archaeology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_57_2",
+            "leftText": "artifact",
+            "rightText": "tarihi el yapımı kalıntı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Ancient Civilizations & Archaeology",
+            "explanation": "\"artifact\" translates to \"tarihi el yapımı kalıntı\" in Turkish (Ancient Civilizations & Archaeology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_57_3",
+            "leftText": "hieroglyph",
+            "rightText": "antik resim yazı simgeleri",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Ancient Civilizations & Archaeology",
+            "explanation": "\"hieroglyph\" translates to \"antik resim yazı simgeleri\" in Turkish (Ancient Civilizations & Archaeology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_57_4",
+            "leftText": "amphitheater",
+            "rightText": "açık hava dairesel tiyatro",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Ancient Civilizations & Archaeology",
+            "explanation": "\"amphitheater\" translates to \"açık hava dairesel tiyatro\" in Turkish (Ancient Civilizations & Archaeology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_57_5",
+            "leftText": "aqueduct",
+            "rightText": "şehre su taşıyan kemer köprü",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Ancient Civilizations & Archaeology",
+            "explanation": "\"aqueduct\" translates to \"şehre su taşıyan kemer köprü\" in Turkish (Ancient Civilizations & Archaeology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_57_6",
+            "leftText": "papyrus scroll",
+            "rightText": "eski Mısır yazı kağıdı rulosu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Ancient Civilizations & Archaeology",
+            "explanation": "\"papyrus scroll\" translates to \"eski Mısır yazı kağıdı rulosu\" in Turkish (Ancient Civilizations & Archaeology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_57_7",
+            "leftText": "cuneiform",
+            "rightText": "Mezopotamya çivi yazısı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Ancient Civilizations & Archaeology",
+            "explanation": "\"cuneiform\" translates to \"Mezopotamya çivi yazısı\" in Turkish (Ancient Civilizations & Archaeology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_57_8",
+            "leftText": "inscription",
+            "rightText": "tarihi anıt kitabe yazıtı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Ancient Civilizations & Archaeology",
+            "explanation": "\"inscription\" translates to \"tarihi anıt kitabe yazıtı\" in Turkish (Ancient Civilizations & Archaeology)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_58",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Robotics & Artificial Intelligence",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_58_1",
+            "leftText": "algorithm",
+            "rightText": "adım adım problem çözme yolu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Robotics & Artificial Intelligence",
+            "explanation": "\"algorithm\" translates to \"adım adım problem çözme yolu\" in Turkish (Robotics & Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g7_h_58_2",
+            "leftText": "actuator",
+            "rightText": "robot kolu hareket motoru",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Robotics & Artificial Intelligence",
+            "explanation": "\"actuator\" translates to \"robot kolu hareket motoru\" in Turkish (Robotics & Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g7_h_58_3",
+            "leftText": "sensor",
+            "rightText": "çevreyi algılayan elektronik göz",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Robotics & Artificial Intelligence",
+            "explanation": "\"sensor\" translates to \"çevreyi algılayan elektronik göz\" in Turkish (Robotics & Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g7_h_58_4",
+            "leftText": "microcontroller",
+            "rightText": "küçük programlanabilir çip beyin",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Robotics & Artificial Intelligence",
+            "explanation": "\"microcontroller\" translates to \"küçük programlanabilir çip beyin\" in Turkish (Robotics & Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g7_h_58_5",
+            "leftText": "autonomous",
+            "rightText": "kendi kendine karar verebilen",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Robotics & Artificial Intelligence",
+            "explanation": "\"autonomous\" translates to \"kendi kendine karar verebilen\" in Turkish (Robotics & Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g7_h_58_6",
+            "leftText": "telemetry",
+            "rightText": "uzaktan veri iletim sinyali",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Robotics & Artificial Intelligence",
+            "explanation": "\"telemetry\" translates to \"uzaktan veri iletim sinyali\" in Turkish (Robotics & Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g7_h_58_7",
+            "leftText": "neural network",
+            "rightText": "yapay sinir ağı modeli",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Robotics & Artificial Intelligence",
+            "explanation": "\"neural network\" translates to \"yapay sinir ağı modeli\" in Turkish (Robotics & Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g7_h_58_8",
+            "leftText": "firmware",
+            "rightText": "aygıt içine gömülü yazılım",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Robotics & Artificial Intelligence",
+            "explanation": "\"firmware\" translates to \"aygıt içine gömülü yazılım\" in Turkish (Robotics & Artificial Intelligence)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_59",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Public Health & Virology",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_59_1",
+            "leftText": "immunization",
+            "rightText": "aşıyla bağışıklık kazanma",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Public Health & Virology",
+            "explanation": "\"immunization\" translates to \"aşıyla bağışıklık kazanma\" in Turkish (Public Health & Virology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_59_2",
+            "leftText": "pathogen",
+            "rightText": "hastalık yapan mikroskobik etken",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Public Health & Virology",
+            "explanation": "\"pathogen\" translates to \"hastalık yapan mikroskobik etken\" in Turkish (Public Health & Virology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_59_3",
+            "leftText": "epidemic",
+            "rightText": "bölgesel bulaşıcı salgın hastalık",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Public Health & Virology",
+            "explanation": "\"epidemic\" translates to \"bölgesel bulaşıcı salgın hastalık\" in Turkish (Public Health & Virology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_59_4",
+            "leftText": "quarantine",
+            "rightText": "bulaşmayı önleyici karantina",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Public Health & Virology",
+            "explanation": "\"quarantine\" translates to \"bulaşmayı önleyici karantina\" in Turkish (Public Health & Virology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_59_5",
+            "leftText": "antibody",
+            "rightText": "vücudun ürettiği koruyucu protein",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Public Health & Virology",
+            "explanation": "\"antibody\" translates to \"vücudun ürettiği koruyucu protein\" in Turkish (Public Health & Virology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_59_6",
+            "leftText": "sanitation",
+            "rightText": "halk sağlığı temizlik standartları",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Public Health & Virology",
+            "explanation": "\"sanitation\" translates to \"halk sağlığı temizlik standartları\" in Turkish (Public Health & Virology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_59_7",
+            "leftText": "microbiome",
+            "rightText": "vücut içi dost bakteri florası",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Public Health & Virology",
+            "explanation": "\"microbiome\" translates to \"vücut içi dost bakteri florası\" in Turkish (Public Health & Virology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_59_8",
+            "leftText": "transmission",
+            "rightText": "hastalığın kişiden kişiye geçişi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Public Health & Virology",
+            "explanation": "\"transmission\" translates to \"hastalığın kişiden kişiye geçişi\" in Turkish (Public Health & Virology)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_60",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Geophysics & Earth Dynamics",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_60_1",
+            "leftText": "subduction zone",
+            "rightText": "levha batma dalma kuşağı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Geophysics & Earth Dynamics",
+            "explanation": "\"subduction zone\" translates to \"levha batma dalma kuşağı\" in Turkish (Geophysics & Earth Dynamics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_60_2",
+            "leftText": "seismograph",
+            "rightText": "deprem sarsıntı kayıt aygıtı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Geophysics & Earth Dynamics",
+            "explanation": "\"seismograph\" translates to \"deprem sarsıntı kayıt aygıtı\" in Turkish (Geophysics & Earth Dynamics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_60_3",
+            "leftText": "tectonic plate",
+            "rightText": "yerkabuğunu oluşturan dev kayaç",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Geophysics & Earth Dynamics",
+            "explanation": "\"tectonic plate\" translates to \"yerkabuğunu oluşturan dev kayaç\" in Turkish (Geophysics & Earth Dynamics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_60_4",
+            "leftText": "fault scarp",
+            "rightText": "fay hattı kırılma basamağı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Geophysics & Earth Dynamics",
+            "explanation": "\"fault scarp\" translates to \"fay hattı kırılma basamağı\" in Turkish (Geophysics & Earth Dynamics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_60_5",
+            "leftText": "magma chamber",
+            "rightText": "yer altı erimiş lav odası",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Geophysics & Earth Dynamics",
+            "explanation": "\"magma chamber\" translates to \"yer altı erimiş lav odası\" in Turkish (Geophysics & Earth Dynamics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_60_6",
+            "leftText": "epicenter",
+            "rightText": "depremin yeryüzündeki merkezi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Geophysics & Earth Dynamics",
+            "explanation": "\"epicenter\" translates to \"depremin yeryüzündeki merkezi\" in Turkish (Geophysics & Earth Dynamics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_60_7",
+            "leftText": "richter scale",
+            "rightText": "deprem büyüklüğü ölçüm skalası",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Geophysics & Earth Dynamics",
+            "explanation": "\"richter scale\" translates to \"deprem büyüklüğü ölçüm skalası\" in Turkish (Geophysics & Earth Dynamics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_60_8",
+            "leftText": "liquefaction",
+            "rightText": "toprağın sıvı gibi akma tehlikesi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Geophysics & Earth Dynamics",
+            "explanation": "\"liquefaction\" translates to \"toprağın sıvı gibi akma tehlikesi\" in Turkish (Geophysics & Earth Dynamics)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_61",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Scientific Method & Reasoning",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_61_1",
+            "leftText": "hypothesis",
+            "rightText": "sınanabilir bilimsel varsayım",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Scientific Method & Reasoning",
+            "explanation": "\"hypothesis\" translates to \"sınanabilir bilimsel varsayım\" in Turkish (Scientific Method & Reasoning)."
+          },
+          {
+            "pairId": "p_mm_g7_h_61_2",
+            "leftText": "empirical",
+            "rightText": "deney ve gözleme dayalı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Scientific Method & Reasoning",
+            "explanation": "\"empirical\" translates to \"deney ve gözleme dayalı\" in Turkish (Scientific Method & Reasoning)."
+          },
+          {
+            "pairId": "p_mm_g7_h_61_3",
+            "leftText": "variable",
+            "rightText": "deneyde ölçülen değişken",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Scientific Method & Reasoning",
+            "explanation": "\"variable\" translates to \"deneyde ölçülen değişken\" in Turkish (Scientific Method & Reasoning)."
+          },
+          {
+            "pairId": "p_mm_g7_h_61_4",
+            "leftText": "control group",
+            "rightText": "müdahale edilmeyen kontrol grubu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Scientific Method & Reasoning",
+            "explanation": "\"control group\" translates to \"müdahale edilmeyen kontrol grubu\" in Turkish (Scientific Method & Reasoning)."
+          },
+          {
+            "pairId": "p_mm_g7_h_61_5",
+            "leftText": "deduction",
+            "rightText": "tümdengelim mantık yürütmesi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Scientific Method & Reasoning",
+            "explanation": "\"deduction\" translates to \"tümdengelim mantık yürütmesi\" in Turkish (Scientific Method & Reasoning)."
+          },
+          {
+            "pairId": "p_mm_g7_h_61_6",
+            "leftText": "induction",
+            "rightText": "tümevarım kanıt toplaması",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Scientific Method & Reasoning",
+            "explanation": "\"induction\" translates to \"tümevarım kanıt toplaması\" in Turkish (Scientific Method & Reasoning)."
+          },
+          {
+            "pairId": "p_mm_g7_h_61_7",
+            "leftText": "replication",
+            "rightText": "deneyin bağımsız tekrarlanması",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Scientific Method & Reasoning",
+            "explanation": "\"replication\" translates to \"deneyin bağımsız tekrarlanması\" in Turkish (Scientific Method & Reasoning)."
+          },
+          {
+            "pairId": "p_mm_g7_h_61_8",
+            "leftText": "peer review",
+            "rightText": "uzman bilimsel hakem denetimi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Scientific Method & Reasoning",
+            "explanation": "\"peer review\" translates to \"uzman bilimsel hakem denetimi\" in Turkish (Scientific Method & Reasoning)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_62",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Classical Literature & Rhetoric",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_62_1",
+            "leftText": "metaphor",
+            "rightText": "edebi istiare mecaz sanatı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Classical Literature & Rhetoric",
+            "explanation": "\"metaphor\" translates to \"edebi istiare mecaz sanatı\" in Turkish (Classical Literature & Rhetoric)."
+          },
+          {
+            "pairId": "p_mm_g7_h_62_2",
+            "leftText": "allegory",
+            "rightText": "sembolik anlatım alegori",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Classical Literature & Rhetoric",
+            "explanation": "\"allegory\" translates to \"sembolik anlatım alegori\" in Turkish (Classical Literature & Rhetoric)."
+          },
+          {
+            "pairId": "p_mm_g7_h_62_3",
+            "leftText": "soliloquy",
+            "rightText": "kendi kendine iç konuşma",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Classical Literature & Rhetoric",
+            "explanation": "\"soliloquy\" translates to \"kendi kendine iç konuşma\" in Turkish (Classical Literature & Rhetoric)."
+          },
+          {
+            "pairId": "p_mm_g7_h_62_4",
+            "leftText": "alliteration",
+            "rightText": "aynı seslerin ahenkli tekrarı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Classical Literature & Rhetoric",
+            "explanation": "\"alliteration\" translates to \"aynı seslerin ahenkli tekrarı\" in Turkish (Classical Literature & Rhetoric)."
+          },
+          {
+            "pairId": "p_mm_g7_h_62_5",
+            "leftText": "protagonist",
+            "rightText": "hikayenin baş kahramanı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Classical Literature & Rhetoric",
+            "explanation": "\"protagonist\" translates to \"hikayenin baş kahramanı\" in Turkish (Classical Literature & Rhetoric)."
+          },
+          {
+            "pairId": "p_mm_g7_h_62_6",
+            "leftText": "antagonist",
+            "rightText": "kahramanın karşısındaki hasım",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Classical Literature & Rhetoric",
+            "explanation": "\"antagonist\" translates to \"kahramanın karşısındaki hasım\" in Turkish (Classical Literature & Rhetoric)."
+          },
+          {
+            "pairId": "p_mm_g7_h_62_7",
+            "leftText": "hyperbole",
+            "rightText": "edebi mübalağa abartı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Classical Literature & Rhetoric",
+            "explanation": "\"hyperbole\" translates to \"edebi mübalağa abartı\" in Turkish (Classical Literature & Rhetoric)."
+          },
+          {
+            "pairId": "p_mm_g7_h_62_8",
+            "leftText": "irony",
+            "rightText": "söylenenin tersini kastetme",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Classical Literature & Rhetoric",
+            "explanation": "\"irony\" translates to \"söylenenin tersini kastetme\" in Turkish (Classical Literature & Rhetoric)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_63",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Genetics & Biotechnology",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_63_1",
+            "leftText": "chromosome",
+            "rightText": "genetik bilgi taşıyan yapı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Genetics & Biotechnology",
+            "explanation": "\"chromosome\" translates to \"genetik bilgi taşıyan yapı\" in Turkish (Genetics & Biotechnology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_63_2",
+            "leftText": "nucleotide",
+            "rightText": "DNA zincirinin temel harfi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Genetics & Biotechnology",
+            "explanation": "\"nucleotide\" translates to \"DNA zincirinin temel harfi\" in Turkish (Genetics & Biotechnology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_63_3",
+            "leftText": "mutation",
+            "rightText": "genetik dizilimde ani değişim",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Genetics & Biotechnology",
+            "explanation": "\"mutation\" translates to \"genetik dizilimde ani değişim\" in Turkish (Genetics & Biotechnology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_63_4",
+            "leftText": "dominant allele",
+            "rightText": "baskın genetik özellik",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Genetics & Biotechnology",
+            "explanation": "\"dominant allele\" translates to \"baskın genetik özellik\" in Turkish (Genetics & Biotechnology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_63_5",
+            "leftText": "recessive allele",
+            "rightText": "çekinik genetik özellik",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Genetics & Biotechnology",
+            "explanation": "\"recessive allele\" translates to \"çekinik genetik özellik\" in Turkish (Genetics & Biotechnology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_63_6",
+            "leftText": "phenotype",
+            "rightText": "canlının dış görünüş özelliği",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Genetics & Biotechnology",
+            "explanation": "\"phenotype\" translates to \"canlının dış görünüş özelliği\" in Turkish (Genetics & Biotechnology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_63_7",
+            "leftText": "genotype",
+            "rightText": "canlının genetik kod bütünü",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Genetics & Biotechnology",
+            "explanation": "\"genotype\" translates to \"canlının genetik kod bütünü\" in Turkish (Genetics & Biotechnology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_63_8",
+            "leftText": "cloning",
+            "rightText": "birebir genetik kopya üretimi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Genetics & Biotechnology",
+            "explanation": "\"cloning\" translates to \"birebir genetik kopya üretimi\" in Turkish (Genetics & Biotechnology)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_64",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Renewable Energy Engineering",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_64_1",
+            "leftText": "photovoltaic",
+            "rightText": "ışığı elektriğe çeviren panel",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Renewable Energy Engineering",
+            "explanation": "\"photovoltaic\" translates to \"ışığı elektriğe çeviren panel\" in Turkish (Renewable Energy Engineering)."
+          },
+          {
+            "pairId": "p_mm_g7_h_64_2",
+            "leftText": "wind turbine",
+            "rightText": "rüzgar pervanesi jeneratörü",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Renewable Energy Engineering",
+            "explanation": "\"wind turbine\" translates to \"rüzgar pervanesi jeneratörü\" in Turkish (Renewable Energy Engineering)."
+          },
+          {
+            "pairId": "p_mm_g7_h_64_3",
+            "leftText": "biomass fuel",
+            "rightText": "organik atıktan enerji yakıtı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Renewable Energy Engineering",
+            "explanation": "\"biomass fuel\" translates to \"organik atıktan enerji yakıtı\" in Turkish (Renewable Energy Engineering)."
+          },
+          {
+            "pairId": "p_mm_g7_h_64_4",
+            "leftText": "hydroelectric",
+            "rightText": "su gücüyle çalışan santral",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Renewable Energy Engineering",
+            "explanation": "\"hydroelectric\" translates to \"su gücüyle çalışan santral\" in Turkish (Renewable Energy Engineering)."
+          },
+          {
+            "pairId": "p_mm_g7_h_64_5",
+            "leftText": "geothermal",
+            "rightText": "yer altı sıcak buhar enerjisi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Renewable Energy Engineering",
+            "explanation": "\"geothermal\" translates to \"yer altı sıcak buhar enerjisi\" in Turkish (Renewable Energy Engineering)."
+          },
+          {
+            "pairId": "p_mm_g7_h_64_6",
+            "leftText": "grid storage",
+            "rightText": "şebeke elektrik depolama bataryası",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Renewable Energy Engineering",
+            "explanation": "\"grid storage\" translates to \"şebeke elektrik depolama bataryası\" in Turkish (Renewable Energy Engineering)."
+          },
+          {
+            "pairId": "p_mm_g7_h_64_7",
+            "leftText": "inverter",
+            "rightText": "doğru akımı alternatif akıma çeviren",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Renewable Energy Engineering",
+            "explanation": "\"inverter\" translates to \"doğru akımı alternatif akıma çeviren\" in Turkish (Renewable Energy Engineering)."
+          },
+          {
+            "pairId": "p_mm_g7_h_64_8",
+            "leftText": "efficiency rating",
+            "rightText": "enerji verimlilik katsayısı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Renewable Energy Engineering",
+            "explanation": "\"efficiency rating\" translates to \"enerji verimlilik katsayısı\" in Turkish (Renewable Energy Engineering)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_65",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Space Missions & Exploration",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_65_1",
+            "leftText": "space rover",
+            "rightText": "gezegen yüzey araştırma aracı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Space Missions & Exploration",
+            "explanation": "\"space rover\" translates to \"gezegen yüzey araştırma aracı\" in Turkish (Space Missions & Exploration)."
+          },
+          {
+            "pairId": "p_mm_g7_h_65_2",
+            "leftText": "lander",
+            "rightText": "gök cismine yumuşak inen modül",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Space Missions & Exploration",
+            "explanation": "\"lander\" translates to \"gök cismine yumuşak inen modül\" in Turkish (Space Missions & Exploration)."
+          },
+          {
+            "pairId": "p_mm_g7_h_65_3",
+            "leftText": "propulsion",
+            "rightText": "roket itiş gücü sistemi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Space Missions & Exploration",
+            "explanation": "\"propulsion\" translates to \"roket itiş gücü sistemi\" in Turkish (Space Missions & Exploration)."
+          },
+          {
+            "pairId": "p_mm_g7_h_65_4",
+            "leftText": "payload",
+            "rightText": "uzaya taşınan bilimsel yük",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Space Missions & Exploration",
+            "explanation": "\"payload\" translates to \"uzaya taşınan bilimsel yük\" in Turkish (Space Missions & Exploration)."
+          },
+          {
+            "pairId": "p_mm_g7_h_65_5",
+            "leftText": "orbital decay",
+            "rightText": "yörünge irtifasının yavaşça düşüşü",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Space Missions & Exploration",
+            "explanation": "\"orbital decay\" translates to \"yörünge irtifasının yavaşça düşüşü\" in Turkish (Space Missions & Exploration)."
+          },
+          {
+            "pairId": "p_mm_g7_h_65_6",
+            "leftText": "re-entry shield",
+            "rightText": "atmosfere giriş ısı kalkanı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Space Missions & Exploration",
+            "explanation": "\"re-entry shield\" translates to \"atmosfere giriş ısı kalkanı\" in Turkish (Space Missions & Exploration)."
+          },
+          {
+            "pairId": "p_mm_g7_h_65_7",
+            "leftText": "docking maneuver",
+            "rightText": "uzay istasyonuna kenetlenme",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Space Missions & Exploration",
+            "explanation": "\"docking maneuver\" translates to \"uzay istasyonuna kenetlenme\" in Turkish (Space Missions & Exploration)."
+          },
+          {
+            "pairId": "p_mm_g7_h_65_8",
+            "leftText": "deep space probe",
+            "rightText": "derin uzay keşif aracı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Space Missions & Exploration",
+            "explanation": "\"deep space probe\" translates to \"derin uzay keşif aracı\" in Turkish (Space Missions & Exploration)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_66",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "International Diplomacy & Treaties",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_66_1",
+            "leftText": "ratification",
+            "rightText": "uluslararası antlaşmayı onaylama",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "International Diplomacy & Treaties",
+            "explanation": "\"ratification\" translates to \"uluslararası antlaşmayı onaylama\" in Turkish (International Diplomacy & Treaties)."
+          },
+          {
+            "pairId": "p_mm_g7_h_66_2",
+            "leftText": "sovereignty",
+            "rightText": "bağımsız devlet egemenliği",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "International Diplomacy & Treaties",
+            "explanation": "\"sovereignty\" translates to \"bağımsız devlet egemenliği\" in Turkish (International Diplomacy & Treaties)."
+          },
+          {
+            "pairId": "p_mm_g7_h_66_3",
+            "leftText": "sanction",
+            "rightText": "ülkelere yönelik ekonomik yaptırım",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "International Diplomacy & Treaties",
+            "explanation": "\"sanction\" translates to \"ülkelere yönelik ekonomik yaptırım\" in Turkish (International Diplomacy & Treaties)."
+          },
+          {
+            "pairId": "p_mm_g7_h_66_4",
+            "leftText": "ambassador",
+            "rightText": "devleti temsil eden büyükelçi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "International Diplomacy & Treaties",
+            "explanation": "\"ambassador\" translates to \"devleti temsil eden büyükelçi\" in Turkish (International Diplomacy & Treaties)."
+          },
+          {
+            "pairId": "p_mm_g7_h_66_5",
+            "leftText": "bilateral treaty",
+            "rightText": "iki ülke arasında ikili anlaşma",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "International Diplomacy & Treaties",
+            "explanation": "\"bilateral treaty\" translates to \"iki ülke arasında ikili anlaşma\" in Turkish (International Diplomacy & Treaties)."
+          },
+          {
+            "pairId": "p_mm_g7_h_66_6",
+            "leftText": "extraterritorial",
+            "rightText": "yabancı yargı muafiyeti",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "International Diplomacy & Treaties",
+            "explanation": "\"extraterritorial\" translates to \"yabancı yargı muafiyeti\" in Turkish (International Diplomacy & Treaties)."
+          },
+          {
+            "pairId": "p_mm_g7_h_66_7",
+            "leftText": "delegation",
+            "rightText": "resmi görüşme heyeti",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "International Diplomacy & Treaties",
+            "explanation": "\"delegation\" translates to \"resmi görüşme heyeti\" in Turkish (International Diplomacy & Treaties)."
+          },
+          {
+            "pairId": "p_mm_g7_h_66_8",
+            "leftText": "consensus",
+            "rightText": "tüm tarafların ortak mutabakatı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "International Diplomacy & Treaties",
+            "explanation": "\"consensus\" translates to \"tüm tarafların ortak mutabakatı\" in Turkish (International Diplomacy & Treaties)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_67",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Forest Ecosystem Dynamics",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_67_1",
+            "leftText": "canopy layer",
+            "rightText": "ağaç tepesi gölgelik örtüsü",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Forest Ecosystem Dynamics",
+            "explanation": "\"canopy layer\" translates to \"ağaç tepesi gölgelik örtüsü\" in Turkish (Forest Ecosystem Dynamics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_67_2",
+            "leftText": "understory",
+            "rightText": "çalı ve genç ağaç ara katmanı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Forest Ecosystem Dynamics",
+            "explanation": "\"understory\" translates to \"çalı ve genç ağaç ara katmanı\" in Turkish (Forest Ecosystem Dynamics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_67_3",
+            "leftText": "decomposer",
+            "rightText": "organik maddeyi çürüten mantar",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Forest Ecosystem Dynamics",
+            "explanation": "\"decomposer\" translates to \"organik maddeyi çürüten mantar\" in Turkish (Forest Ecosystem Dynamics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_67_4",
+            "leftText": "mycelium",
+            "rightText": "ağaçları bağlayan mantar ağı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Forest Ecosystem Dynamics",
+            "explanation": "\"mycelium\" translates to \"ağaçları bağlayan mantar ağı\" in Turkish (Forest Ecosystem Dynamics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_67_5",
+            "leftText": "humus soil",
+            "rightText": "besin zengini koyu orman toprağı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Forest Ecosystem Dynamics",
+            "explanation": "\"humus soil\" translates to \"besin zengini koyu orman toprağı\" in Turkish (Forest Ecosystem Dynamics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_67_6",
+            "leftText": "chlorophyll",
+            "rightText": "yeşil renkli fotosentez pigmenti",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Forest Ecosystem Dynamics",
+            "explanation": "\"chlorophyll\" translates to \"yeşil renkli fotosentez pigmenti\" in Turkish (Forest Ecosystem Dynamics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_67_7",
+            "leftText": "germination",
+            "rightText": "tohumun nemle filizlenmesi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Forest Ecosystem Dynamics",
+            "explanation": "\"germination\" translates to \"tohumun nemle filizlenmesi\" in Turkish (Forest Ecosystem Dynamics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_67_8",
+            "leftText": "symbiosis",
+            "rightText": "türler arası ortak yaşam biçimi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Forest Ecosystem Dynamics",
+            "explanation": "\"symbiosis\" translates to \"türler arası ortak yaşam biçimi\" in Turkish (Forest Ecosystem Dynamics)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_68",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Urban Planning & Smart Cities",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_68_1",
+            "leftText": "zoning ordinance",
+            "rightText": "belediye imar planı kararı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Urban Planning & Smart Cities",
+            "explanation": "\"zoning ordinance\" translates to \"belediye imar planı kararı\" in Turkish (Urban Planning & Smart Cities)."
+          },
+          {
+            "pairId": "p_mm_g7_h_68_2",
+            "leftText": "public transit",
+            "rightText": "halk toplu taşıma ağı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Urban Planning & Smart Cities",
+            "explanation": "\"public transit\" translates to \"halk toplu taşıma ağı\" in Turkish (Urban Planning & Smart Cities)."
+          },
+          {
+            "pairId": "p_mm_g7_h_68_3",
+            "leftText": "pedestrianization",
+            "rightText": "caddenin araç trafiğine kapatılması",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Urban Planning & Smart Cities",
+            "explanation": "\"pedestrianization\" translates to \"caddenin araç trafiğine kapatılması\" in Turkish (Urban Planning & Smart Cities)."
+          },
+          {
+            "pairId": "p_mm_g7_h_68_4",
+            "leftText": "congestion tax",
+            "rightText": "şehir merkezi trafik yoğunluk ücreti",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Urban Planning & Smart Cities",
+            "explanation": "\"congestion tax\" translates to \"şehir merkezi trafik yoğunluk ücreti\" in Turkish (Urban Planning & Smart Cities)."
+          },
+          {
+            "pairId": "p_mm_g7_h_68_5",
+            "leftText": "green corridor",
+            "rightText": "şehir içi kesintisiz park kuşağı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Urban Planning & Smart Cities",
+            "explanation": "\"green corridor\" translates to \"şehir içi kesintisiz park kuşağı\" in Turkish (Urban Planning & Smart Cities)."
+          },
+          {
+            "pairId": "p_mm_g7_h_68_6",
+            "leftText": "urban sprawl",
+            "rightText": "şehrin plansız genişleme sorunu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Urban Planning & Smart Cities",
+            "explanation": "\"urban sprawl\" translates to \"şehrin plansız genişleme sorunu\" in Turkish (Urban Planning & Smart Cities)."
+          },
+          {
+            "pairId": "p_mm_g7_h_68_7",
+            "leftText": "mixed-use zone",
+            "rightText": "konut ve ticaret karma alanı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Urban Planning & Smart Cities",
+            "explanation": "\"mixed-use zone\" translates to \"konut ve ticaret karma alanı\" in Turkish (Urban Planning & Smart Cities)."
+          },
+          {
+            "pairId": "p_mm_g7_h_68_8",
+            "leftText": "sustainability",
+            "rightText": "geleceğe dönük sürdürülebilirlik",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Urban Planning & Smart Cities",
+            "explanation": "\"sustainability\" translates to \"geleceğe dönük sürdürülebilirlik\" in Turkish (Urban Planning & Smart Cities)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_69",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Cognitive Psychology & Memory",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_69_1",
+            "leftText": "metacognition",
+            "rightText": "kendi öğrenme sürecini yönetme",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cognitive Psychology & Memory",
+            "explanation": "\"metacognition\" translates to \"kendi öğrenme sürecini yönetme\" in Turkish (Cognitive Psychology & Memory)."
+          },
+          {
+            "pairId": "p_mm_g7_h_69_2",
+            "leftText": "working memory",
+            "rightText": "kısa süreli aktif çalışma belleği",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cognitive Psychology & Memory",
+            "explanation": "\"working memory\" translates to \"kısa süreli aktif çalışma belleği\" in Turkish (Cognitive Psychology & Memory)."
+          },
+          {
+            "pairId": "p_mm_g7_h_69_3",
+            "leftText": "mnemonic",
+            "rightText": "hafızayı güçlendiren çağrışım tekniği",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cognitive Psychology & Memory",
+            "explanation": "\"mnemonic\" translates to \"hafızayı güçlendiren çağrışım tekniği\" in Turkish (Cognitive Psychology & Memory)."
+          },
+          {
+            "pairId": "p_mm_g7_h_69_4",
+            "leftText": "retrieval",
+            "rightText": "öğrenilen bilginin zihinden geri çağrılması",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cognitive Psychology & Memory",
+            "explanation": "\"retrieval\" translates to \"öğrenilen bilginin zihinden geri çağrılması\" in Turkish (Cognitive Psychology & Memory)."
+          },
+          {
+            "pairId": "p_mm_g7_h_69_5",
+            "leftText": "neuroplasticity",
+            "rightText": "beynin yeni sinir yolları kurması",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cognitive Psychology & Memory",
+            "explanation": "\"neuroplasticity\" translates to \"beynin yeni sinir yolları kurması\" in Turkish (Cognitive Psychology & Memory)."
+          },
+          {
+            "pairId": "p_mm_g7_h_69_6",
+            "leftText": "cognitive bias",
+            "rightText": "zihinsel algı yanılsaması",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cognitive Psychology & Memory",
+            "explanation": "\"cognitive bias\" translates to \"zihinsel algı yanılsaması\" in Turkish (Cognitive Psychology & Memory)."
+          },
+          {
+            "pairId": "p_mm_g7_h_69_7",
+            "leftText": "consolidation",
+            "rightText": "bilginin uzun süreli belleğe geçmesi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cognitive Psychology & Memory",
+            "explanation": "\"consolidation\" translates to \"bilginin uzun süreli belleğe geçmesi\" in Turkish (Cognitive Psychology & Memory)."
+          },
+          {
+            "pairId": "p_mm_g7_h_69_8",
+            "leftText": "focus duration",
+            "rightText": "kesintisiz dikkat sürdürme süresi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cognitive Psychology & Memory",
+            "explanation": "\"focus duration\" translates to \"kesintisiz dikkat sürdürme süresi\" in Turkish (Cognitive Psychology & Memory)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_70",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Ethics in Artificial Intelligence",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_70_1",
+            "leftText": "algorithmic bias",
+            "rightText": "yazılımdaki önyargı ve haksızlık",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Ethics in Artificial Intelligence",
+            "explanation": "\"algorithmic bias\" translates to \"yazılımdaki önyargı ve haksızlık\" in Turkish (Ethics in Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g7_h_70_2",
+            "leftText": "transparency",
+            "rightText": "algoritmanın denetlenebilir açıklığı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Ethics in Artificial Intelligence",
+            "explanation": "\"transparency\" translates to \"algoritmanın denetlenebilir açıklığı\" in Turkish (Ethics in Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g7_h_70_3",
+            "leftText": "accountability",
+            "rightText": "yapay zeka kararlarında sorumluluk",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Ethics in Artificial Intelligence",
+            "explanation": "\"accountability\" translates to \"yapay zeka kararlarında sorumluluk\" in Turkish (Ethics in Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g7_h_70_4",
+            "leftText": "data privacy",
+            "rightText": "kişisel kullanıcı verisi dokunulmazlığı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Ethics in Artificial Intelligence",
+            "explanation": "\"data privacy\" translates to \"kişisel kullanıcı verisi dokunulmazlığı\" in Turkish (Ethics in Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g7_h_70_5",
+            "leftText": "autonomous weapon",
+            "rightText": "insansız otonom silah sistemi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Ethics in Artificial Intelligence",
+            "explanation": "\"autonomous weapon\" translates to \"insansız otonom silah sistemi\" in Turkish (Ethics in Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g7_h_70_6",
+            "leftText": "synthetic media",
+            "rightText": "yapay üretilmiş ses ve görüntü",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Ethics in Artificial Intelligence",
+            "explanation": "\"synthetic media\" translates to \"yapay üretilmiş ses ve görüntü\" in Turkish (Ethics in Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g7_h_70_7",
+            "leftText": "alignment",
+            "rightText": "yapay zekayı insani ahlaka uyumlama",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Ethics in Artificial Intelligence",
+            "explanation": "\"alignment\" translates to \"yapay zekayı insani ahlaka uyumlama\" in Turkish (Ethics in Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g7_h_70_8",
+            "leftText": "intellectual property",
+            "rightText": "fikri mülkiyet ve telif hakkı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Ethics in Artificial Intelligence",
+            "explanation": "\"intellectual property\" translates to \"fikri mülkiyet ve telif hakkı\" in Turkish (Ethics in Artificial Intelligence)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_71",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Global Trade & Economic Systems",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_71_1",
+            "leftText": "inflation",
+            "rightText": "fiyatlar genel düzeyinin yükselişi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Global Trade & Economic Systems",
+            "explanation": "\"inflation\" translates to \"fiyatlar genel düzeyinin yükselişi\" in Turkish (Global Trade & Economic Systems)."
+          },
+          {
+            "pairId": "p_mm_g7_h_71_2",
+            "leftText": "supply chain",
+            "rightText": "ürün tedarik ve ulaştırma zinciri",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Global Trade & Economic Systems",
+            "explanation": "\"supply chain\" translates to \"ürün tedarik ve ulaştırma zinciri\" in Turkish (Global Trade & Economic Systems)."
+          },
+          {
+            "pairId": "p_mm_g7_h_71_3",
+            "leftText": "currency exchange",
+            "rightText": "yabancı para birimi takas kuru",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Global Trade & Economic Systems",
+            "explanation": "\"currency exchange\" translates to \"yabancı para birimi takas kuru\" in Turkish (Global Trade & Economic Systems)."
+          },
+          {
+            "pairId": "p_mm_g7_h_71_4",
+            "leftText": "tariff",
+            "rightText": "ithal mallardan alınan gümrük vergisi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Global Trade & Economic Systems",
+            "explanation": "\"tariff\" translates to \"ithal mallardan alınan gümrük vergisi\" in Turkish (Global Trade & Economic Systems)."
+          },
+          {
+            "pairId": "p_mm_g7_h_71_5",
+            "leftText": "subsidy",
+            "rightText": "devletin yerli üreticiye mali desteği",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Global Trade & Economic Systems",
+            "explanation": "\"subsidy\" translates to \"devletin yerli üreticiye mali desteği\" in Turkish (Global Trade & Economic Systems)."
+          },
+          {
+            "pairId": "p_mm_g7_h_71_6",
+            "leftText": "monopoly",
+            "rightText": "piyasanın tek şirketçe kontrolü",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Global Trade & Economic Systems",
+            "explanation": "\"monopoly\" translates to \"piyasanın tek şirketçe kontrolü\" in Turkish (Global Trade & Economic Systems)."
+          },
+          {
+            "pairId": "p_mm_g7_h_71_7",
+            "leftText": "deficit",
+            "rightText": "bütçe giderlerinin geliri aşması",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Global Trade & Economic Systems",
+            "explanation": "\"deficit\" translates to \"bütçe giderlerinin geliri aşması\" in Turkish (Global Trade & Economic Systems)."
+          },
+          {
+            "pairId": "p_mm_g7_h_71_8",
+            "leftText": "surplus",
+            "rightText": "gelirin giderden fazla olması durumu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Global Trade & Economic Systems",
+            "explanation": "\"surplus\" translates to \"gelirin giderden fazla olması durumu\" in Turkish (Global Trade & Economic Systems)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_72",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Wilderness Survival & Orienteering",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_72_1",
+            "leftText": "magnetic declination",
+            "rightText": "manyetik kutup sapma açısı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Wilderness Survival & Orienteering",
+            "explanation": "\"magnetic declination\" translates to \"manyetik kutup sapma açısı\" in Turkish (Wilderness Survival & Orienteering)."
+          },
+          {
+            "pairId": "p_mm_g7_h_72_2",
+            "leftText": "topographic contour",
+            "rightText": "yükseklik eşyükselti eğrisi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Wilderness Survival & Orienteering",
+            "explanation": "\"topographic contour\" translates to \"yükseklik eşyükselti eğrisi\" in Turkish (Wilderness Survival & Orienteering)."
+          },
+          {
+            "pairId": "p_mm_g7_h_72_3",
+            "leftText": "waypoint",
+            "rightText": "rota üzerindeki kontrol noktası",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Wilderness Survival & Orienteering",
+            "explanation": "\"waypoint\" translates to \"rota üzerindeki kontrol noktası\" in Turkish (Wilderness Survival & Orienteering)."
+          },
+          {
+            "pairId": "p_mm_g7_h_72_4",
+            "leftText": "kindling",
+            "rightText": "ateş yakmak için kuru çalı çırpı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Wilderness Survival & Orienteering",
+            "explanation": "\"kindling\" translates to \"ateş yakmak için kuru çalı çırpı\" in Turkish (Wilderness Survival & Orienteering)."
+          },
+          {
+            "pairId": "p_mm_g7_h_72_5",
+            "leftText": "tinderbox",
+            "rightText": "kıvılcım çıkaran kav kutusu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Wilderness Survival & Orienteering",
+            "explanation": "\"tinderbox\" translates to \"kıvılcım çıkaran kav kutusu\" in Turkish (Wilderness Survival & Orienteering)."
+          },
+          {
+            "pairId": "p_mm_g7_h_72_6",
+            "leftText": "water filtration",
+            "rightText": "akarsu suyunu mikrop filtreleme",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Wilderness Survival & Orienteering",
+            "explanation": "\"water filtration\" translates to \"akarsu suyunu mikrop filtreleme\" in Turkish (Wilderness Survival & Orienteering)."
+          },
+          {
+            "pairId": "p_mm_g7_h_72_7",
+            "leftText": "shelter pitching",
+            "rightText": "rüzgardan korunaklı barınak kurma",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Wilderness Survival & Orienteering",
+            "explanation": "\"shelter pitching\" translates to \"rüzgardan korunaklı barınak kurma\" in Turkish (Wilderness Survival & Orienteering)."
+          },
+          {
+            "pairId": "p_mm_g7_h_72_8",
+            "leftText": "emergency signal",
+            "rightText": "üçlü yardım isteme çağrısı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Wilderness Survival & Orienteering",
+            "explanation": "\"emergency signal\" translates to \"üçlü yardım isteme çağrısı\" in Turkish (Wilderness Survival & Orienteering)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_73",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Cultural Heritage & Anthropology",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_73_1",
+            "leftText": "ethnography",
+            "rightText": "halkların kültürünü inceleyen bilim",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cultural Heritage & Anthropology",
+            "explanation": "\"ethnography\" translates to \"halkların kültürünü inceleyen bilim\" in Turkish (Cultural Heritage & Anthropology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_73_2",
+            "leftText": "intangible heritage",
+            "rightText": "somut olmayan sözlü halk mirası",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cultural Heritage & Anthropology",
+            "explanation": "\"intangible heritage\" translates to \"somut olmayan sözlü halk mirası\" in Turkish (Cultural Heritage & Anthropology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_73_3",
+            "leftText": "folklore",
+            "rightText": "geleneksel halk anlatıları ve müzik",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cultural Heritage & Anthropology",
+            "explanation": "\"folklore\" translates to \"geleneksel halk anlatıları ve müzik\" in Turkish (Cultural Heritage & Anthropology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_73_4",
+            "leftText": "ritual",
+            "rightText": "toplumsal tören ve geleneksel ayin",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cultural Heritage & Anthropology",
+            "explanation": "\"ritual\" translates to \"toplumsal tören ve geleneksel ayin\" in Turkish (Cultural Heritage & Anthropology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_73_5",
+            "leftText": "oral history",
+            "rightText": "tanıkların anlatımıyla sözlü tarih",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cultural Heritage & Anthropology",
+            "explanation": "\"oral history\" translates to \"tanıkların anlatımıyla sözlü tarih\" in Turkish (Cultural Heritage & Anthropology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_73_6",
+            "leftText": "indigenous",
+            "rightText": "bölgenin yerli halk kültürüne ait",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cultural Heritage & Anthropology",
+            "explanation": "\"indigenous\" translates to \"bölgenin yerli halk kültürüne ait\" in Turkish (Cultural Heritage & Anthropology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_73_7",
+            "leftText": "artifact preservation",
+            "rightText": "tarihi eserlerin bozulmasını önleme",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cultural Heritage & Anthropology",
+            "explanation": "\"artifact preservation\" translates to \"tarihi eserlerin bozulmasını önleme\" in Turkish (Cultural Heritage & Anthropology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_73_8",
+            "leftText": "museum curation",
+            "rightText": "müze koleksiyonlarını bilimsel yönetme",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cultural Heritage & Anthropology",
+            "explanation": "\"museum curation\" translates to \"müze koleksiyonlarını bilimsel yönetme\" in Turkish (Cultural Heritage & Anthropology)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_74",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Cellular Biology & Metabolism",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_74_1",
+            "leftText": "mitochondria",
+            "rightText": "hücrenin enerji santrali",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cellular Biology & Metabolism",
+            "explanation": "\"mitochondria\" translates to \"hücrenin enerji santrali\" in Turkish (Cellular Biology & Metabolism)."
+          },
+          {
+            "pairId": "p_mm_g7_h_74_2",
+            "leftText": "ribosome",
+            "rightText": "protein sentezleyen organel",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cellular Biology & Metabolism",
+            "explanation": "\"ribosome\" translates to \"protein sentezleyen organel\" in Turkish (Cellular Biology & Metabolism)."
+          },
+          {
+            "pairId": "p_mm_g7_h_74_3",
+            "leftText": "cytoplasm",
+            "rightText": "hücre içini dolduran jel sıvı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cellular Biology & Metabolism",
+            "explanation": "\"cytoplasm\" translates to \"hücre içini dolduran jel sıvı\" in Turkish (Cellular Biology & Metabolism)."
+          },
+          {
+            "pairId": "p_mm_g7_h_74_4",
+            "leftText": "membrane",
+            "rightText": "seçici geçirgen hücre zarı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cellular Biology & Metabolism",
+            "explanation": "\"membrane\" translates to \"seçici geçirgen hücre zarı\" in Turkish (Cellular Biology & Metabolism)."
+          },
+          {
+            "pairId": "p_mm_g7_h_74_5",
+            "leftText": "cellular respiration",
+            "rightText": "glikozdan ATP enerjisi üretimi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cellular Biology & Metabolism",
+            "explanation": "\"cellular respiration\" translates to \"glikozdan ATP enerjisi üretimi\" in Turkish (Cellular Biology & Metabolism)."
+          },
+          {
+            "pairId": "p_mm_g7_h_74_6",
+            "leftText": "enzyme catalysis",
+            "rightText": "biyokimyasal tepkimeyi hızlandırma",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cellular Biology & Metabolism",
+            "explanation": "\"enzyme catalysis\" translates to \"biyokimyasal tepkimeyi hızlandırma\" in Turkish (Cellular Biology & Metabolism)."
+          },
+          {
+            "pairId": "p_mm_g7_h_74_7",
+            "leftText": "osmosis",
+            "rightText": "suyun zardan yoğunluğa geçişi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cellular Biology & Metabolism",
+            "explanation": "\"osmosis\" translates to \"suyun zardan yoğunluğa geçişi\" in Turkish (Cellular Biology & Metabolism)."
+          },
+          {
+            "pairId": "p_mm_g7_h_74_8",
+            "leftText": "diffusion",
+            "rightText": "parçacıkların kendiliğinden yayılması",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Cellular Biology & Metabolism",
+            "explanation": "\"diffusion\" translates to \"parçacıkların kendiliğinden yayılması\" in Turkish (Cellular Biology & Metabolism)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_75",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Aviation & Aerodynamics",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_75_1",
+            "leftText": "aerofoil",
+            "rightText": "kaldırma kuvveti üreten kanat profili",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Aviation & Aerodynamics",
+            "explanation": "\"aerofoil\" translates to \"kaldırma kuvveti üreten kanat profili\" in Turkish (Aviation & Aerodynamics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_75_2",
+            "leftText": "lift",
+            "rightText": "uçağı havada tutan kaldırma kuvveti",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Aviation & Aerodynamics",
+            "explanation": "\"lift\" translates to \"uçağı havada tutan kaldırma kuvveti\" in Turkish (Aviation & Aerodynamics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_75_3",
+            "leftText": "thrust",
+            "rightText": "motorun ürettiği ileri itiş gücü",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Aviation & Aerodynamics",
+            "explanation": "\"thrust\" translates to \"motorun ürettiği ileri itiş gücü\" in Turkish (Aviation & Aerodynamics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_75_4",
+            "leftText": "drag",
+            "rightText": "hava direncinin oluşturduğu sürtünme",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Aviation & Aerodynamics",
+            "explanation": "\"drag\" translates to \"hava direncinin oluşturduğu sürtünme\" in Turkish (Aviation & Aerodynamics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_75_5",
+            "leftText": "fuselage",
+            "rightText": "yolcu ve yük taşıyan uçak gövdesi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Aviation & Aerodynamics",
+            "explanation": "\"fuselage\" translates to \"yolcu ve yük taşıyan uçak gövdesi\" in Turkish (Aviation & Aerodynamics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_75_6",
+            "leftText": "altimeter",
+            "rightText": "deniz seviyesinden yüksekliği ölçen sayaç",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Aviation & Aerodynamics",
+            "explanation": "\"altimeter\" translates to \"deniz seviyesinden yüksekliği ölçen sayaç\" in Turkish (Aviation & Aerodynamics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_75_7",
+            "leftText": "stall",
+            "rightText": "kanadın kaldırma kuvvetini aniden kaybetmesi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Aviation & Aerodynamics",
+            "explanation": "\"stall\" translates to \"kanadın kaldırma kuvvetini aniden kaybetmesi\" in Turkish (Aviation & Aerodynamics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_75_8",
+            "leftText": "runway heading",
+            "rightText": "uçağın iniş pisti pusula açısı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Aviation & Aerodynamics",
+            "explanation": "\"runway heading\" translates to \"uçağın iniş pisti pusula açısı\" in Turkish (Aviation & Aerodynamics)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_76",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Materials Science & Nanotechnology",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_76_1",
+            "leftText": "carbon nanotube",
+            "rightText": "aşırı dayanıklı mikroskobik karbon tüp",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Materials Science & Nanotechnology",
+            "explanation": "\"carbon nanotube\" translates to \"aşırı dayanıklı mikroskobik karbon tüp\" in Turkish (Materials Science & Nanotechnology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_76_2",
+            "leftText": "graphene",
+            "rightText": "tek atom kalınlığında iletken karbon levha",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Materials Science & Nanotechnology",
+            "explanation": "\"graphene\" translates to \"tek atom kalınlığında iletken karbon levha\" in Turkish (Materials Science & Nanotechnology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_76_3",
+            "leftText": "superconductor",
+            "rightText": "sıfır dirençle elektrik ileten madde",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Materials Science & Nanotechnology",
+            "explanation": "\"superconductor\" translates to \"sıfır dirençle elektrik ileten madde\" in Turkish (Materials Science & Nanotechnology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_76_4",
+            "leftText": "tensile strength",
+            "rightText": "malzemenin çekmeye karşı direnci",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Materials Science & Nanotechnology",
+            "explanation": "\"tensile strength\" translates to \"malzemenin çekmeye karşı direnci\" in Turkish (Materials Science & Nanotechnology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_76_5",
+            "leftText": "corrosion resistance",
+            "rightText": "paslanma ve aşınmaya karşı dayanıklılık",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Materials Science & Nanotechnology",
+            "explanation": "\"corrosion resistance\" translates to \"paslanma ve aşınmaya karşı dayanıklılık\" in Turkish (Materials Science & Nanotechnology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_76_6",
+            "leftText": "alloy",
+            "rightText": "iki veya daha fazla metalin karışımı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Materials Science & Nanotechnology",
+            "explanation": "\"alloy\" translates to \"iki veya daha fazla metalin karışımı\" in Turkish (Materials Science & Nanotechnology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_76_7",
+            "leftText": "polymer matrix",
+            "rightText": "hafif kompozit malzeme iskeleti",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Materials Science & Nanotechnology",
+            "explanation": "\"polymer matrix\" translates to \"hafif kompozit malzeme iskeleti\" in Turkish (Materials Science & Nanotechnology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_76_8",
+            "leftText": "smart material",
+            "rightText": "ısı veya elektrikle şekil değiştiren madde",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Materials Science & Nanotechnology",
+            "explanation": "\"smart material\" translates to \"ısı veya elektrikle şekil değiştiren madde\" in Turkish (Materials Science & Nanotechnology)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_77",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Emergency Management & Mitigation",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_77_1",
+            "leftText": "hazard mitigation",
+            "rightText": "doğal afet riskini azaltma planı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Emergency Management & Mitigation",
+            "explanation": "\"hazard mitigation\" translates to \"doğal afet riskini azaltma planı\" in Turkish (Emergency Management & Mitigation)."
+          },
+          {
+            "pairId": "p_mm_g7_h_77_2",
+            "leftText": "contingency plan",
+            "rightText": "beklenmedik acil durum eylem planı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Emergency Management & Mitigation",
+            "explanation": "\"contingency plan\" translates to \"beklenmedik acil durum eylem planı\" in Turkish (Emergency Management & Mitigation)."
+          },
+          {
+            "pairId": "p_mm_g7_h_77_3",
+            "leftText": "incident commander",
+            "rightText": "afet sahası tek yetkili yöneticisi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Emergency Management & Mitigation",
+            "explanation": "\"incident commander\" translates to \"afet sahası tek yetkili yöneticisi\" in Turkish (Emergency Management & Mitigation)."
+          },
+          {
+            "pairId": "p_mm_g7_h_77_4",
+            "leftText": "evacuation drill",
+            "rightText": "hızlı tahliye tatbikatı eğitimi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Emergency Management & Mitigation",
+            "explanation": "\"evacuation drill\" translates to \"hızlı tahliye tatbikatı eğitimi\" in Turkish (Emergency Management & Mitigation)."
+          },
+          {
+            "pairId": "p_mm_g7_h_77_5",
+            "leftText": "relief corridor",
+            "rightText": "insani yardım ulaştırma koridoru",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Emergency Management & Mitigation",
+            "explanation": "\"relief corridor\" translates to \"insani yardım ulaştırma koridoru\" in Turkish (Emergency Management & Mitigation)."
+          },
+          {
+            "pairId": "p_mm_g7_h_77_6",
+            "leftText": "structural integrity",
+            "rightText": "binanın depreme karşı sağlamlık durumu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Emergency Management & Mitigation",
+            "explanation": "\"structural integrity\" translates to \"binanın depreme karşı sağlamlık durumu\" in Turkish (Emergency Management & Mitigation)."
+          },
+          {
+            "pairId": "p_mm_g7_h_77_7",
+            "leftText": "early warning siren",
+            "rightText": "tsunami ve deprem erken uyarı sistemi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Emergency Management & Mitigation",
+            "explanation": "\"early warning siren\" translates to \"tsunami ve deprem erken uyarı sistemi\" in Turkish (Emergency Management & Mitigation)."
+          },
+          {
+            "pairId": "p_mm_g7_h_77_8",
+            "leftText": "first responder",
+            "rightText": "olay yerine ilk ulaşan kurtarma ekibi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Emergency Management & Mitigation",
+            "explanation": "\"first responder\" translates to \"olay yerine ilk ulaşan kurtarma ekibi\" in Turkish (Emergency Management & Mitigation)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_78",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Deep Ocean Exploration & Geology",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_78_1",
+            "leftText": "mid-ocean ridge",
+            "rightText": "okyanus ortası yeni kabuk üreten sırt",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Deep Ocean Exploration & Geology",
+            "explanation": "\"mid-ocean ridge\" translates to \"okyanus ortası yeni kabuk üreten sırt\" in Turkish (Deep Ocean Exploration & Geology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_78_2",
+            "leftText": "submersible",
+            "rightText": "derin okyanus araştırma denizaltısı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Deep Ocean Exploration & Geology",
+            "explanation": "\"submersible\" translates to \"derin okyanus araştırma denizaltısı\" in Turkish (Deep Ocean Exploration & Geology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_78_3",
+            "leftText": "bathymetry",
+            "rightText": "deniz tabanı derinlik haritalaması",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Deep Ocean Exploration & Geology",
+            "explanation": "\"bathymetry\" translates to \"deniz tabanı derinlik haritalaması\" in Turkish (Deep Ocean Exploration & Geology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_78_4",
+            "leftText": "benthic organism",
+            "rightText": "deniz tabanındaki tortularda yaşayan canlı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Deep Ocean Exploration & Geology",
+            "explanation": "\"benthic organism\" translates to \"deniz tabanındaki tortularda yaşayan canlı\" in Turkish (Deep Ocean Exploration & Geology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_78_5",
+            "leftText": "methane hydrate",
+            "rightText": "okyanus dibindeki donmuş gaz kristalleri",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Deep Ocean Exploration & Geology",
+            "explanation": "\"methane hydrate\" translates to \"okyanus dibindeki donmuş gaz kristalleri\" in Turkish (Deep Ocean Exploration & Geology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_78_6",
+            "leftText": "sonar sounding",
+            "rightText": "ses dalgasıyla derinlik ölçme işlemi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Deep Ocean Exploration & Geology",
+            "explanation": "\"sonar sounding\" translates to \"ses dalgasıyla derinlik ölçme işlemi\" in Turkish (Deep Ocean Exploration & Geology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_78_7",
+            "leftText": "continental shelf",
+            "rightText": "kıta kenarındaki sığ deniz sahanlığı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Deep Ocean Exploration & Geology",
+            "explanation": "\"continental shelf\" translates to \"kıta kenarındaki sığ deniz sahanlığı\" in Turkish (Deep Ocean Exploration & Geology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_78_8",
+            "leftText": "seamount",
+            "rightText": "deniz tabanından yükselen sualtı dağı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Deep Ocean Exploration & Geology",
+            "explanation": "\"seamount\" translates to \"deniz tabanından yükselen sualtı dağı\" in Turkish (Deep Ocean Exploration & Geology)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_79",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Philosophy of Science & Epistemology",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_79_1",
+            "leftText": "falsifiability",
+            "rightText": "teorinin yanlışlanabilirlik özelliği",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Philosophy of Science & Epistemology",
+            "explanation": "\"falsifiability\" translates to \"teorinin yanlışlanabilirlik özelliği\" in Turkish (Philosophy of Science & Epistemology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_79_2",
+            "leftText": "paradigm shift",
+            "rightText": "bilimsel düşüncede köklü devrim",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Philosophy of Science & Epistemology",
+            "explanation": "\"paradigm shift\" translates to \"bilimsel düşüncede köklü devrim\" in Turkish (Philosophy of Science & Epistemology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_79_3",
+            "leftText": "occam's razor",
+            "rightText": "en basit açıklamanın tercih edilmesi kuralı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Philosophy of Science & Epistemology",
+            "explanation": "\"occam's razor\" translates to \"en basit açıklamanın tercih edilmesi kuralı\" in Turkish (Philosophy of Science & Epistemology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_79_4",
+            "leftText": "empiricism",
+            "rightText": "tüm bilginin deneyden geldiği felsefe",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Philosophy of Science & Epistemology",
+            "explanation": "\"empiricism\" translates to \"tüm bilginin deneyden geldiği felsefe\" in Turkish (Philosophy of Science & Epistemology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_79_5",
+            "leftText": "rationalism",
+            "rightText": "akıl ve mantığı temel alan bilgi felsefesi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Philosophy of Science & Epistemology",
+            "explanation": "\"rationalism\" translates to \"akıl ve mantığı temel alan bilgi felsefesi\" in Turkish (Philosophy of Science & Epistemology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_79_6",
+            "leftText": "determinism",
+            "rightText": "her olayın bir sebebi olduğu anlayışı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Philosophy of Science & Epistemology",
+            "explanation": "\"determinism\" translates to \"her olayın bir sebebi olduğu anlayışı\" in Turkish (Philosophy of Science & Epistemology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_79_7",
+            "leftText": "skepticism",
+            "rightText": "kanıt olmadan kabul etmeme şüpheciliği",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Philosophy of Science & Epistemology",
+            "explanation": "\"skepticism\" translates to \"kanıt olmadan kabul etmeme şüpheciliği\" in Turkish (Philosophy of Science & Epistemology)."
+          },
+          {
+            "pairId": "p_mm_g7_h_79_8",
+            "leftText": "axiomatic",
+            "rightText": "ispat gerektirmeyen temel kabullere dayalı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Philosophy of Science & Epistemology",
+            "explanation": "\"axiomatic\" translates to \"ispat gerektirmeyen temel kabullere dayalı\" in Turkish (Philosophy of Science & Epistemology)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g7_h_80",
+        "grade": "grade-7",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Global Humanitarian Ethics",
+        "pairs": [
+          {
+            "pairId": "p_mm_g7_h_80_1",
+            "leftText": "human rights",
+            "rightText": "her insanın doğuştan sahip olduğu haklar",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Global Humanitarian Ethics",
+            "explanation": "\"human rights\" translates to \"her insanın doğuştan sahip olduğu haklar\" in Turkish (Global Humanitarian Ethics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_80_2",
+            "leftText": "humanitarian aid",
+            "rightText": "afetzedelere acil gıda ve çadır desteği",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Global Humanitarian Ethics",
+            "explanation": "\"humanitarian aid\" translates to \"afetzedelere acil gıda ve çadır desteği\" in Turkish (Global Humanitarian Ethics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_80_3",
+            "leftText": "refugee shelter",
+            "rightText": "savaştan kaçan sivillerin güvenli sığınağı",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Global Humanitarian Ethics",
+            "explanation": "\"refugee shelter\" translates to \"savaştan kaçan sivillerin güvenli sığınağı\" in Turkish (Global Humanitarian Ethics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_80_4",
+            "leftText": "diplomatic envoy",
+            "rightText": "barış görüşmelerini yürüten elçi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Global Humanitarian Ethics",
+            "explanation": "\"diplomatic envoy\" translates to \"barış görüşmelerini yürüten elçi\" in Turkish (Global Humanitarian Ethics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_80_5",
+            "leftText": "peacekeeping force",
+            "rightText": "çatışmayı durduran tarafsız barış gücü",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Global Humanitarian Ethics",
+            "explanation": "\"peacekeeping force\" translates to \"çatışmayı durduran tarafsız barış gücü\" in Turkish (Global Humanitarian Ethics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_80_6",
+            "leftText": "civilian protection",
+            "rightText": "savaş bölgesinde sivilleri koruma zorunluluğu",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Global Humanitarian Ethics",
+            "explanation": "\"civilian protection\" translates to \"savaş bölgesinde sivilleri koruma zorunluluğu\" in Turkish (Global Humanitarian Ethics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_80_7",
+            "leftText": "universal healthcare",
+            "rightText": "her yurttaşa eşit ve parasız sağlık hizmeti",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Global Humanitarian Ethics",
+            "explanation": "\"universal healthcare\" translates to \"her yurttaşa eşit ve parasız sağlık hizmeti\" in Turkish (Global Humanitarian Ethics)."
+          },
+          {
+            "pairId": "p_mm_g7_h_80_8",
+            "leftText": "poverty eradication",
+            "rightText": "yoksulluğu tamamen ortadan kaldırma hedefi",
+            "mode": "word_meaning",
+            "grade": "grade-7",
+            "difficulty": "hard",
+            "topic": "Global Humanitarian Ethics",
+            "explanation": "\"poverty eradication\" translates to \"yoksulluğu tamamen ortadan kaldırma hedefi\" in Turkish (Global Humanitarian Ethics)."
+          }
+        ]
       }
     ]
   },
@@ -10647,6 +18920,1966 @@ export const MEMORY_MATCH_BANK: MemoryMatchBank = {
           }
         ],
         "contentVersion": 1
+      },
+      {
+        "id": "mm_g8_e_41",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Friendship",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_41_1",
+            "leftText": "count on",
+            "rightText": "güvenmek",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Friendship",
+            "explanation": "\"count on\" translates to \"güvenmek\" in Turkish (Friendship)."
+          },
+          {
+            "pairId": "p_mm_g8_e_41_2",
+            "leftText": "buddy",
+            "rightText": "yakın dost",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Friendship",
+            "explanation": "\"buddy\" translates to \"yakın dost\" in Turkish (Friendship)."
+          },
+          {
+            "pairId": "p_mm_g8_e_41_3",
+            "leftText": "secret",
+            "rightText": "özel sır",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Friendship",
+            "explanation": "\"secret\" translates to \"özel sır\" in Turkish (Friendship)."
+          },
+          {
+            "pairId": "p_mm_g8_e_41_4",
+            "leftText": "supportive",
+            "rightText": "destekleyici",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Friendship",
+            "explanation": "\"supportive\" translates to \"destekleyici\" in Turkish (Friendship)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_42",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Friendship",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_42_1",
+            "leftText": "loyal",
+            "rightText": "sadık, vefalı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Friendship",
+            "explanation": "\"loyal\" translates to \"sadık, vefalı\" in Turkish (Friendship)."
+          },
+          {
+            "pairId": "p_mm_g8_e_42_2",
+            "leftText": "trust",
+            "rightText": "inanç, güven",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Friendship",
+            "explanation": "\"trust\" translates to \"inanç, güven\" in Turkish (Friendship)."
+          },
+          {
+            "pairId": "p_mm_g8_e_42_3",
+            "leftText": "reliable",
+            "rightText": "güvenilir kişi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Friendship",
+            "explanation": "\"reliable\" translates to \"güvenilir kişi\" in Turkish (Friendship)."
+          },
+          {
+            "pairId": "p_mm_g8_e_42_4",
+            "leftText": "honesty",
+            "rightText": "dürüstlük",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Friendship",
+            "explanation": "\"honesty\" translates to \"dürüstlük\" in Turkish (Friendship)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_43",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_definition",
+        "topic": "Friendship",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_43_1",
+            "leftText": "count on",
+            "rightText": "to rely on or trust someone",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Friendship",
+            "explanation": "\"count on\": to rely on or trust someone (Friendship)."
+          },
+          {
+            "pairId": "p_mm_g8_e_43_2",
+            "leftText": "buddy",
+            "rightText": "a very close friend",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Friendship",
+            "explanation": "\"buddy\": a very close friend (Friendship)."
+          },
+          {
+            "pairId": "p_mm_g8_e_43_3",
+            "leftText": "secret",
+            "rightText": "confidential information",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Friendship",
+            "explanation": "\"secret\": confidential information (Friendship)."
+          },
+          {
+            "pairId": "p_mm_g8_e_43_4",
+            "leftText": "supportive",
+            "rightText": "giving help and encouragement",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Friendship",
+            "explanation": "\"supportive\": giving help and encouragement (Friendship)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_44",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Teen Life",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_44_1",
+            "leftText": "casual",
+            "rightText": "günlük rahat giyim",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Teen Life",
+            "explanation": "\"casual\" translates to \"günlük rahat giyim\" in Turkish (Teen Life)."
+          },
+          {
+            "pairId": "p_mm_g8_e_44_2",
+            "leftText": "trendy",
+            "rightText": "son moda",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Teen Life",
+            "explanation": "\"trendy\" translates to \"son moda\" in Turkish (Teen Life)."
+          },
+          {
+            "pairId": "p_mm_g8_e_44_3",
+            "leftText": "snob",
+            "rightText": "kendini beğenmiş",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Teen Life",
+            "explanation": "\"snob\" translates to \"kendini beğenmiş\" in Turkish (Teen Life)."
+          },
+          {
+            "pairId": "p_mm_g8_e_44_4",
+            "leftText": "fashion",
+            "rightText": "moda giyim tarzı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Teen Life",
+            "explanation": "\"fashion\" translates to \"moda giyim tarzı\" in Turkish (Teen Life)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_45",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Teen Life",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_45_1",
+            "leftText": "routine",
+            "rightText": "günlük alışkanlık",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Teen Life",
+            "explanation": "\"routine\" translates to \"günlük alışkanlık\" in Turkish (Teen Life)."
+          },
+          {
+            "pairId": "p_mm_g8_e_45_2",
+            "leftText": "active",
+            "rightText": "hareketli, zinde",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Teen Life",
+            "explanation": "\"active\" translates to \"hareketli, zinde\" in Turkish (Teen Life)."
+          },
+          {
+            "pairId": "p_mm_g8_e_45_3",
+            "leftText": "energetic",
+            "rightText": "enerji dolu",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Teen Life",
+            "explanation": "\"energetic\" translates to \"enerji dolu\" in Turkish (Teen Life)."
+          },
+          {
+            "pairId": "p_mm_g8_e_45_4",
+            "leftText": "lifestyle",
+            "rightText": "hayat tarzı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Teen Life",
+            "explanation": "\"lifestyle\" translates to \"hayat tarzı\" in Turkish (Teen Life)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_46",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "In the Kitchen",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_46_1",
+            "leftText": "peel",
+            "rightText": "kabuk soymak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "In the Kitchen",
+            "explanation": "\"peel\" translates to \"kabuk soymak\" in Turkish (In the Kitchen)."
+          },
+          {
+            "pairId": "p_mm_g8_e_46_2",
+            "leftText": "chop",
+            "rightText": "küp küp doğramak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "In the Kitchen",
+            "explanation": "\"chop\" translates to \"küp küp doğramak\" in Turkish (In the Kitchen)."
+          },
+          {
+            "pairId": "p_mm_g8_e_46_3",
+            "leftText": "slice",
+            "rightText": "ince dilimlemek",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "In the Kitchen",
+            "explanation": "\"slice\" translates to \"ince dilimlemek\" in Turkish (In the Kitchen)."
+          },
+          {
+            "pairId": "p_mm_g8_e_46_4",
+            "leftText": "dice",
+            "rightText": "zar şeklinde kesmek",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "In the Kitchen",
+            "explanation": "\"dice\" translates to \"zar şeklinde kesmek\" in Turkish (In the Kitchen)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_47",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "In the Kitchen",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_47_1",
+            "leftText": "boil",
+            "rightText": "suda kaynatmak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "In the Kitchen",
+            "explanation": "\"boil\" translates to \"suda kaynatmak\" in Turkish (In the Kitchen)."
+          },
+          {
+            "pairId": "p_mm_g8_e_47_2",
+            "leftText": "bake",
+            "rightText": "fırında pişirmek",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "In the Kitchen",
+            "explanation": "\"bake\" translates to \"fırında pişirmek\" in Turkish (In the Kitchen)."
+          },
+          {
+            "pairId": "p_mm_g8_e_47_3",
+            "leftText": "fry",
+            "rightText": "yağda kızartmak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "In the Kitchen",
+            "explanation": "\"fry\" translates to \"yağda kızartmak\" in Turkish (In the Kitchen)."
+          },
+          {
+            "pairId": "p_mm_g8_e_47_4",
+            "leftText": "grill",
+            "rightText": "ızgarada pişirmek",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "In the Kitchen",
+            "explanation": "\"grill\" translates to \"ızgarada pişirmek\" in Turkish (In the Kitchen)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_48",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_definition",
+        "topic": "In the Kitchen",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_48_1",
+            "leftText": "peel",
+            "rightText": "to remove the skin from fruit",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "In the Kitchen",
+            "explanation": "\"peel\": to remove the skin from fruit (In the Kitchen)."
+          },
+          {
+            "pairId": "p_mm_g8_e_48_2",
+            "leftText": "chop",
+            "rightText": "to cut food into smaller pieces",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "In the Kitchen",
+            "explanation": "\"chop\": to cut food into smaller pieces (In the Kitchen)."
+          },
+          {
+            "pairId": "p_mm_g8_e_48_3",
+            "leftText": "boil",
+            "rightText": "to cook in boiling water",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "In the Kitchen",
+            "explanation": "\"boil\": to cook in boiling water (In the Kitchen)."
+          },
+          {
+            "pairId": "p_mm_g8_e_48_4",
+            "leftText": "bake",
+            "rightText": "to cook bread or cake in an oven",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "In the Kitchen",
+            "explanation": "\"bake\": to cook bread or cake in an oven (In the Kitchen)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_49",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Kitchen Utensils",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_49_1",
+            "leftText": "whisk",
+            "rightText": "tel çırpıcı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Kitchen Utensils",
+            "explanation": "\"whisk\" translates to \"tel çırpıcı\" in Turkish (Kitchen Utensils)."
+          },
+          {
+            "pairId": "p_mm_g8_e_49_2",
+            "leftText": "colander",
+            "rightText": "makarna süzgeci",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Kitchen Utensils",
+            "explanation": "\"colander\" translates to \"makarna süzgeci\" in Turkish (Kitchen Utensils)."
+          },
+          {
+            "pairId": "p_mm_g8_e_49_3",
+            "leftText": "peeler",
+            "rightText": "kabuk soyucu",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Kitchen Utensils",
+            "explanation": "\"peeler\" translates to \"kabuk soyucu\" in Turkish (Kitchen Utensils)."
+          },
+          {
+            "pairId": "p_mm_g8_e_49_4",
+            "leftText": "grater",
+            "rightText": "rende",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Kitchen Utensils",
+            "explanation": "\"grater\" translates to \"rende\" in Turkish (Kitchen Utensils)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_50",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "On the Phone",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_50_1",
+            "leftText": "put through",
+            "rightText": "telefonda bağlamak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "On the Phone",
+            "explanation": "\"put through\" translates to \"telefonda bağlamak\" in Turkish (On the Phone)."
+          },
+          {
+            "pairId": "p_mm_g8_e_50_2",
+            "leftText": "hold on",
+            "rightText": "hatta beklemek",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "On the Phone",
+            "explanation": "\"hold on\" translates to \"hatta beklemek\" in Turkish (On the Phone)."
+          },
+          {
+            "pairId": "p_mm_g8_e_50_3",
+            "leftText": "hang up",
+            "rightText": "telefonu kapatmak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "On the Phone",
+            "explanation": "\"hang up\" translates to \"telefonu kapatmak\" in Turkish (On the Phone)."
+          },
+          {
+            "pairId": "p_mm_g8_e_50_4",
+            "leftText": "engaged",
+            "rightText": "telefon hattı meşgul",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "On the Phone",
+            "explanation": "\"engaged\" translates to \"telefon hattı meşgul\" in Turkish (On the Phone)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_51",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_definition",
+        "topic": "On the Phone",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_51_1",
+            "leftText": "put through",
+            "rightText": "to connect a caller to someone",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "On the Phone",
+            "explanation": "\"put through\": to connect a caller to someone (On the Phone)."
+          },
+          {
+            "pairId": "p_mm_g8_e_51_2",
+            "leftText": "hold on",
+            "rightText": "to wait on the telephone line",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "On the Phone",
+            "explanation": "\"hold on\": to wait on the telephone line (On the Phone)."
+          },
+          {
+            "pairId": "p_mm_g8_e_51_3",
+            "leftText": "hang up",
+            "rightText": "to end a telephone call",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "On the Phone",
+            "explanation": "\"hang up\": to end a telephone call (On the Phone)."
+          },
+          {
+            "pairId": "p_mm_g8_e_51_4",
+            "leftText": "engaged",
+            "rightText": "a phone line that is busy",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "On the Phone",
+            "explanation": "\"engaged\": a phone line that is busy (On the Phone)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_52",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "On the Phone",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_52_1",
+            "leftText": "caller",
+            "rightText": "arayan kişi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "On the Phone",
+            "explanation": "\"caller\" translates to \"arayan kişi\" in Turkish (On the Phone)."
+          },
+          {
+            "pairId": "p_mm_g8_e_52_2",
+            "leftText": "receiver",
+            "rightText": "telefon ahizesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "On the Phone",
+            "explanation": "\"receiver\" translates to \"telefon ahizesi\" in Turkish (On the Phone)."
+          },
+          {
+            "pairId": "p_mm_g8_e_52_3",
+            "leftText": "dial",
+            "rightText": "numara çevirmek",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "On the Phone",
+            "explanation": "\"dial\" translates to \"numara çevirmek\" in Turkish (On the Phone)."
+          },
+          {
+            "pairId": "p_mm_g8_e_52_4",
+            "leftText": "extension",
+            "rightText": "dahili hat numarası",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "On the Phone",
+            "explanation": "\"extension\" translates to \"dahili hat numarası\" in Turkish (On the Phone)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_53",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "The Internet",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_53_1",
+            "leftText": "download",
+            "rightText": "dosya indirmek",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "The Internet",
+            "explanation": "\"download\" translates to \"dosya indirmek\" in Turkish (The Internet)."
+          },
+          {
+            "pairId": "p_mm_g8_e_53_2",
+            "leftText": "upload",
+            "rightText": "dosya yüklemek",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "The Internet",
+            "explanation": "\"upload\" translates to \"dosya yüklemek\" in Turkish (The Internet)."
+          },
+          {
+            "pairId": "p_mm_g8_e_53_3",
+            "leftText": "attachment",
+            "rightText": "e-posta eki",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "The Internet",
+            "explanation": "\"attachment\" translates to \"e-posta eki\" in Turkish (The Internet)."
+          },
+          {
+            "pairId": "p_mm_g8_e_53_4",
+            "leftText": "browser",
+            "rightText": "web tarayıcısı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "The Internet",
+            "explanation": "\"browser\" translates to \"web tarayıcısı\" in Turkish (The Internet)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_54",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "The Internet",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_54_1",
+            "leftText": "search engine",
+            "rightText": "arama motoru",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "The Internet",
+            "explanation": "\"search engine\" translates to \"arama motoru\" in Turkish (The Internet)."
+          },
+          {
+            "pairId": "p_mm_g8_e_54_2",
+            "leftText": "username",
+            "rightText": "kullanıcı adı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "The Internet",
+            "explanation": "\"username\" translates to \"kullanıcı adı\" in Turkish (The Internet)."
+          },
+          {
+            "pairId": "p_mm_g8_e_54_3",
+            "leftText": "password",
+            "rightText": "güvenli şifre",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "The Internet",
+            "explanation": "\"password\" translates to \"güvenli şifre\" in Turkish (The Internet)."
+          },
+          {
+            "pairId": "p_mm_g8_e_54_4",
+            "leftText": "social media",
+            "rightText": "sosyal medya ağı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "The Internet",
+            "explanation": "\"social media\" translates to \"sosyal medya ağı\" in Turkish (The Internet)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_55",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_definition",
+        "topic": "The Internet",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_55_1",
+            "leftText": "download",
+            "rightText": "copying files to your computer",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "The Internet",
+            "explanation": "\"download\": copying files to your computer (The Internet)."
+          },
+          {
+            "pairId": "p_mm_g8_e_55_2",
+            "leftText": "upload",
+            "rightText": "sending files to internet servers",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "The Internet",
+            "explanation": "\"upload\": sending files to internet servers (The Internet)."
+          },
+          {
+            "pairId": "p_mm_g8_e_55_3",
+            "leftText": "attachment",
+            "rightText": "a computer file added to emails",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "The Internet",
+            "explanation": "\"attachment\": a computer file added to emails (The Internet)."
+          },
+          {
+            "pairId": "p_mm_g8_e_55_4",
+            "leftText": "search engine",
+            "rightText": "website used to find information",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "The Internet",
+            "explanation": "\"search engine\": website used to find information (The Internet)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_56",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Adventures & Extreme Sports",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_56_1",
+            "leftText": "paragliding",
+            "rightText": "yamaç paraşütü",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Adventures & Extreme Sports",
+            "explanation": "\"paragliding\" translates to \"yamaç paraşütü\" in Turkish (Adventures & Extreme Sports)."
+          },
+          {
+            "pairId": "p_mm_g8_e_56_2",
+            "leftText": "rafting",
+            "rightText": "akarsu bot sporu",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Adventures & Extreme Sports",
+            "explanation": "\"rafting\" translates to \"akarsu bot sporu\" in Turkish (Adventures & Extreme Sports)."
+          },
+          {
+            "pairId": "p_mm_g8_e_56_3",
+            "leftText": "bungee jumping",
+            "rightText": "esnek iple atlama",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Adventures & Extreme Sports",
+            "explanation": "\"bungee jumping\" translates to \"esnek iple atlama\" in Turkish (Adventures & Extreme Sports)."
+          },
+          {
+            "pairId": "p_mm_g8_e_56_4",
+            "leftText": "scuba diving",
+            "rightText": "tüplü sualtı dalışı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Adventures & Extreme Sports",
+            "explanation": "\"scuba diving\" translates to \"tüplü sualtı dalışı\" in Turkish (Adventures & Extreme Sports)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_57",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Adventures & Equipment",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_57_1",
+            "leftText": "helmet",
+            "rightText": "koruyucu kask",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Adventures & Equipment",
+            "explanation": "\"helmet\" translates to \"koruyucu kask\" in Turkish (Adventures & Equipment)."
+          },
+          {
+            "pairId": "p_mm_g8_e_57_2",
+            "leftText": "rope",
+            "rightText": "sağlam tırmanış ipi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Adventures & Equipment",
+            "explanation": "\"rope\" translates to \"sağlam tırmanış ipi\" in Turkish (Adventures & Equipment)."
+          },
+          {
+            "pairId": "p_mm_g8_e_57_3",
+            "leftText": "life jacket",
+            "rightText": "can yeleği",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Adventures & Equipment",
+            "explanation": "\"life jacket\" translates to \"can yeleği\" in Turkish (Adventures & Equipment)."
+          },
+          {
+            "pairId": "p_mm_g8_e_57_4",
+            "leftText": "wetsuit",
+            "rightText": "dalış kıyafeti",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Adventures & Equipment",
+            "explanation": "\"wetsuit\" translates to \"dalış kıyafeti\" in Turkish (Adventures & Equipment)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_58",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_definition",
+        "topic": "Adventures & Extreme Sports",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_58_1",
+            "leftText": "paragliding",
+            "rightText": "gliding down mountains with a wing",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Adventures & Extreme Sports",
+            "explanation": "\"paragliding\": gliding down mountains with a wing (Adventures & Extreme Sports)."
+          },
+          {
+            "pairId": "p_mm_g8_e_58_2",
+            "leftText": "rafting",
+            "rightText": "paddling inflatable boats on rivers",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Adventures & Extreme Sports",
+            "explanation": "\"rafting\": paddling inflatable boats on rivers (Adventures & Extreme Sports)."
+          },
+          {
+            "pairId": "p_mm_g8_e_58_3",
+            "leftText": "bungee jumping",
+            "rightText": "jumping tied to an elastic cord",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Adventures & Extreme Sports",
+            "explanation": "\"bungee jumping\": jumping tied to an elastic cord (Adventures & Extreme Sports)."
+          },
+          {
+            "pairId": "p_mm_g8_e_58_4",
+            "leftText": "scuba diving",
+            "rightText": "swimming underwater with oxygen",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Adventures & Extreme Sports",
+            "explanation": "\"scuba diving\": swimming underwater with oxygen (Adventures & Extreme Sports)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_59",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Tourism & Accommodations",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_59_1",
+            "leftText": "all-inclusive",
+            "rightText": "her şey dahil otel",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Tourism & Accommodations",
+            "explanation": "\"all-inclusive\" translates to \"her şey dahil otel\" in Turkish (Tourism & Accommodations)."
+          },
+          {
+            "pairId": "p_mm_g8_e_59_2",
+            "leftText": "souvenir",
+            "rightText": "tatil hatıra eşyası",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Tourism & Accommodations",
+            "explanation": "\"souvenir\" translates to \"tatil hatıra eşyası\" in Turkish (Tourism & Accommodations)."
+          },
+          {
+            "pairId": "p_mm_g8_e_59_3",
+            "leftText": "historic site",
+            "rightText": "tarihi ören yeri",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Tourism & Accommodations",
+            "explanation": "\"historic site\" translates to \"tarihi ören yeri\" in Turkish (Tourism & Accommodations)."
+          },
+          {
+            "pairId": "p_mm_g8_e_59_4",
+            "leftText": "resort",
+            "rightText": "tatil beldesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Tourism & Accommodations",
+            "explanation": "\"resort\" translates to \"tatil beldesi\" in Turkish (Tourism & Accommodations)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_60",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Tourism Types",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_60_1",
+            "leftText": "bed and breakfast",
+            "rightText": "oda kahvaltı pansiyon",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Tourism Types",
+            "explanation": "\"bed and breakfast\" translates to \"oda kahvaltı pansiyon\" in Turkish (Tourism Types)."
+          },
+          {
+            "pairId": "p_mm_g8_e_60_2",
+            "leftText": "guided tour",
+            "rightText": "rehberli gezi turu",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Tourism Types",
+            "explanation": "\"guided tour\" translates to \"rehberli gezi turu\" in Turkish (Tourism Types)."
+          },
+          {
+            "pairId": "p_mm_g8_e_60_3",
+            "leftText": "attraction",
+            "rightText": "turistik ilgi odağı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Tourism Types",
+            "explanation": "\"attraction\" translates to \"turistik ilgi odağı\" in Turkish (Tourism Types)."
+          },
+          {
+            "pairId": "p_mm_g8_e_60_4",
+            "leftText": "destination",
+            "rightText": "varış tatil noktası",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Tourism Types",
+            "explanation": "\"destination\" translates to \"varış tatil noktası\" in Turkish (Tourism Types)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_61",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Chores & Household",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_61_1",
+            "leftText": "vacuum the carpet",
+            "rightText": "halıyı elektrik süpürgesiyle çekmek",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Chores & Household",
+            "explanation": "\"vacuum the carpet\" translates to \"halıyı elektrik süpürgesiyle çekmek\" in Turkish (Chores & Household)."
+          },
+          {
+            "pairId": "p_mm_g8_e_61_2",
+            "leftText": "do the laundry",
+            "rightText": "çamaşırları yıkamak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Chores & Household",
+            "explanation": "\"do the laundry\" translates to \"çamaşırları yıkamak\" in Turkish (Chores & Household)."
+          },
+          {
+            "pairId": "p_mm_g8_e_61_3",
+            "leftText": "wash the dishes",
+            "rightText": "bulaşıkları yıkamak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Chores & Household",
+            "explanation": "\"wash the dishes\" translates to \"bulaşıkları yıkamak\" in Turkish (Chores & Household)."
+          },
+          {
+            "pairId": "p_mm_g8_e_61_4",
+            "leftText": "take out trash",
+            "rightText": "evdeki çöpü dışarı atmak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Chores & Household",
+            "explanation": "\"take out trash\" translates to \"evdeki çöpü dışarı atmak\" in Turkish (Chores & Household)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_62",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Chores & Responsibilities",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_62_1",
+            "leftText": "iron the clothes",
+            "rightText": "kıyafetleri ütülemek",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Chores & Responsibilities",
+            "explanation": "\"iron the clothes\" translates to \"kıyafetleri ütülemek\" in Turkish (Chores & Responsibilities)."
+          },
+          {
+            "pairId": "p_mm_g8_e_62_2",
+            "leftText": "dust the shelves",
+            "rightText": "rafların tozunu almak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Chores & Responsibilities",
+            "explanation": "\"dust the shelves\" translates to \"rafların tozunu almak\" in Turkish (Chores & Responsibilities)."
+          },
+          {
+            "pairId": "p_mm_g8_e_62_3",
+            "leftText": "mop the floor",
+            "rightText": "yerleri paspaslamak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Chores & Responsibilities",
+            "explanation": "\"mop the floor\" translates to \"yerleri paspaslamak\" in Turkish (Chores & Responsibilities)."
+          },
+          {
+            "pairId": "p_mm_g8_e_62_4",
+            "leftText": "make the bed",
+            "rightText": "yatağı düzeltmek toplamak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Chores & Responsibilities",
+            "explanation": "\"make the bed\" translates to \"yatağı düzeltmek toplamak\" in Turkish (Chores & Responsibilities)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_63",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_definition",
+        "topic": "Chores & Household",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_63_1",
+            "leftText": "vacuum",
+            "rightText": "cleaning carpets with suction",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Chores & Household",
+            "explanation": "\"vacuum\": cleaning carpets with suction (Chores & Household)."
+          },
+          {
+            "pairId": "p_mm_g8_e_63_2",
+            "leftText": "laundry",
+            "rightText": "washing soiled garments",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Chores & Household",
+            "explanation": "\"laundry\": washing soiled garments (Chores & Household)."
+          },
+          {
+            "pairId": "p_mm_g8_e_63_3",
+            "leftText": "ironing",
+            "rightText": "pressing clothes with heat",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Chores & Household",
+            "explanation": "\"ironing\": pressing clothes with heat (Chores & Household)."
+          },
+          {
+            "pairId": "p_mm_g8_e_63_4",
+            "leftText": "dusting",
+            "rightText": "wiping powder off furniture",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Chores & Household",
+            "explanation": "\"dusting\": wiping powder off furniture (Chores & Household)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_64",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Science & Inventions",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_64_1",
+            "leftText": "inventor",
+            "rightText": "yeni aygıt mucidi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Science & Inventions",
+            "explanation": "\"inventor\" translates to \"yeni aygıt mucidi\" in Turkish (Science & Inventions)."
+          },
+          {
+            "pairId": "p_mm_g8_e_64_2",
+            "leftText": "discovery",
+            "rightText": "büyük bilimsel keşif",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Science & Inventions",
+            "explanation": "\"discovery\" translates to \"büyük bilimsel keşif\" in Turkish (Science & Inventions)."
+          },
+          {
+            "pairId": "p_mm_g8_e_64_3",
+            "leftText": "laboratory",
+            "rightText": "araştırma laboratuvarı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Science & Inventions",
+            "explanation": "\"laboratory\" translates to \"araştırma laboratuvarı\" in Turkish (Science & Inventions)."
+          },
+          {
+            "pairId": "p_mm_g8_e_64_4",
+            "leftText": "experiment",
+            "rightText": "bilimsel deney",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Science & Inventions",
+            "explanation": "\"experiment\" translates to \"bilimsel deney\" in Turkish (Science & Inventions)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_65",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Science Biographies",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_65_1",
+            "leftText": "Nobel Prize",
+            "rightText": "Nobel bilim ödülü",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Science Biographies",
+            "explanation": "\"Nobel Prize\" translates to \"Nobel bilim ödülü\" in Turkish (Science Biographies)."
+          },
+          {
+            "pairId": "p_mm_g8_e_65_2",
+            "leftText": "scientist",
+            "rightText": "bilim insanı araştırmacı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Science Biographies",
+            "explanation": "\"scientist\" translates to \"bilim insanı araştırmacı\" in Turkish (Science Biographies)."
+          },
+          {
+            "pairId": "p_mm_g8_e_65_3",
+            "leftText": "DNA repair",
+            "rightText": "DNA onarım mekanizması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Science Biographies",
+            "explanation": "\"DNA repair\" translates to \"DNA onarım mekanizması\" in Turkish (Science Biographies)."
+          },
+          {
+            "pairId": "p_mm_g8_e_65_4",
+            "leftText": "vaccine",
+            "rightText": "koruyucu tıbbi aşı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Science Biographies",
+            "explanation": "\"vaccine\" translates to \"koruyucu tıbbi aşı\" in Turkish (Science Biographies)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_66",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_definition",
+        "topic": "Science & Inventions",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_66_1",
+            "leftText": "inventor",
+            "rightText": "person creating new devices",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Science & Inventions",
+            "explanation": "\"inventor\": person creating new devices (Science & Inventions)."
+          },
+          {
+            "pairId": "p_mm_g8_e_66_2",
+            "leftText": "discovery",
+            "rightText": "finding something previously unknown",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Science & Inventions",
+            "explanation": "\"discovery\": finding something previously unknown (Science & Inventions)."
+          },
+          {
+            "pairId": "p_mm_g8_e_66_3",
+            "leftText": "experiment",
+            "rightText": "test carried out under control",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Science & Inventions",
+            "explanation": "\"experiment\": test carried out under control (Science & Inventions)."
+          },
+          {
+            "pairId": "p_mm_g8_e_66_4",
+            "leftText": "laboratory",
+            "rightText": "room equipped for scientific tests",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Science & Inventions",
+            "explanation": "\"laboratory\": room equipped for scientific tests (Science & Inventions)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_67",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Natural Forces & Disasters",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_67_1",
+            "leftText": "earthquake",
+            "rightText": "yer kabuğu depremi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Natural Forces & Disasters",
+            "explanation": "\"earthquake\" translates to \"yer kabuğu depremi\" in Turkish (Natural Forces & Disasters)."
+          },
+          {
+            "pairId": "p_mm_g8_e_67_2",
+            "leftText": "tsunami",
+            "rightText": "denizaltı dev deprem dalgası",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Natural Forces & Disasters",
+            "explanation": "\"tsunami\" translates to \"denizaltı dev deprem dalgası\" in Turkish (Natural Forces & Disasters)."
+          },
+          {
+            "pairId": "p_mm_g8_e_67_3",
+            "leftText": "tornado",
+            "rightText": "hortum fırtınası",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Natural Forces & Disasters",
+            "explanation": "\"tornado\" translates to \"hortum fırtınası\" in Turkish (Natural Forces & Disasters)."
+          },
+          {
+            "pairId": "p_mm_g8_e_67_4",
+            "leftText": "flood",
+            "rightText": "şiddetli su baskını",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Natural Forces & Disasters",
+            "explanation": "\"flood\" translates to \"şiddetli su baskını\" in Turkish (Natural Forces & Disasters)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_68",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Natural Disasters",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_68_1",
+            "leftText": "drought",
+            "rightText": "uzun süreli kuraklık",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Natural Disasters",
+            "explanation": "\"drought\" translates to \"uzun süreli kuraklık\" in Turkish (Natural Disasters)."
+          },
+          {
+            "pairId": "p_mm_g8_e_68_2",
+            "leftText": "avalanche",
+            "rightText": "dağdan düşen kar çığı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Natural Disasters",
+            "explanation": "\"avalanche\" translates to \"dağdan düşen kar çığı\" in Turkish (Natural Disasters)."
+          },
+          {
+            "pairId": "p_mm_g8_e_68_3",
+            "leftText": "landslide",
+            "rightText": "heyelan ve toprak kayması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Natural Disasters",
+            "explanation": "\"landslide\" translates to \"heyelan ve toprak kayması\" in Turkish (Natural Disasters)."
+          },
+          {
+            "pairId": "p_mm_g8_e_68_4",
+            "leftText": "volcano",
+            "rightText": "yanardağ püskürmesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Natural Disasters",
+            "explanation": "\"volcano\" translates to \"yanardağ püskürmesi\" in Turkish (Natural Disasters)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_69",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_definition",
+        "topic": "Natural Forces & Disasters",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_69_1",
+            "leftText": "earthquake",
+            "rightText": "sudden shaking of Earth's crust",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Natural Forces & Disasters",
+            "explanation": "\"earthquake\": sudden shaking of Earth's crust (Natural Forces & Disasters)."
+          },
+          {
+            "pairId": "p_mm_g8_e_69_2",
+            "leftText": "tsunami",
+            "rightText": "giant ocean wave from undersea quakes",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Natural Forces & Disasters",
+            "explanation": "\"tsunami\": giant ocean wave from undersea quakes (Natural Forces & Disasters)."
+          },
+          {
+            "pairId": "p_mm_g8_e_69_3",
+            "leftText": "tornado",
+            "rightText": "violently rotating column of wind",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Natural Forces & Disasters",
+            "explanation": "\"tornado\": violently rotating column of wind (Natural Forces & Disasters)."
+          },
+          {
+            "pairId": "p_mm_g8_e_69_4",
+            "leftText": "drought",
+            "rightText": "long period without necessary rain",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Natural Forces & Disasters",
+            "explanation": "\"drought\": long period without necessary rain (Natural Forces & Disasters)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_70",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Emergency Preparedness",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_70_1",
+            "leftText": "survival kit",
+            "rightText": "deprem acil durum çantası",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Emergency Preparedness",
+            "explanation": "\"survival kit\" translates to \"deprem acil durum çantası\" in Turkish (Emergency Preparedness)."
+          },
+          {
+            "pairId": "p_mm_g8_e_70_2",
+            "leftText": "first aid",
+            "rightText": "olay yerinde ilk müdahale",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Emergency Preparedness",
+            "explanation": "\"first aid\" translates to \"olay yerinde ilk müdahale\" in Turkish (Emergency Preparedness)."
+          },
+          {
+            "pairId": "p_mm_g8_e_70_3",
+            "leftText": "flashlight",
+            "rightText": "pilli el feneri",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Emergency Preparedness",
+            "explanation": "\"flashlight\" translates to \"pilli el feneri\" in Turkish (Emergency Preparedness)."
+          },
+          {
+            "pairId": "p_mm_g8_e_70_4",
+            "leftText": "whistle",
+            "rightText": "yardım çağırma düdüğü",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Emergency Preparedness",
+            "explanation": "\"whistle\" translates to \"yardım çağırma düdüğü\" in Turkish (Emergency Preparedness)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_71",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Teen World Interests",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_71_1",
+            "leftText": "board games",
+            "rightText": "kutu masa oyunları",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Teen World Interests",
+            "explanation": "\"board games\" translates to \"kutu masa oyunları\" in Turkish (Teen World Interests)."
+          },
+          {
+            "pairId": "p_mm_g8_e_71_2",
+            "leftText": "science fiction",
+            "rightText": "bilim kurgu türü",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Teen World Interests",
+            "explanation": "\"science fiction\" translates to \"bilim kurgu türü\" in Turkish (Teen World Interests)."
+          },
+          {
+            "pairId": "p_mm_g8_e_71_3",
+            "leftText": "detective novel",
+            "rightText": "polisiye romanı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Teen World Interests",
+            "explanation": "\"detective novel\" translates to \"polisiye romanı\" in Turkish (Teen World Interests)."
+          },
+          {
+            "pairId": "p_mm_g8_e_71_4",
+            "leftText": "acoustic guitar",
+            "rightText": "akustik gitar müziği",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Teen World Interests",
+            "explanation": "\"acoustic guitar\" translates to \"akustik gitar müziği\" in Turkish (Teen World Interests)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_72",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Digital Citizenship",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_72_1",
+            "leftText": "cyber ethics",
+            "rightText": "internet ahlak kuralları",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Digital Citizenship",
+            "explanation": "\"cyber ethics\" translates to \"internet ahlak kuralları\" in Turkish (Digital Citizenship)."
+          },
+          {
+            "pairId": "p_mm_g8_e_72_2",
+            "leftText": "screen time",
+            "rightText": "ekran başında geçirilen süre",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Digital Citizenship",
+            "explanation": "\"screen time\" translates to \"ekran başında geçirilen süre\" in Turkish (Digital Citizenship)."
+          },
+          {
+            "pairId": "p_mm_g8_e_72_3",
+            "leftText": "strong password",
+            "rightText": "kırılması güç şifre",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Digital Citizenship",
+            "explanation": "\"strong password\" translates to \"kırılması güç şifre\" in Turkish (Digital Citizenship)."
+          },
+          {
+            "pairId": "p_mm_g8_e_72_4",
+            "leftText": "digital footprint",
+            "rightText": "internetteki veri izi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Digital Citizenship",
+            "explanation": "\"digital footprint\" translates to \"internetteki veri izi\" in Turkish (Digital Citizenship)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_73",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Extreme Expeditions",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_73_1",
+            "leftText": "crampons",
+            "rightText": "buz tırmanış kramponları",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Extreme Expeditions",
+            "explanation": "\"crampons\" translates to \"buz tırmanış kramponları\" in Turkish (Extreme Expeditions)."
+          },
+          {
+            "pairId": "p_mm_g8_e_73_2",
+            "leftText": "carabiner",
+            "rightText": "güvenlik kilitli halkası",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Extreme Expeditions",
+            "explanation": "\"carabiner\" translates to \"güvenlik kilitli halkası\" in Turkish (Extreme Expeditions)."
+          },
+          {
+            "pairId": "p_mm_g8_e_73_3",
+            "leftText": "harness",
+            "rightText": "vücut güvenlik koşumu",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Extreme Expeditions",
+            "explanation": "\"harness\" translates to \"vücut güvenlik koşumu\" in Turkish (Extreme Expeditions)."
+          },
+          {
+            "pairId": "p_mm_g8_e_73_4",
+            "leftText": "ice axe",
+            "rightText": "buz çekici kazması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Extreme Expeditions",
+            "explanation": "\"ice axe\" translates to \"buz çekici kazması\" in Turkish (Extreme Expeditions)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_74",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Global Travel Delights",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_74_1",
+            "leftText": "boarding pass",
+            "rightText": "uçağa biniş kartı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Global Travel Delights",
+            "explanation": "\"boarding pass\" translates to \"uçağa biniş kartı\" in Turkish (Global Travel Delights)."
+          },
+          {
+            "pairId": "p_mm_g8_e_74_2",
+            "leftText": "passport control",
+            "rightText": "pasaport polis kontrolü",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Global Travel Delights",
+            "explanation": "\"passport control\" translates to \"pasaport polis kontrolü\" in Turkish (Global Travel Delights)."
+          },
+          {
+            "pairId": "p_mm_g8_e_74_3",
+            "leftText": "luggage",
+            "rightText": "yolcu valizleri",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Global Travel Delights",
+            "explanation": "\"luggage\" translates to \"yolcu valizleri\" in Turkish (Global Travel Delights)."
+          },
+          {
+            "pairId": "p_mm_g8_e_74_4",
+            "leftText": "sightseeing",
+            "rightText": "tarihi yerleri gezme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Global Travel Delights",
+            "explanation": "\"sightseeing\" translates to \"tarihi yerleri gezme\" in Turkish (Global Travel Delights)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_75",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Kitchen Flavors",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_75_1",
+            "leftText": "savory",
+            "rightText": "tuzlu ve iştah açıcı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Kitchen Flavors",
+            "explanation": "\"savory\" translates to \"tuzlu ve iştah açıcı\" in Turkish (Kitchen Flavors)."
+          },
+          {
+            "pairId": "p_mm_g8_e_75_2",
+            "leftText": "spicy",
+            "rightText": "acı baharatlı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Kitchen Flavors",
+            "explanation": "\"spicy\" translates to \"acı baharatlı\" in Turkish (Kitchen Flavors)."
+          },
+          {
+            "pairId": "p_mm_g8_e_75_3",
+            "leftText": "sour",
+            "rightText": "mayhoş ekşi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Kitchen Flavors",
+            "explanation": "\"sour\" translates to \"mayhoş ekşi\" in Turkish (Kitchen Flavors)."
+          },
+          {
+            "pairId": "p_mm_g8_e_75_4",
+            "leftText": "sweet",
+            "rightText": "tatlı şekerli",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Kitchen Flavors",
+            "explanation": "\"sweet\" translates to \"tatlı şekerli\" in Turkish (Kitchen Flavors)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_76",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Friendship Dynamics",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_76_1",
+            "leftText": "share secrets",
+            "rightText": "özel sırları paylaşmak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Friendship Dynamics",
+            "explanation": "\"share secrets\" translates to \"özel sırları paylaşmak\" in Turkish (Friendship Dynamics)."
+          },
+          {
+            "pairId": "p_mm_g8_e_76_2",
+            "leftText": "make excuses",
+            "rightText": "bahane uydurmak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Friendship Dynamics",
+            "explanation": "\"make excuses\" translates to \"bahane uydurmak\" in Turkish (Friendship Dynamics)."
+          },
+          {
+            "pairId": "p_mm_g8_e_76_3",
+            "leftText": "back up",
+            "rightText": "arkasında durup desteklemek",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Friendship Dynamics",
+            "explanation": "\"back up\" translates to \"arkasında durup desteklemek\" in Turkish (Friendship Dynamics)."
+          },
+          {
+            "pairId": "p_mm_g8_e_76_4",
+            "leftText": "get on well",
+            "rightText": "biriyle çok iyi geçinmek",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Friendship Dynamics",
+            "explanation": "\"get on well\" translates to \"biriyle çok iyi geçinmek\" in Turkish (Friendship Dynamics)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_77",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Phone Conversations",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_77_1",
+            "leftText": "speak up",
+            "rightText": "sesini yükseltmek",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Phone Conversations",
+            "explanation": "\"speak up\" translates to \"sesini yükseltmek\" in Turkish (Phone Conversations)."
+          },
+          {
+            "pairId": "p_mm_g8_e_77_2",
+            "leftText": "bad line",
+            "rightText": "cızırtılı bozuk telefon hattı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Phone Conversations",
+            "explanation": "\"bad line\" translates to \"cızırtılı bozuk telefon hattı\" in Turkish (Phone Conversations)."
+          },
+          {
+            "pairId": "p_mm_g8_e_77_3",
+            "leftText": "leave a message",
+            "rightText": "not bırakmak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Phone Conversations",
+            "explanation": "\"leave a message\" translates to \"not bırakmak\" in Turkish (Phone Conversations)."
+          },
+          {
+            "pairId": "p_mm_g8_e_77_4",
+            "leftText": "call back",
+            "rightText": "daha sonra geri aramak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Phone Conversations",
+            "explanation": "\"call back\" translates to \"daha sonra geri aramak\" in Turkish (Phone Conversations)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_78",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Internet Safety Rules",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_78_1",
+            "leftText": "refuse strangers",
+            "rightText": "tanımadıklarını reddetmek",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Internet Safety Rules",
+            "explanation": "\"refuse strangers\" translates to \"tanımadıklarını reddetmek\" in Turkish (Internet Safety Rules)."
+          },
+          {
+            "pairId": "p_mm_g8_e_78_2",
+            "leftText": "keep secret",
+            "rightText": "şifreleri gizli tutmak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Internet Safety Rules",
+            "explanation": "\"keep secret\" translates to \"şifreleri gizli tutmak\" in Turkish (Internet Safety Rules)."
+          },
+          {
+            "pairId": "p_mm_g8_e_78_3",
+            "leftText": "verify identity",
+            "rightText": "kimliği teyit etmek",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Internet Safety Rules",
+            "explanation": "\"verify identity\" translates to \"kimliği teyit etmek\" in Turkish (Internet Safety Rules)."
+          },
+          {
+            "pairId": "p_mm_g8_e_78_4",
+            "leftText": "safe logout",
+            "rightText": "güvenli çıkış yapmak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Internet Safety Rules",
+            "explanation": "\"safe logout\" translates to \"güvenli çıkış yapmak\" in Turkish (Internet Safety Rules)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_79",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_meaning",
+        "topic": "Chores Sharing",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_79_1",
+            "leftText": "take turns",
+            "rightText": "sırayla nöbetleşe yapmak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Chores Sharing",
+            "explanation": "\"take turns\" translates to \"sırayla nöbetleşe yapmak\" in Turkish (Chores Sharing)."
+          },
+          {
+            "pairId": "p_mm_g8_e_79_2",
+            "leftText": "fair share",
+            "rightText": "adil düşen pay",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Chores Sharing",
+            "explanation": "\"fair share\" translates to \"adil düşen pay\" in Turkish (Chores Sharing)."
+          },
+          {
+            "pairId": "p_mm_g8_e_79_3",
+            "leftText": "tidy up",
+            "rightText": "odayı düzenleyip toplamak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Chores Sharing",
+            "explanation": "\"tidy up\" translates to \"odayı düzenleyip toplamak\" in Turkish (Chores Sharing)."
+          },
+          {
+            "pairId": "p_mm_g8_e_79_4",
+            "leftText": "keep clean",
+            "rightText": "çevreyi temiz tutmak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Chores Sharing",
+            "explanation": "\"keep clean\" translates to \"çevreyi temiz tutmak\" in Turkish (Chores Sharing)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_e_80",
+        "grade": "grade-8",
+        "difficulty": "easy",
+        "mode": "word_definition",
+        "topic": "Friendship Dynamics",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_e_80_1",
+            "leftText": "back up",
+            "rightText": "to support and encourage an ally",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Friendship Dynamics",
+            "explanation": "\"back up\": to support and encourage an ally (Friendship Dynamics)."
+          },
+          {
+            "pairId": "p_mm_g8_e_80_2",
+            "leftText": "count on",
+            "rightText": "to trust and depend on someone",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Friendship Dynamics",
+            "explanation": "\"count on\": to trust and depend on someone (Friendship Dynamics)."
+          },
+          {
+            "pairId": "p_mm_g8_e_80_3",
+            "leftText": "get on well",
+            "rightText": "to have a harmonious relationship",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Friendship Dynamics",
+            "explanation": "\"get on well\": to have a harmonious relationship (Friendship Dynamics)."
+          },
+          {
+            "pairId": "p_mm_g8_e_80_4",
+            "leftText": "secret",
+            "rightText": "something kept hidden from others",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "easy",
+            "topic": "Friendship Dynamics",
+            "explanation": "\"secret\": something kept hidden from others (Friendship Dynamics)."
+          }
+        ]
       }
     ],
     "medium": [
@@ -13509,6 +23742,2766 @@ export const MEMORY_MATCH_BANK: MemoryMatchBank = {
           }
         ],
         "contentVersion": 1
+      },
+      {
+        "id": "mm_g8_m_41",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Friendship & Loyalty",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_41_1",
+            "leftText": "count on",
+            "rightText": "güvenip bel bağlamak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Friendship & Loyalty",
+            "explanation": "\"count on\" translates to \"güvenip bel bağlamak\" in Turkish (Friendship & Loyalty)."
+          },
+          {
+            "pairId": "p_mm_g8_m_41_2",
+            "leftText": "back up",
+            "rightText": "arkasında durup desteklemek",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Friendship & Loyalty",
+            "explanation": "\"back up\" translates to \"arkasında durup desteklemek\" in Turkish (Friendship & Loyalty)."
+          },
+          {
+            "pairId": "p_mm_g8_m_41_3",
+            "leftText": "buddy",
+            "rightText": "can ciğer dost",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Friendship & Loyalty",
+            "explanation": "\"buddy\" translates to \"can ciğer dost\" in Turkish (Friendship & Loyalty)."
+          },
+          {
+            "pairId": "p_mm_g8_m_41_4",
+            "leftText": "keep secrets",
+            "rightText": "emanet sırları saklamak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Friendship & Loyalty",
+            "explanation": "\"keep secrets\" translates to \"emanet sırları saklamak\" in Turkish (Friendship & Loyalty)."
+          },
+          {
+            "pairId": "p_mm_g8_m_41_5",
+            "leftText": "supportive",
+            "rightText": "daima arka çıkan",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Friendship & Loyalty",
+            "explanation": "\"supportive\" translates to \"daima arka çıkan\" in Turkish (Friendship & Loyalty)."
+          },
+          {
+            "pairId": "p_mm_g8_m_41_6",
+            "leftText": "unreliable",
+            "rightText": "asla güvenilmez kimse",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Friendship & Loyalty",
+            "explanation": "\"unreliable\" translates to \"asla güvenilmez kimse\" in Turkish (Friendship & Loyalty)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_42",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_definition",
+        "topic": "Friendship & Loyalty",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_42_1",
+            "leftText": "count on",
+            "rightText": "to rely on someone completely",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Friendship & Loyalty",
+            "explanation": "\"count on\": to rely on someone completely (Friendship & Loyalty)."
+          },
+          {
+            "pairId": "p_mm_g8_m_42_2",
+            "leftText": "back up",
+            "rightText": "to support a friend in difficulty",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Friendship & Loyalty",
+            "explanation": "\"back up\": to support a friend in difficulty (Friendship & Loyalty)."
+          },
+          {
+            "pairId": "p_mm_g8_m_42_3",
+            "leftText": "buddy",
+            "rightText": "a loyal companion and pal",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Friendship & Loyalty",
+            "explanation": "\"buddy\": a loyal companion and pal (Friendship & Loyalty)."
+          },
+          {
+            "pairId": "p_mm_g8_m_42_4",
+            "leftText": "keep secrets",
+            "rightText": "never revealing personal confidences",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Friendship & Loyalty",
+            "explanation": "\"keep secrets\": never revealing personal confidences (Friendship & Loyalty)."
+          },
+          {
+            "pairId": "p_mm_g8_m_42_5",
+            "leftText": "supportive",
+            "rightText": "offering comforting help and care",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Friendship & Loyalty",
+            "explanation": "\"supportive\": offering comforting help and care (Friendship & Loyalty)."
+          },
+          {
+            "pairId": "p_mm_g8_m_42_6",
+            "leftText": "unreliable",
+            "rightText": "not worthy of reliance or trust",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Friendship & Loyalty",
+            "explanation": "\"unreliable\": not worthy of reliance or trust (Friendship & Loyalty)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_43",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Teen Life & Lifestyles",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_43_1",
+            "leftText": "trendy",
+            "rightText": "son moda akımlara uygun",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Teen Life & Lifestyles",
+            "explanation": "\"trendy\" translates to \"son moda akımlara uygun\" in Turkish (Teen Life & Lifestyles)."
+          },
+          {
+            "pairId": "p_mm_g8_m_43_2",
+            "leftText": "casual",
+            "rightText": "günlük spor kıyafet",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Teen Life & Lifestyles",
+            "explanation": "\"casual\" translates to \"günlük spor kıyafet\" in Turkish (Teen Life & Lifestyles)."
+          },
+          {
+            "pairId": "p_mm_g8_m_43_3",
+            "leftText": "active lifestyle",
+            "rightText": "hareketli sağlıklı hayat",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Teen Life & Lifestyles",
+            "explanation": "\"active lifestyle\" translates to \"hareketli sağlıklı hayat\" in Turkish (Teen Life & Lifestyles)."
+          },
+          {
+            "pairId": "p_mm_g8_m_43_4",
+            "leftText": "snob",
+            "rightText": "küstah kendini beğenmiş",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Teen Life & Lifestyles",
+            "explanation": "\"snob\" translates to \"küstah kendini beğenmiş\" in Turkish (Teen Life & Lifestyles)."
+          },
+          {
+            "pairId": "p_mm_g8_m_43_5",
+            "leftText": "peer pressure",
+            "rightText": "akran baskısı ve etkisi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Teen Life & Lifestyles",
+            "explanation": "\"peer pressure\" translates to \"akran baskısı ve etkisi\" in Turkish (Teen Life & Lifestyles)."
+          },
+          {
+            "pairId": "p_mm_g8_m_43_6",
+            "leftText": "punctual",
+            "rightText": "vaktine son derece sadık",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Teen Life & Lifestyles",
+            "explanation": "\"punctual\" translates to \"vaktine son derece sadık\" in Turkish (Teen Life & Lifestyles)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_44",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Culinary Preparations",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_44_1",
+            "leftText": "peel",
+            "rightText": "meyve sebze kabuğu soymak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Culinary Preparations",
+            "explanation": "\"peel\" translates to \"meyve sebze kabuğu soymak\" in Turkish (Culinary Preparations)."
+          },
+          {
+            "pairId": "p_mm_g8_m_44_2",
+            "leftText": "chop",
+            "rightText": "bıçakla küçük parçalamak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Culinary Preparations",
+            "explanation": "\"chop\" translates to \"bıçakla küçük parçalamak\" in Turkish (Culinary Preparations)."
+          },
+          {
+            "pairId": "p_mm_g8_m_44_3",
+            "leftText": "saute",
+            "rightText": "az yağda hafifçe kızartmak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Culinary Preparations",
+            "explanation": "\"saute\" translates to \"az yağda hafifçe kızartmak\" in Turkish (Culinary Preparations)."
+          },
+          {
+            "pairId": "p_mm_g8_m_44_4",
+            "leftText": "knead",
+            "rightText": "ekmek hamurunu yoğurmak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Culinary Preparations",
+            "explanation": "\"knead\" translates to \"ekmek hamurunu yoğurmak\" in Turkish (Culinary Preparations)."
+          },
+          {
+            "pairId": "p_mm_g8_m_44_5",
+            "leftText": "drain",
+            "rightText": "kevgirle suyunu süzmek",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Culinary Preparations",
+            "explanation": "\"drain\" translates to \"kevgirle suyunu süzmek\" in Turkish (Culinary Preparations)."
+          },
+          {
+            "pairId": "p_mm_g8_m_44_6",
+            "leftText": "whisk",
+            "rightText": "çırpıcıyla köpürtmek",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Culinary Preparations",
+            "explanation": "\"whisk\" translates to \"çırpıcıyla köpürtmek\" in Turkish (Culinary Preparations)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_45",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_definition",
+        "topic": "Culinary Preparations",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_45_1",
+            "leftText": "peel",
+            "rightText": "to remove outer skin of vegetables",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Culinary Preparations",
+            "explanation": "\"peel\": to remove outer skin of vegetables (Culinary Preparations)."
+          },
+          {
+            "pairId": "p_mm_g8_m_45_2",
+            "leftText": "chop",
+            "rightText": "to cut food into bite-size bits",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Culinary Preparations",
+            "explanation": "\"chop\": to cut food into bite-size bits (Culinary Preparations)."
+          },
+          {
+            "pairId": "p_mm_g8_m_45_3",
+            "leftText": "saute",
+            "rightText": "to fry quickly in a little hot fat",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Culinary Preparations",
+            "explanation": "\"saute\": to fry quickly in a little hot fat (Culinary Preparations)."
+          },
+          {
+            "pairId": "p_mm_g8_m_45_4",
+            "leftText": "knead",
+            "rightText": "to work dough with hands",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Culinary Preparations",
+            "explanation": "\"knead\": to work dough with hands (Culinary Preparations)."
+          },
+          {
+            "pairId": "p_mm_g8_m_45_5",
+            "leftText": "drain",
+            "rightText": "to empty liquid through a colander",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Culinary Preparations",
+            "explanation": "\"drain\": to empty liquid through a colander (Culinary Preparations)."
+          },
+          {
+            "pairId": "p_mm_g8_m_45_6",
+            "leftText": "whisk",
+            "rightText": "to beat eggs or cream rapidly",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Culinary Preparations",
+            "explanation": "\"whisk\": to beat eggs or cream rapidly (Culinary Preparations)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_46",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Kitchen Utensils & Methods",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_46_1",
+            "leftText": "colander",
+            "rightText": "delikli makarna süzgeci",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Kitchen Utensils & Methods",
+            "explanation": "\"colander\" translates to \"delikli makarna süzgeci\" in Turkish (Kitchen Utensils & Methods)."
+          },
+          {
+            "pairId": "p_mm_g8_m_46_2",
+            "leftText": "grater",
+            "rightText": "sebze peynir rendesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Kitchen Utensils & Methods",
+            "explanation": "\"grater\" translates to \"sebze peynir rendesi\" in Turkish (Kitchen Utensils & Methods)."
+          },
+          {
+            "pairId": "p_mm_g8_m_46_3",
+            "leftText": "peeler",
+            "rightText": "patates kabuk soyacağı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Kitchen Utensils & Methods",
+            "explanation": "\"peeler\" translates to \"patates kabuk soyacağı\" in Turkish (Kitchen Utensils & Methods)."
+          },
+          {
+            "pairId": "p_mm_g8_m_46_4",
+            "leftText": "baking sheet",
+            "rightText": "fırın pişirme tepsisi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Kitchen Utensils & Methods",
+            "explanation": "\"baking sheet\" translates to \"fırın pişirme tepsisi\" in Turkish (Kitchen Utensils & Methods)."
+          },
+          {
+            "pairId": "p_mm_g8_m_46_5",
+            "leftText": "saucepan",
+            "rightText": "kulplu sos tenceresi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Kitchen Utensils & Methods",
+            "explanation": "\"saucepan\" translates to \"kulplu sos tenceresi\" in Turkish (Kitchen Utensils & Methods)."
+          },
+          {
+            "pairId": "p_mm_g8_m_46_6",
+            "leftText": "tablespoon",
+            "rightText": "ölçülü çorba yemek kaşığı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Kitchen Utensils & Methods",
+            "explanation": "\"tablespoon\" translates to \"ölçülü çorba yemek kaşığı\" in Turkish (Kitchen Utensils & Methods)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_47",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Telecommunications Protocols",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_47_1",
+            "leftText": "put through",
+            "rightText": "dahili telefona aktarmak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Telecommunications Protocols",
+            "explanation": "\"put through\" translates to \"dahili telefona aktarmak\" in Turkish (Telecommunications Protocols)."
+          },
+          {
+            "pairId": "p_mm_g8_m_47_2",
+            "leftText": "hold on",
+            "rightText": "telefon hattında beklemek",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Telecommunications Protocols",
+            "explanation": "\"hold on\" translates to \"telefon hattında beklemek\" in Turkish (Telecommunications Protocols)."
+          },
+          {
+            "pairId": "p_mm_g8_m_47_3",
+            "leftText": "hang up",
+            "rightText": "telefon görüşmesini sonlandırmak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Telecommunications Protocols",
+            "explanation": "\"hang up\" translates to \"telefon görüşmesini sonlandırmak\" in Turkish (Telecommunications Protocols)."
+          },
+          {
+            "pairId": "p_mm_g8_m_47_4",
+            "leftText": "engaged line",
+            "rightText": "başka çağrıyla meşgul hat",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Telecommunications Protocols",
+            "explanation": "\"engaged line\" translates to \"başka çağrıyla meşgul hat\" in Turkish (Telecommunications Protocols)."
+          },
+          {
+            "pairId": "p_mm_g8_m_47_5",
+            "leftText": "voicemail",
+            "rightText": "telesekreter sesli mesajı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Telecommunications Protocols",
+            "explanation": "\"voicemail\" translates to \"telesekreter sesli mesajı\" in Turkish (Telecommunications Protocols)."
+          },
+          {
+            "pairId": "p_mm_g8_m_47_6",
+            "leftText": "extension",
+            "rightText": "dahili ofis hat numarası",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Telecommunications Protocols",
+            "explanation": "\"extension\" translates to \"dahili ofis hat numarası\" in Turkish (Telecommunications Protocols)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_48",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_definition",
+        "topic": "Telecommunications Protocols",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_48_1",
+            "leftText": "put through",
+            "rightText": "connecting a caller to an extension",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Telecommunications Protocols",
+            "explanation": "\"put through\": connecting a caller to an extension (Telecommunications Protocols)."
+          },
+          {
+            "pairId": "p_mm_g8_m_48_2",
+            "leftText": "hold on",
+            "rightText": "waiting briefly on the phone line",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Telecommunications Protocols",
+            "explanation": "\"hold on\": waiting briefly on the phone line (Telecommunications Protocols)."
+          },
+          {
+            "pairId": "p_mm_g8_m_48_3",
+            "leftText": "hang up",
+            "rightText": "terminating an active phone call",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Telecommunications Protocols",
+            "explanation": "\"hang up\": terminating an active phone call (Telecommunications Protocols)."
+          },
+          {
+            "pairId": "p_mm_g8_m_48_4",
+            "leftText": "engaged line",
+            "rightText": "line busy with another conversation",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Telecommunications Protocols",
+            "explanation": "\"engaged line\": line busy with another conversation (Telecommunications Protocols)."
+          },
+          {
+            "pairId": "p_mm_g8_m_48_5",
+            "leftText": "voicemail",
+            "rightText": "recorded voice message system",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Telecommunications Protocols",
+            "explanation": "\"voicemail\": recorded voice message system (Telecommunications Protocols)."
+          },
+          {
+            "pairId": "p_mm_g8_m_48_6",
+            "leftText": "extension",
+            "rightText": "internal telephone branch number",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Telecommunications Protocols",
+            "explanation": "\"extension\": internal telephone branch number (Telecommunications Protocols)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_49",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Internet Safety & Habits",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_49_1",
+            "leftText": "download",
+            "rightText": "ağdan bilgisayara dosya indirme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Internet Safety & Habits",
+            "explanation": "\"download\" translates to \"ağdan bilgisayara dosya indirme\" in Turkish (Internet Safety & Habits)."
+          },
+          {
+            "pairId": "p_mm_g8_m_49_2",
+            "leftText": "upload",
+            "rightText": "bilgisayardan ağa dosya aktarma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Internet Safety & Habits",
+            "explanation": "\"upload\" translates to \"bilgisayardan ağa dosya aktarma\" in Turkish (Internet Safety & Habits)."
+          },
+          {
+            "pairId": "p_mm_g8_m_49_3",
+            "leftText": "attachment",
+            "rightText": "zararlı olabilecek e-posta eki",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Internet Safety & Habits",
+            "explanation": "\"attachment\" translates to \"zararlı olabilecek e-posta eki\" in Turkish (Internet Safety & Habits)."
+          },
+          {
+            "pairId": "p_mm_g8_m_49_4",
+            "leftText": "search engine",
+            "rightText": "bilgi tarama arama motoru",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Internet Safety & Habits",
+            "explanation": "\"search engine\" translates to \"bilgi tarama arama motoru\" in Turkish (Internet Safety & Habits)."
+          },
+          {
+            "pairId": "p_mm_g8_m_49_5",
+            "leftText": "phishing",
+            "rightText": "sahte e-postayla şifre avcılığı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Internet Safety & Habits",
+            "explanation": "\"phishing\" translates to \"sahte e-postayla şifre avcılığı\" in Turkish (Internet Safety & Habits)."
+          },
+          {
+            "pairId": "p_mm_g8_m_49_6",
+            "leftText": "firewall",
+            "rightText": "ağ veri güvenlik duvarı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Internet Safety & Habits",
+            "explanation": "\"firewall\" translates to \"ağ veri güvenlik duvarı\" in Turkish (Internet Safety & Habits)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_50",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_definition",
+        "topic": "Internet Safety & Habits",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_50_1",
+            "leftText": "download",
+            "rightText": "retrieving files from the internet",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Internet Safety & Habits",
+            "explanation": "\"download\": retrieving files from the internet (Internet Safety & Habits)."
+          },
+          {
+            "pairId": "p_mm_g8_m_50_2",
+            "leftText": "upload",
+            "rightText": "sending local files to web servers",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Internet Safety & Habits",
+            "explanation": "\"upload\": sending local files to web servers (Internet Safety & Habits)."
+          },
+          {
+            "pairId": "p_mm_g8_m_50_3",
+            "leftText": "attachment",
+            "rightText": "file sent alongside an email message",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Internet Safety & Habits",
+            "explanation": "\"attachment\": file sent alongside an email message (Internet Safety & Habits)."
+          },
+          {
+            "pairId": "p_mm_g8_m_50_4",
+            "leftText": "search engine",
+            "rightText": "service indexing web information",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Internet Safety & Habits",
+            "explanation": "\"search engine\": service indexing web information (Internet Safety & Habits)."
+          },
+          {
+            "pairId": "p_mm_g8_m_50_5",
+            "leftText": "phishing",
+            "rightText": "fraudulent emails stealing logins",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Internet Safety & Habits",
+            "explanation": "\"phishing\": fraudulent emails stealing logins (Internet Safety & Habits)."
+          },
+          {
+            "pairId": "p_mm_g8_m_50_6",
+            "leftText": "firewall",
+            "rightText": "barrier blocking untrusted web packets",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Internet Safety & Habits",
+            "explanation": "\"firewall\": barrier blocking untrusted web packets (Internet Safety & Habits)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_51",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Extreme Adventures & Sports",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_51_1",
+            "leftText": "paragliding",
+            "rightText": "yamaç paraşütü süzülüşü",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Extreme Adventures & Sports",
+            "explanation": "\"paragliding\" translates to \"yamaç paraşütü süzülüşü\" in Turkish (Extreme Adventures & Sports)."
+          },
+          {
+            "pairId": "p_mm_g8_m_51_2",
+            "leftText": "white-water rafting",
+            "rightText": "coşkun nehir bot yarışı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Extreme Adventures & Sports",
+            "explanation": "\"white-water rafting\" translates to \"coşkun nehir bot yarışı\" in Turkish (Extreme Adventures & Sports)."
+          },
+          {
+            "pairId": "p_mm_g8_m_51_3",
+            "leftText": "bungee jumping",
+            "rightText": "köprüden esnek iple atlayış",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Extreme Adventures & Sports",
+            "explanation": "\"bungee jumping\" translates to \"köprüden esnek iple atlayış\" in Turkish (Extreme Adventures & Sports)."
+          },
+          {
+            "pairId": "p_mm_g8_m_51_4",
+            "leftText": "canyoning",
+            "rightText": "kanyonda iple şelale inişi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Extreme Adventures & Sports",
+            "explanation": "\"canyoning\" translates to \"kanyonda iple şelale inişi\" in Turkish (Extreme Adventures & Sports)."
+          },
+          {
+            "pairId": "p_mm_g8_m_51_5",
+            "leftText": "scuba diving",
+            "rightText": "tüplü derin deniz dalışı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Extreme Adventures & Sports",
+            "explanation": "\"scuba diving\" translates to \"tüplü derin deniz dalışı\" in Turkish (Extreme Adventures & Sports)."
+          },
+          {
+            "pairId": "p_mm_g8_m_51_6",
+            "leftText": "trekking",
+            "rightText": "dağlık arazide uzun yürüyüş",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Extreme Adventures & Sports",
+            "explanation": "\"trekking\" translates to \"dağlık arazide uzun yürüyüş\" in Turkish (Extreme Adventures & Sports)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_52",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_definition",
+        "topic": "Extreme Adventures & Sports",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_52_1",
+            "leftText": "paragliding",
+            "rightText": "gliding down thermals with a canopy",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Extreme Adventures & Sports",
+            "explanation": "\"paragliding\": gliding down thermals with a canopy (Extreme Adventures & Sports)."
+          },
+          {
+            "pairId": "p_mm_g8_m_52_2",
+            "leftText": "white-water rafting",
+            "rightText": "navigating raging rapids in rafts",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Extreme Adventures & Sports",
+            "explanation": "\"white-water rafting\": navigating raging rapids in rafts (Extreme Adventures & Sports)."
+          },
+          {
+            "pairId": "p_mm_g8_m_52_3",
+            "leftText": "bungee jumping",
+            "rightText": "jumping suspended by elastic ropes",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Extreme Adventures & Sports",
+            "explanation": "\"bungee jumping\": jumping suspended by elastic ropes (Extreme Adventures & Sports)."
+          },
+          {
+            "pairId": "p_mm_g8_m_52_4",
+            "leftText": "canyoning",
+            "rightText": "descending waterfalls with abseiling",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Extreme Adventures & Sports",
+            "explanation": "\"canyoning\": descending waterfalls with abseiling (Extreme Adventures & Sports)."
+          },
+          {
+            "pairId": "p_mm_g8_m_52_5",
+            "leftText": "scuba diving",
+            "rightText": "swimming deep underwater with tanks",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Extreme Adventures & Sports",
+            "explanation": "\"scuba diving\": swimming deep underwater with tanks (Extreme Adventures & Sports)."
+          },
+          {
+            "pairId": "p_mm_g8_m_52_6",
+            "leftText": "trekking",
+            "rightText": "long backcountry hiking over ridges",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Extreme Adventures & Sports",
+            "explanation": "\"trekking\": long backcountry hiking over ridges (Extreme Adventures & Sports)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_53",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Tourism Styles & Holidays",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_53_1",
+            "leftText": "all-inclusive resort",
+            "rightText": "her şey dahil lüks tatil köyü",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Tourism Styles & Holidays",
+            "explanation": "\"all-inclusive resort\" translates to \"her şey dahil lüks tatil köyü\" in Turkish (Tourism Styles & Holidays)."
+          },
+          {
+            "pairId": "p_mm_g8_m_53_2",
+            "leftText": "souvenir keepsakes",
+            "rightText": "yöresel tatil hatıra eşyaları",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Tourism Styles & Holidays",
+            "explanation": "\"souvenir keepsakes\" translates to \"yöresel tatil hatıra eşyaları\" in Turkish (Tourism Styles & Holidays)."
+          },
+          {
+            "pairId": "p_mm_g8_m_53_3",
+            "leftText": "historic heritage site",
+            "rightText": "UNESCO dünya mirası antik kenti",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Tourism Styles & Holidays",
+            "explanation": "\"historic heritage site\" translates to \"UNESCO dünya mirası antik kenti\" in Turkish (Tourism Styles & Holidays)."
+          },
+          {
+            "pairId": "p_mm_g8_m_53_4",
+            "leftText": "bed and breakfast",
+            "rightText": "samimi oda kahvaltı pansiyonu",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Tourism Styles & Holidays",
+            "explanation": "\"bed and breakfast\" translates to \"samimi oda kahvaltı pansiyonu\" in Turkish (Tourism Styles & Holidays)."
+          },
+          {
+            "pairId": "p_mm_g8_m_53_5",
+            "leftText": "guided cultural tour",
+            "rightText": "uzman rehberli kültür gezisi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Tourism Styles & Holidays",
+            "explanation": "\"guided cultural tour\" translates to \"uzman rehberli kültür gezisi\" in Turkish (Tourism Styles & Holidays)."
+          },
+          {
+            "pairId": "p_mm_g8_m_53_6",
+            "leftText": "ecotourism lodge",
+            "rightText": "çevre dostu doğa pansiyonu",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Tourism Styles & Holidays",
+            "explanation": "\"ecotourism lodge\" translates to \"çevre dostu doğa pansiyonu\" in Turkish (Tourism Styles & Holidays)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_54",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Domestic Chores & Cleaning",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_54_1",
+            "leftText": "vacuum carpets",
+            "rightText": "halıları elektrikle süpürmek",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Domestic Chores & Cleaning",
+            "explanation": "\"vacuum carpets\" translates to \"halıları elektrikle süpürmek\" in Turkish (Domestic Chores & Cleaning)."
+          },
+          {
+            "pairId": "p_mm_g8_m_54_2",
+            "leftText": "do the laundry",
+            "rightText": "kirli çamaşırları yıkamak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Domestic Chores & Cleaning",
+            "explanation": "\"do the laundry\" translates to \"kirli çamaşırları yıkamak\" in Turkish (Domestic Chores & Cleaning)."
+          },
+          {
+            "pairId": "p_mm_g8_m_54_3",
+            "leftText": "iron school shirts",
+            "rightText": "okul gömleklerini ütülemek",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Domestic Chores & Cleaning",
+            "explanation": "\"iron school shirts\" translates to \"okul gömleklerini ütülemek\" in Turkish (Domestic Chores & Cleaning)."
+          },
+          {
+            "pairId": "p_mm_g8_m_54_4",
+            "leftText": "empty rubbish bin",
+            "rightText": "çöp kovasını boşaltmak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Domestic Chores & Cleaning",
+            "explanation": "\"empty rubbish bin\" translates to \"çöp kovasını boşaltmak\" in Turkish (Domestic Chores & Cleaning)."
+          },
+          {
+            "pairId": "p_mm_g8_m_54_5",
+            "leftText": "scrub greasy pans",
+            "rightText": "yağlı tencereleri ovup yıkamak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Domestic Chores & Cleaning",
+            "explanation": "\"scrub greasy pans\" translates to \"yağlı tencereleri ovup yıkamak\" in Turkish (Domestic Chores & Cleaning)."
+          },
+          {
+            "pairId": "p_mm_g8_m_54_6",
+            "leftText": "mop bathroom floor",
+            "rightText": "banyo yer karolarını paspaslamak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Domestic Chores & Cleaning",
+            "explanation": "\"mop bathroom floor\" translates to \"banyo yer karolarını paspaslamak\" in Turkish (Domestic Chores & Cleaning)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_55",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_definition",
+        "topic": "Domestic Chores & Cleaning",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_55_1",
+            "leftText": "vacuum",
+            "rightText": "using electric suction on carpets",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Domestic Chores & Cleaning",
+            "explanation": "\"vacuum\": using electric suction on carpets (Domestic Chores & Cleaning)."
+          },
+          {
+            "pairId": "p_mm_g8_m_55_2",
+            "leftText": "laundry",
+            "rightText": "washing dirty clothing batches",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Domestic Chores & Cleaning",
+            "explanation": "\"laundry\": washing dirty clothing batches (Domestic Chores & Cleaning)."
+          },
+          {
+            "pairId": "p_mm_g8_m_55_3",
+            "leftText": "ironing",
+            "rightText": "pressing fabrics smooth with heat",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Domestic Chores & Cleaning",
+            "explanation": "\"ironing\": pressing fabrics smooth with heat (Domestic Chores & Cleaning)."
+          },
+          {
+            "pairId": "p_mm_g8_m_55_4",
+            "leftText": "rubbish",
+            "rightText": "household waste discarded daily",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Domestic Chores & Cleaning",
+            "explanation": "\"rubbish\": household waste discarded daily (Domestic Chores & Cleaning)."
+          },
+          {
+            "pairId": "p_mm_g8_m_55_5",
+            "leftText": "scrubbing",
+            "rightText": "rubbing pans hard with brushes",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Domestic Chores & Cleaning",
+            "explanation": "\"scrubbing\": rubbing pans hard with brushes (Domestic Chores & Cleaning)."
+          },
+          {
+            "pairId": "p_mm_g8_m_55_6",
+            "leftText": "mopping",
+            "rightText": "wiping tile floors with wet mops",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Domestic Chores & Cleaning",
+            "explanation": "\"mopping\": wiping tile floors with wet mops (Domestic Chores & Cleaning)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_56",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Science Pioneers & Research",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_56_1",
+            "leftText": "Aziz Sancar",
+            "rightText": "Nobel ödüllü Türk biyokimyacı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Science Pioneers & Research",
+            "explanation": "\"Aziz Sancar\" translates to \"Nobel ödüllü Türk biyokimyacı\" in Turkish (Science Pioneers & Research)."
+          },
+          {
+            "pairId": "p_mm_g8_m_56_2",
+            "leftText": "DNA repair mechanism",
+            "rightText": "hücre DNA onarım süreci",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Science Pioneers & Research",
+            "explanation": "\"DNA repair mechanism\" translates to \"hücre DNA onarım süreci\" in Turkish (Science Pioneers & Research)."
+          },
+          {
+            "pairId": "p_mm_g8_m_56_3",
+            "leftText": "scientific breakthrough",
+            "rightText": "çığır açıcı bilimsel buluş",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Science Pioneers & Research",
+            "explanation": "\"scientific breakthrough\" translates to \"çığır açıcı bilimsel buluş\" in Turkish (Science Pioneers & Research)."
+          },
+          {
+            "pairId": "p_mm_g8_m_56_4",
+            "leftText": "controlled experiment",
+            "rightText": "ölçümlü kontrollü laboratuvar deneyi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Science Pioneers & Research",
+            "explanation": "\"controlled experiment\" translates to \"ölçümlü kontrollü laboratuvar deneyi\" in Turkish (Science Pioneers & Research)."
+          },
+          {
+            "pairId": "p_mm_g8_m_56_5",
+            "leftText": "compound microscope",
+            "rightText": "hücre büyüten optik mikroskop",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Science Pioneers & Research",
+            "explanation": "\"compound microscope\" translates to \"hücre büyüten optik mikroskop\" in Turkish (Science Pioneers & Research)."
+          },
+          {
+            "pairId": "p_mm_g8_m_56_6",
+            "leftText": "vaccine development",
+            "rightText": "hastalıklara karşı aşı geliştirme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Science Pioneers & Research",
+            "explanation": "\"vaccine development\" translates to \"hastalıklara karşı aşı geliştirme\" in Turkish (Science Pioneers & Research)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_57",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_definition",
+        "topic": "Science Pioneers & Research",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_57_1",
+            "leftText": "Aziz Sancar",
+            "rightText": "Nobel laureate for DNA repair work",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Science Pioneers & Research",
+            "explanation": "\"Aziz Sancar\": Nobel laureate for DNA repair work (Science Pioneers & Research)."
+          },
+          {
+            "pairId": "p_mm_g8_m_57_2",
+            "leftText": "DNA repair mechanism",
+            "rightText": "cellular correction of damaged genomes",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Science Pioneers & Research",
+            "explanation": "\"DNA repair mechanism\": cellular correction of damaged genomes (Science Pioneers & Research)."
+          },
+          {
+            "pairId": "p_mm_g8_m_57_3",
+            "leftText": "scientific breakthrough",
+            "rightText": "major revolutionary discovery",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Science Pioneers & Research",
+            "explanation": "\"scientific breakthrough\": major revolutionary discovery (Science Pioneers & Research)."
+          },
+          {
+            "pairId": "p_mm_g8_m_57_4",
+            "leftText": "controlled experiment",
+            "rightText": "test isolating empirical variables",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Science Pioneers & Research",
+            "explanation": "\"controlled experiment\": test isolating empirical variables (Science Pioneers & Research)."
+          },
+          {
+            "pairId": "p_mm_g8_m_57_5",
+            "leftText": "compound microscope",
+            "rightText": "instrument magnifying biological cells",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Science Pioneers & Research",
+            "explanation": "\"compound microscope\": instrument magnifying biological cells (Science Pioneers & Research)."
+          },
+          {
+            "pairId": "p_mm_g8_m_57_6",
+            "leftText": "vaccine development",
+            "rightText": "synthesizing preventive immunizations",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Science Pioneers & Research",
+            "explanation": "\"vaccine development\": synthesizing preventive immunizations (Science Pioneers & Research)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_58",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Natural Forces & Seismic Hazard",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_58_1",
+            "leftText": "earthquake temblor",
+            "rightText": "yer kabuğu fay kırığı depremi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Natural Forces & Seismic Hazard",
+            "explanation": "\"earthquake temblor\" translates to \"yer kabuğu fay kırığı depremi\" in Turkish (Natural Forces & Seismic Hazard)."
+          },
+          {
+            "pairId": "p_mm_g8_m_58_2",
+            "leftText": "megatsunami surge",
+            "rightText": "denizaltı kaynaklı dev dalga",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Natural Forces & Seismic Hazard",
+            "explanation": "\"megatsunami surge\" translates to \"denizaltı kaynaklı dev dalga\" in Turkish (Natural Forces & Seismic Hazard)."
+          },
+          {
+            "pairId": "p_mm_g8_m_58_3",
+            "leftText": "tornado twister",
+            "rightText": "yıkıcı dönen fırtına hortumu",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Natural Forces & Seismic Hazard",
+            "explanation": "\"tornado twister\" translates to \"yıkıcı dönen fırtına hortumu\" in Turkish (Natural Forces & Seismic Hazard)."
+          },
+          {
+            "pairId": "p_mm_g8_m_58_4",
+            "leftText": "agricultural drought",
+            "rightText": "tarımsal kuraklık ve kıtlık",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Natural Forces & Seismic Hazard",
+            "explanation": "\"agricultural drought\" translates to \"tarımsal kuraklık ve kıtlık\" in Turkish (Natural Forces & Seismic Hazard)."
+          },
+          {
+            "pairId": "p_mm_g8_m_58_5",
+            "leftText": "alpine avalanche",
+            "rightText": "dik yamaçtan kopan kar çığı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Natural Forces & Seismic Hazard",
+            "explanation": "\"alpine avalanche\" translates to \"dik yamaçtan kopan kar çığı\" in Turkish (Natural Forces & Seismic Hazard)."
+          },
+          {
+            "pairId": "p_mm_g8_m_58_6",
+            "leftText": "volcanic caldera",
+            "rightText": "patlama sonucu çöken yanardağ krateri",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Natural Forces & Seismic Hazard",
+            "explanation": "\"volcanic caldera\" translates to \"patlama sonucu çöken yanardağ krateri\" in Turkish (Natural Forces & Seismic Hazard)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_59",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_definition",
+        "topic": "Natural Forces & Seismic Hazard",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_59_1",
+            "leftText": "earthquake temblor",
+            "rightText": "fracturing of crust under tectonic shear",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Natural Forces & Seismic Hazard",
+            "explanation": "\"earthquake temblor\": fracturing of crust under tectonic shear (Natural Forces & Seismic Hazard)."
+          },
+          {
+            "pairId": "p_mm_g8_m_59_2",
+            "leftText": "megatsunami surge",
+            "rightText": "colossal sea surges from marine faults",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Natural Forces & Seismic Hazard",
+            "explanation": "\"megatsunami surge\": colossal sea surges from marine faults (Natural Forces & Seismic Hazard)."
+          },
+          {
+            "pairId": "p_mm_g8_m_59_3",
+            "leftText": "tornado twister",
+            "rightText": "funnel of violently spinning air",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Natural Forces & Seismic Hazard",
+            "explanation": "\"tornado twister\": funnel of violently spinning air (Natural Forces & Seismic Hazard)."
+          },
+          {
+            "pairId": "p_mm_g8_m_59_4",
+            "leftText": "agricultural drought",
+            "rightText": "severe soil moisture deficit for crops",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Natural Forces & Seismic Hazard",
+            "explanation": "\"agricultural drought\": severe soil moisture deficit for crops (Natural Forces & Seismic Hazard)."
+          },
+          {
+            "pairId": "p_mm_g8_m_59_5",
+            "leftText": "alpine avalanche",
+            "rightText": "rapid downhill mass of snow and ice",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Natural Forces & Seismic Hazard",
+            "explanation": "\"alpine avalanche\": rapid downhill mass of snow and ice (Natural Forces & Seismic Hazard)."
+          },
+          {
+            "pairId": "p_mm_g8_m_59_6",
+            "leftText": "volcanic caldera",
+            "rightText": "collapsed crater formed after eruptions",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Natural Forces & Seismic Hazard",
+            "explanation": "\"volcanic caldera\": collapsed crater formed after eruptions (Natural Forces & Seismic Hazard)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_60",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Disaster Safety Drills",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_60_1",
+            "leftText": "drop, cover, and hold",
+            "rightText": "çök kapan tutun deprem pozisyonu",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Disaster Safety Drills",
+            "explanation": "\"drop, cover, and hold\" translates to \"çök kapan tutun deprem pozisyonu\" in Turkish (Disaster Safety Drills)."
+          },
+          {
+            "pairId": "p_mm_g8_m_60_2",
+            "leftText": "emergency survival kit",
+            "rightText": "deprem ilk 72 saat çantası",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Disaster Safety Drills",
+            "explanation": "\"emergency survival kit\" translates to \"deprem ilk 72 saat çantası\" in Turkish (Disaster Safety Drills)."
+          },
+          {
+            "pairId": "p_mm_g8_m_60_3",
+            "leftText": "evacuation route",
+            "rightText": "acil çıkış güvenli kaçış yolu",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Disaster Safety Drills",
+            "explanation": "\"evacuation route\" translates to \"acil çıkış güvenli kaçış yolu\" in Turkish (Disaster Safety Drills)."
+          },
+          {
+            "pairId": "p_mm_g8_m_60_4",
+            "leftText": "structural damage",
+            "rightText": "binadaki taşıyıcı kolon hasarı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Disaster Safety Drills",
+            "explanation": "\"structural damage\" translates to \"binadaki taşıyıcı kolon hasarı\" in Turkish (Disaster Safety Drills)."
+          },
+          {
+            "pairId": "p_mm_g8_m_60_5",
+            "leftText": "assembly point",
+            "rightText": "açık alan toplanma merkezi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Disaster Safety Drills",
+            "explanation": "\"assembly point\" translates to \"açık alan toplanma merkezi\" in Turkish (Disaster Safety Drills)."
+          },
+          {
+            "pairId": "p_mm_g8_m_60_6",
+            "leftText": "rescue operation",
+            "rightText": "enkaz altından arama kurtarma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Disaster Safety Drills",
+            "explanation": "\"rescue operation\" translates to \"enkaz altından arama kurtarma\" in Turkish (Disaster Safety Drills)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_61",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Culinary Science & Flavors",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_61_1",
+            "leftText": "yeast fermentation",
+            "rightText": "mayanın hamuru kabartması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Culinary Science & Flavors",
+            "explanation": "\"yeast fermentation\" translates to \"mayanın hamuru kabartması\" in Turkish (Culinary Science & Flavors)."
+          },
+          {
+            "pairId": "p_mm_g8_m_61_2",
+            "leftText": "reduction",
+            "rightText": "sosun kaynatılarak koyulaşması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Culinary Science & Flavors",
+            "explanation": "\"reduction\" translates to \"sosun kaynatılarak koyulaşması\" in Turkish (Culinary Science & Flavors)."
+          },
+          {
+            "pairId": "p_mm_g8_m_61_3",
+            "leftText": "emulsification",
+            "rightText": "yağ ve suyun birbirine bağlanması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Culinary Science & Flavors",
+            "explanation": "\"emulsification\" translates to \"yağ ve suyun birbirine bağlanması\" in Turkish (Culinary Science & Flavors)."
+          },
+          {
+            "pairId": "p_mm_g8_m_61_4",
+            "leftText": "seasoning",
+            "rightText": "baharat ve otlarla tatlandırma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Culinary Science & Flavors",
+            "explanation": "\"seasoning\" translates to \"baharat ve otlarla tatlandırma\" in Turkish (Culinary Science & Flavors)."
+          },
+          {
+            "pairId": "p_mm_g8_m_61_5",
+            "leftText": "caramelization",
+            "rightText": "şekerin ısıyla renginin dönmesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Culinary Science & Flavors",
+            "explanation": "\"caramelization\" translates to \"şekerin ısıyla renginin dönmesi\" in Turkish (Culinary Science & Flavors)."
+          },
+          {
+            "pairId": "p_mm_g8_m_61_6",
+            "leftText": "marinating",
+            "rightText": "eti sosta bekleterek yumuşatma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Culinary Science & Flavors",
+            "explanation": "\"marinating\" translates to \"eti sosta bekleterek yumuşatma\" in Turkish (Culinary Science & Flavors)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_62",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Telecommunications Technology",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_62_1",
+            "leftText": "switchboard",
+            "rightText": "telefon santral dağıtım merkezi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Telecommunications Technology",
+            "explanation": "\"switchboard\" translates to \"telefon santral dağıtım merkezi\" in Turkish (Telecommunications Technology)."
+          },
+          {
+            "pairId": "p_mm_g8_m_62_2",
+            "leftText": "teleconference",
+            "rightText": "uzaktan çoklu görüşme toplantısı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Telecommunications Technology",
+            "explanation": "\"teleconference\" translates to \"uzaktan çoklu görüşme toplantısı\" in Turkish (Telecommunications Technology)."
+          },
+          {
+            "pairId": "p_mm_g8_m_62_3",
+            "leftText": "interactive voice response",
+            "rightText": "tuşlamalı sesli yanıt sistemi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Telecommunications Technology",
+            "explanation": "\"interactive voice response\" translates to \"tuşlamalı sesli yanıt sistemi\" in Turkish (Telecommunications Technology)."
+          },
+          {
+            "pairId": "p_mm_g8_m_62_4",
+            "leftText": "fiber optic cable",
+            "rightText": "ışık hızında internet kablosu",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Telecommunications Technology",
+            "explanation": "\"fiber optic cable\" translates to \"ışık hızında internet kablosu\" in Turkish (Telecommunications Technology)."
+          },
+          {
+            "pairId": "p_mm_g8_m_62_5",
+            "leftText": "bluetooth standard",
+            "rightText": "kısa mesafe kablosuz bağlantı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Telecommunications Technology",
+            "explanation": "\"bluetooth standard\" translates to \"kısa mesafe kablosuz bağlantı\" in Turkish (Telecommunications Technology)."
+          },
+          {
+            "pairId": "p_mm_g8_m_62_6",
+            "leftText": "cloud server",
+            "rightText": "bulut bilişim veri sunucusu",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Telecommunications Technology",
+            "explanation": "\"cloud server\" translates to \"bulut bilişim veri sunucusu\" in Turkish (Telecommunications Technology)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_63",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Youth Volunteering & Life",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_63_1",
+            "leftText": "civic volunteering",
+            "rightText": "topluma yararlı gönüllü çalışma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Youth Volunteering & Life",
+            "explanation": "\"civic volunteering\" translates to \"topluma yararlı gönüllü çalışma\" in Turkish (Youth Volunteering & Life)."
+          },
+          {
+            "pairId": "p_mm_g8_m_63_2",
+            "leftText": "time management",
+            "rightText": "ders ve sporu planlama yetisi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Youth Volunteering & Life",
+            "explanation": "\"time management\" translates to \"ders ve sporu planlama yetisi\" in Turkish (Youth Volunteering & Life)."
+          },
+          {
+            "pairId": "p_mm_g8_m_63_3",
+            "leftText": "streetwear fashion",
+            "rightText": "gençlerin rahat sokak giyimi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Youth Volunteering & Life",
+            "explanation": "\"streetwear fashion\" translates to \"gençlerin rahat sokak giyimi\" in Turkish (Youth Volunteering & Life)."
+          },
+          {
+            "pairId": "p_mm_g8_m_63_4",
+            "leftText": "sports tournament",
+            "rightText": "okullar arası spor turnuvası",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Youth Volunteering & Life",
+            "explanation": "\"sports tournament\" translates to \"okullar arası spor turnuvası\" in Turkish (Youth Volunteering & Life)."
+          },
+          {
+            "pairId": "p_mm_g8_m_63_5",
+            "leftText": "peer solidarity",
+            "rightText": "arkadaşına zor günde arka çıkma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Youth Volunteering & Life",
+            "explanation": "\"peer solidarity\" translates to \"arkadaşına zor günde arka çıkma\" in Turkish (Youth Volunteering & Life)."
+          },
+          {
+            "pairId": "p_mm_g8_m_63_6",
+            "leftText": "healthy diet",
+            "rightText": "dengeli taze beslenme alışkanlığı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Youth Volunteering & Life",
+            "explanation": "\"healthy diet\" translates to \"dengeli taze beslenme alışkanlığı\" in Turkish (Youth Volunteering & Life)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_64",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Adventure Gear & Safety",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_64_1",
+            "leftText": "mountaineering crampons",
+            "rightText": "buzul krampon tırnakları",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Adventure Gear & Safety",
+            "explanation": "\"mountaineering crampons\" translates to \"buzul krampon tırnakları\" in Turkish (Adventure Gear & Safety)."
+          },
+          {
+            "pairId": "p_mm_g8_m_64_2",
+            "leftText": "climbing harness",
+            "rightText": "bel bacak güvenlik kemeri",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Adventure Gear & Safety",
+            "explanation": "\"climbing harness\" translates to \"bel bacak güvenlik kemeri\" in Turkish (Adventure Gear & Safety)."
+          },
+          {
+            "pairId": "p_mm_g8_m_64_3",
+            "leftText": "safety carabiner",
+            "rightText": "vidalı metal bağlantı halkası",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Adventure Gear & Safety",
+            "explanation": "\"safety carabiner\" translates to \"vidalı metal bağlantı halkası\" in Turkish (Adventure Gear & Safety)."
+          },
+          {
+            "pairId": "p_mm_g8_m_64_4",
+            "leftText": "protective helmet",
+            "rightText": "düşen taşlara karşı baret kask",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Adventure Gear & Safety",
+            "explanation": "\"protective helmet\" translates to \"düşen taşlara karşı baret kask\" in Turkish (Adventure Gear & Safety)."
+          },
+          {
+            "pairId": "p_mm_g8_m_64_5",
+            "leftText": "dynamic rope",
+            "rightText": "esnek emniyet tırmanış ipi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Adventure Gear & Safety",
+            "explanation": "\"dynamic rope\" translates to \"esnek emniyet tırmanış ipi\" in Turkish (Adventure Gear & Safety)."
+          },
+          {
+            "pairId": "p_mm_g8_m_64_6",
+            "leftText": "orienteering compass",
+            "rightText": "arazide yön bulma pusulası",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Adventure Gear & Safety",
+            "explanation": "\"orienteering compass\" translates to \"arazide yön bulma pusulası\" in Turkish (Adventure Gear & Safety)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_65",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Global Travel Formalities",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_65_1",
+            "leftText": "boarding pass ticket",
+            "rightText": "uçağa biniş kartı belgesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Global Travel Formalities",
+            "explanation": "\"boarding pass ticket\" translates to \"uçağa biniş kartı belgesi\" in Turkish (Global Travel Formalities)."
+          },
+          {
+            "pairId": "p_mm_g8_m_65_2",
+            "leftText": "passport customs control",
+            "rightText": "gümrük pasaport kontrol noktası",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Global Travel Formalities",
+            "explanation": "\"passport customs control\" translates to \"gümrük pasaport kontrol noktası\" in Turkish (Global Travel Formalities)."
+          },
+          {
+            "pairId": "p_mm_g8_m_65_3",
+            "leftText": "luggage check-in",
+            "rightText": "bagaj teslim tartı bankosu",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Global Travel Formalities",
+            "explanation": "\"luggage check-in\" translates to \"bagaj teslim tartı bankosu\" in Turkish (Global Travel Formalities)."
+          },
+          {
+            "pairId": "p_mm_g8_m_65_4",
+            "leftText": "currency exchange",
+            "rightText": "döviz alım satım gişesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Global Travel Formalities",
+            "explanation": "\"currency exchange\" translates to \"döviz alım satım gişesi\" in Turkish (Global Travel Formalities)."
+          },
+          {
+            "pairId": "p_mm_g8_m_65_5",
+            "leftText": "hotel reservation",
+            "rightText": "otel konaklama yer ayırtması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Global Travel Formalities",
+            "explanation": "\"hotel reservation\" translates to \"otel konaklama yer ayırtması\" in Turkish (Global Travel Formalities)."
+          },
+          {
+            "pairId": "p_mm_g8_m_65_6",
+            "leftText": "travel insurance",
+            "rightText": "seyahat sağlık güvence poliçesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Global Travel Formalities",
+            "explanation": "\"travel insurance\" translates to \"seyahat sağlık güvence poliçesi\" in Turkish (Global Travel Formalities)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_66",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Household Organization",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_66_1",
+            "leftText": "waste stream sorting",
+            "rightText": "çöpleri türlerine göre ayrıştırma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Household Organization",
+            "explanation": "\"waste stream sorting\" translates to \"çöpleri türlerine göre ayrıştırma\" in Turkish (Household Organization)."
+          },
+          {
+            "pairId": "p_mm_g8_m_66_2",
+            "leftText": "deep domestic cleaning",
+            "rightText": "dip köşe kapsamlı ev temizliği",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Household Organization",
+            "explanation": "\"deep domestic cleaning\" translates to \"dip köşe kapsamlı ev temizliği\" in Turkish (Household Organization)."
+          },
+          {
+            "pairId": "p_mm_g8_m_66_3",
+            "leftText": "surface sanitization",
+            "rightText": "mutfak tezgahını dezenfekte etme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Household Organization",
+            "explanation": "\"surface sanitization\" translates to \"mutfak tezgahını dezenfekte etme\" in Turkish (Household Organization)."
+          },
+          {
+            "pairId": "p_mm_g8_m_66_4",
+            "leftText": "kettle descaling",
+            "rightText": "su ısıtıcısındaki kireci sökme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Household Organization",
+            "explanation": "\"kettle descaling\" translates to \"su ısıtıcısındaki kireci sökme\" in Turkish (Household Organization)."
+          },
+          {
+            "pairId": "p_mm_g8_m_66_5",
+            "leftText": "recycling glass and paper",
+            "rightText": "cam ve kağıdı geri kazandırma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Household Organization",
+            "explanation": "\"recycling glass and paper\" translates to \"cam ve kağıdı geri kazandırma\" in Turkish (Household Organization)."
+          },
+          {
+            "pairId": "p_mm_g8_m_66_6",
+            "leftText": "appliance maintenance",
+            "rightText": "ev aletlerinin periyodik bakımı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Household Organization",
+            "explanation": "\"appliance maintenance\" translates to \"ev aletlerinin periyodik bakımı\" in Turkish (Household Organization)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_67",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Microbiology & Genetics",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_67_1",
+            "leftText": "bacterial cell wall",
+            "rightText": "bakteri koruyucu hücre duvarı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Microbiology & Genetics",
+            "explanation": "\"bacterial cell wall\" translates to \"bakteri koruyucu hücre duvarı\" in Turkish (Microbiology & Genetics)."
+          },
+          {
+            "pairId": "p_mm_g8_m_67_2",
+            "leftText": "chromosome structure",
+            "rightText": "DNA paketleyen kromozom yapısı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Microbiology & Genetics",
+            "explanation": "\"chromosome structure\" translates to \"DNA paketleyen kromozom yapısı\" in Turkish (Microbiology & Genetics)."
+          },
+          {
+            "pairId": "p_mm_g8_m_67_3",
+            "leftText": "photosynthesis cycle",
+            "rightText": "ışık enerjisinden besin üretimi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Microbiology & Genetics",
+            "explanation": "\"photosynthesis cycle\" translates to \"ışık enerjisinden besin üretimi\" in Turkish (Microbiology & Genetics)."
+          },
+          {
+            "pairId": "p_mm_g8_m_67_4",
+            "leftText": "enzyme catalyst",
+            "rightText": "biyokimyasal tepkime katalizörü",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Microbiology & Genetics",
+            "explanation": "\"enzyme catalyst\" translates to \"biyokimyasal tepkime katalizörü\" in Turkish (Microbiology & Genetics)."
+          },
+          {
+            "pairId": "p_mm_g8_m_67_5",
+            "leftText": "mitotic division",
+            "rightText": "hücrenin mitoz bölünerek çoğalması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Microbiology & Genetics",
+            "explanation": "\"mitotic division\" translates to \"hücrenin mitoz bölünerek çoğalması\" in Turkish (Microbiology & Genetics)."
+          },
+          {
+            "pairId": "p_mm_g8_m_67_6",
+            "leftText": "cellular respiration",
+            "rightText": "oksijenle hücre içi enerji üretimi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Microbiology & Genetics",
+            "explanation": "\"cellular respiration\" translates to \"oksijenle hücre içi enerji üretimi\" in Turkish (Microbiology & Genetics)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_68",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Atmospheric Forces & Hazards",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_68_1",
+            "leftText": "flash flood torrent",
+            "rightText": "ani sağanak sel baskını seli",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Atmospheric Forces & Hazards",
+            "explanation": "\"flash flood torrent\" translates to \"ani sağanak sel baskını seli\" in Turkish (Atmospheric Forces & Hazards)."
+          },
+          {
+            "pairId": "p_mm_g8_m_68_2",
+            "leftText": "hailstorm bombardment",
+            "rightText": "ceviz büyüklüğünde dolu yağışı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Atmospheric Forces & Hazards",
+            "explanation": "\"hailstorm bombardment\" translates to \"ceviz büyüklüğünde dolu yağışı\" in Turkish (Atmospheric Forces & Hazards)."
+          },
+          {
+            "pairId": "p_mm_g8_m_68_3",
+            "leftText": "gale force winds",
+            "rightText": "çatıları uçuran şiddetli fırtına",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Atmospheric Forces & Hazards",
+            "explanation": "\"gale force winds\" translates to \"çatıları uçuran şiddetli fırtına\" in Turkish (Atmospheric Forces & Hazards)."
+          },
+          {
+            "pairId": "p_mm_g8_m_68_4",
+            "leftText": "blizzard whiteout",
+            "rightText": "göz açtırmayan tipi kar fırtınası",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Atmospheric Forces & Hazards",
+            "explanation": "\"blizzard whiteout\" translates to \"göz açtırmayan tipi kar fırtınası\" in Turkish (Atmospheric Forces & Hazards)."
+          },
+          {
+            "pairId": "p_mm_g8_m_68_5",
+            "leftText": "mudflow descent",
+            "rightText": "yamaçtan kayan çamur deryası",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Atmospheric Forces & Hazards",
+            "explanation": "\"mudflow descent\" translates to \"yamaçtan kayan çamur deryası\" in Turkish (Atmospheric Forces & Hazards)."
+          },
+          {
+            "pairId": "p_mm_g8_m_68_6",
+            "leftText": "lightning discharge",
+            "rightText": "buluttan yere elektrik boşalması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Atmospheric Forces & Hazards",
+            "explanation": "\"lightning discharge\" translates to \"buluttan yere elektrik boşalması\" in Turkish (Atmospheric Forces & Hazards)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_69",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Philosophical Friendship Values",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_69_1",
+            "leftText": "constructive criticism",
+            "rightText": "kırıcı olmadan yapıcı eleştiri",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Philosophical Friendship Values",
+            "explanation": "\"constructive criticism\" translates to \"kırıcı olmadan yapıcı eleştiri\" in Turkish (Philosophical Friendship Values)."
+          },
+          {
+            "pairId": "p_mm_g8_m_69_2",
+            "leftText": "empathetic listening",
+            "rightText": "yargılamadan can kulağıyla dinleme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Philosophical Friendship Values",
+            "explanation": "\"empathetic listening\" translates to \"yargılamadan can kulağıyla dinleme\" in Turkish (Philosophical Friendship Values)."
+          },
+          {
+            "pairId": "p_mm_g8_m_69_3",
+            "leftText": "camaraderie",
+            "rightText": "omuz omuza derin yol arkadaşlığı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Philosophical Friendship Values",
+            "explanation": "\"camaraderie\" translates to \"omuz omuza derin yol arkadaşlığı\" in Turkish (Philosophical Friendship Values)."
+          },
+          {
+            "pairId": "p_mm_g8_m_69_4",
+            "leftText": "mutual respect",
+            "rightText": "karşılıklı fikir ve haklara saygı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Philosophical Friendship Values",
+            "explanation": "\"mutual respect\" translates to \"karşılıklı fikir ve haklara saygı\" in Turkish (Philosophical Friendship Values)."
+          },
+          {
+            "pairId": "p_mm_g8_m_69_5",
+            "leftText": "conflict resolution",
+            "rightText": "anlaşmazlığı tatlı dille çözme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Philosophical Friendship Values",
+            "explanation": "\"conflict resolution\" translates to \"anlaşmazlığı tatlı dille çözme\" in Turkish (Philosophical Friendship Values)."
+          },
+          {
+            "pairId": "p_mm_g8_m_69_6",
+            "leftText": "steadfast loyalty",
+            "rightText": "vefalı ve sarsılmaz bağlılık",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Philosophical Friendship Values",
+            "explanation": "\"steadfast loyalty\" translates to \"vefalı ve sarsılmaz bağlılık\" in Turkish (Philosophical Friendship Values)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_70",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_definition",
+        "topic": "Philosophical Friendship Values",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_70_1",
+            "leftText": "constructive criticism",
+            "rightText": "helpful advice delivered with kindness",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Philosophical Friendship Values",
+            "explanation": "\"constructive criticism\": helpful advice delivered with kindness (Philosophical Friendship Values)."
+          },
+          {
+            "pairId": "p_mm_g8_m_70_2",
+            "leftText": "empathetic listening",
+            "rightText": "attentive hearing with true compassion",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Philosophical Friendship Values",
+            "explanation": "\"empathetic listening\": attentive hearing with true compassion (Philosophical Friendship Values)."
+          },
+          {
+            "pairId": "p_mm_g8_m_70_3",
+            "leftText": "camaraderie",
+            "rightText": "mutual trust among companions",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Philosophical Friendship Values",
+            "explanation": "\"camaraderie\": mutual trust among companions (Philosophical Friendship Values)."
+          },
+          {
+            "pairId": "p_mm_g8_m_70_4",
+            "leftText": "mutual respect",
+            "rightText": "treating each other's opinions with honor",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Philosophical Friendship Values",
+            "explanation": "\"mutual respect\": treating each other's opinions with honor (Philosophical Friendship Values)."
+          },
+          {
+            "pairId": "p_mm_g8_m_70_5",
+            "leftText": "conflict resolution",
+            "rightText": "peacefully settling misunderstandings",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Philosophical Friendship Values",
+            "explanation": "\"conflict resolution\": peacefully settling misunderstandings (Philosophical Friendship Values)."
+          },
+          {
+            "pairId": "p_mm_g8_m_70_6",
+            "leftText": "steadfast loyalty",
+            "rightText": "unwavering commitment through trials",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Philosophical Friendship Values",
+            "explanation": "\"steadfast loyalty\": unwavering commitment through trials (Philosophical Friendship Values)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_71",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Digital Footprints & Privacy",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_71_1",
+            "leftText": "two-step verification",
+            "rightText": "iki aşamalı güvenli giriş onayı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Digital Footprints & Privacy",
+            "explanation": "\"two-step verification\" translates to \"iki aşamalı güvenli giriş onayı\" in Turkish (Digital Footprints & Privacy)."
+          },
+          {
+            "pairId": "p_mm_g8_m_71_2",
+            "leftText": "digital curfew",
+            "rightText": "gece ekran kullanım sınırlaması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Digital Footprints & Privacy",
+            "explanation": "\"digital curfew\" translates to \"gece ekran kullanım sınırlaması\" in Turkish (Digital Footprints & Privacy)."
+          },
+          {
+            "pairId": "p_mm_g8_m_71_3",
+            "leftText": "data encryption",
+            "rightText": "verileri şifreleyerek koruma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Digital Footprints & Privacy",
+            "explanation": "\"data encryption\" translates to \"verileri şifreleyerek koruma\" in Turkish (Digital Footprints & Privacy)."
+          },
+          {
+            "pairId": "p_mm_g8_m_71_4",
+            "leftText": "malicious attachment",
+            "rightText": "virüs taşıyan e-posta ek dosyası",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Digital Footprints & Privacy",
+            "explanation": "\"malicious attachment\" translates to \"virüs taşıyan e-posta ek dosyası\" in Turkish (Digital Footprints & Privacy)."
+          },
+          {
+            "pairId": "p_mm_g8_m_71_5",
+            "leftText": "cookie tracking",
+            "rightText": "sitelerin kullanıcıyı izleme çerezi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Digital Footprints & Privacy",
+            "explanation": "\"cookie tracking\" translates to \"sitelerin kullanıcıyı izleme çerezi\" in Turkish (Digital Footprints & Privacy)."
+          },
+          {
+            "pairId": "p_mm_g8_m_71_6",
+            "leftText": "secure password vault",
+            "rightText": "şifreleri saklayan dijital kasa",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Digital Footprints & Privacy",
+            "explanation": "\"secure password vault\" translates to \"şifreleri saklayan dijital kasa\" in Turkish (Digital Footprints & Privacy)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_72",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Culinary Techniques & Baking",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_72_1",
+            "leftText": "sourdough fermentation",
+            "rightText": "ekşi maya hamur mayalanması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Culinary Techniques & Baking",
+            "explanation": "\"sourdough fermentation\" translates to \"ekşi maya hamur mayalanması\" in Turkish (Culinary Techniques & Baking)."
+          },
+          {
+            "pairId": "p_mm_g8_m_72_2",
+            "leftText": "gentle simmering",
+            "rightText": "kısık ateşte yavaşça pişirme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Culinary Techniques & Baking",
+            "explanation": "\"gentle simmering\" translates to \"kısık ateşte yavaşça pişirme\" in Turkish (Culinary Techniques & Baking)."
+          },
+          {
+            "pairId": "p_mm_g8_m_72_3",
+            "leftText": "browning aromatics",
+            "rightText": "soğan ve sarımsağı pembeleştirme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Culinary Techniques & Baking",
+            "explanation": "\"browning aromatics\" translates to \"soğan ve sarımsağı pembeleştirme\" in Turkish (Culinary Techniques & Baking)."
+          },
+          {
+            "pairId": "p_mm_g8_m_72_4",
+            "leftText": "dough gluten stretch",
+            "rightText": "hamurun elastik gluten yapısı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Culinary Techniques & Baking",
+            "explanation": "\"dough gluten stretch\" translates to \"hamurun elastik gluten yapısı\" in Turkish (Culinary Techniques & Baking)."
+          },
+          {
+            "pairId": "p_mm_g8_m_72_5",
+            "leftText": "oven preheating",
+            "rightText": "fırını önceden ısıtma işlemi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Culinary Techniques & Baking",
+            "explanation": "\"oven preheating\" translates to \"fırını önceden ısıtma işlemi\" in Turkish (Culinary Techniques & Baking)."
+          },
+          {
+            "pairId": "p_mm_g8_m_72_6",
+            "leftText": "delicate tempering",
+            "rightText": "yumurtayı sıcak sosla ılıştırma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Culinary Techniques & Baking",
+            "explanation": "\"delicate tempering\" translates to \"yumurtayı sıcak sosla ılıştırma\" in Turkish (Culinary Techniques & Baking)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_73",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Outdoor Survival Skills",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_73_1",
+            "leftText": "fire starting with flint",
+            "rightText": "magnezyum çakmağıyla ateş yakma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Outdoor Survival Skills",
+            "explanation": "\"fire starting with flint\" translates to \"magnezyum çakmağıyla ateş yakma\" in Turkish (Outdoor Survival Skills)."
+          },
+          {
+            "pairId": "p_mm_g8_m_73_2",
+            "leftText": "water purification tablet",
+            "rightText": "suyu arındıran klor tableti",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Outdoor Survival Skills",
+            "explanation": "\"water purification tablet\" translates to \"suyu arındıran klor tableti\" in Turkish (Outdoor Survival Skills)."
+          },
+          {
+            "pairId": "p_mm_g8_m_73_3",
+            "leftText": "thermal foil blanket",
+            "rightText": "vücut ısısını koruyan uzay battaniyesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Outdoor Survival Skills",
+            "explanation": "\"thermal foil blanket\" translates to \"vücut ısısını koruyan uzay battaniyesi\" in Turkish (Outdoor Survival Skills)."
+          },
+          {
+            "pairId": "p_mm_g8_m_73_4",
+            "leftText": "emergency distress whistle",
+            "rightText": "yardım isteyen üç kısa düdük sesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Outdoor Survival Skills",
+            "explanation": "\"emergency distress whistle\" translates to \"yardım isteyen üç kısa düdük sesi\" in Turkish (Outdoor Survival Skills)."
+          },
+          {
+            "pairId": "p_mm_g8_m_73_5",
+            "leftText": "finding north with shadows",
+            "rightText": "gölge çubuğuyla yön tayini",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Outdoor Survival Skills",
+            "explanation": "\"finding north with shadows\" translates to \"gölge çubuğuyla yön tayini\" in Turkish (Outdoor Survival Skills)."
+          },
+          {
+            "pairId": "p_mm_g8_m_73_6",
+            "leftText": "building lean-to shelter",
+            "rightText": "dallarla rüzgar korunağı kurma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Outdoor Survival Skills",
+            "explanation": "\"building lean-to shelter\" translates to \"dallarla rüzgar korunağı kurma\" in Turkish (Outdoor Survival Skills)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_74",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Tourism Destination Management",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_74_1",
+            "leftText": "carrying capacity",
+            "rightText": "tarihi alanın taşıma kapasitesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Tourism Destination Management",
+            "explanation": "\"carrying capacity\" translates to \"tarihi alanın taşıma kapasitesi\" in Turkish (Tourism Destination Management)."
+          },
+          {
+            "pairId": "p_mm_g8_m_74_2",
+            "leftText": "gastronomic tour",
+            "rightText": "yöresel lezzet keşif gezisi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Tourism Destination Management",
+            "explanation": "\"gastronomic tour\" translates to \"yöresel lezzet keşif gezisi\" in Turkish (Tourism Destination Management)."
+          },
+          {
+            "pairId": "p_mm_g8_m_74_3",
+            "leftText": "agritourism farm",
+            "rightText": "çiftlikte organik köy tatili",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Tourism Destination Management",
+            "explanation": "\"agritourism farm\" translates to \"çiftlikte organik köy tatili\" in Turkish (Tourism Destination Management)."
+          },
+          {
+            "pairId": "p_mm_g8_m_74_4",
+            "leftText": "preservation decree",
+            "rightText": "sit alanı koruma kararnamesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Tourism Destination Management",
+            "explanation": "\"preservation decree\" translates to \"sit alanı koruma kararnamesi\" in Turkish (Tourism Destination Management)."
+          },
+          {
+            "pairId": "p_mm_g8_m_74_5",
+            "leftText": "visitor overcrowding",
+            "rightText": "aşırı turist yığılması sorunu",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Tourism Destination Management",
+            "explanation": "\"visitor overcrowding\" translates to \"aşırı turist yığılması sorunu\" in Turkish (Tourism Destination Management)."
+          },
+          {
+            "pairId": "p_mm_g8_m_74_6",
+            "leftText": "cultural souvenir artisan",
+            "rightText": "el sanatı hatıra eşyası ustası",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Tourism Destination Management",
+            "explanation": "\"cultural souvenir artisan\" translates to \"el sanatı hatıra eşyası ustası\" in Turkish (Tourism Destination Management)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_75",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Household Energy Science",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_75_1",
+            "leftText": "heat pump coefficient",
+            "rightText": "ısı pompasının verim katsayısı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Household Energy Science",
+            "explanation": "\"heat pump coefficient\" translates to \"ısı pompasının verim katsayısı\" in Turkish (Household Energy Science)."
+          },
+          {
+            "pairId": "p_mm_g8_m_75_2",
+            "leftText": "thermal insulation",
+            "rightText": "pencerelerdeki çift cam yalıtımı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Household Energy Science",
+            "explanation": "\"thermal insulation\" translates to \"pencerelerdeki çift cam yalıtımı\" in Turkish (Household Energy Science)."
+          },
+          {
+            "pairId": "p_mm_g8_m_75_3",
+            "leftText": "led lighting wattage",
+            "rightText": "düşük tüketimli led aydınlatma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Household Energy Science",
+            "explanation": "\"led lighting wattage\" translates to \"düşük tüketimli led aydınlatma\" in Turkish (Household Energy Science)."
+          },
+          {
+            "pairId": "p_mm_g8_m_75_4",
+            "leftText": "smart thermostat",
+            "rightText": "oda sıcaklığını ayarlayan cihaz",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Household Energy Science",
+            "explanation": "\"smart thermostat\" translates to \"oda sıcaklığını ayarlayan cihaz\" in Turkish (Household Energy Science)."
+          },
+          {
+            "pairId": "p_mm_g8_m_75_5",
+            "leftText": "energy star rating",
+            "rightText": "cihazın elektrik tasarruf sınıfı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Household Energy Science",
+            "explanation": "\"energy star rating\" translates to \"cihazın elektrik tasarruf sınıfı\" in Turkish (Household Energy Science)."
+          },
+          {
+            "pairId": "p_mm_g8_m_75_6",
+            "leftText": "solar water collector",
+            "rightText": "çatıda güneşle sıcak su paneli",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Household Energy Science",
+            "explanation": "\"solar water collector\" translates to \"çatıda güneşle sıcak su paneli\" in Turkish (Household Energy Science)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_76",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Seismology & Tectonic Science",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_76_1",
+            "leftText": "plate boundary fault",
+            "rightText": "kıtaların çarpışma fay hattı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Seismology & Tectonic Science",
+            "explanation": "\"plate boundary fault\" translates to \"kıtaların çarpışma fay hattı\" in Turkish (Seismology & Tectonic Science)."
+          },
+          {
+            "pairId": "p_mm_g8_m_76_2",
+            "leftText": "soil liquefaction",
+            "rightText": "depremde kumlu toprağın sıvılaşması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Seismology & Tectonic Science",
+            "explanation": "\"soil liquefaction\" translates to \"depremde kumlu toprağın sıvılaşması\" in Turkish (Seismology & Tectonic Science)."
+          },
+          {
+            "pairId": "p_mm_g8_m_76_3",
+            "leftText": "hypocenter depth",
+            "rightText": "depremin yer altı odak derinliği",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Seismology & Tectonic Science",
+            "explanation": "\"hypocenter depth\" translates to \"depremin yer altı odak derinliği\" in Turkish (Seismology & Tectonic Science)."
+          },
+          {
+            "pairId": "p_mm_g8_m_76_4",
+            "leftText": "richter magnitude",
+            "rightText": "deprem enerjisi aletsel büyüklüğü",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Seismology & Tectonic Science",
+            "explanation": "\"richter magnitude\" translates to \"deprem enerjisi aletsel büyüklüğü\" in Turkish (Seismology & Tectonic Science)."
+          },
+          {
+            "pairId": "p_mm_g8_m_76_5",
+            "leftText": "fault slip distance",
+            "rightText": "fay bloklarının yatay kayma mesafesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Seismology & Tectonic Science",
+            "explanation": "\"fault slip distance\" translates to \"fay bloklarının yatay kayma mesafesi\" in Turkish (Seismology & Tectonic Science)."
+          },
+          {
+            "pairId": "p_mm_g8_m_76_6",
+            "leftText": "paleoseismic trench",
+            "rightText": "tarih öncesi depremleri araştıran hendek",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Seismology & Tectonic Science",
+            "explanation": "\"paleoseismic trench\" translates to \"tarih öncesi depremleri araştıran hendek\" in Turkish (Seismology & Tectonic Science)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_77",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Cognitive Study Strategies",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_77_1",
+            "leftText": "delayed gratification",
+            "rightText": "anlık keyfi erteleyip hedefe çalışma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Cognitive Study Strategies",
+            "explanation": "\"delayed gratification\" translates to \"anlık keyfi erteleyip hedefe çalışma\" in Turkish (Cognitive Study Strategies)."
+          },
+          {
+            "pairId": "p_mm_g8_m_77_2",
+            "leftText": "active recall technique",
+            "rightText": "kitaba bakmadan bilgiyi hatırlama",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Cognitive Study Strategies",
+            "explanation": "\"active recall technique\" translates to \"kitaba bakmadan bilgiyi hatırlama\" in Turkish (Cognitive Study Strategies)."
+          },
+          {
+            "pairId": "p_mm_g8_m_77_3",
+            "leftText": "spaced repetition",
+            "rightText": "belli aralıklarla konuyu tekrar etme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Cognitive Study Strategies",
+            "explanation": "\"spaced repetition\" translates to \"belli aralıklarla konuyu tekrar etme\" in Turkish (Cognitive Study Strategies)."
+          },
+          {
+            "pairId": "p_mm_g8_m_77_4",
+            "leftText": "focus Pomodoro block",
+            "rightText": "25 dakika kesintisiz çalışma seansı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Cognitive Study Strategies",
+            "explanation": "\"focus Pomodoro block\" translates to \"25 dakika kesintisiz çalışma seansı\" in Turkish (Cognitive Study Strategies)."
+          },
+          {
+            "pairId": "p_mm_g8_m_77_5",
+            "leftText": "concept mind map",
+            "rightText": "fikirleri şemayla görselleştirme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Cognitive Study Strategies",
+            "explanation": "\"concept mind map\" translates to \"fikirleri şemayla görselleştirme\" in Turkish (Cognitive Study Strategies)."
+          },
+          {
+            "pairId": "p_mm_g8_m_77_6",
+            "leftText": "test anxiety control",
+            "rightText": "sınav heyecanını nefesle kontrol etme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Cognitive Study Strategies",
+            "explanation": "\"test anxiety control\" translates to \"sınav heyecanını nefesle kontrol etme\" in Turkish (Cognitive Study Strategies)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_78",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Ethics in Social Media",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_78_1",
+            "leftText": "digital well-being",
+            "rightText": "dijital ortamda ruhsal sağlık dengesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Ethics in Social Media",
+            "explanation": "\"digital well-being\" translates to \"dijital ortamda ruhsal sağlık dengesi\" in Turkish (Ethics in Social Media)."
+          },
+          {
+            "pairId": "p_mm_g8_m_78_2",
+            "leftText": "content moderation",
+            "rightText": "zararlı paylaşımları filtreleme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Ethics in Social Media",
+            "explanation": "\"content moderation\" translates to \"zararlı paylaşımları filtreleme\" in Turkish (Ethics in Social Media)."
+          },
+          {
+            "pairId": "p_mm_g8_m_78_3",
+            "leftText": "unverified rumor",
+            "rightText": "doğrulanmamış internet dedikodusu",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Ethics in Social Media",
+            "explanation": "\"unverified rumor\" translates to \"doğrulanmamış internet dedikodusu\" in Turkish (Ethics in Social Media)."
+          },
+          {
+            "pairId": "p_mm_g8_m_78_4",
+            "leftText": "empathy in comments",
+            "rightText": "yorumlarda kırıcı dilden kaçınma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Ethics in Social Media",
+            "explanation": "\"empathy in comments\" translates to \"yorumlarda kırıcı dilden kaçınma\" in Turkish (Ethics in Social Media)."
+          },
+          {
+            "pairId": "p_mm_g8_m_78_5",
+            "leftText": "protecting personal data",
+            "rightText": "özel aile fotoğraflarını koruma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Ethics in Social Media",
+            "explanation": "\"protecting personal data\" translates to \"özel aile fotoğraflarını koruma\" in Turkish (Ethics in Social Media)."
+          },
+          {
+            "pairId": "p_mm_g8_m_78_6",
+            "leftText": "screen balance",
+            "rightText": "gerçek hayatla ekranı dengeleme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Ethics in Social Media",
+            "explanation": "\"screen balance\" translates to \"gerçek hayatla ekranı dengeleme\" in Turkish (Ethics in Social Media)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_79",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_meaning",
+        "topic": "Science Research Ethics",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_79_1",
+            "leftText": "honest measurement",
+            "rightText": "ölçümlerde asla hile yapmama",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Science Research Ethics",
+            "explanation": "\"honest measurement\" translates to \"ölçümlerde asla hile yapmama\" in Turkish (Science Research Ethics)."
+          },
+          {
+            "pairId": "p_mm_g8_m_79_2",
+            "leftText": "reproducible result",
+            "rightText": "başka laboratuvarda tekrarlanabilirlik",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Science Research Ethics",
+            "explanation": "\"reproducible result\" translates to \"başka laboratuvarda tekrarlanabilirlik\" in Turkish (Science Research Ethics)."
+          },
+          {
+            "pairId": "p_mm_g8_m_79_3",
+            "leftText": "acknowledging sources",
+            "rightText": "yararlanılan kaynakları belirtme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Science Research Ethics",
+            "explanation": "\"acknowledging sources\" translates to \"yararlanılan kaynakları belirtme\" in Turkish (Science Research Ethics)."
+          },
+          {
+            "pairId": "p_mm_g8_m_79_4",
+            "leftText": "protecting nature in labs",
+            "rightText": "deneylerde çevreye zarar vermeme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Science Research Ethics",
+            "explanation": "\"protecting nature in labs\" translates to \"deneylerde çevreye zarar vermeme\" in Turkish (Science Research Ethics)."
+          },
+          {
+            "pairId": "p_mm_g8_m_79_5",
+            "leftText": "curiosity and wonder",
+            "rightText": "evreni keşfetme tutkusu ve merak",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Science Research Ethics",
+            "explanation": "\"curiosity and wonder\" translates to \"evreni keşfetme tutkusu ve merak\" in Turkish (Science Research Ethics)."
+          },
+          {
+            "pairId": "p_mm_g8_m_79_6",
+            "leftText": "peer consultation",
+            "rightText": "diğer bilimcilerle fikir tartışması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Science Research Ethics",
+            "explanation": "\"peer consultation\" translates to \"diğer bilimcilerle fikir tartışması\" in Turkish (Science Research Ethics)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_m_80",
+        "grade": "grade-8",
+        "difficulty": "medium",
+        "mode": "word_definition",
+        "topic": "Science Research Ethics",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_m_80_1",
+            "leftText": "honest measurement",
+            "rightText": "recording authentic empirical figures",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Science Research Ethics",
+            "explanation": "\"honest measurement\": recording authentic empirical figures (Science Research Ethics)."
+          },
+          {
+            "pairId": "p_mm_g8_m_80_2",
+            "leftText": "reproducible result",
+            "rightText": "experiments confirmed by peers",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Science Research Ethics",
+            "explanation": "\"reproducible result\": experiments confirmed by peers (Science Research Ethics)."
+          },
+          {
+            "pairId": "p_mm_g8_m_80_3",
+            "leftText": "acknowledging sources",
+            "rightText": "citing scientific literature cited",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Science Research Ethics",
+            "explanation": "\"acknowledging sources\": citing scientific literature cited (Science Research Ethics)."
+          },
+          {
+            "pairId": "p_mm_g8_m_80_4",
+            "leftText": "protecting nature in labs",
+            "rightText": "safeguarding flora during fieldwork",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Science Research Ethics",
+            "explanation": "\"protecting nature in labs\": safeguarding flora during fieldwork (Science Research Ethics)."
+          },
+          {
+            "pairId": "p_mm_g8_m_80_5",
+            "leftText": "curiosity and wonder",
+            "rightText": "driving passion for scientific discovery",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Science Research Ethics",
+            "explanation": "\"curiosity and wonder\": driving passion for scientific discovery (Science Research Ethics)."
+          },
+          {
+            "pairId": "p_mm_g8_m_80_6",
+            "leftText": "peer consultation",
+            "rightText": "collaborative critical discussion of data",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "medium",
+            "topic": "Science Research Ethics",
+            "explanation": "\"peer consultation\": collaborative critical discussion of data (Science Research Ethics)."
+          }
+        ]
       }
     ],
     "hard": [
@@ -17191,6 +30184,3566 @@ export const MEMORY_MATCH_BANK: MemoryMatchBank = {
           }
         ],
         "contentVersion": 1
+      },
+      {
+        "id": "mm_g8_h_41",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Molecular Gastronomy & Chemistry",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_41_1",
+            "leftText": "spherification",
+            "rightText": "sıvıyı kalsiyum zarıyla küreleştirme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Molecular Gastronomy & Chemistry",
+            "explanation": "\"spherification\" translates to \"sıvıyı kalsiyum zarıyla küreleştirme\" in Turkish (Molecular Gastronomy & Chemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_41_2",
+            "leftText": "Maillard browning",
+            "rightText": "protein ve şekerin lezzet reaksiyonu",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Molecular Gastronomy & Chemistry",
+            "explanation": "\"Maillard browning\" translates to \"protein ve şekerin lezzet reaksiyonu\" in Turkish (Molecular Gastronomy & Chemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_41_3",
+            "leftText": "bain-marie",
+            "rightText": "benmari usulü nazik ısıtma kabı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Molecular Gastronomy & Chemistry",
+            "explanation": "\"bain-marie\" translates to \"benmari usulü nazik ısıtma kabı\" in Turkish (Molecular Gastronomy & Chemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_41_4",
+            "leftText": "pyrolytic caramelization",
+            "rightText": "şekerin yüksek ısıyla karamelleşmesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Molecular Gastronomy & Chemistry",
+            "explanation": "\"pyrolytic caramelization\" translates to \"şekerin yüksek ısıyla karamelleşmesi\" in Turkish (Molecular Gastronomy & Chemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_41_5",
+            "leftText": "emulsifying agent",
+            "rightText": "iki sıvıyı birbirine bağlayan lesitin",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Molecular Gastronomy & Chemistry",
+            "explanation": "\"emulsifying agent\" translates to \"iki sıvıyı birbirine bağlayan lesitin\" in Turkish (Molecular Gastronomy & Chemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_41_6",
+            "leftText": "gluten elasticity",
+            "rightText": "hamurun yoğruldukça esnekleşmesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Molecular Gastronomy & Chemistry",
+            "explanation": "\"gluten elasticity\" translates to \"hamurun yoğruldukça esnekleşmesi\" in Turkish (Molecular Gastronomy & Chemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_41_7",
+            "leftText": "sous-vide cooking",
+            "rightText": "vakumlu poşette düşük ısıda pişirme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Molecular Gastronomy & Chemistry",
+            "explanation": "\"sous-vide cooking\" translates to \"vakumlu poşette düşük ısıda pişirme\" in Turkish (Molecular Gastronomy & Chemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_41_8",
+            "leftText": "dehydration",
+            "rightText": "gıda kurutarak suyunu uzaklaştırma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Molecular Gastronomy & Chemistry",
+            "explanation": "\"dehydration\" translates to \"gıda kurutarak suyunu uzaklaştırma\" in Turkish (Molecular Gastronomy & Chemistry)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_42",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_definition",
+        "topic": "Molecular Gastronomy & Chemistry",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_42_1",
+            "leftText": "spherification",
+            "rightText": "encapsulating liquid in alginate skins",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Molecular Gastronomy & Chemistry",
+            "explanation": "\"spherification\": encapsulating liquid in alginate skins (Molecular Gastronomy & Chemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_42_2",
+            "leftText": "Maillard browning",
+            "rightText": "chemical reaction between amino acids and sugars",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Molecular Gastronomy & Chemistry",
+            "explanation": "\"Maillard browning\": chemical reaction between amino acids and sugars (Molecular Gastronomy & Chemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_42_3",
+            "leftText": "bain-marie",
+            "rightText": "gentle hot water bath cooking method",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Molecular Gastronomy & Chemistry",
+            "explanation": "\"bain-marie\": gentle hot water bath cooking method (Molecular Gastronomy & Chemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_42_4",
+            "leftText": "pyrolytic caramelization",
+            "rightText": "thermal browning of sucrose molecules",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Molecular Gastronomy & Chemistry",
+            "explanation": "\"pyrolytic caramelization\": thermal browning of sucrose molecules (Molecular Gastronomy & Chemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_42_5",
+            "leftText": "emulsifying agent",
+            "rightText": "substance stabilizing oil and water mixes",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Molecular Gastronomy & Chemistry",
+            "explanation": "\"emulsifying agent\": substance stabilizing oil and water mixes (Molecular Gastronomy & Chemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_42_6",
+            "leftText": "gluten elasticity",
+            "rightText": "network granting dough stretchy structure",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Molecular Gastronomy & Chemistry",
+            "explanation": "\"gluten elasticity\": network granting dough stretchy structure (Molecular Gastronomy & Chemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_42_7",
+            "leftText": "sous-vide cooking",
+            "rightText": "precision low-temperature water bath cooking",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Molecular Gastronomy & Chemistry",
+            "explanation": "\"sous-vide cooking\": precision low-temperature water bath cooking (Molecular Gastronomy & Chemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_42_8",
+            "leftText": "dehydration",
+            "rightText": "removing water content to preserve foods",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Molecular Gastronomy & Chemistry",
+            "explanation": "\"dehydration\": removing water content to preserve foods (Molecular Gastronomy & Chemistry)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_43",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Telecommunications Architecture",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_43_1",
+            "leftText": "fiber-optic multiplexing",
+            "rightText": "ışık dalgasıyla çoklu veri iletimi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Telecommunications Architecture",
+            "explanation": "\"fiber-optic multiplexing\" translates to \"ışık dalgasıyla çoklu veri iletimi\" in Turkish (Telecommunications Architecture)."
+          },
+          {
+            "pairId": "p_mm_g8_h_43_2",
+            "leftText": "zero-trust architecture",
+            "rightText": "sıfır güven sürekli doğrulama ağı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Telecommunications Architecture",
+            "explanation": "\"zero-trust architecture\" translates to \"sıfır güven sürekli doğrulama ağı\" in Turkish (Telecommunications Architecture)."
+          },
+          {
+            "pairId": "p_mm_g8_h_43_3",
+            "leftText": "LEO satellite mesh",
+            "rightText": "alçak yörünge uydu internet ağı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Telecommunications Architecture",
+            "explanation": "\"LEO satellite mesh\" translates to \"alçak yörünge uydu internet ağı\" in Turkish (Telecommunications Architecture)."
+          },
+          {
+            "pairId": "p_mm_g8_h_43_4",
+            "leftText": "cryptographic hashing",
+            "rightText": "veriyi sabit uzunluklu özete çevirme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Telecommunications Architecture",
+            "explanation": "\"cryptographic hashing\" translates to \"veriyi sabit uzunluklu özete çevirme\" in Turkish (Telecommunications Architecture)."
+          },
+          {
+            "pairId": "p_mm_g8_h_43_5",
+            "leftText": "directional microwave link",
+            "rightText": "noktadan noktaya mikrodalga aktarımı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Telecommunications Architecture",
+            "explanation": "\"directional microwave link\" translates to \"noktadan noktaya mikrodalga aktarımı\" in Turkish (Telecommunications Architecture)."
+          },
+          {
+            "pairId": "p_mm_g8_h_43_6",
+            "leftText": "DDoS mitigation scrub",
+            "rightText": "yoğun botnet saldırı trafiğini filtreleme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Telecommunications Architecture",
+            "explanation": "\"DDoS mitigation scrub\" translates to \"yoğun botnet saldırı trafiğini filtreleme\" in Turkish (Telecommunications Architecture)."
+          },
+          {
+            "pairId": "p_mm_g8_h_43_7",
+            "leftText": "PBX enterprise exchange",
+            "rightText": "kurumsal dahili telefon santrali",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Telecommunications Architecture",
+            "explanation": "\"PBX enterprise exchange\" translates to \"kurumsal dahili telefon santrali\" in Turkish (Telecommunications Architecture)."
+          },
+          {
+            "pairId": "p_mm_g8_h_43_8",
+            "leftText": "packet latency",
+            "rightText": "veri paketinin hedefe varış gecikmesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Telecommunications Architecture",
+            "explanation": "\"packet latency\" translates to \"veri paketinin hedefe varış gecikmesi\" in Turkish (Telecommunications Architecture)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_44",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_definition",
+        "topic": "Telecommunications Architecture",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_44_1",
+            "leftText": "fiber-optic multiplexing",
+            "rightText": "transmitting light signals down single fibers",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Telecommunications Architecture",
+            "explanation": "\"fiber-optic multiplexing\": transmitting light signals down single fibers (Telecommunications Architecture)."
+          },
+          {
+            "pairId": "p_mm_g8_h_44_2",
+            "leftText": "zero-trust architecture",
+            "rightText": "requiring authentication for every packet",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Telecommunications Architecture",
+            "explanation": "\"zero-trust architecture\": requiring authentication for every packet (Telecommunications Architecture)."
+          },
+          {
+            "pairId": "p_mm_g8_h_44_3",
+            "leftText": "LEO satellite mesh",
+            "rightText": "low-latency orbital telecommunication constellations",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Telecommunications Architecture",
+            "explanation": "\"LEO satellite mesh\": low-latency orbital telecommunication constellations (Telecommunications Architecture)."
+          },
+          {
+            "pairId": "p_mm_g8_h_44_4",
+            "leftText": "cryptographic hashing",
+            "rightText": "converting data into fixed tamper-proof digests",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Telecommunications Architecture",
+            "explanation": "\"cryptographic hashing\": converting data into fixed tamper-proof digests (Telecommunications Architecture)."
+          },
+          {
+            "pairId": "p_mm_g8_h_44_5",
+            "leftText": "directional microwave link",
+            "rightText": "point-to-point wireless data beaming across passes",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Telecommunications Architecture",
+            "explanation": "\"directional microwave link\": point-to-point wireless data beaming across passes (Telecommunications Architecture)."
+          },
+          {
+            "pairId": "p_mm_g8_h_44_6",
+            "leftText": "DDoS mitigation scrub",
+            "rightText": "cleaning volumetric packet flooding attacks",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Telecommunications Architecture",
+            "explanation": "\"DDoS mitigation scrub\": cleaning volumetric packet flooding attacks (Telecommunications Architecture)."
+          },
+          {
+            "pairId": "p_mm_g8_h_44_7",
+            "leftText": "PBX enterprise exchange",
+            "rightText": "private automatic branch telephone hub",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Telecommunications Architecture",
+            "explanation": "\"PBX enterprise exchange\": private automatic branch telephone hub (Telecommunications Architecture)."
+          },
+          {
+            "pairId": "p_mm_g8_h_44_8",
+            "leftText": "packet latency",
+            "rightText": "time taken for data packets to traverse links",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Telecommunications Architecture",
+            "explanation": "\"packet latency\": time taken for data packets to traverse links (Telecommunications Architecture)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_45",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Extreme Mountaineering & Ethics",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_45_1",
+            "leftText": "free solo climbing",
+            "rightText": "ipsiz emniyetsiz kaya tırmanışı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Extreme Mountaineering & Ethics",
+            "explanation": "\"free solo climbing\" translates to \"ipsiz emniyetsiz kaya tırmanışı\" in Turkish (Extreme Mountaineering & Ethics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_45_2",
+            "leftText": "oxygenless ascent",
+            "rightText": "oksijen tüpü kullanmadan zirve tırmanışı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Extreme Mountaineering & Ethics",
+            "explanation": "\"oxygenless ascent\" translates to \"oksijen tüpü kullanmadan zirve tırmanışı\" in Turkish (Extreme Mountaineering & Ethics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_45_3",
+            "leftText": "polar traverse",
+            "rightText": "kutup buzulunu yaya kayakla aşma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Extreme Mountaineering & Ethics",
+            "explanation": "\"polar traverse\" translates to \"kutup buzulunu yaya kayakla aşma\" in Turkish (Extreme Mountaineering & Ethics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_45_4",
+            "leftText": "crevasse rescue",
+            "rightText": "buzul çatlağına düşeni iple kurtarma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Extreme Mountaineering & Ethics",
+            "explanation": "\"crevasse rescue\" translates to \"buzul çatlağına düşeni iple kurtarma\" in Turkish (Extreme Mountaineering & Ethics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_45_5",
+            "leftText": "avalanche beacon",
+            "rightText": "çığ altında yer belirleyen sinyal verici",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Extreme Mountaineering & Ethics",
+            "explanation": "\"avalanche beacon\" translates to \"çığ altında yer belirleyen sinyal verici\" in Turkish (Extreme Mountaineering & Ethics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_45_6",
+            "leftText": "acclimatization",
+            "rightText": "yüksek irtifaya vücudu alıştırma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Extreme Mountaineering & Ethics",
+            "explanation": "\"acclimatization\" translates to \"yüksek irtifaya vücudu alıştırma\" in Turkish (Extreme Mountaineering & Ethics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_45_7",
+            "leftText": "death zone altitude",
+            "rightText": "sekiz bin metre üzeri ölüm bölgesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Extreme Mountaineering & Ethics",
+            "explanation": "\"death zone altitude\" translates to \"sekiz bin metre üzeri ölüm bölgesi\" in Turkish (Extreme Mountaineering & Ethics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_45_8",
+            "leftText": "alpine commitment",
+            "rightText": "dağda geri dönüşsüz cesaret kararı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Extreme Mountaineering & Ethics",
+            "explanation": "\"alpine commitment\" translates to \"dağda geri dönüşsüz cesaret kararı\" in Turkish (Extreme Mountaineering & Ethics)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_46",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_definition",
+        "topic": "Extreme Mountaineering & Ethics",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_46_1",
+            "leftText": "free solo climbing",
+            "rightText": "ascending cliffs without ropes or safety gear",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Extreme Mountaineering & Ethics",
+            "explanation": "\"free solo climbing\": ascending cliffs without ropes or safety gear (Extreme Mountaineering & Ethics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_46_2",
+            "leftText": "oxygenless ascent",
+            "rightText": "summiting high peaks without supplemental gas",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Extreme Mountaineering & Ethics",
+            "explanation": "\"oxygenless ascent\": summiting high peaks without supplemental gas (Extreme Mountaineering & Ethics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_46_3",
+            "leftText": "polar traverse",
+            "rightText": "unsupported crossing of polar ice shelves",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Extreme Mountaineering & Ethics",
+            "explanation": "\"polar traverse\": unsupported crossing of polar ice shelves (Extreme Mountaineering & Ethics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_46_4",
+            "leftText": "crevasse rescue",
+            "rightText": "rigging pulley systems to extract fallen hikers",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Extreme Mountaineering & Ethics",
+            "explanation": "\"crevasse rescue\": rigging pulley systems to extract fallen hikers (Extreme Mountaineering & Ethics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_46_5",
+            "leftText": "avalanche beacon",
+            "rightText": "radio transceiver transmitting location in snow",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Extreme Mountaineering & Ethics",
+            "explanation": "\"avalanche beacon\": radio transceiver transmitting location in snow (Extreme Mountaineering & Ethics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_46_6",
+            "leftText": "acclimatization",
+            "rightText": "physiological adaptation to low oxygen levels",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Extreme Mountaineering & Ethics",
+            "explanation": "\"acclimatization\": physiological adaptation to low oxygen levels (Extreme Mountaineering & Ethics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_46_7",
+            "leftText": "death zone altitude",
+            "rightText": "altitudes above eight thousand meters",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Extreme Mountaineering & Ethics",
+            "explanation": "\"death zone altitude\": altitudes above eight thousand meters (Extreme Mountaineering & Ethics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_46_8",
+            "leftText": "alpine commitment",
+            "rightText": "accepting absolute self-reliance on climbs",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Extreme Mountaineering & Ethics",
+            "explanation": "\"alpine commitment\": accepting absolute self-reliance on climbs (Extreme Mountaineering & Ethics)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_47",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Archaeological Science & Heritage",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_47_1",
+            "leftText": "micro-excavation",
+            "rightText": "narin yazıtları neşterle kazıma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Archaeological Science & Heritage",
+            "explanation": "\"micro-excavation\" translates to \"narin yazıtları neşterle kazıma\" in Turkish (Archaeological Science & Heritage)."
+          },
+          {
+            "pairId": "p_mm_g8_h_47_2",
+            "leftText": "papyrus conservation",
+            "rightText": "tarihi papirüs tomarlarını koruma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Archaeological Science & Heritage",
+            "explanation": "\"papyrus conservation\" translates to \"tarihi papirüs tomarlarını koruma\" in Turkish (Archaeological Science & Heritage)."
+          },
+          {
+            "pairId": "p_mm_g8_h_47_3",
+            "leftText": "intangible cultural heritage",
+            "rightText": "somut olmayan sözlü gelenek mirası",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Archaeological Science & Heritage",
+            "explanation": "\"intangible cultural heritage\" translates to \"somut olmayan sözlü gelenek mirası\" in Turkish (Archaeological Science & Heritage)."
+          },
+          {
+            "pairId": "p_mm_g8_h_47_4",
+            "leftText": "carrying capacity ceiling",
+            "rightText": "tarihi alanın ziyaretçi üst sınırı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Archaeological Science & Heritage",
+            "explanation": "\"carrying capacity ceiling\" translates to \"tarihi alanın ziyaretçi üst sınırı\" in Turkish (Archaeological Science & Heritage)."
+          },
+          {
+            "pairId": "p_mm_g8_h_47_5",
+            "leftText": "stratigraphy",
+            "rightText": "arkeolojik katmanların tarihsel sırası",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Archaeological Science & Heritage",
+            "explanation": "\"stratigraphy\" translates to \"arkeolojik katmanların tarihsel sırası\" in Turkish (Archaeological Science & Heritage)."
+          },
+          {
+            "pairId": "p_mm_g8_h_47_6",
+            "leftText": "radiocarbon dating",
+            "rightText": "karbon on dört ile yaş tayini",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Archaeological Science & Heritage",
+            "explanation": "\"radiocarbon dating\" translates to \"karbon on dört ile yaş tayini\" in Turkish (Archaeological Science & Heritage)."
+          },
+          {
+            "pairId": "p_mm_g8_h_47_7",
+            "leftText": "epigraphy",
+            "rightText": "antik taş kitabeleri okuma bilimi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Archaeological Science & Heritage",
+            "explanation": "\"epigraphy\" translates to \"antik taş kitabeleri okuma bilimi\" in Turkish (Archaeological Science & Heritage)."
+          },
+          {
+            "pairId": "p_mm_g8_h_47_8",
+            "leftText": "restoration ethics",
+            "rightText": "orijinal dokuya zarar vermeden onarım",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Archaeological Science & Heritage",
+            "explanation": "\"restoration ethics\" translates to \"orijinal dokuya zarar vermeden onarım\" in Turkish (Archaeological Science & Heritage)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_48",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_definition",
+        "topic": "Archaeological Science & Heritage",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_48_1",
+            "leftText": "micro-excavation",
+            "rightText": "surgical unearthing of fragile ancient scrolls",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Archaeological Science & Heritage",
+            "explanation": "\"micro-excavation\": surgical unearthing of fragile ancient scrolls (Archaeological Science & Heritage)."
+          },
+          {
+            "pairId": "p_mm_g8_h_48_2",
+            "leftText": "papyrus conservation",
+            "rightText": "preserving carbonized historical manuscripts",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Archaeological Science & Heritage",
+            "explanation": "\"papyrus conservation\": preserving carbonized historical manuscripts (Archaeological Science & Heritage)."
+          },
+          {
+            "pairId": "p_mm_g8_h_48_3",
+            "leftText": "intangible cultural heritage",
+            "rightText": "safeguarding ancestral oral storytelling lore",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Archaeological Science & Heritage",
+            "explanation": "\"intangible cultural heritage\": safeguarding ancestral oral storytelling lore (Archaeological Science & Heritage)."
+          },
+          {
+            "pairId": "p_mm_g8_h_48_4",
+            "leftText": "carrying capacity ceiling",
+            "rightText": "threshold preventing site overcrowding wear",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Archaeological Science & Heritage",
+            "explanation": "\"carrying capacity ceiling\": threshold preventing site overcrowding wear (Archaeological Science & Heritage)."
+          },
+          {
+            "pairId": "p_mm_g8_h_48_5",
+            "leftText": "stratigraphy",
+            "rightText": "analysis of historical soil sedimentation layers",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Archaeological Science & Heritage",
+            "explanation": "\"stratigraphy\": analysis of historical soil sedimentation layers (Archaeological Science & Heritage)."
+          },
+          {
+            "pairId": "p_mm_g8_h_48_6",
+            "leftText": "radiocarbon dating",
+            "rightText": "dating organic matter using carbon isotopes",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Archaeological Science & Heritage",
+            "explanation": "\"radiocarbon dating\": dating organic matter using carbon isotopes (Archaeological Science & Heritage)."
+          },
+          {
+            "pairId": "p_mm_g8_h_48_7",
+            "leftText": "epigraphy",
+            "rightText": "scientific study and deciphering of inscriptions",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Archaeological Science & Heritage",
+            "explanation": "\"epigraphy\": scientific study and deciphering of inscriptions (Archaeological Science & Heritage)."
+          },
+          {
+            "pairId": "p_mm_g8_h_48_8",
+            "leftText": "restoration ethics",
+            "rightText": "rehabilitating ruins without falsifying history",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Archaeological Science & Heritage",
+            "explanation": "\"restoration ethics\": rehabilitating ruins without falsifying history (Archaeological Science & Heritage)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_49",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Household Environmental Biochemistry",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_49_1",
+            "leftText": "bioremediation",
+            "rightText": "topraktaki kimyasalları mikropla temizleme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Household Environmental Biochemistry",
+            "explanation": "\"bioremediation\" translates to \"topraktaki kimyasalları mikropla temizleme\" in Turkish (Household Environmental Biochemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_49_2",
+            "leftText": "enzymatic biodigester",
+            "rightText": "giderdeki yağı sindiren enzim solüsyonu",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Household Environmental Biochemistry",
+            "explanation": "\"enzymatic biodigester\" translates to \"giderdeki yağı sindiren enzim solüsyonu\" in Turkish (Household Environmental Biochemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_49_3",
+            "leftText": "biopolymer synthesis",
+            "rightText": "mısır nişastasından doğada çözünür plastik",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Household Environmental Biochemistry",
+            "explanation": "\"biopolymer synthesis\" translates to \"mısır nişastasından doğada çözünür plastik\" in Turkish (Household Environmental Biochemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_49_4",
+            "leftText": "descaling citric acid",
+            "rightText": "sitrik asitle su kirecini çözme işlemi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Household Environmental Biochemistry",
+            "explanation": "\"descaling citric acid\" translates to \"sitrik asitle su kirecini çözme işlemi\" in Turkish (Household Environmental Biochemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_49_5",
+            "leftText": "greywater recycling",
+            "rightText": "lavabo atık suyunu bahçede arıtıp kullanma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Household Environmental Biochemistry",
+            "explanation": "\"greywater recycling\" translates to \"lavabo atık suyunu bahçede arıtıp kullanma\" in Turkish (Household Environmental Biochemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_49_6",
+            "leftText": "composting aerobe",
+            "rightText": "oksijenli ortamda organik gübre çürümesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Household Environmental Biochemistry",
+            "explanation": "\"composting aerobe\" translates to \"oksijenli ortamda organik gübre çürümesi\" in Turkish (Household Environmental Biochemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_49_7",
+            "leftText": "solar thermal collector",
+            "rightText": "güneş ısısıyla ev suyunun ısıtılması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Household Environmental Biochemistry",
+            "explanation": "\"solar thermal collector\" translates to \"güneş ısısıyla ev suyunun ısıtılması\" in Turkish (Household Environmental Biochemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_49_8",
+            "leftText": "heat pump efficiency COP",
+            "rightText": "ısı pompasının elektrik verimlilik oranı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Household Environmental Biochemistry",
+            "explanation": "\"heat pump efficiency COP\" translates to \"ısı pompasının elektrik verimlilik oranı\" in Turkish (Household Environmental Biochemistry)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_50",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_definition",
+        "topic": "Household Environmental Biochemistry",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_50_1",
+            "leftText": "bioremediation",
+            "rightText": "neutralizing ground toxins using benign microbes",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Household Environmental Biochemistry",
+            "explanation": "\"bioremediation\": neutralizing ground toxins using benign microbes (Household Environmental Biochemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_50_2",
+            "leftText": "enzymatic biodigester",
+            "rightText": "biological agents digesting kitchen grease",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Household Environmental Biochemistry",
+            "explanation": "\"enzymatic biodigester\": biological agents digesting kitchen grease (Household Environmental Biochemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_50_3",
+            "leftText": "biopolymer synthesis",
+            "rightText": "manufacturing compostable starch-based plastics",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Household Environmental Biochemistry",
+            "explanation": "\"biopolymer synthesis\": manufacturing compostable starch-based plastics (Household Environmental Biochemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_50_4",
+            "leftText": "descaling citric acid",
+            "rightText": "dissolving limescale deposits with organic acid",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Household Environmental Biochemistry",
+            "explanation": "\"descaling citric acid\": dissolving limescale deposits with organic acid (Household Environmental Biochemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_50_5",
+            "leftText": "greywater recycling",
+            "rightText": "filtering domestic drain water for irrigation",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Household Environmental Biochemistry",
+            "explanation": "\"greywater recycling\": filtering domestic drain water for irrigation (Household Environmental Biochemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_50_6",
+            "leftText": "composting aerobe",
+            "rightText": "oxygenated breakdown of kitchen food scraps",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Household Environmental Biochemistry",
+            "explanation": "\"composting aerobe\": oxygenated breakdown of kitchen food scraps (Household Environmental Biochemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_50_7",
+            "leftText": "solar thermal collector",
+            "rightText": "harnessing sunshine to heat domestic water",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Household Environmental Biochemistry",
+            "explanation": "\"solar thermal collector\": harnessing sunshine to heat domestic water (Household Environmental Biochemistry)."
+          },
+          {
+            "pairId": "p_mm_g8_h_50_8",
+            "leftText": "heat pump efficiency COP",
+            "rightText": "ratio of thermal output per electrical input",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Household Environmental Biochemistry",
+            "explanation": "\"heat pump efficiency COP\": ratio of thermal output per electrical input (Household Environmental Biochemistry)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_51",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Quantum Mechanics & Physics",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_51_1",
+            "leftText": "quantum entanglement",
+            "rightText": "parçacıkların anlık kuantum eşleşmesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Quantum Mechanics & Physics",
+            "explanation": "\"quantum entanglement\" translates to \"parçacıkların anlık kuantum eşleşmesi\" in Turkish (Quantum Mechanics & Physics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_51_2",
+            "leftText": "graviton particle",
+            "rightText": "kütleçekim kuvvetini taşıyan varsayımsal bozon",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Quantum Mechanics & Physics",
+            "explanation": "\"graviton particle\" translates to \"kütleçekim kuvvetini taşıyan varsayımsal bozon\" in Turkish (Quantum Mechanics & Physics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_51_3",
+            "leftText": "thermonuclear fusion",
+            "rightText": "güneş merkezinde hidrojenin helyuma kaynaşması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Quantum Mechanics & Physics",
+            "explanation": "\"thermonuclear fusion\" translates to \"güneş merkezinde hidrojenin helyuma kaynaşması\" in Turkish (Quantum Mechanics & Physics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_51_4",
+            "leftText": "subduction trench",
+            "rightText": "okyanus kabuğunun mantoya battığı hendek",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Quantum Mechanics & Physics",
+            "explanation": "\"subduction trench\" translates to \"okyanus kabuğunun mantoya battığı hendek\" in Turkish (Quantum Mechanics & Physics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_51_5",
+            "leftText": "soil liquefaction",
+            "rightText": "deprem anında zeminin sıvı gibi davranması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Quantum Mechanics & Physics",
+            "explanation": "\"soil liquefaction\" translates to \"deprem anında zeminin sıvı gibi davranması\" in Turkish (Quantum Mechanics & Physics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_51_6",
+            "leftText": "pyroclastic flow",
+            "rightText": "yanardağdan inen akkor gaz ve taş çığı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Quantum Mechanics & Physics",
+            "explanation": "\"pyroclastic flow\" translates to \"yanardağdan inen akkor gaz ve taş çığı\" in Turkish (Quantum Mechanics & Physics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_51_7",
+            "leftText": "superposition",
+            "rightText": "parçacığın aynı anda birden çok durumda olması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Quantum Mechanics & Physics",
+            "explanation": "\"superposition\" translates to \"parçacığın aynı anda birden çok durumda olması\" in Turkish (Quantum Mechanics & Physics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_51_8",
+            "leftText": "wave-particle duality",
+            "rightText": "ışığın hem dalga hem tanecik davranışı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Quantum Mechanics & Physics",
+            "explanation": "\"wave-particle duality\" translates to \"ışığın hem dalga hem tanecik davranışı\" in Turkish (Quantum Mechanics & Physics)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_52",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_definition",
+        "topic": "Quantum Mechanics & Physics",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_52_1",
+            "leftText": "quantum entanglement",
+            "rightText": "instantaneous correlation between twin particles",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Quantum Mechanics & Physics",
+            "explanation": "\"quantum entanglement\": instantaneous correlation between twin particles (Quantum Mechanics & Physics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_52_2",
+            "leftText": "graviton particle",
+            "rightText": "hypothesized gauge boson mediating gravity",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Quantum Mechanics & Physics",
+            "explanation": "\"graviton particle\": hypothesized gauge boson mediating gravity (Quantum Mechanics & Physics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_52_3",
+            "leftText": "thermonuclear fusion",
+            "rightText": "nuclear reaction powering the solar core",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Quantum Mechanics & Physics",
+            "explanation": "\"thermonuclear fusion\": nuclear reaction powering the solar core (Quantum Mechanics & Physics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_52_4",
+            "leftText": "subduction trench",
+            "rightText": "tectonic depression where oceanic plates sink",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Quantum Mechanics & Physics",
+            "explanation": "\"subduction trench\": tectonic depression where oceanic plates sink (Quantum Mechanics & Physics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_52_5",
+            "leftText": "soil liquefaction",
+            "rightText": "temporary loss of soil shear strength in quakes",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Quantum Mechanics & Physics",
+            "explanation": "\"soil liquefaction\": temporary loss of soil shear strength in quakes (Quantum Mechanics & Physics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_52_6",
+            "leftText": "pyroclastic flow",
+            "rightText": "superheated current of incandescent volcanic gas",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Quantum Mechanics & Physics",
+            "explanation": "\"pyroclastic flow\": superheated current of incandescent volcanic gas (Quantum Mechanics & Physics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_52_7",
+            "leftText": "superposition",
+            "rightText": "quantum ability to exist in multiple states",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Quantum Mechanics & Physics",
+            "explanation": "\"superposition\": quantum ability to exist in multiple states (Quantum Mechanics & Physics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_52_8",
+            "leftText": "wave-particle duality",
+            "rightText": "phenomenon displaying both wave and particle modes",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Quantum Mechanics & Physics",
+            "explanation": "\"wave-particle duality\": phenomenon displaying both wave and particle modes (Quantum Mechanics & Physics)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_53",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Classical Moral Philosophy & Friendship",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_53_1",
+            "leftText": "Aristotelian virtue friendship",
+            "rightText": "karşılıklı erdemi geliştiren yüce dostluk",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Classical Moral Philosophy & Friendship",
+            "explanation": "\"Aristotelian virtue friendship\" translates to \"karşılıklı erdemi geliştiren yüce dostluk\" in Turkish (Classical Moral Philosophy & Friendship)."
+          },
+          {
+            "pairId": "p_mm_g8_h_53_2",
+            "leftText": "enduring fidelity",
+            "rightText": "ömür boyu sarsılmayan vefalı bağlılık",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Classical Moral Philosophy & Friendship",
+            "explanation": "\"enduring fidelity\" translates to \"ömür boyu sarsılmayan vefalı bağlılık\" in Turkish (Classical Moral Philosophy & Friendship)."
+          },
+          {
+            "pairId": "p_mm_g8_h_53_3",
+            "leftText": "delayed gratification",
+            "rightText": "büyük amaçlar için anlık hazzı erteleme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Classical Moral Philosophy & Friendship",
+            "explanation": "\"delayed gratification\" translates to \"büyük amaçlar için anlık hazzı erteleme\" in Turkish (Classical Moral Philosophy & Friendship)."
+          },
+          {
+            "pairId": "p_mm_g8_h_53_4",
+            "leftText": "compassionate candor",
+            "rightText": "kırmadan gerçeği şefkatle söyleme erdemi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Classical Moral Philosophy & Friendship",
+            "explanation": "\"compassionate candor\" translates to \"kırmadan gerçeği şefkatle söyleme erdemi\" in Turkish (Classical Moral Philosophy & Friendship)."
+          },
+          {
+            "pairId": "p_mm_g8_h_53_5",
+            "leftText": "metacognitive reflection",
+            "rightText": "öğrenme alışkanlıklarını sorgulayıp geliştirme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Classical Moral Philosophy & Friendship",
+            "explanation": "\"metacognitive reflection\" translates to \"öğrenme alışkanlıklarını sorgulayıp geliştirme\" in Turkish (Classical Moral Philosophy & Friendship)."
+          },
+          {
+            "pairId": "p_mm_g8_h_53_6",
+            "leftText": "emotional equanimity",
+            "rightText": "kriz anında sarsılmayan zihinsel huzur",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Classical Moral Philosophy & Friendship",
+            "explanation": "\"emotional equanimity\" translates to \"kriz anında sarsılmayan zihinsel huzur\" in Turkish (Classical Moral Philosophy & Friendship)."
+          },
+          {
+            "pairId": "p_mm_g8_h_53_7",
+            "leftText": "integrity",
+            "rightText": "söz ve eylemin ahlakla tam uyumu",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Classical Moral Philosophy & Friendship",
+            "explanation": "\"integrity\" translates to \"söz ve eylemin ahlakla tam uyumu\" in Turkish (Classical Moral Philosophy & Friendship)."
+          },
+          {
+            "pairId": "p_mm_g8_h_53_8",
+            "leftText": "magnanimity",
+            "rightText": "küçük hesaplara düşmeyen yüce gönüllülük",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Classical Moral Philosophy & Friendship",
+            "explanation": "\"magnanimity\" translates to \"küçük hesaplara düşmeyen yüce gönüllülük\" in Turkish (Classical Moral Philosophy & Friendship)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_54",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_definition",
+        "topic": "Classical Moral Philosophy & Friendship",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_54_1",
+            "leftText": "Aristotelian virtue friendship",
+            "rightText": "highest alliance aimed at mutual moral excellence",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Classical Moral Philosophy & Friendship",
+            "explanation": "\"Aristotelian virtue friendship\": highest alliance aimed at mutual moral excellence (Classical Moral Philosophy & Friendship)."
+          },
+          {
+            "pairId": "p_mm_g8_h_54_2",
+            "leftText": "enduring fidelity",
+            "rightText": "lifelong steadfast loyalty through hardships",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Classical Moral Philosophy & Friendship",
+            "explanation": "\"enduring fidelity\": lifelong steadfast loyalty through hardships (Classical Moral Philosophy & Friendship)."
+          },
+          {
+            "pairId": "p_mm_g8_h_54_3",
+            "leftText": "delayed gratification",
+            "rightText": "forgoing immediate pleasures for significant goals",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Classical Moral Philosophy & Friendship",
+            "explanation": "\"delayed gratification\": forgoing immediate pleasures for significant goals (Classical Moral Philosophy & Friendship)."
+          },
+          {
+            "pairId": "p_mm_g8_h_54_4",
+            "leftText": "compassionate candor",
+            "rightText": "truthful friendly guidance delivered with love",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Classical Moral Philosophy & Friendship",
+            "explanation": "\"compassionate candor\": truthful friendly guidance delivered with love (Classical Moral Philosophy & Friendship)."
+          },
+          {
+            "pairId": "p_mm_g8_h_54_5",
+            "leftText": "metacognitive reflection",
+            "rightText": "evaluating and refining one's cognitive processes",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Classical Moral Philosophy & Friendship",
+            "explanation": "\"metacognitive reflection\": evaluating and refining one's cognitive processes (Classical Moral Philosophy & Friendship)."
+          },
+          {
+            "pairId": "p_mm_g8_h_54_6",
+            "leftText": "emotional equanimity",
+            "rightText": "mental lucidity and calmness under pressure",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Classical Moral Philosophy & Friendship",
+            "explanation": "\"emotional equanimity\": mental lucidity and calmness under pressure (Classical Moral Philosophy & Friendship)."
+          },
+          {
+            "pairId": "p_mm_g8_h_54_7",
+            "leftText": "integrity",
+            "rightText": "alignment between outward actions and moral ethics",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Classical Moral Philosophy & Friendship",
+            "explanation": "\"integrity\": alignment between outward actions and moral ethics (Classical Moral Philosophy & Friendship)."
+          },
+          {
+            "pairId": "p_mm_g8_h_54_8",
+            "leftText": "magnanimity",
+            "rightText": "generosity of spirit rising above pettiness",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Classical Moral Philosophy & Friendship",
+            "explanation": "\"magnanimity\": generosity of spirit rising above pettiness (Classical Moral Philosophy & Friendship)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_55",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Advanced Seismology & Paleoseismology",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_55_1",
+            "leftText": "paleoseismological trench",
+            "rightText": "tarihi fay kırıklarını inceleyen araştırma hendeği",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Seismology & Paleoseismology",
+            "explanation": "\"paleoseismological trench\" translates to \"tarihi fay kırıklarını inceleyen araştırma hendeği\" in Turkish (Advanced Seismology & Paleoseismology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_55_2",
+            "leftText": "fault recurrence interval",
+            "rightText": "fayın deprem üretme periyot aralığı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Seismology & Paleoseismology",
+            "explanation": "\"fault recurrence interval\" translates to \"fayın deprem üretme periyot aralığı\" in Turkish (Advanced Seismology & Paleoseismology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_55_3",
+            "leftText": "asperity",
+            "rightText": "fay yüzeyinde kilitlenip enerji biriktiren pürüz",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Seismology & Paleoseismology",
+            "explanation": "\"asperity\" translates to \"fay yüzeyinde kilitlenip enerji biriktiren pürüz\" in Turkish (Advanced Seismology & Paleoseismology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_55_4",
+            "leftText": "shear wave velocity",
+            "rightText": "makaslama sismik dalgasının yayılma hızı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Seismology & Paleoseismology",
+            "explanation": "\"shear wave velocity\" translates to \"makaslama sismik dalgasının yayılma hızı\" in Turkish (Advanced Seismology & Paleoseismology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_55_5",
+            "leftText": "moment magnitude scale",
+            "rightText": "fay kırılma alanından deprem enerjisi hesabı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Seismology & Paleoseismology",
+            "explanation": "\"moment magnitude scale\" translates to \"fay kırılma alanından deprem enerjisi hesabı\" in Turkish (Advanced Seismology & Paleoseismology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_55_6",
+            "leftText": "tsunami inundation zone",
+            "rightText": "kıyıda tsunaminin basacağı su taşkın alanı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Seismology & Paleoseismology",
+            "explanation": "\"tsunami inundation zone\" translates to \"kıyıda tsunaminin basacağı su taşkın alanı\" in Turkish (Advanced Seismology & Paleoseismology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_55_7",
+            "leftText": "seismic retrofitting",
+            "rightText": "eski binaları karbon fiberle depreme güçlendirme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Seismology & Paleoseismology",
+            "explanation": "\"seismic retrofitting\" translates to \"eski binaları karbon fiberle depreme güçlendirme\" in Turkish (Advanced Seismology & Paleoseismology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_55_8",
+            "leftText": "base isolation",
+            "rightText": "binanın temeline sismik kauçuk izolatör koyma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Seismology & Paleoseismology",
+            "explanation": "\"base isolation\" translates to \"binanın temeline sismik kauçuk izolatör koyma\" in Turkish (Advanced Seismology & Paleoseismology)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_56",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_definition",
+        "topic": "Advanced Seismology & Paleoseismology",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_56_1",
+            "leftText": "paleoseismological trench",
+            "rightText": "excavation decoding prehistoric earthquake scars",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Seismology & Paleoseismology",
+            "explanation": "\"paleoseismological trench\": excavation decoding prehistoric earthquake scars (Advanced Seismology & Paleoseismology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_56_2",
+            "leftText": "fault recurrence interval",
+            "rightText": "average time gap between major fault ruptures",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Seismology & Paleoseismology",
+            "explanation": "\"fault recurrence interval\": average time gap between major fault ruptures (Advanced Seismology & Paleoseismology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_56_3",
+            "leftText": "asperity",
+            "rightText": "locked patch on a fault storing seismic stress",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Seismology & Paleoseismology",
+            "explanation": "\"asperity\": locked patch on a fault storing seismic stress (Advanced Seismology & Paleoseismology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_56_4",
+            "leftText": "shear wave velocity",
+            "rightText": "speed of transverse seismic waves through rock",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Seismology & Paleoseismology",
+            "explanation": "\"shear wave velocity\": speed of transverse seismic waves through rock (Advanced Seismology & Paleoseismology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_56_5",
+            "leftText": "moment magnitude scale",
+            "rightText": "measurement based on total physical fault rupture",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Seismology & Paleoseismology",
+            "explanation": "\"moment magnitude scale\": measurement based on total physical fault rupture (Advanced Seismology & Paleoseismology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_56_6",
+            "leftText": "tsunami inundation zone",
+            "rightText": "coastal terrain threatened by catastrophic waves",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Seismology & Paleoseismology",
+            "explanation": "\"tsunami inundation zone\": coastal terrain threatened by catastrophic waves (Advanced Seismology & Paleoseismology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_56_7",
+            "leftText": "seismic retrofitting",
+            "rightText": "structural reinforcement of existing architecture",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Seismology & Paleoseismology",
+            "explanation": "\"seismic retrofitting\": structural reinforcement of existing architecture (Advanced Seismology & Paleoseismology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_56_8",
+            "leftText": "base isolation",
+            "rightText": "installing flexible pads beneath building foundations",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Seismology & Paleoseismology",
+            "explanation": "\"base isolation\": installing flexible pads beneath building foundations (Advanced Seismology & Paleoseismology)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_57",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Biomedical Engineering & Genetics",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_57_1",
+            "leftText": "CRISPR-Cas9",
+            "rightText": "hedefli gen kesme ve düzenleme teknolojisi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Biomedical Engineering & Genetics",
+            "explanation": "\"CRISPR-Cas9\" translates to \"hedefli gen kesme ve düzenleme teknolojisi\" in Turkish (Biomedical Engineering & Genetics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_57_2",
+            "leftText": "gel electrophoresis",
+            "rightText": "DNA parçalarını elektrikle ayrıştırma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Biomedical Engineering & Genetics",
+            "explanation": "\"gel electrophoresis\" translates to \"DNA parçalarını elektrikle ayrıştırma\" in Turkish (Biomedical Engineering & Genetics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_57_3",
+            "leftText": "polymerase chain reaction",
+            "rightText": "DNA zincirini milyonlarca kez çoğaltma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Biomedical Engineering & Genetics",
+            "explanation": "\"polymerase chain reaction\" translates to \"DNA zincirini milyonlarca kez çoğaltma\" in Turkish (Biomedical Engineering & Genetics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_57_4",
+            "leftText": "monoclonal antibody",
+            "rightText": "hastalık hücresine özel üretilmiş antikor",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Biomedical Engineering & Genetics",
+            "explanation": "\"monoclonal antibody\" translates to \"hastalık hücresine özel üretilmiş antikor\" in Turkish (Biomedical Engineering & Genetics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_57_5",
+            "leftText": "biocompatible implant",
+            "rightText": "vücudun reddetmediği titanyum protez",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Biomedical Engineering & Genetics",
+            "explanation": "\"biocompatible implant\" translates to \"vücudun reddetmediği titanyum protez\" in Turkish (Biomedical Engineering & Genetics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_57_6",
+            "leftText": "stem cell differentiation",
+            "rightText": "kök hücrenin özelleşmiş dokuya dönüşmesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Biomedical Engineering & Genetics",
+            "explanation": "\"stem cell differentiation\" translates to \"kök hücrenin özelleşmiş dokuya dönüşmesi\" in Turkish (Biomedical Engineering & Genetics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_57_7",
+            "leftText": "gene sequencing",
+            "rightText": "canlının tüm genetik harfasını okuma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Biomedical Engineering & Genetics",
+            "explanation": "\"gene sequencing\" translates to \"canlının tüm genetik harfasını okuma\" in Turkish (Biomedical Engineering & Genetics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_57_8",
+            "leftText": "recombinant protein",
+            "rightText": "laboratuvarda üretilen terapötik protein",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Biomedical Engineering & Genetics",
+            "explanation": "\"recombinant protein\" translates to \"laboratuvarda üretilen terapötik protein\" in Turkish (Biomedical Engineering & Genetics)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_58",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_definition",
+        "topic": "Biomedical Engineering & Genetics",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_58_1",
+            "leftText": "CRISPR-Cas9",
+            "rightText": "precision RNA-guided targeted genetic editing",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Biomedical Engineering & Genetics",
+            "explanation": "\"CRISPR-Cas9\": precision RNA-guided targeted genetic editing (Biomedical Engineering & Genetics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_58_2",
+            "leftText": "gel electrophoresis",
+            "rightText": "separating DNA fragments using electrical fields",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Biomedical Engineering & Genetics",
+            "explanation": "\"gel electrophoresis\": separating DNA fragments using electrical fields (Biomedical Engineering & Genetics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_58_3",
+            "leftText": "polymerase chain reaction",
+            "rightText": "technique amplifying specific DNA fragments",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Biomedical Engineering & Genetics",
+            "explanation": "\"polymerase chain reaction\": technique amplifying specific DNA fragments (Biomedical Engineering & Genetics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_58_4",
+            "leftText": "monoclonal antibody",
+            "rightText": "cloned immune proteins targeting specific cells",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Biomedical Engineering & Genetics",
+            "explanation": "\"monoclonal antibody\": cloned immune proteins targeting specific cells (Biomedical Engineering & Genetics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_58_5",
+            "leftText": "biocompatible implant",
+            "rightText": "prosthetic device coexisting with living tissue",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Biomedical Engineering & Genetics",
+            "explanation": "\"biocompatible implant\": prosthetic device coexisting with living tissue (Biomedical Engineering & Genetics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_58_6",
+            "leftText": "stem cell differentiation",
+            "rightText": "unspecialized cells developing into tissues",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Biomedical Engineering & Genetics",
+            "explanation": "\"stem cell differentiation\": unspecialized cells developing into tissues (Biomedical Engineering & Genetics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_58_7",
+            "leftText": "gene sequencing",
+            "rightText": "determining precise nucleotide orders in genomes",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Biomedical Engineering & Genetics",
+            "explanation": "\"gene sequencing\": determining precise nucleotide orders in genomes (Biomedical Engineering & Genetics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_58_8",
+            "leftText": "recombinant protein",
+            "rightText": "proteins produced through genetic engineering",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Biomedical Engineering & Genetics",
+            "explanation": "\"recombinant protein\": proteins produced through genetic engineering (Biomedical Engineering & Genetics)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_59",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Computational Artificial Intelligence",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_59_1",
+            "leftText": "neural language model",
+            "rightText": "metin bağlamını anlayan derin yapay zeka",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Computational Artificial Intelligence",
+            "explanation": "\"neural language model\" translates to \"metin bağlamını anlayan derin yapay zeka\" in Turkish (Computational Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g8_h_59_2",
+            "leftText": "transformer architecture",
+            "rightText": "dikkat mekanizmalı modern yapay zeka mimarisi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Computational Artificial Intelligence",
+            "explanation": "\"transformer architecture\" translates to \"dikkat mekanizmalı modern yapay zeka mimarisi\" in Turkish (Computational Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g8_h_59_3",
+            "leftText": "algorithmic consensus",
+            "rightText": "dağıtık ağlarda düğümlerin uzlaşma kuralı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Computational Artificial Intelligence",
+            "explanation": "\"algorithmic consensus\" translates to \"dağıtık ağlarda düğümlerin uzlaşma kuralı\" in Turkish (Computational Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g8_h_59_4",
+            "leftText": "zero-knowledge proof",
+            "rightText": "bilgiyi ifşa etmeden doğruluğunu ispatlama",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Computational Artificial Intelligence",
+            "explanation": "\"zero-knowledge proof\" translates to \"bilgiyi ifşa etmeden doğruluğunu ispatlama\" in Turkish (Computational Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g8_h_59_5",
+            "leftText": "loss function optimization",
+            "rightText": "yapay zekanın hata oranını en aza indirmesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Computational Artificial Intelligence",
+            "explanation": "\"loss function optimization\" translates to \"yapay zekanın hata oranını en aza indirmesi\" in Turkish (Computational Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g8_h_59_6",
+            "leftText": "supervised learning",
+            "rightText": "etiketli verilerle model eğitme süreci",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Computational Artificial Intelligence",
+            "explanation": "\"supervised learning\" translates to \"etiketli verilerle model eğitme süreci\" in Turkish (Computational Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g8_h_59_7",
+            "leftText": "gradient descent",
+            "rightText": "matematiksel hata eğrisinde en uygun noktayı bulma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Computational Artificial Intelligence",
+            "explanation": "\"gradient descent\" translates to \"matematiksel hata eğrisinde en uygun noktayı bulma\" in Turkish (Computational Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g8_h_59_8",
+            "leftText": "reinforcement learning",
+            "rightText": "ödül ve ceza mekanizmasıyla öğrenme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Computational Artificial Intelligence",
+            "explanation": "\"reinforcement learning\" translates to \"ödül ve ceza mekanizmasıyla öğrenme\" in Turkish (Computational Artificial Intelligence)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_60",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_definition",
+        "topic": "Computational Artificial Intelligence",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_60_1",
+            "leftText": "neural language model",
+            "rightText": "deep network trained to process human language",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Computational Artificial Intelligence",
+            "explanation": "\"neural language model\": deep network trained to process human language (Computational Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g8_h_60_2",
+            "leftText": "transformer architecture",
+            "rightText": "neural model based on self-attention mechanisms",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Computational Artificial Intelligence",
+            "explanation": "\"transformer architecture\": neural model based on self-attention mechanisms (Computational Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g8_h_60_3",
+            "leftText": "algorithmic consensus",
+            "rightText": "protocol synchronizing distributed computing nodes",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Computational Artificial Intelligence",
+            "explanation": "\"algorithmic consensus\": protocol synchronizing distributed computing nodes (Computational Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g8_h_60_4",
+            "leftText": "zero-knowledge proof",
+            "rightText": "cryptographic proof revealing zero secrets",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Computational Artificial Intelligence",
+            "explanation": "\"zero-knowledge proof\": cryptographic proof revealing zero secrets (Computational Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g8_h_60_5",
+            "leftText": "loss function optimization",
+            "rightText": "mathematical reduction of prediction errors",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Computational Artificial Intelligence",
+            "explanation": "\"loss function optimization\": mathematical reduction of prediction errors (Computational Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g8_h_60_6",
+            "leftText": "supervised learning",
+            "rightText": "training models using labeled input-output pairs",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Computational Artificial Intelligence",
+            "explanation": "\"supervised learning\": training models using labeled input-output pairs (Computational Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g8_h_60_7",
+            "leftText": "gradient descent",
+            "rightText": "iterative algorithm minimizing error functions",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Computational Artificial Intelligence",
+            "explanation": "\"gradient descent\": iterative algorithm minimizing error functions (Computational Artificial Intelligence)."
+          },
+          {
+            "pairId": "p_mm_g8_h_60_8",
+            "leftText": "reinforcement learning",
+            "rightText": "learning through environmental trial and feedback",
+            "mode": "word_definition",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Computational Artificial Intelligence",
+            "explanation": "\"reinforcement learning\": learning through environmental trial and feedback (Computational Artificial Intelligence)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_61",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Advanced Meteorology & Climatology",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_61_1",
+            "leftText": "El Nino Southern Oscillation",
+            "rightText": "Pasifik okyanusu küresel iklim salınımı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Meteorology & Climatology",
+            "explanation": "\"El Nino Southern Oscillation\" translates to \"Pasifik okyanusu küresel iklim salınımı\" in Turkish (Advanced Meteorology & Climatology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_61_2",
+            "leftText": "polar vortex disruption",
+            "rightText": "kutup soğuk hava girdabının güneye kayması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Meteorology & Climatology",
+            "explanation": "\"polar vortex disruption\" translates to \"kutup soğuk hava girdabının güneye kayması\" in Turkish (Advanced Meteorology & Climatology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_61_3",
+            "leftText": "thermohaline circulation",
+            "rightText": "okyanus derin su sıcaklık tuzluluk akıntısı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Meteorology & Climatology",
+            "explanation": "\"thermohaline circulation\" translates to \"okyanus derin su sıcaklık tuzluluk akıntısı\" in Turkish (Advanced Meteorology & Climatology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_61_4",
+            "leftText": "radiative forcing",
+            "rightText": "atmosferdeki sera gazı ısı tutma gücü",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Meteorology & Climatology",
+            "explanation": "\"radiative forcing\" translates to \"atmosferdeki sera gazı ısı tutma gücü\" in Turkish (Advanced Meteorology & Climatology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_61_5",
+            "leftText": "albedo effect",
+            "rightText": "buzulların güneş ışığını geri yansıtma oranı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Meteorology & Climatology",
+            "explanation": "\"albedo effect\" translates to \"buzulların güneş ışığını geri yansıtma oranı\" in Turkish (Advanced Meteorology & Climatology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_61_6",
+            "leftText": "carbon sink",
+            "rightText": "büyük miktarda karbon yutan orman ve okyanus",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Meteorology & Climatology",
+            "explanation": "\"carbon sink\" translates to \"büyük miktarda karbon yutan orman ve okyanus\" in Turkish (Advanced Meteorology & Climatology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_61_7",
+            "leftText": "paleoclimate ice core",
+            "rightText": "buzul sondajından antik iklim analizi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Meteorology & Climatology",
+            "explanation": "\"paleoclimate ice core\" translates to \"buzul sondajından antik iklim analizi\" in Turkish (Advanced Meteorology & Climatology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_61_8",
+            "leftText": "atmospheric river",
+            "rightText": "gökyüzünde devasa nem taşıyan hava nehri",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Meteorology & Climatology",
+            "explanation": "\"atmospheric river\" translates to \"gökyüzünde devasa nem taşıyan hava nehri\" in Turkish (Advanced Meteorology & Climatology)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_62",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Aerospace Engineering & Orbits",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_62_1",
+            "leftText": "Lagrange point",
+            "rightText": "iki gök cismi arasında yerçekimi denge noktası",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Aerospace Engineering & Orbits",
+            "explanation": "\"Lagrange point\" translates to \"iki gök cismi arasında yerçekimi denge noktası\" in Turkish (Aerospace Engineering & Orbits)."
+          },
+          {
+            "pairId": "p_mm_g8_h_62_2",
+            "leftText": "geostationary orbit",
+            "rightText": "dünya dönüşüyle sabit kalan uydu yörüngesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Aerospace Engineering & Orbits",
+            "explanation": "\"geostationary orbit\" translates to \"dünya dönüşüyle sabit kalan uydu yörüngesi\" in Turkish (Aerospace Engineering & Orbits)."
+          },
+          {
+            "pairId": "p_mm_g8_h_62_3",
+            "leftText": "delta-v expenditure",
+            "rightText": "uzay manevrası için gereken hız değişimi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Aerospace Engineering & Orbits",
+            "explanation": "\"delta-v expenditure\" translates to \"uzay manevrası için gereken hız değişimi\" in Turkish (Aerospace Engineering & Orbits)."
+          },
+          {
+            "pairId": "p_mm_g8_h_62_4",
+            "leftText": "ion thruster propulsion",
+            "rightText": "elektrikli iyon itişli derin uzay motoru",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Aerospace Engineering & Orbits",
+            "explanation": "\"ion thruster propulsion\" translates to \"elektrikli iyon itişli derin uzay motoru\" in Turkish (Aerospace Engineering & Orbits)."
+          },
+          {
+            "pairId": "p_mm_g8_h_62_5",
+            "leftText": "aerobraking",
+            "rightText": "atmosfer sürtünmesiyle uzay aracını yavaşlatma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Aerospace Engineering & Orbits",
+            "explanation": "\"aerobraking\" translates to \"atmosfer sürtünmesiyle uzay aracını yavaşlatma\" in Turkish (Aerospace Engineering & Orbits)."
+          },
+          {
+            "pairId": "p_mm_g8_h_62_6",
+            "leftText": "gravitational slingshot",
+            "rightText": "gezegen çekimiyle uzay aracını hızlandırma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Aerospace Engineering & Orbits",
+            "explanation": "\"gravitational slingshot\" translates to \"gezegen çekimiyle uzay aracını hızlandırma\" in Turkish (Aerospace Engineering & Orbits)."
+          },
+          {
+            "pairId": "p_mm_g8_h_62_7",
+            "leftText": "heat shield ablation",
+            "rightText": "atmosfere girişte eriyerek koruyan kalkan",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Aerospace Engineering & Orbits",
+            "explanation": "\"heat shield ablation\" translates to \"atmosfere girişte eriyerek koruyan kalkan\" in Turkish (Aerospace Engineering & Orbits)."
+          },
+          {
+            "pairId": "p_mm_g8_h_62_8",
+            "leftText": "orbital inclination",
+            "rightText": "ekvator düzlemine göre yörünge eğikliği",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Aerospace Engineering & Orbits",
+            "explanation": "\"orbital inclination\" translates to \"ekvator düzlemine göre yörünge eğikliği\" in Turkish (Aerospace Engineering & Orbits)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_63",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Organic Agricultural Sciences",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_63_1",
+            "leftText": "crop rotation",
+            "rightText": "toprağı yormamak için nöbetleşe ekim yapma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Organic Agricultural Sciences",
+            "explanation": "\"crop rotation\" translates to \"toprağı yormamak için nöbetleşe ekim yapma\" in Turkish (Organic Agricultural Sciences)."
+          },
+          {
+            "pairId": "p_mm_g8_h_63_2",
+            "leftText": "nitrogen fixation",
+            "rightText": "baklagillerin havadaki azotu toprağa bağlaması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Organic Agricultural Sciences",
+            "explanation": "\"nitrogen fixation\" translates to \"baklagillerin havadaki azotu toprağa bağlaması\" in Turkish (Organic Agricultural Sciences)."
+          },
+          {
+            "pairId": "p_mm_g8_h_63_3",
+            "leftText": "biological pest control",
+            "rightText": "zararlı böceklere karşı yararlı böcek salma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Organic Agricultural Sciences",
+            "explanation": "\"biological pest control\" translates to \"zararlı böceklere karşı yararlı böcek salma\" in Turkish (Organic Agricultural Sciences)."
+          },
+          {
+            "pairId": "p_mm_g8_h_63_4",
+            "leftText": "mycorrhizal fungi",
+            "rightText": "bitki köklerine besin taşıyan dost mantarlar",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Organic Agricultural Sciences",
+            "explanation": "\"mycorrhizal fungi\" translates to \"bitki köklerine besin taşıyan dost mantarlar\" in Turkish (Organic Agricultural Sciences)."
+          },
+          {
+            "pairId": "p_mm_g8_h_63_5",
+            "leftText": "cover cropping",
+            "rightText": "toprak erozyonunu önlemek için ara örtü ekimi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Organic Agricultural Sciences",
+            "explanation": "\"cover cropping\" translates to \"toprak erozyonunu önlemek için ara örtü ekimi\" in Turkish (Organic Agricultural Sciences)."
+          },
+          {
+            "pairId": "p_mm_g8_h_63_6",
+            "leftText": "permaculture design",
+            "rightText": "doğayı taklit eden sürdürülebilir tarım tasarımı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Organic Agricultural Sciences",
+            "explanation": "\"permaculture design\" translates to \"doğayı taklit eden sürdürülebilir tarım tasarımı\" in Turkish (Organic Agricultural Sciences)."
+          },
+          {
+            "pairId": "p_mm_g8_h_63_7",
+            "leftText": "soil organic matter",
+            "rightText": "toprağın su tutmasını sağlayan organik humus",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Organic Agricultural Sciences",
+            "explanation": "\"soil organic matter\" translates to \"toprağın su tutmasını sağlayan organik humus\" in Turkish (Organic Agricultural Sciences)."
+          },
+          {
+            "pairId": "p_mm_g8_h_63_8",
+            "leftText": "drip irrigation efficiency",
+            "rightText": "damla sulamayla su israfını önleme yöntemi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Organic Agricultural Sciences",
+            "explanation": "\"drip irrigation efficiency\" translates to \"damla sulamayla su israfını önleme yöntemi\" in Turkish (Organic Agricultural Sciences)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_64",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "International Maritime Law",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_64_1",
+            "leftText": "exclusive economic zone",
+            "rightText": "kıyı ülkesinin iki yüz millik deniz yetki alanı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "International Maritime Law",
+            "explanation": "\"exclusive economic zone\" translates to \"kıyı ülkesinin iki yüz millik deniz yetki alanı\" in Turkish (International Maritime Law)."
+          },
+          {
+            "pairId": "p_mm_g8_h_64_2",
+            "leftText": "innocent passage",
+            "rightText": "yabancı gemilerin karasularından barışçıl geçişi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "International Maritime Law",
+            "explanation": "\"innocent passage\" translates to \"yabancı gemilerin karasularından barışçıl geçişi\" in Turkish (International Maritime Law)."
+          },
+          {
+            "pairId": "p_mm_g8_h_64_3",
+            "leftText": "territorial waters",
+            "rightText": "kıyıdan on iki mil mesafedeki egemen sular",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "International Maritime Law",
+            "explanation": "\"territorial waters\" translates to \"kıyıdan on iki mil mesafedeki egemen sular\" in Turkish (International Maritime Law)."
+          },
+          {
+            "pairId": "p_mm_g8_h_64_4",
+            "leftText": "high seas freedom",
+            "rightText": "açık denizlerde tüm insanlığın ortak kullanım hakkı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "International Maritime Law",
+            "explanation": "\"high seas freedom\" translates to \"açık denizlerde tüm insanlığın ortak kullanım hakkı\" in Turkish (International Maritime Law)."
+          },
+          {
+            "pairId": "p_mm_g8_h_64_5",
+            "leftText": "continental shelf rights",
+            "rightText": "kıta sahanlığındaki maden ve petrol çıkarma hakkı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "International Maritime Law",
+            "explanation": "\"continental shelf rights\" translates to \"kıta sahanlığındaki maden ve petrol çıkarma hakkı\" in Turkish (International Maritime Law)."
+          },
+          {
+            "pairId": "p_mm_g8_h_64_6",
+            "leftText": "maritime search and rescue",
+            "rightText": "uluslararası deniz arama kurtarma sorumluluğu",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "International Maritime Law",
+            "explanation": "\"maritime search and rescue\" translates to \"uluslararası deniz arama kurtarma sorumluluğu\" in Turkish (International Maritime Law)."
+          },
+          {
+            "pairId": "p_mm_g8_h_64_7",
+            "leftText": "marine pollution treaty",
+            "rightText": "gemilerin denize atık boşaltmasını yasaklayan sözleşme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "International Maritime Law",
+            "explanation": "\"marine pollution treaty\" translates to \"gemilerin denize atık boşaltmasını yasaklayan sözleşme\" in Turkish (International Maritime Law)."
+          },
+          {
+            "pairId": "p_mm_g8_h_64_8",
+            "leftText": "flag state jurisdiction",
+            "rightText": "geminin taşıdığı bayrak ülkesinin yargı yetkisi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "International Maritime Law",
+            "explanation": "\"flag state jurisdiction\" translates to \"geminin taşıdığı bayrak ülkesinin yargı yetkisi\" in Turkish (International Maritime Law)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_65",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Advanced Material Physics",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_65_1",
+            "leftText": "superconducting critical temperature",
+            "rightText": "sıfır direnç kazandıran kritik soğukluk",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Material Physics",
+            "explanation": "\"superconducting critical temperature\" translates to \"sıfır direnç kazandıran kritik soğukluk\" in Turkish (Advanced Material Physics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_65_2",
+            "leftText": "photonic crystal",
+            "rightText": "ışığı mikroskobik ölçekte yönlendiren kristal",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Material Physics",
+            "explanation": "\"photonic crystal\" translates to \"ışığı mikroskobik ölçekte yönlendiren kristal\" in Turkish (Advanced Material Physics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_65_3",
+            "leftText": "piezoelectric effect",
+            "rightText": "basınçla elektrik voltajı üreten kristal yapısı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Material Physics",
+            "explanation": "\"piezoelectric effect\" translates to \"basınçla elektrik voltajı üreten kristal yapısı\" in Turkish (Advanced Material Physics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_65_4",
+            "leftText": "ferromagnetic domain",
+            "rightText": "mıknatıslanma yönü aynı olan atomik bölgeler",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Material Physics",
+            "explanation": "\"ferromagnetic domain\" translates to \"mıknatıslanma yönü aynı olan atomik bölgeler\" in Turkish (Advanced Material Physics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_65_5",
+            "leftText": "shape memory alloy",
+            "rightText": "ısıtılınca eski şekline dönen akıllı nitinol",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Material Physics",
+            "explanation": "\"shape memory alloy\" translates to \"ısıtılınca eski şekline dönen akıllı nitinol\" in Turkish (Advanced Material Physics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_65_6",
+            "leftText": "quantum dot",
+            "rightText": "ışık dalgaboyu ayarlanan yarı iletken nano parçacık",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Material Physics",
+            "explanation": "\"quantum dot\" translates to \"ışık dalgaboyu ayarlanan yarı iletken nano parçacık\" in Turkish (Advanced Material Physics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_65_7",
+            "leftText": "carbon fiber composite",
+            "rightText": "çelikten sağlam ama alüminyumdan hafif gövde",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Material Physics",
+            "explanation": "\"carbon fiber composite\" translates to \"çelikten sağlam ama alüminyumdan hafif gövde\" in Turkish (Advanced Material Physics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_65_8",
+            "leftText": "aerogel thermal conductivity",
+            "rightText": "dünyanın en düşük ısı ileten katı maddesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Material Physics",
+            "explanation": "\"aerogel thermal conductivity\" translates to \"dünyanın en düşük ısı ileten katı maddesi\" in Turkish (Advanced Material Physics)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_66",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Ecological Restoration Science",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_66_1",
+            "leftText": "afforestation",
+            "rightText": "daha önce orman olmayan yere ağaç dikme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Ecological Restoration Science",
+            "explanation": "\"afforestation\" translates to \"daha önce orman olmayan yere ağaç dikme\" in Turkish (Ecological Restoration Science)."
+          },
+          {
+            "pairId": "p_mm_g8_h_66_2",
+            "leftText": "keystone species reintroduction",
+            "rightText": "kilit ekosistem türünü doğaya geri salma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Ecological Restoration Science",
+            "explanation": "\"keystone species reintroduction\" translates to \"kilit ekosistem türünü doğaya geri salma\" in Turkish (Ecological Restoration Science)."
+          },
+          {
+            "pairId": "p_mm_g8_h_66_3",
+            "leftText": "wetland remediation",
+            "rightText": "kurutulmuş bataklığı yeniden sulak alana çevirme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Ecological Restoration Science",
+            "explanation": "\"wetland remediation\" translates to \"kurutulmuş bataklığı yeniden sulak alana çevirme\" in Turkish (Ecological Restoration Science)."
+          },
+          {
+            "pairId": "p_mm_g8_h_66_4",
+            "leftText": "riparian buffer zone",
+            "rightText": "nehir kenarını koruyan ağaç ve çalı kuşağı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Ecological Restoration Science",
+            "explanation": "\"riparian buffer zone\" translates to \"nehir kenarını koruyan ağaç ve çalı kuşağı\" in Turkish (Ecological Restoration Science)."
+          },
+          {
+            "pairId": "p_mm_g8_h_66_5",
+            "leftText": "invasive species eradication",
+            "rightText": "istilacı yabancı türleri bölgeden temizleme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Ecological Restoration Science",
+            "explanation": "\"invasive species eradication\" translates to \"istilacı yabancı türleri bölgeden temizleme\" in Turkish (Ecological Restoration Science)."
+          },
+          {
+            "pairId": "p_mm_g8_h_66_6",
+            "leftText": "wildlife corridor",
+            "rightText": "otobanlar üstünden hayvanlara yeşil köprü",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Ecological Restoration Science",
+            "explanation": "\"wildlife corridor\" translates to \"otobanlar üstünden hayvanlara yeşil köprü\" in Turkish (Ecological Restoration Science)."
+          },
+          {
+            "pairId": "p_mm_g8_h_66_7",
+            "leftText": "coral propagation",
+            "rightText": "laboratuvarda üretilen mercanları resife ekme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Ecological Restoration Science",
+            "explanation": "\"coral propagation\" translates to \"laboratuvarda üretilen mercanları resife ekme\" in Turkish (Ecological Restoration Science)."
+          },
+          {
+            "pairId": "p_mm_g8_h_66_8",
+            "leftText": "prescribed controlled burn",
+            "rightText": "orman yangınını önlemek için kontrollü örtü yakma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Ecological Restoration Science",
+            "explanation": "\"prescribed controlled burn\" translates to \"orman yangınını önlemek için kontrollü örtü yakma\" in Turkish (Ecological Restoration Science)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_67",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Philosophy of Language & Logic",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_67_1",
+            "leftText": "syllogism",
+            "rightText": "iki öncülden zorunlu sonuca varan kıyas mantığı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Philosophy of Language & Logic",
+            "explanation": "\"syllogism\" translates to \"iki öncülden zorunlu sonuca varan kıyas mantığı\" in Turkish (Philosophy of Language & Logic)."
+          },
+          {
+            "pairId": "p_mm_g8_h_67_2",
+            "leftText": "fallacy of equivocation",
+            "rightText": "aynı kelimeyi farklı anlamda kullanma yanılgısı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Philosophy of Language & Logic",
+            "explanation": "\"fallacy of equivocation\" translates to \"aynı kelimeyi farklı anlamda kullanma yanılgısı\" in Turkish (Philosophy of Language & Logic)."
+          },
+          {
+            "pairId": "p_mm_g8_h_67_3",
+            "leftText": "tautology",
+            "rightText": "kendi içinde her zaman doğru olan mantık önermesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Philosophy of Language & Logic",
+            "explanation": "\"tautology\" translates to \"kendi içinde her zaman doğru olan mantık önermesi\" in Turkish (Philosophy of Language & Logic)."
+          },
+          {
+            "pairId": "p_mm_g8_h_67_4",
+            "leftText": "presupposition",
+            "rightText": "cümlede doğru olduğu peşinen varsayılan bilgi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Philosophy of Language & Logic",
+            "explanation": "\"presupposition\" translates to \"cümlede doğru olduğu peşinen varsayılan bilgi\" in Turkish (Philosophy of Language & Logic)."
+          },
+          {
+            "pairId": "p_mm_g8_h_67_5",
+            "leftText": "semantic ambiguity",
+            "rightText": "kelimenin birden çok anlama gelmesi belirsizliği",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Philosophy of Language & Logic",
+            "explanation": "\"semantic ambiguity\" translates to \"kelimenin birden çok anlama gelmesi belirsizliği\" in Turkish (Philosophy of Language & Logic)."
+          },
+          {
+            "pairId": "p_mm_g8_h_67_6",
+            "leftText": "pragmatic implicature",
+            "rightText": "söylenmeyen ama konuşma bağlamından anlaşılan mana",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Philosophy of Language & Logic",
+            "explanation": "\"pragmatic implicature\" translates to \"söylenmeyen ama konuşma bağlamından anlaşılan mana\" in Turkish (Philosophy of Language & Logic)."
+          },
+          {
+            "pairId": "p_mm_g8_h_67_7",
+            "leftText": "ad hominem fallacy",
+            "rightText": "fikre değil fikri söyleyen kişiye saldırma hatası",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Philosophy of Language & Logic",
+            "explanation": "\"ad hominem fallacy\" translates to \"fikre değil fikri söyleyen kişiye saldırma hatası\" in Turkish (Philosophy of Language & Logic)."
+          },
+          {
+            "pairId": "p_mm_g8_h_67_8",
+            "leftText": "straw man argument",
+            "rightText": "rakibin fikrini çarpıtarak çürütmeye çalışma taktiği",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Philosophy of Language & Logic",
+            "explanation": "\"straw man argument\" translates to \"rakibin fikrini çarpıtarak çürütmeye çalışma taktiği\" in Turkish (Philosophy of Language & Logic)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_68",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Urban Hydrology & Stormwater",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_68_1",
+            "leftText": "permeable pavement",
+            "rightText": "yağmur suyunu toprağa geçiren gözenekli asfalt",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Urban Hydrology & Stormwater",
+            "explanation": "\"permeable pavement\" translates to \"yağmur suyunu toprağa geçiren gözenekli asfalt\" in Turkish (Urban Hydrology & Stormwater)."
+          },
+          {
+            "pairId": "p_mm_g8_h_68_2",
+            "leftText": "bioswale",
+            "rightText": "cadde yağmur suyunu süzen bitkili su hendeği",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Urban Hydrology & Stormwater",
+            "explanation": "\"bioswale\" translates to \"cadde yağmur suyunu süzen bitkili su hendeği\" in Turkish (Urban Hydrology & Stormwater)."
+          },
+          {
+            "pairId": "p_mm_g8_h_68_3",
+            "leftText": "retention basin",
+            "rightText": "sel taşkınını önleyen yapay su toplama göleti",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Urban Hydrology & Stormwater",
+            "explanation": "\"retention basin\" translates to \"sel taşkınını önleyen yapay su toplama göleti\" in Turkish (Urban Hydrology & Stormwater)."
+          },
+          {
+            "pairId": "p_mm_g8_h_68_4",
+            "leftText": "stormwater runoff",
+            "rightText": "beton zeminde emilmeden akan kirli yağmur suyu",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Urban Hydrology & Stormwater",
+            "explanation": "\"stormwater runoff\" translates to \"beton zeminde emilmeden akan kirli yağmur suyu\" in Turkish (Urban Hydrology & Stormwater)."
+          },
+          {
+            "pairId": "p_mm_g8_h_68_5",
+            "leftText": "water table recharge",
+            "rightText": "yeraltı su seviyesinin yağışla beslenmesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Urban Hydrology & Stormwater",
+            "explanation": "\"water table recharge\" translates to \"yeraltı su seviyesinin yağışla beslenmesi\" in Turkish (Urban Hydrology & Stormwater)."
+          },
+          {
+            "pairId": "p_mm_g8_h_68_6",
+            "leftText": "combined sewer overflow",
+            "rightText": "aşırı yağmurda kanalizasyonun nehre taşması sorunu",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Urban Hydrology & Stormwater",
+            "explanation": "\"combined sewer overflow\" translates to \"aşırı yağmurda kanalizasyonun nehre taşması sorunu\" in Turkish (Urban Hydrology & Stormwater)."
+          },
+          {
+            "pairId": "p_mm_g8_h_68_7",
+            "leftText": "rain garden",
+            "rightText": "çatı suyunu emerek temizleyen çiçekli bahçe",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Urban Hydrology & Stormwater",
+            "explanation": "\"rain garden\" translates to \"çatı suyunu emerek temizleyen çiçekli bahçe\" in Turkish (Urban Hydrology & Stormwater)."
+          },
+          {
+            "pairId": "p_mm_g8_h_68_8",
+            "leftText": "gray infrastructure",
+            "rightText": "beton boru ve kanallardan oluşan altyapı ağı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Urban Hydrology & Stormwater",
+            "explanation": "\"gray infrastructure\" translates to \"beton boru ve kanallardan oluşan altyapı ağı\" in Turkish (Urban Hydrology & Stormwater)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_69",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Medical Ethics & Bioethics",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_69_1",
+            "leftText": "informed consent",
+            "rightText": "hastanın tedaviyi bilerek özgürce onaylaması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Medical Ethics & Bioethics",
+            "explanation": "\"informed consent\" translates to \"hastanın tedaviyi bilerek özgürce onaylaması\" in Turkish (Medical Ethics & Bioethics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_69_2",
+            "leftText": "beneficence",
+            "rightText": "hekimin daima hastanın faydasına hareket etmesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Medical Ethics & Bioethics",
+            "explanation": "\"beneficence\" translates to \"hekimin daima hastanın faydasına hareket etmesi\" in Turkish (Medical Ethics & Bioethics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_69_3",
+            "leftText": "non-maleficence",
+            "rightText": "hastaya asla zarar vermeme temel ilkesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Medical Ethics & Bioethics",
+            "explanation": "\"non-maleficence\" translates to \"hastaya asla zarar vermeme temel ilkesi\" in Turkish (Medical Ethics & Bioethics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_69_4",
+            "leftText": "patient confidentiality",
+            "rightText": "tıbbi kayıtların üçüncü kişilere gizli tutulması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Medical Ethics & Bioethics",
+            "explanation": "\"patient confidentiality\" translates to \"tıbbi kayıtların üçüncü kişilere gizli tutulması\" in Turkish (Medical Ethics & Bioethics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_69_5",
+            "leftText": "triage protocol",
+            "rightText": "afette acil tedavi önceliğini belirleme kuralı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Medical Ethics & Bioethics",
+            "explanation": "\"triage protocol\" translates to \"afette acil tedavi önceliğini belirleme kuralı\" in Turkish (Medical Ethics & Bioethics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_69_6",
+            "leftText": "clinical trial phase",
+            "rightText": "yeni ilacın insanlar üstünde aşamalı test süreci",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Medical Ethics & Bioethics",
+            "explanation": "\"clinical trial phase\" translates to \"yeni ilacın insanlar üstünde aşamalı test süreci\" in Turkish (Medical Ethics & Bioethics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_69_7",
+            "leftText": "placebo control",
+            "rightText": "etken maddesi olmayan kontrol ilacı grubu",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Medical Ethics & Bioethics",
+            "explanation": "\"placebo control\" translates to \"etken maddesi olmayan kontrol ilacı grubu\" in Turkish (Medical Ethics & Bioethics)."
+          },
+          {
+            "pairId": "p_mm_g8_h_69_8",
+            "leftText": "equitable healthcare access",
+            "rightText": "sağlık hizmetlerine her yurttaşın eşit erişim hakkı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Medical Ethics & Bioethics",
+            "explanation": "\"equitable healthcare access\" translates to \"sağlık hizmetlerine her yurttaşın eşit erişim hakkı\" in Turkish (Medical Ethics & Bioethics)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_70",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Macroeconomic Policy & Growth",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_70_1",
+            "leftText": "gross domestic product",
+            "rightText": "ülkede bir yılda üretilen toplam mal ve hizmet değeri",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Macroeconomic Policy & Growth",
+            "explanation": "\"gross domestic product\" translates to \"ülkede bir yılda üretilen toplam mal ve hizmet değeri\" in Turkish (Macroeconomic Policy & Growth)."
+          },
+          {
+            "pairId": "p_mm_g8_h_70_2",
+            "leftText": "fiscal stimulus",
+            "rightText": "hükümetin harcamaları artırarak ekonomiyi canlandırması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Macroeconomic Policy & Growth",
+            "explanation": "\"fiscal stimulus\" translates to \"hükümetin harcamaları artırarak ekonomiyi canlandırması\" in Turkish (Macroeconomic Policy & Growth)."
+          },
+          {
+            "pairId": "p_mm_g8_h_70_3",
+            "leftText": "monetary tightening",
+            "rightText": "merkez bankasının faiz artırarak enflasyonu düşürmesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Macroeconomic Policy & Growth",
+            "explanation": "\"monetary tightening\" translates to \"merkez bankasının faiz artırarak enflasyonu düşürmesi\" in Turkish (Macroeconomic Policy & Growth)."
+          },
+          {
+            "pairId": "p_mm_g8_h_70_4",
+            "leftText": "consumer price index",
+            "rightText": "vatandaşın sepetindeki enflasyonu ölçen endeks",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Macroeconomic Policy & Growth",
+            "explanation": "\"consumer price index\" translates to \"vatandaşın sepetindeki enflasyonu ölçen endeks\" in Turkish (Macroeconomic Policy & Growth)."
+          },
+          {
+            "pairId": "p_mm_g8_h_70_5",
+            "leftText": "sovereign debt bond",
+            "rightText": "devletin hazine bonosuyla piyasadan borçlanması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Macroeconomic Policy & Growth",
+            "explanation": "\"sovereign debt bond\" translates to \"devletin hazine bonosuyla piyasadan borçlanması\" in Turkish (Macroeconomic Policy & Growth)."
+          },
+          {
+            "pairId": "p_mm_g8_h_70_6",
+            "leftText": "unemployment rate",
+            "rightText": "iş arayanların toplam işgücüne oranı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Macroeconomic Policy & Growth",
+            "explanation": "\"unemployment rate\" translates to \"iş arayanların toplam işgücüne oranı\" in Turkish (Macroeconomic Policy & Growth)."
+          },
+          {
+            "pairId": "p_mm_g8_h_70_7",
+            "leftText": "capital expenditure",
+            "rightText": "altyapı fabrika ve teknolojiye yapılan kalıcı yatırım",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Macroeconomic Policy & Growth",
+            "explanation": "\"capital expenditure\" translates to \"altyapı fabrika ve teknolojiye yapılan kalıcı yatırım\" in Turkish (Macroeconomic Policy & Growth)."
+          },
+          {
+            "pairId": "p_mm_g8_h_70_8",
+            "leftText": "trade balance surplus",
+            "rightText": "ihracatın ithalattan daha yüksek olması durumu",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Macroeconomic Policy & Growth",
+            "explanation": "\"trade balance surplus\" translates to \"ihracatın ithalattan daha yüksek olması durumu\" in Turkish (Macroeconomic Policy & Growth)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_71",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Advanced Renewable Power Grids",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_71_1",
+            "leftText": "smart electrical grid",
+            "rightText": "üretim ve tüketimi yapay zekayla dengeleyen şebeke",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Renewable Power Grids",
+            "explanation": "\"smart electrical grid\" translates to \"üretim ve tüketimi yapay zekayla dengeleyen şebeke\" in Turkish (Advanced Renewable Power Grids)."
+          },
+          {
+            "pairId": "p_mm_g8_h_71_2",
+            "leftText": "pumped storage hydropower",
+            "rightText": "ucuz saatte suyu tepeye pompalayıp jeneratör çalıştırma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Renewable Power Grids",
+            "explanation": "\"pumped storage hydropower\" translates to \"ucuz saatte suyu tepeye pompalayıp jeneratör çalıştırma\" in Turkish (Advanced Renewable Power Grids)."
+          },
+          {
+            "pairId": "p_mm_g8_h_71_3",
+            "leftText": "grid frequency regulation",
+            "rightText": "şebekeyi elli hertz sabit frekansta tutma işlemi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Renewable Power Grids",
+            "explanation": "\"grid frequency regulation\" translates to \"şebekeyi elli hertz sabit frekansta tutma işlemi\" in Turkish (Advanced Renewable Power Grids)."
+          },
+          {
+            "pairId": "p_mm_g8_h_71_4",
+            "leftText": "intermittent generation",
+            "rightText": "rüzgar ve güneşin hava durumuna göre kesintili olması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Renewable Power Grids",
+            "explanation": "\"intermittent generation\" translates to \"rüzgar ve güneşin hava durumuna göre kesintili olması\" in Turkish (Advanced Renewable Power Grids)."
+          },
+          {
+            "pairId": "p_mm_g8_h_71_5",
+            "leftText": "high voltage DC transmission",
+            "rightText": "binlerce kilometreden sıfıra yakın kayıpla elektrik taşıma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Renewable Power Grids",
+            "explanation": "\"high voltage DC transmission\" translates to \"binlerce kilometreden sıfıra yakın kayıpla elektrik taşıma\" in Turkish (Advanced Renewable Power Grids)."
+          },
+          {
+            "pairId": "p_mm_g8_h_71_6",
+            "leftText": "battery energy storage system",
+            "rightText": "dev konteyner tipi lityum şebeke bataryası",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Renewable Power Grids",
+            "explanation": "\"battery energy storage system\" translates to \"dev konteyner tipi lityum şebeke bataryası\" in Turkish (Advanced Renewable Power Grids)."
+          },
+          {
+            "pairId": "p_mm_g8_h_71_7",
+            "leftText": "peak shaving demand",
+            "rightText": "en yüksek tüketim anında yükü hafifletme taktiği",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Renewable Power Grids",
+            "explanation": "\"peak shaving demand\" translates to \"en yüksek tüketim anında yükü hafifletme taktiği\" in Turkish (Advanced Renewable Power Grids)."
+          },
+          {
+            "pairId": "p_mm_g8_h_71_8",
+            "leftText": "distributed generation",
+            "rightText": "her evin çatısında kendi elektriğini üretmesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Renewable Power Grids",
+            "explanation": "\"distributed generation\" translates to \"her evin çatısında kendi elektriğini üretmesi\" in Turkish (Advanced Renewable Power Grids)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_72",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Deep Subterranean Exploration",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_72_1",
+            "leftText": "karst cave topography",
+            "rightText": "suyun kireçtaşını eriterek oluşturduğu mağaralar",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Deep Subterranean Exploration",
+            "explanation": "\"karst cave topography\" translates to \"suyun kireçtaşını eriterek oluşturduğu mağaralar\" in Turkish (Deep Subterranean Exploration)."
+          },
+          {
+            "pairId": "p_mm_g8_h_72_2",
+            "leftText": "stalactite formation",
+            "rightText": "mağara tavanından sarkan kireç sarkıtları",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Deep Subterranean Exploration",
+            "explanation": "\"stalactite formation\" translates to \"mağara tavanından sarkan kireç sarkıtları\" in Turkish (Deep Subterranean Exploration)."
+          },
+          {
+            "pairId": "p_mm_g8_h_72_3",
+            "leftText": "stalagmite formation",
+            "rightText": "mağara tabanından yükselen kireç dikitleri",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Deep Subterranean Exploration",
+            "explanation": "\"stalagmite formation\" translates to \"mağara tabanından yükselen kireç dikitleri\" in Turkish (Deep Subterranean Exploration)."
+          },
+          {
+            "pairId": "p_mm_g8_h_72_4",
+            "leftText": "underground aquifer river",
+            "rightText": "yeraltında zifiri karanlıkta akan nehir",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Deep Subterranean Exploration",
+            "explanation": "\"underground aquifer river\" translates to \"yeraltında zifiri karanlıkta akan nehir\" in Turkish (Deep Subterranean Exploration)."
+          },
+          {
+            "pairId": "p_mm_g8_h_72_5",
+            "leftText": "spelunking squeeze",
+            "rightText": "mağarada iki kaya arasından sürünerek geçiş",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Deep Subterranean Exploration",
+            "explanation": "\"spelunking squeeze\" translates to \"mağarada iki kaya arasından sürünerek geçiş\" in Turkish (Deep Subterranean Exploration)."
+          },
+          {
+            "pairId": "p_mm_g8_h_72_6",
+            "leftText": "hypogean fauna",
+            "rightText": "gözleri körelmiş renksiz mağara canlıları",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Deep Subterranean Exploration",
+            "explanation": "\"hypogean fauna\" translates to \"gözleri körelmiş renksiz mağara canlıları\" in Turkish (Deep Subterranean Exploration)."
+          },
+          {
+            "pairId": "p_mm_g8_h_72_7",
+            "leftText": "cave surveying mapping",
+            "rightText": "lazer metreyle yeraltı galerilerinin haritasını çıkarma",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Deep Subterranean Exploration",
+            "explanation": "\"cave surveying mapping\" translates to \"lazer metreyle yeraltı galerilerinin haritasını çıkarma\" in Turkish (Deep Subterranean Exploration)."
+          },
+          {
+            "pairId": "p_mm_g8_h_72_8",
+            "leftText": "subterranean siphon",
+            "rightText": "mağara tavanına kadar su dolu batık geçit",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Deep Subterranean Exploration",
+            "explanation": "\"subterranean siphon\" translates to \"mağara tavanına kadar su dolu batık geçit\" in Turkish (Deep Subterranean Exploration)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_73",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Behavioral Economics & Nudges",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_73_1",
+            "leftText": "loss aversion bias",
+            "rightText": "kaybetme acısının kazanma sevincinden iki kat büyük olması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Behavioral Economics & Nudges",
+            "explanation": "\"loss aversion bias\" translates to \"kaybetme acısının kazanma sevincinden iki kat büyük olması\" in Turkish (Behavioral Economics & Nudges)."
+          },
+          {
+            "pairId": "p_mm_g8_h_73_2",
+            "leftText": "nudge theory",
+            "rightText": "insanları zorlamadan doğru davranışa yönlendirme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Behavioral Economics & Nudges",
+            "explanation": "\"nudge theory\" translates to \"insanları zorlamadan doğru davranışa yönlendirme\" in Turkish (Behavioral Economics & Nudges)."
+          },
+          {
+            "pairId": "p_mm_g8_h_73_3",
+            "leftText": "anchoring heuristic",
+            "rightText": "ilk duyulan fiyata zihnin takılıp kalması yanılgısı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Behavioral Economics & Nudges",
+            "explanation": "\"anchoring heuristic\" translates to \"ilk duyulan fiyata zihnin takılıp kalması yanılgısı\" in Turkish (Behavioral Economics & Nudges)."
+          },
+          {
+            "pairId": "p_mm_g8_h_73_4",
+            "leftText": "status quo bias",
+            "rightText": "mevcut düzeni değiştirmeye karşı duyulan direnç",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Behavioral Economics & Nudges",
+            "explanation": "\"status quo bias\" translates to \"mevcut düzeni değiştirmeye karşı duyulan direnç\" in Turkish (Behavioral Economics & Nudges)."
+          },
+          {
+            "pairId": "p_mm_g8_h_73_5",
+            "leftText": "hyperbolic discounting",
+            "rightText": "gelecekteki büyük ödülü şimdiki küçük zevke feda etme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Behavioral Economics & Nudges",
+            "explanation": "\"hyperbolic discounting\" translates to \"gelecekteki büyük ödülü şimdiki küçük zevke feda etme\" in Turkish (Behavioral Economics & Nudges)."
+          },
+          {
+            "pairId": "p_mm_g8_h_73_6",
+            "leftText": "sunk cost fallacy",
+            "rightText": "zarar eden bir işe çok para yatırıldığı için devam etme hatası",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Behavioral Economics & Nudges",
+            "explanation": "\"sunk cost fallacy\" translates to \"zarar eden bir işe çok para yatırıldığı için devam etme hatası\" in Turkish (Behavioral Economics & Nudges)."
+          },
+          {
+            "pairId": "p_mm_g8_h_73_7",
+            "leftText": "framing effect",
+            "rightText": "aynı bilginin sunuluş biçimine göre kararın değişmesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Behavioral Economics & Nudges",
+            "explanation": "\"framing effect\" translates to \"aynı bilginin sunuluş biçimine göre kararın değişmesi\" in Turkish (Behavioral Economics & Nudges)."
+          },
+          {
+            "pairId": "p_mm_g8_h_73_8",
+            "leftText": "bounded rationality",
+            "rightText": "insanın sınırlı bilgi ve zamanla karar vermesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Behavioral Economics & Nudges",
+            "explanation": "\"bounded rationality\" translates to \"insanın sınırlı bilgi ve zamanla karar vermesi\" in Turkish (Behavioral Economics & Nudges)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_74",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Structural Earthquake Engineering",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_74_1",
+            "leftText": "tuned mass damper",
+            "rightText": "gökdelenin tepesinde salınımı durduran dev sarkaç",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Structural Earthquake Engineering",
+            "explanation": "\"tuned mass damper\" translates to \"gökdelenin tepesinde salınımı durduran dev sarkaç\" in Turkish (Structural Earthquake Engineering)."
+          },
+          {
+            "pairId": "p_mm_g8_h_74_2",
+            "leftText": "elastomeric base bearing",
+            "rightText": "bina temeline konulan çelik kauçuk sismik yastık",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Structural Earthquake Engineering",
+            "explanation": "\"elastomeric base bearing\" translates to \"bina temeline konulan çelik kauçuk sismik yastık\" in Turkish (Structural Earthquake Engineering)."
+          },
+          {
+            "pairId": "p_mm_g8_h_74_3",
+            "leftText": "ductility in concrete",
+            "rightText": "betonarme kolonun kırılmadan esneme kabiliyeti",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Structural Earthquake Engineering",
+            "explanation": "\"ductility in concrete\" translates to \"betonarme kolonun kırılmadan esneme kabiliyeti\" in Turkish (Structural Earthquake Engineering)."
+          },
+          {
+            "pairId": "p_mm_g8_h_74_4",
+            "leftText": "shear wall placement",
+            "rightText": "deprem kuvvetini karşılayan perde beton duvar",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Structural Earthquake Engineering",
+            "explanation": "\"shear wall placement\" translates to \"deprem kuvvetini karşılayan perde beton duvar\" in Turkish (Structural Earthquake Engineering)."
+          },
+          {
+            "pairId": "p_mm_g8_h_74_5",
+            "leftText": "resonant frequency",
+            "rightText": "binanın deprem dalgasıyla aynı frekansta rezonansa girmesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Structural Earthquake Engineering",
+            "explanation": "\"resonant frequency\" translates to \"binanın deprem dalgasıyla aynı frekansta rezonansa girmesi\" in Turkish (Structural Earthquake Engineering)."
+          },
+          {
+            "pairId": "p_mm_g8_h_74_6",
+            "leftText": "soil-structure interaction",
+            "rightText": "zemin yapısı ile bina temeli arasındaki dinamik etkileşim",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Structural Earthquake Engineering",
+            "explanation": "\"soil-structure interaction\" translates to \"zemin yapısı ile bina temeli arasındaki dinamik etkileşim\" in Turkish (Structural Earthquake Engineering)."
+          },
+          {
+            "pairId": "p_mm_g8_h_74_7",
+            "leftText": "inter-story drift",
+            "rightText": "katlar arasındaki yanal deprem yer değiştirme sınırı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Structural Earthquake Engineering",
+            "explanation": "\"inter-story drift\" translates to \"katlar arasındaki yanal deprem yer değiştirme sınırı\" in Turkish (Structural Earthquake Engineering)."
+          },
+          {
+            "pairId": "p_mm_g8_h_74_8",
+            "leftText": "buckling restrained brace",
+            "rightText": "çelik çapraz kolların basma altında burkulmasını önleme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Structural Earthquake Engineering",
+            "explanation": "\"buckling restrained brace\" translates to \"çelik çapraz kolların basma altında burkulmasını önleme\" in Turkish (Structural Earthquake Engineering)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_75",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Computational Cryptography & Blockchain",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_75_1",
+            "leftText": "merkle tree root",
+            "rightText": "işlemlerin kriptografik özet ağacıyla doğrulanması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Computational Cryptography & Blockchain",
+            "explanation": "\"merkle tree root\" translates to \"işlemlerin kriptografik özet ağacıyla doğrulanması\" in Turkish (Computational Cryptography & Blockchain)."
+          },
+          {
+            "pairId": "p_mm_g8_h_75_2",
+            "leftText": "elliptic curve cryptography",
+            "rightText": "daha kısa anahtarla güçlü bankacılık şifrelemesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Computational Cryptography & Blockchain",
+            "explanation": "\"elliptic curve cryptography\" translates to \"daha kısa anahtarla güçlü bankacılık şifrelemesi\" in Turkish (Computational Cryptography & Blockchain)."
+          },
+          {
+            "pairId": "p_mm_g8_h_75_3",
+            "leftText": "proof of work consensus",
+            "rightText": "matematiksel bulmacayı çözerek blok üretme uzlaşısı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Computational Cryptography & Blockchain",
+            "explanation": "\"proof of work consensus\" translates to \"matematiksel bulmacayı çözerek blok üretme uzlaşısı\" in Turkish (Computational Cryptography & Blockchain)."
+          },
+          {
+            "pairId": "p_mm_g8_h_75_4",
+            "leftText": "proof of stake consensus",
+            "rightText": "jeton kilitleyerek doğrulayıcı olma çevreci uzlaşısı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Computational Cryptography & Blockchain",
+            "explanation": "\"proof of stake consensus\" translates to \"jeton kilitleyerek doğrulayıcı olma çevreci uzlaşısı\" in Turkish (Computational Cryptography & Blockchain)."
+          },
+          {
+            "pairId": "p_mm_g8_h_75_5",
+            "leftText": "smart contract execution",
+            "rightText": "koşullar sağlandığında kendi kendine çalışan kod",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Computational Cryptography & Blockchain",
+            "explanation": "\"smart contract execution\" translates to \"koşullar sağlandığında kendi kendine çalışan kod\" in Turkish (Computational Cryptography & Blockchain)."
+          },
+          {
+            "pairId": "p_mm_g8_h_75_6",
+            "leftText": "byzantine fault tolerance",
+            "rightText": "bazı düğümler çökse bile ağın doğru çalışmaya devam etmesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Computational Cryptography & Blockchain",
+            "explanation": "\"byzantine fault tolerance\" translates to \"bazı düğümler çökse bile ağın doğru çalışmaya devam etmesi\" in Turkish (Computational Cryptography & Blockchain)."
+          },
+          {
+            "pairId": "p_mm_g8_h_75_7",
+            "leftText": "cold storage hardware wallet",
+            "rightText": "kripto özel anahtarları internetten kopuk saklama",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Computational Cryptography & Blockchain",
+            "explanation": "\"cold storage hardware wallet\" translates to \"kripto özel anahtarları internetten kopuk saklama\" in Turkish (Computational Cryptography & Blockchain)."
+          },
+          {
+            "pairId": "p_mm_g8_h_75_8",
+            "leftText": "public ledger transparency",
+            "rightText": "tüm transferlerin herkesçe incelenebilir açık defteri",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Computational Cryptography & Blockchain",
+            "explanation": "\"public ledger transparency\" translates to \"tüm transferlerin herkesçe incelenebilir açık defteri\" in Turkish (Computational Cryptography & Blockchain)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_76",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Historical Linguistics & Etymology",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_76_1",
+            "leftText": "proto-Indo-European root",
+            "rightText": "binlerce dilin türediği tarih öncesi ortak kök",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Historical Linguistics & Etymology",
+            "explanation": "\"proto-Indo-European root\" translates to \"binlerce dilin türediği tarih öncesi ortak kök\" in Turkish (Historical Linguistics & Etymology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_76_2",
+            "leftText": "cognate words",
+            "rightText": "aynı ortak kökten gelen akraba kelimeler",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Historical Linguistics & Etymology",
+            "explanation": "\"cognate words\" translates to \"aynı ortak kökten gelen akraba kelimeler\" in Turkish (Historical Linguistics & Etymology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_76_3",
+            "leftText": "semantic drift",
+            "rightText": "kelimenin yüzyıllar içinde anlamının değişmesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Historical Linguistics & Etymology",
+            "explanation": "\"semantic drift\" translates to \"kelimenin yüzyıllar içinde anlamının değişmesi\" in Turkish (Historical Linguistics & Etymology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_76_4",
+            "leftText": "loanword borrowing",
+            "rightText": "başka bir dilden kültürel etkileşimle geçen kelime",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Historical Linguistics & Etymology",
+            "explanation": "\"loanword borrowing\" translates to \"başka bir dilden kültürel etkileşimle geçen kelime\" in Turkish (Historical Linguistics & Etymology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_76_5",
+            "leftText": "phonetic sound shift",
+            "rightText": "harflerin yüzyıllar içinde dilde ses değiştirmesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Historical Linguistics & Etymology",
+            "explanation": "\"phonetic sound shift\" translates to \"harflerin yüzyıllar içinde dilde ses değiştirmesi\" in Turkish (Historical Linguistics & Etymology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_76_6",
+            "leftText": "etymological origin",
+            "rightText": "kelimenin tarihteki ilk ortaya çıkış kökeni",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Historical Linguistics & Etymology",
+            "explanation": "\"etymological origin\" translates to \"kelimenin tarihteki ilk ortaya çıkış kökeni\" in Turkish (Historical Linguistics & Etymology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_76_7",
+            "leftText": "dead language extinction",
+            "rightText": "artık ana dili olarak konuşulmayan antik lisan",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Historical Linguistics & Etymology",
+            "explanation": "\"dead language extinction\" translates to \"artık ana dili olarak konuşulmayan antik lisan\" in Turkish (Historical Linguistics & Etymology)."
+          },
+          {
+            "pairId": "p_mm_g8_h_76_8",
+            "leftText": "lingua franca",
+            "rightText": "farklı dilleri konuşanların anlaştığı ortak küresel dil",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Historical Linguistics & Etymology",
+            "explanation": "\"lingua franca\" translates to \"farklı dilleri konuşanların anlaştığı ortak küresel dil\" in Turkish (Historical Linguistics & Etymology)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_77",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Astrophysical Cosmology & Inflation",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_77_1",
+            "leftText": "cosmic microwave background",
+            "rightText": "büyük patlamadan kalan evrenin ilk ışık yankısı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Astrophysical Cosmology & Inflation",
+            "explanation": "\"cosmic microwave background\" translates to \"büyük patlamadan kalan evrenin ilk ışık yankısı\" in Turkish (Astrophysical Cosmology & Inflation)."
+          },
+          {
+            "pairId": "p_mm_g8_h_77_2",
+            "leftText": "dark energy expansion",
+            "rightText": "evrenin genişlemesini giderek hızlandıran gizemli güç",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Astrophysical Cosmology & Inflation",
+            "explanation": "\"dark energy expansion\" translates to \"evrenin genişlemesini giderek hızlandıran gizemli güç\" in Turkish (Astrophysical Cosmology & Inflation)."
+          },
+          {
+            "pairId": "p_mm_g8_h_77_3",
+            "leftText": "dark matter halo",
+            "rightText": "galaksileri bir arada tutan görünmez yerçekim kütlesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Astrophysical Cosmology & Inflation",
+            "explanation": "\"dark matter halo\" translates to \"galaksileri bir arada tutan görünmez yerçekim kütlesi\" in Turkish (Astrophysical Cosmology & Inflation)."
+          },
+          {
+            "pairId": "p_mm_g8_h_77_4",
+            "leftText": "baryonic matter",
+            "rightText": "atomlardan oluşan görebildiğimiz tüm evren maddesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Astrophysical Cosmology & Inflation",
+            "explanation": "\"baryonic matter\" translates to \"atomlardan oluşan görebildiğimiz tüm evren maddesi\" in Turkish (Astrophysical Cosmology & Inflation)."
+          },
+          {
+            "pairId": "p_mm_g8_h_77_5",
+            "leftText": "cosmic inflation era",
+            "rightText": "büyük patlamanın ilk anındaki ışıktan hızlı genişleme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Astrophysical Cosmology & Inflation",
+            "explanation": "\"cosmic inflation era\" translates to \"büyük patlamanın ilk anındaki ışıktan hızlı genişleme\" in Turkish (Astrophysical Cosmology & Inflation)."
+          },
+          {
+            "pairId": "p_mm_g8_h_77_6",
+            "leftText": "Hubble constant",
+            "rightText": "evrenin uzaklaşma hızını ölçen kozmik katsayı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Astrophysical Cosmology & Inflation",
+            "explanation": "\"Hubble constant\" translates to \"evrenin uzaklaşma hızını ölçen kozmik katsayı\" in Turkish (Astrophysical Cosmology & Inflation)."
+          },
+          {
+            "pairId": "p_mm_g8_h_77_7",
+            "leftText": "gravitational lensing",
+            "rightText": "büyük kütlelerin uzay zamanı büküp ışığı eğmesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Astrophysical Cosmology & Inflation",
+            "explanation": "\"gravitational lensing\" translates to \"büyük kütlelerin uzay zamanı büküp ışığı eğmesi\" in Turkish (Astrophysical Cosmology & Inflation)."
+          },
+          {
+            "pairId": "p_mm_g8_h_77_8",
+            "leftText": "cosmic primordial nucleosynthesis",
+            "rightText": "evrenin ilk üç dakikasında hidrojen ve helyum oluşumu",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Astrophysical Cosmology & Inflation",
+            "explanation": "\"cosmic primordial nucleosynthesis\" translates to \"evrenin ilk üç dakikasında hidrojen ve helyum oluşumu\" in Turkish (Astrophysical Cosmology & Inflation)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_78",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Advanced Immunology & Vaccines",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_78_1",
+            "leftText": "messenger RNA platform",
+            "rightText": "hücreye virüs proteini yaptırıp bağışıklık öğreten aşı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Immunology & Vaccines",
+            "explanation": "\"messenger RNA platform\" translates to \"hücreye virüs proteini yaptırıp bağışıklık öğreten aşı\" in Turkish (Advanced Immunology & Vaccines)."
+          },
+          {
+            "pairId": "p_mm_g8_h_78_2",
+            "leftText": "adjuvant component",
+            "rightText": "aşının bağışıklık yanıtını güçlendiren yardımcı madde",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Immunology & Vaccines",
+            "explanation": "\"adjuvant component\" translates to \"aşının bağışıklık yanıtını güçlendiren yardımcı madde\" in Turkish (Advanced Immunology & Vaccines)."
+          },
+          {
+            "pairId": "p_mm_g8_h_78_3",
+            "leftText": "cytotoxic T-lymphocyte",
+            "rightText": "virüs bulaşmış hücreleri yok eden savaşçı hücre",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Immunology & Vaccines",
+            "explanation": "\"cytotoxic T-lymphocyte\" translates to \"virüs bulaşmış hücreleri yok eden savaşçı hücre\" in Turkish (Advanced Immunology & Vaccines)."
+          },
+          {
+            "pairId": "p_mm_g8_h_78_4",
+            "leftText": "memory B-cell longevity",
+            "rightText": "yıllar sonra bile virüsü hatırlayıp antikor üreten hücre",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Immunology & Vaccines",
+            "explanation": "\"memory B-cell longevity\" translates to \"yıllar sonra bile virüsü hatırlayıp antikor üreten hücre\" in Turkish (Advanced Immunology & Vaccines)."
+          },
+          {
+            "pairId": "p_mm_g8_h_78_5",
+            "leftText": "antigen presentation",
+            "rightText": "yabancı virüs parçasını bağışıklık sistemine gösterme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Immunology & Vaccines",
+            "explanation": "\"antigen presentation\" translates to \"yabancı virüs parçasını bağışıklık sistemine gösterme\" in Turkish (Advanced Immunology & Vaccines)."
+          },
+          {
+            "pairId": "p_mm_g8_h_78_6",
+            "leftText": "herd immunity threshold",
+            "rightText": "nüfusun çoğunun aşılanmasıyla salgının sönmesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Immunology & Vaccines",
+            "explanation": "\"herd immunity threshold\" translates to \"nüfusun çoğunun aşılanmasıyla salgının sönmesi\" in Turkish (Advanced Immunology & Vaccines)."
+          },
+          {
+            "pairId": "p_mm_g8_h_78_7",
+            "leftText": "autoimmune reactivity",
+            "rightText": "bağışıklık sisteminin kendi vücut dokusuna saldırması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Immunology & Vaccines",
+            "explanation": "\"autoimmune reactivity\" translates to \"bağışıklık sisteminin kendi vücut dokusuna saldırması\" in Turkish (Advanced Immunology & Vaccines)."
+          },
+          {
+            "pairId": "p_mm_g8_h_78_8",
+            "leftText": "passive immunoglobulin transfer",
+            "rightText": "hastaya doğrudan hazır koruyucu antikor verme tedavisi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Advanced Immunology & Vaccines",
+            "explanation": "\"passive immunoglobulin transfer\" translates to \"hastaya doğrudan hazır koruyucu antikor verme tedavisi\" in Turkish (Advanced Immunology & Vaccines)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_79",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Environmental Toxicology & Biosensors",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_79_1",
+            "leftText": "endocrine disruptor",
+            "rightText": "canlıların hormon dengesini bozan sanayi kimyasalı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Environmental Toxicology & Biosensors",
+            "explanation": "\"endocrine disruptor\" translates to \"canlıların hormon dengesini bozan sanayi kimyasalı\" in Turkish (Environmental Toxicology & Biosensors)."
+          },
+          {
+            "pairId": "p_mm_g8_h_79_2",
+            "leftText": "heavy metal toxicity",
+            "rightText": "kurşun ve cıvanın sinir sistemini zehirlemesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Environmental Toxicology & Biosensors",
+            "explanation": "\"heavy metal toxicity\" translates to \"kurşun ve cıvanın sinir sistemini zehirlemesi\" in Turkish (Environmental Toxicology & Biosensors)."
+          },
+          {
+            "pairId": "p_mm_g8_h_79_3",
+            "leftText": "microplastic filtration",
+            "rightText": "deniz suyundaki mikroskobik plastikleri süzme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Environmental Toxicology & Biosensors",
+            "explanation": "\"microplastic filtration\" translates to \"deniz suyundaki mikroskobik plastikleri süzme\" in Turkish (Environmental Toxicology & Biosensors)."
+          },
+          {
+            "pairId": "p_mm_g8_h_79_4",
+            "leftText": "biosensor probe",
+            "rightText": "bakteri veya enzim kullanarak kirlilik ölçen cihaz",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Environmental Toxicology & Biosensors",
+            "explanation": "\"biosensor probe\" translates to \"bakteri veya enzim kullanarak kirlilik ölçen cihaz\" in Turkish (Environmental Toxicology & Biosensors)."
+          },
+          {
+            "pairId": "p_mm_g8_h_79_5",
+            "leftText": "bioassay testing",
+            "rightText": "canlı organizmalar üstünde toksik etkiyi test etme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Environmental Toxicology & Biosensors",
+            "explanation": "\"bioassay testing\" translates to \"canlı organizmalar üstünde toksik etkiyi test etme\" in Turkish (Environmental Toxicology & Biosensors)."
+          },
+          {
+            "pairId": "p_mm_g8_h_79_6",
+            "leftText": "persistent organic pollutant",
+            "rightText": "doğada onlarca yıl çözünmeden kalan zehirli bileşik",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Environmental Toxicology & Biosensors",
+            "explanation": "\"persistent organic pollutant\" translates to \"doğada onlarca yıl çözünmeden kalan zehirli bileşik\" in Turkish (Environmental Toxicology & Biosensors)."
+          },
+          {
+            "pairId": "p_mm_g8_h_79_7",
+            "leftText": "leachate containment",
+            "rightText": "çöp depolama alanından sızan zehirli suyu hapsetme",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Environmental Toxicology & Biosensors",
+            "explanation": "\"leachate containment\" translates to \"çöp depolama alanından sızan zehirli suyu hapsetme\" in Turkish (Environmental Toxicology & Biosensors)."
+          },
+          {
+            "pairId": "p_mm_g8_h_79_8",
+            "leftText": "phytoremediation plants",
+            "rightText": "topraktaki zehri kökleriyle emip arıtan ayçiçeği",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Environmental Toxicology & Biosensors",
+            "explanation": "\"phytoremediation plants\" translates to \"topraktaki zehri kökleriyle emip arıtan ayçiçeği\" in Turkish (Environmental Toxicology & Biosensors)."
+          }
+        ]
+      },
+      {
+        "id": "mm_g8_h_80",
+        "grade": "grade-8",
+        "difficulty": "hard",
+        "mode": "word_meaning",
+        "topic": "Universal Human Rights & Jurisprudence",
+        "pairs": [
+          {
+            "pairId": "p_mm_g8_h_80_1",
+            "leftText": "rule of law principle",
+            "rightText": "kanun önünde herkesin mutlak eşitliği ilkesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Universal Human Rights & Jurisprudence",
+            "explanation": "\"rule of law principle\" translates to \"kanun önünde herkesin mutlak eşitliği ilkesi\" in Turkish (Universal Human Rights & Jurisprudence)."
+          },
+          {
+            "pairId": "p_mm_g8_h_80_2",
+            "leftText": "habeas corpus safeguard",
+            "rightText": "yargıç kararı olmadan kimsenin keyfi tutuklanamaması",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Universal Human Rights & Jurisprudence",
+            "explanation": "\"habeas corpus safeguard\" translates to \"yargıç kararı olmadan kimsenin keyfi tutuklanamaması\" in Turkish (Universal Human Rights & Jurisprudence)."
+          },
+          {
+            "pairId": "p_mm_g8_h_80_3",
+            "leftText": "presumption of innocence",
+            "rightText": "suçu mahkemede kanıtlanana kadar herkes masumdur ilkesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Universal Human Rights & Jurisprudence",
+            "explanation": "\"presumption of innocence\" translates to \"suçu mahkemede kanıtlanana kadar herkes masumdur ilkesi\" in Turkish (Universal Human Rights & Jurisprudence)."
+          },
+          {
+            "pairId": "p_mm_g8_h_80_4",
+            "leftText": "freedom of expression",
+            "rightText": "fikir ve kanaatlerini barışçıl şekilde açıklama hakkı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Universal Human Rights & Jurisprudence",
+            "explanation": "\"freedom of expression\" translates to \"fikir ve kanaatlerini barışçıl şekilde açıklama hakkı\" in Turkish (Universal Human Rights & Jurisprudence)."
+          },
+          {
+            "pairId": "p_mm_g8_h_80_5",
+            "leftText": "due process guarantee",
+            "rightText": "adil ve bağımsız mahkemede yargılanma teminatı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Universal Human Rights & Jurisprudence",
+            "explanation": "\"due process guarantee\" translates to \"adil ve bağımsız mahkemede yargılanma teminatı\" in Turkish (Universal Human Rights & Jurisprudence)."
+          },
+          {
+            "pairId": "p_mm_g8_h_80_6",
+            "leftText": "inviolability of human dignity",
+            "rightText": "insan onur ve haysiyetinin hiçbir koşulda çiğnenememesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Universal Human Rights & Jurisprudence",
+            "explanation": "\"inviolability of human dignity\" translates to \"insan onur ve haysiyetinin hiçbir koşulda çiğnenememesi\" in Turkish (Universal Human Rights & Jurisprudence)."
+          },
+          {
+            "pairId": "p_mm_g8_h_80_7",
+            "leftText": "prohibition of torture",
+            "rightText": "işkence ve insanlık dışı muamelenin mutlak yasağı",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Universal Human Rights & Jurisprudence",
+            "explanation": "\"prohibition of torture\" translates to \"işkence ve insanlık dışı muamelenin mutlak yasağı\" in Turkish (Universal Human Rights & Jurisprudence)."
+          },
+          {
+            "pairId": "p_mm_g8_h_80_8",
+            "leftText": "universal declaration of rights",
+            "rightText": "tüm dünya uluslarının kabul ettiği temel haklar bildirgesi",
+            "mode": "word_meaning",
+            "grade": "grade-8",
+            "difficulty": "hard",
+            "topic": "Universal Human Rights & Jurisprudence",
+            "explanation": "\"universal declaration of rights\" translates to \"tüm dünya uluslarının kabul ettiği temel haklar bildirgesi\" in Turkish (Universal Human Rights & Jurisprudence)."
+          }
+        ]
       }
     ]
   }

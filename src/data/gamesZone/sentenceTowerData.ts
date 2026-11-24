@@ -1,6 +1,11 @@
 /**
- * UNIT REVIEW ARCADE — SENTENCETOWERDATA DATA BANK
- * Refined for Turkish EFL Middle-School Pedagogy & School Safety Standards.
+ * UNIT REVIEW ARCADE — SENTENCE TOWER DATA BANK (PHASE 7A & MIXED CURRICULUM EXPANSION)
+ * 
+ * 480 validated scrambled sentence puzzles (80 items per tier) across:
+ * - Grade 7: Easy (80), Medium (80), Hard (80)
+ * - Grade 8: Easy (80), Medium (80), Hard (80)
+ * 
+ * Mixed Curriculum: Turkish MEB English Units 1-10 + School English Curriculum.
  */
 
 import type { SentenceTowerBank } from '../../types/gamesZone';
@@ -579,6 +584,649 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
         ],
         "themeOrTopic": "Daily Routine",
         "explanation": "Subject + phrasal verb 'wakes up' + time phrase."
+      },
+      {
+        "id": "st_g7_e_41",
+        "scrambledWords": [
+          "and",
+          "generous",
+          "very",
+          "My",
+          "sister",
+          "cheerful",
+          "is"
+        ],
+        "correctSentence": "My sister is very cheerful and generous.",
+        "alternativeSentences": [
+          "My sister is very generous and cheerful."
+        ],
+        "themeOrTopic": "Personality Traits",
+        "explanation": "Adjectives describing personality connected by 'and'."
+      },
+      {
+        "id": "st_g7_e_42",
+        "scrambledWords": [
+          "run",
+          "Cheetahs",
+          "faster",
+          "lions",
+          "than",
+          "wild"
+        ],
+        "correctSentence": "Cheetahs run faster than wild lions.",
+        "themeOrTopic": "Comparative Adjectives",
+        "explanation": "Cheetahs (Subject) + run (Verb) + faster than (Comparative)."
+      },
+      {
+        "id": "st_g7_e_43",
+        "scrambledWords": [
+          "rides",
+          "school",
+          "red",
+          "his",
+          "He",
+          "bicycle",
+          "to"
+        ],
+        "correctSentence": "He rides his red bicycle to school.",
+        "themeOrTopic": "Present Simple Habits",
+        "explanation": "Subject + verb (-s) + direct object + prepositional destination."
+      },
+      {
+        "id": "st_g7_e_44",
+        "scrambledWords": [
+          "watching",
+          "now",
+          "documentary",
+          "wildlife",
+          "They",
+          "a",
+          "are"
+        ],
+        "correctSentence": "They are watching a wildlife documentary now.",
+        "alternativeSentences": [
+          "Now they are watching a wildlife documentary."
+        ],
+        "themeOrTopic": "Present Continuous",
+        "explanation": "Subject + are watching + object + time adverbial."
+      },
+      {
+        "id": "st_g7_e_45",
+        "scrambledWords": [
+          "yesterday",
+          "municipal",
+          "visited",
+          "We",
+          "the",
+          "museum",
+          "ancient"
+        ],
+        "correctSentence": "We visited the ancient municipal museum yesterday.",
+        "alternativeSentences": [
+          "Yesterday we visited the ancient municipal museum."
+        ],
+        "themeOrTopic": "Past Simple",
+        "explanation": "Time adverbial can sit at the beginning or end."
+      },
+      {
+        "id": "st_g7_e_46",
+        "scrambledWords": [
+          "much",
+          "heavier",
+          "a",
+          "zebra",
+          "than",
+          "is",
+          "elephant",
+          "An"
+        ],
+        "correctSentence": "An elephant is much heavier than a zebra.",
+        "themeOrTopic": "Comparative Adjectives",
+        "explanation": "Subject + is + intensifier 'much' + heavier than."
+      },
+      {
+        "id": "st_g7_e_47",
+        "scrambledWords": [
+          "space",
+          "the",
+          "is",
+          "planet",
+          "Jupiter",
+          "in",
+          "largest"
+        ],
+        "correctSentence": "Jupiter is the largest planet in space.",
+        "themeOrTopic": "Superlative Adjectives",
+        "explanation": "Subject + is + the largest + noun + location."
+      },
+      {
+        "id": "st_g7_e_48",
+        "scrambledWords": [
+          "monkeys",
+          "feed",
+          "You",
+          "not",
+          "must",
+          "wild",
+          "the"
+        ],
+        "correctSentence": "You must not feed the wild monkeys.",
+        "themeOrTopic": "Modals of Prohibition",
+        "explanation": "Must not + bare base verb."
+      },
+      {
+        "id": "st_g7_e_49",
+        "scrambledWords": [
+          "is",
+          "my",
+          "a",
+          "There",
+          "library",
+          "new",
+          "near",
+          "school"
+        ],
+        "correctSentence": "There is a new library near my school.",
+        "alternativeSentences": [
+          "Near my school there is a new library."
+        ],
+        "themeOrTopic": "There is / There are",
+        "explanation": "Existential 'there is' introduces singular noun."
+      },
+      {
+        "id": "st_g7_e_50",
+        "scrambledWords": [
+          "you",
+          "many",
+          "did",
+          "read",
+          "books",
+          "last",
+          "How",
+          "month"
+        ],
+        "correctSentence": "How many books did you read last month?",
+        "themeOrTopic": "Past Simple Questions",
+        "explanation": "Question word + auxiliary did + subject + base verb."
+      },
+      {
+        "id": "st_g7_e_51",
+        "scrambledWords": [
+          "films",
+          "like",
+          "does",
+          "horror",
+          "She",
+          "not",
+          "scary"
+        ],
+        "correctSentence": "She does not like scary horror films.",
+        "themeOrTopic": "Present Simple Negative",
+        "explanation": "Subject + does not + bare verb + object."
+      },
+      {
+        "id": "st_g7_e_52",
+        "scrambledWords": [
+          "seven",
+          "o'clock",
+          "at",
+          "always",
+          "We",
+          "eat",
+          "dinner"
+        ],
+        "correctSentence": "We always eat dinner at seven o'clock.",
+        "alternativeSentences": [
+          "At seven o'clock we always eat dinner."
+        ],
+        "themeOrTopic": "Adverbs of Frequency",
+        "explanation": "Frequency adverb goes between subject and main verb."
+      },
+      {
+        "id": "st_g7_e_53",
+        "scrambledWords": [
+          "your",
+          "online",
+          "share",
+          "Do",
+          "passwords",
+          "private",
+          "not"
+        ],
+        "correctSentence": "Do not share your private passwords online.",
+        "themeOrTopic": "Imperatives for Online Safety",
+        "explanation": "Negative imperative uses 'Do not' + base verb."
+      },
+      {
+        "id": "st_g7_e_54",
+        "scrambledWords": [
+          "the",
+          "biggest",
+          "blue",
+          "whale",
+          "is",
+          "sea",
+          "A",
+          "animal"
+        ],
+        "correctSentence": "A blue whale is the biggest sea animal.",
+        "themeOrTopic": "Superlative Adjectives",
+        "explanation": "Definite article + superlative adjective + noun."
+      },
+      {
+        "id": "st_g7_e_55",
+        "scrambledWords": [
+          "was",
+          "tired",
+          "because",
+          "bed",
+          "went",
+          "to",
+          "he",
+          "He"
+        ],
+        "correctSentence": "He went to bed because he was tired.",
+        "themeOrTopic": "Conjunction of Reason",
+        "explanation": "Main clause + 'because' + reason clause."
+      },
+      {
+        "id": "st_g7_e_56",
+        "scrambledWords": [
+          "you",
+          "last",
+          "Where",
+          "century",
+          "were",
+          "born"
+        ],
+        "correctSentence": "Where were you born last century?",
+        "themeOrTopic": "Past To Be Questions",
+        "explanation": "Where + were + subject + participle."
+      },
+      {
+        "id": "st_g7_e_57",
+        "scrambledWords": [
+          "hall",
+          "in",
+          "Listen",
+          "singing",
+          "the",
+          "is",
+          "someone"
+        ],
+        "correctSentence": "Listen someone is singing in the hall.",
+        "themeOrTopic": "Present Continuous Alerts",
+        "explanation": "'Listen' alerts listener to ongoing action."
+      },
+      {
+        "id": "st_g7_e_58",
+        "scrambledWords": [
+          "water",
+          "do",
+          "How",
+          "daily",
+          "you",
+          "drink",
+          "much"
+        ],
+        "correctSentence": "How much water do you drink daily?",
+        "themeOrTopic": "Quantifiers (Uncountable)",
+        "explanation": "'How much' quantifies uncountable nouns."
+      },
+      {
+        "id": "st_g7_e_59",
+        "scrambledWords": [
+          "There",
+          "no",
+          "in",
+          "green",
+          "this",
+          "wolves",
+          "are",
+          "forest"
+        ],
+        "correctSentence": "There are no wolves in this green forest.",
+        "alternativeSentences": [
+          "In this green forest there are no wolves."
+        ],
+        "themeOrTopic": "Negative Quantifiers",
+        "explanation": "Negative existential statement."
+      },
+      {
+        "id": "st_g7_e_60",
+        "scrambledWords": [
+          "Can",
+          "than",
+          "English",
+          "better",
+          "you",
+          "cousin",
+          "your",
+          "speak"
+        ],
+        "correctSentence": "Can you speak English better than your cousin?",
+        "themeOrTopic": "Irregular Comparative Questions",
+        "explanation": "Modal can + subject + speak + adverbial comparative."
+      },
+      {
+        "id": "st_g7_e_61",
+        "scrambledWords": [
+          "morning",
+          "does",
+          "train",
+          "depart",
+          "the",
+          "time",
+          "What"
+        ],
+        "correctSentence": "What time does the morning train depart?",
+        "themeOrTopic": "Present Simple Schedules",
+        "explanation": "Question phrase + does + singular subject + base verb."
+      },
+      {
+        "id": "st_g7_e_62",
+        "scrambledWords": [
+          "wear",
+          "You",
+          "today",
+          "a",
+          "warm",
+          "coat",
+          "should"
+        ],
+        "correctSentence": "You should wear a warm coat today.",
+        "alternativeSentences": [
+          "Today you should wear a warm coat."
+        ],
+        "themeOrTopic": "Giving Advice (Should)",
+        "explanation": "Subject + should + bare verb + object."
+      },
+      {
+        "id": "st_g7_e_63",
+        "scrambledWords": [
+          "bakery",
+          "chemist",
+          "The",
+          "opposite",
+          "is",
+          "municipal",
+          "the"
+        ],
+        "correctSentence": "The chemist is opposite the municipal bakery.",
+        "themeOrTopic": "Prepositions of Place",
+        "explanation": "Subject + is + opposite + landmark."
+      },
+      {
+        "id": "st_g7_e_64",
+        "scrambledWords": [
+          "park",
+          "visited",
+          "wild",
+          "ever",
+          "safari",
+          "a",
+          "Have",
+          "you"
+        ],
+        "correctSentence": "Have you ever visited a wild safari park?",
+        "themeOrTopic": "Present Perfect Life Experience",
+        "explanation": "Have + subject + ever + past participle."
+      },
+      {
+        "id": "st_g7_e_65",
+        "scrambledWords": [
+          "class",
+          "in",
+          "girl",
+          "She",
+          "the",
+          "is",
+          "most",
+          "popular"
+        ],
+        "correctSentence": "She is the most popular girl in class.",
+        "themeOrTopic": "Superlative Long Adjectives",
+        "explanation": "The most + adjective + noun + domain."
+      },
+      {
+        "id": "st_g7_e_66",
+        "scrambledWords": [
+          "The",
+          "warm",
+          "orbits",
+          "Earth",
+          "the",
+          "year",
+          "Sun",
+          "every"
+        ],
+        "correctSentence": "The Earth orbits the warm Sun every year.",
+        "alternativeSentences": [
+          "Every year the Earth orbits the warm Sun."
+        ],
+        "themeOrTopic": "Scientific Facts",
+        "explanation": "Subject + third-person verb + object + frequency."
+      },
+      {
+        "id": "st_g7_e_67",
+        "scrambledWords": [
+          "desert",
+          "see",
+          "did",
+          "I",
+          "in",
+          "reptiles",
+          "not",
+          "the",
+          "any"
+        ],
+        "correctSentence": "I did not see any reptiles in the desert.",
+        "themeOrTopic": "Past Simple Negative",
+        "explanation": "Subject + did not + see + any + noun."
+      },
+      {
+        "id": "st_g7_e_68",
+        "scrambledWords": [
+          "problems",
+          "solving",
+          "of",
+          "He",
+          "capable",
+          "is",
+          "hard",
+          "math"
+        ],
+        "correctSentence": "He is capable of solving hard math problems.",
+        "themeOrTopic": "Adjective Preposition Collocations",
+        "explanation": "Capable + of + gerund (-ing)."
+      },
+      {
+        "id": "st_g7_e_69",
+        "scrambledWords": [
+          "reading",
+          "every",
+          "grandmother",
+          "My",
+          "wears",
+          "morning",
+          "glasses"
+        ],
+        "correctSentence": "My grandmother wears reading glasses every morning.",
+        "alternativeSentences": [
+          "Every morning my grandmother wears reading glasses."
+        ],
+        "themeOrTopic": "Present Simple Daily Routine",
+        "explanation": "Subject + verb (-s) + object + time."
+      },
+      {
+        "id": "st_g7_e_70",
+        "scrambledWords": [
+          "on",
+          "Mars",
+          "When",
+          "the",
+          "brave",
+          "did",
+          "astronauts",
+          "land"
+        ],
+        "correctSentence": "When did the brave astronauts land on Mars?",
+        "themeOrTopic": "Past Simple Wh-Questions",
+        "explanation": "When + did + subject + base verb + location."
+      },
+      {
+        "id": "st_g7_e_71",
+        "scrambledWords": [
+          "sports",
+          "exciting",
+          "television",
+          "watching",
+          "She",
+          "loves",
+          "on"
+        ],
+        "correctSentence": "She loves watching exciting sports on television.",
+        "themeOrTopic": "Verbs of Liking + Gerund",
+        "explanation": "Love + gerund (-ing) + object."
+      },
+      {
+        "id": "st_g7_e_72",
+        "scrambledWords": [
+          "birthday",
+          "going",
+          "are",
+          "organize",
+          "a",
+          "We",
+          "to",
+          "party"
+        ],
+        "correctSentence": "We are going to organize a birthday party.",
+        "themeOrTopic": "Be Going To Future",
+        "explanation": "Subject + are going to + base verb + object."
+      },
+      {
+        "id": "st_g7_e_73",
+        "scrambledWords": [
+          "Archery",
+          "is",
+          "Olympic",
+          "sport",
+          "an",
+          "ancient"
+        ],
+        "correctSentence": "Archery is an ancient Olympic sport.",
+        "themeOrTopic": "Definitions with To Be",
+        "explanation": "Subject + is + indefinite article + adjective + noun."
+      },
+      {
+        "id": "st_g7_e_74",
+        "scrambledWords": [
+          "with",
+          "see",
+          "a",
+          "telescope",
+          "You",
+          "planets",
+          "many",
+          "can"
+        ],
+        "correctSentence": "You can see many planets with a telescope.",
+        "alternativeSentences": [
+          "With a telescope you can see many planets."
+        ],
+        "themeOrTopic": "Modal Can with Instruments",
+        "explanation": "Prepositional phrase 'with a telescope' denotes instrument."
+      },
+      {
+        "id": "st_g7_e_75",
+        "scrambledWords": [
+          "traffic",
+          "because",
+          "was",
+          "was",
+          "heavy",
+          "He",
+          "late"
+        ],
+        "correctSentence": "He was late because traffic was heavy.",
+        "themeOrTopic": "Cause and Effect Conjunctions",
+        "explanation": "Main clause + because + subordinate clause."
+      },
+      {
+        "id": "st_g7_e_76",
+        "scrambledWords": [
+          "London",
+          "lives",
+          "best",
+          "central",
+          "friend",
+          "in",
+          "My"
+        ],
+        "correctSentence": "My best friend lives in central London.",
+        "themeOrTopic": "Present Simple Facts",
+        "explanation": "Third person singular takes -s."
+      },
+      {
+        "id": "st_g7_e_77",
+        "scrambledWords": [
+          "road",
+          "look",
+          "ways",
+          "crossing",
+          "both",
+          "before",
+          "the",
+          "Always"
+        ],
+        "correctSentence": "Always look both ways before crossing the road.",
+        "themeOrTopic": "Road Safety Imperatives",
+        "explanation": "Adverb + imperative + object + time clause."
+      },
+      {
+        "id": "st_g7_e_78",
+        "scrambledWords": [
+          "They",
+          "delicious",
+          "their",
+          "cake",
+          "celebrated",
+          "victory",
+          "with"
+        ],
+        "correctSentence": "They celebrated their victory with delicious cake.",
+        "themeOrTopic": "Past Simple Narrative",
+        "explanation": "Subject + verb (past) + object + with + noun."
+      },
+      {
+        "id": "st_g7_e_79",
+        "scrambledWords": [
+          "chameleon",
+          "skin",
+          "quickly",
+          "changes",
+          "its",
+          "A",
+          "color"
+        ],
+        "correctSentence": "A chameleon changes its skin color quickly.",
+        "themeOrTopic": "Animal Facts & Habits",
+        "explanation": "Subject + verb (-s) + object + adverb."
+      },
+      {
+        "id": "st_g7_e_80",
+        "scrambledWords": [
+          "Never",
+          "unknown",
+          "download",
+          "files",
+          "from",
+          "websites"
+        ],
+        "correctSentence": "Never download files from unknown websites.",
+        "themeOrTopic": "Digital Safety Imperatives",
+        "explanation": "'Never' fronted imperative for cyber safety."
       }
     ],
     "medium": [
@@ -1195,6 +1843,776 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
         ],
         "themeOrTopic": "Prohibition",
         "explanation": "Location phrase can be placed at front."
+      },
+      {
+        "id": "st_g7_m_41",
+        "scrambledWords": [
+          "she",
+          "While",
+          "studying",
+          "was",
+          "her",
+          "tennis",
+          "was",
+          "playing",
+          "brother"
+        ],
+        "correctSentence": "While she was studying her brother was playing tennis.",
+        "alternativeSentences": [
+          "Her brother was playing tennis while she was studying."
+        ],
+        "themeOrTopic": "Past Continuous with While",
+        "explanation": "Simultaneous past ongoing actions."
+      },
+      {
+        "id": "st_g7_m_42",
+        "scrambledWords": [
+          "live",
+          "He",
+          "he",
+          "in",
+          "to",
+          "used",
+          "young",
+          "Britain",
+          "when",
+          "was"
+        ],
+        "correctSentence": "He used to live in Britain when he was young.",
+        "alternativeSentences": [
+          "When he was young he used to live in Britain."
+        ],
+        "themeOrTopic": "Used To Past Habit",
+        "explanation": "Used to + bare verb denotes past discontinued state."
+      },
+      {
+        "id": "st_g7_m_43",
+        "scrambledWords": [
+          "animals",
+          "green",
+          "protect",
+          "endangered",
+          "forests",
+          "we",
+          "will",
+          "the",
+          "If",
+          "survive"
+        ],
+        "correctSentence": "If we protect the green forests endangered animals will survive.",
+        "alternativeSentences": [
+          "Endangered animals will survive if we protect the green forests."
+        ],
+        "themeOrTopic": "First Conditional",
+        "explanation": "If-clause (Present Simple) + main clause (Will)."
+      },
+      {
+        "id": "st_g7_m_44",
+        "scrambledWords": [
+          "at",
+          "high",
+          "speed",
+          "The",
+          "solar",
+          "desert",
+          "traveled",
+          "across",
+          "car",
+          "the"
+        ],
+        "correctSentence": "The solar car traveled across the desert at high speed.",
+        "alternativeSentences": [
+          "At high speed the solar car traveled across the desert."
+        ],
+        "themeOrTopic": "Prepositional Phrases of Manner",
+        "explanation": "At high speed describes manner of travel."
+      },
+      {
+        "id": "st_g7_m_45",
+        "scrambledWords": [
+          "watched",
+          "The",
+          "interesting",
+          "quietly",
+          "that",
+          "so",
+          "was",
+          "everyone",
+          "documentary"
+        ],
+        "correctSentence": "The documentary was so interesting that everyone watched quietly.",
+        "themeOrTopic": "So ... That Result Clauses",
+        "explanation": "So + adjective + that + consequence clause."
+      },
+      {
+        "id": "st_g7_m_46",
+        "scrambledWords": [
+          "Neither",
+          "my",
+          "brother",
+          "nor",
+          "sister",
+          "my",
+          "spicy",
+          "likes",
+          "food"
+        ],
+        "correctSentence": "Neither my brother nor my sister likes spicy food.",
+        "themeOrTopic": "Correlative Conjunctions",
+        "explanation": "Neither ... nor joins singular subjects."
+      },
+      {
+        "id": "st_g7_m_47",
+        "scrambledWords": [
+          "You",
+          "apologize",
+          "your",
+          "to",
+          "ought",
+          "behavior",
+          "for",
+          "rude",
+          "immediately"
+        ],
+        "correctSentence": "You ought to apologize for your rude behavior immediately.",
+        "alternativeSentences": [
+          "You ought to apologize immediately for your rude behavior."
+        ],
+        "themeOrTopic": "Modals of Obligation",
+        "explanation": "Ought to + bare base verb."
+      },
+      {
+        "id": "st_g7_m_48",
+        "scrambledWords": [
+          "outside",
+          "was",
+          "the",
+          "match",
+          "sports",
+          "rainy",
+          "Although",
+          "continued",
+          "it"
+        ],
+        "correctSentence": "Although it was rainy the sports match continued outside.",
+        "alternativeSentences": [
+          "The sports match continued outside although it was rainy."
+        ],
+        "themeOrTopic": "Concessive Clauses (Although)",
+        "explanation": "Expresses contrast between weather and match."
+      },
+      {
+        "id": "st_g7_m_49",
+        "scrambledWords": [
+          "invented",
+          "electric",
+          "bulb",
+          "the",
+          "America",
+          "in",
+          "light",
+          "Who"
+        ],
+        "correctSentence": "Who invented the electric light bulb in America?",
+        "themeOrTopic": "Subject Questions in Past Simple",
+        "explanation": "Subject question does not require auxiliary did."
+      },
+      {
+        "id": "st_g7_m_50",
+        "scrambledWords": [
+          "the",
+          "had",
+          "time",
+          "arrived",
+          "team",
+          "the",
+          "By",
+          "storm",
+          "the",
+          "stopped",
+          "rescue"
+        ],
+        "correctSentence": "By the time the rescue team arrived the storm had stopped.",
+        "alternativeSentences": [
+          "The storm had stopped by the time the rescue team arrived."
+        ],
+        "themeOrTopic": "Past Perfect Time Sequence",
+        "explanation": "Past perfect denotes earlier past action."
+      },
+      {
+        "id": "st_g7_m_51",
+        "scrambledWords": [
+          "helmet",
+          "your",
+          "You",
+          "better",
+          "had",
+          "while",
+          "wear",
+          "safety",
+          "cycling"
+        ],
+        "correctSentence": "You had better wear your safety helmet while cycling.",
+        "alternativeSentences": [
+          "While cycling you had better wear your safety helmet."
+        ],
+        "themeOrTopic": "Had Better Advice",
+        "explanation": "Had better + bare verb denotes urgent advice."
+      },
+      {
+        "id": "st_g7_m_52",
+        "scrambledWords": [
+          "in",
+          "the",
+          "eat",
+          "did",
+          "She",
+          "not",
+          "past",
+          "use",
+          "to",
+          "vegetables"
+        ],
+        "correctSentence": "She did not use to eat vegetables in the past.",
+        "alternativeSentences": [
+          "In the past she did not use to eat vegetables."
+        ],
+        "themeOrTopic": "Negative Form of Used To",
+        "explanation": "Did not use to + bare infinitive."
+      },
+      {
+        "id": "st_g7_m_53",
+        "scrambledWords": [
+          "submitted",
+          "homework",
+          "science",
+          "my",
+          "have",
+          "I",
+          "yet",
+          "not"
+        ],
+        "correctSentence": "I have not submitted my science homework yet.",
+        "themeOrTopic": "Present Perfect with Yet",
+        "explanation": "'Yet' sits at end of negative present perfect clause."
+      },
+      {
+        "id": "st_g7_m_54",
+        "scrambledWords": [
+          "in",
+          "historic",
+          "long",
+          "city",
+          "lived",
+          "have",
+          "How",
+          "this",
+          "you"
+        ],
+        "correctSentence": "How long have you lived in this historic city?",
+        "themeOrTopic": "Present Perfect Duration",
+        "explanation": "How long + have + subject + past participle."
+      },
+      {
+        "id": "st_g7_m_55",
+        "scrambledWords": [
+          "soon",
+          "observatory",
+          "look",
+          "royal",
+          "forward",
+          "the",
+          "visiting",
+          "We",
+          "to"
+        ],
+        "correctSentence": "We look forward to visiting the royal observatory soon.",
+        "alternativeSentences": [
+          "Soon we look forward to visiting the royal observatory."
+        ],
+        "themeOrTopic": "Phrasal Verbs with Gerund",
+        "explanation": "Look forward to + gerund (-ing)."
+      },
+      {
+        "id": "st_g7_m_56",
+        "scrambledWords": [
+          "no",
+          "ran",
+          "The",
+          "cheetah",
+          "hunter",
+          "could",
+          "catch",
+          "so",
+          "fast",
+          "it",
+          "that"
+        ],
+        "correctSentence": "The cheetah ran so fast that no hunter could catch it.",
+        "themeOrTopic": "So ... That Clauses",
+        "explanation": "So + adverb + that + result."
+      },
+      {
+        "id": "st_g7_m_57",
+        "scrambledWords": [
+          "will",
+          "many",
+          "we",
+          "stop",
+          "species",
+          "rare",
+          "marine",
+          "Unless",
+          "pollution",
+          "perish"
+        ],
+        "correctSentence": "Unless we stop pollution many rare marine species will perish.",
+        "alternativeSentences": [
+          "Many rare marine species will perish unless we stop pollution."
+        ],
+        "themeOrTopic": "Conditionals with Unless",
+        "explanation": "Unless equals 'if not' in first conditional."
+      },
+      {
+        "id": "st_g7_m_58",
+        "scrambledWords": [
+          "saw",
+          "in",
+          "they",
+          "were",
+          "walking",
+          "They",
+          "when",
+          "forest",
+          "a",
+          "deer",
+          "the"
+        ],
+        "correctSentence": "They were walking in the forest when they saw a deer.",
+        "alternativeSentences": [
+          "When they saw a deer they were walking in the forest."
+        ],
+        "themeOrTopic": "Past Continuous with When Interruption",
+        "explanation": "Long continuous action interrupted by short past event."
+      },
+      {
+        "id": "st_g7_m_59",
+        "scrambledWords": [
+          "that",
+          "modern",
+          "This",
+          "far",
+          "fortress",
+          "than",
+          "is",
+          "museum",
+          "public",
+          "more"
+        ],
+        "correctSentence": "This public museum is far more modern than that fortress.",
+        "themeOrTopic": "Comparative with Intensifiers",
+        "explanation": "Far more + adjective + than."
+      },
+      {
+        "id": "st_g7_m_60",
+        "scrambledWords": [
+          "in",
+          "project",
+          "school",
+          "He",
+          "complete",
+          "his",
+          "stayed",
+          "late",
+          "at",
+          "to",
+          "order"
+        ],
+        "correctSentence": "He stayed late at school in order to complete his project.",
+        "alternativeSentences": [
+          "In order to complete his project he stayed late at school."
+        ],
+        "themeOrTopic": "Infinitive of Purpose (In Order To)",
+        "explanation": "In order to + base verb shows purpose."
+      },
+      {
+        "id": "st_g7_m_61",
+        "scrambledWords": [
+          "really",
+          "in",
+          "touring",
+          "Ephesus",
+          "the",
+          "ancient",
+          "enjoyed",
+          "ruins",
+          "We"
+        ],
+        "correctSentence": "We really enjoyed touring the ancient ruins in Ephesus.",
+        "themeOrTopic": "Verbs Taking Gerund",
+        "explanation": "Enjoy + gerund (-ing) + object."
+      },
+      {
+        "id": "st_g7_m_62",
+        "scrambledWords": [
+          "hike",
+          "the",
+          "up",
+          "hill",
+          "was",
+          "to",
+          "so",
+          "glorious",
+          "decided",
+          "we",
+          "The",
+          "weather"
+        ],
+        "correctSentence": "The weather was glorious so we decided to hike up the hill.",
+        "themeOrTopic": "Conjunction of Result (So)",
+        "explanation": "Cause + so + consequence."
+      },
+      {
+        "id": "st_g7_m_63",
+        "scrambledWords": [
+          "Has",
+          "planted",
+          "class",
+          "ever",
+          "park",
+          "the",
+          "in",
+          "trees",
+          "national",
+          "your"
+        ],
+        "correctSentence": "Has your class ever planted trees in the national park?",
+        "themeOrTopic": "Present Perfect Questions",
+        "explanation": "Has + subject + ever + past participle."
+      },
+      {
+        "id": "st_g7_m_64",
+        "scrambledWords": [
+          "Chameleons",
+          "change",
+          "color",
+          "hide",
+          "from",
+          "predators",
+          "dangerous",
+          "to"
+        ],
+        "correctSentence": "Chameleons change color to hide from dangerous predators.",
+        "alternativeSentences": [
+          "To hide from dangerous predators chameleons change color."
+        ],
+        "themeOrTopic": "Infinitive of Purpose",
+        "explanation": "To + base verb expresses purpose."
+      },
+      {
+        "id": "st_g7_m_65",
+        "scrambledWords": [
+          "opening",
+          "avoid",
+          "emails",
+          "from",
+          "You",
+          "suspicious",
+          "should",
+          "strangers"
+        ],
+        "correctSentence": "You should avoid opening emails from suspicious strangers.",
+        "themeOrTopic": "Verbs Followed by Gerunds",
+        "explanation": "Avoid + gerund (-ing)."
+      },
+      {
+        "id": "st_g7_m_66",
+        "scrambledWords": [
+          "took",
+          "students",
+          "notes",
+          "while",
+          "galaxy",
+          "the",
+          "explained",
+          "astronomer",
+          "the",
+          "The"
+        ],
+        "correctSentence": "The students took notes while the astronomer explained the galaxy.",
+        "alternativeSentences": [
+          "While the astronomer explained the galaxy the students took notes."
+        ],
+        "themeOrTopic": "Time Clauses with While",
+        "explanation": "While introduces background explanatory clause."
+      },
+      {
+        "id": "st_g7_m_67",
+        "scrambledWords": [
+          "enough",
+          "strong",
+          "to",
+          "is",
+          "that",
+          "He",
+          "not",
+          "heavy",
+          "lift",
+          "stone"
+        ],
+        "correctSentence": "He is not strong enough to lift that heavy stone.",
+        "themeOrTopic": "Adjective + Enough Structure",
+        "explanation": "Adjective precedes 'enough' + to-infinitive."
+      },
+      {
+        "id": "st_g7_m_68",
+        "scrambledWords": [
+          "telescope",
+          "famous",
+          "the",
+          "whose",
+          "comet",
+          "discovered",
+          "is",
+          "astronomer",
+          "the",
+          "This"
+        ],
+        "correctSentence": "This is the famous astronomer whose telescope discovered the comet.",
+        "themeOrTopic": "Relative Clauses (Whose)",
+        "explanation": "Possessive relative pronoun relates astronomer to telescope."
+      },
+      {
+        "id": "st_g7_m_69",
+        "scrambledWords": [
+          "the",
+          "at",
+          "the",
+          "first",
+          "in",
+          "succeeded",
+          "She",
+          "winning",
+          "prize",
+          "science",
+          "fair"
+        ],
+        "correctSentence": "She succeeded in winning the first prize at the science fair.",
+        "themeOrTopic": "Preposition + Gerund",
+        "explanation": "Succeed in + gerund (-ing)."
+      },
+      {
+        "id": "st_g7_m_70",
+        "scrambledWords": [
+          "Would",
+          "opening",
+          "air",
+          "you",
+          "for",
+          "mind",
+          "fresh",
+          "classroom",
+          "window",
+          "the"
+        ],
+        "correctSentence": "Would you mind opening the classroom window for fresh air?",
+        "themeOrTopic": "Polite Requests with Mind",
+        "explanation": "Would you mind + gerund (-ing)."
+      },
+      {
+        "id": "st_g7_m_71",
+        "scrambledWords": [
+          "Britain",
+          "five",
+          "They",
+          "years",
+          "more",
+          "lived",
+          "than",
+          "have",
+          "in",
+          "for"
+        ],
+        "correctSentence": "They have lived in Britain for more than five years.",
+        "themeOrTopic": "Present Perfect with For",
+        "explanation": "For indicates duration of ongoing state."
+      },
+      {
+        "id": "st_g7_m_72",
+        "scrambledWords": [
+          "park",
+          "tourists",
+          "ranger",
+          "warned",
+          "The",
+          "leave",
+          "the",
+          "to",
+          "trail",
+          "not",
+          "the"
+        ],
+        "correctSentence": "The park ranger warned the tourists not to leave the trail.",
+        "themeOrTopic": "Reported Commands / Warnings",
+        "explanation": "Warned + object + not to + base verb."
+      },
+      {
+        "id": "st_g7_m_73",
+        "scrambledWords": [
+          "everyone",
+          "alarm",
+          "evacuated",
+          "the",
+          "the",
+          "hall",
+          "soon",
+          "rang",
+          "fire",
+          "as",
+          "As"
+        ],
+        "correctSentence": "As soon as the fire alarm rang everyone evacuated the hall.",
+        "alternativeSentences": [
+          "Everyone evacuated the hall as soon as the fire alarm rang."
+        ],
+        "themeOrTopic": "Time Clauses (As Soon As)",
+        "explanation": "Sequential completed past actions."
+      },
+      {
+        "id": "st_g7_m_74",
+        "scrambledWords": [
+          "than",
+          "front",
+          "would",
+          "screens",
+          "sit",
+          "nature",
+          "in",
+          "I",
+          "in",
+          "of",
+          "rather",
+          "hike"
+        ],
+        "correctSentence": "I would rather hike in nature than sit in front of screens.",
+        "themeOrTopic": "Would Rather ... Than",
+        "explanation": "Would rather + bare verb + than + bare verb."
+      },
+      {
+        "id": "st_g7_m_75",
+        "scrambledWords": [
+          "could",
+          "that",
+          "quietly",
+          "spoke",
+          "She",
+          "her",
+          "nobody",
+          "so",
+          "answer",
+          "hear"
+        ],
+        "correctSentence": "She spoke so quietly that nobody could hear her answer.",
+        "themeOrTopic": "So ... That Clauses",
+        "explanation": "So + adverb + that + negative result."
+      },
+      {
+        "id": "st_g7_m_76",
+        "scrambledWords": [
+          "eight",
+          "The",
+          "is",
+          "daily",
+          "library",
+          "between",
+          "open",
+          "and",
+          "five",
+          "municipal"
+        ],
+        "correctSentence": "The municipal library is open between eight and five daily.",
+        "alternativeSentences": [
+          "Daily the municipal library is open between eight and five."
+        ],
+        "themeOrTopic": "Prepositions of Time (Between)",
+        "explanation": "Between ... and specifies operating hours."
+      },
+      {
+        "id": "st_g7_m_77",
+        "scrambledWords": [
+          "accused",
+          "from",
+          "the",
+          "copied",
+          "of",
+          "He",
+          "having",
+          "website",
+          "was",
+          "information"
+        ],
+        "correctSentence": "He was accused of having copied information from the website.",
+        "themeOrTopic": "Perfect Gerund after Prepositions",
+        "explanation": "Of + having + past participle."
+      },
+      {
+        "id": "st_g7_m_78",
+        "scrambledWords": [
+          "the",
+          "kept",
+          "volunteers",
+          "being",
+          "the",
+          "Despite",
+          "tired",
+          "beach",
+          "cleaning"
+        ],
+        "correctSentence": "Despite being tired the volunteers kept cleaning the beach.",
+        "alternativeSentences": [
+          "The volunteers kept cleaning the beach despite being tired."
+        ],
+        "themeOrTopic": "Concession with Despite",
+        "explanation": "Despite + gerund indicates contrast."
+      },
+      {
+        "id": "st_g7_m_79",
+        "scrambledWords": [
+          "You",
+          "better",
+          "had",
+          "calculations",
+          "now",
+          "scientific",
+          "check",
+          "double",
+          "your"
+        ],
+        "correctSentence": "You had better double check your scientific calculations now.",
+        "alternativeSentences": [
+          "Now you had better double check your scientific calculations."
+        ],
+        "themeOrTopic": "Had Better Urgent Advice",
+        "explanation": "Had better + bare verb."
+      },
+      {
+        "id": "st_g7_m_80",
+        "scrambledWords": [
+          "will",
+          "become",
+          "you",
+          "the",
+          "practice",
+          "The",
+          "more",
+          "more",
+          "fluent",
+          "you",
+          "English"
+        ],
+        "correctSentence": "The more you practice English the more fluent you will become.",
+        "themeOrTopic": "Double Comparative Structures",
+        "explanation": "The more ... the more correlation."
       }
     ],
     "hard": [
@@ -1895,6 +3313,762 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
         ],
         "themeOrTopic": "Safety Instructions",
         "explanation": "Adverbial instruction order."
+      },
+      {
+        "id": "st_g7_h_41",
+        "scrambledWords": [
+          "would",
+          "dried",
+          "Had",
+          "environmentalists",
+          "the",
+          "intervened",
+          "have",
+          "the",
+          "not",
+          "wetlands"
+        ],
+        "correctSentence": "Had the environmentalists not intervened the wetlands would have dried.",
+        "alternativeSentences": [
+          "The wetlands would have dried had the environmentalists not intervened."
+        ],
+        "themeOrTopic": "Inverted Third Conditional",
+        "explanation": "Had + subject + not + past participle."
+      },
+      {
+        "id": "st_g7_h_42",
+        "scrambledWords": [
+          "only",
+          "they",
+          "win",
+          "did",
+          "championship",
+          "records",
+          "broke",
+          "the",
+          "but",
+          "Not",
+          "they"
+        ],
+        "correctSentence": "Not only did they win the championship but they broke records.",
+        "themeOrTopic": "Negative Inversion with Not Only",
+        "explanation": "Not only did + subject + verb ... but they ..."
+      },
+      {
+        "id": "st_g7_h_43",
+        "scrambledWords": [
+          "been",
+          "is",
+          "have",
+          "built",
+          "believed",
+          "ago",
+          "to",
+          "The",
+          "fortress",
+          "centuries"
+        ],
+        "correctSentence": "The fortress is believed to have been built centuries ago.",
+        "themeOrTopic": "Passive Reporting with Perfect Infinitive",
+        "explanation": "Subject + is believed + to have been + V3."
+      },
+      {
+        "id": "st_g7_h_44",
+        "scrambledWords": [
+          "rover",
+          "down",
+          "arrived",
+          "the",
+          "had",
+          "than",
+          "touched",
+          "signals",
+          "No",
+          "sooner"
+        ],
+        "correctSentence": "No sooner had the rover touched down than signals arrived.",
+        "themeOrTopic": "No Sooner ... Than Inversion",
+        "explanation": "No sooner had + subject + V3 + than + past simple."
+      },
+      {
+        "id": "st_g7_h_45",
+        "scrambledWords": [
+          "is",
+          "every",
+          "the",
+          "It",
+          "safety",
+          "essential",
+          "online",
+          "rules",
+          "that",
+          "student",
+          "follow"
+        ],
+        "correctSentence": "It is essential that every student follow the online safety rules.",
+        "themeOrTopic": "Present Mandative Subjunctive",
+        "explanation": "Essential that + subject + bare base verb."
+      },
+      {
+        "id": "st_g7_h_46",
+        "scrambledWords": [
+          "Under",
+          "no",
+          "animals",
+          "the",
+          "tourists",
+          "feed",
+          "should",
+          "wild",
+          "circumstances"
+        ],
+        "correctSentence": "Under no circumstances should tourists feed the wild animals.",
+        "themeOrTopic": "Fronted Negative Inversion",
+        "explanation": "Under no circumstances + modal + subject + verb."
+      },
+      {
+        "id": "st_g7_h_47",
+        "scrambledWords": [
+          "The",
+          "far",
+          "the",
+          "ecosystem",
+          "richer",
+          "in",
+          "documented",
+          "reserve",
+          "than",
+          "is"
+        ],
+        "correctSentence": "The ecosystem in the reserve is far richer than documented.",
+        "themeOrTopic": "Comparative with Intensifiers",
+        "explanation": "Far richer than + participle."
+      },
+      {
+        "id": "st_g7_h_48",
+        "scrambledWords": [
+          "our",
+          "tent",
+          "the",
+          "when",
+          "storm",
+          "began",
+          "pitched",
+          "Scarcely",
+          "we",
+          "had"
+        ],
+        "correctSentence": "Scarcely had we pitched our tent when the storm began.",
+        "themeOrTopic": "Scarcely ... When Inversion",
+        "explanation": "Scarcely had + subject + V3 + when + past simple."
+      },
+      {
+        "id": "st_g7_h_49",
+        "scrambledWords": [
+          "have",
+          "had",
+          "time",
+          "She",
+          "solved",
+          "if",
+          "would",
+          "had",
+          "riddle",
+          "the",
+          "she"
+        ],
+        "correctSentence": "She would have solved the riddle if she had had time.",
+        "alternativeSentences": [
+          "If she had had time she would have solved the riddle."
+        ],
+        "themeOrTopic": "Third Conditional",
+        "explanation": "Would have + V3 + if + had had."
+      },
+      {
+        "id": "st_g7_h_50",
+        "scrambledWords": [
+          "solar",
+          "having",
+          "The",
+          "developed",
+          "was",
+          "for",
+          "panel",
+          "honored",
+          "scientist",
+          "the"
+        ],
+        "correctSentence": "The scientist was honored for having developed the solar panel.",
+        "themeOrTopic": "Perfect Gerund after Preposition",
+        "explanation": "For having + past participle."
+      },
+      {
+        "id": "st_g7_h_51",
+        "scrambledWords": [
+          "ice",
+          "levels",
+          "the",
+          "sea",
+          "caps",
+          "would",
+          "melt",
+          "Were",
+          "polar",
+          "rise",
+          "to"
+        ],
+        "correctSentence": "Were the polar ice caps to melt sea levels would rise.",
+        "alternativeSentences": [
+          "Sea levels would rise were the polar ice caps to melt."
+        ],
+        "themeOrTopic": "Inverted Second Conditional",
+        "explanation": "Were + subject + to-infinitive + conditional main clause."
+      },
+      {
+        "id": "st_g7_h_52",
+        "scrambledWords": [
+          "astronomers",
+          "did",
+          "they",
+          "what",
+          "discover",
+          "know",
+          "Little",
+          "the",
+          "would",
+          "tonight"
+        ],
+        "correctSentence": "Little did the astronomers know what they would discover tonight.",
+        "themeOrTopic": "Negative Inversion with Little",
+        "explanation": "Little did + subject + base verb."
+      },
+      {
+        "id": "st_g7_h_53",
+        "scrambledWords": [
+          "detail",
+          "the",
+          "photographed",
+          "telescope",
+          "magnificent",
+          "The",
+          "in",
+          "by",
+          "space",
+          "nebula",
+          "was"
+        ],
+        "correctSentence": "The nebula was photographed in magnificent detail by the space telescope.",
+        "themeOrTopic": "Passive Voice with Prepositional Detail",
+        "explanation": "Subject + was photographed + in detail + by agent."
+      },
+      {
+        "id": "st_g7_h_54",
+        "scrambledWords": [
+          "had",
+          "planetary",
+          "the",
+          "collision",
+          "it",
+          "he",
+          "seen",
+          "He",
+          "as",
+          "if",
+          "described"
+        ],
+        "correctSentence": "He described the planetary collision as if he had seen it.",
+        "themeOrTopic": "Unreal Past with As If",
+        "explanation": "As if + past perfect denotes hypothetical past."
+      },
+      {
+        "id": "st_g7_h_55",
+        "scrambledWords": [
+          "Seldom",
+          "observed",
+          "been",
+          "diversity",
+          "such",
+          "wildlife",
+          "has",
+          "this",
+          "in",
+          "valley"
+        ],
+        "correctSentence": "Seldom has such wildlife diversity been observed in this valley.",
+        "themeOrTopic": "Inversion with Seldom",
+        "explanation": "Seldom has + subject + been observed."
+      },
+      {
+        "id": "st_g7_h_56",
+        "scrambledWords": [
+          "we",
+          "conserve",
+          "lower",
+          "more",
+          "The",
+          "emissions",
+          "be",
+          "the",
+          "will",
+          "energy",
+          "our"
+        ],
+        "correctSentence": "The more energy we conserve the lower our emissions will be.",
+        "themeOrTopic": "Correlative Comparatives",
+        "explanation": "The more ... the lower ..."
+      },
+      {
+        "id": "st_g7_h_57",
+        "scrambledWords": [
+          "committee",
+          "be",
+          "protected",
+          "endangered",
+          "that",
+          "the",
+          "immediately",
+          "forest",
+          "demanded",
+          "The"
+        ],
+        "correctSentence": "The committee demanded that the endangered forest be protected immediately.",
+        "alternativeSentences": [
+          "The committee demanded that the endangered forest immediately be protected."
+        ],
+        "themeOrTopic": "Mandative Subjunctive Passive",
+        "explanation": "Demanded that + subject + be protected."
+      },
+      {
+        "id": "st_g7_h_58",
+        "scrambledWords": [
+          "might",
+          "the",
+          "have",
+          "not",
+          "the",
+          "sounded",
+          "perished",
+          "alert",
+          "Had",
+          "hikers"
+        ],
+        "correctSentence": "Had the alert not sounded the hikers might have perished.",
+        "alternativeSentences": [
+          "The hikers might have perished had the alert not sounded."
+        ],
+        "themeOrTopic": "Inverted Third Conditional with Modal",
+        "explanation": "Had + subject + not + V3 -> might have + V3."
+      },
+      {
+        "id": "st_g7_h_59",
+        "scrambledWords": [
+          "to",
+          "contained",
+          "The",
+          "said",
+          "ancient",
+          "scrolls",
+          "priceless",
+          "library",
+          "is",
+          "have"
+        ],
+        "correctSentence": "The ancient library is said to have contained priceless scrolls.",
+        "themeOrTopic": "Reporting Verbs with Perfect Infinitive",
+        "explanation": "Is said to have contained."
+      },
+      {
+        "id": "st_g7_h_60",
+        "scrambledWords": [
+          "the",
+          "was",
+          "launched",
+          "when",
+          "Hardly",
+          "had",
+          "telemetry",
+          "established",
+          "rocket"
+        ],
+        "correctSentence": "Hardly had the rocket launched when telemetry was established.",
+        "themeOrTopic": "Hardly ... When Inversion",
+        "explanation": "Hardly had + subject + V3 + when ..."
+      },
+      {
+        "id": "st_g7_h_61",
+        "scrambledWords": [
+          "the",
+          "that",
+          "collapsed",
+          "wind",
+          "several",
+          "So",
+          "trees",
+          "was",
+          "violent"
+        ],
+        "correctSentence": "So violent was the wind that several trees collapsed.",
+        "themeOrTopic": "Inversion with So + Adjective",
+        "explanation": "So + adjective + was + subject + that ..."
+      },
+      {
+        "id": "st_g7_h_62",
+        "scrambledWords": [
+          "more",
+          "be",
+          "the",
+          "careful",
+          "must",
+          "technology",
+          "we",
+          "The",
+          "develops",
+          "faster"
+        ],
+        "correctSentence": "The faster technology develops the more careful we must be.",
+        "themeOrTopic": "Double Comparative",
+        "explanation": "The faster ... the more careful ..."
+      },
+      {
+        "id": "st_g7_h_63",
+        "scrambledWords": [
+          "against",
+          "time",
+          "bold",
+          "high",
+          "took",
+          "governments",
+          "It",
+          "steps",
+          "climate",
+          "change",
+          "is"
+        ],
+        "correctSentence": "It is high time governments took bold steps against climate change.",
+        "themeOrTopic": "It Is High Time + Past Tense",
+        "explanation": "It is high time + subject + past tense verb."
+      },
+      {
+        "id": "st_g7_h_64",
+        "scrambledWords": [
+          "the",
+          "everyone",
+          "gasped",
+          "Such",
+          "that",
+          "was",
+          "aurora",
+          "the",
+          "of",
+          "beauty"
+        ],
+        "correctSentence": "Such was the beauty of the aurora that everyone gasped.",
+        "themeOrTopic": "Inversion with Such + Noun",
+        "explanation": "Such was + noun + that ..."
+      },
+      {
+        "id": "st_g7_h_65",
+        "scrambledWords": [
+          "been",
+          "would",
+          "battery",
+          "communication",
+          "severed",
+          "failed",
+          "have",
+          "Had",
+          "the"
+        ],
+        "correctSentence": "Had the battery failed communication would have been severed.",
+        "alternativeSentences": [
+          "Communication would have been severed had the battery failed."
+        ],
+        "themeOrTopic": "Inverted Conditional",
+        "explanation": "Had + subject + V3 -> would have been + V3."
+      },
+      {
+        "id": "st_g7_h_66",
+        "scrambledWords": [
+          "be",
+          "everywhere",
+          "solar",
+          "installed",
+          "The",
+          "council",
+          "streetlights",
+          "recommended",
+          "that"
+        ],
+        "correctSentence": "The council recommended that solar streetlights be installed everywhere.",
+        "themeOrTopic": "Mandative Subjunctive",
+        "explanation": "Recommended that + subject + be installed."
+      },
+      {
+        "id": "st_g7_h_67",
+        "scrambledWords": [
+          "Only",
+          "after",
+          "they",
+          "samples",
+          "announce",
+          "analyzing",
+          "the",
+          "breakthrough",
+          "did",
+          "the"
+        ],
+        "correctSentence": "Only after analyzing the samples did they announce the breakthrough.",
+        "themeOrTopic": "Inversion with Only After",
+        "explanation": "Only after + gerund + did + subject + verb."
+      },
+      {
+        "id": "st_g7_h_68",
+        "scrambledWords": [
+          "inspiring",
+          "speech",
+          "enough",
+          "motivate",
+          "young",
+          "was",
+          "scientist",
+          "to",
+          "every",
+          "The"
+        ],
+        "correctSentence": "The speech was inspiring enough to motivate every young scientist.",
+        "themeOrTopic": "Adjective + Enough + To-Infinitive",
+        "explanation": "Inspiring enough to motivate."
+      },
+      {
+        "id": "st_g7_h_69",
+        "scrambledWords": [
+          "severe",
+          "the",
+          "Never",
+          "such",
+          "faced",
+          "before",
+          "sanctuary",
+          "wildlife",
+          "had",
+          "drought"
+        ],
+        "correctSentence": "Never before had the wildlife sanctuary faced such severe drought.",
+        "themeOrTopic": "Inversion with Never Before",
+        "explanation": "Never before had + subject + V3."
+      },
+      {
+        "id": "st_g7_h_70",
+        "scrambledWords": [
+          "He",
+          "lest",
+          "very",
+          "softly",
+          "bears",
+          "he",
+          "disturb",
+          "walked",
+          "sleeping",
+          "the"
+        ],
+        "correctSentence": "He walked very softly lest he disturb the sleeping bears.",
+        "themeOrTopic": "Lest Clause with Subjunctive",
+        "explanation": "Lest + subject + bare verb / should."
+      },
+      {
+        "id": "st_g7_h_71",
+        "scrambledWords": [
+          "recklessness",
+          "way",
+          "human",
+          "reserves",
+          "be",
+          "In",
+          "no",
+          "nature",
+          "justified",
+          "can",
+          "in"
+        ],
+        "correctSentence": "In no way can human recklessness in nature reserves be justified.",
+        "themeOrTopic": "Fronted Negative Inversion",
+        "explanation": "In no way can + subject + be justified."
+      },
+      {
+        "id": "st_g7_h_72",
+        "scrambledWords": [
+          "as",
+          "exceptionally",
+          "documentary",
+          "was",
+          "well",
+          "produced",
+          "praised",
+          "The",
+          "nature",
+          "being"
+        ],
+        "correctSentence": "The nature documentary was praised as being exceptionally well produced.",
+        "themeOrTopic": "Prepositional Verb Complements",
+        "explanation": "Praised as being + adverb + participle."
+      },
+      {
+        "id": "st_g7_h_73",
+        "scrambledWords": [
+          "Were",
+          "neighboring",
+          "villages",
+          "flooded",
+          "would",
+          "be",
+          "river",
+          "the",
+          "to",
+          "overflow"
+        ],
+        "correctSentence": "Were the river to overflow neighboring villages would be flooded.",
+        "alternativeSentences": [
+          "Neighboring villages would be flooded were the river to overflow."
+        ],
+        "themeOrTopic": "Inverted Second Conditional",
+        "explanation": "Were + subject + to-infinitive."
+      },
+      {
+        "id": "st_g7_h_74",
+        "scrambledWords": [
+          "the",
+          "help",
+          "when",
+          "verge",
+          "was",
+          "on",
+          "giving",
+          "She",
+          "arrived",
+          "of",
+          "up"
+        ],
+        "correctSentence": "She was on the verge of giving up when help arrived.",
+        "themeOrTopic": "Idiomatic Prepositional Phrases",
+        "explanation": "On the verge of + gerund."
+      },
+      {
+        "id": "st_g7_h_75",
+        "scrambledWords": [
+          "forced",
+          "as",
+          "back",
+          "Much",
+          "wanted",
+          "continue",
+          "the",
+          "us",
+          "to",
+          "we",
+          "blizzard"
+        ],
+        "correctSentence": "Much as we wanted to continue the blizzard forced us back.",
+        "alternativeSentences": [
+          "The blizzard forced us back much as we wanted to continue."
+        ],
+        "themeOrTopic": "Concession with Much As",
+        "explanation": "Much as + subject + verb denotes strong contrast."
+      },
+      {
+        "id": "st_g7_h_76",
+        "scrambledWords": [
+          "away",
+          "Should",
+          "and",
+          "calm",
+          "wild",
+          "stay",
+          "back",
+          "predator",
+          "encounter",
+          "you",
+          "a"
+        ],
+        "correctSentence": "Should you encounter a wild predator stay calm and back away.",
+        "themeOrTopic": "Inverted First Conditional with Imperative",
+        "explanation": "Should you + base verb -> imperative."
+      },
+      {
+        "id": "st_g7_h_77",
+        "scrambledWords": [
+          "delicate",
+          "far",
+          "too",
+          "be",
+          "to",
+          "are",
+          "drawings",
+          "cave",
+          "touched",
+          "The"
+        ],
+        "correctSentence": "The cave drawings are far too delicate to be touched.",
+        "themeOrTopic": "Too ... To-Infinitive Passive",
+        "explanation": "Too delicate to be touched."
+      },
+      {
+        "id": "st_g7_h_78",
+        "scrambledWords": [
+          "would",
+          "Had",
+          "cub",
+          "the",
+          "the",
+          "died",
+          "have",
+          "ranger",
+          "injured",
+          "arrived",
+          "later"
+        ],
+        "correctSentence": "Had the ranger arrived later the injured cub would have died.",
+        "alternativeSentences": [
+          "The injured cub would have died had the ranger arrived later."
+        ],
+        "themeOrTopic": "Inverted Third Conditional",
+        "explanation": "Had + subject + V3 -> would have + V3."
+      },
+      {
+        "id": "st_g7_h_79",
+        "scrambledWords": [
+          "in",
+          "Nowhere",
+          "such",
+          "region",
+          "lakes",
+          "glacial",
+          "be",
+          "the",
+          "found",
+          "pristine",
+          "can"
+        ],
+        "correctSentence": "Nowhere in the region can such pristine glacial lakes be found.",
+        "themeOrTopic": "Inversion with Nowhere",
+        "explanation": "Nowhere + can + subject + be found."
+      },
+      {
+        "id": "st_g7_h_80",
+        "scrambledWords": [
+          "success",
+          "to",
+          "was",
+          "for",
+          "having",
+          "attributed",
+          "Her",
+          "decades",
+          "studied",
+          "astrophysics"
+        ],
+        "correctSentence": "Her success was attributed to having studied astrophysics for decades.",
+        "themeOrTopic": "Attributed To + Perfect Gerund",
+        "explanation": "Attributed to having + V3."
       }
     ]
   },
@@ -2204,11 +4378,8 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
           "her"
         ],
         "correctSentence": "She always helps her parents with chores.",
-        "alternativeSentences": [
-          "Carefully you should peel the potatoes."
-        ],
-        "themeOrTopic": "Kitchen Advice",
-        "explanation": "Adverb placement.",
+        "themeOrTopic": "Household Chores",
+        "explanation": "Adverb of frequency 'always' precedes the main verb 'helps'.",
         "contentVersion": 2
       },
       {
@@ -2443,10 +4614,10 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
         ],
         "correctSentence": "They like listening to rock music together.",
         "alternativeSentences": [
-          "Herself she decorated the birthday cake."
+          "Together they like listening to rock music."
         ],
-        "themeOrTopic": "Emphatic Reflexives",
-        "explanation": "Emphatic reflexive placement.",
+        "themeOrTopic": "Teen Interests & Music",
+        "explanation": "Fronted adverb 'Together' or like + gerund.",
         "contentVersion": 2
       },
       {
@@ -2530,6 +4701,728 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
         ],
         "themeOrTopic": "Food Preferences",
         "explanation": "Both preference orders form grammatically sound English."
+      },
+      {
+        "id": "st_g8_e_41",
+        "scrambledWords": [
+          "count",
+          "on",
+          "trustworthy",
+          "can",
+          "friend",
+          "someone",
+          "you",
+          "is",
+          "A"
+        ],
+        "correctSentence": "A trustworthy friend is someone you can count on.",
+        "themeOrTopic": "Friendship & Phrasal Verbs",
+        "explanation": "Count on means depend on."
+      },
+      {
+        "id": "st_g8_e_42",
+        "scrambledWords": [
+          "home",
+          "that",
+          "loud",
+          "than",
+          "concert",
+          "I",
+          "would",
+          "attend",
+          "rather",
+          "stay"
+        ],
+        "correctSentence": "I would rather stay home than attend that loud concert.",
+        "themeOrTopic": "Would Rather + Bare Verb",
+        "explanation": "Would rather + bare verb + than + bare verb."
+      },
+      {
+        "id": "st_g8_e_43",
+        "scrambledWords": [
+          "She",
+          "watching",
+          "badminton",
+          "playing",
+          "the",
+          "to",
+          "evening",
+          "television",
+          "prefers",
+          "in"
+        ],
+        "correctSentence": "She prefers playing badminton to watching television in the evening.",
+        "alternativeSentences": [
+          "In the evening she prefers playing badminton to watching television."
+        ],
+        "themeOrTopic": "Preferences (Prefer X to Y)",
+        "explanation": "Prefer + gerund + to + gerund."
+      },
+      {
+        "id": "st_g8_e_44",
+        "scrambledWords": [
+          "party",
+          "graduation",
+          "to",
+          "like",
+          "my",
+          "tomorrow",
+          "Would",
+          "to",
+          "you",
+          "come"
+        ],
+        "correctSentence": "Would you like to come to my graduation party tomorrow?",
+        "themeOrTopic": "Polite Invitations",
+        "explanation": "Would you like + to-infinitive."
+      },
+      {
+        "id": "st_g8_e_45",
+        "scrambledWords": [
+          "and",
+          "then",
+          "peel",
+          "them",
+          "the",
+          "First",
+          "cut",
+          "into",
+          "potatoes",
+          "slices"
+        ],
+        "correctSentence": "First peel the potatoes and then cut them into slices.",
+        "themeOrTopic": "Cooking Process Steps",
+        "explanation": "Sequential recipe imperatives."
+      },
+      {
+        "id": "st_g8_e_46",
+        "scrambledWords": [
+          "on",
+          "while",
+          "Could",
+          "you",
+          "hold",
+          "I",
+          "transfer",
+          "phone",
+          "call",
+          "your"
+        ],
+        "correctSentence": "Could you hold on while I transfer your phone call?",
+        "themeOrTopic": "Telephone Conversations",
+        "explanation": "Hold on means wait briefly."
+      },
+      {
+        "id": "st_g8_e_47",
+        "scrambledWords": [
+          "her",
+          "Her",
+          "sent",
+          "was",
+          "busy",
+          "I",
+          "phone",
+          "so",
+          "message",
+          "a"
+        ],
+        "correctSentence": "Her phone was busy so I sent her a message.",
+        "themeOrTopic": "Telephone Situations",
+        "explanation": "Busy line leading to text messaging."
+      },
+      {
+        "id": "st_g8_e_48",
+        "scrambledWords": [
+          "You",
+          "must",
+          "to",
+          "your",
+          "accounts",
+          "create",
+          "protect",
+          "strong",
+          "password",
+          "a"
+        ],
+        "correctSentence": "You must create a strong password to protect your accounts.",
+        "themeOrTopic": "Internet Safety",
+        "explanation": "Infinitive of purpose to protect."
+      },
+      {
+        "id": "st_g8_e_49",
+        "scrambledWords": [
+          "is",
+          "bowling",
+          "than",
+          "more",
+          "regular",
+          "exciting",
+          "Paragliding",
+          "much"
+        ],
+        "correctSentence": "Paragliding is much more exciting than regular bowling.",
+        "themeOrTopic": "Comparative Adjectives (Adventures)",
+        "explanation": "Much more + adjective + than."
+      },
+      {
+        "id": "st_g8_e_50",
+        "scrambledWords": [
+          "when",
+          "chores",
+          "protective",
+          "gloves",
+          "wear",
+          "doing",
+          "Always",
+          "kitchen"
+        ],
+        "correctSentence": "Always wear protective gloves when doing kitchen chores.",
+        "alternativeSentences": [
+          "When doing kitchen chores always wear protective gloves."
+        ],
+        "themeOrTopic": "Chores & Safety",
+        "explanation": "Imperative with time conjunction."
+      },
+      {
+        "id": "st_g8_e_51",
+        "scrambledWords": [
+          "in",
+          "period",
+          "the",
+          "constructed",
+          "medieval",
+          "ancient",
+          "The",
+          "was",
+          "castle"
+        ],
+        "correctSentence": "The ancient castle was constructed in the medieval period.",
+        "themeOrTopic": "Past Simple Passive",
+        "explanation": "Was constructed in + time."
+      },
+      {
+        "id": "st_g8_e_52",
+        "scrambledWords": [
+          "It",
+          "is",
+          "kitchen",
+          "empty",
+          "rubbish",
+          "bin",
+          "the",
+          "your",
+          "turn",
+          "to"
+        ],
+        "correctSentence": "It is your turn to empty the kitchen rubbish bin.",
+        "themeOrTopic": "Household Chores",
+        "explanation": "Turn to + base verb."
+      },
+      {
+        "id": "st_g8_e_53",
+        "scrambledWords": [
+          "living",
+          "the",
+          "Saturday",
+          "room",
+          "My",
+          "every",
+          "carpet",
+          "brother",
+          "vacuums"
+        ],
+        "correctSentence": "My brother vacuums the living room carpet every Saturday.",
+        "alternativeSentences": [
+          "Every Saturday my brother vacuums the living room carpet."
+        ],
+        "themeOrTopic": "Weekly Chores",
+        "explanation": "Subject + verb (-s) + object + time."
+      },
+      {
+        "id": "st_g8_e_54",
+        "scrambledWords": [
+          "Sancar",
+          "Prize",
+          "Dr",
+          "the",
+          "in",
+          "chemistry",
+          "won",
+          "Aziz",
+          "Nobel"
+        ],
+        "correctSentence": "Dr Aziz Sancar won the Nobel Prize in chemistry.",
+        "themeOrTopic": "Science Biographies",
+        "explanation": "Subject + won + object + in domain."
+      },
+      {
+        "id": "st_g8_e_55",
+        "scrambledWords": [
+          "caused",
+          "earthquake",
+          "by",
+          "is",
+          "tectonic",
+          "shifting",
+          "plates",
+          "An"
+        ],
+        "correctSentence": "An earthquake is caused by shifting tectonic plates.",
+        "themeOrTopic": "Natural Forces Science",
+        "explanation": "Present simple passive cause-effect."
+      },
+      {
+        "id": "st_g8_e_56",
+        "scrambledWords": [
+          "drop",
+          "and",
+          "hold",
+          "earthquake",
+          "during",
+          "an",
+          "drill",
+          "Remember",
+          "to",
+          "cover"
+        ],
+        "correctSentence": "Remember to drop cover and hold during an earthquake drill.",
+        "alternativeSentences": [
+          "During an earthquake drill remember to drop cover and hold."
+        ],
+        "themeOrTopic": "Disaster Safety Drills",
+        "explanation": "Standard earthquake procedure."
+      },
+      {
+        "id": "st_g8_e_57",
+        "scrambledWords": [
+          "to",
+          "modern",
+          "center",
+          "the",
+          "We",
+          "went",
+          "yesterday",
+          "shopping",
+          "evening"
+        ],
+        "correctSentence": "We went to the modern shopping center yesterday evening.",
+        "alternativeSentences": [
+          "Yesterday evening we went to the modern shopping center."
+        ],
+        "themeOrTopic": "Past Simple Outings",
+        "explanation": "Past simple motion verb with time adverb."
+      },
+      {
+        "id": "st_g8_e_58",
+        "scrambledWords": [
+          "friends",
+          "person",
+          "promises",
+          "often",
+          "A",
+          "dishonest",
+          "breaks",
+          "to"
+        ],
+        "correctSentence": "A dishonest person often breaks promises to friends.",
+        "themeOrTopic": "Personal Qualities",
+        "explanation": "Subject + frequency adverb + verb (-s) + object."
+      },
+      {
+        "id": "st_g8_e_59",
+        "scrambledWords": [
+          "weekend",
+          "this",
+          "How",
+          "picnic",
+          "having",
+          "about",
+          "a",
+          "lake",
+          "by",
+          "the"
+        ],
+        "correctSentence": "How about having a picnic by the lake this weekend?",
+        "alternativeSentences": [
+          "This weekend how about having a picnic by the lake?"
+        ],
+        "themeOrTopic": "Making Suggestions",
+        "explanation": "How about + gerund."
+      },
+      {
+        "id": "st_g8_e_60",
+        "scrambledWords": [
+          "prepare",
+          "do",
+          "science",
+          "not",
+          "presentation",
+          "we",
+          "tonight",
+          "the",
+          "Why"
+        ],
+        "correctSentence": "Why do we not prepare the science presentation tonight?",
+        "alternativeSentences": [
+          "Tonight why do we not prepare the science presentation?"
+        ],
+        "themeOrTopic": "Suggestions (Why Do We Not)",
+        "explanation": "Why do we not + base verb."
+      },
+      {
+        "id": "st_g8_e_61",
+        "scrambledWords": [
+          "formal",
+          "uncomfortable",
+          "jeans",
+          "suits",
+          "He",
+          "casual",
+          "prefers",
+          "to"
+        ],
+        "correctSentence": "He prefers casual jeans to uncomfortable formal suits.",
+        "themeOrTopic": "Noun Preferences",
+        "explanation": "Prefer noun + to + noun."
+      },
+      {
+        "id": "st_g8_e_62",
+        "scrambledWords": [
+          "low",
+          "Simmer",
+          "tomato",
+          "heat",
+          "sauce",
+          "minutes",
+          "the",
+          "over",
+          "ten",
+          "for"
+        ],
+        "correctSentence": "Simmer the tomato sauce over low heat for ten minutes.",
+        "alternativeSentences": [
+          "For ten minutes simmer the tomato sauce over low heat."
+        ],
+        "themeOrTopic": "Cooking Instructions",
+        "explanation": "Imperative + prepositional phrase of duration."
+      },
+      {
+        "id": "st_g8_e_63",
+        "scrambledWords": [
+          "olive",
+          "black",
+          "Season",
+          "the",
+          "pepper",
+          "chicken",
+          "roast",
+          "oil",
+          "and",
+          "with"
+        ],
+        "correctSentence": "Season the roast chicken with black pepper and olive oil.",
+        "themeOrTopic": "Recipe Instructions",
+        "explanation": "Imperative + object + with + ingredients."
+      },
+      {
+        "id": "st_g8_e_64",
+        "scrambledWords": [
+          "our",
+          "tickets",
+          "I",
+          "am",
+          "flight",
+          "to",
+          "confirm",
+          "to",
+          "London",
+          "calling"
+        ],
+        "correctSentence": "I am calling to confirm our flight tickets to London.",
+        "themeOrTopic": "Telephone Intentions",
+        "explanation": "Present continuous with infinitive of purpose."
+      },
+      {
+        "id": "st_g8_e_65",
+        "scrambledWords": [
+          "is",
+          "line",
+          "so",
+          "you",
+          "could",
+          "bad",
+          "louder",
+          "speak",
+          "The",
+          "please"
+        ],
+        "correctSentence": "The line is bad so could you speak louder please?",
+        "themeOrTopic": "Phone Difficulties",
+        "explanation": "Cause + polite modal request."
+      },
+      {
+        "id": "st_g8_e_66",
+        "scrambledWords": [
+          "sent",
+          "email",
+          "Never",
+          "open",
+          "attachments",
+          "unknown",
+          "by",
+          "senders"
+        ],
+        "correctSentence": "Never open attachments sent by unknown email senders.",
+        "themeOrTopic": "Cybersecurity Rules",
+        "explanation": "Negative imperative with past participle phrase."
+      },
+      {
+        "id": "st_g8_e_67",
+        "scrambledWords": [
+          "strong",
+          "mountains",
+          "leather",
+          "in",
+          "steep",
+          "requires",
+          "Hiking",
+          "boots"
+        ],
+        "correctSentence": "Hiking in steep mountains requires strong leather boots.",
+        "themeOrTopic": "Adventure Sports Equipment",
+        "explanation": "Gerund subject + singular verb + object."
+      },
+      {
+        "id": "st_g8_e_68",
+        "scrambledWords": [
+          "and",
+          "free",
+          "access",
+          "breakfast",
+          "internet",
+          "wireless",
+          "provides",
+          "The",
+          "hotel"
+        ],
+        "correctSentence": "The hotel provides free breakfast and wireless internet access.",
+        "themeOrTopic": "Tourism Amenities",
+        "explanation": "Subject + provides + compound object."
+      },
+      {
+        "id": "st_g8_e_69",
+        "scrambledWords": [
+          "dishes",
+          "family",
+          "washing",
+          "after",
+          "take",
+          "every",
+          "turns",
+          "dinner",
+          "We"
+        ],
+        "correctSentence": "We take turns washing dishes after every family dinner.",
+        "alternativeSentences": [
+          "After every family dinner we take turns washing dishes."
+        ],
+        "themeOrTopic": "Sharing Chores",
+        "explanation": "Take turns + gerund."
+      },
+      {
+        "id": "st_g8_e_70",
+        "scrambledWords": [
+          "telephone",
+          "practical",
+          "Graham",
+          "Bell",
+          "the",
+          "first",
+          "Alexander",
+          "patented"
+        ],
+        "correctSentence": "Alexander Graham Bell patented the first practical telephone.",
+        "themeOrTopic": "Science & Inventions",
+        "explanation": "Historical past simple accomplishment."
+      },
+      {
+        "id": "st_g8_e_71",
+        "scrambledWords": [
+          "no",
+          "drought",
+          "long",
+          "months",
+          "happens",
+          "A",
+          "for",
+          "rain",
+          "when",
+          "falls"
+        ],
+        "correctSentence": "A long drought happens when no rain falls for months.",
+        "themeOrTopic": "Natural Forces Definitions",
+        "explanation": "Subject + verb + time condition."
+      },
+      {
+        "id": "st_g8_e_72",
+        "scrambledWords": [
+          "near",
+          "survival",
+          "your",
+          "Keep",
+          "main",
+          "an",
+          "kit",
+          "door",
+          "emergency"
+        ],
+        "correctSentence": "Keep an emergency survival kit near your main door.",
+        "alternativeSentences": [
+          "Near your main door keep an emergency survival kit."
+        ],
+        "themeOrTopic": "Emergency Preparedness",
+        "explanation": "Imperative + object + location."
+      },
+      {
+        "id": "st_g8_e_73",
+        "scrambledWords": [
+          "takeout",
+          "ordering",
+          "more",
+          "She",
+          "likes",
+          "bread",
+          "meals",
+          "than",
+          "baking"
+        ],
+        "correctSentence": "She likes baking bread more than ordering takeout meals.",
+        "themeOrTopic": "Culinary Preferences",
+        "explanation": "Likes + gerund + more than + gerund."
+      },
+      {
+        "id": "st_g8_e_74",
+        "scrambledWords": [
+          "the",
+          "review",
+          "exam",
+          "notes",
+          "we",
+          "before",
+          "chemistry",
+          "Shall",
+          "our",
+          "final"
+        ],
+        "correctSentence": "Shall we review our chemistry notes before the final exam?",
+        "alternativeSentences": [
+          "Before the final exam shall we review our chemistry notes?"
+        ],
+        "themeOrTopic": "Offers and Suggestions (Shall We)",
+        "explanation": "Shall we + base verb."
+      },
+      {
+        "id": "st_g8_e_75",
+        "scrambledWords": [
+          "dessert",
+          "refused",
+          "full",
+          "completely",
+          "was",
+          "he",
+          "because",
+          "He",
+          "the"
+        ],
+        "correctSentence": "He refused the dessert because he was completely full.",
+        "themeOrTopic": "Reasons and Causes",
+        "explanation": "Refused + because clause."
+      },
+      {
+        "id": "st_g8_e_76",
+        "scrambledWords": [
+          "a",
+          "until",
+          "the",
+          "Whisk",
+          "large",
+          "in",
+          "eggs",
+          "glass",
+          "fluffy",
+          "bowl"
+        ],
+        "correctSentence": "Whisk the eggs in a large glass bowl until fluffy.",
+        "themeOrTopic": "Kitchen Techniques",
+        "explanation": "Imperative + object + location + condition."
+      },
+      {
+        "id": "st_g8_e_77",
+        "scrambledWords": [
+          "manager",
+          "to",
+          "answer",
+          "The",
+          "unavailable",
+          "call",
+          "your",
+          "currently",
+          "is"
+        ],
+        "correctSentence": "The manager is currently unavailable to answer your call.",
+        "themeOrTopic": "Professional Phone Protocol",
+        "explanation": "Subject + is + adjective + to-infinitive."
+      },
+      {
+        "id": "st_g8_e_78",
+        "scrambledWords": [
+          "Many",
+          "upload",
+          "social",
+          "teenagers",
+          "creative",
+          "to",
+          "videos",
+          "platforms",
+          "short"
+        ],
+        "correctSentence": "Many teenagers upload short creative videos to social platforms.",
+        "themeOrTopic": "Digital Habits",
+        "explanation": "Subject + upload + object + to destination."
+      },
+      {
+        "id": "st_g8_e_79",
+        "scrambledWords": [
+          "sport",
+          "exciting",
+          "rushing",
+          "adventure",
+          "Rafting",
+          "is",
+          "an",
+          "on",
+          "rivers"
+        ],
+        "correctSentence": "Rafting on rushing rivers is an exciting adventure sport.",
+        "themeOrTopic": "Adventures Definitions",
+        "explanation": "Gerund phrase subject + singular verb + complement."
+      },
+      {
+        "id": "st_g8_e_80",
+        "scrambledWords": [
+          "The",
+          "was",
+          "tourists",
+          "museum",
+          "thousands",
+          "of",
+          "visited",
+          "historical",
+          "by"
+        ],
+        "correctSentence": "The historical museum was visited by thousands of tourists.",
+        "themeOrTopic": "Tourism Passive Voice",
+        "explanation": "Was visited by + agent."
       }
     ],
     "medium": [
@@ -2547,7 +5440,7 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
         ],
         "correctSentence": "If it rains tomorrow we will stay home.",
         "alternativeSentences": [
-          "We will stay at home if it rains."
+          "We will stay home if it rains tomorrow."
         ],
         "themeOrTopic": "First Conditional",
         "explanation": "If-condition and main result clause order.",
@@ -2655,9 +5548,9 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
         ],
         "correctSentence": "If you study regularly you will succeed.",
         "alternativeSentences": [
-          "You will succeed easily if you study consistently."
+          "You will succeed if you study regularly."
         ],
-        "themeOrTopic": "First Conditional Adverbs",
+        "themeOrTopic": "First Conditional",
         "explanation": "If-clause and consequence clause order.",
         "contentVersion": 2
       },
@@ -2895,10 +5788,10 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
         ],
         "correctSentence": "We visited the museum to see ancient coins.",
         "alternativeSentences": [
-          "In Aegean region delicious olive oil is produced."
+          "To see ancient coins we visited the museum."
         ],
-        "themeOrTopic": "Present Simple Passive",
-        "explanation": "Location phrase can be fronted.",
+        "themeOrTopic": "Tourism & Past Expeditions",
+        "explanation": "Infinitive of purpose clause can be fronted or follow main clause.",
         "contentVersion": 2
       },
       {
@@ -3068,11 +5961,10 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
         ],
         "correctSentence": "They decided to travel to London by train.",
         "alternativeSentences": [
-          "You get purple if you mix red and blue.",
-          "If you mix blue and red you get purple."
+          "They decided to travel by train to London."
         ],
-        "themeOrTopic": "Zero Conditional",
-        "explanation": "Condition clause and coordinated color order.",
+        "themeOrTopic": "Travel to Britain",
+        "explanation": "Manner adverbial 'by train' can precede destination.",
         "contentVersion": 2
       },
       {
@@ -3259,6 +6151,803 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
         ],
         "themeOrTopic": "Modal Passive Obligation",
         "explanation": "Recipient phrase placement."
+      },
+      {
+        "id": "st_g8_m_41",
+        "scrambledWords": [
+          "order",
+          "I",
+          "cook",
+          "food",
+          "home",
+          "than",
+          "at",
+          "rather",
+          "fast",
+          "would",
+          "dinner"
+        ],
+        "correctSentence": "I would rather cook dinner at home than order fast food.",
+        "themeOrTopic": "Would Rather Comparisons",
+        "explanation": "Would rather + bare verb + than + bare verb."
+      },
+      {
+        "id": "st_g8_m_42",
+        "scrambledWords": [
+          "in",
+          "robotics",
+          "she",
+          "interested",
+          "was",
+          "has",
+          "ten",
+          "since",
+          "been",
+          "She"
+        ],
+        "correctSentence": "She has been interested in robotics since she was ten.",
+        "alternativeSentences": [
+          "Since she was ten she has been interested in robotics."
+        ],
+        "themeOrTopic": "Present Perfect with Since",
+        "explanation": "Since introduces specific past starting point."
+      },
+      {
+        "id": "st_g8_m_43",
+        "scrambledWords": [
+          "was",
+          "more",
+          "that",
+          "soup",
+          "asked",
+          "The",
+          "delicious",
+          "for",
+          "so",
+          "guests"
+        ],
+        "correctSentence": "The soup was so delicious that guests asked for more.",
+        "themeOrTopic": "So ... That Consequence",
+        "explanation": "So + adjective + that + past consequence."
+      },
+      {
+        "id": "st_g8_m_44",
+        "scrambledWords": [
+          "shelter",
+          "furniture",
+          "earthquake",
+          "sturdy",
+          "under",
+          "take",
+          "If",
+          "immediately",
+          "an",
+          "strikes"
+        ],
+        "correctSentence": "If an earthquake strikes immediately take shelter under sturdy furniture.",
+        "alternativeSentences": [
+          "Immediately take shelter under sturdy furniture if an earthquake strikes."
+        ],
+        "themeOrTopic": "Conditionals in Safety Drills",
+        "explanation": "If-clause (Present Simple) + imperative."
+      },
+      {
+        "id": "st_g8_m_45",
+        "scrambledWords": [
+          "The",
+          "garlic",
+          "fried",
+          "gently",
+          "be",
+          "brown",
+          "chopped",
+          "should",
+          "until",
+          "golden"
+        ],
+        "correctSentence": "The chopped garlic should be fried gently until golden brown.",
+        "themeOrTopic": "Passive Voice with Modals",
+        "explanation": "Should be + past participle."
+      },
+      {
+        "id": "st_g8_m_46",
+        "scrambledWords": [
+          "the",
+          "he",
+          "declined",
+          "that",
+          "the",
+          "grounds",
+          "on",
+          "invitation",
+          "sick",
+          "was",
+          "He"
+        ],
+        "correctSentence": "He declined the invitation on the grounds that he was sick.",
+        "themeOrTopic": "Formal Conjunctions of Reason",
+        "explanation": "On the grounds that + explanation."
+      },
+      {
+        "id": "st_g8_m_47",
+        "scrambledWords": [
+          "Neither",
+          "with",
+          "nor",
+          "chef",
+          "the",
+          "helpers",
+          "dish",
+          "were",
+          "the",
+          "the",
+          "head",
+          "satisfied"
+        ],
+        "correctSentence": "Neither the head chef nor the helpers were satisfied with the dish.",
+        "themeOrTopic": "Subject-Verb Agreement with Correlatives",
+        "explanation": "Verb agrees with closest subject."
+      },
+      {
+        "id": "st_g8_m_48",
+        "scrambledWords": [
+          "been",
+          "fire",
+          "arrived",
+          "time",
+          "By",
+          "had",
+          "extinguished",
+          "the",
+          "paramedics",
+          "the"
+        ],
+        "correctSentence": "By the time paramedics arrived the fire had been extinguished.",
+        "alternativeSentences": [
+          "The fire had been extinguished by the time paramedics arrived."
+        ],
+        "themeOrTopic": "Past Perfect Passive",
+        "explanation": "Had been + V3 before past timestamp."
+      },
+      {
+        "id": "st_g8_m_49",
+        "scrambledWords": [
+          "to",
+          "her",
+          "lost",
+          "the",
+          "She",
+          "friends",
+          "having",
+          "recipe",
+          "for",
+          "apologized"
+        ],
+        "correctSentence": "She apologized to her friends for having lost the recipe.",
+        "themeOrTopic": "Apologize For + Perfect Gerund",
+        "explanation": "Apologized for having + V3."
+      },
+      {
+        "id": "st_g8_m_50",
+        "scrambledWords": [
+          "filter",
+          "search",
+          "websites",
+          "The",
+          "was",
+          "designed",
+          "automatically",
+          "spam",
+          "engine",
+          "to"
+        ],
+        "correctSentence": "The search engine was designed to filter spam websites automatically.",
+        "alternativeSentences": [
+          "The search engine was designed to automatically filter spam websites."
+        ],
+        "themeOrTopic": "Passive Infinitive of Purpose",
+        "explanation": "Was designed to + base verb."
+      },
+      {
+        "id": "st_g8_m_51",
+        "scrambledWords": [
+          "better",
+          "files",
+          "the",
+          "up",
+          "back",
+          "formatting",
+          "disk",
+          "your",
+          "You",
+          "before",
+          "had"
+        ],
+        "correctSentence": "You had better back up your files before formatting the disk.",
+        "alternativeSentences": [
+          "Before formatting the disk you had better back up your files."
+        ],
+        "themeOrTopic": "Had Better Preventive Advice",
+        "explanation": "Had better + bare verb."
+      },
+      {
+        "id": "st_g8_m_52",
+        "scrambledWords": [
+          "closed",
+          "The",
+          "caused",
+          "were",
+          "that",
+          "so",
+          "landslide",
+          "roads",
+          "much",
+          "destruction"
+        ],
+        "correctSentence": "The landslide caused so much destruction that roads were closed.",
+        "themeOrTopic": "So Much + Uncountable Noun + That",
+        "explanation": "So much + noun + that + result."
+      },
+      {
+        "id": "st_g8_m_53",
+        "scrambledWords": [
+          "huge",
+          "trekking",
+          "when",
+          "tumbled",
+          "the",
+          "rocks",
+          "We",
+          "were",
+          "up",
+          "pass",
+          "down"
+        ],
+        "correctSentence": "We were trekking up the pass when huge rocks tumbled down.",
+        "alternativeSentences": [
+          "When huge rocks tumbled down we were trekking up the pass."
+        ],
+        "themeOrTopic": "Past Continuous Interrupted",
+        "explanation": "Ongoing action interrupted by sudden event."
+      },
+      {
+        "id": "st_g8_m_54",
+        "scrambledWords": [
+          "you",
+          "place",
+          "friend",
+          "can",
+          "in",
+          "A",
+          "is",
+          "someone",
+          "trust",
+          "whom",
+          "loyal"
+        ],
+        "correctSentence": "A loyal friend is someone in whom you can place trust.",
+        "themeOrTopic": "Prepositions in Relative Clauses",
+        "explanation": "In whom + subject + verb."
+      },
+      {
+        "id": "st_g8_m_55",
+        "scrambledWords": [
+          "has",
+          "amphitheater",
+          "UNESCO",
+          "for",
+          "decades",
+          "been",
+          "ancient",
+          "The",
+          "by",
+          "protected"
+        ],
+        "correctSentence": "The ancient amphitheater has been protected by UNESCO for decades.",
+        "alternativeSentences": [
+          "For decades the ancient amphitheater has been protected by UNESCO."
+        ],
+        "themeOrTopic": "Present Perfect Passive with For",
+        "explanation": "Has been protected + for duration."
+      },
+      {
+        "id": "st_g8_m_56",
+        "scrambledWords": [
+          "games",
+          "He",
+          "study",
+          "prefer",
+          "would",
+          "articles",
+          "than",
+          "to",
+          "rather",
+          "play",
+          "scientific"
+        ],
+        "correctSentence": "He would prefer to study scientific articles rather than play games.",
+        "themeOrTopic": "Prefer + Rather Than",
+        "explanation": "Prefer to + base verb + rather than + bare verb."
+      },
+      {
+        "id": "st_g8_m_57",
+        "scrambledWords": [
+          "fresh",
+          "will",
+          "drop",
+          "supplies",
+          "drastically",
+          "reservoirs",
+          "water",
+          "conserve",
+          "we",
+          "Unless"
+        ],
+        "correctSentence": "Unless we conserve fresh water supplies reservoirs will drop drastically.",
+        "alternativeSentences": [
+          "Reservoirs will drop drastically unless we conserve fresh water supplies."
+        ],
+        "themeOrTopic": "Conditionals with Unless",
+        "explanation": "Unless + present simple -> will + base verb."
+      },
+      {
+        "id": "st_g8_m_58",
+        "scrambledWords": [
+          "head",
+          "The",
+          "fresh",
+          "must",
+          "seafood",
+          "insisted",
+          "be",
+          "that",
+          "chef",
+          "all"
+        ],
+        "correctSentence": "The head chef insisted that all seafood must be fresh.",
+        "themeOrTopic": "Obligation in Kitchen Management",
+        "explanation": "Must be + adjective."
+      },
+      {
+        "id": "st_g8_m_59",
+        "scrambledWords": [
+          "difficulty",
+          "no",
+          "in",
+          "online",
+          "encountered",
+          "form",
+          "She",
+          "submitting",
+          "application",
+          "her"
+        ],
+        "correctSentence": "She encountered no difficulty in submitting her online application form.",
+        "themeOrTopic": "Have Difficulty In + Gerund",
+        "explanation": "In + gerund (-ing)."
+      },
+      {
+        "id": "st_g8_m_60",
+        "scrambledWords": [
+          "so",
+          "palaces",
+          "were",
+          "many",
+          "tourists",
+          "delighted",
+          "historic",
+          "see",
+          "The",
+          "to"
+        ],
+        "correctSentence": "The tourists were delighted to see so many historic palaces.",
+        "themeOrTopic": "Delighted To-Infinitive + So Many",
+        "explanation": "So many + plural countable noun."
+      },
+      {
+        "id": "st_g8_m_61",
+        "scrambledWords": [
+          "chores",
+          "to",
+          "at",
+          "night",
+          "I",
+          "late",
+          "doing",
+          "accustomed",
+          "not",
+          "am",
+          "heavy"
+        ],
+        "correctSentence": "I am not accustomed to doing heavy chores late at night.",
+        "alternativeSentences": [
+          "Late at night I am not accustomed to doing heavy chores."
+        ],
+        "themeOrTopic": "Accustomed To + Gerund",
+        "explanation": "Be accustomed to + gerund."
+      },
+      {
+        "id": "st_g8_m_62",
+        "scrambledWords": [
+          "could",
+          "snowfall",
+          "Heavy",
+          "avalanche",
+          "in",
+          "dangerous",
+          "trigger",
+          "a",
+          "mountains",
+          "the"
+        ],
+        "correctSentence": "Heavy snowfall could trigger a dangerous avalanche in the mountains.",
+        "themeOrTopic": "Modals of Possibility (Could)",
+        "explanation": "Could + bare verb shows possibility."
+      },
+      {
+        "id": "st_g8_m_63",
+        "scrambledWords": [
+          "laboratory",
+          "understood",
+          "clearly",
+          "that",
+          "everyone",
+          "experiment",
+          "so",
+          "the",
+          "He",
+          "explained"
+        ],
+        "correctSentence": "He explained the laboratory experiment so clearly that everyone understood.",
+        "themeOrTopic": "So + Adverb + That",
+        "explanation": "So clearly that + past simple result."
+      },
+      {
+        "id": "st_g8_m_64",
+        "scrambledWords": [
+          "chemistry",
+          "goggles",
+          "are",
+          "Students",
+          "during",
+          "protective",
+          "expected",
+          "to",
+          "wear",
+          "experiments"
+        ],
+        "correctSentence": "Students are expected to wear protective goggles during chemistry experiments.",
+        "alternativeSentences": [
+          "During chemistry experiments students are expected to wear protective goggles."
+        ],
+        "themeOrTopic": "Expectations & Safety",
+        "explanation": "Are expected to + bare verb."
+      },
+      {
+        "id": "st_g8_m_65",
+        "scrambledWords": [
+          "canceled",
+          "violent",
+          "the",
+          "to",
+          "due",
+          "storms",
+          "They",
+          "paragliding",
+          "flight",
+          "thunder"
+        ],
+        "correctSentence": "They canceled the paragliding flight due to violent thunder storms.",
+        "alternativeSentences": [
+          "Due to violent thunder storms they canceled the paragliding flight."
+        ],
+        "themeOrTopic": "Prepositional Cause (Due To)",
+        "explanation": "Due to + noun phrase."
+      },
+      {
+        "id": "st_g8_m_66",
+        "scrambledWords": [
+          "never",
+          "bungee",
+          "in",
+          "She",
+          "has",
+          "jumping",
+          "entire",
+          "her",
+          "life",
+          "tried",
+          "extreme"
+        ],
+        "correctSentence": "She has never tried extreme bungee jumping in her entire life.",
+        "alternativeSentences": [
+          "In her entire life she has never tried extreme bungee jumping."
+        ],
+        "themeOrTopic": "Present Perfect Experience",
+        "explanation": "Has never + V3."
+      },
+      {
+        "id": "st_g8_m_67",
+        "scrambledWords": [
+          "an",
+          "celebrated",
+          "having",
+          "effective",
+          "invented",
+          "was",
+          "for",
+          "The",
+          "vaccine",
+          "doctor"
+        ],
+        "correctSentence": "The doctor was celebrated for having invented an effective vaccine.",
+        "themeOrTopic": "Celebrated For + Perfect Gerund",
+        "explanation": "Celebrated for having + V3."
+      },
+      {
+        "id": "st_g8_m_68",
+        "scrambledWords": [
+          "Cappadocia",
+          "to",
+          "to",
+          "balloons",
+          "forget",
+          "in",
+          "not",
+          "If",
+          "travel",
+          "you",
+          "fly",
+          "do"
+        ],
+        "correctSentence": "If you travel to Cappadocia do not forget to fly in balloons.",
+        "alternativeSentences": [
+          "Do not forget to fly in balloons if you travel to Cappadocia."
+        ],
+        "themeOrTopic": "Conditionals with Imperative",
+        "explanation": "Zero/First conditional imperative."
+      },
+      {
+        "id": "st_g8_m_69",
+        "scrambledWords": [
+          "checked",
+          "He",
+          "everywhere",
+          "could",
+          "key",
+          "locate",
+          "hotel",
+          "although",
+          "his",
+          "not",
+          "he"
+        ],
+        "correctSentence": "He could not locate his hotel key although he checked everywhere.",
+        "alternativeSentences": [
+          "Although he checked everywhere he could not locate his hotel key."
+        ],
+        "themeOrTopic": "Concession Clauses with Although",
+        "explanation": "Although + clause of contrast."
+      },
+      {
+        "id": "st_g8_m_70",
+        "scrambledWords": [
+          "is",
+          "The",
+          "with",
+          "basil",
+          "it",
+          "topped",
+          "which",
+          "flavor",
+          "gives",
+          "rich",
+          "pizza"
+        ],
+        "correctSentence": "The pizza is topped with basil which gives it rich flavor.",
+        "themeOrTopic": "Non-Defining Relative Clauses",
+        "explanation": "Which + relative clause."
+      },
+      {
+        "id": "st_g8_m_71",
+        "scrambledWords": [
+          "being",
+          "science",
+          "international",
+          "Olympiad",
+          "about",
+          "the",
+          "She",
+          "for",
+          "excited",
+          "selected",
+          "was"
+        ],
+        "correctSentence": "She was excited about being selected for the international science Olympiad.",
+        "themeOrTopic": "Preposition + Passive Gerund",
+        "explanation": "About being + past participle."
+      },
+      {
+        "id": "st_g8_m_72",
+        "scrambledWords": [
+          "matter",
+          "it",
+          "chore",
+          "was",
+          "tiring",
+          "the",
+          "he",
+          "cheerfully",
+          "how",
+          "finished",
+          "No"
+        ],
+        "correctSentence": "No matter how tiring the chore was he finished it cheerfully.",
+        "alternativeSentences": [
+          "He finished it cheerfully no matter how tiring the chore was."
+        ],
+        "themeOrTopic": "Concessive Clauses (No Matter How)",
+        "explanation": "No matter how + adjective + clause."
+      },
+      {
+        "id": "st_g8_m_73",
+        "scrambledWords": [
+          "to",
+          "water",
+          "bottles",
+          "distributed",
+          "victims",
+          "relief",
+          "team",
+          "earthquake",
+          "the",
+          "The"
+        ],
+        "correctSentence": "The relief team distributed water bottles to the earthquake victims.",
+        "themeOrTopic": "Distribution Expressions",
+        "explanation": "Distributed + direct object + to recipients."
+      },
+      {
+        "id": "st_g8_m_74",
+        "scrambledWords": [
+          "them",
+          "use",
+          "spices",
+          "did",
+          "not",
+          "but",
+          "loves",
+          "He",
+          "appreciate",
+          "he",
+          "to",
+          "now"
+        ],
+        "correctSentence": "He did not use to appreciate spices but now he loves them.",
+        "alternativeSentences": [
+          "Now he loves spices but he did not use to appreciate them."
+        ],
+        "themeOrTopic": "Contrasting Habits",
+        "explanation": "Did not use to + contrast."
+      },
+      {
+        "id": "st_g8_m_75",
+        "scrambledWords": [
+          "father",
+          "software",
+          "your",
+          "How",
+          "worked",
+          "senior",
+          "a",
+          "long",
+          "has",
+          "as",
+          "engineer"
+        ],
+        "correctSentence": "How long has your father worked as a senior software engineer?",
+        "themeOrTopic": "Present Perfect Continuous/Simple Duration",
+        "explanation": "How long has + subject + worked."
+      },
+      {
+        "id": "st_g8_m_76",
+        "scrambledWords": [
+          "we",
+          "will",
+          "leave",
+          "now",
+          "miss",
+          "airport",
+          "otherwise",
+          "flights",
+          "We",
+          "the",
+          "must",
+          "for"
+        ],
+        "correctSentence": "We must leave for the airport now otherwise we will miss flights.",
+        "themeOrTopic": "Consequences with Otherwise",
+        "explanation": "Otherwise introduces negative consequence."
+      },
+      {
+        "id": "st_g8_m_77",
+        "scrambledWords": [
+          "The",
+          "stone",
+          "by",
+          "European",
+          "Roman",
+          "engineers",
+          "experienced",
+          "was",
+          "bridge",
+          "restored"
+        ],
+        "correctSentence": "The Roman stone bridge was restored by experienced European engineers.",
+        "themeOrTopic": "Passive Voice with Agent",
+        "explanation": "Was restored by + agent."
+      },
+      {
+        "id": "st_g8_m_78",
+        "scrambledWords": [
+          "prefer",
+          "would",
+          "cook",
+          "eat",
+          "junk",
+          "healthy",
+          "than",
+          "meals",
+          "rather",
+          "to",
+          "He"
+        ],
+        "correctSentence": "He would prefer to cook healthy meals rather than eat junk.",
+        "themeOrTopic": "Preferences with Rather Than",
+        "explanation": "Prefer to + verb + rather than + verb."
+      },
+      {
+        "id": "st_g8_m_79",
+        "scrambledWords": [
+          "a",
+          "within",
+          "seismic",
+          "teams",
+          "occurs",
+          "rescue",
+          "When",
+          "respond",
+          "shock",
+          "minutes"
+        ],
+        "correctSentence": "When a seismic shock occurs rescue teams respond within minutes.",
+        "alternativeSentences": [
+          "Rescue teams respond within minutes when a seismic shock occurs."
+        ],
+        "themeOrTopic": "Zero Conditional Facts",
+        "explanation": "When + present simple -> present simple."
+      },
+      {
+        "id": "st_g8_m_80",
+        "scrambledWords": [
+          "She",
+          "cleaning",
+          "hours",
+          "the",
+          "party",
+          "dinner",
+          "spent",
+          "three",
+          "after",
+          "the",
+          "kitchen"
+        ],
+        "correctSentence": "She spent three hours cleaning the kitchen after the dinner party.",
+        "alternativeSentences": [
+          "After the dinner party she spent three hours cleaning the kitchen."
+        ],
+        "themeOrTopic": "Spend Time Doing Something",
+        "explanation": "Spent + time + gerund (-ing)."
       }
     ],
     "hard": [
@@ -3970,6 +7659,796 @@ export const SENTENCE_TOWER_BANK: SentenceTowerBank = {
         "themeOrTopic": "Digital Habits",
         "explanation": "Describing digital study tools and habits.",
         "contentVersion": 2
+      },
+      {
+        "id": "st_g8_h_41",
+        "scrambledWords": [
+          "to",
+          "I",
+          "private",
+          "rather",
+          "your",
+          "spoke",
+          "you",
+          "in",
+          "much",
+          "would",
+          "teacher"
+        ],
+        "correctSentence": "I would much rather you spoke to your teacher in private.",
+        "alternativeSentences": [
+          "In private I would much rather you spoke to your teacher."
+        ],
+        "themeOrTopic": "Would Rather + Subject + Past Subjunctive",
+        "explanation": "Would rather + subject + past expresses preference for other person."
+      },
+      {
+        "id": "st_g8_h_42",
+        "scrambledWords": [
+          "Had",
+          "would",
+          "evacuated",
+          "earlier",
+          "have",
+          "warning",
+          "the",
+          "coastal",
+          "residents",
+          "tsunami",
+          "sounded"
+        ],
+        "correctSentence": "Had the tsunami warning sounded earlier coastal residents would have evacuated.",
+        "alternativeSentences": [
+          "Coastal residents would have evacuated had the tsunami warning sounded earlier."
+        ],
+        "themeOrTopic": "Inverted Third Conditional",
+        "explanation": "Had + subject + V3 -> would have + V3."
+      },
+      {
+        "id": "st_g8_h_43",
+        "scrambledWords": [
+          "washed",
+          "she",
+          "every",
+          "she",
+          "but",
+          "Not",
+          "only",
+          "dish",
+          "bread",
+          "did",
+          "bake",
+          "delicious"
+        ],
+        "correctSentence": "Not only did she bake delicious bread but she washed every dish.",
+        "themeOrTopic": "Inversion with Not Only",
+        "explanation": "Not only did she bake ... but she washed ..."
+      },
+      {
+        "id": "st_g8_h_44",
+        "scrambledWords": [
+          "changed",
+          "safety",
+          "you",
+          "your",
+          "internet",
+          "is",
+          "passwords",
+          "It",
+          "for",
+          "high",
+          "time"
+        ],
+        "correctSentence": "It is high time you changed your internet passwords for safety.",
+        "alternativeSentences": [
+          "For safety it is high time you changed your internet passwords."
+        ],
+        "themeOrTopic": "It Is High Time + Past Tense",
+        "explanation": "It is high time + subject + past tense."
+      },
+      {
+        "id": "st_g8_h_45",
+        "scrambledWords": [
+          "identity",
+          "numbers",
+          "personal",
+          "Under",
+          "no",
+          "forums",
+          "on",
+          "should",
+          "circumstances",
+          "shared",
+          "be"
+        ],
+        "correctSentence": "Under no circumstances should personal identity numbers be shared on forums.",
+        "alternativeSentences": [
+          "On forums under no circumstances should personal identity numbers be shared."
+        ],
+        "themeOrTopic": "Negative Inversion with Passive",
+        "explanation": "Under no circumstances should + subject + be shared."
+      },
+      {
+        "id": "st_g8_h_46",
+        "scrambledWords": [
+          "better",
+          "you",
+          "it",
+          "the",
+          "carefully",
+          "The",
+          "recipe",
+          "follow",
+          "the",
+          "more",
+          "tastes"
+        ],
+        "correctSentence": "The more carefully you follow the recipe the better it tastes.",
+        "themeOrTopic": "Double Comparatives",
+        "explanation": "The more ... the better ..."
+      },
+      {
+        "id": "st_g8_h_47",
+        "scrambledWords": [
+          "for",
+          "laboratory",
+          "recognized",
+          "having",
+          "a",
+          "The",
+          "groundbreaking",
+          "antibiotic",
+          "discovered",
+          "was"
+        ],
+        "correctSentence": "The laboratory was recognized for having discovered a groundbreaking antibiotic.",
+        "themeOrTopic": "Recognized For + Perfect Gerund",
+        "explanation": "For having discovered + noun phrase."
+      },
+      {
+        "id": "st_g8_h_48",
+        "scrambledWords": [
+          "at",
+          "authority",
+          "arguments",
+          "once",
+          "all",
+          "with",
+          "She",
+          "ceased",
+          "that",
+          "spoke",
+          "such"
+        ],
+        "correctSentence": "She spoke with such authority that all arguments ceased at once.",
+        "themeOrTopic": "Such ... That Result",
+        "explanation": "Such + noun + that + consequence."
+      },
+      {
+        "id": "st_g8_h_49",
+        "scrambledWords": [
+          "an",
+          "immediately",
+          "occur",
+          "teams",
+          "Were",
+          "to",
+          "rescue",
+          "would",
+          "deploy",
+          "emergency"
+        ],
+        "correctSentence": "Were an emergency to occur rescue teams would deploy immediately.",
+        "alternativeSentences": [
+          "Rescue teams would deploy immediately were an emergency to occur."
+        ],
+        "themeOrTopic": "Inverted Second Conditional",
+        "explanation": "Were + subject + to-infinitive -> would deploy."
+      },
+      {
+        "id": "st_g8_h_50",
+        "scrambledWords": [
+          "network",
+          "call",
+          "the",
+          "mobile",
+          "Scarcely",
+          "had",
+          "when",
+          "connected",
+          "crashed",
+          "the"
+        ],
+        "correctSentence": "Scarcely had the call connected when the mobile network crashed.",
+        "themeOrTopic": "Scarcely ... When Inversion",
+        "explanation": "Scarcely had + subject + V3 + when ..."
+      },
+      {
+        "id": "st_g8_h_51",
+        "scrambledWords": [
+          "in",
+          "acts",
+          "he",
+          "mountaineering",
+          "expert",
+          "He",
+          "extreme",
+          "were",
+          "though",
+          "an",
+          "as"
+        ],
+        "correctSentence": "He acts as though he were an expert in extreme mountaineering.",
+        "themeOrTopic": "As Though + Subjunctive Were",
+        "explanation": "As though + subjunctive were for hypothetical claim."
+      },
+      {
+        "id": "st_g8_h_52",
+        "scrambledWords": [
+          "published",
+          "had",
+          "went",
+          "it",
+          "viral",
+          "No",
+          "the",
+          "sooner",
+          "recipe",
+          "than",
+          "been"
+        ],
+        "correctSentence": "No sooner had the recipe been published than it went viral.",
+        "themeOrTopic": "No Sooner ... Than Inversion",
+        "explanation": "No sooner had + subject + been V3 + than ..."
+      },
+      {
+        "id": "st_g8_h_53",
+        "scrambledWords": [
+          "artifacts",
+          "The",
+          "damaged",
+          "to",
+          "during",
+          "are",
+          "been",
+          "reported",
+          "have",
+          "tremors",
+          "historical"
+        ],
+        "correctSentence": "The historical artifacts are reported to have been damaged during tremors.",
+        "themeOrTopic": "Passive Reporting with Perfect Infinitive",
+        "explanation": "Are reported to have been + V3."
+      },
+      {
+        "id": "st_g8_h_54",
+        "scrambledWords": [
+          "influenced",
+          "did",
+          "internet",
+          "choices",
+          "the",
+          "how",
+          "users",
+          "Little",
+          "understand",
+          "algorithms"
+        ],
+        "correctSentence": "Little did the internet users understand how algorithms influenced choices.",
+        "themeOrTopic": "Inversion with Little",
+        "explanation": "Little did + subject + base verb."
+      },
+      {
+        "id": "st_g8_h_55",
+        "scrambledWords": [
+          "links",
+          "click",
+          "not",
+          "better",
+          "You",
+          "in",
+          "strange",
+          "had",
+          "suspicious",
+          "messages",
+          "on"
+        ],
+        "correctSentence": "You had better not click on suspicious links in strange messages.",
+        "themeOrTopic": "Had Better Negative Advice",
+        "explanation": "Had better not + bare verb."
+      },
+      {
+        "id": "st_g8_h_56",
+        "scrambledWords": [
+          "in",
+          "has",
+          "been",
+          "Seldom",
+          "school",
+          "seen",
+          "such",
+          "competitions",
+          "artistry",
+          "culinary"
+        ],
+        "correctSentence": "Seldom has such culinary artistry been seen in school competitions.",
+        "themeOrTopic": "Inversion with Seldom",
+        "explanation": "Seldom has + subject + been seen."
+      },
+      {
+        "id": "st_g8_h_57",
+        "scrambledWords": [
+          "safety",
+          "all",
+          "obeyed",
+          "that",
+          "inspector",
+          "regulations",
+          "strictly",
+          "The",
+          "be",
+          "demanded"
+        ],
+        "correctSentence": "The inspector demanded that all safety regulations be obeyed strictly.",
+        "alternativeSentences": [
+          "The inspector demanded that all safety regulations strictly be obeyed."
+        ],
+        "themeOrTopic": "Mandative Subjunctive",
+        "explanation": "Demanded that + subject + be obeyed."
+      },
+      {
+        "id": "st_g8_h_58",
+        "scrambledWords": [
+          "have",
+          "protective",
+          "would",
+          "survived",
+          "Had",
+          "the",
+          "cyclist",
+          "worn",
+          "he",
+          "his",
+          "helmet"
+        ],
+        "correctSentence": "Had he worn his protective helmet the cyclist would have survived.",
+        "alternativeSentences": [
+          "The cyclist would have survived had he worn his protective helmet."
+        ],
+        "themeOrTopic": "Inverted Third Conditional",
+        "explanation": "Had + subject + V3 -> would have + V3."
+      },
+      {
+        "id": "st_g8_h_59",
+        "scrambledWords": [
+          "everyone",
+          "insisted",
+          "before",
+          "mountaineering",
+          "their",
+          "climbing",
+          "harnesses",
+          "that",
+          "inspect",
+          "guide",
+          "The"
+        ],
+        "correctSentence": "The mountaineering guide insisted that everyone inspect their harnesses before climbing.",
+        "alternativeSentences": [
+          "Before climbing the mountaineering guide insisted that everyone inspect their harnesses."
+        ],
+        "themeOrTopic": "Subjunctive with Insist",
+        "explanation": "Insisted that + subject + bare verb inspect."
+      },
+      {
+        "id": "st_g8_h_60",
+        "scrambledWords": [
+          "the",
+          "Hardly",
+          "judges",
+          "chef",
+          "the",
+          "entered",
+          "seasoned",
+          "stew",
+          "when",
+          "had"
+        ],
+        "correctSentence": "Hardly had the chef seasoned the stew when judges entered.",
+        "themeOrTopic": "Hardly ... When Inversion",
+        "explanation": "Hardly had + subject + V3 + when ..."
+      },
+      {
+        "id": "st_g8_h_61",
+        "scrambledWords": [
+          "severe",
+          "was",
+          "were",
+          "all",
+          "that",
+          "mountain",
+          "blizzard",
+          "the",
+          "So",
+          "shut",
+          "highways"
+        ],
+        "correctSentence": "So severe was the blizzard that all mountain highways were shut.",
+        "themeOrTopic": "Inversion with So + Adjective",
+        "explanation": "So + adjective + was + subject + that ..."
+      },
+      {
+        "id": "st_g8_h_62",
+        "scrambledWords": [
+          "The",
+          "adventurous",
+          "feels",
+          "the",
+          "the",
+          "remote",
+          "it",
+          "more",
+          "more",
+          "holiday",
+          "destination"
+        ],
+        "correctSentence": "The more remote the holiday destination the more adventurous it feels.",
+        "themeOrTopic": "Double Comparative in Tourism",
+        "explanation": "The more ... the more ..."
+      },
+      {
+        "id": "st_g8_h_63",
+        "scrambledWords": [
+          "a",
+          "that",
+          "readiness",
+          "disaster",
+          "maintain",
+          "every",
+          "is",
+          "It",
+          "household",
+          "essential",
+          "kit"
+        ],
+        "correctSentence": "It is essential that every household maintain a disaster readiness kit.",
+        "themeOrTopic": "Formal Mandative Subjunctive",
+        "explanation": "Essential that + subject + bare verb maintain."
+      },
+      {
+        "id": "st_g8_h_64",
+        "scrambledWords": [
+          "visibly",
+          "of",
+          "the",
+          "swayed",
+          "magnitude",
+          "the",
+          "tremor",
+          "was",
+          "skyscrapers",
+          "Such",
+          "that"
+        ],
+        "correctSentence": "Such was the magnitude of the tremor that skyscrapers swayed visibly.",
+        "themeOrTopic": "Inversion with Such + Noun",
+        "explanation": "Such was + noun + that ..."
+      },
+      {
+        "id": "st_g8_h_65",
+        "scrambledWords": [
+          "the",
+          "not",
+          "they",
+          "forecast",
+          "Had",
+          "have",
+          "sailed",
+          "storm",
+          "checked",
+          "they",
+          "would"
+        ],
+        "correctSentence": "Had they checked the storm forecast they would not have sailed.",
+        "alternativeSentences": [
+          "They would not have sailed had they checked the storm forecast."
+        ],
+        "themeOrTopic": "Negative Third Conditional Inversion",
+        "explanation": "Had + subject + V3 -> would not have + V3."
+      },
+      {
+        "id": "st_g8_h_66",
+        "scrambledWords": [
+          "recommended",
+          "The",
+          "upgraded",
+          "laboratory",
+          "the",
+          "school",
+          "computer",
+          "that",
+          "be",
+          "board"
+        ],
+        "correctSentence": "The school board recommended that the computer laboratory be upgraded.",
+        "themeOrTopic": "Subjunctive in Recommendations",
+        "explanation": "Recommended that + subject + be upgraded."
+      },
+      {
+        "id": "st_g8_h_67",
+        "scrambledWords": [
+          "grant",
+          "kitchen",
+          "health",
+          "Only",
+          "the",
+          "permits",
+          "after",
+          "thoroughly",
+          "did",
+          "inspecting",
+          "officers"
+        ],
+        "correctSentence": "Only after inspecting the kitchen thoroughly did health officers grant permits.",
+        "themeOrTopic": "Inversion with Only After",
+        "explanation": "Only after + gerund + did + subject + verb."
+      },
+      {
+        "id": "st_g8_h_68",
+        "scrambledWords": [
+          "He",
+          "accustomed",
+          "twelve",
+          "hour",
+          "was",
+          "in",
+          "shifts",
+          "busy",
+          "to",
+          "restaurants",
+          "working"
+        ],
+        "correctSentence": "He was accustomed to working twelve hour shifts in busy restaurants.",
+        "themeOrTopic": "Accustomed To + Gerund",
+        "explanation": "Be accustomed to + gerund."
+      },
+      {
+        "id": "st_g8_h_69",
+        "scrambledWords": [
+          "tropical",
+          "meteorological",
+          "Never",
+          "speeds",
+          "the",
+          "station",
+          "had",
+          "such",
+          "extreme",
+          "wind",
+          "recorded"
+        ],
+        "correctSentence": "Never had the meteorological station recorded such extreme tropical wind speeds.",
+        "themeOrTopic": "Negative Inversion with Past Perfect",
+        "explanation": "Never had + subject + V3."
+      },
+      {
+        "id": "st_g8_h_70",
+        "scrambledWords": [
+          "blow",
+          "pegs",
+          "firmly",
+          "He",
+          "tent",
+          "lest",
+          "gale",
+          "the",
+          "them",
+          "secured",
+          "away",
+          "the"
+        ],
+        "correctSentence": "He secured the tent pegs firmly lest the gale blow them away.",
+        "themeOrTopic": "Lest Clause of Negative Purpose",
+        "explanation": "Lest + subject + bare verb blow."
+      },
+      {
+        "id": "st_g8_h_71",
+        "scrambledWords": [
+          "can",
+          "regarding",
+          "no",
+          "online",
+          "tolerated",
+          "be",
+          "security",
+          "In",
+          "protocols",
+          "negligence",
+          "way"
+        ],
+        "correctSentence": "In no way can negligence regarding online security protocols be tolerated.",
+        "themeOrTopic": "Fronted Negative Inversion",
+        "explanation": "In no way can + subject + be tolerated."
+      },
+      {
+        "id": "st_g8_h_72",
+        "scrambledWords": [
+          "ancient",
+          "understood",
+          "sieges",
+          "fortress",
+          "The",
+          "resisted",
+          "have",
+          "numerous",
+          "is",
+          "to",
+          "foreign"
+        ],
+        "correctSentence": "The ancient fortress is understood to have resisted numerous foreign sieges.",
+        "themeOrTopic": "Reporting Verbs with Perfect Active Infinitive",
+        "explanation": "Is understood to have + V3."
+      },
+      {
+        "id": "st_g8_h_73",
+        "scrambledWords": [
+          "increase",
+          "seismic",
+          "prompt",
+          "towns",
+          "to",
+          "evacuation",
+          "require",
+          "coastal",
+          "would",
+          "activity",
+          "Were"
+        ],
+        "correctSentence": "Were seismic activity to increase coastal towns would require prompt evacuation.",
+        "alternativeSentences": [
+          "Coastal towns would require prompt evacuation were seismic activity to increase."
+        ],
+        "themeOrTopic": "Inverted Second Conditional",
+        "explanation": "Were + subject + to-infinitive -> would require."
+      },
+      {
+        "id": "st_g8_h_74",
+        "scrambledWords": [
+          "her",
+          "in",
+          "She",
+          "of",
+          "was",
+          "doctorate",
+          "astrophysics",
+          "completing",
+          "on",
+          "the",
+          "brink"
+        ],
+        "correctSentence": "She was on the brink of completing her doctorate in astrophysics.",
+        "themeOrTopic": "On the Brink of + Gerund",
+        "explanation": "On the brink of + gerund."
+      },
+      {
+        "id": "st_g8_h_75",
+        "scrambledWords": [
+          "we",
+          "as",
+          "life",
+          "must",
+          "daring",
+          "sports",
+          "Much",
+          "human",
+          "admire",
+          "remain",
+          "paramount"
+        ],
+        "correctSentence": "Much as we admire daring sports human life must remain paramount.",
+        "themeOrTopic": "Concession Clauses with Much As",
+        "explanation": "Much as + clause -> modal of obligation."
+      },
+      {
+        "id": "st_g8_h_76",
+        "scrambledWords": [
+          "dizzy",
+          "anyone",
+          "during",
+          "leader",
+          "feel",
+          "Should",
+          "team",
+          "climb",
+          "the",
+          "alert",
+          "the"
+        ],
+        "correctSentence": "Should anyone feel dizzy during the climb alert the team leader.",
+        "alternativeSentences": [
+          "During the climb should anyone feel dizzy alert the team leader."
+        ],
+        "themeOrTopic": "Inverted First Conditional with Imperative",
+        "explanation": "Should anyone + base verb -> imperative."
+      },
+      {
+        "id": "st_g8_h_77",
+        "scrambledWords": [
+          "historic",
+          "collection",
+          "too",
+          "moved",
+          "The",
+          "be",
+          "is",
+          "fragile",
+          "elsewhere",
+          "library",
+          "to"
+        ],
+        "correctSentence": "The historic library collection is too fragile to be moved elsewhere.",
+        "themeOrTopic": "Too ... To-Infinitive Structure",
+        "explanation": "Too fragile to be moved."
+      },
+      {
+        "id": "st_g8_h_78",
+        "scrambledWords": [
+          "published",
+          "others",
+          "the",
+          "Had",
+          "patents",
+          "have",
+          "earlier",
+          "would",
+          "not",
+          "scientist",
+          "claimed"
+        ],
+        "correctSentence": "Had the scientist published earlier others would not have claimed patents.",
+        "alternativeSentences": [
+          "Others would not have claimed patents had the scientist published earlier."
+        ],
+        "themeOrTopic": "Inverted Third Conditional Counterfactual",
+        "explanation": "Had + subject + V3 -> would not have + V3."
+      },
+      {
+        "id": "st_g8_h_79",
+        "scrambledWords": [
+          "the",
+          "wolves",
+          "national",
+          "be",
+          "can",
+          "wild",
+          "in",
+          "safely",
+          "Nowhere",
+          "approached",
+          "park"
+        ],
+        "correctSentence": "Nowhere in the national park can wild wolves be approached safely.",
+        "themeOrTopic": "Inversion with Nowhere",
+        "explanation": "Nowhere + can + subject + be approached."
+      },
+      {
+        "id": "st_g8_h_80",
+        "scrambledWords": [
+          "cells",
+          "The",
+          "due",
+          "having",
+          "was",
+          "discovered",
+          "his",
+          "solar",
+          "recognition",
+          "to",
+          "innovative"
+        ],
+        "correctSentence": "The recognition was due to his having discovered innovative solar cells.",
+        "themeOrTopic": "Due To + Perfect Gerund",
+        "explanation": "Due to his having + V3."
       }
     ]
   }

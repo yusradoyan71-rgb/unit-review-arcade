@@ -71,9 +71,9 @@ export const WordFishingGame: React.FC<WordFishingGameProps> = ({
   const pondRef = useRef<HTMLDivElement>(null);
   const animFrameRef = useRef<number | null>(null);
 
-  // Load questions
+  // Load questions with recent history tracking
   useEffect(() => {
-    const pool = getQuestionsForGame('word_fishing', gradeId, difficulty, 10) as WordFishingItem[];
+    const pool = getQuestionsForGame('word_fishing', gradeId, difficulty, 10, studentNumber) as WordFishingItem[];
     setQuestions(pool);
     setCurrentIndex(0);
     setScore(0);
@@ -82,7 +82,7 @@ export const WordFishingGame: React.FC<WordFishingGameProps> = ({
     setCorrectCount(0);
     setIncorrectCount(0);
     startTimeRef.current = Date.now();
-  }, [gradeId, difficulty]);
+  }, [gradeId, difficulty, studentNumber]);
 
   // Spawn swimming fishes for question
   const spawnFishes = useCallback((q: WordFishingItem) => {

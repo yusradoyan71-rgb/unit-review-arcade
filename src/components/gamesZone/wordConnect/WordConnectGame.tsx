@@ -10,6 +10,7 @@ import { getQuestionsForGame } from '../../../data/gamesZone';
 import { GamesZoneService } from '../../../services/gamesZoneService';
 import { sounds } from '../../../services/soundEffects';
 import { WordConnectSelectionEngine } from './wordConnectEngine.ts';
+import { isValidDictionaryWord, canFormFromLetters } from '../../../data/gamesZone/wordConnectDictionary.ts';
 
 interface WordConnectGameProps {
   gradeId: GradeId;
@@ -73,13 +74,15 @@ export const WordConnectGame: React.FC<WordConnectGameProps> = ({
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
   const [totalWordsFound, setTotalWordsFound] = useState(0);
+  const [bonusWordsFound, setBonusWordsFound] = useState<Set<string>>(new Set());
+  const [isBonusModalOpen, setIsBonusModalOpen] = useState(false);
   const [startTime] = useState(Date.now());
 
-  // Load puzzles for this session
+  // Load puzzles for this session with recent history tracking
   useEffect(() => {
-    const raw = getQuestionsForGame('word_connect', gradeId, difficulty, PUZZLES_PER_SESSION);
+    const raw = getQuestionsForGame('word_connect', gradeId, difficulty, PUZZLES_PER_SESSION, studentNumber);
     setPuzzles(raw as WordConnectPuzzle[]);
-  }, [gradeId, difficulty]);
+  }, [gradeId, difficulty, studentNumber]);
 
   const currentPuzzle = puzzles[puzzleIndex] || null;
 
@@ -91,6 +94,7 @@ export const WordConnectGame: React.FC<WordConnectGameProps> = ({
       engineRef.current.setLetters(letters);
       setSelectedIndices([]);
       setSolvedWordSet(new Set());
+      setBonusWordsFound(new Set());
       setRevealedHints({});
       setHintsRemaining(3);
     }
@@ -184,18 +188,40 @@ export const WordConnectGame: React.FC<WordConnectGameProps> = ({
         if (!isMuted) sounds.playSuccess();
         setTimeout(() => setToastMessage(null), 2000);
       }
+    } else if (isValidDictionaryWord(candidate) && canFormFromLetters(candidate, currentPuzzle.availableLetters)) {
+      // Valid non-target English word -> Bonus word!
+      if (bonusWordsFound.has(candidate)) {
+        setToastMessage(`"${candidate}" already collected as a bonus word!`);
+        if (!isMuted) sounds.playTap();
+        setTimeout(() => setToastMessage(null), 1500);
+      } else {
+        const nextBonus = new Set(bonusWordsFound);
+        nextBonus.add(candidate);
+        setBonusWordsFound(nextBonus);
+
+        const bonusPoints = candidate.length * 10;
+        setScore((s) => s + bonusPoints);
+        // Does NOT reset streak!
+        setToastMessage(`⭐ Bonus Word: ${candidate} (+${bonusPoints} pts)!`);
+        if (!isMuted) sounds.playSuccess();
+        setTimeout(() => setToastMessage(null), 2000);
+      }
     } else {
       // Invalid guess
       setShakePreview(true);
       setStreak(0);
+      setToastMessage(`"${candidate}" is not a valid word`);
       if (!isMuted) sounds.playError();
-      setTimeout(() => setShakePreview(false), 500);
+      setTimeout(() => {
+        setShakePreview(false);
+        setToastMessage(null);
+      }, 1000);
     }
 
     engineRef.current.clear();
     setSelectedIndices([]);
     setDragPointer(null);
-  }, [currentPuzzle, isMuted, solvedWordSet, streak]);
+  }, [currentPuzzle, isMuted, solvedWordSet, streak, bonusWordsFound]);
 
   // Pointer & Drag Handlers on Wheel
   const handleWheelPointerDown = (e: React.PointerEvent) => {
@@ -405,7 +431,19 @@ export const WordConnectGame: React.FC<WordConnectGameProps> = ({
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
+          {bonusWordsFound.size > 0 && (
+            <button
+              type="button"
+              onClick={() => setIsBonusModalOpen(true)}
+              className="px-2.5 py-1.5 rounded-xl text-xs font-black bg-amber-50 text-amber-800 border border-amber-300 hover:bg-amber-100 flex items-center gap-1.5 transition shadow-xs active:scale-95"
+              title="View collected bonus words"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-current" />
+              <span>Bonus ({bonusWordsFound.size})</span>
+            </button>
+          )}
+
           <div className="text-right">
             <span className="text-xs font-bold text-slate-400">Score</span>
             <div className="text-lg font-black text-amber-500 flex items-center justify-end gap-1">
@@ -640,6 +678,55 @@ export const WordConnectGame: React.FC<WordConnectGameProps> = ({
             <span>{puzzleIndex + 1 < puzzles.length ? 'Next Puzzle' : 'Complete Run'}</span>
             <ArrowRight className="w-4 h-4" />
           </button>
+        </div>
+      )}
+
+      {/* Bonus Words Modal */}
+      {isBonusModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-xs animate-fade-in">
+          <div
+            className="w-full max-w-sm bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col p-6 animate-scale-up"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-5 h-5 text-amber-500 fill-current" />
+                <h3 className="font-black text-slate-900 text-base">Bonus Words Found</h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsBonusModalOpen(false)}
+                className="p-1 rounded-xl text-slate-400 hover:text-slate-600 transition"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="py-4">
+              {bonusWordsFound.size === 0 ? (
+                <p className="text-xs text-slate-500 text-center py-4">No bonus words collected yet. Try connecting other valid English words!</p>
+              ) : (
+                <div className="flex flex-wrap gap-2 max-h-48 overflow-y-auto p-1">
+                  {Array.from(bonusWordsFound).map((word) => (
+                    <span
+                      key={word}
+                      className="px-2.5 py-1 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 font-bold text-xs shadow-2xs"
+                    >
+                      {word} (+{word.length * 10} pts)
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setIsBonusModalOpen(false)}
+              className="w-full py-2.5 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-black text-xs transition"
+            >
+              Close
+            </button>
+          </div>
         </div>
       )}
     </div>
