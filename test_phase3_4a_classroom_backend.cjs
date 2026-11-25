@@ -56,6 +56,23 @@ class MockRange {
     }
     this.sheet.rows[this.row - 1][this.col - 1] = val;
   }
+  setValues(vals) {
+    for (let r = 0; r < vals.length; r++) {
+      const sheetRow = this.row + r;
+      if (sheetRow === 1) {
+        this.sheet.headers = [...vals[r]];
+      } else {
+        const dataRowIdx = sheetRow - 2;
+        while (this.sheet.rows.length <= dataRowIdx) {
+          this.sheet.rows.push(new Array(this.sheet.headers.length || vals[r].length).fill(''));
+        }
+        for (let c = 0; c < vals[r].length; c++) {
+          const targetCol = this.col + c;
+          this.sheet.rows[dataRowIdx][targetCol - 1] = vals[r][c];
+        }
+      }
+    }
+  }
   getValues() {
     const full = [this.sheet.headers, ...this.sheet.rows];
     const slice = full.slice(this.row - 1, this.row - 1 + this.numRows);
@@ -136,7 +153,8 @@ const sandbox = {
   },
   LockService: {
     getScriptLock: () => ({
-      waitLock: () => { scriptLockCallCount++; return true; },
+      waitLock: () => { scriptLockCallCount++; return undefined; }, // Faithful to GAS: waitLock returns void/undefined
+      tryLock: (timeout) => { scriptLockCallCount++; return true; }, // GAS tryLock returns boolean
       releaseLock: () => { scriptLockReleaseCount++; },
     }),
   },

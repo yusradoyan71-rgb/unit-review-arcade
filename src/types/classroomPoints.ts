@@ -100,6 +100,10 @@ export interface TeacherAwardPointsResponse {
   categoryName?: string;
   academicYear?: string;
   batchKey?: string;
+  transactions?: Array<{
+    transactionId: string;
+    studentNumber: string;
+  }>;
   newGrants?: Array<{
     grantId: string;
     studentNumber: string;
@@ -113,12 +117,15 @@ export interface TeacherAwardPointsResponse {
 
 export interface TeacherRevertTransactionPayload {
   teacherToken: string;
-  transactionId: string;
+  transactionId?: string;
+  transactionIds?: string[];
   reason?: string;
 }
 
 export interface TeacherRevertTransactionResponse {
   success: boolean;
+  reversedCount?: number;
+  reversedTransactionIds?: string[];
   reversedTransactionId?: string;
   reversalTransactionId?: string;
   studentNumber?: string;
@@ -126,6 +133,7 @@ export interface TeacherRevertTransactionResponse {
     positivePoints: number;
     negativePoints: number;
     netPoints: number;
+    totalTransactions?: number;
   };
   error?: string;
   code?: string;

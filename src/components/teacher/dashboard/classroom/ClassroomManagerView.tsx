@@ -47,8 +47,11 @@ import {
   AlertTriangle,
   Award,
   CheckCircle2,
-  Wrench
+  Wrench,
+  RotateCcw,
+  X
 } from 'lucide-react';
+import { sounds } from '../../../../services/soundEffects';
 
 interface ClassroomManagerViewProps {
   roster: RosterStudent[];
@@ -218,6 +221,24 @@ export const ClassroomManagerView: React.FC<ClassroomManagerViewProps> = ({
   const [reconcileResult, setReconcileResult] = useState<string | null>(null);
   const [isReconciling, setIsReconciling] = useState<boolean>(false);
 
+  // Quick 8-Second Undo State (Phase 3.4B)
+  const [pendingUndo, setPendingUndo] = useState<{
+    id: string;
+    categoryName: string;
+    studentNames: string;
+    transactionIds: string[];
+    awardedCount: number;
+    createdAt: number;
+    expiresAt: number;
+  } | null>(null);
+  const [isUndoing, setIsUndoing] = useState<boolean>(false);
+  const [undoError, setUndoError] = useState<string | null>(null);
+  const [undoSuccessMessage, setUndoSuccessMessage] = useState<string | null>(null);
+  const [secondsRemaining, setSecondsRemaining] = useState<number>(8);
+
+  // Student Point History Quick Filter State
+  const [historySearchTerm, setHistorySearchTerm] = useState<string>('');
+
   // Load Classroom Overview from Backend
   const loadClassroomOverview = useCallback(async () => {
     if (!teacherToken) return;
@@ -379,10 +400,90 @@ export const ClassroomManagerView: React.FC<ClassroomManagerViewProps> = ({
     }
   };
 
-  // Award completed -> Refresh balances and clear selection
-  const handleAwardSuccess = (_response: TeacherAwardPointsResponse) => {
+  // 8-Second Undo Countdown Timer Effect
+  useEffect(() => {
+    if (!pendingUndo) return;
+
+    const interval = setInterval(() => {
+      const left = Math.max(0, Math.ceil((pendingUndo.expiresAt - Date.now()) / 1000));
+      setSecondsRemaining(left);
+      if (left <= 0) {
+        setPendingUndo(null);
+        clearInterval(interval);
+      }
+    }, 200);
+
+    return () => clearInterval(interval);
+  }, [pendingUndo]);
+
+  // Award completed -> Refresh balances, clear selection, and trigger 8-second Undo notification
+  const handleAwardSuccess = (response: TeacherAwardPointsResponse) => {
     handleClearSelection();
     loadClassroomOverview();
+
+    // Determine target students string
+    const studentNames = awardTargetStudents.length === 1
+      ? awardTargetStudents[0].fullName
+      : awardTargetStudents.length <= 3
+      ? awardTargetStudents.map((s) => s.fullName).join(', ')
+      : `${awardTargetStudents[0].fullName} and ${awardTargetStudents.length - 1} others`;
+
+    // Extract exact transaction IDs created by this specific batch
+    const txIds = response.transactions && response.transactions.length > 0
+      ? response.transactions.map((t) => t.transactionId)
+      : [];
+
+    setUndoError(null);
+    setUndoSuccessMessage(null);
+    setSecondsRemaining(8);
+
+    setPendingUndo({
+      id: `undo_${Date.now()}`,
+      categoryName: response.categoryName || 'Classroom Points',
+      studentNames,
+      transactionIds: txIds,
+      awardedCount: response.awardedCount || awardTargetStudents.length,
+      createdAt: Date.now(),
+      expiresAt: Date.now() + 8000,
+    });
+  };
+
+  // Immediate 1-Click Smartboard Undo Action
+  const handleUndoAward = async () => {
+    if (!pendingUndo || isUndoing) return;
+
+    setIsUndoing(true);
+    setUndoError(null);
+
+    try {
+      const response = await TeacherApiService.revertClassroomPointTransaction({
+        teacherToken,
+        transactionIds: pendingUndo.transactionIds.length > 0 ? pendingUndo.transactionIds : undefined,
+        transactionId: pendingUndo.transactionIds.length === 1 ? pendingUndo.transactionIds[0] : undefined,
+        reason: 'Immediate Smartboard Undo',
+      });
+
+      if (response.success) {
+        sounds.playTap();
+        const msg = `Award undone: reversed points for ${pendingUndo.studentNames}.`;
+        setUndoSuccessMessage(msg);
+        setPendingUndo(null);
+        await loadClassroomOverview();
+        setTimeout(() => setUndoSuccessMessage(null), 4000);
+      } else {
+        setUndoError(response.error || 'Undo failed. Please check Point History & Reversals.');
+      }
+    } catch (err) {
+      setUndoError(err instanceof Error ? err.message : 'Network error during undo.');
+    } finally {
+      setIsUndoing(false);
+    }
+  };
+
+  // Navigate to Point History pre-filtered to a specific student
+  const handleViewStudentHistory = (studentNumber: string) => {
+    setHistorySearchTerm(studentNumber);
+    setSubTab('history');
   };
 
   // Run Self-Healing Reward Reconciliation
@@ -539,6 +640,91 @@ export const ClassroomManagerView: React.FC<ClassroomManagerViewProps> = ({
         </button>
       </div>
 
+      {/* 8-Second Undo Award Smartboard Banner (Phase 3.4B) */}
+      {pendingUndo && (
+        <div className="p-4 rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white shadow-xl flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 animate-fade-in border border-indigo-700/80">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-2xl bg-amber-400 text-slate-950 font-black flex items-center justify-center text-sm shrink-0 shadow-sm">
+              <RotateCcw className="w-5 h-5 text-slate-950" />
+            </div>
+            <div>
+              <p className="text-xs sm:text-sm font-bold text-white flex items-center gap-2 flex-wrap">
+                <span>Awarded <strong>{pendingUndo.categoryName}</strong> to {pendingUndo.studentNames}</span>
+                <span className="px-2 py-0.5 rounded-full bg-indigo-800/80 border border-indigo-500/50 text-[10px] font-mono text-amber-300 font-bold">
+                  {secondsRemaining}s left
+                </span>
+              </p>
+              <p className="text-[11px] text-indigo-200">
+                Accidental click? Click Undo within {secondsRemaining} seconds to immediately restore student balances.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 self-end sm:self-center shrink-0">
+            <button
+              type="button"
+              onClick={handleUndoAward}
+              disabled={isUndoing}
+              className="min-h-[44px] px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-black text-xs transition-all flex items-center gap-2 shadow-sm disabled:opacity-50 cursor-pointer"
+            >
+              {isUndoing ? (
+                <>
+                  <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                  <span>Undoing Award...</span>
+                </>
+              ) : (
+                <>
+                  <RotateCcw className="w-3.5 h-3.5" />
+                  <span>Undo Award ({secondsRemaining}s)</span>
+                </>
+              )}
+            </button>
+            <button
+              type="button"
+              onClick={() => setPendingUndo(null)}
+              className="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-xs font-bold transition-all"
+              title="Dismiss undo banner"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Undo Success Notification */}
+      {undoSuccessMessage && (
+        <div className="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-center justify-between gap-3 animate-fade-in shadow-xs">
+          <div className="flex items-center gap-2">
+            <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+            <span className="font-bold">{undoSuccessMessage}</span>
+          </div>
+          <button
+            type="button"
+            onClick={() => setUndoSuccessMessage(null)}
+            className="text-emerald-700 hover:text-emerald-900 font-bold text-xs"
+          >
+            Dismiss
+          </button>
+        </div>
+      )}
+
+      {/* Undo Error Banner */}
+      {undoError && (
+        <div className="p-3.5 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-center justify-between gap-3 animate-fade-in shadow-xs">
+          <div className="flex items-center gap-2">
+            <AlertTriangle className="w-5 h-5 text-rose-600 shrink-0" />
+            <span>{undoError}</span>
+          </div>
+          <button
+            type="button"
+            onClick={() => setUndoError(null)}
+            className="text-rose-700 hover:text-rose-900 font-bold text-xs"
+          >
+            Dismiss
+          </button>
+        </div>
+      )}
+
       {/* Reconcile Notification Banner */}
       {reconcileResult && (
         <div className="p-4 rounded-2xl bg-indigo-50 border border-indigo-200 text-indigo-800 text-xs flex items-center justify-between gap-3 animate-fade-in">
@@ -580,6 +766,7 @@ export const ClassroomManagerView: React.FC<ClassroomManagerViewProps> = ({
           onSelectClassId={setSelectedClassId}
           searchTerm={searchTerm}
           onSearchTermChange={setSearchTerm}
+          onViewStudentHistory={handleViewStudentHistory}
         />
       )}
 
@@ -591,6 +778,8 @@ export const ClassroomManagerView: React.FC<ClassroomManagerViewProps> = ({
           onReversalSuccess={loadClassroomOverview}
           selectedClassId={selectedClassId}
           onSelectClassId={setSelectedClassId}
+          initialSearchTerm={historySearchTerm}
+          onClearInitialSearchTerm={() => setHistorySearchTerm('')}
         />
       )}
 

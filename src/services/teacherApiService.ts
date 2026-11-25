@@ -1148,6 +1148,7 @@ export class TeacherApiService {
   /**
    * Reverses a point transaction with pure append-only accounting.
    * Prevents double subtraction and preserves full audit history.
+   * Supports both single transactionId and batch transactionIds.
    */
   public static async revertClassroomPointTransaction(
     payload: TeacherRevertTransactionPayload
@@ -1161,10 +1162,12 @@ export class TeacherApiService {
       };
     }
 
-    if (!payload.transactionId) {
+    const hasSingle = Boolean(payload.transactionId && payload.transactionId.trim());
+    const hasBatch = Boolean(Array.isArray(payload.transactionIds) && payload.transactionIds.length > 0);
+    if (!hasSingle && !hasBatch) {
       return {
         success: false,
-        error: 'Transaction ID is required for reversal.',
+        error: 'Transaction ID or Transaction IDs are required for reversal.',
         code: 'BAD_REQUEST',
       };
     }
@@ -1174,9 +1177,10 @@ export class TeacherApiService {
       return await ApiService.postRequest<TeacherRevertTransactionResponse>(
         endpoint,
         {
-          action: 'teacher_revert_classroom_transaction',
+          action: 'teacher_revert_classroom_point_transaction',
           teacherToken: cleanToken,
-          transactionId: payload.transactionId,
+          transactionId: payload.transactionId ? payload.transactionId.trim() : undefined,
+          transactionIds: payload.transactionIds,
           reason: payload.reason,
         },
         25000

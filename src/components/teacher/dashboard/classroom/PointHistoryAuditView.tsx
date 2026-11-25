@@ -34,6 +34,8 @@ interface PointHistoryAuditViewProps {
   onReversalSuccess: () => void;
   selectedClassId: 'all' | '7A' | '7B' | '8A' | '8B';
   onSelectClassId: (classId: 'all' | '7A' | '7B' | '8A' | '8B') => void;
+  initialSearchTerm?: string;
+  onClearInitialSearchTerm?: () => void;
 }
 
 export const PointHistoryAuditView: React.FC<PointHistoryAuditViewProps> = ({
@@ -43,11 +45,20 @@ export const PointHistoryAuditView: React.FC<PointHistoryAuditViewProps> = ({
   onReversalSuccess,
   selectedClassId,
   onSelectClassId,
+  initialSearchTerm,
+  onClearInitialSearchTerm,
 }) => {
   const [transactions, setTransactions] = useState<ClassroomPointTransaction[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [searchTerm, setSearchTerm] = useState<string>(initialSearchTerm || '');
+
+  // Synchronize when initialSearchTerm changes from outside
+  useEffect(() => {
+    if (initialSearchTerm !== undefined) {
+      setSearchTerm(initialSearchTerm);
+    }
+  }, [initialSearchTerm]);
 
   // Reversal Modal State
   const [reversingTx, setReversingTx] = useState<ClassroomPointTransaction | null>(null);
@@ -161,7 +172,25 @@ export const PointHistoryAuditView: React.FC<PointHistoryAuditViewProps> = ({
         </div>
 
         {/* Search & Refresh */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap">
+          {/* Active Filter Pill if filtered by student */}
+          {searchTerm && studentMap.has(searchTerm.trim()) && (
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-bold shrink-0 animate-fade-in">
+              <span>{studentMap.get(searchTerm.trim())?.fullName} (#{searchTerm.trim()})</span>
+              <button
+                type="button"
+                onClick={() => {
+                  setSearchTerm('');
+                  if (onClearInitialSearchTerm) onClearInitialSearchTerm();
+                }}
+                className="w-4 h-4 rounded-full bg-indigo-200 hover:bg-indigo-300 text-indigo-900 flex items-center justify-center text-[10px] ml-0.5"
+                title="Clear student filter"
+              >
+                &times;
+              </button>
+            </div>
+          )}
+
           <div className="relative flex-1 sm:w-64">
             <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
@@ -169,15 +198,28 @@ export const PointHistoryAuditView: React.FC<PointHistoryAuditViewProps> = ({
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search student or category..."
-              className="w-full min-h-[44px] pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 placeholder-slate-400 focus:ring-2 focus:ring-indigo-500"
+              className="w-full min-h-[44px] pl-9 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 placeholder-slate-400 focus:ring-2 focus:ring-indigo-500"
             />
+            {searchTerm && (
+              <button
+                type="button"
+                onClick={() => {
+                  setSearchTerm('');
+                  if (onClearInitialSearchTerm) onClearInitialSearchTerm();
+                }}
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs font-bold p-1"
+                title="Clear search"
+              >
+                &times;
+              </button>
+            )}
           </div>
 
           <button
             type="button"
             onClick={loadHistory}
             disabled={isLoading}
-            className="min-h-[44px] px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 text-xs font-bold transition-all flex items-center gap-1.5"
+            className="min-h-[44px] px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 text-xs font-bold transition-all flex items-center gap-1.5 shrink-0"
             title="Refresh history"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin text-indigo-600' : ''}`} />

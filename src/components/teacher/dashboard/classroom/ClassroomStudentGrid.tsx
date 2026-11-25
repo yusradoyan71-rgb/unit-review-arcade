@@ -38,6 +38,7 @@ interface ClassroomStudentGridProps {
   onSelectClassId: (classId: 'all' | '7A' | '7B' | '8A' | '8B') => void;
   searchTerm: string;
   onSearchTermChange: (term: string) => void;
+  onViewStudentHistory?: (studentNumber: string) => void;
 }
 
 export const ClassroomStudentGrid: React.FC<ClassroomStudentGridProps> = ({
@@ -54,6 +55,7 @@ export const ClassroomStudentGrid: React.FC<ClassroomStudentGridProps> = ({
   onSelectClassId,
   searchTerm,
   onSearchTermChange,
+  onViewStudentHistory,
 }) => {
   // Filter students by class and search query
   const filteredStudents = students.filter((s) => {
@@ -254,8 +256,21 @@ export const ClassroomStudentGrid: React.FC<ClassroomStudentGridProps> = ({
                   </div>
                 </div>
 
-                {/* Middle Section: Point Badges (Strict Privacy Separation) */}
-                <div className="my-3 py-2 px-2.5 rounded-xl bg-slate-50/90 border border-slate-100 text-center space-y-1">
+                {/* Middle Section: Point Badges (Click to view Point History & Reversals) */}
+                <div
+                  onClick={(e) => {
+                    if (onViewStudentHistory) {
+                      e.stopPropagation();
+                      onViewStudentHistory(student.studentNumber);
+                    }
+                  }}
+                  className={`my-3 py-2 px-2.5 rounded-xl border text-center space-y-1 transition-all ${
+                    onViewStudentHistory
+                      ? 'bg-slate-50/90 hover:bg-indigo-50/90 border-slate-100 hover:border-indigo-300 cursor-pointer group/points ring-0 hover:ring-2 hover:ring-indigo-200'
+                      : 'bg-slate-50/90 border-slate-100'
+                  }`}
+                  title={onViewStudentHistory ? `Click to view Point History for ${student.fullName}` : undefined}
+                >
                   {isProjectorPrivacyMode ? (
                     // PROJECTOR PRIVACY MODE ACTIVE: STRICTLY POSITIVE POINTS ONLY
                     <div className="flex items-center justify-center gap-1.5 text-amber-700">
@@ -285,6 +300,13 @@ export const ClassroomStudentGrid: React.FC<ClassroomStudentGridProps> = ({
                         <span>/</span>
                         <span className="text-rose-500">-{student.negativePoints}</span>
                       </div>
+                    </div>
+                  )}
+
+                  {/* History link hint on hover */}
+                  {onViewStudentHistory && (
+                    <div className="text-[9px] text-slate-400 group-hover/points:text-indigo-600 font-bold transition-colors flex items-center justify-center gap-1">
+                      <span>History ↗</span>
                     </div>
                   )}
 

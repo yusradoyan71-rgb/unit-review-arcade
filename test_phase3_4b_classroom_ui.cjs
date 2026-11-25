@@ -265,6 +265,23 @@ class MockRange {
       this.sheet.rows[this.row - 2][this.col - 1] = val;
     }
   }
+  setValues(vals) {
+    for (let r = 0; r < vals.length; r++) {
+      const sheetRow = this.row + r;
+      if (sheetRow === 1) {
+        this.sheet.headers = [...vals[r]];
+      } else {
+        const dataRowIdx = sheetRow - 2;
+        while (this.sheet.rows.length <= dataRowIdx) {
+          this.sheet.rows.push(new Array(this.sheet.headers.length || vals[r].length).fill(''));
+        }
+        for (let c = 0; c < vals[r].length; c++) {
+          const targetCol = this.col + c;
+          this.sheet.rows[dataRowIdx][targetCol - 1] = vals[r][c];
+        }
+      }
+    }
+  }
   getValues() {
     const full = [this.sheet.headers, ...this.sheet.rows];
     const slice = full.slice(this.row - 1, this.row - 1 + this.numRows);
@@ -331,7 +348,7 @@ const sandbox = {
   LockService: {
     getScriptLock: () => ({
       tryLock: () => true,
-      waitLock: () => true,
+      waitLock: () => undefined,
       releaseLock: () => {},
     }),
   },
