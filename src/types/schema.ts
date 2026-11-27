@@ -234,4 +234,5 @@ export type NavigationTarget =
       mode?: 'topic' | 'mixed';
       mixedRatio?: '50/50' | '70/30' | '30/70';
       mixedSkill?: string;
-    };
+    }
+  | { view: 'xp-battle-arena' };

@@ -218,6 +218,15 @@ export const HomeScreen: React.FC = () => {
             </button>
             <button 
               onClick={() => {
+                sounds.playNavigate();
+                navigateTo({ view: 'xp-battle-arena' });
+              }} 
+              className="px-3.5 py-1.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-900 font-bold text-xs border border-indigo-200 flex items-center gap-1.5 whitespace-nowrap transition-colors"
+            >
+              <span>⚔️</span> XP Battle Arena
+            </button>
+            <button 
+              onClick={() => {
                 sounds.playTap();
                 openProfileModal();
               }} 
@@ -277,6 +286,42 @@ export const HomeScreen: React.FC = () => {
           className="px-5 py-2.5 rounded-2xl btn-game-amber text-xs font-black tracking-wide"
         >
           CLAIM IN QUEST ➔
+        </button>
+      </motion.div>
+
+      {/* =================================================================== */}
+      {/* 2B. XP BATTLE ARENA FEATURE BANNER                                  */}
+      {/* =================================================================== */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.15 }}
+        className="p-4 sm:p-5 rounded-3xl bg-gradient-to-r from-sky-500 via-indigo-600 to-purple-600 text-white shadow-md flex flex-wrap items-center justify-between gap-3 relative z-10 overflow-hidden"
+      >
+        <div className="flex items-center gap-3.5">
+          <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-3xl flex-shrink-0 border border-white/30 shadow-inner">
+            ⚔️
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <h3 className="text-base font-black font-display text-white">XP Battle Arena</h3>
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-amber-300 text-amber-950 shadow-sm">
+                Live 1v1 Duels
+              </span>
+            </div>
+            <p className="text-xs text-indigo-100 font-medium">
+              Challenge classmates to live, real-time 10-question English battles! Stake 0–20 XP with safe Level Floor protection.
+            </p>
+          </div>
+        </div>
+        <button 
+          onClick={() => {
+            sounds.playNavigate();
+            navigateTo({ view: 'xp-battle-arena' });
+          }} 
+          className="px-5 py-2.5 rounded-2xl bg-white text-indigo-700 hover:bg-amber-300 hover:text-amber-950 font-black text-xs tracking-wide shadow-md transition-all hover:scale-105 active:scale-95"
+        >
+          ENTER ARENA ➔
         </button>
       </motion.div>
 

@@ -43,6 +43,82 @@ export interface EndpointSecurityInfo {
   source: 'localStorage' | 'env' | 'default';
 }
 
+export interface ArenaStatusResponse {
+  success: boolean;
+  arenaEnabled?: boolean;
+  studentNumber?: string;
+  displayName?: string;
+  grade?: string;
+  class?: string;
+  metrics?: {
+    studentNumber: string;
+    academicLifetimeXp: number;
+    spendableXp: number;
+    arenaXpDelta: number;
+    level: number;
+    levelTitle: string;
+    todayMatchCount: number;
+    remainingMatches: number;
+    todayGrossLossXp: number;
+    remainingLossAllowance: number;
+    activeMatch: any;
+    availableStakes: number[];
+    dateKey: string;
+  };
+  error?: string;
+  code?: string;
+}
+
+export interface ArenaTokenResponse {
+  success: boolean;
+  customToken?: string;
+  studentNumber?: string;
+  grade?: string;
+  class?: string;
+  error?: string;
+  code?: string;
+}
+
+export interface ArenaChallengeResponse {
+  success: boolean;
+  matchId?: string;
+  challenger?: string;
+  opponent?: string;
+  stakeXp?: number;
+  grade?: string;
+  status?: string;
+  createdAt?: string;
+  error?: string;
+  code?: string;
+}
+
+export interface ArenaAcceptResponse {
+  success: boolean;
+  matchId?: string;
+  player1?: string;
+  player2?: string;
+  stakeXp?: number;
+  status?: string;
+  error?: string;
+  code?: string;
+}
+
+export interface ArenaSettleResponse {
+  success: boolean;
+  alreadySettled?: boolean;
+  matchId?: string;
+  winner?: string;
+  isTie?: boolean;
+  status?: string;
+  p1Score?: number;
+  p2Score?: number;
+  p1XpChange?: number;
+  p2XpChange?: number;
+  settledAt?: string;
+  error?: string;
+  code?: string;
+}
+
 export class ApiService {
   /**
    * Determines if a URL matches any known production endpoint.
@@ -548,6 +624,66 @@ export class ApiService {
         error: err instanceof Error ? err.message : 'Network error',
       };
     }
+  }
+
+  // ==========================================================================
+  // XP BATTLE ARENA (PHASE 4 & 5 AUTHORITATIVE BACKEND)
+  // ==========================================================================
+  public static async getArenaStatus(sessionToken: string): Promise<ArenaStatusResponse> {
+    return this.post<ArenaStatusResponse>({ action: 'arena_get_status', sessionToken });
+  }
+
+  public static async getArenaCustomToken(sessionToken: string): Promise<ArenaTokenResponse> {
+    return this.post<ArenaTokenResponse>({ action: 'arena_get_custom_token', sessionToken });
+  }
+
+  public static async createArenaChallenge(params: {
+    sessionToken: string;
+    opponentNumber: string;
+    stakeXp: number;
+  }): Promise<ArenaChallengeResponse> {
+    return this.post<ArenaChallengeResponse>({
+      action: 'arena_create_challenge',
+      sessionToken: params.sessionToken,
+      opponentNumber: params.opponentNumber,
+      stakeXp: params.stakeXp,
+    });
+  }
+
+  public static async acceptArenaChallenge(params: {
+    sessionToken: string;
+    matchId: string;
+  }): Promise<ArenaAcceptResponse> {
+    return this.post<ArenaAcceptResponse>({
+      action: 'arena_accept_challenge',
+      sessionToken: params.sessionToken,
+      matchId: params.matchId,
+    });
+  }
+
+  public static async settleArenaMatch(params: {
+    sessionToken: string;
+    matchId: string;
+    idempotencyKey?: string;
+    isForfeit?: boolean;
+    forfeitLoser?: string;
+    p1Score?: number;
+    p2Score?: number;
+    p1TotalTimeMs?: number;
+    p2TotalTimeMs?: number;
+  }): Promise<ArenaSettleResponse> {
+    return this.post<ArenaSettleResponse>({
+      action: 'arena_settle_match',
+      sessionToken: params.sessionToken,
+      matchId: params.matchId,
+      idempotencyKey: params.idempotencyKey,
+      isForfeit: params.isForfeit,
+      forfeitLoser: params.forfeitLoser,
+      p1Score: params.p1Score,
+      p2Score: params.p2Score,
+      p1TotalTimeMs: params.p1TotalTimeMs,
+      p2TotalTimeMs: params.p2TotalTimeMs,
+    });
   }
 
   /**

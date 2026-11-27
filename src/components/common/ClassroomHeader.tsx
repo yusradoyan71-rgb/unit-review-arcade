@@ -165,6 +165,14 @@ export const ClassroomHeader: React.FC = () => {
                 </span>
               )}
 
+              {/* XP Battle Arena Breadcrumb */}
+              {navigation.view === 'xp-battle-arena' && (
+                <span className="px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-800 border border-indigo-200 font-bold text-xs flex items-center gap-1.5">
+                  <span>⚔️</span>
+                  <span>XP Battle Arena</span>
+                </span>
+              )}
+
               {/* Teacher Panel Breadcrumb */}
               {navigation.view === 'teacher-panel' && (
                 <span className="px-2.5 py-1 rounded-lg bg-teal-50 text-teal-800 border border-teal-200 font-semibold text-xs flex items-center gap-1.5">

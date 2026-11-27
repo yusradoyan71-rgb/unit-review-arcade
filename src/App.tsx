@@ -28,6 +28,7 @@ import { MonsterWorldScreen } from './components/monster/MonsterWorldScreen';
 import { GeneralEnglishScreen } from './components/generalEnglish/GeneralEnglishScreen';
 import { GeneralEnglishGameContainer } from './components/generalEnglish/GeneralEnglishGameContainer';
 import { StudentMyClassroomScreen } from './components/classroom/StudentMyClassroomScreen';
+import { ArenaContainer } from './components/arena/ArenaContainer';
 import { useAuth } from './context/AuthContext';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -148,7 +149,7 @@ const MainView: React.FC = () => {
   return (
     <div className="relative min-h-screen bg-game-sky text-slate-800 flex flex-col font-sans selection:bg-cyan-500 selection:text-white">
       {/* Smartboard Sticky Header */}
-      <ClassroomHeader />
+      {navigation.view !== 'xp-battle-arena' && <ClassroomHeader />}
 
       {/* Main Classroom View with Smooth Motion Transitions */}
       <main className="flex-1 flex flex-col">
@@ -283,6 +284,19 @@ const MainView: React.FC = () => {
                 mixedRatio={navigation.mixedRatio}
                 onExit={() => navigateTo({ view: 'general-english', gradeId: navigation.gradeId })}
               />
+            </motion.div>
+          )}
+
+          {navigation.view === 'xp-battle-arena' && (
+            <motion.div
+              key="xp-battle-arena"
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.25 }}
+              className="flex-1 flex flex-col"
+            >
+              <ArenaContainer onExit={() => navigateTo({ view: 'home' })} />
             </motion.div>
           )}
 
