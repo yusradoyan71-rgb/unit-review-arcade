@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { ArenaMatchRoom } from './types';
+import { getGradeNumber } from './types';
 import { Clock, CheckCircle2, AlertTriangle, Lock, Zap, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MonsterAvatar } from '../monster/MonsterAvatar';
@@ -282,7 +283,7 @@ export const ArenaBattle: React.FC<ArenaBattleProps> = ({
       <div className="card-island p-6 sm:p-8 space-y-6 shadow-md">
         <div className="flex items-center justify-between">
           <span className="px-3.5 py-1 rounded-xl text-xs font-black bg-sky-100 text-sky-800 border border-sky-300 font-display">
-            Question {currentQIndex + 1} of {room.totalQuestions} • Grade 7 English
+            Question {currentQIndex + 1} of {room.totalQuestions} • Grade {getGradeNumber(room.player1.grade)} English
           </span>
           <button
             type="button"

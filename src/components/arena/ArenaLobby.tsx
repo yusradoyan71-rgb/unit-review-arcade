@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import type { ArenaStudentMetrics, ArenaOpponent, ArenaStake, ArenaChallenge } from './types';
-import { Swords, Coins, Check, Users, X } from 'lucide-react';
+import { getGradeNumber } from './types';
+import { Swords, Coins, Check, Users, X, AlertTriangle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MonsterAvatar } from '../monster/MonsterAvatar';
 import { MonsterService } from '../../services/monsterService';
@@ -10,6 +11,7 @@ interface ArenaLobbyProps {
   opponents: ArenaOpponent[];
   incomingChallenge: ArenaChallenge | null;
   outgoingChallenge: ArenaChallenge | null;
+  presenceError?: string | null;
   onSendChallenge: (opponent: ArenaOpponent, stake: ArenaStake) => void;
   onAcceptChallenge: (challenge: ArenaChallenge) => void;
   onDeclineChallenge: (challenge: ArenaChallenge) => void;
@@ -28,14 +30,43 @@ export const ArenaLobby: React.FC<ArenaLobbyProps> = ({
   opponents,
   incomingChallenge,
   outgoingChallenge,
+  presenceError,
   onSendChallenge,
   onAcceptChallenge,
   onDeclineChallenge,
   onCancelChallenge,
 }) => {
-  const [selectedStake, setSelectedStake] = useState<ArenaStake>(10);
+  // Helper to test if stake is allowed
+  const isStakeAllowed = (stake: ArenaStake) => {
+    if (metrics.todayMatchCount >= 5) return false;
+    if (stake > metrics.spendableXp) return false;
+    if (metrics.todayGrossLossXp + stake > 20) return false;
+    return true;
+  };
+
+  // Safe initial stake: choose 10 if allowed, else 5, else 0 (fallback practice)
+  const [selectedStake, setSelectedStake] = useState<ArenaStake>(() => {
+    if (isStakeAllowed(10)) return 10;
+    if (isStakeAllowed(5)) return 5;
+    return 0;
+  });
+
   const [incomingTimer, setIncomingTimer] = useState<number>(15);
   const [outgoingTimer, setOutgoingTimer] = useState<number>(15);
+
+  // Filter out self just in case current student appears in the roster
+  const filteredOpponents = opponents.filter(
+    (o) => String(o.studentNumber).trim() !== String(metrics.studentNumber).trim()
+  );
+
+  // Auto-clamp selected stake when spendableXp or daily quotas update
+  useEffect(() => {
+    if (!isStakeAllowed(selectedStake)) {
+      if (isStakeAllowed(10)) setSelectedStake(10);
+      else if (isStakeAllowed(5)) setSelectedStake(5);
+      else setSelectedStake(0);
+    }
+  }, [metrics.spendableXp, metrics.todayMatchCount, metrics.todayGrossLossXp, selectedStake]);
 
   // Incoming challenge timer countdown
   useEffect(() => {
@@ -75,14 +106,6 @@ export const ArenaLobby: React.FC<ArenaLobbyProps> = ({
     return () => clearInterval(interval);
   }, [outgoingChallenge, onCancelChallenge]);
 
-  // Helper to test if stake is allowed
-  const isStakeAllowed = (stake: ArenaStake) => {
-    if (metrics.todayMatchCount >= 5) return false;
-    if (stake > metrics.spendableXp) return false;
-    if (metrics.todayGrossLossXp + stake > 20) return false;
-    return true;
-  };
-
   const getStakeDisableReason = (stake: ArenaStake) => {
     if (metrics.todayMatchCount >= 5) return 'Daily 5-match limit reached';
     if (stake > metrics.spendableXp) return `Insufficient spendable XP (${metrics.spendableXp} XP available)`;
@@ -100,8 +123,23 @@ export const ArenaLobby: React.FC<ArenaLobbyProps> = ({
     ? MonsterService.resolveMonster(undefined, outgoingChallenge.opponent_id)
     : null;
 
+  const gradeNumber = getGradeNumber(metrics.grade);
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
+
+      {/* Connection / Roster Status Banner */}
+      {presenceError && (
+        <div className="p-4 rounded-2xl bg-amber-50 border-2 border-amber-300 text-amber-900 text-xs flex items-start gap-3 shadow-xs animate-fade-in">
+          <div className="w-6 h-6 rounded-lg bg-amber-200 text-amber-900 flex items-center justify-center font-bold text-sm shrink-0">
+            <AlertTriangle className="w-4 h-4 text-amber-800" />
+          </div>
+          <div className="flex-1">
+            <div className="font-bold text-amber-950 text-sm font-display">Lobby Presence Notice</div>
+            <div className="mt-0.5 text-amber-800 leading-relaxed font-sans">{presenceError}</div>
+          </div>
+        </div>
+      )}
       
       {/* 1. Campus Arena Welcome Banner */}
       <div className="card-island p-6 bg-gradient-to-r from-amber-50 via-white to-sky-50 border-2 border-amber-200 flex flex-col md:flex-row items-center justify-between gap-5">
@@ -112,10 +150,10 @@ export const ArenaLobby: React.FC<ArenaLobbyProps> = ({
           <div>
             <div className="flex items-center gap-2">
               <h1 className="text-2xl sm:text-3xl font-black text-slate-900 font-display">
-                Grade 7 Battle Arena
+                Grade {gradeNumber} Battle Arena
               </h1>
               <span className="px-2.5 py-0.5 rounded-full text-xs font-black bg-emerald-100 text-emerald-800 border border-emerald-300">
-                ● {opponents.filter((o) => o.status === 'idle').length} Online
+                ● {filteredOpponents.filter((o) => o.status === 'idle').length} Online
               </span>
             </div>
             <p className="text-sm text-slate-600 mt-1">
@@ -153,7 +191,7 @@ export const ArenaLobby: React.FC<ArenaLobbyProps> = ({
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
           {STAKE_OPTIONS.map(({ stake, label, badge, colorStyle }) => {
             const allowed = isStakeAllowed(stake);
-            const isSelected = selectedStake === stake;
+            const isSelected = allowed && selectedStake === stake;
             const disableReason = getStakeDisableReason(stake);
 
             return (
@@ -161,13 +199,15 @@ export const ArenaLobby: React.FC<ArenaLobbyProps> = ({
                 key={stake}
                 type="button"
                 disabled={!allowed}
-                onClick={() => setSelectedStake(stake)}
+                onClick={() => {
+                  if (allowed) setSelectedStake(stake);
+                }}
                 className={`relative rounded-2xl p-4 text-left border-2 transition-all flex flex-col justify-between h-24 ${
-                  isSelected
+                  !allowed
+                    ? 'bg-slate-50 border-slate-200 opacity-40 cursor-not-allowed text-slate-400'
+                    : isSelected
                     ? 'border-3 border-amber-400 bg-amber-50/90 ring-4 ring-amber-400/20 shadow-md'
-                    : allowed
-                    ? `bg-white ${colorStyle} shadow-xs`
-                    : 'bg-slate-50 border-slate-200 opacity-40 cursor-not-allowed'
+                    : `bg-white ${colorStyle} shadow-xs`
                 }`}
                 title={disableReason || `${stake} XP Stake`}
               >
@@ -185,7 +225,9 @@ export const ArenaLobby: React.FC<ArenaLobbyProps> = ({
                 </div>
 
                 <div>
-                  <div className="text-xl font-black text-slate-900 font-display">{stake} XP</div>
+                  <div className={`text-xl font-black font-display ${allowed ? 'text-slate-900' : 'text-slate-400'}`}>
+                    {stake} XP
+                  </div>
                   <div className="text-xs text-slate-600 truncate font-semibold">
                     {allowed ? label : disableReason}
                   </div>
@@ -201,20 +243,24 @@ export const ArenaLobby: React.FC<ArenaLobbyProps> = ({
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Users className="w-5 h-5 text-sky-600" />
-            <h2 className="text-lg font-black text-slate-900 font-display">Available Classmates (Grade 7)</h2>
+            <h2 className="text-lg font-black text-slate-900 font-display">
+              Available Classmates (Grade {gradeNumber})
+            </h2>
           </div>
           <span className="text-xs text-slate-400 font-medium">Europe/Istanbul UTC+3</span>
         </div>
 
-        {opponents.length === 0 ? (
+        {filteredOpponents.length === 0 ? (
           <div className="text-center py-12 text-slate-400">
             <Users className="w-12 h-12 mx-auto mb-2 opacity-30 text-sky-400" />
             <p className="font-semibold text-slate-600 font-display">No classmates online right now</p>
-            <p className="text-xs mt-1 text-slate-400">Classmates in Grade 7 will appear here when they connect to the arena.</p>
+            <p className="text-xs mt-1 text-slate-400">
+              Classmates in Grade {gradeNumber} will appear here when they connect to the arena.
+            </p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {opponents.map((opponent) => {
+            {filteredOpponents.map((opponent) => {
               const isIdle = opponent.status === 'idle';
               const isInBattle = opponent.status === 'in_battle';
               const canChallenge = isIdle && isStakeAllowed(selectedStake) && !outgoingChallenge;
@@ -369,7 +415,9 @@ export const ArenaLobby: React.FC<ArenaLobbyProps> = ({
                   <h3 className="text-xl font-black text-slate-900 font-display">
                     {incomingChallenge.challenger_name}
                   </h3>
-                  <span className="text-xs text-slate-500 font-semibold">Grade 7 English Duel</span>
+                  <span className="text-xs text-slate-500 font-semibold">
+                    Grade {getGradeNumber(incomingChallenge.grade)} English Duel
+                  </span>
                 </div>
               </div>
 
@@ -381,7 +429,7 @@ export const ArenaLobby: React.FC<ArenaLobbyProps> = ({
                 </div>
                 <div className="flex justify-between items-center text-slate-600">
                   <span>Questions:</span>
-                  <span className="text-slate-900 font-bold">10 Questions (Grade 7)</span>
+                  <span className="text-slate-900 font-bold">10 Questions (Grade {getGradeNumber(incomingChallenge.grade)})</span>
                 </div>
                 <div className="flex justify-between items-center text-slate-600">
                   <span>Time per question:</span>

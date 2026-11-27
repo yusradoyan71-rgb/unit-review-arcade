@@ -29,6 +29,7 @@ import type {
   ArenaChallenge,
   ArenaStake,
 } from '../components/arena/types';
+import { normalizeGrade } from '../components/arena/types';
 
 export const ARENA_FIREBASE_CONFIG = {
   apiKey: "AIzaSyDcsEEKV4u7e_V_g65nYSKRIwit7gUjXjg",
@@ -125,37 +126,53 @@ export class ArenaFirebaseService {
   }
 
   /**
-   * Subscribe to online Grade 7 classmates at /presence
+   * Subscribe to online classmates at /presence matching the target grade.
+   * Excludes self, excludes offline students, and normalizes grade comparisons.
    */
   public static subscribeToOnlineClassmates(
     currentStudentNumber: string,
     targetGrade: string,
-    callback: (opponents: ArenaOpponent[]) => void
+    callback: (opponents: ArenaOpponent[]) => void,
+    onError?: (error: Error) => void
   ): Unsubscribe {
     const presenceRoot = ref(db, 'presence');
-    const unsubscribe = onValue(presenceRoot, (snapshot) => {
-      const data = snapshot.val() || {};
-      const list: ArenaOpponent[] = [];
+    const normalizedTarget = normalizeGrade(targetGrade);
 
-      Object.keys(data).forEach((sNum) => {
-        if (sNum === currentStudentNumber) return; // Skip self
-        const val = data[sNum];
-        if (val && String(val.grade) === String(targetGrade)) {
-          list.push({
-            studentNumber: sNum,
-            displayName: val.displayName || `Student ${sNum}`,
-            class: val.class || '7-A',
-            grade: String(val.grade),
-            level: val.level || 1,
-            levelTitle: val.levelTitle || 'Adventurer',
-            status: val.status || 'idle',
-            avatarSeed: sNum,
-          });
-        }
-      });
+    const unsubscribe = onValue(
+      presenceRoot,
+      (snapshot) => {
+        const data = snapshot.val() || {};
+        const list: ArenaOpponent[] = [];
 
-      callback(list);
-    });
+        Object.keys(data).forEach((sNum) => {
+          if (String(sNum).trim() === String(currentStudentNumber).trim()) return; // Never show self
+          const val = data[sNum];
+          if (!val) return;
+          // Filter out offline students
+          if (val.status === 'offline') return;
+          // Grade isolation: must match target grade
+          if (normalizeGrade(val.grade) === normalizedTarget) {
+            list.push({
+              studentNumber: sNum,
+              displayName: val.displayName || `Student ${sNum}`,
+              class: val.class || (normalizedTarget === 'grade-8' ? '8-A' : '7-A'),
+              grade: String(val.grade),
+              level: val.level || 1,
+              levelTitle: val.levelTitle || 'Adventurer',
+              status: val.status || 'idle',
+              avatarSeed: sNum,
+            });
+          }
+        });
+
+        // Always invoke callback to reflect real live state (including empty list)
+        callback(list);
+      },
+      (error) => {
+        console.error('[ArenaFirebaseService] Failed to read presence:', error);
+        if (onError) onError(error);
+      }
+    );
 
     this.presenceUnsub = unsubscribe;
     return unsubscribe;
@@ -166,32 +183,40 @@ export class ArenaFirebaseService {
    */
   public static subscribeToInvitations(
     studentNumber: string,
-    callback: (invitations: ArenaChallenge[]) => void
+    callback: (invitations: ArenaChallenge[]) => void,
+    onError?: (error: Error) => void
   ): Unsubscribe {
     const invRef = ref(db, `user_invitations/${studentNumber}`);
-    const unsubscribe = onValue(invRef, (snapshot) => {
-      const data = snapshot.val() || {};
-      const list: ArenaChallenge[] = [];
+    const unsubscribe = onValue(
+      invRef,
+      (snapshot) => {
+        const data = snapshot.val() || {};
+        const list: ArenaChallenge[] = [];
 
-      Object.keys(data).forEach((chId) => {
-        const val = data[chId];
-        if (val && val.status === 'pending') {
-          list.push({
-            challengeId: chId,
-            challenger_id: val.challenger_id,
-            challenger_name: val.challenger_name || `Student ${val.challenger_id}`,
-            opponent_id: studentNumber,
-            opponent_name: '',
-            stake_xp: (val.stake_xp ?? 0) as ArenaStake,
-            grade: String(val.grade || '7'),
-            status: val.status,
-            createdAt: typeof val.created_at === 'number' ? val.created_at : Date.now(),
-          });
-        }
-      });
+        Object.keys(data).forEach((chId) => {
+          const val = data[chId];
+          if (val && val.status === 'pending') {
+            list.push({
+              challengeId: chId,
+              challenger_id: val.challenger_id,
+              challenger_name: val.challenger_name || `Student ${val.challenger_id}`,
+              opponent_id: studentNumber,
+              opponent_name: '',
+              stake_xp: (val.stake_xp ?? 0) as ArenaStake,
+              grade: String(val.grade || '7'),
+              status: val.status,
+              createdAt: typeof val.created_at === 'number' ? val.created_at : Date.now(),
+            });
+          }
+        });
 
-      callback(list);
-    });
+        callback(list);
+      },
+      (error) => {
+        console.error('[ArenaFirebaseService] Failed to read invitations:', error);
+        if (onError) onError(error);
+      }
+    );
 
     this.invitationsUnsub = unsubscribe;
     return unsubscribe;

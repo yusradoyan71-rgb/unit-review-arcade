@@ -8,11 +8,11 @@ import type {
   ArenaMatchOutcome,
   ArenaQuestion,
 } from './types';
+import { normalizeGrade } from './types';
 import { ArenaHeader } from './ArenaHeader';
 import { ArenaLobby } from './ArenaLobby';
 import { ArenaBattle } from './ArenaBattle';
 import { ArenaResults } from './ArenaResults';
-import { Eye } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useGamification } from '../../context/GamificationContext';
 import { CoinService } from '../../services/coinService';
@@ -90,76 +90,39 @@ export const ArenaContainer: React.FC<ArenaContainerProps> = ({ onExit = () => {
   const { student, sessionToken, openLoginModal } = useAuth();
   const { profile } = useGamification();
 
-  // Resolve current student metrics from authentication context or fallback to TEST_701
-  const studentNumber = student?.studentNumber || 'TEST_701';
-  const displayName = student ? student.firstName : 'Zeynep Kaya';
-  const studentClass = student?.class || '7-A';
-  const lifetimeXp = profile?.totalXp || 1240;
-  const initialSpendable = student?.totalCoins ?? CoinService.getBalance(studentNumber) ?? 95;
+  // Resolve current student metrics dynamically from authentication context
+  const studentNumber = student?.studentNumber || '';
+  const displayName = student ? (student.displayName || student.firstName || `Student ${student.studentNumber}`) : '';
+  const studentClass = student?.class || '';
+  const rawGrade = student?.grade || (student?.class?.startsWith('8') ? 'grade-8' : 'grade-7');
+  const studentGrade = normalizeGrade(rawGrade);
+  const lifetimeXp = profile?.totalXp || 0;
+  const initialSpendable = student?.totalCoins ?? (studentNumber ? CoinService.getBalance(studentNumber) : 0) ?? 0;
 
   const [metrics, setMetrics] = useState<ArenaStudentMetrics>({
     studentNumber,
     displayName,
     class: studentClass,
-    grade: '7',
+    grade: studentGrade,
     academicLifetimeXp: lifetimeXp,
-    spendableXp: initialSpendable > 0 ? initialSpendable : 95,
+    spendableXp: initialSpendable >= 0 ? initialSpendable : 0,
     arenaXpDelta: 0,
-    level: profile?.level || 4,
+    level: profile?.level || 1,
     levelTitle: profile?.levelTitle || 'Arcade Veteran',
-    todayMatchCount: 2,
-    remainingMatches: 3,
-    todayGrossLossXp: 5,
-    remainingLossAllowance: 15,
+    todayMatchCount: 0,
+    remainingMatches: 5,
+    todayGrossLossXp: 0,
+    remainingLossAllowance: 20,
     availableStakes: [0, 5, 10, 20],
   });
+
+  const [presenceError, setPresenceError] = useState<string | null>(null);
 
   // Current view
   const [view, setView] = useState<'lobby' | 'battle' | 'results'>('lobby');
 
-  // Opponents roster
-  const [opponents, setOpponents] = useState<ArenaOpponent[]>([
-    {
-      studentNumber: 'TEST_702',
-      displayName: 'Ali Demir',
-      class: '7-A',
-      grade: '7',
-      level: 3,
-      levelTitle: 'Grammar Knight',
-      status: 'idle',
-      avatarSeed: 'TEST_702',
-    },
-    {
-      studentNumber: '703',
-      displayName: 'Can Yılmaz',
-      class: '7-B',
-      grade: '7',
-      level: 4,
-      levelTitle: 'Word Master',
-      status: 'idle',
-      avatarSeed: '703',
-    },
-    {
-      studentNumber: '704',
-      displayName: 'Elif Çelik',
-      class: '7-A',
-      grade: '7',
-      level: 5,
-      levelTitle: 'Legend',
-      status: 'in_battle',
-      avatarSeed: '704',
-    },
-    {
-      studentNumber: '705',
-      displayName: 'Mehmet Öztürk',
-      class: '7-C',
-      grade: '7',
-      level: 3,
-      levelTitle: 'Quiz Explorer',
-      status: 'idle',
-      avatarSeed: '705',
-    },
-  ]);
+  // Opponents roster - START EMPTY, ZERO MOCK / FICTIONAL STUDENTS
+  const [opponents, setOpponents] = useState<ArenaOpponent[]>([]);
 
   // Challenge states
   const [incomingChallenge, setIncomingChallenge] = useState<ArenaChallenge | null>(null);
@@ -174,88 +137,129 @@ export const ArenaContainer: React.FC<ArenaContainerProps> = ({ onExit = () => {
   // Establish presence & backend synchronization in Firebase
   useEffect(() => {
     let isCancelled = false;
+    let unsubPresence: (() => void) | null = null;
+    let unsubInv: (() => void) | null = null;
 
     const initBackendAndFirebase = async () => {
-      // 1. Authoritative Backend Status Synchronization
-      if (sessionToken) {
-        try {
-          const statusRes = await ApiService.getArenaStatus(sessionToken);
-          if (!isCancelled && statusRes.success && statusRes.metrics) {
-            const m = statusRes.metrics;
-            setMetrics((prev) => ({
-              ...prev,
-              academicLifetimeXp: m.academicLifetimeXp,
-              spendableXp: m.spendableXp,
-              arenaXpDelta: m.arenaXpDelta,
-              level: m.level,
-              levelTitle: m.levelTitle,
-              todayMatchCount: m.todayMatchCount,
-              remainingMatches: m.remainingMatches,
-              todayGrossLossXp: m.todayGrossLossXp,
-              remainingLossAllowance: m.remainingLossAllowance,
-              availableStakes: m.availableStakes as ArenaStake[],
-            }));
-          }
-        } catch (e) {
-          console.warn('[Arena] Authoritative status sync failed, using local profile fallback:', e);
-        }
+      if (!sessionToken || !studentNumber) return;
 
-        // 2. Mint & Authenticate Firebase Custom Token
-        try {
-          const tokenRes = await ApiService.getArenaCustomToken(sessionToken);
-          if (tokenRes.success && tokenRes.customToken) {
-            await ArenaFirebaseService.authenticate(tokenRes.customToken);
-          }
-        } catch (e) {
-          console.warn('[Arena] Firebase Custom Token auth failed, using simulated session:', e);
+      // 1. Authoritative Backend Status Synchronization
+      try {
+        const statusRes = await ApiService.getArenaStatus(sessionToken);
+        if (!isCancelled && statusRes.success && statusRes.metrics) {
+          const m = statusRes.metrics;
+          setMetrics((prev) => ({
+            ...prev,
+            academicLifetimeXp: m.academicLifetimeXp,
+            spendableXp: m.spendableXp,
+            arenaXpDelta: m.arenaXpDelta,
+            level: m.level,
+            levelTitle: m.levelTitle,
+            todayMatchCount: m.todayMatchCount,
+            remainingMatches: m.remainingMatches,
+            todayGrossLossXp: m.todayGrossLossXp,
+            remainingLossAllowance: m.remainingLossAllowance,
+            availableStakes: m.availableStakes as ArenaStake[],
+          }));
         }
+      } catch (e: any) {
+        console.warn('[Arena] Authoritative status sync failed, using profile metrics:', e);
       }
+
+      // 2. Mint & Authenticate Firebase Custom Token
+      let tokenGrade = studentGrade;
+      try {
+        const tokenRes = await ApiService.getArenaCustomToken(sessionToken);
+        if (tokenRes.success && tokenRes.customToken) {
+          if (tokenRes.grade) {
+            tokenGrade = normalizeGrade(tokenRes.grade);
+          }
+          await ArenaFirebaseService.authenticate(tokenRes.customToken);
+          if (!isCancelled) setPresenceError(null);
+        } else {
+          if (!isCancelled) {
+            setPresenceError('Firebase Authentication Notice: ' + (tokenRes.error || 'Could not verify student token'));
+          }
+          return;
+        }
+      } catch (e: any) {
+        console.error('[Arena] Firebase Custom Token auth failed:', e);
+        if (!isCancelled) {
+          setPresenceError('Firebase Connection Notice: ' + (e?.message || 'Authentication failed'));
+        }
+        return;
+      }
+
+      if (isCancelled) return;
 
       // 3. Establish Presence in Firebase
       try {
-        await ArenaFirebaseService.setPresence(metrics.studentNumber, {
-          displayName: metrics.displayName,
-          class: metrics.class,
-          grade: metrics.grade,
+        await ArenaFirebaseService.setPresence(studentNumber, {
+          displayName,
+          class: studentClass,
+          grade: tokenGrade,
           level: metrics.level,
           levelTitle: metrics.levelTitle,
           status: 'idle',
         });
-      } catch (e) {
-        // Fallback for test / offline mode
+      } catch (e: any) {
+        console.error('[Arena] Failed to set presence:', e);
+        if (!isCancelled) {
+          const isRosterMissing = e?.message?.includes('PERMISSION_DENIED') || e?.code === 'PERMISSION_DENIED';
+          setPresenceError(
+            isRosterMissing
+              ? 'Roster Synchronization Notice: Student account not found in trusted Firebase roster. Other classmates will not see you until roster is synchronized.'
+              : ('Presence notice: ' + (e?.message || 'Failed to register online status'))
+          );
+        }
       }
+
+      // 4. Subscribe to online classmates with matching grade (AFTER AUTHENTICATION)
+      unsubPresence = ArenaFirebaseService.subscribeToOnlineClassmates(
+        studentNumber,
+        tokenGrade,
+        (liveOpponents) => {
+          if (!isCancelled) {
+            // Always set real opponents, filtering out self
+            const filtered = liveOpponents.filter((o) => o.studentNumber !== studentNumber);
+            setOpponents(filtered);
+          }
+        },
+        (err) => {
+          if (!isCancelled) {
+            console.error('[Arena] Presence subscription error:', err);
+            setPresenceError('Classmate subscription notice: ' + (err?.message || 'Permission denied'));
+          }
+        }
+      );
+
+      // 5. Subscribe to incoming invitations (AFTER AUTHENTICATION)
+      unsubInv = ArenaFirebaseService.subscribeToInvitations(
+        studentNumber,
+        (invitations) => {
+          if (!isCancelled) {
+            setIncomingChallenge(invitations.length > 0 ? invitations[0] : null);
+          }
+        },
+        (err) => {
+          if (!isCancelled) {
+            console.error('[Arena] Invitations subscription error:', err);
+          }
+        }
+      );
     };
 
     initBackendAndFirebase();
-
-    // Subscribe to online Grade 7 classmates
-    const unsubPresence = ArenaFirebaseService.subscribeToOnlineClassmates(
-      metrics.studentNumber,
-      metrics.grade,
-      (liveOpponents) => {
-        if (!isCancelled && liveOpponents.length > 0) {
-          setOpponents(liveOpponents);
-        }
-      }
-    );
-
-    // Subscribe to incoming invitations
-    const unsubInv = ArenaFirebaseService.subscribeToInvitations(
-      metrics.studentNumber,
-      (invitations) => {
-        if (!isCancelled && invitations.length > 0) {
-          setIncomingChallenge(invitations[0]);
-        }
-      }
-    );
 
     return () => {
       isCancelled = true;
       if (unsubPresence) unsubPresence();
       if (unsubInv) unsubInv();
-      ArenaFirebaseService.clearPresence(metrics.studentNumber).catch(() => {});
+      if (studentNumber) {
+        ArenaFirebaseService.clearPresence(studentNumber).catch(() => {});
+      }
     };
-  }, [sessionToken, metrics.studentNumber, metrics.displayName, metrics.class, metrics.grade, metrics.level, metrics.levelTitle]);
+  }, [sessionToken, studentNumber, displayName, studentClass, studentGrade]);
 
   // Challenge actions
   const handleSendChallenge = async (opponent: ArenaOpponent, stake: ArenaStake) => {
@@ -294,18 +298,9 @@ export const ArenaContainer: React.FC<ArenaContainerProps> = ({ onExit = () => {
     setOutgoingChallenge(challenge);
 
     // Write challenge to Firebase
-    ArenaFirebaseService.createChallenge(challenge).catch(() => {});
-
-    // For test simulation: opponent accepts after 3.2s if no live peer answers
-    setTimeout(() => {
-      setOutgoingChallenge((curr) => {
-        if (curr && curr.challengeId === challenge.challengeId) {
-          startBattle(opponent, stake, matchId);
-          return null;
-        }
-        return curr;
-      });
-    }, 3200);
+    ArenaFirebaseService.createChallenge(challenge).catch((err) => {
+      console.error('[Arena] Failed to post challenge to Firebase:', err);
+    });
   };
 
   const handleAcceptChallenge = async (challenge: ArenaChallenge) => {
@@ -528,109 +523,6 @@ export const ArenaContainer: React.FC<ArenaContainerProps> = ({ onExit = () => {
     setView('results');
   };
 
-  // Preview Mode quick-switchers for testing
-  const triggerIncomingModalPreview = () => {
-    setView('lobby');
-    setIncomingChallenge({
-      challengeId: 'ch_preview_99',
-      challenger_id: 'TEST_702',
-      challenger_name: 'Ali Demir',
-      opponent_id: metrics.studentNumber,
-      opponent_name: metrics.displayName,
-      stake_xp: 10,
-      grade: '7',
-      status: 'pending',
-      createdAt: Date.now(),
-    });
-  };
-
-  const triggerBattlePreview = () => {
-    const opp = opponents[0];
-    startBattle(opp, 10);
-  };
-
-  const triggerVictoryPreview = () => {
-    const opp = opponents[0];
-    setActiveRoom({
-      battleId: 'battle_demo_win_88',
-      player1: {
-        studentNumber: metrics.studentNumber,
-        displayName: metrics.displayName,
-        class: metrics.class,
-        grade: metrics.grade,
-        level: metrics.level,
-        levelTitle: metrics.levelTitle,
-        status: 'in_battle',
-        avatarSeed: metrics.studentNumber,
-      },
-      player2: opp,
-      stakeXp: 10,
-      currentQuestionIndex: 9,
-      totalQuestions: 10,
-      startedAt: Date.now() - 120000,
-      questionDeadlines: {},
-      questions: SAMPLE_QUESTIONS,
-      status: 'completed',
-    });
-    setOutcome({
-      matchId: 'battle_demo_win_88',
-      winnerId: metrics.studentNumber,
-      isTie: false,
-      p1Score: 9,
-      p2Score: 8,
-      p1TotalTimeMs: 14200,
-      p2TotalTimeMs: 16800,
-      p1XpChange: 10,
-      p2XpChange: -10,
-      academicLifetimeXp: metrics.academicLifetimeXp,
-      newSpendableXp: metrics.spendableXp + 10,
-      levelFloorProtected: true,
-      settledAt: new Date().toISOString(),
-    });
-    setView('results');
-  };
-
-  const triggerDefeatPreview = () => {
-    const opp = opponents[0];
-    setActiveRoom({
-      battleId: 'battle_demo_loss_99',
-      player1: {
-        studentNumber: metrics.studentNumber,
-        displayName: metrics.displayName,
-        class: metrics.class,
-        grade: metrics.grade,
-        level: metrics.level,
-        levelTitle: metrics.levelTitle,
-        status: 'in_battle',
-        avatarSeed: metrics.studentNumber,
-      },
-      player2: opp,
-      stakeXp: 10,
-      currentQuestionIndex: 9,
-      totalQuestions: 10,
-      startedAt: Date.now() - 120000,
-      questionDeadlines: {},
-      questions: SAMPLE_QUESTIONS,
-      status: 'completed',
-    });
-    setOutcome({
-      matchId: 'battle_demo_loss_99',
-      winnerId: opp.studentNumber,
-      isTie: false,
-      p1Score: 7,
-      p2Score: 9,
-      p1TotalTimeMs: 18400,
-      p2TotalTimeMs: 15200,
-      p1XpChange: -10,
-      p2XpChange: 10,
-      academicLifetimeXp: metrics.academicLifetimeXp,
-      newSpendableXp: metrics.spendableXp - 10,
-      levelFloorProtected: true,
-      settledAt: new Date().toISOString(),
-    });
-    setView('results');
-  };
-
   // Enforce student authentication guard
   if (!student || !sessionToken) {
     return (
@@ -691,6 +583,7 @@ export const ArenaContainer: React.FC<ArenaContainerProps> = ({ onExit = () => {
             opponents={opponents}
             incomingChallenge={incomingChallenge}
             outgoingChallenge={outgoingChallenge}
+            presenceError={presenceError}
             onSendChallenge={handleSendChallenge}
             onAcceptChallenge={handleAcceptChallenge}
             onDeclineChallenge={handleDeclineChallenge}
@@ -726,74 +619,6 @@ export const ArenaContainer: React.FC<ArenaContainerProps> = ({ onExit = () => {
           />
         )}
       </main>
-
-      {/* Developer / Design Review Toolbar */}
-      <div className="bg-white/90 border-t border-sky-100 px-4 py-2 sticky bottom-0 z-50 backdrop-blur-md shadow-lg">
-        <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2 text-xs">
-          <div className="flex items-center gap-1.5 text-sky-800 font-bold font-display">
-            <Eye className="w-4 h-4 text-sky-600" />
-            <span>Arena Modes:</span>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-1.5">
-            <button
-              onClick={() => {
-                setView('lobby');
-                setIncomingChallenge(null);
-                setOutgoingChallenge(null);
-              }}
-              className={`px-2.5 py-1 rounded-lg border font-bold transition font-display ${
-                view === 'lobby' && !incomingChallenge
-                  ? 'bg-sky-600 text-white border-sky-600 shadow-xs'
-                  : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
-              }`}
-            >
-              1. Lobby
-            </button>
-            <button
-              onClick={triggerIncomingModalPreview}
-              className={`px-2.5 py-1 rounded-lg border font-bold transition font-display ${
-                view === 'lobby' && incomingChallenge
-                  ? 'bg-emerald-600 text-white border-emerald-600 shadow-xs'
-                  : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
-              }`}
-            >
-              2. Incoming Modal
-            </button>
-            <button
-              onClick={triggerBattlePreview}
-              className={`px-2.5 py-1 rounded-lg border font-bold transition font-display ${
-                view === 'battle'
-                  ? 'bg-amber-500 text-amber-950 border-amber-500 shadow-xs'
-                  : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
-              }`}
-            >
-              3. 10Q Battle
-            </button>
-            <button
-              onClick={triggerVictoryPreview}
-              className={`px-2.5 py-1 rounded-lg border font-bold transition font-display ${
-                view === 'results' && outcome?.winnerId === metrics.studentNumber
-                  ? 'bg-amber-400 text-amber-950 border-amber-400 shadow-xs'
-                  : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
-              }`}
-            >
-              4. Results: Victory
-            </button>
-            <button
-              onClick={triggerDefeatPreview}
-              className={`px-2.5 py-1 rounded-lg border font-bold transition font-display ${
-                view === 'results' && outcome?.winnerId !== metrics.studentNumber
-                  ? 'bg-rose-500 text-white border-rose-500 shadow-xs'
-                  : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
-              }`}
-            >
-              5. Results: Defeat (Loss Cap)
-            </button>
-          </div>
-        </div>
-      </div>
-
     </div>
   );
 };

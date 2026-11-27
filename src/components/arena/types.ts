@@ -8,6 +8,22 @@ export type ArenaStake = 0 | 5 | 10 | 20;
 
 export type ArenaPresenceStatus = 'idle' | 'in_battle' | 'offline';
 
+/**
+ * Normalizes grade string into standard 'grade-7' | 'grade-8'
+ */
+export function normalizeGrade(grade?: string): 'grade-7' | 'grade-8' {
+  const s = String(grade || '').trim().toLowerCase();
+  if (s === '8' || s === 'grade-8' || s.startsWith('8')) return 'grade-8';
+  return 'grade-7';
+}
+
+/**
+ * Returns single digit grade '7' | '8' for display
+ */
+export function getGradeNumber(grade?: string): '7' | '8' {
+  return normalizeGrade(grade) === 'grade-8' ? '8' : '7';
+}
+
 export interface ArenaStudentMetrics {
   studentNumber: string;
   displayName: string;

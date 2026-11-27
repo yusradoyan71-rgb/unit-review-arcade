@@ -1,5 +1,6 @@
 import React from 'react';
 import type { ArenaStudentMetrics } from './types';
+import { getGradeNumber } from './types';
 import { ArrowLeft, ShieldCheck, Flame, Coins, Swords, Zap, ChevronRight, Gamepad2 } from 'lucide-react';
 import { MonsterAvatar } from '../monster/MonsterAvatar';
 import { MonsterService } from '../../services/monsterService';
@@ -42,7 +43,9 @@ export const ArenaHeader: React.FC<ArenaHeaderProps> = ({ metrics, onExit }) => 
           <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-50 text-amber-900 border border-amber-200 font-bold text-xs">
             <Swords className="w-3.5 h-3.5 text-amber-600" />
             <span className="font-display font-black">XP Battle Arena</span>
-            <span className="px-1.5 py-0.2 rounded-full bg-amber-100 text-amber-800 text-[10px]">Grade 7</span>
+            <span className="px-1.5 py-0.2 rounded-full bg-amber-100 text-amber-800 text-[10px]">
+              Grade {getGradeNumber(metrics.grade)}
+            </span>
           </div>
         </div>
 
